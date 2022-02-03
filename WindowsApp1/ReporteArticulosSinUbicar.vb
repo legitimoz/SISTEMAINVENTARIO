@@ -225,8 +225,6 @@ Public Class ReporteArticulosSinUbicar
     End Sub
 
     Public Sub ProcesoExportar()
-
-
         Try
             If dtcabecera2.Rows.Count > 0 Then
                 If ExportExcel(dtcabecera2) Then
@@ -273,6 +271,7 @@ Public Class ReporteArticulosSinUbicar
             dt.TableName = "PEDIDOS"
             Dim ws As IXLWorksheet
             If dt.Rows.Count > Constantes.ValorEnteroInicial Then
+                dt.TableName = "Hoja2"
                 If savedialog_Excel.ShowDialog = Windows.Forms.DialogResult.OK Then
                     path = savedialog_Excel.FileName
                     wb.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left

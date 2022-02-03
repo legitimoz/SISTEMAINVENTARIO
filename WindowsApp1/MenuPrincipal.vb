@@ -395,18 +395,20 @@
 
     Private Sub ImpresiónToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImpresiónToolStripMenuItem.Click
         Try
-            Dim frmArt As New GestionGuiasRotulos
-            If ExisteChildrens(frmArt) = False Then
-                frmArt.MdiParent = Me
-                frmArt.usr_id = prIdUser
-                frmArt.usr_usuario = prUser
-                frmArt.WindowState = FormWindowState.Maximized
-                frmArt.Width = Me.Width
-                frmArt.Height = Me.Height
-                frmArt.Show()
+
+            Dim frmRotulado As New frmRotuladoxCodigoxSerie
+
+            If ExisteChildrens(frmRotulado) = False Then
+
+                frmRotulado.MdiParent = Me
+                frmRotulado.usr_id = prIdUser
+                'frmArt.usr_usuario = prUser
+                'frmArt.Text = "Lista Pedidos - Salida"
+                frmRotulado.Show()
             End If
+
         Catch ex As Exception
-            Throw ex
+
         End Try
     End Sub
 

@@ -193,6 +193,12 @@
     <Compile Include="EditarSalidaAlmacen.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmBusquedaGuiaRotulos.Designer.vb">
+      <DependentUpon>frmBusquedaGuiaRotulos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmBusquedaGuiaRotulos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmDetallePedido.Designer.vb">
       <DependentUpon>frmDetallePedido.vb</DependentUpon>
     </Compile>
@@ -269,6 +275,12 @@
       <DependentUpon>frmRetornoRuta.vb</DependentUpon>
     </Compile>
     <Compile Include="frmRetornoRuta.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRotuladoxCodigoxSerie.Designer.vb">
+      <DependentUpon>frmRotuladoxCodigoxSerie.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmRotuladoxCodigoxSerie.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmTexto.Designer.vb">
@@ -744,6 +756,9 @@
     <EmbeddedResource Include="EditarSalidaAlmacen.resx">
       <DependentUpon>EditarSalidaAlmacen.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmBusquedaGuiaRotulos.resx">
+      <DependentUpon>frmBusquedaGuiaRotulos.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDetallePedido.resx">
       <DependentUpon>frmDetallePedido.vb</DependentUpon>
     </EmbeddedResource>
@@ -782,6 +797,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmRetornoRuta.resx">
       <DependentUpon>frmRetornoRuta.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRotuladoxCodigoxSerie.resx">
+      <DependentUpon>frmRotuladoxCodigoxSerie.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTexto.resx">
       <DependentUpon>frmTexto.vb</DependentUpon>
