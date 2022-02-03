@@ -52,15 +52,17 @@ Partial Class frmRotuladoxCodigoxSerie
         Me.lblSaldo = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
-        Me.btnImprimirEtiqueta = New System.Windows.Forms.Button()
         Me.btnAgregar = New System.Windows.Forms.Button()
         Me.txtAnadirCantidad = New System.Windows.Forms.TextBox()
         Me.dgvCantidades = New System.Windows.Forms.DataGridView()
+        Me.cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.Label14 = New System.Windows.Forms.Label()
-        Me.btnBusqueda = New System.Windows.Forms.Button()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btnImprimirEtiqueta = New System.Windows.Forms.Button()
+        Me.btnBusqueda = New System.Windows.Forms.Button()
+        Me.savedialog_Excel = New System.Windows.Forms.SaveFileDialog()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.dgvCantidades, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -303,6 +305,7 @@ Partial Class frmRotuladoxCodigoxSerie
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.Button1)
         Me.GroupBox2.Controls.Add(Me.lblTotal)
         Me.GroupBox2.Controls.Add(Me.Label17)
         Me.GroupBox2.Controls.Add(Me.lblSaldo)
@@ -364,17 +367,6 @@ Partial Class frmRotuladoxCodigoxSerie
         Me.Label15.TabIndex = 16
         Me.Label15.Text = "Ingrese Cantidad"
         '
-        'btnImprimirEtiqueta
-        '
-        Me.btnImprimirEtiqueta.Image = Global.WindowsApp1.My.Resources.Resources._004
-        Me.btnImprimirEtiqueta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnImprimirEtiqueta.Location = New System.Drawing.Point(344, 110)
-        Me.btnImprimirEtiqueta.Name = "btnImprimirEtiqueta"
-        Me.btnImprimirEtiqueta.Size = New System.Drawing.Size(136, 42)
-        Me.btnImprimirEtiqueta.TabIndex = 15
-        Me.btnImprimirEtiqueta.Text = "IMPRIMIR"
-        Me.btnImprimirEtiqueta.UseVisualStyleBackColor = True
-        '
         'btnAgregar
         '
         Me.btnAgregar.Location = New System.Drawing.Point(220, 18)
@@ -401,6 +393,12 @@ Partial Class frmRotuladoxCodigoxSerie
         Me.dgvCantidades.Size = New System.Drawing.Size(285, 162)
         Me.dgvCantidades.TabIndex = 0
         '
+        'cantidad
+        '
+        Me.cantidad.HeaderText = "CANTIDADES"
+        Me.cantidad.Name = "cantidad"
+        Me.cantidad.Width = 240
+        '
         'StatusStrip1
         '
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 428)
@@ -418,6 +416,34 @@ Partial Class frmRotuladoxCodigoxSerie
         Me.Label14.TabIndex = 7
         Me.Label14.Text = ":"
         '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.HeaderText = "CANTIDADES"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        Me.DataGridViewTextBoxColumn1.Width = 240
+        '
+        'Button1
+        '
+        Me.Button1.Image = Global.WindowsApp1.My.Resources.Resources.icon_excel11
+        Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button1.Location = New System.Drawing.Point(502, 110)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(136, 42)
+        Me.Button1.TabIndex = 21
+        Me.Button1.Text = "EXPORTAR"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'btnImprimirEtiqueta
+        '
+        Me.btnImprimirEtiqueta.Image = Global.WindowsApp1.My.Resources.Resources._004
+        Me.btnImprimirEtiqueta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnImprimirEtiqueta.Location = New System.Drawing.Point(344, 110)
+        Me.btnImprimirEtiqueta.Name = "btnImprimirEtiqueta"
+        Me.btnImprimirEtiqueta.Size = New System.Drawing.Size(136, 42)
+        Me.btnImprimirEtiqueta.TabIndex = 15
+        Me.btnImprimirEtiqueta.Text = "IMPRIMIR"
+        Me.btnImprimirEtiqueta.UseVisualStyleBackColor = True
+        '
         'btnBusqueda
         '
         Me.btnBusqueda.Image = Global.WindowsApp1.My.Resources.Resources._104
@@ -428,18 +454,6 @@ Partial Class frmRotuladoxCodigoxSerie
         Me.btnBusqueda.TabIndex = 2
         Me.btnBusqueda.Text = "Buscar"
         Me.btnBusqueda.UseVisualStyleBackColor = True
-        '
-        'DataGridViewTextBoxColumn1
-        '
-        Me.DataGridViewTextBoxColumn1.HeaderText = "CANTIDADES"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        Me.DataGridViewTextBoxColumn1.Width = 240
-        '
-        'cantidad
-        '
-        Me.cantidad.HeaderText = "CANTIDADES"
-        Me.cantidad.Name = "cantidad"
-        Me.cantidad.Width = 240
         '
         'frmRotuladoxCodigoxSerie
         '
@@ -505,4 +519,6 @@ Partial Class frmRotuladoxCodigoxSerie
     Friend WithEvents lblTotal As Label
     Friend WithEvents Label17 As Label
     Friend WithEvents cantidad As DataGridViewTextBoxColumn
+    Friend WithEvents Button1 As Button
+    Friend WithEvents savedialog_Excel As SaveFileDialog
 End Class

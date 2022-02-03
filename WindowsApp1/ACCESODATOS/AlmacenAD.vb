@@ -128,6 +128,29 @@ Public Class AlmacenAD
 
     End Function
 
+    Public Function ReporteRotulosProducto(ByVal CALMA As String, ByVal CTD As String, CNUMDOC As String) As DataTable
+
+        Try
+            Dim com As New SqlCommand("SP_CSE_RotulosArticulo", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+            com.Parameters.Add("@CALMA", SqlDbType.Char, 4).Value = CALMA
+            com.Parameters.Add("@CTD", SqlDbType.Char, 2).Value = CTD
+            com.Parameters.Add("@CNUMDOC", SqlDbType.Char, 11).Value = CNUMDOC
+
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            Throw ex
+            MyBase.Conn.Close()
+        End Try
+
+    End Function
+
 
     Public Function BuscarUbicacionArticulo() As DataTable
 

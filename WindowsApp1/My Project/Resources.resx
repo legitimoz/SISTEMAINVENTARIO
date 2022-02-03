@@ -121,9 +121,6 @@
   <data name="icon_delete_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_delete_on1.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="actn039" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\actn039.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="1041" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\104.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -133,8 +130,11 @@
   <data name="icon_excel4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_excel.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon_package_big1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="icon_package_big2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_package_big.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="actn039" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\actn039.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="571" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\571.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -148,9 +148,6 @@
   <data name="icon_package_big" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_package_big.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="actn1121" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\actn112.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="print-icon3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\print-icon3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -160,11 +157,8 @@
   <data name="103" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\103.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="0032" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\0032.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="5711" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\571.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="actn1121" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\actn112.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon_excel2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_excel.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -183,6 +177,12 @@
   </data>
   <data name="actn0391" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\actn039.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="074" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\0741.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="floppy-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\floppy-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="actn017" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\actn017.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -214,14 +214,14 @@
   <data name="0011" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\0011.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon_package_big2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon_package_big.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="5711" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\571.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="0041" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\004.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="074" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\0741.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icon_package_big1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_package_big.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="295" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\295.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -235,13 +235,16 @@
   <data name="actn112" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\actn112.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="0032" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\0032.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="004" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\004.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon_excel1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_excel.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="floppy-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\floppy-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icon_excel11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_excel1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
