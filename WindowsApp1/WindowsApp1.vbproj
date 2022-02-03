@@ -1,0 +1,1173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D57ED586-A7C1-4602-A1A5-86B7150EFF70}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>WindowsApp1.My.MyApplication</StartupObject>
+    <RootNamespace>WindowsApp1</RootNamespace>
+    <AssemblyName>WindowsApp1</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>WindowsApp1.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>WindowsApp1.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>Off</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>hospital-3_icon-icons.com_66075.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AxShockwaveFlashObjects, Version=1.0.0.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="ClosedXML, Version=0.95.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.95.4\lib\net46\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.7.2\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.0.10.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelNumberFormat.1.0.10\lib\net20\ExcelNumberFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="FontAwesome.Sharp, Version=5.15.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.Sharp.5.15.3\lib\net45\FontAwesome.Sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Client.Education, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Office.Client.Policy, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Office.Client.TranslationServices, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1484.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1484.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1484.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1484.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1484.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="PrintCodeBar">
+      <HintPath>..\PrintCodeBar\PrintCodeBar\bin\Debug\PrintCodeBar.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.0.1\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Packaging, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Packaging.4.0.0\lib\net46\System.IO.Packaging.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ACCESODATOS\AlmacenAD.vb" />
+    <Compile Include="ACCESODATOS\Util\conexion.vb" />
+    <Compile Include="AgregarCantidadPosicion.Designer.vb">
+      <DependentUpon>AgregarCantidadPosicion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarCantidadPosicion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComplementarRotuloProvincia.Designer.vb">
+      <DependentUpon>ComplementarRotuloProvincia.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ComplementarRotuloProvincia.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComplemetarRuta.Designer.vb">
+      <DependentUpon>ComplemetarRuta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ComplemetarRuta.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DateTimeCell.vb" />
+    <Compile Include="DateTimeEditingControl.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DateTimeGridColumn.vb" />
+    <Compile Include="DetalleIngresoImprimir.Designer.vb">
+      <DependentUpon>DetalleIngresoImprimir.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DetalleIngresoImprimir.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetallePosiciones.Designer.vb">
+      <DependentUpon>DetallePosiciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DetallePosiciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarPosicionesComplemento.Designer.vb">
+      <DependentUpon>EditarPosicionesComplemento.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditarPosicionesComplemento.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarProgramacionRuta.Designer.vb">
+      <DependentUpon>EditarProgramacionRuta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditarProgramacionRuta.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarRack.Designer.vb">
+      <DependentUpon>EditarRack.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditarRack.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarSalidaAlmacen.Designer.vb">
+      <DependentUpon>EditarSalidaAlmacen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditarSalidaAlmacen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDetallePedido.Designer.vb">
+      <DependentUpon>frmDetallePedido.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDetallePedido.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImpGuiaSsenda.Designer.vb">
+      <DependentUpon>frmImpGuiaSsenda.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmImpGuiaSsenda.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImportar_Ssenda.Designer.vb">
+      <DependentUpon>frmImportar_Ssenda.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmImportar_Ssenda.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLotesUbicacion.Designer.vb">
+      <DependentUpon>frmLotesUbicacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmLotesUbicacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmObsReq.Designer.vb">
+      <DependentUpon>frmObsReq.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmObsReq.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProgramarReque.Designer.vb">
+      <DependentUpon>frmProgramarReque.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmProgramarReque.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRegistroRequerimiento.Designer.vb">
+      <DependentUpon>frmRegistroRequerimiento.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmRegistroRequerimiento.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReporteDespachosGrafico.Designer.vb">
+      <DependentUpon>frmReporteDespachosGrafico.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReporteDespachosGrafico.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReporteDocPendScan.Designer.vb">
+      <DependentUpon>frmReporteDocPendScan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReporteDocPendScan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReportePedidosPicking.Designer.vb">
+      <DependentUpon>frmReportePedidosPicking.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportePedidosPicking.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReporteVentas.Designer.vb">
+      <DependentUpon>frmReporteVentas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReporteVentas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRequerimientos_TI.Designer.vb">
+      <DependentUpon>frmRequerimientos_TI.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmRequerimientos_TI.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRetornoRuta.Designer.vb">
+      <DependentUpon>frmRetornoRuta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmRetornoRuta.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTexto.Designer.vb">
+      <DependentUpon>frmTexto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmTexto.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVendedores.Designer.vb">
+      <DependentUpon>frmVendedores.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmVendedores.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmArticulos.Designer.vb">
+      <DependentUpon>frmArticulos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmArticulos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAsignarCliente.Designer.vb">
+      <DependentUpon>frmAsignarCliente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAsignarCliente.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmClientes.Designer.vb">
+      <DependentUpon>frmClientes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmClientes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmControlStock.Designer.vb">
+      <DependentUpon>frmControlStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmControlStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGestionArticulos.Designer.vb">
+      <DependentUpon>frmGestionArticulos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmGestionArticulos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImpreMasivaPickingvb.Designer.vb">
+      <DependentUpon>frmImpreMasivaPickingvb.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmImpreMasivaPickingvb.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImpresionRuta.Designer.vb">
+      <DependentUpon>frmImpresionRuta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmImpresionRuta.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmListaComprobantes.Designer.vb">
+      <DependentUpon>frmListaComprobantes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmListaComprobantes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmListado_Documentos.Designer.vb">
+      <DependentUpon>frmListado_Documentos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmListado_Documentos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmListaGuias.Designer.vb">
+      <DependentUpon>frmListaGuias.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmListaGuias.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.vb">
+      <DependentUpon>frmLogin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMotivoAnulacion.Designer.vb">
+      <DependentUpon>frmMotivoAnulacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMotivoAnulacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmObservacionPedido.Designer.vb">
+      <DependentUpon>frmObservacionPedido.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmObservacionPedido.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRegistrarRuta.Designer.vb">
+      <DependentUpon>frmRegistrarRuta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmRegistrarRuta.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRegistrar_Documentos.Designer.vb">
+      <DependentUpon>frmRegistrar_Documentos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmRegistrar_Documentos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReporteDespacho.Designer.vb">
+      <DependentUpon>frmReporteDespacho.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReporteDespacho.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRepPicking.Designer.vb">
+      <DependentUpon>frmRepPicking.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmRepPicking.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRepPresupuesto.Designer.vb">
+      <DependentUpon>frmRepPresupuesto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmRepPresupuesto.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRequerimientoIns.Designer.vb">
+      <DependentUpon>frmRequerimientoIns.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmRequerimientoIns.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSalidaRetorno_Ruta.Designer.vb">
+      <DependentUpon>frmSalidaRetorno_Ruta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSalidaRetorno_Ruta.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSegReque.Designer.vb">
+      <DependentUpon>frmSegReque.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSegReque.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSeguimientoRuta.Designer.vb">
+      <DependentUpon>frmSeguimientoRuta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSeguimientoRuta.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSolicitud_Institucional.Designer.vb">
+      <DependentUpon>frmSolicitud_Institucional.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSolicitud_Institucional.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmStock.Designer.vb">
+      <DependentUpon>frmStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVisorPedidos.Designer.vb">
+      <DependentUpon>frmVisorPedidos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmVisorPedidos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVisorRepre.Designer.vb">
+      <DependentUpon>frmVisorRepre.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmVisorRepre.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionAbastecimiento.Designer.vb">
+      <DependentUpon>GestionAbastecimiento.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GestionAbastecimiento.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionAlmacenForm.Designer.vb">
+      <DependentUpon>GestionAlmacenForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GestionAlmacenForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuscadorArticulosUbicaion.Designer.vb">
+      <DependentUpon>BuscadorArticulosUbicaion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="BuscadorArticulosUbicaion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionDeliveryOnTime.Designer.vb">
+      <DependentUpon>GestionDeliveryOnTime.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GestionDeliveryOnTime.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionDispatchOnTime.Designer.vb">
+      <DependentUpon>GestionDispatchOnTime.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GestionDispatchOnTime.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionEmpresaForm.Designer.vb">
+      <DependentUpon>GestionEmpresaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GestionEmpresaForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionGuiasRotulos.Designer.vb">
+      <DependentUpon>GestionGuiasRotulos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GestionGuiasRotulos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionImportarRotulosProvincia.Designer.vb">
+      <DependentUpon>GestionImportarRotulosProvincia.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GestionImportarRotulosProvincia.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionNonConformityRatio.Designer.vb">
+      <DependentUpon>GestionNonConformityRatio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GestionNonConformityRatio.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionPosiciones.Designer.vb">
+      <DependentUpon>GestionPosiciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GestionPosiciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionProgramacionDespacho.Designer.vb">
+      <DependentUpon>GestionProgramacionDespacho.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GestionProgramacionDespacho.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionRacks.Designer.vb">
+      <DependentUpon>GestionRacks.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GestionRacks.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Importar.vb" />
+    <Compile Include="Importar_Archivos.Designer.vb">
+      <DependentUpon>Importar_Archivos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Importar_Archivos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionPartesEntrada.Designer.vb">
+      <DependentUpon>GestionPartesEntrada.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GestionPartesEntrada.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IngresoExcepcionalForm.Designer.vb">
+      <DependentUpon>IngresoExcepcionalForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="IngresoExcepcionalForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InitArray.vb" />
+    <Compile Include="LOGICA\AlmacenL.vb" />
+    <Compile Include="MenuPrincipal.Designer.vb">
+      <DependentUpon>MenuPrincipal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MenuPrincipal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="ObservacionPosicionForm.Designer.vb">
+      <DependentUpon>ObservacionPosicionForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ObservacionPosicionForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionPedidoSalida.Designer.vb">
+      <DependentUpon>GestionPedidoSalida.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GestionPedidoSalida.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionGuiasSalida.Designer.vb">
+      <DependentUpon>GestionGuiasSalida.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GestionGuiasSalida.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgressCell.vb" />
+    <Compile Include="ProgressColumn.vb" />
+    <Compile Include="ReporteArticulosSinUbicar.Designer.vb">
+      <DependentUpon>ReporteArticulosSinUbicar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteArticulosSinUbicar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReporteMovimientosAlmacen.Designer.vb">
+      <DependentUpon>ReporteMovimientosAlmacen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteMovimientosAlmacen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reporte\Clases\Demo.vb" />
+    <Compile Include="Reporte\Dataset\DatasetHojaPicking.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatasetHojaPicking.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\Dataset\DatasetHojaPicking.vb">
+      <DependentUpon>DatasetHojaPicking.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\Dataset\DataSetHojaRuta.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetHojaRuta.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\Dataset\DatasetMovimientosAlmacen.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatasetMovimientosAlmacen.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\Dataset\DatasetPickConfirm.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatasetPickConfirm.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\Dataset\DatasetPickConfirm.vb">
+      <DependentUpon>DatasetPickConfirm.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\Dataset\DatasetReporteMovimientos.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatasetReporteMovimientos.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\Dataset\DatasetReporteMovimientos.vb">
+      <DependentUpon>DatasetReporteMovimientos.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\Dataset\DetalleHojaIngreso.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DetalleHojaIngreso.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\HojaIngreso.Designer.vb">
+      <DependentUpon>HojaIngreso.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\HojaIngreso.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reporte\HojaPickConfirm.Designer.vb">
+      <DependentUpon>HojaPickConfirm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\HojaPickConfirm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reporte\HojaPicking.Designer.vb">
+      <DependentUpon>HojaPicking.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\HojaPicking.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reporte\HojaRuta.Designer.vb">
+      <DependentUpon>HojaRuta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\HojaRuta.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reporte\ReporteMovimientos.Designer.vb">
+      <DependentUpon>ReporteMovimientos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\ReporteMovimientos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reporte\Reporte_Despachos.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reporte_Despachos.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\Reporte_GuiaSsenda.vb">
+      <DependentUpon>Reporte_GuiaSsenda.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reporte\Reporte_GuiaNordic.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reporte_GuiaNordic.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\Reporte_MotivosRechazados.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reporte_MotivosRechazados.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\Reporte_RutaNordic.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reporte_RutaNordic.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\ReportMovAlmacenForm.Designer.vb">
+      <DependentUpon>ReportMovAlmacenForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\ReportMovAlmacenForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ruta.Designer.vb">
+      <DependentUpon>Ruta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Ruta.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SeleccionarPosicionesIngreso.Designer.vb">
+      <DependentUpon>SeleccionarPosicionesIngreso.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SeleccionarPosicionesIngreso.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectDestinoRuta.Designer.vb">
+      <DependentUpon>SelectDestinoRuta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDestinoRuta.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrasladoEntreUbicaciones.Designer.vb">
+      <DependentUpon>TrasladoEntreUbicaciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TrasladoEntreUbicaciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AgregarCantidadPosicion.resx">
+      <DependentUpon>AgregarCantidadPosicion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplementarRotuloProvincia.resx">
+      <DependentUpon>ComplementarRotuloProvincia.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplemetarRuta.resx">
+      <DependentUpon>ComplemetarRuta.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetalleIngresoImprimir.resx">
+      <DependentUpon>DetalleIngresoImprimir.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetallePosiciones.resx">
+      <DependentUpon>DetallePosiciones.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarPosicionesComplemento.resx">
+      <DependentUpon>EditarPosicionesComplemento.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarProgramacionRuta.resx">
+      <DependentUpon>EditarProgramacionRuta.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarRack.resx">
+      <DependentUpon>EditarRack.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarSalidaAlmacen.resx">
+      <DependentUpon>EditarSalidaAlmacen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDetallePedido.resx">
+      <DependentUpon>frmDetallePedido.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImpGuiaSsenda.resx">
+      <DependentUpon>frmImpGuiaSsenda.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImportar_Ssenda.resx">
+      <DependentUpon>frmImportar_Ssenda.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLotesUbicacion.resx">
+      <DependentUpon>frmLotesUbicacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmObsReq.resx">
+      <DependentUpon>frmObsReq.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProgramarReque.resx">
+      <DependentUpon>frmProgramarReque.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRegistroRequerimiento.resx">
+      <DependentUpon>frmRegistroRequerimiento.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReporteDespachosGrafico.resx">
+      <DependentUpon>frmReporteDespachosGrafico.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReporteDocPendScan.resx">
+      <DependentUpon>frmReporteDocPendScan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReportePedidosPicking.resx">
+      <DependentUpon>frmReportePedidosPicking.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReporteVentas.resx">
+      <DependentUpon>frmReporteVentas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRequerimientos_TI.resx">
+      <DependentUpon>frmRequerimientos_TI.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRetornoRuta.resx">
+      <DependentUpon>frmRetornoRuta.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTexto.resx">
+      <DependentUpon>frmTexto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVendedores.resx">
+      <DependentUpon>frmVendedores.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmArticulos.resx">
+      <DependentUpon>frmArticulos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAsignarCliente.resx">
+      <DependentUpon>frmAsignarCliente.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmClientes.resx">
+      <DependentUpon>frmClientes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmControlStock.resx">
+      <DependentUpon>frmControlStock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGestionArticulos.resx">
+      <DependentUpon>frmGestionArticulos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImpreMasivaPickingvb.resx">
+      <DependentUpon>frmImpreMasivaPickingvb.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImpresionRuta.resx">
+      <DependentUpon>frmImpresionRuta.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmListaComprobantes.resx">
+      <DependentUpon>frmListaComprobantes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmListado_Documentos.resx">
+      <DependentUpon>frmListado_Documentos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmListaGuias.resx">
+      <DependentUpon>frmListaGuias.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMotivoAnulacion.resx">
+      <DependentUpon>frmMotivoAnulacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmObservacionPedido.resx">
+      <DependentUpon>frmObservacionPedido.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRegistrarRuta.resx">
+      <DependentUpon>frmRegistrarRuta.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRegistrar_Documentos.resx">
+      <DependentUpon>frmRegistrar_Documentos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReporteDespacho.resx">
+      <DependentUpon>frmReporteDespacho.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRepPicking.resx">
+      <DependentUpon>frmRepPicking.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRepPresupuesto.resx">
+      <DependentUpon>frmRepPresupuesto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRequerimientoIns.resx">
+      <DependentUpon>frmRequerimientoIns.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSalidaRetorno_Ruta.resx">
+      <DependentUpon>frmSalidaRetorno_Ruta.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSegReque.resx">
+      <DependentUpon>frmSegReque.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSeguimientoRuta.resx">
+      <DependentUpon>frmSeguimientoRuta.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSolicitud_Institucional.resx">
+      <DependentUpon>frmSolicitud_Institucional.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmStock.resx">
+      <DependentUpon>frmStock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVisorPedidos.resx">
+      <DependentUpon>frmVisorPedidos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVisorRepre.resx">
+      <DependentUpon>frmVisorRepre.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionAbastecimiento.resx">
+      <DependentUpon>GestionAbastecimiento.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionAlmacenForm.resx">
+      <DependentUpon>GestionAlmacenForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuscadorArticulosUbicaion.resx">
+      <DependentUpon>BuscadorArticulosUbicaion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionDeliveryOnTime.resx">
+      <DependentUpon>GestionDeliveryOnTime.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionDispatchOnTime.resx">
+      <DependentUpon>GestionDispatchOnTime.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionEmpresaForm.resx">
+      <DependentUpon>GestionEmpresaForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionGuiasRotulos.resx">
+      <DependentUpon>GestionGuiasRotulos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionImportarRotulosProvincia.resx">
+      <DependentUpon>GestionImportarRotulosProvincia.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionNonConformityRatio.resx">
+      <DependentUpon>GestionNonConformityRatio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionPosiciones.resx">
+      <DependentUpon>GestionPosiciones.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionProgramacionDespacho.resx">
+      <DependentUpon>GestionProgramacionDespacho.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionRacks.resx">
+      <DependentUpon>GestionRacks.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Importar_Archivos.resx">
+      <DependentUpon>Importar_Archivos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionPartesEntrada.resx">
+      <DependentUpon>GestionPartesEntrada.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IngresoExcepcionalForm.resx">
+      <DependentUpon>IngresoExcepcionalForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuPrincipal.resx">
+      <DependentUpon>MenuPrincipal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObservacionPosicionForm.resx">
+      <DependentUpon>ObservacionPosicionForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionPedidoSalida.resx">
+      <DependentUpon>GestionPedidoSalida.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionGuiasSalida.resx">
+      <DependentUpon>GestionGuiasSalida.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReporteArticulosSinUbicar.resx">
+      <DependentUpon>ReporteArticulosSinUbicar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReporteMovimientosAlmacen.resx">
+      <DependentUpon>ReporteMovimientosAlmacen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\EtiquetasProvincia.rdlc" />
+    <EmbeddedResource Include="Reporte\HojaDeRuta.rdlc" />
+    <EmbeddedResource Include="Reporte\HojaRuta.resx">
+      <DependentUpon>HojaRuta.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\Prueba.rdlc" />
+    <EmbeddedResource Include="Reporte\HojaIngreso.resx">
+      <DependentUpon>HojaIngreso.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\HojaPickConfirm.rdlc" />
+    <EmbeddedResource Include="Reporte\HojaPickConfirm.resx">
+      <DependentUpon>HojaPickConfirm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\HojaPicking.rdlc" />
+    <EmbeddedResource Include="Reporte\HojaPicking.resx">
+      <DependentUpon>HojaPicking.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\ReporteMovimientos.resx">
+      <DependentUpon>ReporteMovimientos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\Reporte_Despachos.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Reporte_Despachos.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\Reporte_GuiaSsenda.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Reporte_GuiaSsenda.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\Reporte_GuiaNordic.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Reporte_GuiaNordic.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\Reporte_MotivosRechazados.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Reporte_MotivosRechazados.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\Reporte_RutaNordic.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Reporte_RutaNordic.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\HojaIngreso.rdlc" />
+    <EmbeddedResource Include="Reporte\ReportMovAlmacenForm.resx">
+      <DependentUpon>ReportMovAlmacenForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\ReportMovimientos.rdlc" />
+    <EmbeddedResource Include="Reporte\ReportMovimientosAlmacen.rdlc" />
+    <EmbeddedResource Include="Reporte\RotuloGuia.rdlc" />
+    <EmbeddedResource Include="Ruta.resx">
+      <DependentUpon>Ruta.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SeleccionarPosicionesIngreso.resx">
+      <DependentUpon>SeleccionarPosicionesIngreso.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectDestinoRuta.resx">
+      <DependentUpon>SelectDestinoRuta.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrasladoEntreUbicaciones.resx">
+      <DependentUpon>TrasladoEntreUbicaciones.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\DataSources\DatasetHojaPickin.datasource" />
+    <None Include="My Project\DataSources\DatasetHojaPicking.datasource" />
+    <None Include="My Project\DataSources\DataSetHojaRuta.datasource" />
+    <None Include="My Project\DataSources\DatasetMovimientosAlmacen.datasource" />
+    <None Include="My Project\DataSources\DatasetPickConfirm.datasource" />
+    <None Include="My Project\DataSources\DatasetReporteMovimientos.datasource" />
+    <None Include="My Project\DataSources\DetalleHojaIngreso.datasource" />
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Nordic.Bl.Be\Nordic.Bl.Be.vbproj">
+      <Project>{156461d1-9bf1-4bbc-a8fa-44d6ef285721}</Project>
+      <Name>Nordic.Bl.Be</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="hospital-3_icon-icons.com_66075.ico" />
+    <Content Include="pie_chart_21427.ico" />
+    <None Include="Reporte\Dataset\DataSetHojaRuta.xsc">
+      <DependentUpon>DataSetHojaRuta.xsd</DependentUpon>
+    </None>
+    <None Include="Reporte\Dataset\DataSetHojaRuta.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetHojaRuta.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Reporte\Dataset\DataSetHojaRuta.xss">
+      <DependentUpon>DataSetHojaRuta.xsd</DependentUpon>
+    </None>
+    <None Include="Resources\295.ico" />
+    <None Include="Resources\412.ico" />
+    <None Include="Resources\move-icon.png" />
+    <None Include="Resources\print-icon2.png" />
+    <None Include="Resources\icon-print.png" />
+    <None Include="Resources\print-icon3.png" />
+    <None Include="Resources\floppy-icon.png" />
+    <Content Include="SqlServerTypes\Loader.cs" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config" />
+    <None Include="Reporte\Dataset\DatasetHojaPicking.xsc">
+      <DependentUpon>DatasetHojaPicking.xsd</DependentUpon>
+    </None>
+    <None Include="Reporte\Dataset\DatasetHojaPicking.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DatasetHojaPicking.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Reporte\Dataset\DatasetHojaPicking.xss">
+      <DependentUpon>DatasetHojaPicking.xsd</DependentUpon>
+    </None>
+    <None Include="Reporte\Dataset\DatasetMovimientosAlmacen.xsc">
+      <DependentUpon>DatasetMovimientosAlmacen.xsd</DependentUpon>
+    </None>
+    <None Include="Reporte\Dataset\DatasetMovimientosAlmacen.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DatasetMovimientosAlmacen.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Reporte\Dataset\DatasetMovimientosAlmacen.xss">
+      <DependentUpon>DatasetMovimientosAlmacen.xsd</DependentUpon>
+    </None>
+    <None Include="Reporte\Dataset\DatasetPickConfirm.xsc">
+      <DependentUpon>DatasetPickConfirm.xsd</DependentUpon>
+    </None>
+    <None Include="Reporte\Dataset\DatasetPickConfirm.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DatasetPickConfirm.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Reporte\Dataset\DatasetPickConfirm.xss">
+      <DependentUpon>DatasetPickConfirm.xsd</DependentUpon>
+    </None>
+    <None Include="Reporte\Dataset\DatasetReporteMovimientos.xsc">
+      <DependentUpon>DatasetReporteMovimientos.xsd</DependentUpon>
+    </None>
+    <None Include="Reporte\Dataset\DatasetReporteMovimientos.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DatasetReporteMovimientos.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Reporte\Dataset\DatasetReporteMovimientos.xss">
+      <DependentUpon>DatasetReporteMovimientos.xsd</DependentUpon>
+    </None>
+    <None Include="Reporte\Dataset\DetalleHojaIngreso.xsc">
+      <DependentUpon>DetalleHojaIngreso.xsd</DependentUpon>
+    </None>
+    <None Include="Reporte\Dataset\DetalleHojaIngreso.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DetalleHojaIngreso.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Reporte\Dataset\DetalleHojaIngreso.xss">
+      <DependentUpon>DetalleHojaIngreso.xsd</DependentUpon>
+    </None>
+    <None Include="Resources\emergencia.jpg" />
+    <None Include="Resources\0011.ico" />
+    <None Include="Resources\0741.ico" />
+    <None Include="Resources\103.ico" />
+    <None Include="Resources\1167.ico" />
+    <None Include="Resources\1088.ico" />
+    <None Include="Resources\icon_delete_on1.gif" />
+    <None Include="Resources\0032.ico" />
+    <None Include="Resources\actn112.gif" />
+    <None Include="Resources\actn025.gif" />
+    <None Include="Resources\icon_package_big.gif" />
+    <None Include="Resources\actn017.gif" />
+    <None Include="Resources\104.ico" />
+    <None Include="Resources\004.ico" />
+    <None Include="Resources\571.ico" />
+    <None Include="Resources\actn039.gif" />
+    <None Include="Resources\1178.ico" />
+    <None Include="Resources\1172.ico" />
+    <None Include="Resources\BuscarToolStripButton.Image.png" />
+    <None Include="Resources\icon_excel.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>
