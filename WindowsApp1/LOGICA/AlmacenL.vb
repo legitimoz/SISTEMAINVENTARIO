@@ -12,6 +12,14 @@ Public Class AlmacenL
         End Try
     End Function
 
+    Public Function ReporteRotulosProducto(ByVal CALMA As String, ByVal CTD As String, CNUMDOC As String) As DataTable
+        Try
+            Return objAlmacen.ReporteRotulosProducto(CALMA, CTD, CNUMDOC)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function RegistrarRecepcionGuiaDespacho(CALMA As String, CTD As String, CNUMDOC As String) As Integer
         Try
             Return objAlmacen.RegistrarRecepcionGuiaDespacho(CALMA, CTD, CNUMDOC)

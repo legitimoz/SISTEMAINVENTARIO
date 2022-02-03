@@ -1,4 +1,5 @@
-﻿Imports Nordic.Bl.Be
+﻿Imports ClosedXML.Excel
+Imports Nordic.Bl.Be
 
 Public Class frmRotuladoxCodigoxSerie
 
@@ -7,44 +8,28 @@ Public Class frmRotuladoxCodigoxSerie
 
     Dim rutaArchivo As String = Application.StartupPath + "\Config.ini"
     Private mINI As New InitArray
+    Private AlmacenObj As New AlmacenL
 
     Private Sub btnBusqueda_Click(sender As Object, e As EventArgs) Handles btnBusqueda.Click
         Try
-
             Dim objFrm As New frmBusquedaGuiaRotulos
-
             objFrm.nroguia = txtBusquedaGuia.Text.Trim
-
-
             objFrm.ShowDialog()
-
             txtNroGuia.Text = objFrm.nroguia
             C5_CALMA.Text = objFrm.c5_calma
             C5_CTD.Text = objFrm.c5_cctd
             C5_CNUMDOC.Text = objFrm.c5_cnumdoc
-
             txtCodigo.Text = objFrm.c5_ccodigo
             txtArticulo.Text = objFrm.articulo
             txtLote.Text = objFrm.lote
             txtFechaVenc.Text = objFrm.fechaVenc
             txtCantidad.Text = objFrm.cantidad
-
             lblSaldo.Text = txtCantidad.Text
-
-
-
         Catch ex As Exception
-
+            Throw ex
         End Try
     End Sub
 
-    Private Sub frmRotuladoxCodigoxSerie_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Try
-
-        Catch ex As Exception
-
-        End Try
-    End Sub
 
     Private Sub btnAgregar_Click(sender As Object, e As EventArgs) Handles btnAgregar.Click
         Try
@@ -106,7 +91,7 @@ Public Class frmRotuladoxCodigoxSerie
 
                 If dgvCantidades.Rows(i).Cells.Item(0).Value = True Then
                     _BeDetalleRotulos = New BeDetalleRotulosxArticulo
-
+                    _BeDetalleRotulos.VENCIMIENTO_P = txtFechaVenc.Text
                     _BeDetalleRotulos.prc5_calma = C5_CALMA.Text
                     _BeDetalleRotulos.prc5_ctd = C5_CTD.Text
                     _BeDetalleRotulos.prc5_cnumdoc = C5_CNUMDOC.Text
@@ -240,19 +225,19 @@ Public Class frmRotuladoxCodigoxSerie
 
 
             Dim sFicINI As String = rutaArchivo
-                    Dim sSeccion As String = "Laser"
-                    Dim sTema1 As String = "Printer"
-                    Dim sValor1 As String = ""
+            Dim sSeccion As String = "Laser"
+            Dim sTema1 As String = "Printer"
+            Dim sValor1 As String = ""
 
-                    'Dim sGetValor As String = "\\10.10.0.2\HP LaserJet 425"
-                    'sGetValor = mINI.IniGet(sFicINI, sSeccion, sTema1, sValor1)
-                    Dim sGetValor As String = String.Empty
+            'Dim sGetValor As String = "\\10.10.0.2\HP LaserJet 425"
+            'sGetValor = mINI.IniGet(sFicINI, sSeccion, sTema1, sValor1)
+            Dim sGetValor As String = String.Empty
             sGetValor = System.Configuration.ConfigurationManager.AppSettings("PrintRotulosArti")
 
             'printCrystalReport(aoReport, 0, 0, 0, sGetValor)
 
             aoReport.Dispose()
-                    aoReport.Close()
+            aoReport.Close()
 
 
 
@@ -260,5 +245,60 @@ Public Class frmRotuladoxCodigoxSerie
             MsgBox(ex.Message)
         End Try
 
+    End Sub
+
+    Public Function ExportExcel(ByVal dt As DataTable) As Boolean
+        Dim RP As Boolean = False
+        Dim wb As New XLWorkbook()
+        Dim path As String
+
+        Try
+            savedialog_Excel.Filter = "Excel File(.xlsx)|*.xlsx"
+            savedialog_Excel.Title = Text
+            savedialog_Excel.FileName = "ROTULOS ARTICULO"
+            dt.TableName = "Hoja1"
+            Dim ws As IXLWorksheet
+            If dt.Rows.Count > Constantes.ValorEnteroInicial Then
+                If savedialog_Excel.ShowDialog = Windows.Forms.DialogResult.OK Then
+                    path = savedialog_Excel.FileName
+                    wb.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left
+                    ws = wb.Worksheets.Add(dt)
+                    ws.Style.Font.FontName = "Arial"
+                    ws.Style.Font.FontSize = 8
+                    ws.Columns().AdjustToContents()
+                    wb.SaveAs(path)
+                    Process.Start(path)
+                    RP = True
+                End If
+            Else
+                MsgBox("No existe DATA para generar Excel, Confirme Orden de Pago", MsgBoxStyle.Exclamation)
+            End If
+        Catch ex As Exception
+            Dim iderror As Integer
+            iderror = ex.HResult
+            If iderror = Constantes.errorexcel Then
+                MsgBox("Archivo Excel se encuentra abierto, cierre el archivo e intente de nuevo", MsgBoxStyle.Exclamation)
+            End If
+        End Try
+        Return RP
+
+    End Function
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Try
+            If C5_CALMA.Text.Trim <> "[C5_CALMA]" And C5_CTD.Text.Trim <> "[C5_CTD]" And C5_CNUMDOC.Text.Trim <> "[C5_CNUMDOC]" Then
+                Dim dt As New DataTable
+                dt = AlmacenObj.ReporteRotulosProducto(C5_CALMA.Text.Trim, C5_CTD.Text.Trim, C5_CNUMDOC.Text.Trim)
+                If dt.Rows.Count > 0 Then
+                    If ExportExcel(dt) Then
+                        MsgBox("Excel Exportado Correctamente", MsgBoxStyle.Information, "SISTEMAS NORDIC")
+                    Else
+                        MsgBox("Error al exportar Excel", MsgBoxStyle.Critical, "SISTEMAS NORDIC")
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 End Class

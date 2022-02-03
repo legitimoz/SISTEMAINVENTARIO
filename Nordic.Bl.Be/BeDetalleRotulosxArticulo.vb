@@ -1,6 +1,16 @@
 ﻿Public Class BeDetalleRotulosxArticulo
 
 
+    Private VENCIMIENTO As String
+    Public Property VENCIMIENTO_P() As String
+        Get
+            Return VENCIMIENTO
+        End Get
+        Set(ByVal value As String)
+            VENCIMIENTO = value
+        End Set
+    End Property
+
     Private gpi_id As String
     Public Property prgpi_id() As String
         Get

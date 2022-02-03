@@ -1063,6 +1063,7 @@
     <None Include="Resources\icon-print.png" />
     <None Include="Resources\print-icon3.png" />
     <None Include="Resources\floppy-icon.png" />
+    <None Include="Resources\icon_excel1.jpg" />
     <Content Include="SqlServerTypes\Loader.cs" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
