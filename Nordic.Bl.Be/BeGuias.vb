@@ -9,6 +9,55 @@ Public Class BeGuias
     Public Conexion As String = String.Empty
 
 
+
+    Public Function Obtener_Guia_Rotulos(ByVal numdoc As String) As DataTable
+        Try
+            Dim _listadoPruebas As New DataTable
+            Conexion = System.Configuration.ConfigurationManager.ConnectionStrings("ConexionHeadMark").ConnectionString
+
+            Using oSqlConnection As SqlConnection = New SqlConnection(Conexion)
+                Dim _consulta As String = String.Empty
+                '_consulta = "   SELECT A.ID,A.FECHA,A.HORA,A.nombre_razonSocial,A.Diferencia,A.Tiempo,A.TipoReclamo,A.reclamo,A.nombre_contacto,A.Telefono,A.DEPARTAMENTO,A.direccion   FROM " & _
+                '"(SELECT id, nombre_razonSocial,CONVERT(VARCHAR,[fec_reg],103) as [FECHA], " & _
+                '"CONVERT(VARCHAR,[fec_reg],108) as HORA, DATEDIFF(minute,fec_reg,getdate()) as Diferencia, '10' as Tiempo," & _
+                '"(SELECT descripcion FROM TIPORECLAMO where idTipoRe= b.codreclamo) as [TipoReclamo],reclamo,nombre_contacto,Telefono," & _
+                '"(SELECT UPPER(NOMBRE) FROM UBIGEO WHERE CODPROV = '00' and CODDIST = '00' and CODDPTO =b.CODDPTO) AS DEPARTAMENTO, b.direccion FROM RECLAMOS b) A "
+
+                Using oSqlCommand As SqlCommand = New SqlCommand("SPDSN_OBTENER_DETALLE_GUIA_ROTULOS", oSqlConnection)
+                    oSqlCommand.CommandType = CommandType.StoredProcedure
+                    oSqlCommand.Parameters.Add("@C5_CNUMDOC", SqlDbType.VarChar, 20).Value = numdoc
+
+                    If (oSqlConnection.State = Data.ConnectionState.Closed) Then
+                        oSqlConnection.Open()
+                    End If
+
+                    If (oSqlCommand.Connection.State = Data.ConnectionState.Closed) Then
+                        oSqlCommand.Connection.Open()
+                    End If
+
+                    Using adapter As SqlDataAdapter = New SqlDataAdapter
+                        adapter.SelectCommand = oSqlCommand
+                        adapter.Fill(_listadoPruebas)
+                    End Using
+
+                    If (oSqlCommand.Connection.State = Data.ConnectionState.Open) Then
+                        oSqlCommand.Connection.Close()
+                    End If
+
+                    If (oSqlConnection.State = Data.ConnectionState.Open) Then
+                        oSqlConnection.Close()
+                    End If
+
+                End Using
+            End Using
+
+            Return _listadoPruebas
+
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
+
     Public Function Imprimir_Ruta(ByVal crg_id As String) As DataTable
         Try
             Dim _listadoPruebas As New DataTable

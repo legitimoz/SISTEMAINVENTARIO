@@ -79,7 +79,9 @@
     <Compile Include="BeCabImpVehiculo.vb" />
     <Compile Include="BeCabPicking.vb" />
     <Compile Include="BeCabReque.vb" />
+    <Compile Include="BeCabRotuloxArticulo.vb" />
     <Compile Include="BeDetallePicking.vb" />
+    <Compile Include="BeDetalleRotulosxArticulo.vb" />
     <Compile Include="BeDetGuiaRutaDetalle.vb" />
     <Compile Include="BeDocumentos.vb" />
     <Compile Include="BeGuias.vb" />

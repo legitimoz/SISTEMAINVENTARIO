@@ -228,10 +228,10 @@ Partial Class MenuPrincipal
         '
         'ImpresiónToolStripMenuItem
         '
-        Me.ImpresiónToolStripMenuItem.Image = Global.WindowsApp1.My.Resources.Resources._295
+        Me.ImpresiónToolStripMenuItem.Image = CType(resources.GetObject("ImpresiónToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ImpresiónToolStripMenuItem.Name = "ImpresiónToolStripMenuItem"
         Me.ImpresiónToolStripMenuItem.Size = New System.Drawing.Size(239, 26)
-        Me.ImpresiónToolStripMenuItem.Text = "Impresión Rotulados Provincia"
+        Me.ImpresiónToolStripMenuItem.Text = "Impresión Rotulados Producto"
         '
         'ProgramacionDespachoToolStripMenuItem
         '
