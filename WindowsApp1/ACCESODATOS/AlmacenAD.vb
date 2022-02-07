@@ -947,7 +947,7 @@ Public Class AlmacenAD
         Return rp
     End Function
 
-    Public Function RegistrarOperacion(cajas As Decimal, cajasmaster As Decimal, unidad As String, CodAlma As String, codNumero As String, tipodoc As String, userid As Integer, CodArticulo As String, lote As String, idposicion As Integer, cantidad As Decimal, total As Decimal, ocupado As Decimal, tipooperacion As String, idsite As Integer, idalmacen As Integer, idrack As Integer) As Integer
+    Public Function RegistrarOperacion(cajas As Decimal, cajasmaster As Decimal, unidad As String, CodAlma As String, codNumero As String, tipodoc As String, userid As Integer, CodArticulo As String, lote As String, idposicion As Integer, cantidad As Decimal, total As Decimal, ocupado As Decimal, tipooperacion As String, idsite As Integer, idalmacen As Integer, idrack As Integer, vencimiento As String) As Integer
         Dim rp As Integer = 0
         Dim Comm As New SqlCommand("SP_CSE_RegistrarOperacionAlmacen", MyBase.Conn)
         Try
@@ -969,6 +969,7 @@ Public Class AlmacenAD
                 .Add("@idrack", SqlDbType.Int).Value = idrack
                 .Add("@cantcajas", SqlDbType.Decimal).Value = cajas
                 .Add("@cantcajasmaster", SqlDbType.Decimal).Value = cajasmaster
+                .Add("@vencimiento", SqlDbType.Char, 10).Value = vencimiento
             End With
             MyBase.Conn.Open()
             rp = Comm.ExecuteNonQuery()

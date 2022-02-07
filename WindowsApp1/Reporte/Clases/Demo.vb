@@ -113,30 +113,6 @@ Public Class Demo
         End Try
     End Sub
 
-    ''Private Sub PrintHorizontal()
-    ''    Try
-    ''        If m_streams Is Nothing OrElse m_streams.Count = 0 Then
-    ''            Throw New Exception("Error: no stream to print.")
-    ''        End If
-    ''        Dim printDoc As New PrintDocument()
-    ''        printDoc.DefaultPageSettings.Landscape = True
-    ''        'printDoc.PrinterSettings.DE
-    ''        If Not printDoc.PrinterSettings.IsValid Then
-    ''            Throw New Exception("Error: cannot find the default printer.")
-    ''        Else
-    ''            AddHandler printDoc.PrintPage, AddressOf PrintPage
-    ''            m_currentPageIndex = 0
-
-    ''            printDoc.Print()
-    ''        End If
-    ''    Catch ex As Exception
-    ''        Throw ex
-    ''    End Try
-    ''End Sub
-
-
-    ' Create a local report for Report.rdlc, load the data,
-    ' export the report to an .emf file, and print it.
     Public Sub ReportePicking(ByVal nombrereporte As String, ByVal Data As DataTable, codigoguia As String, codpedido As String, nombreEmpresa As String,
                               RUC As String, Direccion As String, logooperador As String, Color As String, fechapedido As String,
                               razoncliente As String, ruccliente As String, direccioncliente As String, codalmacen As String, cantidadItems As Integer, totalvolumen As Decimal)
@@ -229,18 +205,44 @@ Public Class Demo
         End Try
     End Sub
 
-    Public Sub reporteRouteP(ByVal nombrereporte As String)
-
+    Public Sub ImprimirRotuloArticulo(ByVal nombrereporte As String, codigo As String, nombre As String, vecimiento As String, lote As String, cajasiner As String, cajasmaster As String)
         Try
             Dim report As New LocalReport()
             report.ReportPath = "..\..\Reporte\" + nombrereporte
+            Dim codigoparam As New ReportParameter("codigo", codigo)
+            Dim descripcionparam As New ReportParameter("descripcion", nombre)
+            Dim loteparam As New ReportParameter("lote", lote)
+            Dim vencimientoparam As New ReportParameter("vencimiento", vecimiento)
 
-            Export(report)
-            Print("V")
+            Dim cajasinerparam As New ReportParameter("cajasiner", cajasiner)
+            Dim cajasmasterparam As New ReportParameter("cajasmaster", cajasmaster)
+
+            report.SetParameters(codigoparam)
+            report.SetParameters(descripcionparam)
+            report.SetParameters(loteparam)
+            report.SetParameters(vencimientoparam)
+            report.SetParameters(cajasinerparam)
+            report.SetParameters(cajasmasterparam)
+
+            ExportHorizontal(report)
+            Print("H")
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
+
+    'Public Sub reporteRouteP(ByVal nombrereporte As String)
+
+    '    Try
+    '        Dim report As New LocalReport()
+    '        report.ReportPath = "..\..\Reporte\" + nombrereporte
+
+    '        Export(report)
+    '        Print("V")
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 
     Public Sub reporteRoute(ByVal nombrereporte As String, nroguia As String, cliente As String, direccion As String, provincia As String, departamento As String, bulto As String, logooperador As String)
 

@@ -7,12 +7,25 @@ Public Class AgregarCantidadPosicion
     Private dtdatosingreso As New DataTable
     Private Estructura As New EstructuraTabla
     Public unidades, cajas, cajasmaster, volumen, total, largo, alto, ancho, factorcaja, factormaster As Decimal
-    Public codalma, nrodoc, tipdoc, codprod, lote, unidad, codpos, nombrealmacen, nombresite, numeracionRACK, articuloNombre As String
+    Public codalma, nrodoc, tipdoc, codprod, lote, unidad, codpos, nombrealmacen, nombresite, numeracionRACK, articuloNombre, vencimiento As String
     Private almacenobj As New AlmacenL
+
+    Private Sub IconButton2_Click(sender As Object, e As EventArgs) Handles IconButton2.Click
+        Try
+            If codprod <> "" And articuloNombre <> "" And lote <> "" And vencimiento <> "" Then
+                Dim Obj As New Demo
+                Obj.ImprimirRotuloArticulo("RetuloArticuloIngreso.rdlc", codprod, articuloNombre, vencimiento, lote, factorcaja.ToString + " UND", (factorcaja * factormaster).ToString + " UND")
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+
 
     Public Function LlamarRegistrar() As Integer
         Try
-            Return almacenobj.RegistrarOperacion(factorcaja, factormaster, unidad, codalma, nrodoc, tipdoc, userid, codprod, lote, idposicion, CType(txt_cantidadIngreso.Text, Decimal), total, volumen, "E", idsite, idalmacen, idrack)
+            Return almacenobj.RegistrarOperacion(factorcaja, factormaster, unidad, codalma, nrodoc, tipdoc, userid, codprod, lote, idposicion, CType(txt_cantidadIngreso.Text, Decimal), total, volumen, "E", idsite, idalmacen, idrack, vencimiento)
         Catch ex As Exception
             Throw ex
         End Try
@@ -60,21 +73,21 @@ Public Class AgregarCantidadPosicion
                                         'observarForm.ocupado = volumen
                                         'observarForm.ShowDialog()
                                         'If observarForm.grabado = True Then
-                                        MsgBox("Operacion Registrada Correctamente", MsgBoxStyle.Information)
+                                        MsgBox("Operacion Registrada Correctamente", MsgBoxStyle.Information, "SISTEMAS NORDIC")
                                         grabado = True
                                         Me.Close()
                                         'End If
                                     Else
-                                        MsgBox("Operacion No Registrada, Contactar con el Area de Sistemas", MsgBoxStyle.Critical)
+                                        MsgBox("Operacion No Registrada, Contactar con el Area de Sistemas", MsgBoxStyle.Critical, "SISTEMAS NORDIC")
                                     End If
                                 End If
                             Else
                                 If LlamarRegistrar() <> 0 Then
-                                    MsgBox("Operacion Registrada Correctamente", MsgBoxStyle.Information)
+                                    MsgBox("Operacion Registrada Correctamente", MsgBoxStyle.Information, "SISTEMAS NORDIC")
                                     grabado = True
                                     Me.Close()
                                 Else
-                                    MsgBox("Operacion No Registrada, Contactar con el Area de Sistemas", MsgBoxStyle.Critical)
+                                    MsgBox("Operacion No Registrada, Contactar con el Area de Sistemas", MsgBoxStyle.Critical, "SISTEMAS NORDIC")
                                 End If
                             End If
                         End If

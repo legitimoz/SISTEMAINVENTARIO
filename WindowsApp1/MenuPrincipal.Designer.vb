@@ -64,6 +64,7 @@ Partial Class MenuPrincipal
         Me.NonConformityRatioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ArticulosSinUbicacionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CerrarSesionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.KardexArticuloToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -89,25 +90,28 @@ Partial Class MenuPrincipal
         '
         Me.ArticulosToolStripMenuItem.Image = CType(resources.GetObject("ArticulosToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ArticulosToolStripMenuItem.Name = "ArticulosToolStripMenuItem"
-        Me.ArticulosToolStripMenuItem.Size = New System.Drawing.Size(179, 26)
+        Me.ArticulosToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
         Me.ArticulosToolStripMenuItem.Text = "Articulos"
         '
         'AlmacenesToolStripMenuItem
         '
+        Me.AlmacenesToolStripMenuItem.Image = CType(resources.GetObject("AlmacenesToolStripMenuItem.Image"), System.Drawing.Image)
         Me.AlmacenesToolStripMenuItem.Name = "AlmacenesToolStripMenuItem"
-        Me.AlmacenesToolStripMenuItem.Size = New System.Drawing.Size(179, 26)
+        Me.AlmacenesToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
         Me.AlmacenesToolStripMenuItem.Text = "Gestion Almacenes"
         '
         'PickConfirmToolStripMenuItem
         '
+        Me.PickConfirmToolStripMenuItem.Image = CType(resources.GetObject("PickConfirmToolStripMenuItem.Image"), System.Drawing.Image)
         Me.PickConfirmToolStripMenuItem.Name = "PickConfirmToolStripMenuItem"
-        Me.PickConfirmToolStripMenuItem.Size = New System.Drawing.Size(179, 26)
+        Me.PickConfirmToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
         Me.PickConfirmToolStripMenuItem.Text = "Gestion Pedidos"
         '
         'GuiasToolStripMenuItem
         '
+        Me.GuiasToolStripMenuItem.Image = CType(resources.GetObject("GuiasToolStripMenuItem.Image"), System.Drawing.Image)
         Me.GuiasToolStripMenuItem.Name = "GuiasToolStripMenuItem"
-        Me.GuiasToolStripMenuItem.Size = New System.Drawing.Size(179, 26)
+        Me.GuiasToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
         Me.GuiasToolStripMenuItem.Text = "Gestion Guias "
         '
         'SeguimientoToolStripMenuItem
@@ -255,7 +259,7 @@ Partial Class MenuPrincipal
         '
         'ReportesToolStripMenuItem
         '
-        Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PresupuestosToolStripMenuItem, Me.ReporteDeDespachosToolStripMenuItem, Me.ReporteVentasToolStripMenuItem, Me.ImpresiónGuiaSsendaToolStripMenuItem, Me.ReporteDeDespachosToolStripMenuItem1, Me.ReporteDocumentosPendientesToolStripMenuItem, Me.UbicacionesArticuloToolStripMenuItem, Me.PedidosProgramacionPickingToolStripMenuItem1, Me.IndicadoresToolStripMenuItem, Me.ArticulosSinUbicacionToolStripMenuItem})
+        Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PresupuestosToolStripMenuItem, Me.ReporteDeDespachosToolStripMenuItem, Me.ReporteVentasToolStripMenuItem, Me.ImpresiónGuiaSsendaToolStripMenuItem, Me.ReporteDeDespachosToolStripMenuItem1, Me.ReporteDocumentosPendientesToolStripMenuItem, Me.UbicacionesArticuloToolStripMenuItem, Me.PedidosProgramacionPickingToolStripMenuItem1, Me.IndicadoresToolStripMenuItem, Me.ArticulosSinUbicacionToolStripMenuItem, Me.KardexArticuloToolStripMenuItem})
         Me.ReportesToolStripMenuItem.Image = Global.WindowsApp1.My.Resources.Resources._1172
         Me.ReportesToolStripMenuItem.Name = "ReportesToolStripMenuItem"
         Me.ReportesToolStripMenuItem.Size = New System.Drawing.Size(85, 24)
@@ -310,6 +314,7 @@ Partial Class MenuPrincipal
         '
         'UbicacionesArticuloToolStripMenuItem
         '
+        Me.UbicacionesArticuloToolStripMenuItem.Image = CType(resources.GetObject("UbicacionesArticuloToolStripMenuItem.Image"), System.Drawing.Image)
         Me.UbicacionesArticuloToolStripMenuItem.Name = "UbicacionesArticuloToolStripMenuItem"
         Me.UbicacionesArticuloToolStripMenuItem.Size = New System.Drawing.Size(251, 26)
         Me.UbicacionesArticuloToolStripMenuItem.Text = "Ubicaciones Articulo"
@@ -359,6 +364,13 @@ Partial Class MenuPrincipal
         Me.CerrarSesionToolStripMenuItem.Name = "CerrarSesionToolStripMenuItem"
         Me.CerrarSesionToolStripMenuItem.Size = New System.Drawing.Size(108, 24)
         Me.CerrarSesionToolStripMenuItem.Text = "Cerrar Sesion"
+        '
+        'KardexArticuloToolStripMenuItem
+        '
+        Me.KardexArticuloToolStripMenuItem.Image = CType(resources.GetObject("KardexArticuloToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.KardexArticuloToolStripMenuItem.Name = "KardexArticuloToolStripMenuItem"
+        Me.KardexArticuloToolStripMenuItem.Size = New System.Drawing.Size(251, 26)
+        Me.KardexArticuloToolStripMenuItem.Text = "Kardex Articulo"
         '
         'MenuPrincipal
         '
@@ -422,4 +434,5 @@ Partial Class MenuPrincipal
     Friend WithEvents ExcelRotuladosProvinciaToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents NonConformityRatioToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GenerarAbastecimientoToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents KardexArticuloToolStripMenuItem As ToolStripMenuItem
 End Class

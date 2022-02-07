@@ -336,6 +336,7 @@ Public Class GestionPartesEntrada
                         .codalmacen = codalmacen,
                         .codarticulo = row.Cells("CODIGO").EditedFormattedValue.ToString,
                         .NombreArticulo = row.Cells("PRODUCTO").EditedFormattedValue.ToString,
+                        .vencimiento = row.Cells("FECHA_VECIMIENTO").EditedFormattedValue.ToString,
                         .coddoc = coddoc,
                         .tipdoc = tipdoc,
                         .Lote = row.Cells("SERIE").EditedFormattedValue.ToString

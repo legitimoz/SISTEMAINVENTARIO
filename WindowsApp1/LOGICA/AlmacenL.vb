@@ -374,7 +374,7 @@ Public Class AlmacenL
         End Try
     End Function
 
-    Public Function RegistrarOperacion(factorcaja As Decimal, factormaster As Decimal, unidad As String, CodAlma As String, codNumero As String, tipodoc As String, userid As Integer, CodArticulo As String, lote As String, idposicion As Integer, cantidad As Decimal, total As Decimal, ocuado As Decimal, tipooperacion As String, idsite As Integer, idalmacen As Integer, idrack As Integer) As Integer
+    Public Function RegistrarOperacion(factorcaja As Decimal, factormaster As Decimal, unidad As String, CodAlma As String, codNumero As String, tipodoc As String, userid As Integer, CodArticulo As String, lote As String, idposicion As Integer, cantidad As Decimal, total As Decimal, ocuado As Decimal, tipooperacion As String, idsite As Integer, idalmacen As Integer, idrack As Integer, vencimiento As String) As Integer
         Dim cajas, cajasmaster As Decimal
         Try
             If unidad.Trim = "UND" Then
@@ -399,7 +399,7 @@ Public Class AlmacenL
                 End If
             End If
 
-            Return objAlmacen.RegistrarOperacion(cajas, cajasmaster, unidad, CodAlma, codNumero, tipodoc, userid, CodArticulo, lote, idposicion, cantidad, total, ocuado, tipooperacion, idsite, idalmacen, idrack)
+            Return objAlmacen.RegistrarOperacion(cajas, cajasmaster, unidad, CodAlma, codNumero, tipodoc, userid, CodArticulo, lote, idposicion, cantidad, total, ocuado, tipooperacion, idsite, idalmacen, idrack, vencimiento)
         Catch ex As Exception
             Throw ex
         End Try

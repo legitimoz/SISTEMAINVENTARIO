@@ -1018,6 +1018,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reporte\ReportMovimientos.rdlc" />
     <EmbeddedResource Include="Reporte\ReportMovimientosAlmacen.rdlc" />
+    <EmbeddedResource Include="Reporte\RetuloArticuloIngreso.rdlc" />
     <EmbeddedResource Include="Reporte\RotuloGuia.rdlc" />
     <EmbeddedResource Include="Ruta.resx">
       <DependentUpon>Ruta.vb</DependentUpon>
