@@ -559,7 +559,7 @@ Public Class GestionGuiasSalida
                                 'codalmacenM = rowCab.Cells("CODALMACEN_ORIGEN").EditedFormattedValue.ToString.Trim
                                 'tipdocM = rowCab.Cells("TIP_DOC").EditedFormattedValue.ToString.Trim
                                 'nrodocM = rowCab.Cells("NDOCUMENTO").EditedFormattedValue.ToString.Trim
-                                llamarRegistrarImpresion(codalmacenM, tipdocM, nrodocM, "IM")
+                                llamarRegistrarImpresion(codalmacenM, tipdocM, nrodocM, "IM", 0, 0)
                             End If
 
                         End If
@@ -572,27 +572,32 @@ Public Class GestionGuiasSalida
         End Try
     End Sub
 
-    Private Sub IconButton1_Click(sender As Object, e As EventArgs)
 
-    End Sub
 
     Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles btn_imprimir.Click
         Dim codalmacenM, tipdocM, nrodocM
         Try
             If Dg_Cabecera.Rows.Count > 0 Then
                 For Each rowCab As DataGridViewRow In Dg_Cabecera.Rows
-                    If rowCab.Cells("MARCAR").Value = True Then
-                        codalmacenM = rowCab.Cells("CODALMACEN_ORIGEN").EditedFormattedValue.ToString.Trim
-                        tipdocM = rowCab.Cells("TIP_DOC").EditedFormattedValue.ToString.Trim
-                        nrodocM = rowCab.Cells("NDOCUMENTO").EditedFormattedValue.ToString.Trim
-
-                        If codalmacenM <> "" And tipdocM <> "" And nrodocM <> "" Then
-                            llamarRegistrarImpresion(codalmacenM, tipdocM, nrodocM, "PI")
+                    If rowCab.Cells("ESTADO").Value.ToString.Trim = "IMPRESO" Then
+                        If rowCab.Cells("MARCAR").Value = True Then
+                            codalmacenM = rowCab.Cells("CODALMACEN_ORIGEN").EditedFormattedValue.ToString.Trim
+                            tipdocM = rowCab.Cells("TIP_DOC").EditedFormattedValue.ToString.Trim
+                            nrodocM = rowCab.Cells("NDOCUMENTO").EditedFormattedValue.ToString.Trim
+                            If codalmacenM <> "" And tipdocM <> "" And nrodocM <> "" Then
+                                Dim formRegistrarPicador As New RegistrarPicking
+                                formRegistrarPicador.ShowDialog()
+                                If formRegistrarPicador.grabado = True Then
+                                    If llamarRegistrarImpresion(codalmacenM, tipdocM, nrodocM, "PI", formRegistrarPicador.idpicador, formRegistrarPicador.idfiltro) <> 0 Then
+                                        MsgBox("PickConfirm realizado Correctamente", MsgBoxStyle.Information, "SISTEMAS NORDIC")
+                                        ListarGuiasCabecera()
+                                    End If
+                                End If
+                            End If
                         End If
-
                     End If
                 Next
-                ListarGuiasCabecera()
+                ' ListarGuiasCabecera()
             End If
         Catch ex As Exception
             Throw ex
@@ -612,10 +617,10 @@ Public Class GestionGuiasSalida
 
     End Sub
 
-    Public Function llamarRegistrarImpresion(codalmacen As String, ctd As String, numero As String, estado As String) As Integer
+    Public Function llamarRegistrarImpresion(codalmacen As String, ctd As String, numero As String, estado As String, idpicador As Integer, idfiltro As Integer) As Integer
         Dim RP As Integer
         Try
-            RP = ObjAlmacen.CambiarEstadoGuia(codalmacen, ctd, numero, estado)
+            RP = ObjAlmacen.CambiarEstadoGuia(codalmacen, ctd, numero, estado, idpicador, idfiltro)
         Catch ex As Exception
 
         End Try
@@ -704,6 +709,8 @@ Public Class GestionGuiasSalida
                     rowcabecera.Item("RUC") = RowRetorno.Item("RUC").ToString.Trim
                     rowcabecera.Item("CLIENTE") = RowRetorno.Item("CLIENTE").ToString.Trim
                     rowcabecera.Item("DIRECCIONCLIENTE") = RowRetorno.Item("DIRECCIONCLIENTE").ToString.Trim
+                    rowcabecera.Item("PICADOR") = RowRetorno.Item("PICADOR").ToString.Trim
+                    rowcabecera.Item("FILTRO") = RowRetorno.Item("FILTRO").ToString.Trim
                     If RowRetorno.Item("ESTADO").ToString.Trim = "PE" Then
                         rowcabecera.Item("ESTADO") = "PENDIENTE"
                     Else
@@ -902,10 +909,6 @@ Public Class GestionGuiasSalida
         Dg_Cabecera.Columns("ESTADO").Width = 70
         Dg_Cabecera.Columns("ESTADO").ReadOnly = True
 
-        'Dg_Cabecera.Columns("PICADO").HeaderText = "Picado"
-        'Dg_Cabecera.Columns("PICADO").Width = 70
-        'Dg_Cabecera.Columns("PICADO").ReadOnly = True
-
         Dg_Cabecera.Columns("CODALMACEN_ORIGEN").HeaderText = "Cod Almacen"
         Dg_Cabecera.Columns("CODALMACEN_ORIGEN").Width = 75
         Dg_Cabecera.Columns("CODALMACEN_ORIGEN").ReadOnly = True
@@ -960,6 +963,16 @@ Public Class GestionGuiasSalida
         Dg_Cabecera.Columns("CODPEDIDO").Width = 100
         Dg_Cabecera.Columns("CODPEDIDO").ReadOnly = True
         Dg_Cabecera.Columns("CODPEDIDO").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+        Dg_Cabecera.Columns("PICADOR").HeaderText = "Picador"
+        Dg_Cabecera.Columns("PICADOR").Width = 100
+        Dg_Cabecera.Columns("PICADOR").ReadOnly = True
+        Dg_Cabecera.Columns("PICADOR").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+        Dg_Cabecera.Columns("FILTRO").HeaderText = "Filtro"
+        Dg_Cabecera.Columns("FILTRO").Width = 100
+        Dg_Cabecera.Columns("FILTRO").ReadOnly = True
+        Dg_Cabecera.Columns("FILTRO").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
 
         'Dg_Cabecera.Columns("CODPEDIDO").Visible = False
         'Dg_Cabecera.Columns("PICADO").Visible = False

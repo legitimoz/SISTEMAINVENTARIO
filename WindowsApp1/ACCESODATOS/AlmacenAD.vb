@@ -642,6 +642,62 @@ Public Class AlmacenAD
             Throw ex
             MyBase.Conn.Close()
         End Try
+    End Function
+
+    Public Function ListarMotivosDispatch() As DataTable
+
+        Try
+            Dim com As New SqlCommand("SP_CSE_ListarMotivosDispatch", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            Throw ex
+            MyBase.Conn.Close()
+        End Try
+
+    End Function
+
+    Public Function ListarPicadores() As DataTable
+
+        Try
+            Dim com As New SqlCommand("SP_CSE_LISTARPICADORES", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            Throw ex
+            MyBase.Conn.Close()
+        End Try
+
+    End Function
+
+    Public Function ListarMotivosDelivery() As DataTable
+
+        Try
+            Dim com As New SqlCommand("SP_CSE_ListarMotivosDelivery", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            Throw ex
+            MyBase.Conn.Close()
+        End Try
 
     End Function
 
@@ -669,6 +725,57 @@ Public Class AlmacenAD
 
     End Function
 
+    Public Function RegistrarObservacionDispatch(CALMA As String, CTD As String, CNUMDOC As String, idmotivo As Integer) As Integer
+        Dim rp As Integer = 0
+        'Dim RpStore As SqlDataReader = Nothing
+        Dim Comm As New SqlCommand("SP_CSE_RegistrarObservacionDispatch", MyBase.Conn)
+        Try
+            Comm.CommandType = CommandType.StoredProcedure
+            With Comm.Parameters
+                .Add("@CALMA", SqlDbType.Char, 4).Value = CALMA
+                .Add("@CTD", SqlDbType.Char, 2).Value = CTD
+                .Add("@CNUMDOC", SqlDbType.Char, 11).Value = CNUMDOC
+                .Add("@idMotivo", SqlDbType.Int).Value = idmotivo
+            End With
+            MyBase.Conn.Open()
+            ''RpStore = Comm.ExecuteReader(CommandBehavior.SingleRow)
+            ''If (RpStore.Read()) Then
+            ''    rp = Convert.ToInt32(RpStore.GetValue(0).ToString())
+            ''End If
+            rp = Comm.ExecuteNonQuery
+
+            MyBase.Conn.Close()
+        Catch ex As Exception
+            MyBase.Conn.Close()
+        End Try
+        Return rp
+    End Function
+
+    Public Function RegistrarObservacionDelivery(CALMA As String, CTD As String, CNUMDOC As String, idmotivo As Integer) As Integer
+        Dim rp As Integer = 0
+        'Dim RpStore As SqlDataReader = Nothing
+        Dim Comm As New SqlCommand("SP_CSE_RegistrarObservacionDelivery", MyBase.Conn)
+        Try
+            Comm.CommandType = CommandType.StoredProcedure
+            With Comm.Parameters
+                .Add("@CALMA", SqlDbType.Char, 4).Value = CALMA
+                .Add("@CTD", SqlDbType.Char, 2).Value = CTD
+                .Add("@CNUMDOC", SqlDbType.Char, 11).Value = CNUMDOC
+                .Add("@idMotivo", SqlDbType.Int).Value = idmotivo
+            End With
+            MyBase.Conn.Open()
+            ''RpStore = Comm.ExecuteReader(CommandBehavior.SingleRow)
+            ''If (RpStore.Read()) Then
+            ''    rp = Convert.ToInt32(RpStore.GetValue(0).ToString())
+            ''End If
+            rp = Comm.ExecuteNonQuery
+
+            MyBase.Conn.Close()
+        Catch ex As Exception
+            MyBase.Conn.Close()
+        End Try
+        Return rp
+    End Function
 
     Public Function RegistrarRecepcionGuiaDespacho(CALMA As String, CTD As String, CNUMDOC As String) As Integer
         Dim rp As Integer = 0
@@ -694,6 +801,7 @@ Public Class AlmacenAD
         End Try
         Return rp
     End Function
+
 
     Public Function RegistrarRack(XML As String) As Integer
         Dim rp As Integer = 0
@@ -758,7 +866,7 @@ Public Class AlmacenAD
         Return rp
     End Function
 
-    Public Function CambiarEstadoGuia(C5_CALMA As String, C5_CTD As String, C5_CNUMDOC As String, ESTADO As String) As Integer
+    Public Function CambiarEstadoGuia(C5_CALMA As String, C5_CTD As String, C5_CNUMDOC As String, ESTADO As String, idpicador As Integer, idfiltro As Integer) As Integer
         Dim rp As Integer = 0
         Dim RpStore As SqlDataReader = Nothing
         Dim Comm As New SqlCommand("SP_CSE_CAMBIARESTADO_GUIA", MyBase.Conn)
@@ -769,6 +877,8 @@ Public Class AlmacenAD
                 .Add("@C5_CTD", SqlDbType.Char, 2).Value = C5_CTD
                 .Add("@C5_CNUMDOC", SqlDbType.Char, 11).Value = C5_CNUMDOC
                 .Add("@ESTADO", SqlDbType.Char, 2).Value = ESTADO
+                .Add("@idpicador", SqlDbType.Int).Value = idpicador
+                .Add("@idfiltro", SqlDbType.Int).Value = idfiltro
             End With
             MyBase.Conn.Open()
             rp = Comm.ExecuteNonQuery()

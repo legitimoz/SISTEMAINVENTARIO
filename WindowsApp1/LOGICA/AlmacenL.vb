@@ -12,6 +12,37 @@ Public Class AlmacenL
         End Try
     End Function
 
+    Public Function ListarMotivosDispatch() As DataTable
+        Try
+            Return objAlmacen.ListarMotivosDispatch
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function ListarMotivosDelivery() As DataTable
+        Try
+            Return objAlmacen.ListarMotivosDelivery
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function RegistrarObservacionDispatch(CALMA As String, CTD As String, CNUMDOC As String, idmotivo As Integer) As Integer
+        Try
+            Return objAlmacen.RegistrarObservacionDispatch(CALMA, CTD, CNUMDOC, idmotivo)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function RegistrarObservacionDelivery(CALMA As String, CTD As String, CNUMDOC As String, idmotivo As Integer) As Integer
+        Try
+            Return objAlmacen.RegistrarObservacionDelivery(CALMA, CTD, CNUMDOC, idmotivo)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function ReporteRotulosProducto(ByVal CALMA As String, ByVal CTD As String, CNUMDOC As String) As DataTable
         Try
             Return objAlmacen.ReporteRotulosProducto(CALMA, CTD, CNUMDOC)
@@ -58,9 +89,17 @@ Public Class AlmacenL
         End Try
     End Function
 
-    Public Function CambiarEstadoGuia(C5_CALMA As String, C5_CTD As String, C5_CNUMDOC As String, ESTADO As String) As Integer
+    Public Function ListarPicadores() As DataTable
         Try
-            Return objAlmacen.CambiarEstadoGuia(C5_CALMA, C5_CTD, C5_CNUMDOC, ESTADO)
+            Return objAlmacen.ListarPicadores
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function CambiarEstadoGuia(C5_CALMA As String, C5_CTD As String, C5_CNUMDOC As String, ESTADO As String, idpicador As Integer, idfiltro As Integer) As Integer
+        Try
+            Return objAlmacen.CambiarEstadoGuia(C5_CALMA, C5_CTD, C5_CNUMDOC, ESTADO, idpicador, idfiltro)
         Catch ex As Exception
             Throw ex
         End Try

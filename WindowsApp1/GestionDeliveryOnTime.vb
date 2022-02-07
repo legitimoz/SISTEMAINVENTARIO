@@ -5,6 +5,7 @@ Public Class GestionDeliveryOnTime
     Private dtcabecera2, dtcabecera As New DataTable
     Public Estructura As New EstructuraTabla
     Private ObjAlmacen As New AlmacenL
+    Private CNUMDOC, CTD, CALMA, Estado As String
 
     Private Sub GestionDeliveryOnTime_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
@@ -105,12 +106,17 @@ Public Class GestionDeliveryOnTime
                     rowcabecera.Item("TIEMPO_MAX") = RowRetorno.Item("TIEMPO_MAX").ToString.Trim
                     rowcabecera.Item("TIEMPO_TRASN") = RowRetorno.Item("TIEMPO_TRASN").ToString.Trim
                     rowcabecera.Item("Estado") = RowRetorno.Item("Estado").ToString.Trim
+                    rowcabecera.Item("MOTIVO") = RowRetorno.Item("MOTIVO").ToString.Trim
+                    rowcabecera.Item("C5_CTD") = RowRetorno.Item("C5_CTD").ToString.Trim
+                    rowcabecera.Item("C5_CALMA") = RowRetorno.Item("C5_CALMA").ToString.Trim
 
                     If rowcabecera.Item("Estado") IsNot Nothing Then
                         If rowcabecera.Item("Estado").ToString.Trim = "DENTRO DE TIEMPO" Then
                             contador = contador + 1
                         End If
                     End If
+
+                    ' rowcabecera.Item("Estado") = "FUERA DE TIEMPO"
 
                     dtcabecera2.Rows.Add(rowcabecera)
 
@@ -131,6 +137,30 @@ Public Class GestionDeliveryOnTime
             Throw ex
         End Try
     End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Try
+            If Dg_Cabecera.Rows.Count > 0 Then
+                Obtener()
+                If Estado.Trim <> "DENTRO DE TIEMPO" Then
+                    If CNUMDOC <> "" And CTD <> "" And CALMA <> "" Then
+                        Dim RegistroForm As New RegistroObservacion
+                        RegistroForm.cnumdoc = CNUMDOC
+                        RegistroForm.ctd = CTD
+                        RegistroForm.calma = CALMA
+                        RegistroForm.tipoobservacion = 2
+                        RegistroForm.ShowDialog()
+                        If RegistroForm.grabado = True Then
+                            ListarGuiasCabecera()
+                        End If
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Function GridAExcel(ByVal ElGrid As DataGridView) As Boolean
 
         Dim exApp As Object
@@ -242,6 +272,19 @@ Public Class GestionDeliveryOnTime
         End Try
     End Sub
 
+    Public Sub Obtener()
+        Try
+            If Dg_Cabecera.Rows.Count > 0 Then
+                CNUMDOC = Dg_Cabecera.CurrentRow.Cells("GUIA").EditedFormattedValue.ToString
+                CTD = Dg_Cabecera.CurrentRow.Cells("C5_CTD").EditedFormattedValue.ToString
+                CALMA = Dg_Cabecera.CurrentRow.Cells("C5_CALMA").EditedFormattedValue.ToString
+                Estado = Dg_Cabecera.CurrentRow.Cells("Estado").EditedFormattedValue.ToString
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
     Public Sub FormatoTablaCabecera()
 
         dtcabecera2.Clear()
@@ -291,6 +334,14 @@ Public Class GestionDeliveryOnTime
         Dg_Cabecera.Columns("Estado").HeaderText = "Estado"
         Dg_Cabecera.Columns("Estado").Width = 70
         Dg_Cabecera.Columns("Estado").ReadOnly = True
+
+        Dg_Cabecera.Columns("C5_CTD").Visible = False
+        Dg_Cabecera.Columns("C5_CALMA").Visible = False
+
+
+        Dg_Cabecera.Columns("MOTIVO").HeaderText = "Motivo"
+        Dg_Cabecera.Columns("MOTIVO").Width = 70
+        Dg_Cabecera.Columns("MOTIVO").ReadOnly = True
 
     End Sub
 
