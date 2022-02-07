@@ -573,7 +573,7 @@ Imports System.Configuration
 
 
     Public Sub RegistrarFechaRetornoRuta(ByVal crg_id As String, ByVal c5_cnumdoc As String, ByVal fechaRecepClienteDate As String, ByVal fechaInterFacturaDate As String, ByVal fechaVtoOrdenCompraDate As String,
-                                        ByVal fechaRecepClienteCadena As String, ByVal fechaInterFacturaCadena As String, ByVal fechaVtoOrdenCompraCadena As String, ByVal fechaReProgramacion As String,
+                                        ByVal fechaRecepClienteCadena As String, ByVal fechaInterFacturaCadena As String, ByVal fechaVtoOrdenCompraCadena As String,
                                         ByRef _tiporespuesta As String)
 
         Dim _textorespuesta As String = String.Empty
@@ -582,7 +582,7 @@ Imports System.Configuration
             Conexion = System.Configuration.ConfigurationManager.ConnectionStrings("ConexionHeadMark").ConnectionString
 
             Using oSqlConnectionMedlab As SqlConnection = New SqlConnection(Conexion)
-                Using oSqlCommandMedlab As SqlCommand = New SqlCommand("SPDSN_ACTUALIZAR_FECHARUTA_V3", oSqlConnectionMedlab)
+                Using oSqlCommandMedlab As SqlCommand = New SqlCommand("SPDSN_ACTUALIZAR_FECHARUTA_V2", oSqlConnectionMedlab)
                     oSqlCommandMedlab.CommandType = CommandType.StoredProcedure
 
                     oSqlCommandMedlab.Parameters.Add("@CRG_ID", SqlDbType.Int).Value = crg_id
@@ -594,8 +594,6 @@ Imports System.Configuration
                     oSqlCommandMedlab.Parameters.Add("@fechaRecepClienteCadena", SqlDbType.VarChar, 20).Value = fechaRecepClienteCadena
                     oSqlCommandMedlab.Parameters.Add("@fechaInterFacturaCadena", SqlDbType.VarChar, 20).Value = fechaInterFacturaCadena
                     oSqlCommandMedlab.Parameters.Add("@fechaVtoOrdenCompraCadena", SqlDbType.VarChar, 20).Value = fechaInterFacturaCadena
-
-                    oSqlCommandMedlab.Parameters.Add("@fechaReProgramacion", SqlDbType.VarChar, 20).Value = fechaReProgramacion
 
 
                     If (oSqlConnectionMedlab.State = ConnectionState.Closed) Then
@@ -636,7 +634,7 @@ Imports System.Configuration
 
 
     Public Sub RegistrarFechaRetornoRuta_SinRuta(ByVal c5_cnumdoc As String, ByVal fechaRecepClienteDate As String, ByVal fechaInterFacturaDate As String, ByVal fechaVtoOrdenCompraDate As String,
-                                        ByVal fechaRecepClienteCadena As String, ByVal fechaInterFacturaCadena As String, ByVal fechaVtoOrdenCompraCadena As String, ByVal fechaReProgramacion As String,
+                                        ByVal fechaRecepClienteCadena As String, ByVal fechaInterFacturaCadena As String, ByVal fechaVtoOrdenCompraCadena As String,
                                         ByRef _tiporespuesta As String)
 
         Dim _textorespuesta As String = String.Empty
@@ -657,8 +655,6 @@ Imports System.Configuration
                     oSqlCommandMedlab.Parameters.Add("@fechaRecepClienteCadena", SqlDbType.VarChar, 20).Value = fechaRecepClienteCadena
                     oSqlCommandMedlab.Parameters.Add("@fechaInterFacturaCadena", SqlDbType.VarChar, 20).Value = fechaInterFacturaCadena
                     oSqlCommandMedlab.Parameters.Add("@fechaVtoOrdenCompraCadena", SqlDbType.VarChar, 20).Value = fechaVtoOrdenCompraCadena
-
-                    oSqlCommandMedlab.Parameters.Add("@fechaReProgramacion", SqlDbType.VarChar, 20).Value = fechaReProgramacion
 
 
                     If (oSqlConnectionMedlab.State = ConnectionState.Closed) Then
