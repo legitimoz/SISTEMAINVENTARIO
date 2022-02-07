@@ -116,6 +116,7 @@ Partial Class GestionGuiasSalida
         Me.Dg_Detalle.AllowUserToResizeRows = False
         Me.Dg_Detalle.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Dg_Detalle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.Dg_Detalle.BackgroundColor = System.Drawing.Color.White
         Me.Dg_Detalle.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
@@ -343,6 +344,7 @@ Partial Class GestionGuiasSalida
         Me.Dg_Cabecera.AllowUserToResizeRows = False
         Me.Dg_Cabecera.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Dg_Cabecera.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.Dg_Cabecera.BackgroundColor = System.Drawing.Color.White
         Me.Dg_Cabecera.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.Dg_Cabecera.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -357,6 +359,8 @@ Partial Class GestionGuiasSalida
         '
         'cmdAceptar
         '
+        Me.cmdAceptar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cmdAceptar.BackColor = System.Drawing.SystemColors.Control
         Me.cmdAceptar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.cmdAceptar.FlatAppearance.BorderColor = System.Drawing.Color.ForestGreen

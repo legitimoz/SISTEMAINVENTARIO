@@ -5,6 +5,8 @@ Public Class GestionDispatchOnTime
     Private dtcabecera2, dtcabecera As New DataTable
     Public Estructura As New EstructuraTabla
     Private ObjAlmacen As New AlmacenL
+    Public CALMA, CTD, CNUMDOC, estado As String
+
     Private Sub GestionDispatchOnTime_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             CargaInicial()
@@ -80,6 +82,11 @@ Public Class GestionDispatchOnTime
                     rowcabecera.Item("Hora") = RowRetorno.Item("Hora").ToString.Trim
                     rowcabecera.Item("ESTADO") = RowRetorno.Item("ESTADO").ToString.Trim
                     rowcabecera.Item("Direferencia") = RowRetorno.Item("Direferencia").ToString.Trim
+                    rowcabecera.Item("CTD") = RowRetorno.Item("CTD").ToString.Trim
+                    rowcabecera.Item("CALMA") = RowRetorno.Item("CALMA").ToString.Trim
+                    rowcabecera.Item("FECHA_GUIAB") = RowRetorno.Item("FECHA_GUIAB").ToString.Trim
+                    rowcabecera.Item("FECHA_DESPACHOB") = RowRetorno.Item("FECHA_DESPACHOB").ToString.Trim
+                    rowcabecera.Item("MOTIVO") = RowRetorno.Item("MOTIVO").ToString.Trim
                     If rowcabecera.Item("ESTADO").ToString.Trim = "DENTRO DE TIEMPO" Then
                         contador = contador + 1
                     End If
@@ -104,6 +111,18 @@ Public Class GestionDispatchOnTime
         End Try
     End Sub
 
+    Public Sub Obtener()
+        Try
+            If Dg_Cabecera.Rows.Count > 0 Then
+                CNUMDOC = Dg_Cabecera.CurrentRow.Cells("NRO_GUIA").EditedFormattedValue.ToString
+                CTD = Dg_Cabecera.CurrentRow.Cells("CTD").EditedFormattedValue.ToString
+                CALMA = Dg_Cabecera.CurrentRow.Cells("CALMA").EditedFormattedValue.ToString
+                estado = Dg_Cabecera.CurrentRow.Cells("ESTADO").EditedFormattedValue.ToString
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
     Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
         ListarGuiasCabecera()
     End Sub
@@ -176,7 +195,7 @@ Public Class GestionDispatchOnTime
 
                     If Col = 3 Then
                         fecha = "'" & CStr(ElGrid.Rows(Fila).Cells(Col).Value)
-                        exHoja.Cells.Item(Fila + 2, Col + 1) = "'" & CStr(ElGrid.Rows(Fila).Cells(Col).Value)
+                        exHoja.Cells.Item(Fila + 2, Col + 1) = CStr(ElGrid.Rows(Fila).Cells(Col).Value)
                     Else
                         If Col = 2 Or Col = 14 Or Col = 15 Or Col = 16 Or Col = 17 Then
                             exHoja.Cells.Item(Fila + 2, Col + 1) = ElGrid.Rows(Fila).Cells(Col).Value
@@ -219,20 +238,34 @@ Public Class GestionDispatchOnTime
 
     End Function
 
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Try
+            If Dg_Cabecera.Rows.Count > 0 Then
+                Obtener()
+                If estado.Trim <> "DENTRO DE TIEMPO" Then
+                    If CNUMDOC <> "" And CTD <> "" And CALMA <> "" Then
+                        Dim RegistroForm As New RegistroObservacion
+                        RegistroForm.cnumdoc = CNUMDOC
+                        RegistroForm.ctd = CTD
+                        RegistroForm.calma = CALMA
+                        RegistroForm.tipoobservacion = 1
+                        RegistroForm.ShowDialog()
+                        If RegistroForm.grabado = True Then
+                            ListarGuiasCabecera()
+                        End If
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Public Sub FormatoTablaCabecera()
 
         dtcabecera2.Clear()
         dtcabecera2 = Estructura.IndicadorDispatchOnTime
         Dg_Cabecera.DataSource = dtcabecera2
-
-        'Tabladetalle.Columns.Add("COD_PED", GetType(String))
-        'Tabladetalle.Columns.Add("FECHA_PEDIDO", GetType(String))
-        'Tabladetalle.Columns.Add("FECHA_DESPACHO", GetType(String))
-        'Tabladetalle.Columns.Add("LIM_PROV", GetType(String))
-        'Tabladetalle.Columns.Add("Hora", GetType(String))
-        'Tabladetalle.Columns.Add("ESTADO", GetType(String))
-        'Tabladetalle.Columns.Add("Direferencia", GetType(String))
-
 
         Dg_Cabecera.Columns("NRO_GUIA").HeaderText = "Nro Guia"
         Dg_Cabecera.Columns("NRO_GUIA").Width = 70
@@ -262,6 +295,15 @@ Public Class GestionDispatchOnTime
         Dg_Cabecera.Columns("Direferencia").Width = 70
         Dg_Cabecera.Columns("Direferencia").ReadOnly = True
 
+        Dg_Cabecera.Columns("MOTIVO").HeaderText = "Motivo"
+        Dg_Cabecera.Columns("MOTIVO").Width = 200
+        Dg_Cabecera.Columns("MOTIVO").ReadOnly = True
+
+        Dg_Cabecera.Columns("CTD").Visible = False
+        Dg_Cabecera.Columns("CALMA").Visible = False
+
+        Dg_Cabecera.Columns("FECHA_GUIAB").Visible = False
+        Dg_Cabecera.ColumnS("FECHA_DESPACHOB").Visible = False
 
 
     End Sub

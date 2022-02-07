@@ -38,6 +38,7 @@ Partial Class GestionDeliveryOnTime
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Dg_Cabecera = New System.Windows.Forms.DataGridView()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.Dg_Cabecera, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,6 +58,7 @@ Partial Class GestionDeliveryOnTime
         Me.GroupBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox1.Controls.Add(Me.Button1)
         Me.GroupBox1.Controls.Add(Me.lbl_indicador)
         Me.GroupBox1.Controls.Add(Me.txt_indicador)
         Me.GroupBox1.Controls.Add(Me.LBL_can)
@@ -231,6 +233,17 @@ Partial Class GestionDeliveryOnTime
         Me.Dg_Cabecera.Size = New System.Drawing.Size(1299, 349)
         Me.Dg_Cabecera.TabIndex = 54
         '
+        'Button1
+        '
+        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button1.Location = New System.Drawing.Point(667, 13)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(100, 26)
+        Me.Button1.TabIndex = 104
+        Me.Button1.Text = "Observacion"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'GestionDeliveryOnTime
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -265,4 +278,5 @@ Partial Class GestionDeliveryOnTime
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents Dg_Cabecera As DataGridView
+    Friend WithEvents Button1 As Button
 End Class

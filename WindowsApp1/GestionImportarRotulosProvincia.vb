@@ -32,7 +32,7 @@ Public Class GestionImportarRotulosProvincia
                 For Each RowRetorno As DataRow In dtretorno.Rows
                     Dim rowcabecera As DataRow
                     rowcabecera = dtcabecera2.NewRow
-                    rowcabecera.Item("Marcar") = False
+                    rowcabecera.Item("Marcar") = True
                     rowcabecera.Item("C5_CNUMDOC") = RowRetorno.Item("C5_CNUMDOC").ToString.Trim
                     rowcabecera.Item("C5_CNOMCLI") = RowRetorno.Item("C5_CNOMCLI").ToString.Trim
                     rowcabecera.Item("C5_CDIRENV") = RowRetorno.Item("C5_CDIRENV").ToString.Trim
@@ -184,7 +184,6 @@ Public Class GestionImportarRotulosProvincia
     End Function
 
     Public Sub ProcesoExportar()
-
         Try
             If dtcabecera2.Rows.Count > 0 Then
                 Dim DtExel As New DataTable
@@ -209,7 +208,7 @@ Public Class GestionImportarRotulosProvincia
                 End If
             End If
         Catch ex As Exception
-
+            Throw ex
         End Try
     End Sub
 

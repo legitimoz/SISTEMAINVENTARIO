@@ -585,6 +585,18 @@
     </Compile>
     <Compile Include="ProgressCell.vb" />
     <Compile Include="ProgressColumn.vb" />
+    <Compile Include="RegistrarPicking.Designer.vb">
+      <DependentUpon>RegistrarPicking.vb</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrarPicking.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistroObservacion.Designer.vb">
+      <DependentUpon>RegistroObservacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroObservacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ReporteArticulosSinUbicar.Designer.vb">
       <DependentUpon>ReporteArticulosSinUbicar.vb</DependentUpon>
     </Compile>
@@ -947,6 +959,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GestionGuiasSalida.resx">
       <DependentUpon>GestionGuiasSalida.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistrarPicking.resx">
+      <DependentUpon>RegistrarPicking.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistroObservacion.resx">
+      <DependentUpon>RegistroObservacion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReporteArticulosSinUbicar.resx">
       <DependentUpon>ReporteArticulosSinUbicar.vb</DependentUpon>

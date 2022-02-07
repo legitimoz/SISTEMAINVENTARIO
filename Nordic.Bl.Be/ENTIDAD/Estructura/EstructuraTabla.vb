@@ -426,6 +426,8 @@
             Tabladetalle.Columns.Add("RUC", GetType(String))
             Tabladetalle.Columns.Add("CLIENTE", GetType(String))
             Tabladetalle.Columns.Add("DIRECCIONCLIENTE", GetType(String))
+            Tabladetalle.Columns.Add("PICADOR", GetType(String))
+            Tabladetalle.Columns.Add("FILTRO", GetType(String))
 
         Catch ex As Exception
             Throw ex
@@ -577,6 +579,11 @@
             Tabladetalle.Columns.Add("Hora", GetType(String))
             Tabladetalle.Columns.Add("ESTADO", GetType(String))
             Tabladetalle.Columns.Add("Direferencia", GetType(String))
+            Tabladetalle.Columns.Add("CTD", GetType(String))
+            Tabladetalle.Columns.Add("CALMA", GetType(String))
+            Tabladetalle.Columns.Add("FECHA_GUIAB", GetType(String))
+            Tabladetalle.Columns.Add("FECHA_DESPACHOB", GetType(String))
+            Tabladetalle.Columns.Add("MOTIVO", GetType(String))
         Catch ex As Exception
             Throw ex
         End Try
@@ -634,6 +641,9 @@
             Tabladetalle.Columns.Add("TIEMPO_MAX", GetType(String))
             Tabladetalle.Columns.Add("TIEMPO_TRASN", GetType(String))
             Tabladetalle.Columns.Add("Estado", GetType(String))
+            Tabladetalle.Columns.Add("MOTIVO", GetType(String))
+            Tabladetalle.Columns.Add("C5_CALMA", GetType(String))
+            Tabladetalle.Columns.Add("C5_CTD", GetType(String))
 
         Catch ex As Exception
             Throw ex
