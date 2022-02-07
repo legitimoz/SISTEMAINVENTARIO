@@ -542,7 +542,12 @@
         End Try
     End Sub
 
-    Private Sub SeguimientoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SeguimientoToolStripMenuItem.Click
 
+    Private Sub KardexArticuloToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles KardexArticuloToolStripMenuItem.Click
+        Try
+
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class
