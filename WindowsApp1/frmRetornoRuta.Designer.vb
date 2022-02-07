@@ -55,7 +55,6 @@ Partial Class frmRetornoRuta
         Me.fechaRecepCliente = New WindowsApp1.DateTimeGridColumn()
         Me.fechaInterFactura = New WindowsApp1.DateTimeGridColumn()
         Me.fecha_vto_oc = New WindowsApp1.DateTimeGridColumn()
-        Me.fecReProg = New WindowsApp1.DateTimeGridColumn()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
@@ -106,7 +105,7 @@ Partial Class frmRetornoRuta
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox1.Size = New System.Drawing.Size(1141, 63)
+        Me.GroupBox1.Size = New System.Drawing.Size(999, 63)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         '
@@ -224,7 +223,6 @@ Partial Class frmRetornoRuta
         '
         Me.cbxMotivos.BackColor = System.Drawing.Color.White
         Me.cbxMotivos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbxMotivos.DropDownWidth = 450
         Me.cbxMotivos.Font = New System.Drawing.Font("Tahoma", 10.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbxMotivos.FormattingEnabled = True
         Me.cbxMotivos.Location = New System.Drawing.Point(383, 24)
@@ -269,7 +267,7 @@ Partial Class frmRetornoRuta
         Me.GroupBox2.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox2.Size = New System.Drawing.Size(1120, 457)
+        Me.GroupBox2.Size = New System.Drawing.Size(978, 402)
         Me.GroupBox2.TabIndex = 2
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Listado Guias Validadas"
@@ -281,10 +279,10 @@ Partial Class frmRetornoRuta
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvRetornoRuta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvRetornoRuta.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.C5_CNUMDOC, Me.C5_CNOMCLI, Me.DE_CDEPT, Me.DE_CPROV, Me.TG_CDESCRI, Me.C5_CDIRENV, Me.color1, Me.EST_CODIGO2, Me.motivo, Me.EST_CODIGO, Me.FECHA_SALIDARUTA, Me.USUARIO_SALIDARUTA, Me.FECHA_RETORNORUTA, Me.USUARIO_RETORNORUTA, Me.fechaRecepCliente, Me.fechaInterFactura, Me.fecha_vto_oc, Me.fecReProg})
+        Me.dgvRetornoRuta.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.C5_CNUMDOC, Me.C5_CNOMCLI, Me.DE_CDEPT, Me.DE_CPROV, Me.TG_CDESCRI, Me.C5_CDIRENV, Me.color1, Me.EST_CODIGO2, Me.motivo, Me.EST_CODIGO, Me.FECHA_SALIDARUTA, Me.USUARIO_SALIDARUTA, Me.FECHA_RETORNORUTA, Me.USUARIO_RETORNORUTA, Me.fechaRecepCliente, Me.fechaInterFactura, Me.fecha_vto_oc})
         Me.dgvRetornoRuta.Location = New System.Drawing.Point(5, 19)
         Me.dgvRetornoRuta.Name = "dgvRetornoRuta"
-        Me.dgvRetornoRuta.Size = New System.Drawing.Size(1110, 433)
+        Me.dgvRetornoRuta.Size = New System.Drawing.Size(968, 378)
         Me.dgvRetornoRuta.TabIndex = 2
         '
         'C5_CNUMDOC
@@ -378,18 +376,13 @@ Partial Class frmRetornoRuta
         Me.fecha_vto_oc.HeaderText = "Fecha Vto OC"
         Me.fecha_vto_oc.Name = "fecha_vto_oc"
         '
-        'fecReProg
-        '
-        Me.fecReProg.HeaderText = "Fecha Re-Programación"
-        Me.fecReProg.Name = "fecReProg"
-        '
         'StatusStrip1
         '
         Me.StatusStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 667)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 612)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Padding = New System.Windows.Forms.Padding(1, 0, 12, 0)
-        Me.StatusStrip1.Size = New System.Drawing.Size(1148, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(1006, 22)
         Me.StatusStrip1.TabIndex = 3
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -422,7 +415,7 @@ Partial Class frmRetornoRuta
         Me.GroupBox3.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox3.Size = New System.Drawing.Size(801, 130)
+        Me.GroupBox3.Size = New System.Drawing.Size(659, 130)
         Me.GroupBox3.TabIndex = 17
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Status"
@@ -571,7 +564,7 @@ Partial Class frmRetornoRuta
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(1148, 689)
+        Me.ClientSize = New System.Drawing.Size(1006, 634)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
@@ -631,9 +624,6 @@ Partial Class frmRetornoRuta
     Friend WithEvents DataGridViewTextBoxColumn15 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn16 As DataGridViewTextBoxColumn
     Friend WithEvents dgvRetornoRuta As DataGridView
-    Friend WithEvents DateTimeGridColumn1 As DateTimeGridColumn
-    Friend WithEvents DateTimeGridColumn2 As DateTimeGridColumn
-    Friend WithEvents DateTimeGridColumn3 As DateTimeGridColumn
     Friend WithEvents C5_CNUMDOC As DataGridViewTextBoxColumn
     Friend WithEvents C5_CNOMCLI As DataGridViewTextBoxColumn
     Friend WithEvents DE_CDEPT As DataGridViewTextBoxColumn
@@ -651,5 +641,7 @@ Partial Class frmRetornoRuta
     Friend WithEvents fechaRecepCliente As DateTimeGridColumn
     Friend WithEvents fechaInterFactura As DateTimeGridColumn
     Friend WithEvents fecha_vto_oc As DateTimeGridColumn
-    Friend WithEvents fecReProg As DateTimeGridColumn
+    Friend WithEvents DateTimeGridColumn1 As DateTimeGridColumn
+    Friend WithEvents DateTimeGridColumn2 As DateTimeGridColumn
+    Friend WithEvents DateTimeGridColumn3 As DateTimeGridColumn
 End Class
