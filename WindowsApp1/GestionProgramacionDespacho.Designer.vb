@@ -78,9 +78,12 @@ Partial Class GestionProgramacionDespacho
         Me.DataGridViewTextBoxColumn29 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn30 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn31 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn32 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MARCAR = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.SITUACION = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ESTADO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FECHAREPCECION = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.HORARECEPCION = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FECHA = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FECHA_GUIA = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.HORA = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -148,7 +151,7 @@ Partial Class GestionProgramacionDespacho
         Me.Dg_Cabecera.AllowUserToDeleteRows = False
         Me.Dg_Cabecera.BackgroundColor = System.Drawing.Color.White
         Me.Dg_Cabecera.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Dg_Cabecera.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.MARCAR, Me.SITUACION, Me.ESTADO, Me.FECHA, Me.FECHA_GUIA, Me.HORA, Me.HORA_GUIA, Me.COD_PED, Me.NRO_GUIA, Me.CONDICION, Me.RUC, Me.NOM_CLIENTE, Me.DIRECCION_ENTREGA, Me.UBIGEO, Me.PROVINCIA, Me.DEPARTAMENTO, Me.DISTRITO, Me.LIMA_PROV, Me.CANAL, Me.TRANSPORTE, Me.M3UN, Me.IMPORTE, Me.M3FIN, Me.TIEMPOENTREGA, Me.DESTINO, Me.RUTA, Me.DETALLE, Me.RESTRICCION, Me.REPRESENTANTE, Me.C5_CTD, Me.C5_CALMA, Me.SERIE, Me.COMENTARIO})
+        Me.Dg_Cabecera.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.MARCAR, Me.SITUACION, Me.ESTADO, Me.FECHAREPCECION, Me.HORARECEPCION, Me.FECHA, Me.FECHA_GUIA, Me.HORA, Me.HORA_GUIA, Me.COD_PED, Me.NRO_GUIA, Me.CONDICION, Me.RUC, Me.NOM_CLIENTE, Me.DIRECCION_ENTREGA, Me.UBIGEO, Me.PROVINCIA, Me.DEPARTAMENTO, Me.DISTRITO, Me.LIMA_PROV, Me.CANAL, Me.TRANSPORTE, Me.M3UN, Me.IMPORTE, Me.M3FIN, Me.TIEMPOENTREGA, Me.DESTINO, Me.RUTA, Me.DETALLE, Me.RESTRICCION, Me.REPRESENTANTE, Me.C5_CTD, Me.C5_CALMA, Me.SERIE, Me.COMENTARIO})
         Me.Dg_Cabecera.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Dg_Cabecera.Location = New System.Drawing.Point(0, 0)
         Me.Dg_Cabecera.Margin = New System.Windows.Forms.Padding(0)
@@ -388,6 +391,7 @@ Partial Class GestionProgramacionDespacho
         '
         Me.DataGridViewTextBoxColumn3.HeaderText = "Hora"
         Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        Me.DataGridViewTextBoxColumn3.Visible = False
         '
         'DataGridViewTextBoxColumn4
         '
@@ -405,6 +409,7 @@ Partial Class GestionProgramacionDespacho
         '
         Me.DataGridViewTextBoxColumn6.HeaderText = "Cod Pedido"
         Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
+        Me.DataGridViewTextBoxColumn6.Visible = False
         '
         'DataGridViewTextBoxColumn7
         '
@@ -533,6 +538,12 @@ Partial Class GestionProgramacionDespacho
         '
         Me.DataGridViewTextBoxColumn31.HeaderText = "Comentario"
         Me.DataGridViewTextBoxColumn31.Name = "DataGridViewTextBoxColumn31"
+        Me.DataGridViewTextBoxColumn31.Visible = False
+        '
+        'DataGridViewTextBoxColumn32
+        '
+        Me.DataGridViewTextBoxColumn32.HeaderText = "Comentario"
+        Me.DataGridViewTextBoxColumn32.Name = "DataGridViewTextBoxColumn32"
         '
         'MARCAR
         '
@@ -548,6 +559,16 @@ Partial Class GestionProgramacionDespacho
         '
         Me.ESTADO.HeaderText = "Estado"
         Me.ESTADO.Name = "ESTADO"
+        '
+        'FECHAREPCECION
+        '
+        Me.FECHAREPCECION.HeaderText = "Fecha Recepcion"
+        Me.FECHAREPCECION.Name = "FECHAREPCECION"
+        '
+        'HORARECEPCION
+        '
+        Me.HORARECEPCION.HeaderText = "Hora Recepcion"
+        Me.HORARECEPCION.Name = "HORARECEPCION"
         '
         'FECHA
         '
@@ -783,6 +804,8 @@ Partial Class GestionProgramacionDespacho
     Friend WithEvents MARCAR As DataGridViewCheckBoxColumn
     Friend WithEvents SITUACION As DataGridViewTextBoxColumn
     Friend WithEvents ESTADO As DataGridViewTextBoxColumn
+    Friend WithEvents FECHAREPCECION As DataGridViewTextBoxColumn
+    Friend WithEvents HORARECEPCION As DataGridViewTextBoxColumn
     Friend WithEvents FECHA As DataGridViewTextBoxColumn
     Friend WithEvents FECHA_GUIA As DataGridViewTextBoxColumn
     Friend WithEvents HORA As DataGridViewTextBoxColumn
@@ -813,4 +836,5 @@ Partial Class GestionProgramacionDespacho
     Friend WithEvents C5_CALMA As DataGridViewTextBoxColumn
     Friend WithEvents SERIE As DataGridViewTextBoxColumn
     Friend WithEvents COMENTARIO As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn32 As DataGridViewTextBoxColumn
 End Class

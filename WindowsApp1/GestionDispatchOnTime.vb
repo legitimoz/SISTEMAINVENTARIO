@@ -17,6 +17,7 @@ Public Class GestionDispatchOnTime
 
     Private Sub CargaInicial()
         Try
+            cmb_filtro.SelectedIndex = 0
             FormatoTablaCabecera()
             'ListarGuiasCabecera()
         Catch ex As Exception
@@ -62,6 +63,7 @@ Public Class GestionDispatchOnTime
     Public Sub ListarGuiasCabecera()
 
         Try
+            Dim contadorL As Integer = 0, cantidadL As Integer = 0, ContadorP As Integer = 0, cantidadP As Integer = 0
             Dim dtretorno As New DataTable
             Dim contador As Integer = 0
             Dim cant As Integer = 0
@@ -87,8 +89,22 @@ Public Class GestionDispatchOnTime
                     rowcabecera.Item("FECHA_GUIAB") = RowRetorno.Item("FECHA_GUIAB").ToString.Trim
                     rowcabecera.Item("FECHA_DESPACHOB") = RowRetorno.Item("FECHA_DESPACHOB").ToString.Trim
                     rowcabecera.Item("MOTIVO") = RowRetorno.Item("MOTIVO").ToString.Trim
+                    rowcabecera.Item("AREA") = RowRetorno.Item("AREA").ToString.Trim
                     If rowcabecera.Item("ESTADO").ToString.Trim = "DENTRO DE TIEMPO" Then
                         contador = contador + 1
+                    End If
+
+                    If rowcabecera.Item("LIM_PROV").ToString.Trim = "LIMA" Then
+                        cantidadL = cantidadL + 1
+                        If rowcabecera.Item("ESTADO").ToString.Trim = "DENTRO DE TIEMPO" Then
+                            contadorL = contadorL + 1
+                        End If
+                    End If
+                    If rowcabecera.Item("LIM_PROV").ToString.Trim = "PROVINCIA" Then
+                        cantidadP = cantidadP + 1
+                        If rowcabecera.Item("ESTADO").ToString.Trim = "DENTRO DE TIEMPO" Then
+                            ContadorP = ContadorP + 1
+                        End If
                     End If
 
                     dtcabecera2.Rows.Add(rowcabecera)
@@ -105,6 +121,25 @@ Public Class GestionDispatchOnTime
                 txt_Cantpedidos.Text = "0"
                 txt_cantatiempo.Text = "0"
                 txt_indicador.Text = "0 %"
+            End If
+            If cantidadL <> 0 Then
+                txt_cantlim.Text = cantidadL.ToString
+                txt_dentrolim.Text = contadorL.ToString
+                txt_indlima.Text = CType((contadorL / cantidadL) * 100, Integer).ToString + " %"
+            Else
+                txt_cantlim.Text = "0"
+                txt_dentrolim.Text = "0"
+                txt_indlima.Text = "0 %"
+            End If
+
+            If cantidadP <> 0 Then
+                txt_cantpro.Text = cantidadP.ToString
+                txt_dentropro.Text = ContadorP.ToString
+                txt_indpro.Text = CType((ContadorP / cantidadP) * 100, Integer).ToString + " %"
+            Else
+                txt_cantpro.Text = "0"
+                txt_dentropro.Text = "0"
+                txt_indpro.Text = "0 %"
             End If
         Catch ex As Exception
             Throw ex
@@ -127,14 +162,112 @@ Public Class GestionDispatchOnTime
         ListarGuiasCabecera()
     End Sub
 
+    Private Sub cmb_filtro_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmb_filtro.SelectionChangeCommitted
+        Try
+            Buscar()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub Buscar()
+        Dim contador As Integer = 0
+        Dim cant As Integer = 0
+        Dim contadorL As Integer = 0, cantidadL As Integer = 0, ContadorP As Integer = 0, cantidadP As Integer = 0
+        Try
+
+            'Dim stringfiltro As String = ""
+
+            'If cmb_filtro.SelectedIndex <> Constantes.ValorEnteroInicial Then
+            '    stringfiltro = String.Format("AREA = '{0}' ", "LOGISTICO")
+            'End If
+            'dtcabecera2.DefaultView.RowFilter = stringfiltro
+
+            If Dg_Cabecera.Rows.Count > 0 Then
+
+                For Each RowCab As DataRow In dtcabecera2.Rows
+                    If cmb_filtro.SelectedIndex = 1 Then
+                        If RowCab.Item("ESTADO") IsNot Nothing Then
+                            If RowCab.Item("ESTADO").ToString.Trim = "DENTRO DE TIEMPO" Or RowCab.Item("AREA").ToString.Trim = "LOGISTICO" Then
+                                contador = contador + 1
+                            End If
+                            If RowCab.Item("LIM_PROV").ToString.Trim = "LIMA" Then
+                                cantidadL = cantidadL + 1
+                                If RowCab.Item("ESTADO").ToString.Trim = "DENTRO DE TIEMPO" Or RowCab.Item("AREA").ToString.Trim = "LOGISTICO" Then
+                                    contadorL = contadorL + 1
+                                End If
+                            End If
+                            If RowCab.Item("LIM_PROV").ToString.Trim = "PROVINCIA" Then
+                                cantidadP = cantidadP + 1
+                                If RowCab.Item("ESTADO").ToString.Trim = "DENTRO DE TIEMPO" Or RowCab.Item("AREA").ToString.Trim = "LOGISTICO" Then
+                                    ContadorP = ContadorP + 1
+                                End If
+                            End If
+                        End If
+                    Else
+                        If cmb_filtro.SelectedIndex = 0 Then
+                            If RowCab.Item("ESTADO") IsNot Nothing Then
+                                If RowCab.Item("ESTADO").ToString.Trim = "DENTRO DE TIEMPO" Then
+                                    contador = contador + 1
+                                End If
+                            End If
+                            If RowCab.Item("LIM_PROV").ToString.Trim = "LIMA" Then
+                                cantidadL = cantidadL + 1
+                                If RowCab.Item("ESTADO").ToString.Trim = "DENTRO DE TIEMPO" Then
+                                    contadorL = contadorL + 1
+                                End If
+                            End If
+                            If RowCab.Item("LIM_PROV").ToString.Trim = "PROVINCIA" Then
+                                cantidadP = cantidadP + 1
+                                If RowCab.Item("ESTADO").ToString.Trim = "DENTRO DE TIEMPO" Then
+                                    ContadorP = ContadorP + 1
+                                End If
+                            End If
+                        End If
+                    End If
+                Next
+
+                cant = dtcabecera2.Rows.Count
+                txt_Cantpedidos.Text = dtcabecera2.Rows.Count.ToString
+                txt_cantatiempo.Text = contador.ToString
+                txt_indicador.Text = CType((contador / cant) * 100, Integer).ToString + " %"
+
+            Else
+                ' dtcabecera2.Rows.Clear()
+                txt_Cantpedidos.Text = "0"
+                txt_cantatiempo.Text = "0"
+                txt_indicador.Text = "0 %"
+            End If
+
+            If cantidadL <> 0 Then
+                txt_cantlim.Text = cantidadL.ToString
+                txt_dentrolim.Text = contadorL.ToString
+                txt_indlima.Text = CType((contadorL / cantidadL) * 100, Integer).ToString + " %"
+            Else
+                txt_cantlim.Text = "0"
+                txt_dentrolim.Text = "0"
+                txt_indlima.Text = "0 %"
+            End If
+
+            If cantidadP <> 0 Then
+                txt_cantpro.Text = cantidadP.ToString
+                txt_dentropro.Text = ContadorP.ToString
+                txt_indpro.Text = CType((ContadorP / cantidadP) * 100, Integer).ToString + " %"
+            Else
+                txt_cantpro.Text = "0"
+                txt_dentropro.Text = "0"
+                txt_indpro.Text = "0 %"
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Private Sub btnExportar_Click(sender As Object, e As EventArgs) Handles btnExportar.Click
         Try
             Me.Cursor = Cursors.WaitCursor
-
             GridAExcel(Dg_Cabecera)
-
             Me.Cursor = Cursors.Default
-
         Catch ex As Exception
 
         End Try
@@ -147,52 +280,21 @@ Public Class GestionDispatchOnTime
         Dim exHoja As Object
 
         exApp = CreateObject("Excel.Application")
-
-        ' -- Referencia a la Hoja activa ( la que añade por defecto Excel )   
         exHoja = exApp.ActiveSheet
-
         Try
 
-            'Añadimos el Libro al programa, y la hoja al libro
             exLibro = exApp.Workbooks.Add()
             exHoja = exLibro.Worksheets(1)
-
-            'exLibro = exApp.Workbooks
-            'exHoja = exLibro.Worksheets.Add()
-
-            ' ¿Cuantas columnas y cuantas filas?
             Dim NCol As Integer = ElGrid.ColumnCount
             Dim NRow As Integer = ElGrid.RowCount
-
-            'Aqui recorremos todas las filas, y por cada fila todas las columnas y vamos escribiendo.
             For i As Integer = 1 To NCol
-                'If i <> 9 And i <> 23 And i <> 25 Then
                 exHoja.Cells.Item(1, i) = ElGrid.Columns(i - 1).HeaderText.ToString()
-                'End If
-                'exHoja.Cells.Item(1, i).HorizontalAlignment = 3
             Next
 
             Dim fecha As String = String.Empty
 
             For Fila As Integer = 0 To NRow - 1
                 For Col As Integer = 0 To NCol - 1
-
-                    'If Col = 13 Or Col = 14 Or Col = 15 Or Col = 16 Or Col = 17 Then
-                    '    fecha = "'" & CStr(ElGrid.Rows(Fila).Cells(Col).Value)
-                    '    exHoja.Cells.Item(Fila + 2, Col + 1) = "'" & CStr(ElGrid.Rows(Fila).Cells(Col).Value)
-                    'Else
-                    '    exHoja.Cells.Item(Fila + 2, Col + 1) = CStr(ElGrid.Rows(Fila).Cells(Col).Value)
-
-                    'End If
-                    ' If Col <> 8 And Col <> 22 And Col <> 24 Then
-                    'If Col = 3 Or Col = 0 Or Col = 2 Or Col = 13 Or Col = 14 Or Col = 15 Or Col = 16 Or Col = 17 Then
-                    '    fecha = "'" & CStr(ElGrid.Rows(Fila).Cells(Col).Value)
-                    '    exHoja.Cells.Item(Fila + 2, Col + 1) = "'" & CStr(ElGrid.Rows(Fila).Cells(Col).Value)
-                    'Else
-                    '    exHoja.Cells.Item(Fila + 2, Col + 1) = CStr(ElGrid.Rows(Fila).Cells(Col).Value)
-
-                    'End If
-
                     If Col = 3 Then
                         fecha = "'" & CStr(ElGrid.Rows(Fila).Cells(Col).Value)
                         exHoja.Cells.Item(Fila + 2, Col + 1) = CStr(ElGrid.Rows(Fila).Cells(Col).Value)
@@ -202,29 +304,15 @@ Public Class GestionDispatchOnTime
                         Else
                             exHoja.Cells.Item(Fila + 2, Col + 1) = CStr(ElGrid.Rows(Fila).Cells(Col).Value)
                         End If
-
-
                     End If
-                    ' End If
                 Next
             Next
 
-            'Titulo en negrita, Alineado al centro y que el tamaño de la columna se
-            'ajuste al texto
-
-
             exHoja.Rows.Item(1).Font.Bold = 1
             exHoja.Rows.Item(1).HorizontalAlignment = 3
-
             exHoja.Columns.AutoFit()
-
             exHoja.Rows.AutoFit()
-
-            'exHoja.RowHeight = 12
-
-            'Aplicación visible
             exApp.Application.Visible = True
-
             exHoja = Nothing
             exLibro = Nothing
             exApp = Nothing
@@ -298,6 +386,10 @@ Public Class GestionDispatchOnTime
         Dg_Cabecera.Columns("MOTIVO").HeaderText = "Motivo"
         Dg_Cabecera.Columns("MOTIVO").Width = 200
         Dg_Cabecera.Columns("MOTIVO").ReadOnly = True
+
+        Dg_Cabecera.Columns("AREA").HeaderText = "Area Responsable"
+        Dg_Cabecera.Columns("AREA").Width = 100
+        Dg_Cabecera.Columns("AREA").ReadOnly = True
 
         Dg_Cabecera.Columns("CTD").Visible = False
         Dg_Cabecera.Columns("CALMA").Visible = False
