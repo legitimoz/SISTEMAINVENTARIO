@@ -23,7 +23,7 @@ Public Class GestionProgramacionDespacho
             dtConsolidar = Estructura.TablaConsolidadaDestino
             DtDetalleConsolidado = Estructura.DetalleConsolidado
             CheckMarcar.Checked = True
-            Me.Text = "Programacion Despacho"
+            Me.Text = "Programacion Despacho Rutas"
             ListarTiemposEspera()
             ListarRutas()
             '  FormatoTablaCabecera()
