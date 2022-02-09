@@ -12,6 +12,13 @@ Public Class AlmacenL
         End Try
     End Function
 
+    Public Function ObtenerFactoresArticulo(ByVal codarticulo As String) As DataTable
+        Try
+            Return objAlmacen.ObtenerFactoresArticulo(codarticulo)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function ListarMotivosDispatch() As DataTable
         Try
             Return objAlmacen.ListarMotivosDispatch
@@ -19,6 +26,10 @@ Public Class AlmacenL
             Throw ex
         End Try
     End Function
+
+
+
+
     Public Function ListarMotivosDelivery() As DataTable
         Try
             Return objAlmacen.ListarMotivosDelivery
@@ -54,6 +65,13 @@ Public Class AlmacenL
     Public Function RegistrarRecepcionGuiaDespacho(CALMA As String, CTD As String, CNUMDOC As String) As Integer
         Try
             Return objAlmacen.RegistrarRecepcionGuiaDespacho(CALMA, CTD, CNUMDOC)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function RegistrarComentarioGuiaDespacho(CALMA As String, CTD As String, CNUMDOC As String, comentario As String) As Integer
+        Try
+            Return objAlmacen.RegistrarComentarioGuiaDespacho(CALMA, CTD, CNUMDOC, comentario)
         Catch ex As Exception
             Throw ex
         End Try
@@ -146,7 +164,13 @@ Public Class AlmacenL
 
     Public Function ListarPedidosDespacho(fechadesde As String, fechahasta As String) As DataTable
         Try
-            Return objAlmacen.ListarPedidosDespacho(fechadesde, fechahasta)
+
+            Dim rp, rp2 As New DataTable
+            rp = objAlmacen.ListarPedidosDespacho(fechadesde, fechahasta)
+            rp2 = objAlmacen.ListarPedidosDespachoReprogramar
+            rp.Merge(rp2)
+
+            Return rp
         Catch ex As Exception
             Throw ex
         End Try

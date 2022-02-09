@@ -12,9 +12,26 @@ Public Class AgregarCantidadPosicion
 
     Private Sub IconButton2_Click(sender As Object, e As EventArgs) Handles IconButton2.Click
         Try
-            If codprod <> "" And articuloNombre <> "" And lote <> "" And vencimiento <> "" Then
-                Dim Obj As New Demo
-                Obj.ImprimirRotuloArticulo("RetuloArticuloIngreso.rdlc", codprod, articuloNombre, vencimiento, lote, factorcaja.ToString + " UND", (factorcaja * factormaster).ToString + " UND")
+            If codprod <> "" And articuloNombre <> "" Then
+                'Dim nombre As String
+                ''Entrada de datos mediante un inputbox
+                'nombre = InputBox("Ingrese Cantidad de Rotulos ", "Cantidad Rotulos", "", 100, 50)
+                'MessageBox.Show("" + nombre, "",
+                '                MessageBoxButtons.OK,
+                '                MessageBoxIcon.Information
+
+
+                Dim cantrotuForm As New CantidadRotulos
+                cantrotuForm.ShowDialog()
+                If cantrotuForm.grabado = True Then
+                    Dim cantidad = cantrotuForm.cantidad
+                    If cantidad <> 0 Then
+                        Dim Obj As New Demo
+                        For Index As Integer = 1 To cantidad
+                            Obj.ImprimirRotuloArticulo("RetuloArticuloIngreso.rdlc", codprod, articuloNombre, vencimiento, lote, factorcaja.ToString + " UND", (factorcaja * factormaster).ToString + " UND")
+                        Next
+                    End If
+                End If
             End If
         Catch ex As Exception
 

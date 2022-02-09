@@ -19,6 +19,7 @@ Public Class GestionProgramacionDespacho
 
     Private Sub CargaInicial()
         Try
+            cmb_serie.SelectedIndex = 0
             dtConsolidar = Estructura.TablaConsolidadaDestino
             DtDetalleConsolidado = Estructura.DetalleConsolidado
             CheckMarcar.Checked = True
@@ -127,7 +128,6 @@ Public Class GestionProgramacionDespacho
     End Sub
 
 
-
     Public Sub ListarGuiasCabecera()
         Try
             If Dg_Cabecera.Rows.Count > 0 Then
@@ -139,7 +139,7 @@ Public Class GestionProgramacionDespacho
                 Dim contador As Integer = 0
                 For Each RowRetorno As DataRow In dtretorno.Rows
                     Dg_Cabecera.Rows.Add()
-                    Dg_Cabecera.Rows(contador).Cells("MARCAR").Value = True
+                    Dg_Cabecera.Rows(contador).Cells("MARCAR").Value = False
                     Dg_Cabecera.Rows(contador).Cells("FECHA").Value = RowRetorno.Item("FECHA").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("REPRESENTANTE").Value = RowRetorno.Item("REPRESENTANTE").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("FECHA_GUIA").Value = RowRetorno.Item("FECHA_GUIA").ToString.Trim
@@ -155,6 +155,9 @@ Public Class GestionProgramacionDespacho
                     Dg_Cabecera.Rows(contador).Cells("PROVINCIA").Value = RowRetorno.Item("PROVINCIA").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("DEPARTAMENTO").Value = RowRetorno.Item("DEPARTAMENTO").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("ESTADO").Value = RowRetorno.Item("ESTADO_RECEP").ToString.Trim
+                    Dg_Cabecera.Rows(contador).Cells("SERIE").Value = RowRetorno.Item("SERIE").ToString.Trim
+                    Dg_Cabecera.Rows(contador).Cells("COMENTARIO").Value = RowRetorno.Item("COMENTARIO").ToString.Trim
+                    Dg_Cabecera.Rows(contador).Cells("SITUACION").Value = RowRetorno.Item("SITUACION").ToString.Trim
 
                     Dg_Cabecera.Rows(contador).Cells("C5_CTD").Value = RowRetorno.Item("C5_CTD").ToString.Trim
 
@@ -165,6 +168,10 @@ Public Class GestionProgramacionDespacho
                     Else
                         If Dg_Cabecera.Rows(contador).Cells("ESTADO").Value.ToString.Trim = "RECEPCIONADO" Then
                             Dg_Cabecera.Rows(contador).DefaultCellStyle.BackColor = Color.LightGreen
+                        Else
+                            If Dg_Cabecera.Rows(contador).Cells("ESTADO").Value.ToString.Trim = "REPROGRAMADO" Then
+                                Dg_Cabecera.Rows(contador).DefaultCellStyle.BackColor = Color.LightBlue
+                            End If
                         End If
                     End If
                     If RowRetorno.Item("PROVINCIA").ToString.Trim = "CALLAO" And RowRetorno.Item("DEPARTAMENTO").ToString = "CALLAO" Then
@@ -300,6 +307,7 @@ Public Class GestionProgramacionDespacho
                     End If
                     contador = contador + 1
                 Next
+
                 'ColorearGrilla()
             End If
         Catch ex As Exception
@@ -451,24 +459,105 @@ Public Class GestionProgramacionDespacho
 
         End Try
     End Sub
+    'Public Sub Buscar()
+    '    Dim dtbusqueda As New DataTable
+    '    ' Try
+    '    '    If ValidarFechasbuscar() = True Then
+    '    '        Dim stringfiltro As String = ""
 
-    Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
+    '    '        If combo_Almacen.SelectedIndex = Constantes.ValorEnteroInicial Then
+    '    '            stringfiltro = String.Format("FECHA >= #{0}# AND FECHA <= #{1}# AND NDOCUMENTO LIKE '%{2}%' ", dt_desde.Value.ToString("MM/dd/yyyy"), dt_hasta.Value.ToString("MM/dd/yyyy"), txt_numero.Text)
+    '    '        End If
+    '    '        If combo_Almacen.SelectedIndex <> Constantes.ValorEnteroInicial Then
+    '    '            stringfiltro = String.Format("FECHA >= #{0}# AND FECHA <= #{1}# AND NDOCUMENTO LIKE '%{2}%' AND ALAMACEN_ORIGEN = '{3}' ", dt_desde.Value.ToString("MM/dd/yyyy"), dt_hasta.Value.ToString("MM/dd/yyyy"), txt_numero.Text, combo_Almacen.Text)
+    '    '        End If
+    '    '        dtcabecera.DefaultView.RowFilter = stringfiltro
+    '    '    End If
+    '    'Catch ex As Exception
+    '    '    Throw ex
+    '    '    MsgBox(Constantes.MensajeErrorServer, MsgBoxStyle.Critical)
+    '    'End Try
+    'End Sub
+    Private Sub ComboBox1_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmb_serie.SelectionChangeCommitted
         Try
-            Obtener()
-            If cnumdoc <> "" Then
-                If estadoOB.ToString.Trim <> "RECEPCIONADO" Then
-                    If MessageBox.Show("Confirmar Recepción de Guía " + cnumdoc + " ?", Me.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) = Windows.Forms.DialogResult.Yes Then
-                        ConfirmarRecepcion()
-                    End If
-                Else
-                    MsgBox("GUIA " + cnumdoc + " ya fue recepcionada", MsgBoxStyle.Exclamation, "SISTEMAS NORDIC")
-                End If
-
+            If cmb_serie.Text.Trim = "TODAS" Then
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    Dg_Cabecera.Rows(i).Visible = True
+                Next
             Else
-                MsgBox("Seleccione la GUIA a confirmar", MsgBoxStyle.Exclamation, "SISTEMAS NORDIC")
+                Dim n = cmb_serie.Text
+
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    Dg_Cabecera.Rows(i).Visible = (Dg_Cabecera.Rows(i).Cells("SERIE").Value = n)
+                Next
+
             End If
         Catch ex As Exception
 
+        End Try
+    End Sub
+
+    Private Sub Dg_Cabecera_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles Dg_Cabecera.CellValueChanged
+
+    End Sub
+
+    Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
+        Try
+            'Obtener()
+            'If cnumdoc <> "" Then
+            '    If estadoOB.ToString.Trim <> "RECEPCIONADO" Then
+            '        If MessageBox.Show("Confirmar Recepción de Guía " + cnumdoc + " ?", Me.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) = Windows.Forms.DialogResult.Yes Then
+            '            ConfirmarRecepcion()
+            '        End If
+            '    Else
+            '        MsgBox("GUIA " + cnumdoc + " ya fue recepcionada", MsgBoxStyle.Exclamation, "SISTEMAS NORDIC")
+            '    End If
+
+            'Else
+            '    MsgBox("Seleccione la GUIA a confirmar", MsgBoxStyle.Exclamation, "SISTEMAS NORDIC")
+            'End If
+            Dim rp As Boolean = True
+
+            If Dg_Cabecera.Rows.Count > 0 Then
+                If MessageBox.Show("Confirmar Recepción de Guías?", Me.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) = Windows.Forms.DialogResult.Yes Then
+                    For Each dg As DataGridViewRow In Dg_Cabecera.Rows
+                        '  If dg.Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim = "0110032261" Then
+                        If dg.Cells("MARCAR").EditedFormattedValue = True And dg.Cells("ESTADO").EditedFormattedValue.ToString.Trim <> "RECEPCIONADO" Then
+                            cnumdoc = dg.Cells("NRO_GUIA").EditedFormattedValue.ToString
+                            ctd = dg.Cells("C5_CTD").EditedFormattedValue.ToString
+                            calma = dg.Cells("C5_CALMA").EditedFormattedValue.ToString
+                            LlamarConfirmarRecepcion()
+                        End If
+                        'End If
+
+                    Next
+                    MsgBox("Guias Recepcionadas Correctamente", MsgBoxStyle.Information, "SISTEMAS NORDIC")
+                    ListarGuiasCabecera()
+                End If
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub Dg_Cabecera_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles Dg_Cabecera.CellEndEdit
+        Dim cnumdocM, ctdM, calmaM, comentario As String
+        Try
+            If Dg_Cabecera.Rows.Count > 0 Then
+                If e.RowIndex >= 0 Then
+                    cnumdocM = Dg_Cabecera.Rows(e.RowIndex).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim
+                    ctdM = Dg_Cabecera.Rows(e.RowIndex).Cells("C5_CTD").EditedFormattedValue.ToString.Trim
+                    calmaM = Dg_Cabecera.Rows(e.RowIndex).Cells("C5_CALMA").EditedFormattedValue.ToString.Trim
+                    comentario = Dg_Cabecera.Rows(e.RowIndex).Cells("COMENTARIO").EditedFormattedValue.ToString.Trim
+                    If cnumdocM <> "" And ctdM <> "" And calmaM <> "" And comentario <> "" Then
+                        If LlamarRegistrarComentario(calmaM, ctdM, cnumdocM, comentario) <> 0 Then
+                            MsgBox("Comentario Registrado Correctamente", MsgBoxStyle.Information, "SISTEMAS NORDIC")
+                        End If
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 
@@ -489,6 +578,16 @@ Public Class GestionProgramacionDespacho
         Dim RP As Integer = 0
         Try
             RP = ObjAlmacen.RegistrarRecepcionGuiaDespacho(calma, ctd, cnumdoc)
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return RP
+    End Function
+
+    Public Function LlamarRegistrarComentario(calma As String, ctd As String, cnumdoc As String, comentario As String) As Integer
+        Dim RP As Integer = 0
+        Try
+            RP = ObjAlmacen.RegistrarComentarioGuiaDespacho(calma, ctd, cnumdoc, comentario)
         Catch ex As Exception
             Throw ex
         End Try
@@ -532,7 +631,7 @@ Public Class GestionProgramacionDespacho
         Try
             If Dg_Cabecera.Rows.Count > 0 Then
                 For Each RowPri As DataGridViewRow In Dg_Cabecera.Rows
-                    If RowPri.Cells("ESTADO").Value.ToString.Trim = "RECEPCIONADO" Then
+                    If RowPri.Cells("ESTADO").Value.ToString.Trim = "RECEPCIONADO" Or RowPri.Cells("ESTADO").Value.ToString.Trim = "REPROGRAMADO" Then
                         If RowPri.Cells("MARCAR").Value = True Then
                             If RowPri.Cells("LIMA_PROV").Value.ToString.Trim = "LIMA" Then
                                 If ExisteEnNueva(RowPri.Cells("DESTINO").Value.ToString.Trim) = False Then

@@ -308,8 +308,8 @@ Public Class GestionPartesEntrada
                 row.Cells("UBICAR").Value = Not row.Cells("UBICAR").EditedFormattedValue
                 Dim valorcheck = row.Cells("UBICAR").Value
                 If valorcheck Then
-                    If row.Cells("SERIE").EditedFormattedValue.ToString.Trim <> "" And row.Cells("SERIE").EditedFormattedValue.ToString.Trim <> "SIN/LOTE" Then
-                        If CType(row.Cells("SALDO").EditedFormattedValue.ToString, Decimal) > 0 Then
+                    'If row.Cells("SERIE").EditedFormattedValue.ToString.Trim <> "" And row.Cells("SERIE").EditedFormattedValue.ToString.Trim <> "SIN/LOTE" Then
+                    If CType(row.Cells("SALDO").EditedFormattedValue.ToString, Decimal) > 0 Then
                             Dim addposicion As New GestionPosiciones With {
                         .idRack = idRack,
                         .X = X,
@@ -351,11 +351,11 @@ Public Class GestionPartesEntrada
                             MsgBox("El Articulo ya se ingresò en su totalidad", MsgBoxStyle.Exclamation)
                             row.Cells("UBICAR").Value = False
                         End If
+                        ''Else
+                        ''    MsgBox("El Articulo no tiene un Lote", MsgBoxStyle.Exclamation)
+                        ''    row.Cells("UBICAR").Value = False
+                        ''End If
                     Else
-                        MsgBox("El Articulo no tiene un Lote", MsgBoxStyle.Exclamation)
-                        row.Cells("UBICAR").Value = False
-                    End If
-                Else
                     row.Cells("UBICAR").Value = False
                 End If
             End If
@@ -432,8 +432,8 @@ Public Class GestionPartesEntrada
             If dtcabecera.Rows.Count > 0 Then
                 If dtDetalle.Rows.Count > 0 Then
                     ObtenerParteEntrada()
-                    If ValidarDetalle() = False Then
-                        If coddoc <> "" Then
+                    'If ValidarDetalle() = False Then
+                    If coddoc <> "" Then
                             Dim DetalleImprimirForm As New DetalleIngresoImprimir
                             DetalleImprimirForm.Text = "Definicion de Ubicaciones Para Hoja de Ingreso"
                             DetalleImprimirForm.idrack = idRack
@@ -452,10 +452,10 @@ Public Class GestionPartesEntrada
                                 reporte.Show()
                             End If
                         End If
-                    Else
-                        ErrorProvider1.SetError(btn_imprimir, "Parte de Entrada Tiene Articulos Sin Lote")
+                        'Else
+                        '    ErrorProvider1.SetError(btn_imprimir, "Parte de Entrada Tiene Articulos Sin Lote")
+                        'End If
                     End If
-                End If
             End If
         Catch ex As Exception
             Throw ex

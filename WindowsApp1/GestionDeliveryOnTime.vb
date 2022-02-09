@@ -161,6 +161,26 @@ Public Class GestionDeliveryOnTime
         End Try
     End Sub
 
+    Private Sub ComboBox1_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmb_filtro.SelectionChangeCommitted
+        Try
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Public Sub Buscar()
+        'Dim stringfiltro As String = ""
+
+        'If cmb_filtro.SelectedIndex = Constantes.ValorEnteroInicial Then
+        '    stringfiltro = String.Format("FECHA >= #{0}# AND FECHA <= #{1}# AND NDOCUMENTO LIKE '%{2}%' ", dt_desde.Value.ToString("MM/dd/yyyy"), dt_hasta.Value.ToString("MM/dd/yyyy"), txt_numero.Text)
+        'End If
+        'If cmb_filtro.SelectedIndex <> Constantes.ValorEnteroInicial Then
+        '    stringfiltro = String.Format("FECHA >= #{0}# AND FECHA <= #{1}# AND NDOCUMENTO LIKE '%{2}%' AND ALAMACEN_ORIGEN = '{3}' ", dt_desde.Value.ToString("MM/dd/yyyy"), dt_hasta.Value.ToString("MM/dd/yyyy"), txt_numero.Text, combo_Almacen.Text)
+        'End If
+        'dtcabecera.DefaultView.RowFilter = stringfiltro
+    End Sub
+
     Function GridAExcel(ByVal ElGrid As DataGridView) As Boolean
 
         Dim exApp As Object

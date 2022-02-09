@@ -980,14 +980,60 @@
               <FontSize>7pt</FontSize>
             </Style>
           </Tablix>
+          <Textbox Name="Textbox68">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>AUXILIAR DE ALMACEN 1</Value>
+                    <Style>
+                      <FontSize>6pt</FontSize>
+                      <FontWeight>ExtraBold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox52</rd:DefaultName>
+            <Top>3.07298cm</Top>
+            <Left>14.84279cm</Left>
+            <Height>0.3cm</Height>
+            <Width>3.29847cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+            </Style>
+          </Textbox>
+          <Line Name="Line22">
+            <Top>2.93187cm</Top>
+            <Left>13.77097cm</Left>
+            <Height>0cm</Height>
+            <Width>5.67899cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Color>DimGray</Color>
+                <Style>Solid</Style>
+                <Width>0.5pt</Width>
+              </Border>
+            </Style>
+          </Line>
         </ReportItems>
-        <Height>0.85225in</Height>
+        <Height>1.41475in</Height>
         <Style />
       </Body>
-      <Width>7.975in</Width>
+      <Width>7.85in</Width>
       <Page>
         <PageHeader>
-          <Height>5.27938cm</Height>
+          <Height>6.39959cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1436,14 +1482,14 @@
                 </Border>
               </Style>
             </Line>
-            <Textbox Name="Textbox68">
+            <Textbox Name="Textbox80">
               <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
               <Paragraphs>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>AUXILIAR DE ALMACEN 1</Value>
+                      <Value>Cant. Piso 1 : 0 CJ M</Value>
                       <Style>
                         <FontSize>6pt</FontSize>
                         <FontWeight>ExtraBold</FontWeight>
@@ -1456,10 +1502,10 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox52</rd:DefaultName>
-              <Top>4.80299cm</Top>
-              <Left>15.35932cm</Left>
+              <Top>5.18837cm</Top>
+              <Left>16.60313cm</Left>
               <Height>0.3cm</Height>
-              <Width>3.29847cm</Width>
+              <Width>2.84683cm</Width>
               <ZIndex>16</ZIndex>
               <Style>
                 <Border>
@@ -1468,20 +1514,38 @@
                 <VerticalAlign>Middle</VerticalAlign>
               </Style>
             </Textbox>
-            <Line Name="Line22">
-              <Top>4.66188cm</Top>
-              <Left>14.14312cm</Left>
-              <Height>0cm</Height>
-              <Width>5.67899cm</Width>
+            <Textbox Name="Textbox77">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Cant. Piso 1 : 26 CJ I</Value>
+                      <Style>
+                        <FontSize>6pt</FontSize>
+                        <FontWeight>ExtraBold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox52</rd:DefaultName>
+              <Top>5.66476cm</Top>
+              <Left>16.60313cm</Left>
+              <Height>0.3cm</Height>
+              <Width>2.84683cm</Width>
               <ZIndex>17</ZIndex>
               <Style>
                 <Border>
-                  <Color>DimGray</Color>
-                  <Style>Solid</Style>
-                  <Width>0.5pt</Width>
+                  <Style>None</Style>
                 </Border>
+                <VerticalAlign>Middle</VerticalAlign>
               </Style>
-            </Line>
+            </Textbox>
           </ReportItems>
           <Style>
             <Border>
@@ -1490,24 +1554,9 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>0.99687cm</Height>
+          <Height>1.12916cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
-          <ReportItems>
-            <Line Name="Line21">
-              <Top>0.1cm</Top>
-              <Left>14.02189cm</Left>
-              <Height>0cm</Height>
-              <Width>6.23461cm</Width>
-              <Style>
-                <Border>
-                  <Color>DimGray</Color>
-                  <Style>Solid</Style>
-                  <Width>0.5pt</Width>
-                </Border>
-              </Style>
-            </Line>
-          </ReportItems>
           <Style>
             <Border>
               <Style>None</Style>

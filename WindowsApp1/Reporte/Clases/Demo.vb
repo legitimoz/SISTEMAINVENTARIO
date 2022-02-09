@@ -266,7 +266,7 @@ Public Class Demo
             report.SetParameters(bultoparam)
             report.SetParameters(nombreimagenparam)
             Export(report)
-            Print("H")
+            Print("V")
         Catch ex As Exception
             Throw ex
         End Try

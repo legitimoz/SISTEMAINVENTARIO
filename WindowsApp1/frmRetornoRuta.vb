@@ -341,7 +341,6 @@ Public Class frmRetornoRuta
                 Dim fechaRecepClienteDate As String = String.Empty
                 Dim fechaInterFacturaDate As String = String.Empty
                 Dim fechaVtoOrdenCompraDate As String = String.Empty
-
                 Dim fechaRecepClienteCadena As String = String.Empty
                 Dim fechaInterFacturaCadena As String = String.Empty
                 Dim fechaVtoOrdenCompraCadena As String = String.Empty

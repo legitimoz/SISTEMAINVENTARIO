@@ -550,4 +550,16 @@
 
         End Try
     End Sub
+
+    Private Sub RotulosProvinciaAnteriorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RotulosProvinciaAnteriorToolStripMenuItem.Click
+        Try
+            Dim frmPed As New GestionGuiasRotulos
+            If ExisteChildrens(frmPed) = False Then
+                frmPed.MdiParent = Me
+                frmPed.Show()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

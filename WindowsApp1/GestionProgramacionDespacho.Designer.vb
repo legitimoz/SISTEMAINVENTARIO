@@ -28,6 +28,8 @@ Partial Class GestionProgramacionDespacho
         Me.Dg_Cabecera = New System.Windows.Forms.DataGridView()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.cmb_serie = New System.Windows.Forms.ComboBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.CheckMarcar = New System.Windows.Forms.CheckBox()
         Me.txt_numero = New System.Windows.Forms.TextBox()
         Me.dt_hasta = New System.Windows.Forms.DateTimePicker()
@@ -45,7 +47,6 @@ Partial Class GestionProgramacionDespacho
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.cmdCerrar = New System.Windows.Forms.ToolStripButton()
         Me.savedialog_Excel = New System.Windows.Forms.SaveFileDialog()
-        Me.MARCAR = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -75,6 +76,10 @@ Partial Class GestionProgramacionDespacho
         Me.DataGridViewTextBoxColumn27 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn28 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn29 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn30 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn31 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MARCAR = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.SITUACION = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ESTADO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FECHA = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FECHA_GUIA = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -104,6 +109,8 @@ Partial Class GestionProgramacionDespacho
         Me.REPRESENTANTE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.C5_CTD = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.C5_CALMA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SERIE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.COMENTARIO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel6.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.Dg_Cabecera, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -141,7 +148,7 @@ Partial Class GestionProgramacionDespacho
         Me.Dg_Cabecera.AllowUserToDeleteRows = False
         Me.Dg_Cabecera.BackgroundColor = System.Drawing.Color.White
         Me.Dg_Cabecera.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Dg_Cabecera.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.MARCAR, Me.ESTADO, Me.FECHA, Me.FECHA_GUIA, Me.HORA, Me.HORA_GUIA, Me.COD_PED, Me.NRO_GUIA, Me.CONDICION, Me.RUC, Me.NOM_CLIENTE, Me.DIRECCION_ENTREGA, Me.UBIGEO, Me.PROVINCIA, Me.DEPARTAMENTO, Me.DISTRITO, Me.LIMA_PROV, Me.CANAL, Me.TRANSPORTE, Me.M3UN, Me.IMPORTE, Me.M3FIN, Me.TIEMPOENTREGA, Me.DESTINO, Me.RUTA, Me.DETALLE, Me.RESTRICCION, Me.REPRESENTANTE, Me.C5_CTD, Me.C5_CALMA})
+        Me.Dg_Cabecera.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.MARCAR, Me.SITUACION, Me.ESTADO, Me.FECHA, Me.FECHA_GUIA, Me.HORA, Me.HORA_GUIA, Me.COD_PED, Me.NRO_GUIA, Me.CONDICION, Me.RUC, Me.NOM_CLIENTE, Me.DIRECCION_ENTREGA, Me.UBIGEO, Me.PROVINCIA, Me.DEPARTAMENTO, Me.DISTRITO, Me.LIMA_PROV, Me.CANAL, Me.TRANSPORTE, Me.M3UN, Me.IMPORTE, Me.M3FIN, Me.TIEMPOENTREGA, Me.DESTINO, Me.RUTA, Me.DETALLE, Me.RESTRICCION, Me.REPRESENTANTE, Me.C5_CTD, Me.C5_CALMA, Me.SERIE, Me.COMENTARIO})
         Me.Dg_Cabecera.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Dg_Cabecera.Location = New System.Drawing.Point(0, 0)
         Me.Dg_Cabecera.Margin = New System.Windows.Forms.Padding(0)
@@ -166,6 +173,8 @@ Partial Class GestionProgramacionDespacho
         '
         'Panel3
         '
+        Me.Panel3.Controls.Add(Me.cmb_serie)
+        Me.Panel3.Controls.Add(Me.Label1)
         Me.Panel3.Controls.Add(Me.CheckMarcar)
         Me.Panel3.Controls.Add(Me.txt_numero)
         Me.Panel3.Controls.Add(Me.dt_hasta)
@@ -179,6 +188,27 @@ Partial Class GestionProgramacionDespacho
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(1295, 99)
         Me.Panel3.TabIndex = 50
+        '
+        'cmb_serie
+        '
+        Me.cmb_serie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb_serie.FormattingEnabled = True
+        Me.cmb_serie.Items.AddRange(New Object() {"TODAS", "007", "011", "012"})
+        Me.cmb_serie.Location = New System.Drawing.Point(408, 42)
+        Me.cmb_serie.Name = "cmb_serie"
+        Me.cmb_serie.Size = New System.Drawing.Size(219, 21)
+        Me.cmb_serie.TabIndex = 92
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(365, 49)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(35, 14)
+        Me.Label1.TabIndex = 91
+        Me.Label1.Text = "Serie:"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'CheckMarcar
         '
@@ -342,11 +372,6 @@ Partial Class GestionProgramacionDespacho
         Me.cmdCerrar.Text = "&Salir"
         Me.cmdCerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
-        'MARCAR
-        '
-        Me.MARCAR.HeaderText = "Marcar"
-        Me.MARCAR.Name = "MARCAR"
-        '
         'DataGridViewTextBoxColumn1
         '
         Me.DataGridViewTextBoxColumn1.HeaderText = "Fecha"
@@ -498,6 +523,27 @@ Partial Class GestionProgramacionDespacho
         Me.DataGridViewTextBoxColumn29.Name = "DataGridViewTextBoxColumn29"
         Me.DataGridViewTextBoxColumn29.Visible = False
         '
+        'DataGridViewTextBoxColumn30
+        '
+        Me.DataGridViewTextBoxColumn30.HeaderText = "Column1"
+        Me.DataGridViewTextBoxColumn30.Name = "DataGridViewTextBoxColumn30"
+        Me.DataGridViewTextBoxColumn30.Visible = False
+        '
+        'DataGridViewTextBoxColumn31
+        '
+        Me.DataGridViewTextBoxColumn31.HeaderText = "Comentario"
+        Me.DataGridViewTextBoxColumn31.Name = "DataGridViewTextBoxColumn31"
+        '
+        'MARCAR
+        '
+        Me.MARCAR.HeaderText = "Marcar"
+        Me.MARCAR.Name = "MARCAR"
+        '
+        'SITUACION
+        '
+        Me.SITUACION.HeaderText = "Situacion"
+        Me.SITUACION.Name = "SITUACION"
+        '
         'ESTADO
         '
         Me.ESTADO.HeaderText = "Estado"
@@ -647,6 +693,17 @@ Partial Class GestionProgramacionDespacho
         Me.C5_CALMA.Name = "C5_CALMA"
         Me.C5_CALMA.Visible = False
         '
+        'SERIE
+        '
+        Me.SERIE.HeaderText = "Column1"
+        Me.SERIE.Name = "SERIE"
+        Me.SERIE.Visible = False
+        '
+        'COMENTARIO
+        '
+        Me.COMENTARIO.HeaderText = "Comentario"
+        Me.COMENTARIO.Name = "COMENTARIO"
+        '
         'GestionProgramacionDespacho
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -717,7 +774,14 @@ Partial Class GestionProgramacionDespacho
     Friend WithEvents DataGridViewTextBoxColumn25 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn26 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn27 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn28 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn29 As DataGridViewTextBoxColumn
+    Friend WithEvents Label1 As Label
+    Friend WithEvents cmb_serie As ComboBox
+    Friend WithEvents DataGridViewTextBoxColumn30 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn31 As DataGridViewTextBoxColumn
     Friend WithEvents MARCAR As DataGridViewCheckBoxColumn
+    Friend WithEvents SITUACION As DataGridViewTextBoxColumn
     Friend WithEvents ESTADO As DataGridViewTextBoxColumn
     Friend WithEvents FECHA As DataGridViewTextBoxColumn
     Friend WithEvents FECHA_GUIA As DataGridViewTextBoxColumn
@@ -747,6 +811,6 @@ Partial Class GestionProgramacionDespacho
     Friend WithEvents REPRESENTANTE As DataGridViewTextBoxColumn
     Friend WithEvents C5_CTD As DataGridViewTextBoxColumn
     Friend WithEvents C5_CALMA As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn28 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn29 As DataGridViewTextBoxColumn
+    Friend WithEvents SERIE As DataGridViewTextBoxColumn
+    Friend WithEvents COMENTARIO As DataGridViewTextBoxColumn
 End Class
