@@ -25,6 +25,8 @@ Partial Class GestionDeliveryOnTime
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GestionDeliveryOnTime))
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.cmb_filtro = New System.Windows.Forms.ComboBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.lbl_indicador = New System.Windows.Forms.Label()
         Me.txt_indicador = New System.Windows.Forms.Label()
         Me.LBL_can = New System.Windows.Forms.Label()
@@ -38,7 +40,7 @@ Partial Class GestionDeliveryOnTime
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Dg_Cabecera = New System.Windows.Forms.DataGridView()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.Dg_Cabecera, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -58,6 +60,8 @@ Partial Class GestionDeliveryOnTime
         Me.GroupBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox1.Controls.Add(Me.Label4)
+        Me.GroupBox1.Controls.Add(Me.cmb_filtro)
         Me.GroupBox1.Controls.Add(Me.Button1)
         Me.GroupBox1.Controls.Add(Me.lbl_indicador)
         Me.GroupBox1.Controls.Add(Me.txt_indicador)
@@ -71,11 +75,32 @@ Partial Class GestionDeliveryOnTime
         Me.GroupBox1.Controls.Add(Me.dt_desde)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Location = New System.Drawing.Point(4, 9)
+        Me.GroupBox1.Location = New System.Drawing.Point(4, 0)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1291, 69)
+        Me.GroupBox1.Size = New System.Drawing.Size(1291, 78)
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
+        '
+        'cmb_filtro
+        '
+        Me.cmb_filtro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb_filtro.FormattingEnabled = True
+        Me.cmb_filtro.Items.AddRange(New Object() {"TODOS", "LIMA", "PROVINCIA"})
+        Me.cmb_filtro.Location = New System.Drawing.Point(80, 40)
+        Me.cmb_filtro.Name = "cmb_filtro"
+        Me.cmb_filtro.Size = New System.Drawing.Size(121, 21)
+        Me.cmb_filtro.TabIndex = 105
+        '
+        'Button1
+        '
+        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button1.Location = New System.Drawing.Point(667, 4)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(100, 26)
+        Me.Button1.TabIndex = 104
+        Me.Button1.Text = "Observacion"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'lbl_indicador
         '
@@ -162,7 +187,7 @@ Partial Class GestionDeliveryOnTime
         '
         Me.btnExportar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnExportar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnExportar.Location = New System.Drawing.Point(542, 13)
+        Me.btnExportar.Location = New System.Drawing.Point(542, 4)
         Me.btnExportar.Name = "btnExportar"
         Me.btnExportar.Size = New System.Drawing.Size(100, 26)
         Me.btnExportar.TabIndex = 5
@@ -174,7 +199,7 @@ Partial Class GestionDeliveryOnTime
         Me.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnBuscar.Image = Global.WindowsApp1.My.Resources.Resources._103
         Me.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnBuscar.Location = New System.Drawing.Point(420, 13)
+        Me.btnBuscar.Location = New System.Drawing.Point(420, 4)
         Me.btnBuscar.Name = "btnBuscar"
         Me.btnBuscar.Size = New System.Drawing.Size(100, 26)
         Me.btnBuscar.TabIndex = 4
@@ -184,7 +209,7 @@ Partial Class GestionDeliveryOnTime
         'dt_hasta
         '
         Me.dt_hasta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dt_hasta.Location = New System.Drawing.Point(262, 14)
+        Me.dt_hasta.Location = New System.Drawing.Point(262, 5)
         Me.dt_hasta.Name = "dt_hasta"
         Me.dt_hasta.Size = New System.Drawing.Size(101, 20)
         Me.dt_hasta.TabIndex = 3
@@ -192,7 +217,7 @@ Partial Class GestionDeliveryOnTime
         'dt_desde
         '
         Me.dt_desde.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dt_desde.Location = New System.Drawing.Point(80, 14)
+        Me.dt_desde.Location = New System.Drawing.Point(80, 5)
         Me.dt_desde.Name = "dt_desde"
         Me.dt_desde.Size = New System.Drawing.Size(101, 20)
         Me.dt_desde.TabIndex = 2
@@ -200,7 +225,7 @@ Partial Class GestionDeliveryOnTime
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(199, 16)
+        Me.Label2.Location = New System.Drawing.Point(199, 7)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(57, 13)
         Me.Label2.TabIndex = 1
@@ -209,7 +234,7 @@ Partial Class GestionDeliveryOnTime
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(6, 16)
+        Me.Label1.Location = New System.Drawing.Point(6, 7)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(68, 13)
         Me.Label1.TabIndex = 0
@@ -233,16 +258,14 @@ Partial Class GestionDeliveryOnTime
         Me.Dg_Cabecera.Size = New System.Drawing.Size(1299, 349)
         Me.Dg_Cabecera.TabIndex = 54
         '
-        'Button1
+        'Label4
         '
-        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button1.Location = New System.Drawing.Point(667, 13)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(100, 26)
-        Me.Button1.TabIndex = 104
-        Me.Button1.Text = "Observacion"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(6, 43)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(29, 13)
+        Me.Label4.TabIndex = 106
+        Me.Label4.Text = "Filtro"
         '
         'GestionDeliveryOnTime
         '
@@ -279,4 +302,6 @@ Partial Class GestionDeliveryOnTime
     Friend WithEvents Label1 As Label
     Friend WithEvents Dg_Cabecera As DataGridView
     Friend WithEvents Button1 As Button
+    Friend WithEvents cmb_filtro As ComboBox
+    Friend WithEvents Label4 As Label
 End Class

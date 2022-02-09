@@ -73,4 +73,67 @@ Public Class BuscadorArticulosUbicaion
 
         End Try
     End Sub
+
+    Private Sub btnSalir_Click(sender As Object, e As EventArgs) Handles btnSalir.Click
+        Me.Close()
+    End Sub
+
+    Public Sub Obtener()
+        Try
+            If DgArticulos.Rows.Count > 0 Then
+                codprod = DgArticulos.CurrentRow.Cells("CodArticulo").Value.ToString.Trim
+                articuloNombre = DgArticulos.CurrentRow.Cells("Articulo").Value.ToString.Trim
+                lote = DgArticulos.CurrentRow.Cells("Lote").Value.ToString.Trim
+                vencimiento = DgArticulos.CurrentRow.Cells("Vencimiento").Value.ToString.Trim
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public codprod, articuloNombre, lote, vencimiento As String
+
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        Try
+            Obtener()
+
+            If codprod <> "" And articuloNombre <> "" Then
+                Dim factorcaja, factormaster As Integer
+                Dim Dtfactores As New DataTable
+                Dtfactores = ObtenerFacrores(codprod)
+                If Dtfactores.Rows.Count > 0 Then
+                    factorcaja = Dtfactores.Rows(0).Item("cinternas").ToString
+                    factormaster = Dtfactores.Rows(0).Item("cmaster").ToString
+                Else
+                    factormaster = 0
+                    factorcaja = 0
+                End If
+
+                Dim cantrotuForm As New CantidadRotulos
+                cantrotuForm.ShowDialog()
+                If cantrotuForm.grabado = True Then
+                    Dim cantidad = cantrotuForm.cantidad
+                    If cantidad <> 0 Then
+                        Dim Obj As New Demo
+                        For Index As Integer = 1 To cantidad
+                            Obj.ImprimirRotuloArticulo("RetuloArticuloIngreso.rdlc", codprod, articuloNombre, vencimiento, lote, factorcaja.ToString + " UND", (factorcaja * factormaster).ToString + " UND")
+                        Next
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Function ObtenerFacrores(CodArticulo As String) As DataTable
+        Dim dtretorno As New DataTable
+        Try
+            dtretorno = AlmObj.ObtenerFactoresArticulo(CodArticulo)
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return dtretorno
+    End Function
+
 End Class

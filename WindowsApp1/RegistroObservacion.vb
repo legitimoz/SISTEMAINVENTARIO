@@ -10,7 +10,7 @@
         Try
             CargaInicial()
         Catch ex As Exception
-
+            Throw ex
         End Try
     End Sub
 

@@ -172,10 +172,32 @@ Public Class AlmacenAD
     End Function
 
 
+
+
     Public Function ListarPosicionesXArticulo(ByVal codarticulo As String) As DataTable
 
         Try
             Dim com As New SqlCommand("Obtener_PosicionesArticulo", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+            com.Parameters.Add("@codarticulo", SqlDbType.Char, 25).Value = codarticulo
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            Throw ex
+            MyBase.Conn.Close()
+        End Try
+
+    End Function
+
+    Public Function ObtenerFactoresArticulo(ByVal codarticulo As String) As DataTable
+
+        Try
+            Dim com As New SqlCommand("SP_CSE_ObtenerFactoresArticulo", MyBase.Conn)
             MyBase.Conn.Open()
             com.CommandType = CommandType.StoredProcedure
             com.Parameters.Add("@codarticulo", SqlDbType.Char, 25).Value = codarticulo
@@ -496,6 +518,25 @@ Public Class AlmacenAD
 
     End Function
 
+    Public Function ListarPedidosDespachoReprogramar() As DataTable
+
+        Try
+            Dim com As New SqlCommand("SP_CSE_ObtenerGuiasReprogramar", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            Throw ex
+            MyBase.Conn.Close()
+        End Try
+
+    End Function
+
     Public Function ObtenerIndicarDIspatchOnTime(fechadesde As String, fechahasta As String) As DataTable
 
         Try
@@ -753,7 +794,6 @@ Public Class AlmacenAD
 
     Public Function RegistrarObservacionDelivery(CALMA As String, CTD As String, CNUMDOC As String, idmotivo As Integer) As Integer
         Dim rp As Integer = 0
-        'Dim RpStore As SqlDataReader = Nothing
         Dim Comm As New SqlCommand("SP_CSE_RegistrarObservacionDelivery", MyBase.Conn)
         Try
             Comm.CommandType = CommandType.StoredProcedure
@@ -764,10 +804,6 @@ Public Class AlmacenAD
                 .Add("@idMotivo", SqlDbType.Int).Value = idmotivo
             End With
             MyBase.Conn.Open()
-            ''RpStore = Comm.ExecuteReader(CommandBehavior.SingleRow)
-            ''If (RpStore.Read()) Then
-            ''    rp = Convert.ToInt32(RpStore.GetValue(0).ToString())
-            ''End If
             rp = Comm.ExecuteNonQuery
 
             MyBase.Conn.Close()
@@ -777,9 +813,10 @@ Public Class AlmacenAD
         Return rp
     End Function
 
+
+
     Public Function RegistrarRecepcionGuiaDespacho(CALMA As String, CTD As String, CNUMDOC As String) As Integer
         Dim rp As Integer = 0
-        'Dim RpStore As SqlDataReader = Nothing
         Dim Comm As New SqlCommand("SP_CSE_CONFIRMARRECEPCIONGUIA", MyBase.Conn)
         Try
             Comm.CommandType = CommandType.StoredProcedure
@@ -789,12 +826,27 @@ Public Class AlmacenAD
                 .Add("@C5_CNUMDOC", SqlDbType.Char, 11).Value = CNUMDOC
             End With
             MyBase.Conn.Open()
-            ''RpStore = Comm.ExecuteReader(CommandBehavior.SingleRow)
-            ''If (RpStore.Read()) Then
-            ''    rp = Convert.ToInt32(RpStore.GetValue(0).ToString())
-            ''End If
             rp = Comm.ExecuteNonQuery
+            MyBase.Conn.Close()
+        Catch ex As Exception
+            MyBase.Conn.Close()
+        End Try
+        Return rp
+    End Function
 
+    Public Function RegistrarComentarioGuiaDespacho(CALMA As String, CTD As String, CNUMDOC As String, comentario As String) As Integer
+        Dim rp As Integer = 0
+        Dim Comm As New SqlCommand("SP_CSE_RegistrarComentarioGuiaDespacho", MyBase.Conn)
+        Try
+            Comm.CommandType = CommandType.StoredProcedure
+            With Comm.Parameters
+                .Add("@C5_CALMA", SqlDbType.Char, 4).Value = CALMA
+                .Add("@C5_CTD", SqlDbType.Char, 2).Value = CTD
+                .Add("@C5_CNUMDOC", SqlDbType.Char, 11).Value = CNUMDOC
+                .Add("@Comentario", SqlDbType.VarChar, 200).Value = comentario
+            End With
+            MyBase.Conn.Open()
+            rp = Comm.ExecuteNonQuery
             MyBase.Conn.Close()
         Catch ex As Exception
             MyBase.Conn.Close()
