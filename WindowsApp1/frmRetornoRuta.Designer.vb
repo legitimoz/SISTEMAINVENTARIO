@@ -38,23 +38,6 @@ Partial Class frmRetornoRuta
         Me.rbtEntregado = New System.Windows.Forms.RadioButton()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.dgvRetornoRuta = New System.Windows.Forms.DataGridView()
-        Me.C5_CNUMDOC = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.C5_CNOMCLI = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DE_CDEPT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DE_CPROV = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TG_CDESCRI = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.C5_CDIRENV = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.color1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.EST_CODIGO2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.motivo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.EST_CODIGO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FECHA_SALIDARUTA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.USUARIO_SALIDARUTA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FECHA_RETORNORUTA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.USUARIO_RETORNORUTA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.fechaRecepCliente = New WindowsApp1.DateTimeGridColumn()
-        Me.fechaInterFactura = New WindowsApp1.DateTimeGridColumn()
-        Me.fecha_vto_oc = New WindowsApp1.DateTimeGridColumn()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
@@ -80,6 +63,24 @@ Partial Class frmRetornoRuta
         Me.DateTimeGridColumn3 = New WindowsApp1.DateTimeGridColumn()
         Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.C5_CNUMDOC = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.C5_CNOMCLI = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DE_CDEPT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DE_CPROV = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TG_CDESCRI = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.C5_CDIRENV = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.color1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EST_CODIGO2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.motivo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EST_CODIGO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FECHA_SALIDARUTA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.USUARIO_SALIDARUTA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FECHA_RETORNORUTA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.USUARIO_RETORNORUTA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.fechaRecepCliente = New WindowsApp1.DateTimeGridColumn()
+        Me.fechaInterFactura = New WindowsApp1.DateTimeGridColumn()
+        Me.fecha_vto_oc = New WindowsApp1.DateTimeGridColumn()
+        Me.fecReProg = New WindowsApp1.DateTimeGridColumn()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.dgvRetornoRuta, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -105,7 +106,7 @@ Partial Class frmRetornoRuta
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox1.Size = New System.Drawing.Size(999, 63)
+        Me.GroupBox1.Size = New System.Drawing.Size(1141, 63)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         '
@@ -267,7 +268,7 @@ Partial Class frmRetornoRuta
         Me.GroupBox2.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox2.Size = New System.Drawing.Size(978, 402)
+        Me.GroupBox2.Size = New System.Drawing.Size(1120, 457)
         Me.GroupBox2.TabIndex = 2
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Listado Guias Validadas"
@@ -279,110 +280,19 @@ Partial Class frmRetornoRuta
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvRetornoRuta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvRetornoRuta.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.C5_CNUMDOC, Me.C5_CNOMCLI, Me.DE_CDEPT, Me.DE_CPROV, Me.TG_CDESCRI, Me.C5_CDIRENV, Me.color1, Me.EST_CODIGO2, Me.motivo, Me.EST_CODIGO, Me.FECHA_SALIDARUTA, Me.USUARIO_SALIDARUTA, Me.FECHA_RETORNORUTA, Me.USUARIO_RETORNORUTA, Me.fechaRecepCliente, Me.fechaInterFactura, Me.fecha_vto_oc})
+        Me.dgvRetornoRuta.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.C5_CNUMDOC, Me.C5_CNOMCLI, Me.DE_CDEPT, Me.DE_CPROV, Me.TG_CDESCRI, Me.C5_CDIRENV, Me.color1, Me.EST_CODIGO2, Me.motivo, Me.EST_CODIGO, Me.FECHA_SALIDARUTA, Me.USUARIO_SALIDARUTA, Me.FECHA_RETORNORUTA, Me.USUARIO_RETORNORUTA, Me.fechaRecepCliente, Me.fechaInterFactura, Me.fecha_vto_oc, Me.fecReProg})
         Me.dgvRetornoRuta.Location = New System.Drawing.Point(5, 19)
         Me.dgvRetornoRuta.Name = "dgvRetornoRuta"
-        Me.dgvRetornoRuta.Size = New System.Drawing.Size(968, 378)
+        Me.dgvRetornoRuta.Size = New System.Drawing.Size(1110, 433)
         Me.dgvRetornoRuta.TabIndex = 2
-        '
-        'C5_CNUMDOC
-        '
-        Me.C5_CNUMDOC.HeaderText = "Guia"
-        Me.C5_CNUMDOC.Name = "C5_CNUMDOC"
-        Me.C5_CNUMDOC.Width = 110
-        '
-        'C5_CNOMCLI
-        '
-        Me.C5_CNOMCLI.HeaderText = "Cliente"
-        Me.C5_CNOMCLI.Name = "C5_CNOMCLI"
-        Me.C5_CNOMCLI.Width = 250
-        '
-        'DE_CDEPT
-        '
-        Me.DE_CDEPT.HeaderText = "Departamento"
-        Me.DE_CDEPT.Name = "DE_CDEPT"
-        Me.DE_CDEPT.Width = 70
-        '
-        'DE_CPROV
-        '
-        Me.DE_CPROV.HeaderText = "Provincia"
-        Me.DE_CPROV.Name = "DE_CPROV"
-        '
-        'TG_CDESCRI
-        '
-        Me.TG_CDESCRI.HeaderText = "Distrito"
-        Me.TG_CDESCRI.Name = "TG_CDESCRI"
-        Me.TG_CDESCRI.Width = 70
-        '
-        'C5_CDIRENV
-        '
-        Me.C5_CDIRENV.HeaderText = "Dirección"
-        Me.C5_CDIRENV.Name = "C5_CDIRENV"
-        '
-        'color1
-        '
-        Me.color1.HeaderText = "Semaforo"
-        Me.color1.Name = "color1"
-        Me.color1.Width = 75
-        '
-        'EST_CODIGO2
-        '
-        Me.EST_CODIGO2.HeaderText = "Estado Guía"
-        Me.EST_CODIGO2.Name = "EST_CODIGO2"
-        '
-        'motivo
-        '
-        Me.motivo.HeaderText = "Motivo"
-        Me.motivo.Name = "motivo"
-        Me.motivo.Width = 180
-        '
-        'EST_CODIGO
-        '
-        Me.EST_CODIGO.HeaderText = "Estado Despacho"
-        Me.EST_CODIGO.Name = "EST_CODIGO"
-        '
-        'FECHA_SALIDARUTA
-        '
-        Me.FECHA_SALIDARUTA.HeaderText = "Fecha Salida Ruta"
-        Me.FECHA_SALIDARUTA.Name = "FECHA_SALIDARUTA"
-        '
-        'USUARIO_SALIDARUTA
-        '
-        Me.USUARIO_SALIDARUTA.HeaderText = "Usuario Salida Ruta"
-        Me.USUARIO_SALIDARUTA.Name = "USUARIO_SALIDARUTA"
-        '
-        'FECHA_RETORNORUTA
-        '
-        Me.FECHA_RETORNORUTA.HeaderText = "Fecha Retorno Ruta"
-        Me.FECHA_RETORNORUTA.Name = "FECHA_RETORNORUTA"
-        '
-        'USUARIO_RETORNORUTA
-        '
-        Me.USUARIO_RETORNORUTA.HeaderText = "Usuario Retorno Ruta"
-        Me.USUARIO_RETORNORUTA.Name = "USUARIO_RETORNORUTA"
-        '
-        'fechaRecepCliente
-        '
-        Me.fechaRecepCliente.HeaderText = "Fecha RecepcionCliente"
-        Me.fechaRecepCliente.Name = "fechaRecepCliente"
-        '
-        'fechaInterFactura
-        '
-        Me.fechaInterFactura.HeaderText = "Fecha Inter. Factura"
-        Me.fechaInterFactura.Name = "fechaInterFactura"
-        '
-        'fecha_vto_oc
-        '
-        Me.fecha_vto_oc.HeaderText = "Fecha Vto OC"
-        Me.fecha_vto_oc.Name = "fecha_vto_oc"
         '
         'StatusStrip1
         '
         Me.StatusStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 612)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 667)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Padding = New System.Windows.Forms.Padding(1, 0, 12, 0)
-        Me.StatusStrip1.Size = New System.Drawing.Size(1006, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(1148, 22)
         Me.StatusStrip1.TabIndex = 3
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -415,7 +325,7 @@ Partial Class frmRetornoRuta
         Me.GroupBox3.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox3.Size = New System.Drawing.Size(659, 130)
+        Me.GroupBox3.Size = New System.Drawing.Size(801, 130)
         Me.GroupBox3.TabIndex = 17
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Status"
@@ -559,12 +469,108 @@ Partial Class frmRetornoRuta
         Me.DataGridViewTextBoxColumn16.HeaderText = "Fecha Inter. Factura"
         Me.DataGridViewTextBoxColumn16.Name = "DataGridViewTextBoxColumn16"
         '
+        'C5_CNUMDOC
+        '
+        Me.C5_CNUMDOC.HeaderText = "Guia"
+        Me.C5_CNUMDOC.Name = "C5_CNUMDOC"
+        Me.C5_CNUMDOC.Width = 110
+        '
+        'C5_CNOMCLI
+        '
+        Me.C5_CNOMCLI.HeaderText = "Cliente"
+        Me.C5_CNOMCLI.Name = "C5_CNOMCLI"
+        Me.C5_CNOMCLI.Width = 250
+        '
+        'DE_CDEPT
+        '
+        Me.DE_CDEPT.HeaderText = "Departamento"
+        Me.DE_CDEPT.Name = "DE_CDEPT"
+        Me.DE_CDEPT.Width = 70
+        '
+        'DE_CPROV
+        '
+        Me.DE_CPROV.HeaderText = "Provincia"
+        Me.DE_CPROV.Name = "DE_CPROV"
+        '
+        'TG_CDESCRI
+        '
+        Me.TG_CDESCRI.HeaderText = "Distrito"
+        Me.TG_CDESCRI.Name = "TG_CDESCRI"
+        Me.TG_CDESCRI.Width = 70
+        '
+        'C5_CDIRENV
+        '
+        Me.C5_CDIRENV.HeaderText = "Dirección"
+        Me.C5_CDIRENV.Name = "C5_CDIRENV"
+        '
+        'color1
+        '
+        Me.color1.HeaderText = "Semaforo"
+        Me.color1.Name = "color1"
+        Me.color1.Width = 75
+        '
+        'EST_CODIGO2
+        '
+        Me.EST_CODIGO2.HeaderText = "Estado Guía"
+        Me.EST_CODIGO2.Name = "EST_CODIGO2"
+        '
+        'motivo
+        '
+        Me.motivo.HeaderText = "Motivo"
+        Me.motivo.Name = "motivo"
+        Me.motivo.Width = 180
+        '
+        'EST_CODIGO
+        '
+        Me.EST_CODIGO.HeaderText = "Estado Despacho"
+        Me.EST_CODIGO.Name = "EST_CODIGO"
+        '
+        'FECHA_SALIDARUTA
+        '
+        Me.FECHA_SALIDARUTA.HeaderText = "Fecha Salida Ruta"
+        Me.FECHA_SALIDARUTA.Name = "FECHA_SALIDARUTA"
+        '
+        'USUARIO_SALIDARUTA
+        '
+        Me.USUARIO_SALIDARUTA.HeaderText = "Usuario Salida Ruta"
+        Me.USUARIO_SALIDARUTA.Name = "USUARIO_SALIDARUTA"
+        '
+        'FECHA_RETORNORUTA
+        '
+        Me.FECHA_RETORNORUTA.HeaderText = "Fecha Retorno Ruta"
+        Me.FECHA_RETORNORUTA.Name = "FECHA_RETORNORUTA"
+        '
+        'USUARIO_RETORNORUTA
+        '
+        Me.USUARIO_RETORNORUTA.HeaderText = "Usuario Retorno Ruta"
+        Me.USUARIO_RETORNORUTA.Name = "USUARIO_RETORNORUTA"
+        '
+        'fechaRecepCliente
+        '
+        Me.fechaRecepCliente.HeaderText = "Fecha RecepcionCliente"
+        Me.fechaRecepCliente.Name = "fechaRecepCliente"
+        '
+        'fechaInterFactura
+        '
+        Me.fechaInterFactura.HeaderText = "Fecha Inter. Factura"
+        Me.fechaInterFactura.Name = "fechaInterFactura"
+        '
+        'fecha_vto_oc
+        '
+        Me.fecha_vto_oc.HeaderText = "Fecha Vto OC"
+        Me.fecha_vto_oc.Name = "fecha_vto_oc"
+        '
+        'fecReProg
+        '
+        Me.fecReProg.HeaderText = "Fecha Re-Programación"
+        Me.fecReProg.Name = "fecReProg"
+        '
         'frmRetornoRuta
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(1006, 634)
+        Me.ClientSize = New System.Drawing.Size(1148, 689)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
@@ -624,6 +630,9 @@ Partial Class frmRetornoRuta
     Friend WithEvents DataGridViewTextBoxColumn15 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn16 As DataGridViewTextBoxColumn
     Friend WithEvents dgvRetornoRuta As DataGridView
+    Friend WithEvents DateTimeGridColumn1 As DateTimeGridColumn
+    Friend WithEvents DateTimeGridColumn2 As DateTimeGridColumn
+    Friend WithEvents DateTimeGridColumn3 As DateTimeGridColumn
     Friend WithEvents C5_CNUMDOC As DataGridViewTextBoxColumn
     Friend WithEvents C5_CNOMCLI As DataGridViewTextBoxColumn
     Friend WithEvents DE_CDEPT As DataGridViewTextBoxColumn
@@ -641,7 +650,5 @@ Partial Class frmRetornoRuta
     Friend WithEvents fechaRecepCliente As DateTimeGridColumn
     Friend WithEvents fechaInterFactura As DateTimeGridColumn
     Friend WithEvents fecha_vto_oc As DateTimeGridColumn
-    Friend WithEvents DateTimeGridColumn1 As DateTimeGridColumn
-    Friend WithEvents DateTimeGridColumn2 As DateTimeGridColumn
-    Friend WithEvents DateTimeGridColumn3 As DateTimeGridColumn
+    Friend WithEvents fecReProg As DateTimeGridColumn
 End Class

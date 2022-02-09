@@ -584,6 +584,7 @@
             Tabladetalle.Columns.Add("FECHA_GUIAB", GetType(String))
             Tabladetalle.Columns.Add("FECHA_DESPACHOB", GetType(String))
             Tabladetalle.Columns.Add("MOTIVO", GetType(String))
+            Tabladetalle.Columns.Add("AREA", GetType(String))
         Catch ex As Exception
             Throw ex
         End Try
@@ -642,6 +643,7 @@
             Tabladetalle.Columns.Add("TIEMPO_TRASN", GetType(String))
             Tabladetalle.Columns.Add("Estado", GetType(String))
             Tabladetalle.Columns.Add("MOTIVO", GetType(String))
+            Tabladetalle.Columns.Add("AREA", GetType(String))
             Tabladetalle.Columns.Add("C5_CALMA", GetType(String))
             Tabladetalle.Columns.Add("C5_CTD", GetType(String))
 

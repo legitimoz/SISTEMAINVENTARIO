@@ -171,9 +171,6 @@ Public Class AlmacenAD
 
     End Function
 
-
-
-
     Public Function ListarPosicionesXArticulo(ByVal codarticulo As String) As DataTable
 
         Try
@@ -236,7 +233,6 @@ Public Class AlmacenAD
     End Function
 
     Public Function ListarConceptosObservacion() As DataTable
-
         Try
             Dim com As New SqlCommand("CSE_SP_ListarConceptosObservacion", MyBase.Conn)
             MyBase.Conn.Open()

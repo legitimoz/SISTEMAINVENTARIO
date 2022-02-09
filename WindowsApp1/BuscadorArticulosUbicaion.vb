@@ -93,6 +93,10 @@ Public Class BuscadorArticulosUbicaion
 
     Public codprod, articuloNombre, lote, vencimiento As String
 
+    Private Sub cmdBuscar_Click(sender As Object, e As EventArgs) Handles cmdBuscar.Click
+
+    End Sub
+
     Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
         Try
             Obtener()

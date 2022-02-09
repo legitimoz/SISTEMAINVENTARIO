@@ -55,7 +55,7 @@ Public Class frmRetornoRuta
                                dt.Rows(i).Item("USUARIO_SALIDARUTA").ToString, dt.Rows(i).Item("FECHA_RETORNORUTA").ToString,
                                dt.Rows(i).Item("USUARIO_RETORNORUTA").ToString,
                                dt.Rows(i).Item("FECHA_RECEPCION_CLIENTE").ToString, dt.Rows(i).Item("FECHA_INTER_FACTURA").ToString,
-                               dt.Rows(i).Item("FECHA_VTO_OC").ToString)
+                               dt.Rows(i).Item("FECHA_VTO_OC").ToString, dt.Rows(i).Item("FECHA_REPROG").ToString)
 
             Next
 
@@ -205,7 +205,7 @@ Public Class frmRetornoRuta
                                          dt.Rows(0).Item("USUARIO_SALIDARUTA").ToString, dt.Rows(0).Item("FECHA_RETORNORUTA").ToString,
                                          dt.Rows(0).Item("USUARIO_RETORNORUTA").ToString,
                                          dt.Rows(0).Item("FECHA_RECEPCION_CLIENTE").ToString, dt.Rows(0).Item("FECHA_INTER_FACTURA").ToString,
-                                         dt.Rows(0).Item("FECHA_VTO_OC").ToString)
+                                         dt.Rows(0).Item("FECHA_VTO_OC").ToString, dt.Rows(0).Item("FECHA_REPROG").ToString)
 
                                     Pintar_GrillaSemaforo()
 
@@ -341,33 +341,38 @@ Public Class frmRetornoRuta
                 Dim fechaRecepClienteDate As String = String.Empty
                 Dim fechaInterFacturaDate As String = String.Empty
                 Dim fechaVtoOrdenCompraDate As String = String.Empty
+
                 Dim fechaRecepClienteCadena As String = String.Empty
                 Dim fechaInterFacturaCadena As String = String.Empty
                 Dim fechaVtoOrdenCompraCadena As String = String.Empty
                 Dim tipoTextoRespuesta As String = String.Empty
+                Dim fechaReProgramacion As String = String.Empty
 
 
                 numeroGuia = dgvRetornoRuta.CurrentRow.Cells.Item("C5_CNUMDOC").Value.ToString()
                 fechaRecepClienteDate = ConversionFechaDate(dgvRetornoRuta.CurrentRow.Cells.Item("fechaRecepCliente").Value.ToString())
                 fechaInterFacturaDate = ConversionFechaDate(dgvRetornoRuta.CurrentRow.Cells.Item("fechaInterFactura").Value.ToString())
                 fechaVtoOrdenCompraDate = ConversionFechaDate(dgvRetornoRuta.CurrentRow.Cells.Item("fecha_vto_oc").Value.ToString())
+                fechaReProgramacion = ConversionFechaDate(dgvRetornoRuta.CurrentRow.Cells.Item("fecReProg").Value.ToString())
 
                 fechaRecepClienteCadena = ConversionFechaTexto(dgvRetornoRuta.CurrentRow.Cells.Item("fechaRecepCliente").Value.ToString())
                 fechaInterFacturaCadena = ConversionFechaTexto(dgvRetornoRuta.CurrentRow.Cells.Item("fechaInterFactura").Value.ToString())
                 fechaVtoOrdenCompraCadena = ConversionFechaTexto(dgvRetornoRuta.CurrentRow.Cells.Item("fecha_vto_oc").Value.ToString())
 
+
                 Dim objGuias As New BeCabGuiaRuta
 
                 If nroRuta <> "SINRUTA" Then
-                    objGuias.RegistrarFechaRetornoRuta(lblRuta.Text, numeroGuia, fechaRecepClienteDate, fechaInterFacturaDate, fechaVtoOrdenCompraDate, fechaRecepClienteCadena, fechaInterFacturaCadena, fechaVtoOrdenCompraCadena, tipoTextoRespuesta)
+                    objGuias.RegistrarFechaRetornoRuta(lblRuta.Text, numeroGuia, fechaRecepClienteDate, fechaInterFacturaDate, fechaVtoOrdenCompraDate, fechaRecepClienteCadena, fechaInterFacturaCadena, fechaVtoOrdenCompraCadena, fechaReProgramacion, tipoTextoRespuesta)
                 Else
-                    objGuias.RegistrarFechaRetornoRuta_SinRuta(numeroGuia, fechaRecepClienteDate, fechaInterFacturaDate, fechaVtoOrdenCompraDate, fechaRecepClienteCadena, fechaInterFacturaCadena, fechaVtoOrdenCompraCadena, tipoTextoRespuesta)
+                    objGuias.RegistrarFechaRetornoRuta_SinRuta(numeroGuia, fechaRecepClienteDate, fechaInterFacturaDate, fechaVtoOrdenCompraDate, fechaRecepClienteCadena, fechaInterFacturaCadena, fechaVtoOrdenCompraCadena, fechaReProgramacion, tipoTextoRespuesta)
                 End If
 
                 If tipoTextoRespuesta = "1" Then
                     MessageBox.Show("Se acualizó satisfactoriamente", "Aviso", MessageBoxButtons.OK)
                 End If
             End If
+
 
         Catch ex As Exception
 

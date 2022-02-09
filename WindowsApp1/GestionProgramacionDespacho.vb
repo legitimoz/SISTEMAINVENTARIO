@@ -158,6 +158,8 @@ Public Class GestionProgramacionDespacho
                     Dg_Cabecera.Rows(contador).Cells("SERIE").Value = RowRetorno.Item("SERIE").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("COMENTARIO").Value = RowRetorno.Item("COMENTARIO").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("SITUACION").Value = RowRetorno.Item("SITUACION").ToString.Trim
+                    Dg_Cabecera.Rows(contador).Cells("FECHAREPCECION").Value = RowRetorno.Item("FECHAREPCECION").ToString.Trim
+                    Dg_Cabecera.Rows(contador).Cells("HORARECEPCION").Value = RowRetorno.Item("HORARECEPCION").ToString.Trim
 
                     Dg_Cabecera.Rows(contador).Cells("C5_CTD").Value = RowRetorno.Item("C5_CTD").ToString.Trim
 
@@ -366,13 +368,73 @@ Public Class GestionProgramacionDespacho
     End Sub
 
     Private Sub cmdGenerarExcel_Click(sender As Object, e As EventArgs) Handles cmdGenerarExcel.Click
-        Try
-            ProcesoExportar()
+        'Try
+        '    ProcesoExportar()
 
+        'Catch ex As Exception
+        '    Throw ex
+        'End Try
+        Try
+            Me.Cursor = Cursors.WaitCursor
+            GridAExcel(Dg_Cabecera)
+            Me.Cursor = Cursors.Default
         Catch ex As Exception
-            Throw ex
+
         End Try
     End Sub
+
+    Function GridAExcel(ByVal ElGrid As DataGridView) As Boolean
+
+        Dim exApp As Object
+        Dim exLibro As Object
+        Dim exHoja As Object
+
+        exApp = CreateObject("Excel.Application")
+        exHoja = exApp.ActiveSheet
+        Try
+
+            exLibro = exApp.Workbooks.Add()
+            exHoja = exLibro.Worksheets(1)
+            Dim NCol As Integer = ElGrid.ColumnCount
+            Dim NRow As Integer = ElGrid.RowCount
+            For i As Integer = 1 To NCol
+                exHoja.Cells.Item(1, i) = ElGrid.Columns(i - 1).HeaderText.ToString()
+            Next
+
+            Dim fecha As String = String.Empty
+
+            For Fila As Integer = 0 To NRow - 1
+                For Col As Integer = 0 To NCol - 1
+                    If Col = 3 Then
+                        fecha = "'" & CStr(ElGrid.Rows(Fila).Cells(Col).Value)
+                        exHoja.Cells.Item(Fila + 2, Col + 1) = CStr(ElGrid.Rows(Fila).Cells(Col).Value)
+                    Else
+                        If Col = 2 Or Col = 14 Or Col = 15 Or Col = 16 Or Col = 17 Then
+                            exHoja.Cells.Item(Fila + 2, Col + 1) = ElGrid.Rows(Fila).Cells(Col).Value
+                        Else
+                            exHoja.Cells.Item(Fila + 2, Col + 1) = CStr(ElGrid.Rows(Fila).Cells(Col).Value)
+                        End If
+                    End If
+                Next
+            Next
+
+            exHoja.Rows.Item(1).Font.Bold = 1
+            exHoja.Rows.Item(1).HorizontalAlignment = 3
+            exHoja.Columns.AutoFit()
+            exHoja.Rows.AutoFit()
+            exApp.Application.Visible = True
+            exHoja = Nothing
+            exLibro = Nothing
+            exApp = Nothing
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error al exportar a Excel")
+            Return False
+        End Try
+
+        Return True
+
+    End Function
 
     Public Sub ProcesoExportar()
 
