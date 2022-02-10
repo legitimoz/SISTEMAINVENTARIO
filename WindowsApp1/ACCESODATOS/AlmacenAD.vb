@@ -639,6 +639,28 @@ Public Class AlmacenAD
 
     End Function
 
+    Public Function ObtenerGuiaProgramacion(codAlmacen As String, ctd As String, nrodoc As String) As DataTable
+
+        Try
+            Dim com As New SqlCommand("SP_CSE_ListarPedidosDespacho_v", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+            com.Parameters.Add("@C5_CALMA", SqlDbType.Char, 4).Value = codAlmacen
+            com.Parameters.Add("@C5_CTD", SqlDbType.Char, 2).Value = ctd
+            com.Parameters.Add("@C5_CNUMDOC", SqlDbType.Char, 11).Value = nrodoc
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            Throw ex
+            MyBase.Conn.Close()
+        End Try
+
+    End Function
+
     Public Function ListarParteEntradaDET(codAlmacen As String, codcabecera As String, tipdoc As String) As DataTable
 
         Try
