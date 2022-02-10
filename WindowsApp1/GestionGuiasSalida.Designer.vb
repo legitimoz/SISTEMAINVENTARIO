@@ -23,17 +23,10 @@ Partial Class GestionGuiasSalida
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GestionGuiasSalida))
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.txt_numero = New System.Windows.Forms.TextBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.combo_Almacen = New System.Windows.Forms.ComboBox()
-        Me.Dg_Detalle = New System.Windows.Forms.DataGridView()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
@@ -43,126 +36,33 @@ Partial Class GestionGuiasSalida
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.btn_imprimir = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.cmdGenerarExcel = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.cmdCerrar = New System.Windows.Forms.ToolStripButton()
         Me.dt_desde = New System.Windows.Forms.DateTimePicker()
         Me.dt_hasta = New System.Windows.Forms.DateTimePicker()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.btnBuscar = New FontAwesome.Sharp.IconButton()
+        Me.txt_numero = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.combo_Almacen = New System.Windows.Forms.ComboBox()
+        Me.miniToolStrip = New System.Windows.Forms.ToolStrip()
         Me.Panel6 = New System.Windows.Forms.Panel()
+        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Dg_Cabecera = New System.Windows.Forms.DataGridView()
-        Me.cmdAceptar = New FontAwesome.Sharp.IconButton()
-        CType(Me.Dg_Detalle, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Dg_Detalle = New System.Windows.Forms.DataGridView()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.Panel6.SuspendLayout()
+        Me.Panel2.SuspendLayout()
         CType(Me.Dg_Cabecera, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Dg_Detalle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(8, 114)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(44, 13)
-        Me.Label1.TabIndex = 15
-        Me.Label1.Text = "Pedidos"
-        '
-        'txt_numero
-        '
-        Me.txt_numero.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txt_numero.Location = New System.Drawing.Point(420, 75)
-        Me.txt_numero.Name = "txt_numero"
-        Me.txt_numero.Size = New System.Drawing.Size(209, 20)
-        Me.txt_numero.TabIndex = 77
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(318, 78)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(79, 14)
-        Me.Label6.TabIndex = 75
-        Me.Label6.Text = "Nº Documento:"
-        Me.Label6.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(13, 78)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(55, 14)
-        Me.Label4.TabIndex = 69
-        Me.Label4.Text = "Almacen: "
-        Me.Label4.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        '
-        'combo_Almacen
-        '
-        Me.combo_Almacen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.combo_Almacen.FormattingEnabled = True
-        Me.combo_Almacen.Location = New System.Drawing.Point(90, 75)
-        Me.combo_Almacen.Name = "combo_Almacen"
-        Me.combo_Almacen.Size = New System.Drawing.Size(209, 20)
-        Me.combo_Almacen.TabIndex = 67
-        '
-        'Dg_Detalle
-        '
-        Me.Dg_Detalle.AllowUserToAddRows = False
-        Me.Dg_Detalle.AllowUserToDeleteRows = False
-        Me.Dg_Detalle.AllowUserToResizeRows = False
-        Me.Dg_Detalle.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Dg_Detalle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
-        Me.Dg_Detalle.BackgroundColor = System.Drawing.Color.White
-        Me.Dg_Detalle.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlDark
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Tahoma", 7.8!)
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ControlDark
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Dg_Detalle.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        Me.Dg_Detalle.ColumnHeadersHeight = 50
-        Me.Dg_Detalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.Dg_Detalle.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.Dg_Detalle.EnableHeadersVisualStyles = False
-        Me.Dg_Detalle.Location = New System.Drawing.Point(11, 404)
-        Me.Dg_Detalle.Margin = New System.Windows.Forms.Padding(4)
-        Me.Dg_Detalle.MultiSelect = False
-        Me.Dg_Detalle.Name = "Dg_Detalle"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ControlDark
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Tahoma", 7.8!)
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlDark
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Dg_Detalle.RowHeadersDefaultCellStyle = DataGridViewCellStyle2
-        Me.Dg_Detalle.RowHeadersVisible = False
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ControlLightLight
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Dg_Detalle.RowsDefaultCellStyle = DataGridViewCellStyle3
-        Me.Dg_Detalle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.Dg_Detalle.Size = New System.Drawing.Size(1259, 202)
-        Me.Dg_Detalle.TabIndex = 19
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(8, 387)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(80, 13)
-        Me.Label2.TabIndex = 17
-        Me.Label2.Text = "Detalle Pedidos"
         '
         'ErrorProvider1
         '
@@ -170,8 +70,6 @@ Partial Class GestionGuiasSalida
         '
         'Panel1
         '
-        Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.Controls.Add(Me.ToolStrip1)
         Me.Panel1.Controls.Add(Me.dt_desde)
         Me.Panel1.Controls.Add(Me.dt_hasta)
@@ -182,6 +80,7 @@ Partial Class GestionGuiasSalida
         Me.Panel1.Controls.Add(Me.Label6)
         Me.Panel1.Controls.Add(Me.Label4)
         Me.Panel1.Controls.Add(Me.combo_Almacen)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1291, 111)
@@ -193,7 +92,7 @@ Partial Class GestionGuiasSalida
         Me.ToolStrip1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdVerReporte, Me.separador5, Me.ToolStripButton1, Me.ToolStripSeparator2, Me.btn_imprimir, Me.ToolStripSeparator1, Me.cmdCerrar})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdVerReporte, Me.separador5, Me.ToolStripButton1, Me.ToolStripSeparator2, Me.btn_imprimir, Me.ToolStripSeparator1, Me.cmdGenerarExcel, Me.ToolStripSeparator3, Me.cmdCerrar})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
@@ -245,6 +144,21 @@ Partial Class GestionGuiasSalida
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 40)
+        '
+        'cmdGenerarExcel
+        '
+        Me.cmdGenerarExcel.Image = CType(resources.GetObject("cmdGenerarExcel.Image"), System.Drawing.Image)
+        Me.cmdGenerarExcel.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.cmdGenerarExcel.Margin = New System.Windows.Forms.Padding(1)
+        Me.cmdGenerarExcel.Name = "cmdGenerarExcel"
+        Me.cmdGenerarExcel.Size = New System.Drawing.Size(81, 38)
+        Me.cmdGenerarExcel.Text = "&Exportar Excel"
+        Me.cmdGenerarExcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'ToolStripSeparator3
+        '
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 40)
         '
         'cmdCerrar
         '
@@ -320,22 +234,88 @@ Partial Class GestionGuiasSalida
         Me.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnBuscar.UseVisualStyleBackColor = False
         '
+        'txt_numero
+        '
+        Me.txt_numero.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txt_numero.Location = New System.Drawing.Point(420, 75)
+        Me.txt_numero.Name = "txt_numero"
+        Me.txt_numero.Size = New System.Drawing.Size(209, 20)
+        Me.txt_numero.TabIndex = 77
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Location = New System.Drawing.Point(318, 78)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(79, 14)
+        Me.Label6.TabIndex = 75
+        Me.Label6.Text = "Nº Documento:"
+        Me.Label6.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(13, 78)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(55, 14)
+        Me.Label4.TabIndex = 69
+        Me.Label4.Text = "Almacen: "
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'combo_Almacen
+        '
+        Me.combo_Almacen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.combo_Almacen.FormattingEnabled = True
+        Me.combo_Almacen.Location = New System.Drawing.Point(90, 75)
+        Me.combo_Almacen.Name = "combo_Almacen"
+        Me.combo_Almacen.Size = New System.Drawing.Size(209, 20)
+        Me.combo_Almacen.TabIndex = 67
+        '
+        'miniToolStrip
+        '
+        Me.miniToolStrip.AccessibleName = "Selección de nuevo elemento"
+        Me.miniToolStrip.AccessibleRole = System.Windows.Forms.AccessibleRole.ButtonDropDown
+        Me.miniToolStrip.AutoSize = False
+        Me.miniToolStrip.BackColor = System.Drawing.SystemColors.Control
+        Me.miniToolStrip.CanOverflow = False
+        Me.miniToolStrip.Dock = System.Windows.Forms.DockStyle.None
+        Me.miniToolStrip.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.miniToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.miniToolStrip.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.miniToolStrip.Location = New System.Drawing.Point(391, 10)
+        Me.miniToolStrip.Name = "miniToolStrip"
+        Me.miniToolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
+        Me.miniToolStrip.Size = New System.Drawing.Size(1291, 40)
+        Me.miniToolStrip.TabIndex = 85
+        '
         'Panel6
         '
         Me.Panel6.BackColor = System.Drawing.SystemColors.Control
         Me.Panel6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel6.Controls.Add(Me.Panel2)
         Me.Panel6.Controls.Add(Me.Panel1)
-        Me.Panel6.Controls.Add(Me.Dg_Cabecera)
-        Me.Panel6.Controls.Add(Me.Dg_Detalle)
-        Me.Panel6.Controls.Add(Me.cmdAceptar)
-        Me.Panel6.Controls.Add(Me.Label2)
-        Me.Panel6.Controls.Add(Me.Label1)
         Me.Panel6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel6.Location = New System.Drawing.Point(0, 0)
         Me.Panel6.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel6.Name = "Panel6"
         Me.Panel6.Size = New System.Drawing.Size(1295, 648)
         Me.Panel6.TabIndex = 53
+        '
+        'Panel2
+        '
+        Me.Panel2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel2.Controls.Add(Me.Dg_Cabecera)
+        Me.Panel2.Controls.Add(Me.Dg_Detalle)
+        Me.Panel2.Controls.Add(Me.Label2)
+        Me.Panel2.Controls.Add(Me.Label1)
+        Me.Panel2.Location = New System.Drawing.Point(0, 111)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(1291, 533)
+        Me.Panel2.TabIndex = 48
         '
         'Dg_Cabecera
         '
@@ -348,40 +328,79 @@ Partial Class GestionGuiasSalida
         Me.Dg_Cabecera.BackgroundColor = System.Drawing.Color.White
         Me.Dg_Cabecera.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.Dg_Cabecera.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Dg_Cabecera.Location = New System.Drawing.Point(11, 130)
+        Me.Dg_Cabecera.Location = New System.Drawing.Point(17, 19)
         Me.Dg_Cabecera.MultiSelect = False
         Me.Dg_Cabecera.Name = "Dg_Cabecera"
         Me.Dg_Cabecera.RowHeadersVisible = False
         Me.Dg_Cabecera.RowTemplate.Height = 24
         Me.Dg_Cabecera.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.Dg_Cabecera.Size = New System.Drawing.Size(1259, 254)
-        Me.Dg_Cabecera.TabIndex = 20
+        Me.Dg_Cabecera.TabIndex = 25
         '
-        'cmdAceptar
+        'Dg_Detalle
         '
-        Me.cmdAceptar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.Dg_Detalle.AllowUserToAddRows = False
+        Me.Dg_Detalle.AllowUserToDeleteRows = False
+        Me.Dg_Detalle.AllowUserToResizeRows = False
+        Me.Dg_Detalle.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmdAceptar.BackColor = System.Drawing.SystemColors.Control
-        Me.cmdAceptar.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.cmdAceptar.FlatAppearance.BorderColor = System.Drawing.Color.ForestGreen
-        Me.cmdAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cmdAceptar.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdAceptar.ForeColor = System.Drawing.Color.ForestGreen
-        Me.cmdAceptar.IconChar = FontAwesome.Sharp.IconChar.CheckCircle
-        Me.cmdAceptar.IconColor = System.Drawing.Color.ForestGreen
-        Me.cmdAceptar.IconFont = FontAwesome.Sharp.IconFont.Solid
-        Me.cmdAceptar.IconSize = 16
-        Me.cmdAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.cmdAceptar.Location = New System.Drawing.Point(1173, 614)
-        Me.cmdAceptar.Margin = New System.Windows.Forms.Padding(4)
-        Me.cmdAceptar.Name = "cmdAceptar"
-        Me.cmdAceptar.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.cmdAceptar.Size = New System.Drawing.Size(97, 26)
-        Me.cmdAceptar.TabIndex = 18
-        Me.cmdAceptar.Text = "Aceptar"
-        Me.cmdAceptar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.cmdAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.cmdAceptar.UseVisualStyleBackColor = False
+        Me.Dg_Detalle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.Dg_Detalle.BackgroundColor = System.Drawing.Color.White
+        Me.Dg_Detalle.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.ControlDark
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Tahoma", 7.8!)
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ControlDark
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Dg_Detalle.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
+        Me.Dg_Detalle.ColumnHeadersHeight = 50
+        Me.Dg_Detalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        Me.Dg_Detalle.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.Dg_Detalle.EnableHeadersVisualStyles = False
+        Me.Dg_Detalle.Location = New System.Drawing.Point(17, 293)
+        Me.Dg_Detalle.Margin = New System.Windows.Forms.Padding(4)
+        Me.Dg_Detalle.MultiSelect = False
+        Me.Dg_Detalle.Name = "Dg_Detalle"
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.ControlDark
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Tahoma", 7.8!)
+        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.ControlDark
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Dg_Detalle.RowHeadersDefaultCellStyle = DataGridViewCellStyle5
+        Me.Dg_Detalle.RowHeadersVisible = False
+        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.ControlLightLight
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.Dg_Detalle.RowsDefaultCellStyle = DataGridViewCellStyle6
+        Me.Dg_Detalle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.Dg_Detalle.Size = New System.Drawing.Size(1259, 202)
+        Me.Dg_Detalle.TabIndex = 24
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(14, 276)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(80, 13)
+        Me.Label2.TabIndex = 22
+        Me.Label2.Text = "Detalle Pedidos"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(14, 3)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(44, 13)
+        Me.Label1.TabIndex = 21
+        Me.Label1.Text = "Pedidos"
         '
         'GestionGuiasSalida
         '
@@ -393,41 +412,45 @@ Partial Class GestionGuiasSalida
         Me.Name = "GestionGuiasSalida"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "GestionGuiasSalida"
-        CType(Me.Dg_Detalle, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         Me.Panel6.ResumeLayout(False)
-        Me.Panel6.PerformLayout()
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
         CType(Me.Dg_Cabecera, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Dg_Detalle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
+    Friend WithEvents ErrorProvider1 As ErrorProvider
+    Friend WithEvents Panel6 As Panel
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents Dg_Cabecera As DataGridView
+    Public WithEvents Dg_Detalle As DataGridView
+    Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents ToolStrip1 As ToolStrip
+    Friend WithEvents cmdVerReporte As ToolStripButton
+    Friend WithEvents separador5 As ToolStripSeparator
+    Friend WithEvents ToolStripButton1 As ToolStripButton
+    Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
+    Friend WithEvents btn_imprimir As ToolStripButton
+    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
+    Friend WithEvents cmdGenerarExcel As ToolStripButton
+    Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
+    Friend WithEvents cmdCerrar As ToolStripButton
+    Friend WithEvents dt_desde As DateTimePicker
+    Friend WithEvents dt_hasta As DateTimePicker
+    Friend WithEvents Label8 As Label
+    Friend WithEvents Label9 As Label
     Friend WithEvents btnBuscar As FontAwesome.Sharp.IconButton
     Friend WithEvents txt_numero As TextBox
     Friend WithEvents Label6 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents combo_Almacen As ComboBox
-    Public WithEvents Dg_Detalle As DataGridView
-    Friend WithEvents cmdAceptar As FontAwesome.Sharp.IconButton
-    Friend WithEvents Label2 As Label
-    Friend WithEvents ErrorProvider1 As ErrorProvider
-    Friend WithEvents Panel6 As Panel
-    Friend WithEvents Panel1 As Panel
-    Friend WithEvents dt_desde As DateTimePicker
-    Friend WithEvents dt_hasta As DateTimePicker
-    Friend WithEvents Label8 As Label
-    Friend WithEvents Label9 As Label
-    Friend WithEvents Dg_Cabecera As DataGridView
-    Friend WithEvents ToolStrip1 As ToolStrip
-    Friend WithEvents separador5 As ToolStripSeparator
-    Friend WithEvents cmdCerrar As ToolStripButton
-    Friend WithEvents cmdVerReporte As ToolStripButton
-    Friend WithEvents ToolStripButton1 As ToolStripButton
-    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
-    Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
-    Friend WithEvents btn_imprimir As ToolStripButton
+    Friend WithEvents miniToolStrip As ToolStrip
 End Class

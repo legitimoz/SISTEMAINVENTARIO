@@ -62,17 +62,6 @@ Public Class GestionGuiasSalida
         End Try
     End Sub
 
-    Private Sub Dg_Cabecera_SelectionChanged(sender As Object, e As EventArgs) Handles Dg_Cabecera.SelectionChanged
-        Try
-            ObtenerGuiaCab()
-            If codalmacen <> "" And tipdoc <> "" And nrodoc <> "" Then
-                ListarGuiasDetalle()
-            End If
-        Catch ex As Exception
-
-        End Try
-    End Sub
-
     Public Function LlamarListarGuiasDET() As DataTable
 
         Dim dtretono As DataTable
@@ -252,70 +241,7 @@ Public Class GestionGuiasSalida
             Throw ex
         End Try
     End Sub
-    Private Sub Dg_Detalle_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles Dg_Detalle.CellContentClick
-        If e.RowIndex <> -1 Then
-            If e.ColumnIndex = 1 Then
-                Dim row As DataGridViewRow = Dg_Detalle.Rows(e.RowIndex)
-                row.Cells("SALIDA").Value = Not row.Cells("SALIDA").EditedFormattedValue
-                Dim valorcheck = row.Cells("SALIDA").Value
-                If valorcheck Then
-                    If row.Cells("SERIE").EditedFormattedValue.ToString.Trim <> "" And row.Cells("SERIE").EditedFormattedValue.ToString.Trim <> "SIN/LOTE" Then
-                        If CType(row.Cells("SALDO").EditedFormattedValue.ToString, Decimal) > 0 Then
-                            ObtenerGuiaCab()
-                            If codalmacen <> "" And nrodoc <> "" And tipdoc <> "" Then
-                                Dim RegistrarSalidaForm As New EditarSalidaAlmacen
-                                RegistrarSalidaForm.Lote = row.Cells("SERIE").EditedFormattedValue.ToString.Trim
-                                RegistrarSalidaForm.articulo = row.Cells("PRODUCTO").EditedFormattedValue.ToString.Trim
-                                RegistrarSalidaForm.CodArticulo = row.Cells("CODIGO").EditedFormattedValue.ToString.Trim
-                                RegistrarSalidaForm.cantidad = CType(row.Cells("SALDO").EditedFormattedValue.ToString, Integer)
-                                RegistrarSalidaForm.volumen = CType(row.Cells("VOLUMEN").EditedFormattedValue.ToString, Decimal)
-                                RegistrarSalidaForm.alto = CType(row.Cells("ALTO").EditedFormattedValue.ToString, Decimal)
-                                RegistrarSalidaForm.ancho = CType(row.Cells("ANCHO").EditedFormattedValue.ToString, Decimal)
-                                RegistrarSalidaForm.largo = CType(row.Cells("LARGO").EditedFormattedValue.ToString, Decimal)
-                                RegistrarSalidaForm.unidades = CType(row.Cells("SALDO").EditedFormattedValue.ToString, Decimal)
-                                RegistrarSalidaForm.total = CType(row.Cells("CANTIDAD").EditedFormattedValue.ToString, Decimal)
-                                RegistrarSalidaForm.cajas = CType(row.Cells("CAJAS").EditedFormattedValue.ToString, Decimal)
-                                RegistrarSalidaForm.cajasmaster = CType(row.Cells("CAJASMASTER").EditedFormattedValue.ToString, Decimal)
-                                RegistrarSalidaForm.unidad = row.Cells("UNIDAD").EditedFormattedValue.ToString.Trim
-                                RegistrarSalidaForm.factorcaja = CType(row.Cells("FACTORCAJA").EditedFormattedValue.ToString, Decimal)
-                                RegistrarSalidaForm.factormaster = CType(row.Cells("FACTORCAJAMASTER").EditedFormattedValue.ToString, Decimal)
-                                RegistrarSalidaForm.F5_CCODAGE = codalmacen
-                                RegistrarSalidaForm.F5_CNUMPED = nrodoc
-                                RegistrarSalidaForm.TIPDOC = tipdoc
-                                RegistrarSalidaForm.iduser = usr_id
-                                RegistrarSalidaForm.ShowDialog()
-                                If RegistrarSalidaForm.grabado = True Then
-                                    If RegistrarSalidaForm.dtreportePicConfirm.Rows.Count > 0 Then
-                                        Try
-                                            If nrodoc <> "" Then
-                                                Dim reporte As New HojaPickConfirm With {
-                                                        .codigopedido = RegistrarSalidaForm.F5_CNUMPED,
-                                                        .DtDetallePedido = RegistrarSalidaForm.dtreportePicConfirm,
-                                                        .fechapedido = fecha
-                                                    }
-                                                reporte.Show()
-                                            End If
-                                        Catch ex As Exception
-                                            Throw ex
-                                        End Try
-                                    End If
-                                    ListarGuiasCabecera()
-                                Else
-                                    row.Cells("SALIDA").Value = False
-                                End If
-                            End If
-                        Else
-                            MsgBox("El Articulo Saliò en su totalidad", MsgBoxStyle.Exclamation)
-                            row.Cells("SALIDA").Value = False
-                        End If
-                    Else
-                        MsgBox("El Articulo no tiene un Lote", MsgBoxStyle.Exclamation)
-                        row.Cells("SALIDA").Value = False
-                    End If
-                End If
-            End If
-        End If
-    End Sub
+
     Private Function ValidarDetalle() As Boolean
         Dim rp As Boolean = False
         Try
@@ -375,24 +301,6 @@ Public Class GestionGuiasSalida
         End Try
     End Sub
 
-    Private Sub Dg_Cabecera_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles Dg_Cabecera.CellContentClick
-        Try
-            If e.RowIndex <> -1 Then
-                If e.ColumnIndex = 0 Then
-                    Dim row As DataGridViewRow = Dg_Cabecera.Rows(e.RowIndex)
-                    row.Cells("MARCAR").Value = Not row.Cells("MARCAR").EditedFormattedValue
-                    'Dim rowa As DataRow = dtcabecera.Rows(e.RowIndex)
-                    'rowa.Item("MARCAR") = Not row.Cells("MARCAR").EditedFormattedValue
-                End If
-            End If
-        Catch ex As Exception
-
-        End Try
-    End Sub
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs)
-
-    End Sub
 
     Private Sub txt_numero_TextChanged(sender As Object, e As EventArgs) Handles txt_numero.TextChanged
         Try
@@ -402,7 +310,7 @@ Public Class GestionGuiasSalida
         End Try
     End Sub
 
-    Private Sub Dg_Cabecera_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles Dg_Cabecera.CellFormatting
+    Private Sub Dg_Cabecera_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs)
         If Dg_Cabecera.Columns(e.ColumnIndex).Name = "ESTADO" Then
 
             If e.Value IsNot Nothing Then
@@ -572,7 +480,100 @@ Public Class GestionGuiasSalida
         End Try
     End Sub
 
+    Private Sub cmdCerrar_Click(sender As Object, e As EventArgs) Handles cmdCerrar.Click
+        Me.Close()
+    End Sub
 
+    Private Sub Dg_Cabecera_SelectionChanged_1(sender As Object, e As EventArgs) Handles Dg_Cabecera.SelectionChanged
+        Try
+            ObtenerGuiaCab()
+            If codalmacen <> "" And tipdoc <> "" And nrodoc <> "" Then
+                ListarGuiasDetalle()
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub Dg_Detalle_CellContentClick_1(sender As Object, e As DataGridViewCellEventArgs) Handles Dg_Detalle.CellContentClick
+        If e.RowIndex <> -1 Then
+            If e.ColumnIndex = 1 Then
+                Dim row As DataGridViewRow = Dg_Detalle.Rows(e.RowIndex)
+                row.Cells("SALIDA").Value = Not row.Cells("SALIDA").EditedFormattedValue
+                Dim valorcheck = row.Cells("SALIDA").Value
+                If valorcheck Then
+                    If row.Cells("SERIE").EditedFormattedValue.ToString.Trim <> "" And row.Cells("SERIE").EditedFormattedValue.ToString.Trim <> "SIN/LOTE" Then
+                        If CType(row.Cells("SALDO").EditedFormattedValue.ToString, Decimal) > 0 Then
+                            ObtenerGuiaCab()
+                            If codalmacen <> "" And nrodoc <> "" And tipdoc <> "" Then
+                                Dim RegistrarSalidaForm As New EditarSalidaAlmacen
+                                RegistrarSalidaForm.Lote = row.Cells("SERIE").EditedFormattedValue.ToString.Trim
+                                RegistrarSalidaForm.articulo = row.Cells("PRODUCTO").EditedFormattedValue.ToString.Trim
+                                RegistrarSalidaForm.CodArticulo = row.Cells("CODIGO").EditedFormattedValue.ToString.Trim
+                                RegistrarSalidaForm.cantidad = CType(row.Cells("SALDO").EditedFormattedValue.ToString, Integer)
+                                RegistrarSalidaForm.volumen = CType(row.Cells("VOLUMEN").EditedFormattedValue.ToString, Decimal)
+                                RegistrarSalidaForm.alto = CType(row.Cells("ALTO").EditedFormattedValue.ToString, Decimal)
+                                RegistrarSalidaForm.ancho = CType(row.Cells("ANCHO").EditedFormattedValue.ToString, Decimal)
+                                RegistrarSalidaForm.largo = CType(row.Cells("LARGO").EditedFormattedValue.ToString, Decimal)
+                                RegistrarSalidaForm.unidades = CType(row.Cells("SALDO").EditedFormattedValue.ToString, Decimal)
+                                RegistrarSalidaForm.total = CType(row.Cells("CANTIDAD").EditedFormattedValue.ToString, Decimal)
+                                RegistrarSalidaForm.cajas = CType(row.Cells("CAJAS").EditedFormattedValue.ToString, Decimal)
+                                RegistrarSalidaForm.cajasmaster = CType(row.Cells("CAJASMASTER").EditedFormattedValue.ToString, Decimal)
+                                RegistrarSalidaForm.unidad = row.Cells("UNIDAD").EditedFormattedValue.ToString.Trim
+                                RegistrarSalidaForm.factorcaja = CType(row.Cells("FACTORCAJA").EditedFormattedValue.ToString, Decimal)
+                                RegistrarSalidaForm.factormaster = CType(row.Cells("FACTORCAJAMASTER").EditedFormattedValue.ToString, Decimal)
+                                RegistrarSalidaForm.F5_CCODAGE = codalmacen
+                                RegistrarSalidaForm.F5_CNUMPED = nrodoc
+                                RegistrarSalidaForm.TIPDOC = tipdoc
+                                RegistrarSalidaForm.iduser = usr_id
+                                RegistrarSalidaForm.ShowDialog()
+                                If RegistrarSalidaForm.grabado = True Then
+                                    If RegistrarSalidaForm.dtreportePicConfirm.Rows.Count > 0 Then
+                                        Try
+                                            If nrodoc <> "" Then
+                                                Dim reporte As New HojaPickConfirm With {
+                                                        .codigopedido = RegistrarSalidaForm.F5_CNUMPED,
+                                                        .DtDetallePedido = RegistrarSalidaForm.dtreportePicConfirm,
+                                                        .fechapedido = fecha
+                                                    }
+                                                reporte.Show()
+                                            End If
+                                        Catch ex As Exception
+                                            Throw ex
+                                        End Try
+                                    End If
+                                    ListarGuiasCabecera()
+                                Else
+                                    row.Cells("SALIDA").Value = False
+                                End If
+                            End If
+                        Else
+                            MsgBox("El Articulo Saliò en su totalidad", MsgBoxStyle.Exclamation)
+                            row.Cells("SALIDA").Value = False
+                        End If
+                    Else
+                        MsgBox("El Articulo no tiene un Lote", MsgBoxStyle.Exclamation)
+                        row.Cells("SALIDA").Value = False
+                    End If
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub Dg_Cabecera_CellContentClick_1(sender As Object, e As DataGridViewCellEventArgs) Handles Dg_Cabecera.CellContentClick
+        Try
+            If e.RowIndex <> -1 Then
+                If e.ColumnIndex = 0 Then
+                    Dim row As DataGridViewRow = Dg_Cabecera.Rows(e.RowIndex)
+                    row.Cells("MARCAR").Value = Not row.Cells("MARCAR").EditedFormattedValue
+                    'Dim rowa As DataRow = dtcabecera.Rows(e.RowIndex)
+                    'rowa.Item("MARCAR") = Not row.Cells("MARCAR").EditedFormattedValue
+                End If
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
 
     Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles btn_imprimir.Click
         Dim codalmacenM, tipdocM, nrodocM

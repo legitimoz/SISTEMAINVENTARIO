@@ -68,6 +68,7 @@ Public Class IngresoExcepcionalForm
                         DetalleObj.dopa_C5_CALMA = RowArticulo.Item("ALMACEN").ToString.Trim
                         DetalleObj.dopa_userid = userid
                         DetalleObj.dopa_codarticulo = RowArticulo.Item("CODIGO").ToString.Trim
+                        DetalleObj.fechavecimiento = RowArticulo.Item("FECHAVENCIMIENTO").ToString.Trim
                         DetalleObj.dopa_serie = RowArticulo.Item("LOTE").ToString.Trim
                         DetalleObj.dopa_cantidad = CType(RowArticulo.Item("CANTIDAD").ToString.Trim, Integer)
                         DetalleObj.idsite = idsite

@@ -19,5 +19,5 @@
     Public dopa_cantcajasmaster As Decimal
     Public dopa_volumen As Decimal
     Public dopa_cantMov As Integer
-
+    Public fechavecimiento As String
 End Class

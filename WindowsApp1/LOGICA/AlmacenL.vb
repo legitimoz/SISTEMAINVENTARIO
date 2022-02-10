@@ -27,7 +27,13 @@ Public Class AlmacenL
         End Try
     End Function
 
-
+    Public Function ObtenerGuiaProgramacion(codAlmacen As String, ctd As String, nrodoc As String) As DataTable
+        Try
+            Return objAlmacen.ObtenerGuiaProgramacion(codAlmacen, ctd, nrodoc)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
 
     Public Function ListarMotivosDelivery() As DataTable
