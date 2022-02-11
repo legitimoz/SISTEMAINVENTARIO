@@ -413,6 +413,9 @@
         Try
             Tabladetalle.Columns.Add("MARCAR", GetType(Boolean))
             Tabladetalle.Columns.Add("ESTADO", GetType(String))
+            Tabladetalle.Columns.Add("FECHA_IMPRE", GetType(String))
+            Tabladetalle.Columns.Add("HORA_IMPRE", GetType(String))
+            Tabladetalle.Columns.Add("USUARIO_IMPRE", GetType(String))
             Tabladetalle.Columns.Add("CODALMACEN_ORIGEN", GetType(String))
             Tabladetalle.Columns.Add("Resta", GetType(String))
             Tabladetalle.Columns.Add("ALAMACEN_ORIGEN", GetType(String))

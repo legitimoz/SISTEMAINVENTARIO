@@ -18,6 +18,7 @@ Public Class GestionGuiasSalida
             FormatoTablaDetalle()
             ListarGuiasCabecera()
             ListarAlmacenSoftcom()
+            'ColorearGrid()
         Catch ex As Exception
             Throw ex
         End Try
@@ -310,47 +311,7 @@ Public Class GestionGuiasSalida
         End Try
     End Sub
 
-    Private Sub Dg_Cabecera_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs)
-        If Dg_Cabecera.Columns(e.ColumnIndex).Name = "ESTADO" Then
 
-            If e.Value IsNot Nothing Then
-
-                If e.Value.[GetType]() <> GetType(System.DBNull) Then
-
-                    If e.Value.ToString() = "IMPRESO" Then
-                        e.CellStyle.BackColor = Color.LightBlue
-                    Else
-                        If e.Value.ToString() = "PICADO" Then
-                            e.CellStyle.BackColor = Color.LightGreen
-                        End If
-                    End If
-
-                    'If e.Value.ToString() = "ORDEN DE SERVICIO" Then
-                    '    e.CellStyle.BackColor = Color.LavenderBlush
-                    'End If
-
-                End If
-            End If
-        End If
-
-        If Dg_Cabecera.Columns(e.ColumnIndex).Name = "PICADO" Then
-
-            If e.Value IsNot Nothing Then
-
-                If e.Value.[GetType]() <> GetType(System.DBNull) Then
-
-                    If e.Value.ToString() = "NO" Then
-                        e.CellStyle.BackColor = Color.IndianRed
-                    End If
-
-                    'If e.Value.ToString() = "ORDEN DE SERVICIO" Then
-                    '    e.CellStyle.BackColor = Color.LavenderBlush
-                    'End If
-
-                End If
-            End If
-        End If
-    End Sub
 
 
     Private Sub cmdVerReporte_Click(sender As Object, e As EventArgs) Handles cmdVerReporte.Click
@@ -467,7 +428,7 @@ Public Class GestionGuiasSalida
                                 'codalmacenM = rowCab.Cells("CODALMACEN_ORIGEN").EditedFormattedValue.ToString.Trim
                                 'tipdocM = rowCab.Cells("TIP_DOC").EditedFormattedValue.ToString.Trim
                                 'nrodocM = rowCab.Cells("NDOCUMENTO").EditedFormattedValue.ToString.Trim
-                                llamarRegistrarImpresion(codalmacenM, tipdocM, nrodocM, "IM", 0, 0)
+                                llamarRegistrarImpresion(codalmacenM, tipdocM, nrodocM, "IM", 0, 0, usr_id)
                             End If
 
                         End If
@@ -575,6 +536,104 @@ Public Class GestionGuiasSalida
         End Try
     End Sub
 
+    Private Sub cmdGenerarExcel_Click(sender As Object, e As EventArgs) Handles cmdGenerarExcel.Click
+        'Try
+        '    ProcesoExportar()
+
+        'Catch ex As Exception
+        '    Throw ex
+        'End Try
+        Try
+            Me.Cursor = Cursors.WaitCursor
+            GridAExcel(Dg_Cabecera)
+            Me.Cursor = Cursors.Default
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Function GridAExcel(ByVal ElGrid As DataGridView) As Boolean
+
+        Dim exApp As Object
+        Dim exLibro As Object
+        Dim exHoja As Object
+
+        exApp = CreateObject("Excel.Application")
+        exHoja = exApp.ActiveSheet
+        Try
+
+            exLibro = exApp.Workbooks.Add()
+            exHoja = exLibro.Worksheets(1)
+            Dim NCol As Integer = ElGrid.ColumnCount
+            Dim NRow As Integer = ElGrid.RowCount
+            For i As Integer = 1 To NCol
+                exHoja.Cells.Item(1, i) = ElGrid.Columns(i - 1).HeaderText.ToString()
+            Next
+
+            Dim fecha As String = String.Empty
+
+            For Fila As Integer = 0 To NRow - 1
+                For Col As Integer = 0 To NCol - 1
+                    If Col = 3 Then
+                        fecha = "'" & CStr(ElGrid.Rows(Fila).Cells(Col).Value)
+                        exHoja.Cells.Item(Fila + 2, Col + 1) = CStr(ElGrid.Rows(Fila).Cells(Col).Value)
+                    Else
+                        If Col = 2 Or Col = 14 Or Col = 15 Or Col = 16 Or Col = 17 Then
+                            exHoja.Cells.Item(Fila + 2, Col + 1) = ElGrid.Rows(Fila).Cells(Col).Value
+                        Else
+                            exHoja.Cells.Item(Fila + 2, Col + 1) = CStr(ElGrid.Rows(Fila).Cells(Col).Value)
+                        End If
+                    End If
+                Next
+            Next
+
+            exHoja.Rows.Item(1).Font.Bold = 1
+            exHoja.Rows.Item(1).HorizontalAlignment = 3
+            exHoja.Columns.AutoFit()
+            exHoja.Rows.AutoFit()
+            exApp.Application.Visible = True
+            exHoja = Nothing
+            exLibro = Nothing
+            exApp = Nothing
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error al exportar a Excel")
+            Return False
+        End Try
+
+        Return True
+
+    End Function
+
+    Public Sub ColorearGrid()
+        Try
+            If Dg_Cabecera.Rows.Count > 0 Then
+                For Each dg As DataGridViewRow In Dg_Cabecera.Rows
+                    If dg.Cells("ESTADO").Value.ToString.Trim = "IMPRESO" Then
+                        ' dg.Cells(0)..BackColor = Color.LightBlue
+                    End If
+                Next
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub Dg_Cabecera_CellFormatting_1(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles Dg_Cabecera.CellFormatting
+        If Dg_Cabecera.Rows(e.RowIndex).Cells("ESTADO").Value.ToString.Trim = "IMPRESO" Then
+            Dg_Cabecera.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.LightBlue
+        Else
+
+            If Dg_Cabecera.Rows(e.RowIndex).Cells("ESTADO").Value.ToString.Trim = "PENDIENTE" Then
+                Dg_Cabecera.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.LightGreen
+            Else
+                If Dg_Cabecera.Rows(e.RowIndex).Cells("ESTADO").Value.ToString.Trim = "PICADO" Then
+                    Dg_Cabecera.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.IndianRed
+                End If
+            End If
+        End If
+    End Sub
+
     Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles btn_imprimir.Click
         Dim codalmacenM, tipdocM, nrodocM
         Try
@@ -589,7 +648,7 @@ Public Class GestionGuiasSalida
                                 Dim formRegistrarPicador As New RegistrarPicking
                                 formRegistrarPicador.ShowDialog()
                                 If formRegistrarPicador.grabado = True Then
-                                    If llamarRegistrarImpresion(codalmacenM, tipdocM, nrodocM, "PI", formRegistrarPicador.idpicador, formRegistrarPicador.idfiltro) <> 0 Then
+                                    If llamarRegistrarImpresion(codalmacenM, tipdocM, nrodocM, "PI", formRegistrarPicador.idpicador, formRegistrarPicador.idfiltro, 0) <> 0 Then
                                         MsgBox("PickConfirm realizado Correctamente", MsgBoxStyle.Information, "SISTEMAS NORDIC")
                                         ListarGuiasCabecera()
                                     End If
@@ -618,10 +677,10 @@ Public Class GestionGuiasSalida
 
     End Sub
 
-    Public Function llamarRegistrarImpresion(codalmacen As String, ctd As String, numero As String, estado As String, idpicador As Integer, idfiltro As Integer) As Integer
+    Public Function llamarRegistrarImpresion(codalmacen As String, ctd As String, numero As String, estado As String, idpicador As Integer, idfiltro As Integer, userimpresion As Integer) As Integer
         Dim RP As Integer
         Try
-            RP = ObjAlmacen.CambiarEstadoGuia(codalmacen, ctd, numero, estado, idpicador, idfiltro)
+            RP = ObjAlmacen.CambiarEstadoGuia(codalmacen, ctd, numero, estado, idpicador, idfiltro, userimpresion)
         Catch ex As Exception
 
         End Try
@@ -712,6 +771,10 @@ Public Class GestionGuiasSalida
                     rowcabecera.Item("DIRECCIONCLIENTE") = RowRetorno.Item("DIRECCIONCLIENTE").ToString.Trim
                     rowcabecera.Item("PICADOR") = RowRetorno.Item("PICADOR").ToString.Trim
                     rowcabecera.Item("FILTRO") = RowRetorno.Item("FILTRO").ToString.Trim
+                    rowcabecera.Item("Resta") = RowRetorno.Item("Resta").ToString.Trim
+                    rowcabecera.Item("FECHA_IMPRE") = RowRetorno.Item("FECHA_IMPRE").ToString.Trim
+                    rowcabecera.Item("HORA_IMPRE") = RowRetorno.Item("HORA_IMPRE").ToString.Trim
+                    rowcabecera.Item("USUARIO_IMPRE") = RowRetorno.Item("USUARIO_IMPRE").ToString.Trim
                     If RowRetorno.Item("ESTADO").ToString.Trim = "PE" Then
                         rowcabecera.Item("ESTADO") = "PENDIENTE"
                     Else
@@ -909,6 +972,18 @@ Public Class GestionGuiasSalida
         Dg_Cabecera.Columns("ESTADO").HeaderText = "Estado"
         Dg_Cabecera.Columns("ESTADO").Width = 70
         Dg_Cabecera.Columns("ESTADO").ReadOnly = True
+
+        Dg_Cabecera.Columns("FECHA_IMPRE").HeaderText = "Fecha Impresion"
+        Dg_Cabecera.Columns("FECHA_IMPRE").Width = 70
+        Dg_Cabecera.Columns("FECHA_IMPRE").ReadOnly = True
+
+        Dg_Cabecera.Columns("HORA_IMPRE").HeaderText = "Hora Impresion"
+        Dg_Cabecera.Columns("HORA_IMPRE").Width = 70
+        Dg_Cabecera.Columns("HORA_IMPRE").ReadOnly = True
+
+        Dg_Cabecera.Columns("USUARIO_IMPRE").HeaderText = "Usuario Impresion"
+        Dg_Cabecera.Columns("USUARIO_IMPRE").Width = 70
+        Dg_Cabecera.Columns("USUARIO_IMPRE").ReadOnly = True
 
         Dg_Cabecera.Columns("CODALMACEN_ORIGEN").HeaderText = "Cod Almacen"
         Dg_Cabecera.Columns("CODALMACEN_ORIGEN").Width = 75

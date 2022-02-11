@@ -121,9 +121,9 @@ Public Class AlmacenL
         End Try
     End Function
 
-    Public Function CambiarEstadoGuia(C5_CALMA As String, C5_CTD As String, C5_CNUMDOC As String, ESTADO As String, idpicador As Integer, idfiltro As Integer) As Integer
+    Public Function CambiarEstadoGuia(C5_CALMA As String, C5_CTD As String, C5_CNUMDOC As String, ESTADO As String, idpicador As Integer, idfiltro As Integer, userimpresion As Integer) As Integer
         Try
-            Return objAlmacen.CambiarEstadoGuia(C5_CALMA, C5_CTD, C5_CNUMDOC, ESTADO, idpicador, idfiltro)
+            Return objAlmacen.CambiarEstadoGuia(C5_CALMA, C5_CTD, C5_CNUMDOC, ESTADO, idpicador, idfiltro, userimpresion)
         Catch ex As Exception
             Throw ex
         End Try
@@ -262,6 +262,14 @@ Public Class AlmacenL
         End Try
     End Function
 
+
+    Public Function RegistroArticuloUnitario(CALMA As String, userid As Integer, idsite As Integer, idalmacen As Integer, idrack As Integer, codarticulo As String, serie As String, idposicion As Integer, cantidad As Integer, vencimiento As String) As Integer
+        Try
+            Return objAlmacen.RegistroArticuloUnitario(CALMA, userid, idsite, idalmacen, idrack, codarticulo, serie, idposicion, cantidad, vencimiento)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function ListarPosiciones(idRack As Integer) As DataTable
         Try
             Return objAlmacen.ListarPosiciones(idRack)

@@ -810,6 +810,38 @@ Public Class AlmacenAD
         Return rp
     End Function
 
+    Public Function RegistroArticuloUnitario(CALMA As String, userid As Integer, idsite As Integer, idalmacen As Integer, idrack As Integer, codarticulo As String, serie As String, idposicion As Integer, cantidad As Integer, vencimiento As String) As Integer
+        Dim rp As Integer = 0
+        'Dim RpStore As SqlDataReader = Nothing
+        Dim Comm As New SqlCommand("SP_INGRESO_ARTICULO_UNITARIO", MyBase.Conn)
+        Try
+            Comm.CommandType = CommandType.StoredProcedure
+            With Comm.Parameters
+                .Add("@CALMA", SqlDbType.Char, 4).Value = CALMA
+                .Add("@userid", SqlDbType.Int).Value = userid
+                .Add("@idsite", SqlDbType.Int).Value = idsite
+                .Add("@idalmacen", SqlDbType.Int).Value = idalmacen
+                .Add("@idrack", SqlDbType.Int).Value = idrack
+                .Add("@codarticulo", SqlDbType.Char, 25).Value = codarticulo
+                .Add("@serie", SqlDbType.Char, 18).Value = serie
+                .Add("@idposicion", SqlDbType.Int).Value = idposicion
+                .Add("@cantidad", SqlDbType.Decimal, 16, 2).Value = cantidad
+                .Add("@vencimiento", SqlDbType.Char, 10).Value = vencimiento
+            End With
+            MyBase.Conn.Open()
+            ''RpStore = Comm.ExecuteReader(CommandBehavior.SingleRow)
+            ''If (RpStore.Read()) Then
+            ''    rp = Convert.ToInt32(RpStore.GetValue(0).ToString())
+            ''End If
+            rp = Comm.ExecuteNonQuery
+
+            MyBase.Conn.Close()
+        Catch ex As Exception
+            MyBase.Conn.Close()
+        End Try
+        Return rp
+    End Function
+
     Public Function RegistrarObservacionDelivery(CALMA As String, CTD As String, CNUMDOC As String, idmotivo As Integer) As Integer
         Dim rp As Integer = 0
         Dim Comm As New SqlCommand("SP_CSE_RegistrarObservacionDelivery", MyBase.Conn)
@@ -936,7 +968,7 @@ Public Class AlmacenAD
         Return rp
     End Function
 
-    Public Function CambiarEstadoGuia(C5_CALMA As String, C5_CTD As String, C5_CNUMDOC As String, ESTADO As String, idpicador As Integer, idfiltro As Integer) As Integer
+    Public Function CambiarEstadoGuia(C5_CALMA As String, C5_CTD As String, C5_CNUMDOC As String, ESTADO As String, idpicador As Integer, idfiltro As Integer, userimpresion As Integer) As Integer
         Dim rp As Integer = 0
         Dim RpStore As SqlDataReader = Nothing
         Dim Comm As New SqlCommand("SP_CSE_CAMBIARESTADO_GUIA", MyBase.Conn)
@@ -949,6 +981,7 @@ Public Class AlmacenAD
                 .Add("@ESTADO", SqlDbType.Char, 2).Value = ESTADO
                 .Add("@idpicador", SqlDbType.Int).Value = idpicador
                 .Add("@idfiltro", SqlDbType.Int).Value = idfiltro
+                .Add("@idimpresor", SqlDbType.Int).Value = userimpresion
             End With
             MyBase.Conn.Open()
             rp = Comm.ExecuteNonQuery()

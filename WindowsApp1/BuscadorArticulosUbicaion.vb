@@ -93,9 +93,83 @@ Public Class BuscadorArticulosUbicaion
 
     Public codprod, articuloNombre, lote, vencimiento As String
 
-    Private Sub cmdBuscar_Click(sender As Object, e As EventArgs) Handles cmdBuscar.Click
+    Private Sub cmdGenerarExcel_Click(sender As Object, e As EventArgs) Handles cmdGenerarExcel.Click
+        Try
+            Me.Cursor = Cursors.WaitCursor
+            GridAExcel(DgArticulos)
+            Me.Cursor = Cursors.Default
+        Catch ex As Exception
 
+        End Try
     End Sub
+
+    Function GridAExcel(ByVal ElGrid As DataGridView) As Boolean
+
+        Dim exApp As Object
+        Dim exLibro As Object
+        Dim exHoja As Object
+
+        exApp = CreateObject("Excel.Application")
+        exHoja = exApp.ActiveSheet
+        Try
+
+            exLibro = exApp.Workbooks.Add()
+            exHoja = exLibro.Worksheets(1)
+            Dim NCol As Integer = ElGrid.ColumnCount
+            Dim NRow As Integer = ElGrid.RowCount
+            For i As Integer = 1 To NCol
+                exHoja.Cells.Item(1, i) = ElGrid.Columns(i - 1).HeaderText.ToString()
+            Next
+
+            Dim fecha As String = String.Empty
+
+            For Fila As Integer = 0 To NRow - 1
+                For Col As Integer = 0 To NCol - 1
+                    If Col = 3 Then
+                        fecha = "'" & CStr(ElGrid.Rows(Fila).Cells(Col).Value)
+                        exHoja.Cells.Item(Fila + 2, Col + 1) = CStr(ElGrid.Rows(Fila).Cells(Col).Value)
+                    Else
+                        If Col = 2 Or Col = 14 Or Col = 15 Or Col = 16 Or Col = 17 Then
+                            exHoja.Cells.Item(Fila + 2, Col + 1) = ElGrid.Rows(Fila).Cells(Col).Value
+                        Else
+                            exHoja.Cells.Item(Fila + 2, Col + 1) = CStr(ElGrid.Rows(Fila).Cells(Col).Value)
+                        End If
+                    End If
+                Next
+            Next
+
+            exHoja.Rows.Item(1).Font.Bold = 1
+            exHoja.Rows.Item(1).HorizontalAlignment = 3
+            exHoja.Columns.AutoFit()
+            exHoja.Rows.AutoFit()
+            exApp.Application.Visible = True
+            exHoja = Nothing
+            exLibro = Nothing
+            exApp = Nothing
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error al exportar a Excel")
+            Return False
+        End Try
+
+        Return True
+
+    End Function
+
+    Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
+        Try
+            Dim AgregarArtiUn As New AgregarArticuloUnidad
+            AgregarArticuloUnidad.user_id = usr_id
+            AgregarArticuloUnidad.ShowDialog()
+            If AgregarArticuloUnidad.grabado = True Then
+                ListarArticulos()
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+
 
     Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
         Try
