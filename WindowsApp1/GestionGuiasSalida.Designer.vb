@@ -342,11 +342,12 @@ Partial Class GestionGuiasSalida
         Me.Dg_Detalle.AllowUserToAddRows = False
         Me.Dg_Detalle.AllowUserToDeleteRows = False
         Me.Dg_Detalle.AllowUserToResizeRows = False
-        Me.Dg_Detalle.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.Dg_Detalle.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Dg_Detalle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.Dg_Detalle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.Dg_Detalle.BackgroundColor = System.Drawing.Color.White
-        Me.Dg_Detalle.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+        Me.Dg_Detalle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.ControlDark
         DataGridViewCellStyle4.Font = New System.Drawing.Font("Tahoma", 7.8!)
@@ -356,7 +357,6 @@ Partial Class GestionGuiasSalida
         DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.Dg_Detalle.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.Dg_Detalle.ColumnHeadersHeight = 50
-        Me.Dg_Detalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.Dg_Detalle.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.Dg_Detalle.EnableHeadersVisualStyles = False
         Me.Dg_Detalle.Location = New System.Drawing.Point(17, 293)
