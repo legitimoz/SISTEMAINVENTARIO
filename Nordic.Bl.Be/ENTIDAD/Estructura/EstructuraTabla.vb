@@ -210,6 +210,7 @@
             TablaAlmacen.Columns.Add("Articulo", GetType(String))
             TablaAlmacen.Columns.Add("Lote", GetType(String))
             TablaAlmacen.Columns.Add("Cantidad", GetType(String))
+            TablaAlmacen.Columns.Add("CantidadAnterior", GetType(String))
         Catch ex As Exception
             Throw ex
         End Try

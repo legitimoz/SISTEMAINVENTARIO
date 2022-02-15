@@ -42,8 +42,8 @@ Partial Class TrasladoEntreUbicaciones
         Me.cmb_Rack = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.cmdAceptar = New FontAwesome.Sharp.IconButton()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.cmdAceptar = New FontAwesome.Sharp.IconButton()
         Me.GroupBox1.SuspendLayout()
         CType(Me.Dg_Operaciones, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
@@ -134,7 +134,7 @@ Partial Class TrasladoEntreUbicaciones
         Me.GroupBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.GroupBox1.Location = New System.Drawing.Point(15, 15)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(571, 287)
+        Me.GroupBox1.Size = New System.Drawing.Size(595, 287)
         Me.GroupBox1.TabIndex = 100
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "UBICACION DE ORIGEN"
@@ -258,6 +258,10 @@ Partial Class TrasladoEntreUbicaciones
         Me.Label4.Text = "Ubicacion"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
+        'ErrorProvider1
+        '
+        Me.ErrorProvider1.ContainerControl = Me
+        '
         'cmdAceptar
         '
         Me.cmdAceptar.BackColor = System.Drawing.SystemColors.Control
@@ -281,15 +285,11 @@ Partial Class TrasladoEntreUbicaciones
         Me.cmdAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.cmdAceptar.UseVisualStyleBackColor = False
         '
-        'ErrorProvider1
-        '
-        Me.ErrorProvider1.ContainerControl = Me
-        '
         'TrasladoEntreUbicaciones
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(598, 449)
+        Me.ClientSize = New System.Drawing.Size(622, 449)
         Me.Controls.Add(Me.cmdAceptar)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)

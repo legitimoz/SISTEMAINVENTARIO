@@ -489,20 +489,20 @@ Public Class GestionGuiasSalida
                                 RegistrarSalidaForm.iduser = usr_id
                                 RegistrarSalidaForm.ShowDialog()
                                 If RegistrarSalidaForm.grabado = True Then
-                                    If RegistrarSalidaForm.dtreportePicConfirm.Rows.Count > 0 Then
-                                        Try
-                                            If nrodoc <> "" Then
-                                                Dim reporte As New HojaPickConfirm With {
-                                                        .codigopedido = RegistrarSalidaForm.F5_CNUMPED,
-                                                        .DtDetallePedido = RegistrarSalidaForm.dtreportePicConfirm,
-                                                        .fechapedido = fecha
-                                                    }
-                                                reporte.Show()
-                                            End If
-                                        Catch ex As Exception
-                                            Throw ex
-                                        End Try
-                                    End If
+                                    'If RegistrarSalidaForm.dtreportePicConfirm.Rows.Count > 0 Then
+                                    '    Try
+                                    '        If nrodoc <> "" Then
+                                    '            Dim reporte As New HojaPickConfirm With {
+                                    '                    .codigopedido = RegistrarSalidaForm.F5_CNUMPED,
+                                    '                    .DtDetallePedido = RegistrarSalidaForm.dtreportePicConfirm,
+                                    '                    .fechapedido = fecha
+                                    '                }
+                                    '            reporte.Show()
+                                    '        End If
+                                    '    Catch ex As Exception
+                                    '        Throw ex
+                                    '    End Try
+                                    'End If
                                     ListarGuiasCabecera()
                                 Else
                                     row.Cells("SALIDA").Value = False

@@ -165,7 +165,14 @@ Public Class AlmacenL
         Catch ex As Exception
             Throw ex
         End Try
+    End Function
 
+    Public Function ListarCaneles() As DataTable
+        Try
+            Return objAlmacen.ListarCaneles
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Function
 
     Public Function ListarPedidosDespacho(fechadesde As String, fechahasta As String) As DataTable
