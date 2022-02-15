@@ -826,7 +826,190 @@ Public Class GestionProgramacionDespacho
         Return rp
     End Function
 
+    Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
+        Try
+            Dim contador As Integer = 0
+            Dim fechaactual As DateTime
+            Dim ExternoForm As New AgregarExternoDespacho
+            ExternoForm.ShowDialog()
+            If ExternoForm.grabado = True Then
+                fechaactual = Date.Now
+                If Dg_Cabecera.Rows.Count > 0 Then
+                    contador = Dg_Cabecera.Rows.Count
+                    Dg_Cabecera.Rows.Add()
+                    Dg_Cabecera.Rows(contador).Cells("MARCAR").Value = False
+                    Dg_Cabecera.Rows(contador).Cells("FECHA").Value = fechaactual.Day.ToString + "/" + fechaactual.Month.ToString + "/" + fechaactual.Year.ToString
+                    Dg_Cabecera.Rows(contador).Cells("REPRESENTANTE").Value = ""
+                    Dg_Cabecera.Rows(contador).Cells("FECHA_GUIA").Value = fechaactual.Day.ToString + "/" + fechaactual.Month.ToString + "/" + fechaactual.Year.ToString
+                    Dg_Cabecera.Rows(contador).Cells("HORA").Value = fechaactual.ToString("hh:mm:ss")
 
+                    Dg_Cabecera.Rows(contador).Cells("CONDICION").Value = ""
+                    Dg_Cabecera.Rows(contador).Cells("HORA_GUIA").Value = fechaactual.ToString("hh:mm:ss")
+                    Dg_Cabecera.Rows(contador).Cells("COD_PED").Value = ExternoForm.txt_documento.Text
+                    Dg_Cabecera.Rows(contador).Cells("NRO_GUIA").Value = ExternoForm.txt_documento.Text
+                    Dg_Cabecera.Rows(contador).Cells("RUC").Value = ExternoForm.txt_ruccliente.Text
+                    Dg_Cabecera.Rows(contador).Cells("NOM_CLIENTE").Value = ExternoForm.txt_nombrecliente.Text
+                    Dg_Cabecera.Rows(contador).Cells("DIRECCION_ENTREGA").Value = ExternoForm.txt_direccion.Text
+                    Dg_Cabecera.Rows(contador).Cells("UBIGEO").Value = ""
+                    Dg_Cabecera.Rows(contador).Cells("PROVINCIA").Value = ExternoForm.txt_provincia.Text
+                    Dg_Cabecera.Rows(contador).Cells("DEPARTAMENTO").Value = ExternoForm.txt_departamento.Text
+                    Dg_Cabecera.Rows(contador).Cells("ESTADO").Value = "RECEPCIONADO"
+                    Dg_Cabecera.Rows(contador).Cells("SERIE").Value = ""
+                    Dg_Cabecera.Rows(contador).Cells("COMENTARIO").Value = ""
+                    Dg_Cabecera.Rows(contador).Cells("SITUACION").Value = "VIGENTE"
+
+                    Dg_Cabecera.Rows(contador).Cells("FECHAREPCECION").Value = fechaactual.Day.ToString + "/" + fechaactual.Month.ToString + "/" + fechaactual.Year.ToString
+                    Dg_Cabecera.Rows(contador).Cells("HORARECEPCION").Value = fechaactual.ToString("hh:mm:ss")
+                    Dg_Cabecera.Rows(contador).Cells("C5_CTD").Value = ""
+                    Dg_Cabecera.Rows(contador).Cells("C5_CALMA").Value = ""
+                    Dg_Cabecera.Rows(contador).Cells("ESTADO").Value = "RECEPCIONADO"
+                    If Dg_Cabecera.Rows(contador).Cells("ESTADO").Value.ToString.Trim = "PENDIENTE DE REPCEPCION" Then
+                        Dg_Cabecera.Rows(contador).DefaultCellStyle.BackColor = Color.LightPink
+                    Else
+                        If Dg_Cabecera.Rows(contador).Cells("ESTADO").Value.ToString.Trim = "RECEPCIONADO" Then
+                            Dg_Cabecera.Rows(contador).DefaultCellStyle.BackColor = Color.LightGreen
+                        Else
+                            If Dg_Cabecera.Rows(contador).Cells("ESTADO").Value.ToString.Trim = "REPROGRAMADO" Then
+                                Dg_Cabecera.Rows(contador).DefaultCellStyle.BackColor = Color.LightBlue
+                            End If
+                        End If
+                    End If
+                    If ExternoForm.txt_provincia.Text.ToString.Trim = "CALLAO" And ExternoForm.txt_departamento.Text.ToString = "CALLAO" Then
+                        Dg_Cabecera.Rows(contador).Cells("LIMA_PROV").Value = "LIMA"
+                    Else
+                        If ExternoForm.txt_provincia.Text.ToString.Trim = "LIMA" And ExternoForm.txt_departamento.Text.ToString = "LIMA" Then
+                            Dg_Cabecera.Rows(contador).Cells("LIMA_PROV").Value = "LIMA"
+                        Else
+                            Dg_Cabecera.Rows(contador).Cells("LIMA_PROV").Value = "PROVINCIA"
+                        End If
+                    End If
+                    Dg_Cabecera.Rows(contador).Cells("DISTRITO").Value = ExternoForm.txt_distrito.Text
+                    Dg_Cabecera.Rows(contador).Cells("CANAL").Value = ExternoForm.cmb_canal.Text.ToString.Trim
+
+                    If ExternoForm.txt_ruccliente.Text.ToString.Trim = "20131257750" And ExternoForm.txt_direccion.Text.ToString.Trim = "PJE. EL SOL 400 CDRA 35 AV. ARGENTINA - CALLAO - CALLAO - CALLAO" Then
+                        Dg_Cabecera.Rows(contador).Cells("CANAL").Value = "SALOG"
+                    Else
+                        If ExternoForm.txt_ruccliente.Text.ToString.Trim = "20556281140" Then
+                            Dg_Cabecera.Rows(contador).Cells("CANAL").Value = "IBT"
+                        Else
+                            If ExternoForm.txt_ruccliente.Text.ToString.Trim = "20601054001" Then
+                                Dg_Cabecera.Rows(contador).Cells("CANAL").Value = "ISCO"
+                            Else
+                                If ExternoForm.txt_ruccliente.Text.ToString.Trim = "20399497257" Then
+                                    Dg_Cabecera.Rows(contador).Cells("CANAL").Value = "DISTRIBUIDOR"
+                                End If
+                            End If
+                        End If
+                    End If
+
+                    Dg_Cabecera.Rows(contador).Cells("TRANSPORTE").Value = ""
+                    Dg_Cabecera.Rows(contador).Cells("M3UN").Value = ExternoForm.txt_volumen.Text.Replace(",", ".")
+                    Dg_Cabecera.Rows(contador).Cells("IMPORTE").Value = CType(ExternoForm.txt_importe.Text.ToString, Decimal)
+                    Dg_Cabecera.Rows(contador).Cells("TIEMPOENTREGA").Value = ObtenerTiempoEntrega(Dg_Cabecera.Rows(contador).Cells("CANAL").Value.ToString.Trim)
+
+                    If Dg_Cabecera.Rows(contador).Cells("M3UN").Value <> 0 Then
+                        Dim cal As Decimal = 0
+                        cal = 0.012 / 3
+                        If Dg_Cabecera.Rows(contador).Cells("M3UN").Value < cal Then
+                            Dg_Cabecera.Rows(contador).Cells("M3FIN").Value = 0.005
+                        Else
+                            Dg_Cabecera.Rows(contador).Cells("M3FIN").Value = Dg_Cabecera.Rows(contador).Cells("M3UN").Value * 1.4
+                        End If
+                    Else
+                        Dg_Cabecera.Rows(contador).Cells("M3FIN").Value = 0
+                    End If
+
+                    Dg_Cabecera.Rows(contador).Cells("DESTINO").Value = Dg_Cabecera.Rows(contador).Cells("FECHA_GUIA").Value.ToString + " " + Dg_Cabecera.Rows(contador).Cells("DIRECCION_ENTREGA").Value.ToString
+
+                    Dim RP As New List(Of String)
+                    RP = ObtenerRuta(Dg_Cabecera.Rows(contador).Cells("DISTRITO").Value.ToString.Trim)
+                    If RP.Count > 0 Then
+                        Dg_Cabecera.Rows(contador).Cells("RUTA").Value = RP.ElementAt(0)
+                        Dg_Cabecera.Rows(contador).Cells("DETALLE").Value = RP.ElementAt(1)
+                    End If
+
+                    If Dg_Cabecera.Rows(contador).Cells("CANAL").Value.ToString.Trim = "SALOG" Then
+                        Dg_Cabecera.Rows(contador).Cells("RESTRICCION").Value = "Cita - TODO EL DIA"
+                    Else
+                        If Dg_Cabecera.Rows(contador).Cells("CANAL").Value.ToString.Trim = "IBT" And Dg_Cabecera.Rows(contador).Cells("DISTRITO").Value.ToString.Trim = "PUNTA HERMOSA" Then
+                            Dg_Cabecera.Rows(contador).Cells("RESTRICCION").Value = "Cita - atencion hasta las 3 PM"
+                        Else
+                            If Dg_Cabecera.Rows(contador).Cells("DISTRITO").Value.ToString.Trim = "CHORRILLOS" And Dg_Cabecera.Rows(contador).Cells("RUC").Value.ToString.Trim = "20604890617" And Dg_Cabecera.Rows(contador).Cells("CANAL").Value.ToString.Trim = "INKAFARMA/MIFARMA" Then
+                                Dg_Cabecera.Rows(contador).Cells("RESTRICCION").Value = "Cita - Exclusiva"
+                            Else
+                                If Dg_Cabecera.Rows(contador).Cells("DISTRITO").Value.ToString.Trim = "SANTA ANITA" And Dg_Cabecera.Rows(contador).Cells("RUC").Value.ToString.Trim = "20604890617" And Dg_Cabecera.Rows(contador).Cells("CANAL").Value.ToString.Trim = "INKAFARMA/MIFARMA" Then
+                                    Dg_Cabecera.Rows(contador).Cells("RESTRICCION").Value = "Cita"
+                                Else
+                                    If Dg_Cabecera.Rows(contador).Cells("DISTRITO").Value.ToString.Trim = "SANTA ANITA" And Dg_Cabecera.Rows(contador).Cells("RUC").Value.ToString.Trim = "20100054184" And Dg_Cabecera.Rows(contador).Cells("CANAL").Value.ToString.Trim = "CLINICAS TOP" Then
+                                        Dg_Cabecera.Rows(contador).Cells("RESTRICCION").Value = "Cita - atencion hasta las 2 p.m."
+                                    Else
+                                        If Dg_Cabecera.Rows(contador).Cells("CANAL").Value.ToString.Trim = "HORIZONTAL" Then
+                                            Dg_Cabecera.Rows(contador).Cells("RESTRICCION").Value = "S/R"
+                                        Else
+                                            If Dg_Cabecera.Rows(contador).Cells("CANAL").Value.ToString.Trim = "HORIZONTAL" And Dg_Cabecera.Rows(contador).Cells("RUC").Value.ToString.Trim = "20524524067" Then
+                                                Dg_Cabecera.Rows(contador).Cells("RESTRICCION").Value = "LUNES A VIERNES 8AM A 5PM"
+                                            Else
+                                                If Dg_Cabecera.Rows(contador).Cells("CANAL").Value.ToString.Trim = "CLINICAS" And Dg_Cabecera.Rows(contador).Cells("RUC").Value.ToString.Trim = "20101267467" Then
+                                                    Dg_Cabecera.Rows(contador).Cells("RESTRICCION").Value = "LUNES A VIERNES 8:00 AM A 1:00 PM"
+                                                Else
+                                                    If Dg_Cabecera.Rows(contador).Cells("CANAL").Value.ToString.Trim = "CLINICAS" And Dg_Cabecera.Rows(contador).Cells("RUC").Value.ToString.Trim = "20100251176" Then
+                                                        Dg_Cabecera.Rows(contador).Cells("RESTRICCION").Value = "LUNES A VIERNES 8AM A 5PM"
+                                                    Else
+                                                        If Dg_Cabecera.Rows(contador).Cells("CANAL").Value.ToString.Trim = "HORIZONTAL" And Dg_Cabecera.Rows(contador).Cells("RUC").Value.ToString.Trim = "20263805021" Then
+                                                            Dg_Cabecera.Rows(contador).Cells("RESTRICCION").Value = "LUNES A VIERNES 8AM A 6PM"
+                                                        Else
+                                                            If Dg_Cabecera.Rows(contador).Cells("CANAL").Value.ToString.Trim = "HORIZONTAL" And Dg_Cabecera.Rows(contador).Cells("RUC").Value.ToString.Trim = "20544478096" Then
+                                                                Dg_Cabecera.Rows(contador).Cells("RESTRICCION").Value = "LUNES A VIERNES 8AM A 6PM"
+                                                            Else
+                                                                If Dg_Cabecera.Rows(contador).Cells("DISTRITO").Value.ToString.Trim = "LINCE" And Dg_Cabecera.Rows(contador).Cells("RUC").Value.ToString.Trim = "20492080811" Then
+                                                                    Dg_Cabecera.Rows(contador).Cells("RESTRICCION").Value = "LUNES A VIERNES DE 08:30 AM HASTA LAS 04:00 PM"
+                                                                Else
+                                                                    If Dg_Cabecera.Rows(contador).Cells("DISTRITO").Value.ToString.Trim = "MIRAFLORES" And Dg_Cabecera.Rows(contador).Cells("RUC").Value.ToString.Trim = "20492080811" Then
+                                                                        Dg_Cabecera.Rows(contador).Cells("RESTRICCION").Value = "LUNES A VIERNES DE 08:30 AM HASTA LAS 12:30 PM"
+                                                                    Else
+                                                                        If Dg_Cabecera.Rows(contador).Cells("DISTRITO").Value.ToString.Trim = "BREÑA" And Dg_Cabecera.Rows(contador).Cells("RUC").Value.ToString.Trim = "20131368403" Then
+                                                                            Dg_Cabecera.Rows(contador).Cells("RESTRICCION").Value = "LUNES A SABADO DE 08:00 AM HASTA LAS 02:00 PM"
+                                                                        Else
+                                                                            If Dg_Cabecera.Rows(contador).Cells("DISTRITO").Value.ToString.Trim = "MAGDALENA DEL MAR" And Dg_Cabecera.Rows(contador).Cells("RUC").Value.ToString.Trim = "20159855938" Then
+                                                                                Dg_Cabecera.Rows(contador).Cells("RESTRICCION").Value = "LUNES A VIERNES DE 08:00 AM HASTA LAS 12:00 PM"
+                                                                            Else
+                                                                                If Dg_Cabecera.Rows(contador).Cells("DISTRITO").Value.ToString.Trim = "LIMA" And Dg_Cabecera.Rows(contador).Cells("RUC").Value.ToString.Trim = "20100025168" Then
+                                                                                    Dg_Cabecera.Rows(contador).Cells("RESTRICCION").Value = "LUNES A SABADO DE 08:00 AM HASTA LAS 02:00 PM"
+                                                                                Else
+                                                                                    If Dg_Cabecera.Rows(contador).Cells("DISTRITO").Value.ToString.Trim = "JESUS MARIA" And Dg_Cabecera.Rows(contador).Cells("RUC").Value.ToString.Trim = "20101267467" Then
+                                                                                        Dg_Cabecera.Rows(contador).Cells("RESTRICCION").Value = "LUNES A VIERNES DE 08:30 AM HASTA LAS 11:30 AM"
+                                                                                    Else
+                                                                                        If Dg_Cabecera.Rows(contador).Cells("DISTRITO").Value.ToString.Trim = "LIMA" And Dg_Cabecera.Rows(contador).Cells("RUC").Value.ToString.Trim = "20562616561" Then
+                                                                                            'Dim nombredia As String = Date.Now.ToString("dddd").Trim
+                                                                                            'If nombredia = "Lunes" Then
+                                                                                            Dg_Cabecera.Rows(contador).Cells("RESTRICCION").Value = "LUNES 02:00 PM HASTA 05:00 PM / MIERCOLES 09:00 AM HASTA 12:00 AM / VIERNES  09:00 AM HASTA 12:00 AM"
+                                                                                            'End If
+                                                                                        Else
+                                                                                            Dg_Cabecera.Rows(contador).Cells("RESTRICCION").Value = "S/R"
+                                                                                        End If
+                                                                                    End If
+                                                                                End If
+                                                                            End If
+                                                                        End If
+                                                                    End If
+                                                                End If
+                                                            End If
+                                                        End If
+                                                    End If
+                                                End If
+                                            End If
+                                        End If
+                                    End If
+                                End If
+                            End If
+                        End If
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex 
+        End Try
+    End Sub
 
     Public Sub ConfirmarRecepcion()
         Try

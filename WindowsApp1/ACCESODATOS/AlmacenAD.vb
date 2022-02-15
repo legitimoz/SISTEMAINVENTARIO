@@ -493,6 +493,27 @@ Public Class AlmacenAD
 
     End Function
 
+    Public Function ListarCaneles() As DataTable
+
+        Try
+            Dim com As New SqlCommand("SP_CSE_LISTARCANALES", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            Throw ex
+            MyBase.Conn.Close()
+        End Try
+
+    End Function
+
+
+
     Public Function ListarPedidosDespacho(fechadesde As String, fechahasta As String) As DataTable
 
         Try

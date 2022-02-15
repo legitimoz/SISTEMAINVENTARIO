@@ -16,7 +16,7 @@
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
@@ -144,6 +144,12 @@
       <DependentUpon>AgregarCantidadPosicion.vb</DependentUpon>
     </Compile>
     <Compile Include="AgregarCantidadPosicion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AgregarExternoDespacho.Designer.vb">
+      <DependentUpon>AgregarExternoDespacho.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarExternoDespacho.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AgregarGuiaDespacho.Designer.vb">
@@ -764,6 +770,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AgregarCantidadPosicion.resx">
       <DependentUpon>AgregarCantidadPosicion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AgregarExternoDespacho.resx">
+      <DependentUpon>AgregarExternoDespacho.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AgregarGuiaDespacho.resx">
       <DependentUpon>AgregarGuiaDespacho.vb</DependentUpon>

@@ -85,7 +85,6 @@ Public Class TrasladoEntreUbicaciones
                     End If
 
                 End If
-
             Else
 
             End If
@@ -119,6 +118,7 @@ Public Class TrasladoEntreUbicaciones
                     Rowgrid.Item("Articulo") = Rowop.Item("Articulo")
                     Rowgrid.Item("Lote") = Rowop.Item("Lote")
                     Rowgrid.Item("Cantidad") = Rowop.Item("Cantidad")
+                    Rowgrid.Item("CantidadAnterior") = Rowop.Item("Cantidad")
                     Rowgrid.Item("Operacion") = Rowop.Item("Operacion")
                     Rowgrid.Item("idoperacion") = Rowop.Item("idoperacion")
                     dt_operaciones.Rows.Add(Rowgrid)
@@ -163,6 +163,7 @@ Public Class TrasladoEntreUbicaciones
         Dg_Operaciones.Columns("Cantidad").Width = 100
         Dg_Operaciones.Columns("Cantidad").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
+        Dg_Operaciones.Columns("CantidadAnterior").Visible = False
 
     End Sub
 
@@ -197,7 +198,6 @@ Public Class TrasladoEntreUbicaciones
     End Sub
 
     Public Function LlamarListarPosiciones() As DataTable
-
         Dim dtretono As DataTable
         Try
             dtretono = almacenobj.ListarPosiciones(idRack).Copy
@@ -227,10 +227,6 @@ Public Class TrasladoEntreUbicaciones
         End Try
     End Sub
 
-    Private Sub Label6_Click(sender As Object, e As EventArgs) Handles Label6.Click
-
-    End Sub
-
     Private Sub txt_codarti_TextChanged(sender As Object, e As EventArgs) Handles txt_codarti.TextChanged
         Buscar()
     End Sub
@@ -239,13 +235,51 @@ Public Class TrasladoEntreUbicaciones
         Buscar()
     End Sub
 
+    Private Sub Dg_Operaciones_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles Dg_Operaciones.CellEndEdit
+        Try
+            If e.RowIndex >= 0 Then
+                If e.ColumnIndex = 6 Then
+                    ErrorProvider1.SetError(Dg_Operaciones, "")
+                    If ValidarNumerico(Dg_Operaciones.Rows(e.RowIndex).Cells(6).EditedFormattedValue.ToString) = False Then
+                        ErrorProvider1.SetError(Dg_Operaciones, "Nueva Cantidad debe ser un valor numérico")
+                        Dg_Operaciones.Rows(e.RowIndex).Cells(6).Value = Dg_Operaciones.Rows(e.RowIndex).Cells(7).Value
+                    Else
+                        Dim Nueva As Integer = CType(Dg_Operaciones.Rows(e.RowIndex).Cells(6).EditedFormattedValue, Integer)
+                        Dim Anterior As Integer = CType(Dg_Operaciones.Rows(e.RowIndex).Cells(7).Value, Integer)
+                        If Nueva > Anterior Then
+                            ErrorProvider1.SetError(Dg_Operaciones, "Nueva Cantidad no puede superar a cantidad Anterior")
+                            Dg_Operaciones.Rows(e.RowIndex).Cells(6).Value = Dg_Operaciones.Rows(e.RowIndex).Cells(7).Value
+                        Else
+                            If Nueva <= 0 Then
+                                ErrorProvider1.SetError(Dg_Operaciones, "Nueva Cantidad debe ser mayor a 0")
+                                Dg_Operaciones.Rows(e.RowIndex).Cells(6).Value = Dg_Operaciones.Rows(e.RowIndex).Cells(7).Value
+                            End If
+                        End If
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Public Function ValidarNumerico(Dato As String) As Boolean
+        Dim canConvert As Boolean
+        Try
+            Dim convertido As Integer
+            canConvert = Integer.TryParse(Dato, convertido)
+
+        Catch ex As Exception
+
+        End Try
+        Return canConvert
+    End Function
+
     Private Sub cmb_Rack_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmb_Rack.SelectionChangeCommitted
         Try
             idRack = cmb_Rack.SelectedValue
             ListarUbicacion()
-
         Catch ex As Exception
-
+            Throw ex
         End Try
     End Sub
 
@@ -253,7 +287,6 @@ Public Class TrasladoEntreUbicaciones
         Try
             Dim dtretorno As New DataTable
             dtretorno = LlamarListarPosiciones()
-
             If dtretorno.Rows.Count > 0 Then
                 dtposiciones = dtretorno
                 cmb_posiciones.DataSource = dtposiciones
@@ -261,7 +294,7 @@ Public Class TrasladoEntreUbicaciones
                 cmb_posiciones.DisplayMember = "esp_codigoespacio"
             End If
         Catch ex As Exception
-
+            Throw ex
         End Try
     End Sub
 End Class

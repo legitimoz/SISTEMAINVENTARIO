@@ -53,6 +53,7 @@ Partial Class BuscadorArticulosUbicaion
         Me.cmdBuscar = New FontAwesome.Sharp.IconButton()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.DgArticulos = New System.Windows.Forms.DataGridView()
+        Me.savedialog_Excel = New System.Windows.Forms.SaveFileDialog()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -400,4 +401,5 @@ Partial Class BuscadorArticulosUbicaion
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
     Friend WithEvents ToolStripButton2 As ToolStripButton
     Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
+    Friend WithEvents savedialog_Excel As SaveFileDialog
 End Class
