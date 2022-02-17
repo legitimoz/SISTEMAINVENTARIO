@@ -24,11 +24,21 @@ Partial Class GestionGuiasSalida
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GestionGuiasSalida))
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.txt_total = New System.Windows.Forms.Label()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.txt_porcentaje = New System.Windows.Forms.Label()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.txt_picados = New System.Windows.Forms.Label()
+        Me.txt_impresos = New System.Windows.Forms.Label()
+        Me.txt_pendientes = New System.Windows.Forms.Label()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.cmdVerReporte = New System.Windows.Forms.ToolStripButton()
         Me.separador5 = New System.Windows.Forms.ToolStripSeparator()
@@ -70,6 +80,16 @@ Partial Class GestionGuiasSalida
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.txt_total)
+        Me.Panel1.Controls.Add(Me.Button5)
+        Me.Panel1.Controls.Add(Me.txt_porcentaje)
+        Me.Panel1.Controls.Add(Me.Button4)
+        Me.Panel1.Controls.Add(Me.txt_picados)
+        Me.Panel1.Controls.Add(Me.txt_impresos)
+        Me.Panel1.Controls.Add(Me.txt_pendientes)
+        Me.Panel1.Controls.Add(Me.Button3)
+        Me.Panel1.Controls.Add(Me.Button2)
+        Me.Panel1.Controls.Add(Me.Button1)
         Me.Panel1.Controls.Add(Me.ToolStrip1)
         Me.Panel1.Controls.Add(Me.dt_desde)
         Me.Panel1.Controls.Add(Me.dt_hasta)
@@ -83,8 +103,117 @@ Partial Class GestionGuiasSalida
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1291, 111)
+        Me.Panel1.Size = New System.Drawing.Size(1291, 153)
         Me.Panel1.TabIndex = 47
+        '
+        'txt_total
+        '
+        Me.txt_total.AutoSize = True
+        Me.txt_total.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
+        Me.txt_total.Location = New System.Drawing.Point(1250, 48)
+        Me.txt_total.Name = "txt_total"
+        Me.txt_total.Size = New System.Drawing.Size(12, 13)
+        Me.txt_total.TabIndex = 95
+        Me.txt_total.Text = "-"
+        '
+        'Button5
+        '
+        Me.Button5.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.Button5.Font = New System.Drawing.Font("Tahoma", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.Button5.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.Button5.Location = New System.Drawing.Point(1086, 45)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(157, 20)
+        Me.Button5.TabIndex = 94
+        Me.Button5.Text = "GUIAS RECEPCIONADAS"
+        Me.Button5.UseVisualStyleBackColor = False
+        '
+        'txt_porcentaje
+        '
+        Me.txt_porcentaje.AutoSize = True
+        Me.txt_porcentaje.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
+        Me.txt_porcentaje.Location = New System.Drawing.Point(1250, 132)
+        Me.txt_porcentaje.Name = "txt_porcentaje"
+        Me.txt_porcentaje.Size = New System.Drawing.Size(12, 13)
+        Me.txt_porcentaje.TabIndex = 93
+        Me.txt_porcentaje.Text = "-"
+        '
+        'Button4
+        '
+        Me.Button4.BackColor = System.Drawing.Color.White
+        Me.Button4.Font = New System.Drawing.Font("Tahoma", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.Button4.Location = New System.Drawing.Point(1086, 129)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(157, 20)
+        Me.Button4.TabIndex = 92
+        Me.Button4.Text = "% AVANCE"
+        Me.Button4.UseVisualStyleBackColor = False
+        '
+        'txt_picados
+        '
+        Me.txt_picados.AutoSize = True
+        Me.txt_picados.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
+        Me.txt_picados.Location = New System.Drawing.Point(1250, 111)
+        Me.txt_picados.Name = "txt_picados"
+        Me.txt_picados.Size = New System.Drawing.Size(12, 13)
+        Me.txt_picados.TabIndex = 91
+        Me.txt_picados.Text = "-"
+        '
+        'txt_impresos
+        '
+        Me.txt_impresos.AutoSize = True
+        Me.txt_impresos.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
+        Me.txt_impresos.Location = New System.Drawing.Point(1250, 90)
+        Me.txt_impresos.Name = "txt_impresos"
+        Me.txt_impresos.Size = New System.Drawing.Size(12, 13)
+        Me.txt_impresos.TabIndex = 90
+        Me.txt_impresos.Text = "-"
+        '
+        'txt_pendientes
+        '
+        Me.txt_pendientes.AutoSize = True
+        Me.txt_pendientes.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
+        Me.txt_pendientes.Location = New System.Drawing.Point(1250, 69)
+        Me.txt_pendientes.Name = "txt_pendientes"
+        Me.txt_pendientes.Size = New System.Drawing.Size(12, 13)
+        Me.txt_pendientes.TabIndex = 89
+        Me.txt_pendientes.Text = "-"
+        '
+        'Button3
+        '
+        Me.Button3.BackColor = System.Drawing.Color.Crimson
+        Me.Button3.Font = New System.Drawing.Font("Tahoma", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.Button3.ForeColor = System.Drawing.Color.White
+        Me.Button3.Location = New System.Drawing.Point(1086, 108)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(157, 20)
+        Me.Button3.TabIndex = 88
+        Me.Button3.Text = "PICADO"
+        Me.Button3.UseVisualStyleBackColor = False
+        '
+        'Button2
+        '
+        Me.Button2.BackColor = System.Drawing.SystemColors.MenuHighlight
+        Me.Button2.Font = New System.Drawing.Font("Tahoma", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.Button2.ForeColor = System.Drawing.Color.White
+        Me.Button2.Location = New System.Drawing.Point(1086, 87)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(157, 20)
+        Me.Button2.TabIndex = 87
+        Me.Button2.Text = "IMPRESO"
+        Me.Button2.UseVisualStyleBackColor = False
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.OliveDrab
+        Me.Button1.Font = New System.Drawing.Font("Tahoma", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.Button1.ForeColor = System.Drawing.Color.White
+        Me.Button1.Location = New System.Drawing.Point(1086, 66)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(157, 20)
+        Me.Button1.TabIndex = 86
+        Me.Button1.Text = "PENDIENTES"
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'ToolStrip1
         '
@@ -312,9 +441,9 @@ Partial Class GestionGuiasSalida
         Me.Panel2.Controls.Add(Me.Dg_Detalle)
         Me.Panel2.Controls.Add(Me.Label2)
         Me.Panel2.Controls.Add(Me.Label1)
-        Me.Panel2.Location = New System.Drawing.Point(0, 111)
+        Me.Panel2.Location = New System.Drawing.Point(0, 153)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1291, 533)
+        Me.Panel2.Size = New System.Drawing.Size(1291, 491)
         Me.Panel2.TabIndex = 48
         '
         'Dg_Cabecera
@@ -328,13 +457,13 @@ Partial Class GestionGuiasSalida
         Me.Dg_Cabecera.BackgroundColor = System.Drawing.Color.White
         Me.Dg_Cabecera.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.Dg_Cabecera.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Dg_Cabecera.Location = New System.Drawing.Point(17, 19)
+        Me.Dg_Cabecera.Location = New System.Drawing.Point(17, 33)
         Me.Dg_Cabecera.MultiSelect = False
         Me.Dg_Cabecera.Name = "Dg_Cabecera"
         Me.Dg_Cabecera.RowHeadersVisible = False
         Me.Dg_Cabecera.RowTemplate.Height = 24
         Me.Dg_Cabecera.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.Dg_Cabecera.Size = New System.Drawing.Size(1259, 254)
+        Me.Dg_Cabecera.Size = New System.Drawing.Size(1259, 268)
         Me.Dg_Cabecera.TabIndex = 25
         '
         'Dg_Detalle
@@ -348,44 +477,44 @@ Partial Class GestionGuiasSalida
         Me.Dg_Detalle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.Dg_Detalle.BackgroundColor = System.Drawing.Color.White
         Me.Dg_Detalle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.ControlDark
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Tahoma", 7.8!)
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ControlDark
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Dg_Detalle.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlDark
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Tahoma", 7.8!)
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ControlDark
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Dg_Detalle.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.Dg_Detalle.ColumnHeadersHeight = 50
         Me.Dg_Detalle.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.Dg_Detalle.EnableHeadersVisualStyles = False
-        Me.Dg_Detalle.Location = New System.Drawing.Point(17, 293)
+        Me.Dg_Detalle.Location = New System.Drawing.Point(17, 325)
         Me.Dg_Detalle.Margin = New System.Windows.Forms.Padding(4)
         Me.Dg_Detalle.MultiSelect = False
         Me.Dg_Detalle.Name = "Dg_Detalle"
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.ControlDark
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Tahoma", 7.8!)
-        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.ControlDark
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Dg_Detalle.RowHeadersDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ControlDark
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Tahoma", 7.8!)
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlDark
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Dg_Detalle.RowHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.Dg_Detalle.RowHeadersVisible = False
-        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.ControlLightLight
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Dg_Detalle.RowsDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ControlLightLight
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.Dg_Detalle.RowsDefaultCellStyle = DataGridViewCellStyle3
         Me.Dg_Detalle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.Dg_Detalle.Size = New System.Drawing.Size(1259, 202)
+        Me.Dg_Detalle.Size = New System.Drawing.Size(1259, 128)
         Me.Dg_Detalle.TabIndex = 24
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(14, 276)
+        Me.Label2.Location = New System.Drawing.Point(14, 304)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(80, 13)
@@ -395,7 +524,7 @@ Partial Class GestionGuiasSalida
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(14, 3)
+        Me.Label1.Location = New System.Drawing.Point(11, 17)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(44, 13)
@@ -453,4 +582,14 @@ Partial Class GestionGuiasSalida
     Friend WithEvents Label4 As Label
     Friend WithEvents combo_Almacen As ComboBox
     Friend WithEvents miniToolStrip As ToolStrip
+    Friend WithEvents Button3 As Button
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Button1 As Button
+    Friend WithEvents txt_porcentaje As Label
+    Friend WithEvents Button4 As Button
+    Friend WithEvents txt_picados As Label
+    Friend WithEvents txt_impresos As Label
+    Friend WithEvents txt_pendientes As Label
+    Friend WithEvents txt_total As Label
+    Friend WithEvents Button5 As Button
 End Class

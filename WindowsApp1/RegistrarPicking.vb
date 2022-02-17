@@ -5,6 +5,7 @@
     Public grabado As Boolean = False
     Public idpicador As Integer = 0
     Public idfiltro As Integer = 0
+    Public nrodocM As String
     Private Sub RegistrarPicking_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CargaInicial()
     End Sub
@@ -21,11 +22,13 @@
     Private Sub cmdAceptar_Click(sender As Object, e As EventArgs) Handles cmdAceptar.Click
         Try
             If dtfiltro.Rows.Count > 0 And dtpicador.Rows.Count > 0 Then
-                idfiltro = cmb_filtro.SelectedValue
-                idpicador = cmb_picador.SelectedValue
-                If idfiltro <> 0 And idpicador <> 0 Then
-                    grabado = True
-                    Me.Close()
+                If MessageBox.Show("Está seguro que el picador " + cmb_picador.Text + " y el Filtro " + cmb_filtro.Text + " es el correcto para la guia " + nrodocM + " ?", Me.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                    idfiltro = cmb_filtro.SelectedValue
+                    idpicador = cmb_picador.SelectedValue
+                    If idfiltro <> 0 And idpicador <> 0 Then
+                        grabado = True
+                        Me.Close()
+                    End If
                 End If
             End If
         Catch ex As Exception

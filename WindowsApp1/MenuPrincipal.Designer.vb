@@ -49,6 +49,7 @@ Partial Class MenuPrincipal
         Me.ProgramacionDespachoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExcelRotuladosProvinciaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GenerarAbastecimientoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RotulosProvinciaAnteriorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReportesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PresupuestosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReporteDeDespachosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -65,7 +66,6 @@ Partial Class MenuPrincipal
         Me.ArticulosSinUbicacionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.KardexArticuloToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CerrarSesionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.RotulosProvinciaAnteriorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -84,35 +84,35 @@ Partial Class MenuPrincipal
         '
         Me.ToolStripMenuItem2.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArticulosToolStripMenuItem, Me.AlmacenesToolStripMenuItem, Me.PickConfirmToolStripMenuItem, Me.GuiasToolStripMenuItem})
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(106, 24)
-        Me.ToolStripMenuItem2.Text = "Mantenimientos"
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(66, 24)
+        Me.ToolStripMenuItem2.Text = "Almacen"
         '
         'ArticulosToolStripMenuItem
         '
         Me.ArticulosToolStripMenuItem.Image = CType(resources.GetObject("ArticulosToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ArticulosToolStripMenuItem.Name = "ArticulosToolStripMenuItem"
-        Me.ArticulosToolStripMenuItem.Size = New System.Drawing.Size(179, 26)
+        Me.ArticulosToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
         Me.ArticulosToolStripMenuItem.Text = "Articulos"
         '
         'AlmacenesToolStripMenuItem
         '
         Me.AlmacenesToolStripMenuItem.Image = CType(resources.GetObject("AlmacenesToolStripMenuItem.Image"), System.Drawing.Image)
         Me.AlmacenesToolStripMenuItem.Name = "AlmacenesToolStripMenuItem"
-        Me.AlmacenesToolStripMenuItem.Size = New System.Drawing.Size(179, 26)
+        Me.AlmacenesToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
         Me.AlmacenesToolStripMenuItem.Text = "Gestion Almacenes"
         '
         'PickConfirmToolStripMenuItem
         '
         Me.PickConfirmToolStripMenuItem.Image = CType(resources.GetObject("PickConfirmToolStripMenuItem.Image"), System.Drawing.Image)
         Me.PickConfirmToolStripMenuItem.Name = "PickConfirmToolStripMenuItem"
-        Me.PickConfirmToolStripMenuItem.Size = New System.Drawing.Size(179, 26)
+        Me.PickConfirmToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
         Me.PickConfirmToolStripMenuItem.Text = "Gestion Pedidos"
         '
         'GuiasToolStripMenuItem
         '
         Me.GuiasToolStripMenuItem.Image = CType(resources.GetObject("GuiasToolStripMenuItem.Image"), System.Drawing.Image)
         Me.GuiasToolStripMenuItem.Name = "GuiasToolStripMenuItem"
-        Me.GuiasToolStripMenuItem.Size = New System.Drawing.Size(179, 26)
+        Me.GuiasToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
         Me.GuiasToolStripMenuItem.Text = "Gestion Guias "
         '
         'SeguimientoToolStripMenuItem
@@ -254,9 +254,16 @@ Partial Class MenuPrincipal
         '
         'GenerarAbastecimientoToolStripMenuItem
         '
+        Me.GenerarAbastecimientoToolStripMenuItem.Image = CType(resources.GetObject("GenerarAbastecimientoToolStripMenuItem.Image"), System.Drawing.Image)
         Me.GenerarAbastecimientoToolStripMenuItem.Name = "GenerarAbastecimientoToolStripMenuItem"
         Me.GenerarAbastecimientoToolStripMenuItem.Size = New System.Drawing.Size(239, 26)
         Me.GenerarAbastecimientoToolStripMenuItem.Text = "Generar Abastecimiento"
+        '
+        'RotulosProvinciaAnteriorToolStripMenuItem
+        '
+        Me.RotulosProvinciaAnteriorToolStripMenuItem.Name = "RotulosProvinciaAnteriorToolStripMenuItem"
+        Me.RotulosProvinciaAnteriorToolStripMenuItem.Size = New System.Drawing.Size(239, 26)
+        Me.RotulosProvinciaAnteriorToolStripMenuItem.Text = "Rotulos Provincia Anterior"
         '
         'ReportesToolStripMenuItem
         '
@@ -372,12 +379,6 @@ Partial Class MenuPrincipal
         Me.CerrarSesionToolStripMenuItem.Name = "CerrarSesionToolStripMenuItem"
         Me.CerrarSesionToolStripMenuItem.Size = New System.Drawing.Size(108, 24)
         Me.CerrarSesionToolStripMenuItem.Text = "Cerrar Sesion"
-        '
-        'RotulosProvinciaAnteriorToolStripMenuItem
-        '
-        Me.RotulosProvinciaAnteriorToolStripMenuItem.Name = "RotulosProvinciaAnteriorToolStripMenuItem"
-        Me.RotulosProvinciaAnteriorToolStripMenuItem.Size = New System.Drawing.Size(239, 26)
-        Me.RotulosProvinciaAnteriorToolStripMenuItem.Text = "Rotulos Provincia Anterior"
         '
         'MenuPrincipal
         '

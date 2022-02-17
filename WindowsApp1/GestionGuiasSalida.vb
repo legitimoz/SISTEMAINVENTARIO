@@ -6,6 +6,7 @@ Public Class GestionGuiasSalida
     Public usr_id As Integer
     Public usr_usuario, codalmacen, tipdoc, nrodoc, fecha, direccionCliente, ruccliente, clienterazon, codpedido As String
     Private ObjAlmacen As New AlmacenL
+    Private totalGuias As Integer = 0, TotalPendientes As Integer = 0, TotalImpresos As Integer = 0, TotalPicados As Integer = 0
 
     Private Sub PickConfirmGuias_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CargaInicial()
@@ -18,6 +19,12 @@ Public Class GestionGuiasSalida
             FormatoTablaDetalle()
             ListarGuiasCabecera()
             ListarAlmacenSoftcom()
+            txt_impresos.Text = TotalImpresos
+            txt_picados.Text = TotalPicados
+            txt_pendientes.Text = TotalPendientes
+            'totalGuias = Dg_Cabecera.Rows.Count
+            txt_total.Text = totalGuias
+            txt_porcentaje.Text = (Math.Round(TotalPicados / totalGuias, 2) * 100).ToString + " %"
             'ColorearGrid()
         Catch ex As Exception
             Throw ex
@@ -295,6 +302,9 @@ Public Class GestionGuiasSalida
                     stringfiltro = String.Format("FECHA >= #{0}# AND FECHA <= #{1}# AND NDOCUMENTO LIKE '%{2}%' AND ALAMACEN_ORIGEN = '{3}' ", dt_desde.Value.ToString("MM/dd/yyyy"), dt_hasta.Value.ToString("MM/dd/yyyy"), txt_numero.Text, combo_Almacen.Text)
                 End If
                 dtcabecera.DefaultView.RowFilter = stringfiltro
+                If Dg_Cabecera.Rows.Count = 0 Then
+                    dtDetalle.Rows.Clear()
+                End If
             End If
         Catch ex As Exception
             Throw ex
@@ -310,9 +320,6 @@ Public Class GestionGuiasSalida
             Throw ex
         End Try
     End Sub
-
-
-
 
     Private Sub cmdVerReporte_Click(sender As Object, e As EventArgs) Handles cmdVerReporte.Click
         Try
@@ -646,6 +653,7 @@ Public Class GestionGuiasSalida
                             nrodocM = rowCab.Cells("NDOCUMENTO").EditedFormattedValue.ToString.Trim
                             If codalmacenM <> "" And tipdocM <> "" And nrodocM <> "" Then
                                 Dim formRegistrarPicador As New RegistrarPicking
+                                formRegistrarPicador.nrodocM = nrodocM
                                 formRegistrarPicador.ShowDialog()
                                 If formRegistrarPicador.grabado = True Then
                                     If llamarRegistrarImpresion(codalmacenM, tipdocM, nrodocM, "PI", formRegistrarPicador.idpicador, formRegistrarPicador.idfiltro, 0) <> 0 Then
@@ -775,41 +783,50 @@ Public Class GestionGuiasSalida
                     rowcabecera.Item("FECHA_IMPRE") = RowRetorno.Item("FECHA_IMPRE").ToString.Trim
                     rowcabecera.Item("HORA_IMPRE") = RowRetorno.Item("HORA_IMPRE").ToString.Trim
                     rowcabecera.Item("USUARIO_IMPRE") = RowRetorno.Item("USUARIO_IMPRE").ToString.Trim
+                    rowcabecera.Item("ESTADO_RECEP") = RowRetorno.Item("ESTADO_RECEP").ToString.Trim
+                    rowcabecera.Item("FECHA_RECEP") = RowRetorno.Item("FECHA_RECEP").ToString.Trim
+                    rowcabecera.Item("HORA_RECEP") = RowRetorno.Item("HORA_RECEP").ToString.Trim
                     If RowRetorno.Item("ESTADO").ToString.Trim = "PE" Then
                         rowcabecera.Item("ESTADO") = "PENDIENTE"
+                        ' TotalPendientes = TotalPendientes + 1
                     Else
                         If RowRetorno.Item("ESTADO").ToString.Trim = "PI" Then
                             rowcabecera.Item("ESTADO") = "PICADO"
+                            '  TotalPicados = TotalPicados + 1
                         Else
                             rowcabecera.Item("ESTADO") = "IMPRESO"
+                            'TotalImpresos = TotalImpresos + 1
                         End If
                     End If
-                    'rowcabecera.Item("IMPRESO") = RowRetorno.Item("IMPRESO")
-                    'rowcabecera.Item("PICADO") = RowRetorno.Item("PICADO")
 
+                    If RowRetorno.Item("ESTADO_RECEP").ToString.Trim = "SI" Then
+                        totalGuias = totalGuias + 1
+                        If RowRetorno.Item("ESTADO").ToString.Trim = "PE" Then
+                            rowcabecera.Item("ESTADO") = "PENDIENTE"
+                            TotalPendientes = TotalPendientes + 1
+                        Else
+                            If RowRetorno.Item("ESTADO").ToString.Trim = "PI" Then
+                                rowcabecera.Item("ESTADO") = "PICADO"
+                                TotalPicados = TotalPicados + 1
+                            Else
+                                rowcabecera.Item("ESTADO") = "IMPRESO"
+                                TotalImpresos = TotalImpresos + 1
+                            End If
+                        End If
+                    End If
                     dtcabecera.Rows.Add(rowcabecera)
-
                 Next
                 Dg_Cabecera.DataSource = dtcabecera
                 '  CambiarColorGrid()
+            Else
+                dtcabecera.Rows.Clear()
+                dtDetalle.Rows.Clear()
             End If
+
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
-
-    'Public Sub CambiarColorGrid()
-    '    For Each fila As DataGridViewRow In Dg_Cabecera.Rows
-    '        If fila.Cells("IMPRESO").Value = 0 Then
-    '            fila.DefaultCellStyle.BackColor = Color.Green
-
-    '        Else
-    '            '  fila.DefaultCellStyle.BackColor = Color.Red
-    '        End If
-
-    '    Next
-    '    Dg_Cabecera.Refresh()
-    'End Sub
 
     Public Sub ObtenerGuiaCab()
         Try
@@ -968,6 +985,18 @@ Public Class GestionGuiasSalida
         Dg_Cabecera.Columns("MARCAR").HeaderText = "Marcar"
         Dg_Cabecera.Columns("MARCAR").Width = 50
         Dg_Cabecera.Columns("MARCAR").ReadOnly = True
+
+        Dg_Cabecera.Columns("ESTADO_RECEP").HeaderText = "Recepcionado"
+        Dg_Cabecera.Columns("ESTADO_RECEP").Width = 70
+        Dg_Cabecera.Columns("ESTADO_RECEP").ReadOnly = True
+
+        Dg_Cabecera.Columns("FECHA_RECEP").HeaderText = "Fecha Recepcion"
+        Dg_Cabecera.Columns("FECHA_RECEP").Width = 70
+        Dg_Cabecera.Columns("FECHA_RECEP").ReadOnly = True
+
+        Dg_Cabecera.Columns("HORA_RECEP").HeaderText = "Hora Recepcion"
+        Dg_Cabecera.Columns("HORA_RECEP").Width = 70
+        Dg_Cabecera.Columns("HORA_RECEP").ReadOnly = True
 
         Dg_Cabecera.Columns("ESTADO").HeaderText = "Estado"
         Dg_Cabecera.Columns("ESTADO").Width = 70

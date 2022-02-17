@@ -8,6 +8,7 @@ Public Class BuscadorArticulosUbicaion
     Public usr_usuario As String
     Private AlmObj As New AlmacenL
     Public dt As New DataTable
+    Public iddetalle As Integer = 0, cantidad As Integer = 0
 
     Private Sub GestionContratacionForm_Load(sender As Object, e As EventArgs)
         Try
@@ -86,6 +87,9 @@ Public Class BuscadorArticulosUbicaion
                 articuloNombre = DgArticulos.CurrentRow.Cells("Articulo").Value.ToString.Trim
                 lote = DgArticulos.CurrentRow.Cells("Lote").Value.ToString.Trim
                 vencimiento = DgArticulos.CurrentRow.Cells("Vencimiento").Value.ToString.Trim
+                Dim Codigo As String = DgArticulos.CurrentRow.Cells("CODIGO").Value.ToString.Trim
+                iddetalle = CType(Codigo.Replace(DgArticulos.CurrentRow.Cells("CodArticulo").Value.ToString.Trim, ""), Integer)
+                cantidad = DgArticulos.CurrentRow.Cells("Cantidad").Value.ToString.Trim
             End If
         Catch ex As Exception
             Throw ex
@@ -195,6 +199,35 @@ Public Class BuscadorArticulosUbicaion
         Return True
 
     End Function
+
+    Private Sub cmdActulizarDatos_Click(sender As Object, e As EventArgs) Handles cmdActulizarDatos.Click
+        Try
+            ListarArticulos()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
+        Try
+            Obtener()
+            If iddetalle <> 0 Then
+                Dim ConverForm As New ConversionArticulo
+                ConverForm.iddetalle = iddetalle
+                ConverForm.codigo = codprod
+                ConverForm.lote = lote
+                ConverForm.articuloNombre = articuloNombre
+                ConverForm.cantidadAn = cantidad
+                ConverForm.userid = usr_id
+                ConverForm.ShowDialog()
+                If ConverForm.grabado = True Then
+                    ListarArticulos()
+                End If
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
 
     Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
         Try
