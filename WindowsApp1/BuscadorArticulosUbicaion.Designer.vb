@@ -43,6 +43,8 @@ Partial Class BuscadorArticulosUbicaion
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
         Me.btnSalir = New System.Windows.Forms.ToolStripButton()
         Me.txt_descr = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -50,8 +52,8 @@ Partial Class BuscadorArticulosUbicaion
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txt_codlote = New System.Windows.Forms.TextBox()
-        Me.cmdBuscar = New FontAwesome.Sharp.IconButton()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.cmdBuscar = New FontAwesome.Sharp.IconButton()
         Me.DgArticulos = New System.Windows.Forms.DataGridView()
         Me.savedialog_Excel = New System.Windows.Forms.SaveFileDialog()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -112,7 +114,7 @@ Partial Class BuscadorArticulosUbicaion
         Me.ToolStrip1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdVerReporte, Me.separador1, Me.cmdActulizarDatos, Me.separador4, Me.ToolStripButton1, Me.ToolStripSeparator1, Me.cmdGenerarExcel, Me.ToolStripSeparator2, Me.ToolStripButton2, Me.ToolStripSeparator3, Me.btnSalir})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdVerReporte, Me.separador1, Me.cmdActulizarDatos, Me.separador4, Me.ToolStripButton1, Me.ToolStripSeparator1, Me.cmdGenerarExcel, Me.ToolStripSeparator2, Me.ToolStripButton2, Me.ToolStripSeparator3, Me.ToolStripButton3, Me.ToolStripSeparator4, Me.btnSalir})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
@@ -194,6 +196,20 @@ Partial Class BuscadorArticulosUbicaion
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
         Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 41)
         '
+        'ToolStripButton3
+        '
+        Me.ToolStripButton3.Image = CType(resources.GetObject("ToolStripButton3.Image"), System.Drawing.Image)
+        Me.ToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton3.Name = "ToolStripButton3"
+        Me.ToolStripButton3.Size = New System.Drawing.Size(91, 38)
+        Me.ToolStripButton3.Text = "&Convertir Codigo"
+        Me.ToolStripButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'ToolStripSeparator4
+        '
+        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(6, 41)
+        '
         'btnSalir
         '
         Me.btnSalir.Image = CType(resources.GetObject("btnSalir.Image"), System.Drawing.Image)
@@ -264,6 +280,25 @@ Partial Class BuscadorArticulosUbicaion
         Me.txt_codlote.Size = New System.Drawing.Size(160, 20)
         Me.txt_codlote.TabIndex = 69
         '
+        'Panel2
+        '
+        Me.Panel2.Controls.Add(Me.Label3)
+        Me.Panel2.Controls.Add(Me.cmdBuscar)
+        Me.Panel2.Controls.Add(Me.txt_descr)
+        Me.Panel2.Controls.Add(Me.dt_desde)
+        Me.Panel2.Controls.Add(Me.Label7)
+        Me.Panel2.Controls.Add(Me.txt_codprod)
+        Me.Panel2.Controls.Add(Me.txt_codlote)
+        Me.Panel2.Controls.Add(Me.dt_hasta)
+        Me.Panel2.Controls.Add(Me.Label4)
+        Me.Panel2.Controls.Add(Me.Label6)
+        Me.Panel2.Controls.Add(Me.Label2)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel2.Location = New System.Drawing.Point(0, 41)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(884, 76)
+        Me.Panel2.TabIndex = 60
+        '
         'cmdBuscar
         '
         Me.cmdBuscar.BackColor = System.Drawing.SystemColors.Control
@@ -285,25 +320,6 @@ Partial Class BuscadorArticulosUbicaion
         Me.cmdBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.cmdBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.cmdBuscar.UseVisualStyleBackColor = False
-        '
-        'Panel2
-        '
-        Me.Panel2.Controls.Add(Me.Label3)
-        Me.Panel2.Controls.Add(Me.cmdBuscar)
-        Me.Panel2.Controls.Add(Me.txt_descr)
-        Me.Panel2.Controls.Add(Me.dt_desde)
-        Me.Panel2.Controls.Add(Me.Label7)
-        Me.Panel2.Controls.Add(Me.txt_codprod)
-        Me.Panel2.Controls.Add(Me.txt_codlote)
-        Me.Panel2.Controls.Add(Me.dt_hasta)
-        Me.Panel2.Controls.Add(Me.Label4)
-        Me.Panel2.Controls.Add(Me.Label6)
-        Me.Panel2.Controls.Add(Me.Label2)
-        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel2.Location = New System.Drawing.Point(0, 41)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(884, 76)
-        Me.Panel2.TabIndex = 60
         '
         'DgArticulos
         '
@@ -402,4 +418,6 @@ Partial Class BuscadorArticulosUbicaion
     Friend WithEvents ToolStripButton2 As ToolStripButton
     Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
     Friend WithEvents savedialog_Excel As SaveFileDialog
+    Friend WithEvents ToolStripButton3 As ToolStripButton
+    Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
 End Class

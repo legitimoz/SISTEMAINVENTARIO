@@ -68,6 +68,20 @@ Public Class EditarSalidaAlmacen
             dtPosiciones = LlamarListarPosicionesHojaPicking(CodArticulo, Lote, cantidad)
             If dtPosiciones.Rows.Count > 0 Then
                 Dg_DatosPosiciones.DataSource = dtPosiciones
+            Else
+                'Dim DtEquivalencia As New DataTable
+                'DtEquivalencia = LlamarObtenerCodigoAlternoProducto(CodArticulo.ToString.Trim, Lote.ToString.Trim)
+                'If DtEquivalencia.Rows.Count > 0 Then
+                '    CodArticulo = DtEquivalencia.Rows(0).Item("dopa_codarticulo").ToString.Trim
+                '    If CodArticulo IsNot Nothing Then
+                '        If CodArticulo <> "" Then
+                '            dtPosiciones = LlamarListarPosicionesHojaPicking(CodArticulo, Lote, cantidad)
+                '            If dtPosiciones.Rows.Count > 0 Then
+                '                Dg_DatosPosiciones.DataSource = dtPosiciones
+                '            End If
+                '        End If
+                '    End If
+                'End If
             End If
         End If
     End Sub
@@ -183,6 +197,18 @@ Public Class EditarSalidaAlmacen
         Dim dtretono As DataTable
         Try
             dtretono = ObjAlmacen.ObtenerPosicionesHojaPicking(codarticulo, lote, cantidad).Copy
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return dtretono
+    End Function
+
+
+    Public Function LlamarObtenerCodigoAlternoProducto(CodArticulo As String, Serie As String) As DataTable
+
+        Dim dtretono As DataTable
+        Try
+            dtretono = ObjAlmacen.ObtenrCodigoAlternoArticulo(CodArticulo, Serie).Copy
         Catch ex As Exception
             Throw ex
         End Try

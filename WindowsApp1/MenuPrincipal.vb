@@ -17,15 +17,15 @@
     End Sub
 
     Private Sub MenuPrincipal_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        Try
-            If MsgBox("¿ DESEA SALIR DEL SISTEMA ?", MsgBoxStyle.YesNo, "Aviso") = MsgBoxResult.No Then
-                e.Cancel = True
-            Else
-                ' EndD
-            End If
-        Catch ex As Exception
+        'Try
+        '    If MsgBox("¿ DESEA SALIR DEL SISTEMA ?", MsgBoxStyle.YesNo, "Aviso") = MsgBoxResult.No Then
+        '        e.Cancel = True
+        '    Else
+        '        ' EndD
+        '    End If
+        'Catch ex As Exception
 
-        End Try
+        'End Try
     End Sub
 
     Private Sub AprobacionDePedidosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AprobacionDePedidosToolStripMenuItem.Click
@@ -148,8 +148,11 @@
 
     Private Sub CerrarSesionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CerrarSesionToolStripMenuItem.Click
         Try
-            Dim a As New FormClosingEventArgs(CloseReason.ApplicationExitCall, True)
-            MenuPrincipal_FormClosing(sender, a)
+            If MessageBox.Show("Saliendo del Sistema. ¿Desea Continuar?", Me.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Information) = Windows.Forms.DialogResult.Yes Then
+                Dim LoguinForm As New Login
+                LoguinForm.Show()
+                Me.Close()
+            End If
         Catch ex As Exception
 
         End Try
@@ -538,7 +541,7 @@
         Try
 
         Catch ex As Exception
-
+            Throw ex
         End Try
     End Sub
 
@@ -547,7 +550,7 @@
         Try
 
         Catch ex As Exception
-
+            Throw ex
         End Try
     End Sub
 
@@ -561,5 +564,9 @@
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub SeguimientoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SeguimientoToolStripMenuItem.Click
+
     End Sub
 End Class

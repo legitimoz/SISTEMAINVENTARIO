@@ -413,6 +413,9 @@
         Tabladetalle = New DataTable()
         Try
             Tabladetalle.Columns.Add("MARCAR", GetType(Boolean))
+            Tabladetalle.Columns.Add("ESTADO_RECEP", GetType(String))
+            Tabladetalle.Columns.Add("FECHA_RECEP", GetType(String))
+            Tabladetalle.Columns.Add("HORA_RECEP", GetType(String))
             Tabladetalle.Columns.Add("ESTADO", GetType(String))
             Tabladetalle.Columns.Add("FECHA_IMPRE", GetType(String))
             Tabladetalle.Columns.Add("HORA_IMPRE", GetType(String))

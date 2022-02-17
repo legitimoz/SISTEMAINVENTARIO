@@ -50,9 +50,10 @@ Public Class AlmacenAD
             MyBase.Conn.Close()
             Return Tabla
         Catch ex As Exception
+            Throw ex
             Return Nothing
+            MyBase.Conn.Close()
         End Try
-
     End Function
 
     Public Function Reporte_Articulos_Sin_Ubicar() As DataTable
@@ -67,7 +68,9 @@ Public Class AlmacenAD
             MyBase.Conn.Close()
             Return Tabla
         Catch ex As Exception
+            Throw ex
             Return Nothing
+            MyBase.Conn.Close()
         End Try
 
     End Function
@@ -85,6 +88,7 @@ Public Class AlmacenAD
             Return Tabla
         Catch ex As Exception
             Return Nothing
+            MyBase.Conn.Close()
         End Try
 
     End Function
@@ -219,6 +223,28 @@ Public Class AlmacenAD
             com.CommandType = CommandType.StoredProcedure
             com.Parameters.Add("@idsite", SqlDbType.Int).Value = idsite
             com.Parameters.Add("@codalm", SqlDbType.Char, 5).Value = codalmacen
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            Throw ex
+            MyBase.Conn.Close()
+        End Try
+
+    End Function
+
+    Public Function ObtenrCodigoAlternoArticulo(CodArticulo As String, Serie As String) As DataTable
+
+        Try
+            Dim com As New SqlCommand("SP_CSE_OBTENERCODIGOALTERNO", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+            'com.Parameters.Add("@CodArticulo", SqlDbType.Int).Value = idsite
+            com.Parameters.Add("@CodArticulo", SqlDbType.Char, 25).Value = CodArticulo
+            com.Parameters.Add("@Serie", SqlDbType.Char, 18).Value = Serie
             Dim Result As SqlDataReader
             Dim Tabla As New DataTable
             Result = com.ExecuteReader()
@@ -522,6 +548,27 @@ Public Class AlmacenAD
             com.CommandType = CommandType.StoredProcedure
             com.Parameters.Add("@fechadesde", SqlDbType.Char, 10).Value = fechadesde
             com.Parameters.Add("@fechahasta", SqlDbType.Char, 10).Value = fechahasta
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            Throw ex
+            MyBase.Conn.Close()
+        End Try
+
+    End Function
+
+    Public Function SP_CSE_ObtenerFactorCodigo(CodArticulo As String) As DataTable
+
+        Try
+            Dim com As New SqlCommand("SP_CSE_ObtenerFactorCodigo", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+            com.Parameters.Add("@codarticulo", SqlDbType.Char, 25).Value = CodArticulo
+            '' com.Parameters.Add("@fechahasta", SqlDbType.Char, 10).Value = fechahasta
             Dim Result As SqlDataReader
             Dim Tabla As New DataTable
             Result = com.ExecuteReader()
@@ -900,6 +947,7 @@ Public Class AlmacenAD
             rp = Comm.ExecuteNonQuery
             MyBase.Conn.Close()
         Catch ex As Exception
+            Throw ex
             MyBase.Conn.Close()
         End Try
         Return rp
@@ -1024,6 +1072,28 @@ Public Class AlmacenAD
                 .Add("@idrack", SqlDbType.Int).Value = idrack
                 .Add("@idubicacion", SqlDbType.Int).Value = idubicacion
                 .Add("@Cantidad", SqlDbType.Decimal, 16, 2).Value = cantidad
+                .Add("@userid", SqlDbType.Int).Value = userid
+            End With
+            MyBase.Conn.Open()
+            rp = Comm.ExecuteNonQuery()
+            MyBase.Conn.Close()
+        Catch ex As Exception
+            MyBase.Conn.Close()
+        End Try
+        Return rp
+    End Function
+
+    Public Function SP_CSE_ConversioCodigo(iddetalle As Integer, CodigoNuevo As String, userid As Integer, cantidadIngreso As Decimal, cantidadSalida As Decimal) As Integer
+        Dim rp As Integer = 0
+        Dim RpStore As SqlDataReader = Nothing
+        Dim Comm As New SqlCommand("SP_CSE_ConversioCodigo", MyBase.Conn)
+        Try
+            Comm.CommandType = CommandType.StoredProcedure
+            With Comm.Parameters
+                .Add("@iddetalle", SqlDbType.Int).Value = iddetalle
+                .Add("@CodigoNuevo", SqlDbType.Char, 25).Value = CodigoNuevo
+                .Add("@cantidadIngreso", SqlDbType.Decimal, 16, 2).Value = cantidadIngreso
+                .Add("@cantidadSalida", SqlDbType.Decimal, 16, 2).Value = cantidadSalida
                 .Add("@userid", SqlDbType.Int).Value = userid
             End With
             MyBase.Conn.Open()

@@ -1087,7 +1087,7 @@ Public Class GestionProgramacionDespacho
                                 If ExisteEnNueva(RowPri.Cells("DESTINO").Value.ToString.Trim) = False Then
                                     Dim rowConsolidad As DataRow = dtConsolidar.NewRow
                                     For Each rowseg As DataGridViewRow In Dg_Cabecera.Rows
-                                        If RowPri.Cells("DESTINO").Value.ToString.Trim = rowseg.Cells("DESTINO").Value.ToString.Trim Then
+                                        If RowPri.Cells("DESTINO").Value.ToString.Trim = rowseg.Cells("DESTINO").Value.ToString.Trim And rowseg.Cells("SITUACION").Value.ToString.Trim <> "ANULADO" Then
                                             Dim rowDetalle As DataRow = DtDetalleConsolidado.NewRow
                                             totalimporte = totalimporte + rowseg.Cells("IMPORTE").Value
                                             totalguias = totalguias + 1
