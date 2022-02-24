@@ -379,7 +379,7 @@ Public Class GestionDispatchOnTime
         Dg_Cabecera.Columns("ESTADO").Width = 70
         Dg_Cabecera.Columns("ESTADO").ReadOnly = True
 
-        Dg_Cabecera.Columns("Direferencia").HeaderText = "Direferencia"
+        Dg_Cabecera.Columns("Direferencia").HeaderText = "Diferencia"
         Dg_Cabecera.Columns("Direferencia").Width = 70
         Dg_Cabecera.Columns("Direferencia").ReadOnly = True
 

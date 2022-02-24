@@ -30,12 +30,13 @@ Public Class GestionPartesEntrada
         dtcabecera.Clear()
         dtcabecera = Estructura.TablaCabeceraParteEntrda
         Dg_Cabecera.DataSource = dtcabecera
-        Dg_Cabecera.Columns("CODALMACEN_ORIGEN").HeaderText = "Cod Almacen Origen"
+        Dg_Cabecera.Columns("CODALMACEN_ORIGEN").HeaderText = "Cod Almacen Destino"
         Dg_Cabecera.Columns("CODALMACEN_ORIGEN").Width = 75
         Dg_Cabecera.Columns("CODALMACEN_ORIGEN").ReadOnly = True
         'Dg_Cabecera.Columns("CODALMACEN_ORIGEN").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+
         Dg_Cabecera.Columns("Resta").Visible = False
-        Dg_Cabecera.Columns("ALAMACEN_ORIGEN").HeaderText = "Almacen Origen"
+        Dg_Cabecera.Columns("ALAMACEN_ORIGEN").HeaderText = "Almacen Destino"
         Dg_Cabecera.Columns("ALAMACEN_ORIGEN").Width = 100
         Dg_Cabecera.Columns("ALAMACEN_ORIGEN").ReadOnly = True
         ''Dg_Cabecera.Columns("ALAMACEN_ORIGEN").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
@@ -114,6 +115,11 @@ Public Class GestionPartesEntrada
         Dg_Detalle.Columns("CODIGO").Width = 80
         Dg_Detalle.Columns("CODIGO").ReadOnly = True
         Dg_Detalle.Columns("CODIGO").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+        Dg_Detalle.Columns("C6_CITEM").HeaderText = "Correlativo Item"
+        Dg_Detalle.Columns("C6_CITEM").Width = 80
+        Dg_Detalle.Columns("C6_CITEM").ReadOnly = True
+        Dg_Detalle.Columns("C6_CITEM").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
 
         Dg_Detalle.Columns("PRODUCTO").HeaderText = "Articulo"
         Dg_Detalle.Columns("PRODUCTO").Width = 250
@@ -293,14 +299,7 @@ Public Class GestionPartesEntrada
         End Try
     End Sub
 
-    Private Sub Dg_Cabecera_SelectionChanged(sender As Object, e As EventArgs) Handles Dg_Cabecera.SelectionChanged
-        ObtenerParteEntrada()
-        If codalmacen <> "" And coddoc <> "" Then
-            ListarPartesEntradaDetalle()
-        End If
-    End Sub
-
-    Private Sub Dg_Detalle_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles Dg_Detalle.CellContentClick
+    Private Sub Dg_Detalle_CellContentClick_1(sender As Object, e As DataGridViewCellEventArgs) Handles Dg_Detalle.CellContentClick
         If e.RowIndex <> -1 Then
             If e.ColumnIndex = 0 Then
                 ObtenerDetalle()
@@ -310,7 +309,7 @@ Public Class GestionPartesEntrada
                 If valorcheck Then
                     'If row.Cells("SERIE").EditedFormattedValue.ToString.Trim <> "" And row.Cells("SERIE").EditedFormattedValue.ToString.Trim <> "SIN/LOTE" Then
                     If CType(row.Cells("SALDO").EditedFormattedValue.ToString, Decimal) > 0 Then
-                            Dim addposicion As New GestionPosiciones With {
+                        Dim addposicion As New GestionPosiciones With {
                         .idRack = idRack,
                         .X = X,
                         .Y = Y,
@@ -329,6 +328,7 @@ Public Class GestionPartesEntrada
                         .cajas = CType(row.Cells("CAJAS").EditedFormattedValue.ToString, Decimal),
                         .cajasmaster = CType(row.Cells("CAJASMASTER").EditedFormattedValue.ToString, Decimal),
                         .unidad = row.Cells("UNIDAD").EditedFormattedValue.ToString.Trim,
+                        .correlativo = row.Cells("C6_CITEM").EditedFormattedValue.ToString.Trim,
                         .factorcaja = CType(row.Cells("FACTORCAJA").EditedFormattedValue.ToString, Decimal),
                         .factormaster = CType(row.Cells("FACTORCAJAMASTER").EditedFormattedValue.ToString, Decimal),
                         .Text = "Ingreso Almacen - Posiciones",
@@ -341,21 +341,21 @@ Public Class GestionPartesEntrada
                         .tipdoc = tipdoc,
                         .Lote = row.Cells("SERIE").EditedFormattedValue.ToString
                         }
-                            addposicion.ShowDialog()
-                            If addposicion.grabado = True Then
-                                ListarPartesEntradaCabecera()
-                            Else
-                                row.Cells("UBICAR").Value = False
-                            End If
+                        addposicion.ShowDialog()
+                        If addposicion.grabado = True Then
+                            ListarPartesEntradaCabecera()
                         Else
-                            MsgBox("El Articulo ya se ingresò en su totalidad", MsgBoxStyle.Exclamation)
                             row.Cells("UBICAR").Value = False
                         End If
-                        ''Else
-                        ''    MsgBox("El Articulo no tiene un Lote", MsgBoxStyle.Exclamation)
-                        ''    row.Cells("UBICAR").Value = False
-                        ''End If
                     Else
+                        MsgBox("El Articulo ya se ingresò en su totalidad", MsgBoxStyle.Exclamation)
+                        row.Cells("UBICAR").Value = False
+                    End If
+                    ''Else
+                    ''    MsgBox("El Articulo no tiene un Lote", MsgBoxStyle.Exclamation)
+                    ''    row.Cells("UBICAR").Value = False
+                    ''End If
+                Else
                     row.Cells("UBICAR").Value = False
                 End If
             End If
@@ -381,16 +381,20 @@ Public Class GestionPartesEntrada
         End If
     End Sub
 
+    Private Sub Dg_Cabecera_SelectionChanged(sender As Object, e As EventArgs) Handles Dg_Cabecera.SelectionChanged
+        ObtenerParteEntrada()
+        If codalmacen <> "" And coddoc <> "" Then
+            ListarPartesEntradaDetalle()
+        End If
+    End Sub
+
+
     Private Sub txt_numero_TextChanged(sender As Object, e As EventArgs) Handles txt_numero.TextChanged
         Try
             Buscar()
         Catch ex As Exception
             Throw ex
         End Try
-    End Sub
-
-    Private Sub combo_Almacen_SelectedValueChanged(sender As Object, e As EventArgs) Handles combo_Almacen.SelectedValueChanged
-
     End Sub
 
     Private Sub combo_Almacen_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles combo_Almacen.SelectionChangeCommitted
@@ -582,6 +586,7 @@ Public Class GestionPartesEntrada
                     rowDetalle.Item("PRODUCTO") = RowRetorno.Item("PRODUCTO").ToString.Trim
                     rowDetalle.Item("UNIDAD") = RowRetorno.Item("UNIDAD").ToString.Trim
                     rowDetalle.Item("FACTORCAJA") = RowRetorno.Item("FACTORCAJA").ToString.Trim
+                    rowDetalle.Item("C6_CITEM") = RowRetorno.Item("C6_CITEM").ToString.Trim
 
                     If RowRetorno.Item("FACTORCAJAMASTER").ToString.Trim <> "" Then
                         rowDetalle.Item("FACTORCAJAMASTER") = CType(RowRetorno.Item("FACTORCAJAMASTER").ToString.Trim, Decimal)

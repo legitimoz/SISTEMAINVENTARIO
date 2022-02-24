@@ -6,7 +6,7 @@ Public Class GestionPosiciones
     Public unidades, cajas, cajasmaster, volumen, total, ancho, largo, alto, factorcaja, factormaster As Decimal
     Public rackcodigo, nombrealmacen, codalmacen, coddoc, tipdoc, codarticulo, Lote, unidad, NombreSite, NombreArticulo, vencimiento As String
     Public idposicionObtener As Integer = 0
-    Public codPosicionObtener As String
+    Public codPosicionObtener, correlativo As String
     Private Sub cmdVerReporte_Click(sender As Object, e As EventArgs) Handles cmdVerReporte.Click
 
         Try
@@ -168,6 +168,7 @@ Public Class GestionPosiciones
                     Dim AgregarCantidadPosicionForm As New AgregarCantidadPosicion
                     'AgregarCantidadPosicionForm.txt_disponible.Text = item.TabIndex
                     AgregarCantidadPosicionForm.vencimiento = vencimiento
+                    AgregarCantidadPosicionForm.correlativo = correlativo
                     AgregarCantidadPosicionForm.VolumenDisponible = item.TabIndex
                     AgregarCantidadPosicionForm.articuloNombre = NombreArticulo
                     AgregarCantidadPosicionForm.txt_codigo.Text = item.Name.ToString

@@ -6,7 +6,7 @@ Public Class GestionGuiasSalida
     Public usr_id As Integer
     Public usr_usuario, codalmacen, tipdoc, nrodoc, fecha, direccionCliente, ruccliente, clienterazon, codpedido As String
     Private ObjAlmacen As New AlmacenL
-    Private totalGuias As Integer = 0, TotalPendientes As Integer = 0, TotalImpresos As Integer = 0, TotalPicados As Integer = 0
+
 
     Private Sub PickConfirmGuias_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CargaInicial()
@@ -19,12 +19,7 @@ Public Class GestionGuiasSalida
             FormatoTablaDetalle()
             ListarGuiasCabecera()
             ListarAlmacenSoftcom()
-            txt_impresos.Text = TotalImpresos
-            txt_picados.Text = TotalPicados
-            txt_pendientes.Text = TotalPendientes
-            'totalGuias = Dg_Cabecera.Rows.Count
-            txt_total.Text = totalGuias
-            txt_porcentaje.Text = (Math.Round(TotalPicados / totalGuias, 2) * 100).ToString + " %"
+
             'ColorearGrid()
         Catch ex As Exception
             Throw ex
@@ -106,6 +101,7 @@ Public Class GestionGuiasSalida
                     rowDetalle.Item("PRODUCTO") = RowRetorno.Item("PRODUCTO").ToString.Trim
                     rowDetalle.Item("UNIDAD") = RowRetorno.Item("UNIDAD").ToString.Trim
                     rowDetalle.Item("FACTORCAJA") = RowRetorno.Item("FACTORCAJA").ToString.Trim
+                    rowDetalle.Item("C6_CITEM") = RowRetorno.Item("C6_CITEM").ToString.Trim
 
                     If RowRetorno.Item("FACTORCAJAMASTER").ToString.Trim <> "" Then
                         rowDetalle.Item("FACTORCAJAMASTER") = CType(RowRetorno.Item("FACTORCAJAMASTER").ToString.Trim, Decimal)
@@ -185,6 +181,7 @@ Public Class GestionGuiasSalida
                     rowDetalle.Item("PRODUCTO") = RowRetorno.Item("PRODUCTO").ToString.Trim
                     rowDetalle.Item("UNIDAD") = RowRetorno.Item("UNIDAD").ToString.Trim
                     rowDetalle.Item("FACTORCAJA") = RowRetorno.Item("FACTORCAJA").ToString.Trim
+                    rowDetalle.Item("C6_CITEM") = RowRetorno.Item("C6_CITEM").ToString.Trim
 
                     If RowRetorno.Item("FACTORCAJAMASTER").ToString.Trim <> "" Then
                         rowDetalle.Item("FACTORCAJAMASTER") = CType(RowRetorno.Item("FACTORCAJAMASTER").ToString.Trim, Decimal)
@@ -476,6 +473,7 @@ Public Class GestionGuiasSalida
                             If codalmacen <> "" And nrodoc <> "" And tipdoc <> "" Then
                                 Dim RegistrarSalidaForm As New EditarSalidaAlmacen
                                 RegistrarSalidaForm.Lote = row.Cells("SERIE").EditedFormattedValue.ToString.Trim
+                                RegistrarSalidaForm.correlativo = row.Cells("C6_CITEM").EditedFormattedValue.ToString.Trim
                                 RegistrarSalidaForm.articulo = row.Cells("PRODUCTO").EditedFormattedValue.ToString.Trim
                                 RegistrarSalidaForm.CodArticulo = row.Cells("CODIGO").EditedFormattedValue.ToString.Trim
                                 RegistrarSalidaForm.cantidad = CType(row.Cells("SALDO").EditedFormattedValue.ToString, Integer)
@@ -556,6 +554,31 @@ Public Class GestionGuiasSalida
             Me.Cursor = Cursors.Default
         Catch ex As Exception
 
+        End Try
+    End Sub
+
+    Private Sub ToolStripButton2_Click_1(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
+        Dim dt_esfuerzoCab As New DataTable
+        Try
+            If dtcabecera.Rows.Count > 0 Then
+                dt_esfuerzoCab = dtcabecera.Clone
+                For Each RowCab As DataRow In dtcabecera.Rows
+                    If RowCab.Item("ESTADO_RECEP").ToString.Trim = "SI" Then
+                        If RowCab.Item("CODALMACEN_ORIGEN").ToString.Trim = "00AT" Or RowCab.Item("CODALMACEN_ORIGEN").ToString.Trim = "01AT" Or RowCab.Item("CODALMACEN_ORIGEN").ToString.Trim = "02AT" Or RowCab.Item("CODALMACEN_ORIGEN").ToString.Trim = "03AT" Or RowCab.Item("CODALMACEN_ORIGEN").ToString.Trim = "05AT" Or RowCab.Item("CODALMACEN_ORIGEN").ToString.Trim = "06AT" Or RowCab.Item("CODALMACEN_ORIGEN").ToString.Trim = "07AT" Or RowCab.Item("CODALMACEN_ORIGEN").ToString.Trim = "08AT" Or RowCab.Item("CODALMACEN_ORIGEN").ToString.Trim = "09AT" Or RowCab.Item("CODALMACEN_ORIGEN").ToString.Trim = "1008" Or RowCab.Item("CODALMACEN_ORIGEN").ToString.Trim = "AT01" Or RowCab.Item("CODALMACEN_ORIGEN").ToString.Trim = "CM01" Or RowCab.Item("CODALMACEN_ORIGEN").ToString.Trim = "DI08" Or RowCab.Item("CODALMACEN_ORIGEN").ToString.Trim = "DV01" Or RowCab.Item("CODALMACEN_ORIGEN").ToString.Trim = "RE01" Or RowCab.Item("CODALMACEN_ORIGEN").ToString.Trim = "RET1" Then
+                            If RowCab.Item("ESTADO").ToString.Trim = "IMPRESO" Then
+                                dt_esfuerzoCab.Rows.Add(RowCab.ItemArray)
+                            End If
+                        End If
+                    End If
+                Next
+                If dt_esfuerzoCab.Rows.Count > 0 Then
+                    Dim MedicionForm As New MedicionEsfuerzo
+                    MedicionForm.datatableConsolidada = dt_esfuerzoCab
+                    MedicionForm.Show()
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 
@@ -754,6 +777,7 @@ Public Class GestionGuiasSalida
     End Function
 
     Public Sub ListarGuiasCabecera()
+        Dim totalGuias As Integer = 0, TotalPendientes As Integer = 0, TotalImpresos As Integer = 0, TotalPicados As Integer = 0
         Try
             Dim dtretorno As New DataTable
             dtretorno = LlamarListarGuiasCab()
@@ -799,23 +823,33 @@ Public Class GestionGuiasSalida
                         End If
                     End If
 
-                    If RowRetorno.Item("ESTADO_RECEP").ToString.Trim = "SI" Then
-                        totalGuias = totalGuias + 1
-                        If RowRetorno.Item("ESTADO").ToString.Trim = "PE" Then
-                            rowcabecera.Item("ESTADO") = "PENDIENTE"
-                            TotalPendientes = TotalPendientes + 1
-                        Else
-                            If RowRetorno.Item("ESTADO").ToString.Trim = "PI" Then
-                                rowcabecera.Item("ESTADO") = "PICADO"
-                                TotalPicados = TotalPicados + 1
+                    If rowcabecera.Item("CODALMACEN_ORIGEN").ToString.Trim = "00AT" Or rowcabecera.Item("CODALMACEN_ORIGEN").ToString.Trim = "01AT" Or rowcabecera.Item("CODALMACEN_ORIGEN").ToString.Trim = "02AT" Or rowcabecera.Item("CODALMACEN_ORIGEN").ToString.Trim = "03AT" Or rowcabecera.Item("CODALMACEN_ORIGEN").ToString.Trim = "05AT" Or rowcabecera.Item("CODALMACEN_ORIGEN").ToString.Trim = "06AT" Or rowcabecera.Item("CODALMACEN_ORIGEN").ToString.Trim = "07AT" Or rowcabecera.Item("CODALMACEN_ORIGEN").ToString.Trim = "08AT" Or rowcabecera.Item("CODALMACEN_ORIGEN").ToString.Trim = "09AT" Or rowcabecera.Item("CODALMACEN_ORIGEN").ToString.Trim = "1008" Or rowcabecera.Item("CODALMACEN_ORIGEN").ToString.Trim = "AT01" Or rowcabecera.Item("CODALMACEN_ORIGEN").ToString.Trim = "CM01" Or rowcabecera.Item("CODALMACEN_ORIGEN").ToString.Trim = "DI08" Or rowcabecera.Item("CODALMACEN_ORIGEN").ToString.Trim = "DV01" Or rowcabecera.Item("CODALMACEN_ORIGEN").ToString.Trim = "RE01" Or rowcabecera.Item("CODALMACEN_ORIGEN").ToString.Trim = "RET1" Then
+
+                        If RowRetorno.Item("ESTADO_RECEP").ToString.Trim = "SI" Then
+                            totalGuias = totalGuias + 1
+                            If RowRetorno.Item("ESTADO").ToString.Trim = "PE" Then
+                                rowcabecera.Item("ESTADO") = "PENDIENTE"
+                                TotalPendientes = TotalPendientes + 1
                             Else
-                                rowcabecera.Item("ESTADO") = "IMPRESO"
-                                TotalImpresos = TotalImpresos + 1
+                                If RowRetorno.Item("ESTADO").ToString.Trim = "PI" Then
+                                    rowcabecera.Item("ESTADO") = "PICADO"
+                                    TotalPicados = TotalPicados + 1
+                                Else
+                                    rowcabecera.Item("ESTADO") = "IMPRESO"
+                                    TotalImpresos = TotalImpresos + 1
+                                End If
                             End If
                         End If
                     End If
+
                     dtcabecera.Rows.Add(rowcabecera)
                 Next
+                txt_impresos.Text = TotalImpresos
+                txt_picados.Text = TotalPicados
+                txt_pendientes.Text = TotalPendientes
+                'totalGuias = Dg_Cabecera.Rows.Count
+                txt_total.Text = totalGuias
+                txt_porcentaje.Text = (Math.Round(TotalPicados / totalGuias, 2) * 100).ToString + " %"
                 Dg_Cabecera.DataSource = dtcabecera
                 '  CambiarColorGrid()
             Else
@@ -888,10 +922,18 @@ Public Class GestionGuiasSalida
         dtDetalleM = Estructura.TablaDetalleGuia
         Dg_Detalle.DataSource = dtDetalle
 
+        Dg_Detalle.Columns("C6_CITEM").HeaderText = "Correlativo Item"
+        Dg_Detalle.Columns("C6_CITEM").Width = 80
+        Dg_Detalle.Columns("C6_CITEM").ReadOnly = True
+        Dg_Detalle.Columns("C6_CITEM").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+
         Dg_Detalle.Columns("CODIGO").HeaderText = "Cod Articulo"
         Dg_Detalle.Columns("CODIGO").Width = 80
         Dg_Detalle.Columns("CODIGO").ReadOnly = True
         Dg_Detalle.Columns("CODIGO").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+
 
         Dg_Detalle.Columns("PRODUCTO").HeaderText = "Articulo"
         Dg_Detalle.Columns("PRODUCTO").Width = 250
@@ -1078,6 +1120,7 @@ Public Class GestionGuiasSalida
         Dg_Cabecera.Columns("FILTRO").Width = 100
         Dg_Cabecera.Columns("FILTRO").ReadOnly = True
         Dg_Cabecera.Columns("FILTRO").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+
 
         'Dg_Cabecera.Columns("CODPEDIDO").Visible = False
         'Dg_Cabecera.Columns("PICADO").Visible = False

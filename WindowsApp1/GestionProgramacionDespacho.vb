@@ -8,12 +8,11 @@ Public Class GestionProgramacionDespacho
     Private ObjAlmacen As New AlmacenL
     Private dtcabecera2, dtcabecera, dtTiempos, dtrutas, dtConsolidar, DtDetalleConsolidado As New DataTable
 
-
     Private Sub GestionProgramacionDespacho_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             CargaInicial()
         Catch ex As Exception
-
+            Throw ex
         End Try
     End Sub
 
@@ -41,8 +40,8 @@ Public Class GestionProgramacionDespacho
         Try
             savedialog_Excel.Filter = "Excel File(.xlsx)|*.xlsx"
             savedialog_Excel.Title = Text
-            savedialog_Excel.FileName = "PEDIDOS DESPACHO" + Text
-            dt.TableName = "PEDIDOS"
+            savedialog_Excel.FileName = "REPORTE GUIAS DESPACHO"
+            dt.TableName = "Hoja1"
             Dim ws As IXLWorksheet
             If dt.Rows.Count > Constantes.ValorEnteroInicial Then
                 If savedialog_Excel.ShowDialog = Windows.Forms.DialogResult.OK Then
@@ -53,6 +52,7 @@ Public Class GestionProgramacionDespacho
                     ws.Style.Font.FontSize = 8
                     ws.Columns().AdjustToContents()
                     wb.SaveAs(path)
+                    Process.Start(path)
                     RP = True
                 End If
             Else
@@ -130,12 +130,17 @@ Public Class GestionProgramacionDespacho
 
     Public Sub ListarGuiasCabecera()
         Try
+            dtcabecera.Rows.Clear()
+            Dim cantidadAnuladas As Integer = 0, CantidadPendientes As Integer = 0, CantidadRecepcionadas As Integer = 0
             If Dg_Cabecera.Rows.Count > 0 Then
                 Dg_Cabecera.Rows.Clear()
             End If
             Dim dtretorno As New DataTable
             dtretorno = LlamarPedidosDespacho()
+
             If dtretorno.Rows.Count > 0 Then
+                dtcabecera = dtretorno.Clone
+                dtcabecera = dtretorno
                 Dim contador As Integer = 0
                 For Each RowRetorno As DataRow In dtretorno.Rows
                     Dg_Cabecera.Rows.Add()
@@ -156,10 +161,12 @@ Public Class GestionProgramacionDespacho
                     Dg_Cabecera.Rows(contador).Cells("DEPARTAMENTO").Value = RowRetorno.Item("DEPARTAMENTO").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("ESTADO").Value = RowRetorno.Item("ESTADO_RECEP").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("SERIE").Value = RowRetorno.Item("SERIE").ToString.Trim
+                    Dg_Cabecera.Rows(contador).Cells("SERIE2").Value = RowRetorno.Item("SERIE2").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("COMENTARIO").Value = RowRetorno.Item("COMENTARIO").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("SITUACION").Value = RowRetorno.Item("SITUACION").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("FECHAREPCECION").Value = RowRetorno.Item("FECHAREPCECION").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("HORARECEPCION").Value = RowRetorno.Item("HORARECEPCION").ToString.Trim
+                    Dg_Cabecera.Rows(contador).Cells("FECHA_RETORNO").Value = RowRetorno.Item("FECHA_RETORNO").ToString.Trim
 
                     Dg_Cabecera.Rows(contador).Cells("C5_CTD").Value = RowRetorno.Item("C5_CTD").ToString.Trim
 
@@ -307,8 +314,25 @@ Public Class GestionProgramacionDespacho
                             End If
                         End If
                     End If
+
+                    If Dg_Cabecera.Rows(contador).Cells("SITUACION").Value.ToString.Trim = "ANULADO" Then
+                        cantidadAnuladas = cantidadAnuladas + 1
+                    End If
+
+                    If Dg_Cabecera.Rows(contador).Cells("SITUACION").Value.ToString.Trim <> "ANULADO" And Dg_Cabecera.Rows(contador).Cells("ESTADO").Value.ToString.Trim = "PENDIENTE DE REPCEPCION" Then
+                        CantidadPendientes = CantidadPendientes + 1
+                    End If
+
+                    If Dg_Cabecera.Rows(contador).Cells("SITUACION").Value.ToString.Trim <> "ANULADO" And Dg_Cabecera.Rows(contador).Cells("ESTADO").Value.ToString.Trim = "RECEPCIONADO" Then
+                        CantidadRecepcionadas = CantidadRecepcionadas + 1
+                    End If
+
                     contador = contador + 1
                 Next
+
+                txt_anuladas.Text = cantidadAnuladas.ToString
+                txt_pendientes.Text = CantidadPendientes.ToString
+                txt_recepcionadas.Text = CantidadRecepcionadas.ToString
 
                 'ColorearGrilla()
             End If
@@ -375,9 +399,12 @@ Public Class GestionProgramacionDespacho
         '    Throw ex
         'End Try
         Try
-            Me.Cursor = Cursors.WaitCursor
-            GridAExcel(Dg_Cabecera)
-            Me.Cursor = Cursors.Default
+            'Me.Cursor = Cursors.WaitCursor
+            'GridAExcel(Dg_Cabecera)
+            'Me.Cursor = Cursors.Default
+            If dtcabecera.Rows.Count > 0 Then
+                ExportExcel(dtcabecera)
+            End If
         Catch ex As Exception
 
         End Try
@@ -547,12 +574,18 @@ Public Class GestionProgramacionDespacho
                     Dg_Cabecera.Rows(i).Visible = True
                 Next
             Else
-                Dim n = cmb_serie.Text
+                If cmb_serie.SelectedIndex = 4 Then
+                    Dim n = cmb_serie.Text
+                    For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                        Dg_Cabecera.Rows(i).Visible = (Dg_Cabecera.Rows(i).Cells("SERIE2").Value = n)
+                    Next
+                Else
+                    Dim n = cmb_serie.Text
+                    For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                        Dg_Cabecera.Rows(i).Visible = (Dg_Cabecera.Rows(i).Cells("SERIE").Value = n)
+                    Next
 
-                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
-                    Dg_Cabecera.Rows(i).Visible = (Dg_Cabecera.Rows(i).Cells("SERIE").Value = n)
-                Next
-
+                End If
             End If
         Catch ex As Exception
 

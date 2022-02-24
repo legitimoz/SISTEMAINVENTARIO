@@ -12,6 +12,30 @@ Public Class AlmacenL
         End Try
     End Function
 
+    Public Function ListarParteEntradaSinUbicar(fechadesde As String, fechahasta As String) As DataTable
+        Try
+            Return objAlmacen.ListarParteEntradaSinUbicar(fechadesde, fechahasta)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function ListarParteSalidaCab(fechadesde As String, fechahasta As String) As DataTable
+        Try
+            Return objAlmacen.ListarParteSalidaCab(fechadesde, fechahasta)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function ListarGuiasAnularPicking(fechadesde As String, fechahasta As String) As DataTable
+        Try
+            Return objAlmacen.ListarGuiasAnularPicking(fechadesde, fechahasta)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function ObtenerFactoresArticulo(ByVal codarticulo As String) As DataTable
         Try
             Return objAlmacen.ObtenerFactoresArticulo(codarticulo)
@@ -192,6 +216,22 @@ Public Class AlmacenL
     Public Function ListarCaneles() As DataTable
         Try
             Return objAlmacen.ListarCaneles
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function ReveritrDetallePickin(iddetalle As Integer, userid As Integer) As Integer
+        Try
+            Return objAlmacen.ReveritrDetallePickin(iddetalle, userid)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function ObtenerDetallePickin(codAlmacen As String, ctd As String, nrodoc As String) As DataTable
+        Try
+            Return objAlmacen.ObtenerDetallePickin(codAlmacen, ctd, nrodoc)
         Catch ex As Exception
             Throw ex
         End Try
@@ -440,39 +480,22 @@ Public Class AlmacenL
             Throw ex
         End Try
     End Function
-
-    Public Function RegistrarOperacion(factorcaja As Decimal, factormaster As Decimal, unidad As String, CodAlma As String, codNumero As String, tipodoc As String, userid As Integer, CodArticulo As String, lote As String, idposicion As Integer, cantidad As Decimal, total As Decimal, ocuado As Decimal, tipooperacion As String, idsite As Integer, idalmacen As Integer, idrack As Integer, vencimiento As String) As Integer
-        Dim cajas, cajasmaster As Decimal
+    Public Function ObtenerArticulosSinCubicaje() As DataTable
         Try
-            If unidad.Trim = "UND" Then
-                If factorcaja <> 0 Then
-                    cajas = cantidad / factorcaja
-                Else
-                    cajas = 0
-                End If
-                If factormaster <> 0 And cajas <> 0 Then
-                    cajasmaster = Math.Round(cajas / factormaster, 2)
-                Else
-                    cajasmaster = 0
-                End If
-            End If
-
-            If unidad.Trim = "CJA" Then
-                cajas = cantidad
-                If factormaster <> 0 And cajas <> 0 Then
-                    cajasmaster = Math.Round(cajas / factormaster, 2)
-                Else
-                    cajasmaster = 0
-                End If
-            End If
-
-            Return objAlmacen.RegistrarOperacion(cajas, cajasmaster, unidad, CodAlma, codNumero, tipodoc, userid, CodArticulo, lote, idposicion, cantidad, total, ocuado, tipooperacion, idsite, idalmacen, idrack, vencimiento)
+            Return objAlmacen.ObtenerArticulosSinCubicaje
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function KardexArticulo(codarticulo As String, lote As String, idalmacen As Integer, idsite As Integer, fechadesde As String, fechahasta As String) As DataTable
+        Try
+            Return objAlmacen.KardexArticulo(codarticulo, lote, idalmacen, idsite, fechadesde, fechahasta)
         Catch ex As Exception
             Throw ex
         End Try
     End Function
 
-    Public Function RegistrarOperacionSalida(userid As Integer, factorcaja As Decimal, factormaster As Decimal, unidad As String, CodAlma As String, codNumero As String, tipdoc As String, CodArticulo As String, lote As String, idposicion As Integer, cantidad As Decimal, ocuado As Decimal, tipooperacion As String, idsite As Integer, idalmacen As Integer, idrack As Integer, idmovimiento As Integer) As Integer
+    Public Function RegistrarOperacion(factorcaja As Decimal, factormaster As Decimal, unidad As String, CodAlma As String, codNumero As String, tipodoc As String, userid As Integer, CodArticulo As String, lote As String, idposicion As Integer, cantidad As Decimal, total As Decimal, ocuado As Decimal, tipooperacion As String, idsite As Integer, idalmacen As Integer, idrack As Integer, vencimiento As String, correlativo As String) As Integer
         Dim cajas, cajasmaster As Decimal
         Try
             If unidad.Trim = "UND" Then
@@ -497,7 +520,38 @@ Public Class AlmacenL
                 End If
             End If
 
-            Return objAlmacen.RegistrarOperacionSalida(userid, cajas, cajasmaster, CodAlma, codNumero, tipdoc, CodArticulo, lote, idposicion, cantidad, ocuado, tipooperacion, idsite, idalmacen, idrack, idmovimiento)
+            Return objAlmacen.RegistrarOperacion(cajas, cajasmaster, unidad, CodAlma, codNumero, tipodoc, userid, CodArticulo, lote, idposicion, cantidad, total, ocuado, tipooperacion, idsite, idalmacen, idrack, vencimiento, correlativo)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function RegistrarOperacionSalida(userid As Integer, factorcaja As Decimal, factormaster As Decimal, unidad As String, CodAlma As String, codNumero As String, tipdoc As String, CodArticulo As String, lote As String, idposicion As Integer, cantidad As Decimal, ocuado As Decimal, tipooperacion As String, idsite As Integer, idalmacen As Integer, idrack As Integer, idmovimiento As Integer, correlativo As String) As Integer
+        Dim cajas, cajasmaster As Decimal
+        Try
+            If unidad.Trim = "UND" Then
+                If factorcaja <> 0 Then
+                    cajas = cantidad / factorcaja
+                Else
+                    cajas = 0
+                End If
+                If factormaster <> 0 And cajas <> 0 Then
+                    cajasmaster = Math.Round(cajas / factormaster, 2)
+                Else
+                    cajasmaster = 0
+                End If
+            End If
+
+            If unidad.Trim = "CJA" Then
+                cajas = cantidad
+                If factormaster <> 0 And cajas <> 0 Then
+                    cajasmaster = Math.Round(cajas / factormaster, 2)
+                Else
+                    cajasmaster = 0
+                End If
+            End If
+
+            Return objAlmacen.RegistrarOperacionSalida(userid, cajas, cajasmaster, CodAlma, codNumero, tipdoc, CodArticulo, lote, idposicion, cantidad, ocuado, tipooperacion, idsite, idalmacen, idrack, idmovimiento, correlativo)
         Catch ex As Exception
             Throw ex
         End Try
@@ -506,6 +560,14 @@ Public Class AlmacenL
     Public Function ListarMovimientosXposicion(ByVal idposicion As Integer) As DataTable
         Try
             Return objAlmacen.ListarMovimientosXposicion(idposicion)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function ListarUbicacionesVacias() As DataTable
+        Try
+            Return objAlmacen.ListarUbicacionesVacias
         Catch ex As Exception
             Throw ex
         End Try

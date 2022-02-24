@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class GestionAbastecimiento
+Partial Class GestionParteSalida
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -22,9 +22,15 @@ Partial Class GestionAbastecimiento
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GestionAbastecimiento))
+        Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GestionParteSalida))
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.cmdGenerarExcel = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.cmdCerrar = New System.Windows.Forms.ToolStripButton()
         Me.dt_desde = New System.Windows.Forms.DateTimePicker()
         Me.dt_hasta = New System.Windows.Forms.DateTimePicker()
@@ -37,13 +43,16 @@ Partial Class GestionAbastecimiento
         Me.combo_Almacen = New System.Windows.Forms.ComboBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Dg_Cabecera = New System.Windows.Forms.DataGridView()
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.Dg_Detalle = New System.Windows.Forms.DataGridView()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.Panel1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.Dg_Cabecera, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Dg_Detalle, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
@@ -61,7 +70,7 @@ Partial Class GestionAbastecimiento
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1295, 118)
+        Me.Panel1.Size = New System.Drawing.Size(1295, 153)
         Me.Panel1.TabIndex = 48
         '
         'ToolStrip1
@@ -70,13 +79,28 @@ Partial Class GestionAbastecimiento
         Me.ToolStrip1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripSeparator2, Me.ToolStripButton1, Me.ToolStripSeparator1, Me.cmdCerrar})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdGenerarExcel, Me.ToolStripSeparator3, Me.cmdCerrar})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
         Me.ToolStrip1.Size = New System.Drawing.Size(1295, 40)
         Me.ToolStrip1.TabIndex = 85
         Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'cmdGenerarExcel
+        '
+        Me.cmdGenerarExcel.Image = CType(resources.GetObject("cmdGenerarExcel.Image"), System.Drawing.Image)
+        Me.cmdGenerarExcel.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.cmdGenerarExcel.Margin = New System.Windows.Forms.Padding(1)
+        Me.cmdGenerarExcel.Name = "cmdGenerarExcel"
+        Me.cmdGenerarExcel.Size = New System.Drawing.Size(81, 38)
+        Me.cmdGenerarExcel.Text = "&Exportar Excel"
+        Me.cmdGenerarExcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'ToolStripSeparator3
+        '
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 40)
         '
         'cmdCerrar
         '
@@ -188,7 +212,7 @@ Partial Class GestionAbastecimiento
         Me.combo_Almacen.FormattingEnabled = True
         Me.combo_Almacen.Location = New System.Drawing.Point(90, 75)
         Me.combo_Almacen.Name = "combo_Almacen"
-        Me.combo_Almacen.Size = New System.Drawing.Size(209, 21)
+        Me.combo_Almacen.Size = New System.Drawing.Size(209, 20)
         Me.combo_Almacen.TabIndex = 67
         '
         'Panel2
@@ -197,9 +221,12 @@ Partial Class GestionAbastecimiento
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel2.Controls.Add(Me.Dg_Cabecera)
-        Me.Panel2.Location = New System.Drawing.Point(0, 124)
+        Me.Panel2.Controls.Add(Me.Dg_Detalle)
+        Me.Panel2.Controls.Add(Me.Label2)
+        Me.Panel2.Controls.Add(Me.Label1)
+        Me.Panel2.Location = New System.Drawing.Point(0, 155)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1291, 318)
+        Me.Panel2.Size = New System.Drawing.Size(1291, 491)
         Me.Panel2.TabIndex = 49
         '
         'Dg_Cabecera
@@ -213,57 +240,112 @@ Partial Class GestionAbastecimiento
         Me.Dg_Cabecera.BackgroundColor = System.Drawing.Color.White
         Me.Dg_Cabecera.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.Dg_Cabecera.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Dg_Cabecera.Location = New System.Drawing.Point(12, 33)
+        Me.Dg_Cabecera.Location = New System.Drawing.Point(17, 33)
         Me.Dg_Cabecera.MultiSelect = False
         Me.Dg_Cabecera.Name = "Dg_Cabecera"
         Me.Dg_Cabecera.RowHeadersVisible = False
         Me.Dg_Cabecera.RowTemplate.Height = 24
         Me.Dg_Cabecera.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.Dg_Cabecera.Size = New System.Drawing.Size(1271, 275)
+        Me.Dg_Cabecera.Size = New System.Drawing.Size(1259, 268)
         Me.Dg_Cabecera.TabIndex = 25
         '
-        'ToolStripSeparator1
+        'Dg_Detalle
         '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 40)
+        Me.Dg_Detalle.AllowUserToAddRows = False
+        Me.Dg_Detalle.AllowUserToDeleteRows = False
+        Me.Dg_Detalle.AllowUserToResizeRows = False
+        Me.Dg_Detalle.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Dg_Detalle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
+        Me.Dg_Detalle.BackgroundColor = System.Drawing.Color.White
+        Me.Dg_Detalle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlDark
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ControlDark
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Dg_Detalle.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        Me.Dg_Detalle.ColumnHeadersHeight = 50
+        Me.Dg_Detalle.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.Dg_Detalle.EnableHeadersVisualStyles = False
+        Me.Dg_Detalle.Location = New System.Drawing.Point(17, 325)
+        Me.Dg_Detalle.Margin = New System.Windows.Forms.Padding(4)
+        Me.Dg_Detalle.MultiSelect = False
+        Me.Dg_Detalle.Name = "Dg_Detalle"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ControlDark
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlDark
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Dg_Detalle.RowHeadersDefaultCellStyle = DataGridViewCellStyle2
+        Me.Dg_Detalle.RowHeadersVisible = False
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ControlLightLight
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.Dg_Detalle.RowsDefaultCellStyle = DataGridViewCellStyle3
+        Me.Dg_Detalle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.Dg_Detalle.Size = New System.Drawing.Size(1259, 155)
+        Me.Dg_Detalle.TabIndex = 24
         '
-        'ToolStripSeparator2
+        'Label2
         '
-        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 40)
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(14, 304)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(80, 13)
+        Me.Label2.TabIndex = 22
+        Me.Label2.Text = "Detalle Pedidos"
         '
-        'ToolStripButton1
+        'Label1
         '
-        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
-        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton1.Margin = New System.Windows.Forms.Padding(1)
-        Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(127, 38)
-        Me.ToolStripButton1.Text = "&Generar Abastecimiento"
-        Me.ToolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(11, 17)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(44, 13)
+        Me.Label1.TabIndex = 21
+        Me.Label1.Text = "Pedidos"
         '
-        'GestionAbastecimiento
+        'ErrorProvider1
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.ErrorProvider1.ContainerControl = Me
+        '
+        'GestionParteSalida
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1295, 444)
+        Me.ClientSize = New System.Drawing.Size(1295, 648)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
-        Me.Name = "GestionAbastecimiento"
+        Me.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Name = "GestionParteSalida"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Gestion Abastecimiento"
+        Me.Text = "GestionParteSalida"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
         CType(Me.Dg_Cabecera, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Dg_Detalle, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents Panel1 As Panel
     Friend WithEvents ToolStrip1 As ToolStrip
+    Friend WithEvents cmdGenerarExcel As ToolStripButton
+    Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
     Friend WithEvents cmdCerrar As ToolStripButton
     Friend WithEvents dt_desde As DateTimePicker
     Friend WithEvents dt_hasta As DateTimePicker
@@ -276,7 +358,8 @@ Partial Class GestionAbastecimiento
     Friend WithEvents combo_Almacen As ComboBox
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Dg_Cabecera As DataGridView
-    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
-    Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
-    Friend WithEvents ToolStripButton1 As ToolStripButton
+    Public WithEvents Dg_Detalle As DataGridView
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label1 As Label
+    Friend WithEvents ErrorProvider1 As ErrorProvider
 End Class

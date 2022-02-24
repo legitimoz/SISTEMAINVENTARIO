@@ -92,10 +92,7 @@
                   <Width>1.55452cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.12786cm</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>1.10831cm</Width>
+                  <Width>1.46666cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.8289cm</Width>
@@ -110,10 +107,10 @@
                   <Width>0.93896cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.93705cm</Width>
+                  <Width>1.29138cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.91234cm</Width>
+                  <Width>1.32973cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -316,44 +313,6 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox6</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>Gray</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>Silver</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox4">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>CANT. 
-UND</Value>
-                                  <Style>
-                                    <FontSize>6pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox4</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>Gray</Color>
@@ -772,41 +731,6 @@ MASTER</Value>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox5">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontSize>6pt</FontSize>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Left</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox5</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>Gray</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>1pt</PaddingTop>
-                            <PaddingBottom>1pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
                         <Textbox Name="Unidad">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -1032,7 +956,6 @@ MASTER</Value>
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
-                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
@@ -1051,7 +974,7 @@ MASTER</Value>
             <DataSetName>DetalleHojaPicking</DataSetName>
             <Top>0.17639cm</Top>
             <Height>1.82cm</Height>
-            <Width>19.43362cm</Width>
+            <Width>19.43584cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>

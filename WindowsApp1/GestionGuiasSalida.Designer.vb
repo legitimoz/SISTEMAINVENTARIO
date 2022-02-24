@@ -48,6 +48,8 @@ Partial Class GestionGuiasSalida
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.cmdGenerarExcel = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
         Me.cmdCerrar = New System.Windows.Forms.ToolStripButton()
         Me.dt_desde = New System.Windows.Forms.DateTimePicker()
         Me.dt_hasta = New System.Windows.Forms.DateTimePicker()
@@ -221,7 +223,7 @@ Partial Class GestionGuiasSalida
         Me.ToolStrip1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdVerReporte, Me.separador5, Me.ToolStripButton1, Me.ToolStripSeparator2, Me.btn_imprimir, Me.ToolStripSeparator1, Me.cmdGenerarExcel, Me.ToolStripSeparator3, Me.cmdCerrar})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdVerReporte, Me.separador5, Me.ToolStripButton1, Me.ToolStripSeparator2, Me.btn_imprimir, Me.ToolStripSeparator1, Me.cmdGenerarExcel, Me.ToolStripSeparator3, Me.ToolStripButton2, Me.ToolStripSeparator4, Me.cmdCerrar})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
@@ -288,6 +290,21 @@ Partial Class GestionGuiasSalida
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
         Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 40)
+        '
+        'ToolStripButton2
+        '
+        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
+        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton2.Margin = New System.Windows.Forms.Padding(1)
+        Me.ToolStripButton2.Name = "ToolStripButton2"
+        Me.ToolStripButton2.Size = New System.Drawing.Size(76, 38)
+        Me.ToolStripButton2.Text = "&Productividad"
+        Me.ToolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'ToolStripSeparator4
+        '
+        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(6, 40)
         '
         'cmdCerrar
         '
@@ -508,7 +525,7 @@ Partial Class GestionGuiasSalida
         DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.Dg_Detalle.RowsDefaultCellStyle = DataGridViewCellStyle3
         Me.Dg_Detalle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.Dg_Detalle.Size = New System.Drawing.Size(1259, 128)
+        Me.Dg_Detalle.Size = New System.Drawing.Size(1259, 155)
         Me.Dg_Detalle.TabIndex = 24
         '
         'Label2
@@ -592,4 +609,6 @@ Partial Class GestionGuiasSalida
     Friend WithEvents txt_pendientes As Label
     Friend WithEvents txt_total As Label
     Friend WithEvents Button5 As Button
+    Friend WithEvents ToolStripButton2 As ToolStripButton
+    Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
 End Class

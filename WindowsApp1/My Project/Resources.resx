@@ -136,11 +136,17 @@
   <data name="actn039" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\actn039.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="LogoNordicResize" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LogoNordicResize.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="571" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\571.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="412" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\412.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="measure-crop-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\measure-crop-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="print-icon2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\print-icon2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -160,14 +166,17 @@
   <data name="actn1121" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\actn112.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon_excel2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon_excel.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="delete-file-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\delete-file-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="1172" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1172.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Logo Nordic (Oficial)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Logo Nordic (Oficial).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="City-No-Baggage-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\City-No-Baggage-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="1178" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1178.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -178,14 +187,14 @@
   <data name="1043" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\104.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon_delete_on1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon_delete_on1.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="actn0391" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\actn039.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="074" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\0741.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="004" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\004.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="actn017" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\actn017.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -205,8 +214,8 @@
   <data name="1167" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1167.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="004" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\004.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icon_delete_on1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_delete_on1.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="emergencia" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\emergencia.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -217,11 +226,20 @@
   <data name="0011" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\0011.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icon_excel2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_excel.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Other-Power-Switch-User-Metro-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Other-Power-Switch-User-Metro-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="5711" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\571.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="0041" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\004.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="app-stock-icon (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\app-stock-icon (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon_package_big1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_package_big.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -244,13 +262,19 @@
   <data name="0032" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\0032.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Other-origin-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Other-origin-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="floppy-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\floppy-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="System-Box-Empty-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\System-Box-Empty-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon_excel1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_excel.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="LogoNordicResize" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LogoNordicResize.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Action-window-no-fullscreen-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Action-window-no-fullscreen-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

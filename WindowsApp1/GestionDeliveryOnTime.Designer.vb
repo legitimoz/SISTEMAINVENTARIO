@@ -53,6 +53,7 @@ Partial Class GestionDeliveryOnTime
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Dg_Cabecera = New System.Windows.Forms.DataGridView()
+        Me.savedialog_Excel = New System.Windows.Forms.SaveFileDialog()
         Me.Panel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.Dg_Cabecera, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -502,4 +503,5 @@ Partial Class GestionDeliveryOnTime
     Friend WithEvents txt_dentropro As Label
     Friend WithEvents Label9 As Label
     Friend WithEvents txt_cantpro As Label
+    Friend WithEvents savedialog_Excel As SaveFileDialog
 End Class

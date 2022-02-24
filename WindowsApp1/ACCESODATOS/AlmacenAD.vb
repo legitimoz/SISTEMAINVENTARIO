@@ -316,6 +316,25 @@ Public Class AlmacenAD
 
     End Function
 
+    Public Function ListarUbicacionesVacias() As DataTable
+
+        Try
+            Dim com As New SqlCommand("SP_UBICACIONES_VACIAS", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            Throw ex
+            MyBase.Conn.Close()
+        End Try
+
+    End Function
+
     Public Function ListarMovimientosXAlmacen(ByVal idalmacen As Integer, fechadesde As String, fechahasta As String) As DataTable
 
         Try
@@ -441,6 +460,27 @@ Public Class AlmacenAD
 
         Try
             Dim com As New SqlCommand("SP_CSE_ListarParteEntradaCAB", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+            com.Parameters.Add("@fechadesde", SqlDbType.Char, 10).Value = fechadesde
+            com.Parameters.Add("@fechahasta", SqlDbType.Char, 10).Value = fechahasta
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            Throw ex
+            MyBase.Conn.Close()
+        End Try
+
+    End Function
+
+    Public Function ListarParteEntradaSinUbicar(fechadesde As String, fechahasta As String) As DataTable
+
+        Try
+            Dim com As New SqlCommand("SP_CSE_ListarParteEntradaSinUbicar", MyBase.Conn)
             MyBase.Conn.Open()
             com.CommandType = CommandType.StoredProcedure
             com.Parameters.Add("@fechadesde", SqlDbType.Char, 10).Value = fechadesde
@@ -685,8 +725,49 @@ Public Class AlmacenAD
 
     End Function
 
-    Public Function ListarGuiasDET(codAlmacen As String, tipdoc As String, nrodoc As String) As DataTable
+    Public Function ListarParteSalidaCab(fechadesde As String, fechahasta As String) As DataTable
 
+        Try
+            Dim com As New SqlCommand("CSE_SP_ListarPartesSalidaCab", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+            com.Parameters.Add("@fechadesde", SqlDbType.Char, 10).Value = fechadesde
+            com.Parameters.Add("@fechahasta", SqlDbType.Char, 10).Value = fechahasta
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            Throw ex
+            MyBase.Conn.Close()
+        End Try
+
+    End Function
+
+    Public Function ListarGuiasAnularPicking(fechadesde As String, fechahasta As String) As DataTable
+
+        Try
+            Dim com As New SqlCommand("CSE_SP_ListarGuiasAnularPickin", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+            com.Parameters.Add("@fechadesde", SqlDbType.Char, 10).Value = fechadesde
+            com.Parameters.Add("@fechahasta", SqlDbType.Char, 10).Value = fechahasta
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            Throw ex
+            MyBase.Conn.Close()
+        End Try
+
+    End Function
+
+    Public Function ListarGuiasDET(codAlmacen As String, tipdoc As String, nrodoc As String) As DataTable
         Try
             Dim com As New SqlCommand("SP_CSE_ListarGuiaDetalle", MyBase.Conn)
             MyBase.Conn.Open()
@@ -704,11 +785,9 @@ Public Class AlmacenAD
             Throw ex
             MyBase.Conn.Close()
         End Try
-
     End Function
 
     Public Function ObtenerGuiaProgramacion(codAlmacen As String, ctd As String, nrodoc As String) As DataTable
-
         Try
             Dim com As New SqlCommand("SP_CSE_ListarPedidosDespacho_v", MyBase.Conn)
             MyBase.Conn.Open()
@@ -726,7 +805,43 @@ Public Class AlmacenAD
             Throw ex
             MyBase.Conn.Close()
         End Try
+    End Function
 
+    Public Function ObtenerArticulosSinCubicaje() As DataTable
+        Try
+            Dim com As New SqlCommand("SP_CSE_ARTICULOS_SIN_CUBICAE", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            Throw ex
+            MyBase.Conn.Close()
+        End Try
+    End Function
+
+    Public Function ObtenerDetallePickin(codAlmacen As String, ctd As String, nrodoc As String) As DataTable
+        Try
+            Dim com As New SqlCommand("SP_CSE_OBTENER_DETALLE_PICKING", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+            com.Parameters.Add("@dopa_C5_CALMA", SqlDbType.Char, 4).Value = codAlmacen
+            com.Parameters.Add("@dopa_C5_CTD", SqlDbType.Char, 2).Value = ctd
+            com.Parameters.Add("@dopa_C5_CNUMDOC", SqlDbType.Char, 11).Value = nrodoc
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            Throw ex
+            MyBase.Conn.Close()
+        End Try
     End Function
 
     Public Function ListarParteEntradaDET(codAlmacen As String, codcabecera As String, tipdoc As String) As DataTable
@@ -748,7 +863,6 @@ Public Class AlmacenAD
             Throw ex
             MyBase.Conn.Close()
         End Try
-
     End Function
 
     Public Function ListarPedidosDET(F6_CCODAGE As String, F6_CNUMPED As String) As DataTable
@@ -863,6 +977,30 @@ Public Class AlmacenAD
                 .Add("@CTD", SqlDbType.Char, 2).Value = CTD
                 .Add("@CNUMDOC", SqlDbType.Char, 11).Value = CNUMDOC
                 .Add("@idMotivo", SqlDbType.Int).Value = idmotivo
+            End With
+            MyBase.Conn.Open()
+            ''RpStore = Comm.ExecuteReader(CommandBehavior.SingleRow)
+            ''If (RpStore.Read()) Then
+            ''    rp = Convert.ToInt32(RpStore.GetValue(0).ToString())
+            ''End If
+            rp = Comm.ExecuteNonQuery
+
+            MyBase.Conn.Close()
+        Catch ex As Exception
+            MyBase.Conn.Close()
+        End Try
+        Return rp
+    End Function
+
+    Public Function ReveritrDetallePickin(iddetalle As Integer, userid As Integer) As Integer
+        Dim rp As Integer = 0
+        'Dim RpStore As SqlDataReader = Nothing
+        Dim Comm As New SqlCommand("SP_CSE_REVERTIRPICKINGXDETALLE", MyBase.Conn)
+        Try
+            Comm.CommandType = CommandType.StoredProcedure
+            With Comm.Parameters
+                .Add("@idddetalle", SqlDbType.Int).Value = iddetalle
+                .Add("@user_id", SqlDbType.Int).Value = userid
             End With
             MyBase.Conn.Open()
             ''RpStore = Comm.ExecuteReader(CommandBehavior.SingleRow)
@@ -1141,7 +1279,7 @@ Public Class AlmacenAD
         Return rp
     End Function
 
-    Public Function RegistrarOperacion(cajas As Decimal, cajasmaster As Decimal, unidad As String, CodAlma As String, codNumero As String, tipodoc As String, userid As Integer, CodArticulo As String, lote As String, idposicion As Integer, cantidad As Decimal, total As Decimal, ocupado As Decimal, tipooperacion As String, idsite As Integer, idalmacen As Integer, idrack As Integer, vencimiento As String) As Integer
+    Public Function RegistrarOperacion(cajas As Decimal, cajasmaster As Decimal, unidad As String, CodAlma As String, codNumero As String, tipodoc As String, userid As Integer, CodArticulo As String, lote As String, idposicion As Integer, cantidad As Decimal, total As Decimal, ocupado As Decimal, tipooperacion As String, idsite As Integer, idalmacen As Integer, idrack As Integer, vencimiento As String, correlativo As String) As Integer
         Dim rp As Integer = 0
         Dim Comm As New SqlCommand("SP_CSE_RegistrarOperacionAlmacen", MyBase.Conn)
         Try
@@ -1164,6 +1302,7 @@ Public Class AlmacenAD
                 .Add("@cantcajas", SqlDbType.Decimal).Value = cajas
                 .Add("@cantcajasmaster", SqlDbType.Decimal).Value = cajasmaster
                 .Add("@vencimiento", SqlDbType.Char, 10).Value = vencimiento
+                .Add("@correlativo", SqlDbType.Char, 4).Value = correlativo
             End With
             MyBase.Conn.Open()
             rp = Comm.ExecuteNonQuery()
@@ -1174,7 +1313,7 @@ Public Class AlmacenAD
         Return rp
     End Function
 
-    Public Function RegistrarOperacionSalida(userid As Integer, cajas As Decimal, cajasmaster As Decimal, CodAlma As String, codNumero As String, tipdoc As String, CodArticulo As String, lote As String, idposicion As Integer, cantidad As Decimal, ocupado As Decimal, tipooperacion As String, idsite As Integer, idalmacen As Integer, idrack As Integer, idmovimiento As Integer) As Integer
+    Public Function RegistrarOperacionSalida(userid As Integer, cajas As Decimal, cajasmaster As Decimal, CodAlma As String, codNumero As String, tipdoc As String, CodArticulo As String, lote As String, idposicion As Integer, cantidad As Decimal, ocupado As Decimal, tipooperacion As String, idsite As Integer, idalmacen As Integer, idrack As Integer, idmovimiento As Integer, correlativo As String) As Integer
         Dim rp As Integer = 0
         Dim Comm As New SqlCommand("SP_CSE_RegistrarOperacionSalida", MyBase.Conn)
         Try
@@ -1196,6 +1335,8 @@ Public Class AlmacenAD
                 .Add("@cantcajas", SqlDbType.Decimal).Value = cajas * (-1)
                 .Add("@cantcajasmaster", SqlDbType.Decimal).Value = cajasmaster * (-1)
                 .Add("@idmovimiento", SqlDbType.Int).Value = idmovimiento
+                .Add("@correlativo", SqlDbType.Char, 4).Value = correlativo
+
             End With
             MyBase.Conn.Open()
             rp = Comm.ExecuteNonQuery()
@@ -1229,5 +1370,34 @@ Public Class AlmacenAD
         End Try
 
     End Function
+
+    Public Function KardexArticulo(codarticulo As String, lote As String, idalmacen As Integer, idsite As Integer, fechadesde As String, fechahasta As String) As DataTable
+
+        Try
+            Dim com As New SqlCommand("SP_CSE_KARDEX_ARTICULO", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+            com.Parameters.Add("@codarticulo", SqlDbType.Char, 25).Value = codarticulo
+            com.Parameters.Add("@lote", SqlDbType.Char, 18).Value = lote
+            com.Parameters.Add("@idalmacen", SqlDbType.Int).Value = idalmacen
+            com.Parameters.Add("@idsite", SqlDbType.Int).Value = idsite
+            com.Parameters.Add("@fechadesde", SqlDbType.Char, 10).Value = fechadesde
+            com.Parameters.Add("@fechahasta", SqlDbType.Char, 10).Value = fechahasta
+
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            Throw ex
+            MyBase.Conn.Close()
+        End Try
+
+    End Function
+
+
+
 
 End Class
