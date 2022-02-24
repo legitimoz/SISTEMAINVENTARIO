@@ -1,4 +1,5 @@
-﻿Imports Nordic.Bl.Be
+﻿Imports ClosedXML.Excel
+Imports Nordic.Bl.Be
 
 Public Class GestionDeliveryOnTime
 
@@ -86,21 +87,16 @@ Public Class GestionDeliveryOnTime
                     rowcabecera = dtcabecera2.NewRow
 
 
-                    'Tabladetalle.Columns.Add("COD_PED", GetType(String))
-                    'Tabladetalle.Columns.Add("LIM_PROV", GetType(String))
-                    'Tabladetalle.Columns.Add("PROVINCIA", GetType(String))
-                    'Tabladetalle.Columns.Add("FECHA_PEDIDO", GetType(String))
-                    'Tabladetalle.Columns.Add("FECHA_DESPACHO", GetType(String))
-                    'Tabladetalle.Columns.Add("FECHA_RECEPCLIENTE", GetType(String))
-                    'Tabladetalle.Columns.Add("TIEMPO_MAX", GetType(String))
-                    'Tabladetalle.Columns.Add("TIEMPO_TRASN", GetType(String))
-                    'Tabladetalle.Columns.Add("Estado", GetType(String))
+
 
                     rowcabecera.Item("COD_PED") = RowRetorno.Item("COD_PED").ToString.Trim
 
                     rowcabecera.Item("GUIA") = RowRetorno.Item("GUIA").ToString.Trim
                     rowcabecera.Item("LIM_PROV") = RowRetorno.Item("LIM_PROV").ToString.Trim
                     rowcabecera.Item("PROVINCIA") = RowRetorno.Item("PROVINCIA").ToString.Trim
+                    If rowcabecera.Item("PROVINCIA").ToString.Trim = "BARRANCA" Or rowcabecera.Item("PROVINCIA").ToString.Trim = "CAÑETE" Then
+                        rowcabecera.Item("LIM_PROV") = "PROVINCIA".Trim
+                    End If
                     rowcabecera.Item("FECHA_PEDIDO") = RowRetorno.Item("FECHA_PEDIDO").ToString.Trim
                     rowcabecera.Item("FECHA_GUIA") = RowRetorno.Item("FECHA_GUIA").ToString.Trim
                     rowcabecera.Item("FECHA_DESPACHO") = RowRetorno.Item("FECHA_DESPACHO").ToString.Trim
@@ -400,16 +396,56 @@ Public Class GestionDeliveryOnTime
 
     Private Sub btnExportar_Click(sender As Object, e As EventArgs) Handles btnExportar.Click
         Try
-            Me.Cursor = Cursors.WaitCursor
+            'Me.Cursor = Cursors.WaitCursor
 
-            GridAExcel(Dg_Cabecera)
+            'GridAExcel(Dg_Cabecera)
 
-            Me.Cursor = Cursors.Default
+            'Me.Cursor = Cursors.Default
+            If dtcabecera2.Rows.Count > 0 Then
+                ExportExcel(dtcabecera2)
+            End If
 
         Catch ex As Exception
 
         End Try
     End Sub
+
+    Public Function ExportExcel(ByVal dt As DataTable) As Boolean
+        Dim RP As Boolean = False
+        Dim wb As New XLWorkbook()
+        Dim path As String
+
+        Try
+            savedialog_Excel.Filter = "Excel File(.xlsx)|*.xlsx"
+            savedialog_Excel.Title = Text
+            savedialog_Excel.FileName = "REPORTE DELIVERY ON TIME"
+            dt.TableName = "Hoja1"
+            Dim ws As IXLWorksheet
+            If dt.Rows.Count > Constantes.ValorEnteroInicial Then
+                If savedialog_Excel.ShowDialog = Windows.Forms.DialogResult.OK Then
+                    path = savedialog_Excel.FileName
+                    wb.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left
+                    ws = wb.Worksheets.Add(dt)
+                    ws.Style.Font.FontName = "Arial"
+                    ws.Style.Font.FontSize = 8
+                    ws.Columns().AdjustToContents()
+                    wb.SaveAs(path)
+                    Process.Start(path)
+                    RP = True
+                End If
+            Else
+                MsgBox("No existe DATA para generar Excel, Confirme Orden de Pago", MsgBoxStyle.Exclamation)
+            End If
+        Catch ex As Exception
+            Dim iderror As Integer
+            iderror = ex.HResult
+            If iderror = Constantes.errorexcel Then
+                MsgBox("Archivo Excel se encuentra abierto, cierre el archivo e intente de nuevo", MsgBoxStyle.Exclamation)
+            End If
+        End Try
+        Return RP
+
+    End Function
 
     Public Sub Obtener()
         Try

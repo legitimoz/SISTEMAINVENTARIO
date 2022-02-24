@@ -501,16 +501,7 @@
     End Sub
 
     Private Sub ArticulosSinUbicacionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ArticulosSinUbicacionToolStripMenuItem.Click
-        Try
-            Dim frmPed As New ReporteArticulosSinUbicar
-            If ExisteChildrens(frmPed) = False Then
-                frmPed.MdiParent = Me
 
-                frmPed.Show()
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
     End Sub
 
     Private Sub ExcelRotuladosProvinciaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExcelRotuladosProvinciaToolStripMenuItem.Click
@@ -546,7 +537,7 @@
     End Sub
 
 
-    Private Sub KardexArticuloToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles KardexArticuloToolStripMenuItem.Click
+    Private Sub KardexArticuloToolStripMenuItem_Click(sender As Object, e As EventArgs)
         Try
 
         Catch ex As Exception
@@ -566,7 +557,129 @@
         End Try
     End Sub
 
-    Private Sub SeguimientoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SeguimientoToolStripMenuItem.Click
 
+    Private Sub AnulacionPickingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AnulacionPickingToolStripMenuItem.Click
+        Try
+            Dim frmArt As New GestionAnulacionPicking
+            If ExisteChildrens(frmArt) = False Then
+                frmArt.MdiParent = Me
+                frmArt.usr_id = prIdUser
+                frmArt.usr_usuario = prUser
+                ' frmArt.WindowState = FormWindowState.Maximized
+                '   frmArt.Text = "Gestion Guias"
+                frmArt.Width = Me.Width
+                frmArt.Height = Me.Height
+                frmArt.Show()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub UbicacionesVaciasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UbicacionesVaciasToolStripMenuItem.Click
+        Try
+            Dim frmArt As New ReporteUbicacionesVacias
+            If ExisteChildrens(frmArt) = False Then
+                frmArt.MdiParent = Me
+                frmArt.usr_id = prIdUser
+                frmArt.usr_usuario = prUser
+                '   frmArt.WindowState = FormWindowState.Maximized
+                '   frmArt.Text = "Gestion Guias"
+                frmArt.Width = Me.Width
+                frmArt.Height = Me.Height
+                frmArt.Show()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub PartesEntradaToolStripMenuItem_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub PartesDeSalidaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PartesDeSalidaToolStripMenuItem.Click
+        Try
+            Dim frmArt As New GestionParteSalida
+            If ExisteChildrens(frmArt) = False Then
+                frmArt.MdiParent = Me
+                frmArt.usr_id = prIdUser
+                frmArt.usr_usuario = prUser
+                frmArt.WindowState = FormWindowState.Maximized
+                frmArt.Text = "Gestion Partes Salida"
+                frmArt.Width = Me.Width
+                frmArt.Height = Me.Height
+                frmArt.Show()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub KardexArticuloToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles KardexArticuloToolStripMenuItem1.Click
+        Try
+            Dim frmArt As New ReporteKardexArticulo
+            If ExisteChildrens(frmArt) = False Then
+                frmArt.MdiParent = Me
+                frmArt.usr_id = prIdUser
+                frmArt.usr_usuario = prUser
+                '   frmArt.WindowState = FormWindowState.Maximized
+                '   frmArt.Text = "Gestion Guias"
+                frmArt.Width = Me.Width
+                frmArt.Height = Me.Height
+                frmArt.Show()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub ArticulosSinCubicajeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ArticulosSinCubicajeToolStripMenuItem.Click
+        Try
+            Dim frmArt As New ReporteArticulosSinCubicaje
+            If ExisteChildrens(frmArt) = False Then
+                frmArt.MdiParent = Me
+                frmArt.usr_id = prIdUser
+                frmArt.usr_usuario = prUser
+                '   frmArt.WindowState = FormWindowState.Maximized
+                '   frmArt.Text = "Gestion Guias"
+                frmArt.Width = Me.Width
+                frmArt.Height = Me.Height
+                frmArt.Show()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub ArticulosSinUbicarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ArticulosSinUbicarToolStripMenuItem.Click
+        Try
+            Dim frmPed As New ReporteArticulosSinUbicar
+            If ExisteChildrens(frmPed) = False Then
+                frmPed.MdiParent = Me
+
+                frmPed.Show()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub PartesDeEntradaSinIngresoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PartesDeEntradaSinIngresoToolStripMenuItem.Click
+        Try
+            Dim frmArt As New ReportePartesEntradaSinUbicar
+            If ExisteChildrens(frmArt) = False Then
+                frmArt.MdiParent = Me
+                frmArt.usr_id = prIdUser
+                frmArt.usr_usuario = prUser
+                '   frmArt.WindowState = FormWindowState.Maximized
+                '   frmArt.Text = "Gestion Guias"
+                frmArt.Width = Me.Width
+                frmArt.Height = Me.Height
+                frmArt.Show()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 End Class

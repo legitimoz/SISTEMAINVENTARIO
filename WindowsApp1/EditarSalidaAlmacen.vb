@@ -2,7 +2,7 @@
 Imports Nordic.Bl.Be
 
 Public Class EditarSalidaAlmacen
-    Public CodArticulo, articulo, Lote, codposicion, unidad, F5_CCODAGE, F5_CNUMPED, TIPDOC As String
+    Public CodArticulo, articulo, Lote, codposicion, unidad, F5_CCODAGE, F5_CNUMPED, TIPDOC, correlativo As String
     Public cantidad As Decimal = 0
     Private cantidadpsocion As Decimal = 0
     Public volumen, alto, largo, ancho, unidades, total, cajas, cajasmaster, factorcaja, factormaster As Decimal
@@ -186,7 +186,7 @@ Public Class EditarSalidaAlmacen
 
     Public Function LlamarRegistrar() As Integer
         Try
-            Return ObjAlmacen.RegistrarOperacionSalida(iduser, factorcaja, factormaster, unidad, F5_CCODAGE, F5_CNUMPED, TIPDOC, CodArticulo, Lote, idposicion, CType(txt_cantidad.Text, Decimal), volumen, "S", idsite, idalmacen, idrack, idmovimiento)
+            Return ObjAlmacen.RegistrarOperacionSalida(iduser, factorcaja, factormaster, unidad, F5_CCODAGE, F5_CNUMPED, TIPDOC, CodArticulo, Lote, idposicion, CType(txt_cantidad.Text, Decimal), volumen, "S", idsite, idalmacen, idrack, idmovimiento, correlativo)
         Catch ex As Exception
             Throw ex
         End Try

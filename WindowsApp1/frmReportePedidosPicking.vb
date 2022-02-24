@@ -258,94 +258,6 @@ Public Class frmReportePedidosPicking
     End Function
 
     Public Sub ListarGuiasCabecera()
-        'Try
-        '    Dim dtretorno As New DataTable
-        '    dtretorno = LlamarPedidosPickin()
-        '    If dtretorno.Rows.Count > 0 Then
-        '        dtcabecera.Rows.Clear()
-        '        dtcabecera = dtretorno
-        '        dtcabecera2.Rows.Clear()
-        '        For Each RowRetorno As DataRow In dtretorno.Rows
-        '            'Dim RP As Boolean = ExistePedido(RowRetorno.Item("COD_PED").ToString)
-        '            'If RP = False Then
-        '            Dim rowcabecera As DataRow
-        '            Dim cajas As Decimal = 0, cajasm As Decimal = 0, saldo As Decimal = 0
-
-        '            'Tabladetalle.Columns.Add("MARCAR", GetType(Boolean))
-        '            'Tabladetalle.Columns.Add("FECHA", GetType(String))
-        '            'Tabladetalle.Columns.Add("HORA", GetType(String))
-        '            'Tabladetalle.Columns.Add("COD_PED", GetType(String))
-        '            'Tabladetalle.Columns.Add("DESCRIPCION", GetType(String))
-        '            'Tabladetalle.Columns.Add("ESTADO", GetType(String))
-        '            'Tabladetalle.Columns.Add("NRO_GUIA", GetType(String))
-        '            'Tabladetalle.Columns.Add("RUC", GetType(String))
-        '            'Tabladetalle.Columns.Add("NOM_CLIENTE", GetType(String))
-        '            'Tabladetalle.Columns.Add("DIRECCION_ENTREGA", GetType(String))
-        '            'Tabladetalle.Columns.Add("UBIGEO", GetType(String))
-        '            'Tabladetalle.Columns.Add("PROVINCIA", GetType(String))
-        '            'Tabladetalle.Columns.Add("DEPARTAMENTO", GetType(String))
-        '            'Tabladetalle.Columns.Add("DISTRITO", GetType(String))
-        '            'Tabladetalle.Columns.Add("LIMA_PROV", GetType(String))
-        '            'Tabladetalle.Columns.Add("CAJAS", GetType(String))
-        '            'Tabladetalle.Columns.Add("CAJASM", GetType(String))
-        '            'Tabladetalle.Columns.Add("SALDO", GetType(String))
-        '            'Tabladetalle.Columns.Add("M3UN", GetType(Decimal))
-        '            rowcabecera = dtcabecera2.NewRow
-        '            rowcabecera.Item("MARCAR") = True
-        '            rowcabecera.Item("FECHA") = RowRetorno.Item("FECHA").ToString.Trim
-        '            rowcabecera.Item("HORA") = RowRetorno.Item("HORA").ToString.Trim
-        '            rowcabecera.Item("COD_PED") = RowRetorno.Item("COD_PED").ToString.Trim
-        '            rowcabecera.Item("DESCRIPCION") = RowRetorno.Item("DESCRIP_PED").ToString.Trim
-        '            rowcabecera.Item("ESTADO") = RowRetorno.Item("ESTADO").ToString.Trim
-        '            rowcabecera.Item("NRO_GUIA") = RowRetorno.Item("NRO_GUIA").ToString.Trim
-        '            rowcabecera.Item("RUC") = RowRetorno.Item("RUC").ToString.Trim
-        '            rowcabecera.Item("NOM_CLIENTE") = RowRetorno.Item("NOM_CLIENTE").ToString.Trim
-        '            rowcabecera.Item("DIRECCION_ENTREGA") = RowRetorno.Item("DIRECCION_ENTREGA").ToString.Trim
-        '            rowcabecera.Item("UBIGEO") = RowRetorno.Item("UBIGEO").ToString.Trim
-        '            rowcabecera.Item("PROVINCIA") = RowRetorno.Item("PROVINCIA").ToString.Trim
-        '            rowcabecera.Item("DEPARTAMENTO") = RowRetorno.Item("DEPARTAMENTO").ToString.Trim
-        '            If rowcabecera.Item("PROVINCIA").ToString.Trim = "CALLAO" And rowcabecera.Item("DEPARTAMENTO").ToString = "CALLAO" Then
-        '                rowcabecera.Item("LIMA_PROV") = "LIMA"
-        '            Else
-        '                If rowcabecera.Item("PROVINCIA").ToString.Trim = "LIMA" And rowcabecera.Item("DEPARTAMENTO").ToString = "LIMA" Then
-        '                    rowcabecera.Item("LIMA_PROV") = "LIMA"
-        '                Else
-        '                    rowcabecera.Item("LIMA_PROV") = "PROVINCIA"
-        '                End If
-        '            End If
-
-        '            rowcabecera.Item("DISTRITO") = RowRetorno.Item("DISTRITO").ToString.Trim
-        '            rowcabecera.Item("M3UN") = CType(RowRetorno.Item("M3UN").ToString, Decimal)
-
-        '            If RowRetorno.Item("UNIDAD").ToString = "UND" Then
-        '                If RowRetorno.Item("FACTORCI").ToString <> 0 And RowRetorno.Item("FACTORCM").ToString.Trim <> 0 Then
-        '                    cajas = (RowRetorno.Item("CANTIDAD") / RowRetorno.Item("FACTORCI"))
-        '                    saldo = RowRetorno.Item("CANTIDAD") Mod RowRetorno.Item("FACTORCI")
-        '                    cajasm = cajas / RowRetorno.Item("FACTORCM")
-        '                    cajasm = Math.Floor(cajasm)
-        '                    cajas = cajas Mod RowRetorno.Item("FACTORCM")
-        '                End If
-        '            Else
-        '                If RowRetorno.Item("UNIDAD").ToString = "CJA" Then
-        '                    saldo = 0
-        '                    cajas = RowRetorno.Item("CANTIDAD")
-        '                    cajasm = cajas / RowRetorno.Item("FACTORCM")
-        '                    cajasm = Math.Floor(cajasm)
-        '                    cajas = cajas Mod RowRetorno.Item("FACTORCM")
-        '                End If
-        '            End If
-        '            rowcabecera.Item("CAJAS") = cajas
-        '            rowcabecera.Item("CAJASM") = cajasm
-        '            rowcabecera.Item("SALDO") = saldo
-        '            dtcabecera2.Rows.Add(rowcabecera)
-        '            'End If
-        '        Next
-        '        Dg_Cabecera.DataSource = dtcabecera2
-        '    End If
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
-
         Try
             Dim dtretorno As New DataTable
             dtretorno = LlamarPedidosPickin()
@@ -359,25 +271,6 @@ Public Class frmReportePedidosPicking
                         Dim rowcabecera As DataRow
                         Dim cajas As Decimal = 0, cajasm As Decimal = 0, saldo As Decimal = 0
                         Dim rpList As New List(Of Decimal)
-                        'Tabladetalle.Columns.Add("MARCAR", GetType(Boolean))
-                        'Tabladetalle.Columns.Add("FECHA", GetType(String))
-                        'Tabladetalle.Columns.Add("HORA", GetType(String))
-                        'Tabladetalle.Columns.Add("COD_PED", GetType(String))
-                        'Tabladetalle.Columns.Add("DESCRIPCION", GetType(String))
-                        'Tabladetalle.Columns.Add("ESTADO", GetType(String))
-                        'Tabladetalle.Columns.Add("NRO_GUIA", GetType(String))
-                        'Tabladetalle.Columns.Add("RUC", GetType(String))
-                        'Tabladetalle.Columns.Add("NOM_CLIENTE", GetType(String))
-                        'Tabladetalle.Columns.Add("DIRECCION_ENTREGA", GetType(String))
-                        'Tabladetalle.Columns.Add("UBIGEO", GetType(String))
-                        'Tabladetalle.Columns.Add("PROVINCIA", GetType(String))
-                        'Tabladetalle.Columns.Add("DEPARTAMENTO", GetType(String))
-                        'Tabladetalle.Columns.Add("DISTRITO", GetType(String))
-                        'Tabladetalle.Columns.Add("LIMA_PROV", GetType(String))
-                        'Tabladetalle.Columns.Add("CAJAS", GetType(String))
-                        'Tabladetalle.Columns.Add("CAJASM", GetType(String))
-                        'Tabladetalle.Columns.Add("SALDO", GetType(String))
-                        'Tabladetalle.Columns.Add("M3UN", GetType(Decimal))
                         rowcabecera = dtcabecera2.NewRow
                         rowcabecera.Item("MARCAR") = True
                         rowcabecera.Item("FECHA") = RowRetorno.Item("FECHA").ToString.Trim
@@ -410,27 +303,6 @@ Public Class frmReportePedidosPicking
                         rowcabecera.Item("CAJASM") = CType(rpList.ElementAt(1), Integer)
                         rowcabecera.Item("CAJAS") = CType(rpList.ElementAt(2), Integer)
                         rowcabecera.Item("SALDO") = CType(rpList.ElementAt(3), Integer)
-                        'rowcabecera.Item("M3UN") = CType(RowRetorno.Item("M3UN").ToString, Decimal)
-
-                        'If RowRetorno.Item("UNIDAD").ToString = "UND" Then
-                        '    If RowRetorno.Item("FACTORCI").ToString <> 0 And RowRetorno.Item("FACTORCM").ToString.Trim <> 0 Then
-                        '        cajas = (RowRetorno.Item("CANTIDAD") / RowRetorno.Item("FACTORCI"))
-                        '        saldo = RowRetorno.Item("CANTIDAD") Mod RowRetorno.Item("FACTORCI")
-                        '        cajasm = cajas / RowRetorno.Item("FACTORCM")
-                        '        cajasm = Math.Floor(cajasm)
-                        '        cajas = cajas Mod RowRetorno.Item("FACTORCM")
-                        '    End If
-                        'Else
-                        '    If RowRetorno.Item("UNIDAD").ToString = "CJA" Then
-                        '        saldo = 0
-                        '        cajas = RowRetorno.Item("CANTIDAD")
-                        '        cajasm = cajas / RowRetorno.Item("FACTORCM")
-                        '        cajasm = Math.Floor(cajasm)
-                        '        cajas = cajas Mod RowRetorno.Item("FACTORCM")
-                        '    End If
-                        'End If
-
-
                         dtcabecera2.Rows.Add(rowcabecera)
                     End If
                 Next

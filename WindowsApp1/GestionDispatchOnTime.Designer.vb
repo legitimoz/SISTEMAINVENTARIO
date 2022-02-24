@@ -26,6 +26,8 @@ Partial Class GestionDispatchOnTime
         Me.savedialog_Excel = New System.Windows.Forms.SaveFileDialog()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.cmb_filtro = New System.Windows.Forms.ComboBox()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.txt_indlima = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
@@ -52,8 +54,6 @@ Partial Class GestionDispatchOnTime
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Dg_Cabecera = New System.Windows.Forms.DataGridView()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.cmb_filtro = New System.Windows.Forms.ComboBox()
         Me.Panel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.Dg_Cabecera, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -106,6 +106,25 @@ Partial Class GestionDispatchOnTime
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
         '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(40, 43)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(32, 13)
+        Me.Label4.TabIndex = 132
+        Me.Label4.Text = "Filtro:"
+        '
+        'cmb_filtro
+        '
+        Me.cmb_filtro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb_filtro.FormattingEnabled = True
+        Me.cmb_filtro.Items.AddRange(New Object() {"TODOS", "LOGISTICO"})
+        Me.cmb_filtro.Location = New System.Drawing.Point(80, 40)
+        Me.cmb_filtro.Name = "cmb_filtro"
+        Me.cmb_filtro.Size = New System.Drawing.Size(121, 21)
+        Me.cmb_filtro.TabIndex = 131
+        '
         'Label11
         '
         Me.Label11.AutoSize = True
@@ -114,9 +133,9 @@ Partial Class GestionDispatchOnTime
         Me.Label11.Location = New System.Drawing.Point(1126, 51)
         Me.Label11.Margin = New System.Windows.Forms.Padding(10, 0, 4, 0)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(100, 14)
+        Me.Label11.Size = New System.Drawing.Size(103, 14)
         Me.Label11.TabIndex = 129
-        Me.Label11.Text = "Delivery One Time :"
+        Me.Label11.Text = "Dispatch One Time :"
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'txt_indlima
@@ -195,9 +214,9 @@ Partial Class GestionDispatchOnTime
         Me.Label5.Location = New System.Drawing.Point(961, 48)
         Me.Label5.Margin = New System.Windows.Forms.Padding(10, 0, 4, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(100, 14)
+        Me.Label5.Size = New System.Drawing.Size(103, 14)
         Me.Label5.TabIndex = 123
-        Me.Label5.Text = "Delivery One Time :"
+        Me.Label5.Text = "Dispatch One Time :"
         Me.Label5.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'txt_indpro
@@ -433,25 +452,6 @@ Partial Class GestionDispatchOnTime
         Me.Dg_Cabecera.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.Dg_Cabecera.Size = New System.Drawing.Size(1299, 349)
         Me.Dg_Cabecera.TabIndex = 53
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(40, 43)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(32, 13)
-        Me.Label4.TabIndex = 132
-        Me.Label4.Text = "Filtro:"
-        '
-        'cmb_filtro
-        '
-        Me.cmb_filtro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmb_filtro.FormattingEnabled = True
-        Me.cmb_filtro.Items.AddRange(New Object() {"TODOS", "LOGISTICO"})
-        Me.cmb_filtro.Location = New System.Drawing.Point(80, 40)
-        Me.cmb_filtro.Name = "cmb_filtro"
-        Me.cmb_filtro.Size = New System.Drawing.Size(121, 21)
-        Me.cmb_filtro.TabIndex = 131
         '
         'GestionDispatchOnTime
         '

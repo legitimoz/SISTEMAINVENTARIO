@@ -7,7 +7,7 @@ Public Class AgregarCantidadPosicion
     Private dtdatosingreso As New DataTable
     Private Estructura As New EstructuraTabla
     Public unidades, cajas, cajasmaster, volumen, total, largo, alto, ancho, factorcaja, factormaster As Decimal
-    Public codalma, nrodoc, tipdoc, codprod, lote, unidad, codpos, nombrealmacen, nombresite, numeracionRACK, articuloNombre, vencimiento As String
+    Public codalma, nrodoc, tipdoc, codprod, lote, unidad, codpos, nombrealmacen, nombresite, numeracionRACK, articuloNombre, vencimiento, correlativo As String
     Private almacenobj As New AlmacenL
 
     Private Sub IconButton2_Click(sender As Object, e As EventArgs) Handles IconButton2.Click
@@ -42,7 +42,7 @@ Public Class AgregarCantidadPosicion
 
     Public Function LlamarRegistrar() As Integer
         Try
-            Return almacenobj.RegistrarOperacion(factorcaja, factormaster, unidad, codalma, nrodoc, tipdoc, userid, codprod, lote, idposicion, CType(txt_cantidadIngreso.Text, Decimal), total, volumen, "E", idsite, idalmacen, idrack, vencimiento)
+            Return almacenobj.RegistrarOperacion(factorcaja, factormaster, unidad, codalma, nrodoc, tipdoc, userid, codprod, lote, idposicion, CType(txt_cantidadIngreso.Text, Decimal), total, volumen, "E", idsite, idalmacen, idrack, vencimiento, correlativo)
         Catch ex As Exception
             Throw ex
         End Try
@@ -143,6 +143,7 @@ Public Class AgregarCantidadPosicion
 
         Dim rowIngreso As DataRow
         rowIngreso = dtdatosingreso.NewRow
+        rowIngreso("CORRELATIVO") = correlativo
         rowIngreso("ARTICULO") = articuloNombre
         rowIngreso("LOTE") = lote
         rowIngreso("UNIDADES") = unidades
@@ -165,6 +166,11 @@ Public Class AgregarCantidadPosicion
 
         dtdatosingreso = Estructura.TablaDetalleIngreso
         Dg_DatosIngreso.DataSource = dtdatosingreso
+
+        Dg_DatosIngreso.Columns("CORRELATIVO").HeaderText = "Correlativo"
+        Dg_DatosIngreso.Columns("CORRELATIVO").Width = 270
+        Dg_DatosIngreso.Columns("CORRELATIVO").ReadOnly = True
+        Dg_DatosIngreso.Columns("CORRELATIVO").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
 
         Dg_DatosIngreso.Columns("ARTICULO").HeaderText = "Articulo"
         Dg_DatosIngreso.Columns("ARTICULO").Width = 270

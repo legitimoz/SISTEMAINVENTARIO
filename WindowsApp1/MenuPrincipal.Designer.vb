@@ -29,6 +29,15 @@ Partial Class MenuPrincipal
         Me.AlmacenesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PickConfirmToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GuiasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AnulacionPickingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OtrosMovimientosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PartesDeSalidaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReportesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UbicacionesVaciasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.KardexArticuloToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ArticulosSinCubicajeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ArticulosSinUbicarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PartesDeEntradaSinIngresoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SeguimientoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AprobacionDePedidosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VisorDeRepresentantesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -64,7 +73,6 @@ Partial Class MenuPrincipal
         Me.DeliveryOnTimeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NonConformityRatioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ArticulosSinUbicacionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.KardexArticuloToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CerrarSesionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -82,7 +90,7 @@ Partial Class MenuPrincipal
         '
         'ToolStripMenuItem2
         '
-        Me.ToolStripMenuItem2.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArticulosToolStripMenuItem, Me.AlmacenesToolStripMenuItem, Me.PickConfirmToolStripMenuItem, Me.GuiasToolStripMenuItem})
+        Me.ToolStripMenuItem2.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArticulosToolStripMenuItem, Me.AlmacenesToolStripMenuItem, Me.PickConfirmToolStripMenuItem, Me.GuiasToolStripMenuItem, Me.AnulacionPickingToolStripMenuItem, Me.OtrosMovimientosToolStripMenuItem, Me.ReportesToolStripMenuItem1})
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
         Me.ToolStripMenuItem2.Size = New System.Drawing.Size(66, 24)
         Me.ToolStripMenuItem2.Text = "Almacen"
@@ -114,6 +122,71 @@ Partial Class MenuPrincipal
         Me.GuiasToolStripMenuItem.Name = "GuiasToolStripMenuItem"
         Me.GuiasToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
         Me.GuiasToolStripMenuItem.Text = "Gestion Guias "
+        '
+        'AnulacionPickingToolStripMenuItem
+        '
+        Me.AnulacionPickingToolStripMenuItem.Image = Global.WindowsApp1.My.Resources.Resources.delete_file_icon
+        Me.AnulacionPickingToolStripMenuItem.Name = "AnulacionPickingToolStripMenuItem"
+        Me.AnulacionPickingToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
+        Me.AnulacionPickingToolStripMenuItem.Text = "Anulacion Picking"
+        '
+        'OtrosMovimientosToolStripMenuItem
+        '
+        Me.OtrosMovimientosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PartesDeSalidaToolStripMenuItem})
+        Me.OtrosMovimientosToolStripMenuItem.Image = Global.WindowsApp1.My.Resources.Resources.Other_origin_icon
+        Me.OtrosMovimientosToolStripMenuItem.Name = "OtrosMovimientosToolStripMenuItem"
+        Me.OtrosMovimientosToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
+        Me.OtrosMovimientosToolStripMenuItem.Text = "Otros Movimientos"
+        '
+        'PartesDeSalidaToolStripMenuItem
+        '
+        Me.PartesDeSalidaToolStripMenuItem.Image = Global.WindowsApp1.My.Resources.Resources.Other_Power_Switch_User_Metro_icon
+        Me.PartesDeSalidaToolStripMenuItem.Name = "PartesDeSalidaToolStripMenuItem"
+        Me.PartesDeSalidaToolStripMenuItem.Size = New System.Drawing.Size(160, 26)
+        Me.PartesDeSalidaToolStripMenuItem.Text = "Partes de Salida"
+        '
+        'ReportesToolStripMenuItem1
+        '
+        Me.ReportesToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UbicacionesVaciasToolStripMenuItem, Me.KardexArticuloToolStripMenuItem1, Me.ArticulosSinCubicajeToolStripMenuItem, Me.ArticulosSinUbicarToolStripMenuItem, Me.PartesDeEntradaSinIngresoToolStripMenuItem})
+        Me.ReportesToolStripMenuItem1.Image = CType(resources.GetObject("ReportesToolStripMenuItem1.Image"), System.Drawing.Image)
+        Me.ReportesToolStripMenuItem1.Name = "ReportesToolStripMenuItem1"
+        Me.ReportesToolStripMenuItem1.Size = New System.Drawing.Size(184, 26)
+        Me.ReportesToolStripMenuItem1.Text = "Reportes"
+        '
+        'UbicacionesVaciasToolStripMenuItem
+        '
+        Me.UbicacionesVaciasToolStripMenuItem.Image = Global.WindowsApp1.My.Resources.Resources.System_Box_Empty_icon
+        Me.UbicacionesVaciasToolStripMenuItem.Name = "UbicacionesVaciasToolStripMenuItem"
+        Me.UbicacionesVaciasToolStripMenuItem.Size = New System.Drawing.Size(230, 26)
+        Me.UbicacionesVaciasToolStripMenuItem.Text = "Ubicaciones Vacias"
+        '
+        'KardexArticuloToolStripMenuItem1
+        '
+        Me.KardexArticuloToolStripMenuItem1.Image = Global.WindowsApp1.My.Resources.Resources.app_stock_icon__1_
+        Me.KardexArticuloToolStripMenuItem1.Name = "KardexArticuloToolStripMenuItem1"
+        Me.KardexArticuloToolStripMenuItem1.Size = New System.Drawing.Size(230, 26)
+        Me.KardexArticuloToolStripMenuItem1.Text = "Kardex Articulo"
+        '
+        'ArticulosSinCubicajeToolStripMenuItem
+        '
+        Me.ArticulosSinCubicajeToolStripMenuItem.Image = Global.WindowsApp1.My.Resources.Resources.measure_crop_icon
+        Me.ArticulosSinCubicajeToolStripMenuItem.Name = "ArticulosSinCubicajeToolStripMenuItem"
+        Me.ArticulosSinCubicajeToolStripMenuItem.Size = New System.Drawing.Size(230, 26)
+        Me.ArticulosSinCubicajeToolStripMenuItem.Text = "Articulos Sin Cubicaje"
+        '
+        'ArticulosSinUbicarToolStripMenuItem
+        '
+        Me.ArticulosSinUbicarToolStripMenuItem.Image = Global.WindowsApp1.My.Resources.Resources.City_No_Baggage_icon
+        Me.ArticulosSinUbicarToolStripMenuItem.Name = "ArticulosSinUbicarToolStripMenuItem"
+        Me.ArticulosSinUbicarToolStripMenuItem.Size = New System.Drawing.Size(230, 26)
+        Me.ArticulosSinUbicarToolStripMenuItem.Text = "Articulos Sin Ubicar"
+        '
+        'PartesDeEntradaSinIngresoToolStripMenuItem
+        '
+        Me.PartesDeEntradaSinIngresoToolStripMenuItem.Image = Global.WindowsApp1.My.Resources.Resources.Action_window_no_fullscreen_icon
+        Me.PartesDeEntradaSinIngresoToolStripMenuItem.Name = "PartesDeEntradaSinIngresoToolStripMenuItem"
+        Me.PartesDeEntradaSinIngresoToolStripMenuItem.Size = New System.Drawing.Size(230, 26)
+        Me.PartesDeEntradaSinIngresoToolStripMenuItem.Text = "Partes de Entrada Sin Ingreso"
         '
         'SeguimientoToolStripMenuItem
         '
@@ -267,7 +340,7 @@ Partial Class MenuPrincipal
         '
         'ReportesToolStripMenuItem
         '
-        Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PresupuestosToolStripMenuItem, Me.ReporteDeDespachosToolStripMenuItem, Me.ReporteVentasToolStripMenuItem, Me.ImpresiónGuiaSsendaToolStripMenuItem, Me.ReporteDeDespachosToolStripMenuItem1, Me.ReporteDocumentosPendientesToolStripMenuItem, Me.UbicacionesArticuloToolStripMenuItem, Me.PedidosProgramacionPickingToolStripMenuItem1, Me.IndicadoresToolStripMenuItem, Me.ArticulosSinUbicacionToolStripMenuItem, Me.KardexArticuloToolStripMenuItem})
+        Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PresupuestosToolStripMenuItem, Me.ReporteDeDespachosToolStripMenuItem, Me.ReporteVentasToolStripMenuItem, Me.ImpresiónGuiaSsendaToolStripMenuItem, Me.ReporteDeDespachosToolStripMenuItem1, Me.ReporteDocumentosPendientesToolStripMenuItem, Me.UbicacionesArticuloToolStripMenuItem, Me.PedidosProgramacionPickingToolStripMenuItem1, Me.IndicadoresToolStripMenuItem, Me.ArticulosSinUbicacionToolStripMenuItem})
         Me.ReportesToolStripMenuItem.Image = Global.WindowsApp1.My.Resources.Resources._1172
         Me.ReportesToolStripMenuItem.Name = "ReportesToolStripMenuItem"
         Me.ReportesToolStripMenuItem.Size = New System.Drawing.Size(85, 24)
@@ -366,13 +439,6 @@ Partial Class MenuPrincipal
         Me.ArticulosSinUbicacionToolStripMenuItem.Size = New System.Drawing.Size(251, 26)
         Me.ArticulosSinUbicacionToolStripMenuItem.Text = "Articulos Sin Ubicacion"
         '
-        'KardexArticuloToolStripMenuItem
-        '
-        Me.KardexArticuloToolStripMenuItem.Image = CType(resources.GetObject("KardexArticuloToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.KardexArticuloToolStripMenuItem.Name = "KardexArticuloToolStripMenuItem"
-        Me.KardexArticuloToolStripMenuItem.Size = New System.Drawing.Size(251, 26)
-        Me.KardexArticuloToolStripMenuItem.Text = "Kardex Articulo"
-        '
         'CerrarSesionToolStripMenuItem
         '
         Me.CerrarSesionToolStripMenuItem.Image = Global.WindowsApp1.My.Resources.Resources.actn112
@@ -442,6 +508,14 @@ Partial Class MenuPrincipal
     Friend WithEvents ExcelRotuladosProvinciaToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents NonConformityRatioToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GenerarAbastecimientoToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents KardexArticuloToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RotulosProvinciaAnteriorToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AnulacionPickingToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ReportesToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents UbicacionesVaciasToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents OtrosMovimientosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PartesDeSalidaToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents KardexArticuloToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents ArticulosSinCubicajeToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ArticulosSinUbicarToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PartesDeEntradaSinIngresoToolStripMenuItem As ToolStripMenuItem
 End Class

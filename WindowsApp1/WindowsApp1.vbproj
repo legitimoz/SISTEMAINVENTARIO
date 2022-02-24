@@ -499,6 +499,12 @@
     <Compile Include="BuscadorArticulosUbicaion.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GestionAnulacionPicking.Designer.vb">
+      <DependentUpon>GestionAnulacionPicking.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GestionAnulacionPicking.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GestionDeliveryOnTime.Designer.vb">
       <DependentUpon>GestionDeliveryOnTime.vb</DependentUpon>
     </Compile>
@@ -533,6 +539,12 @@
       <DependentUpon>GestionNonConformityRatio.vb</DependentUpon>
     </Compile>
     <Compile Include="GestionNonConformityRatio.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionParteSalida.Designer.vb">
+      <DependentUpon>GestionParteSalida.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GestionParteSalida.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GestionPosiciones.Designer.vb">
@@ -578,6 +590,12 @@
       <DependentUpon>Login.vb</DependentUpon>
     </Compile>
     <Compile Include="Login.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MedicionEsfuerzo.Designer.vb">
+      <DependentUpon>MedicionEsfuerzo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MedicionEsfuerzo.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MenuPrincipal.Designer.vb">
@@ -634,22 +652,40 @@
     <Compile Include="RegistroObservacion.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ReporteArticulosSinCubicaje.Designer.vb">
+      <DependentUpon>ReporteArticulosSinCubicaje.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteArticulosSinCubicaje.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ReporteArticulosSinUbicar.Designer.vb">
       <DependentUpon>ReporteArticulosSinUbicar.vb</DependentUpon>
     </Compile>
     <Compile Include="ReporteArticulosSinUbicar.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReporteAvancePicking.Designer.vb">
-      <DependentUpon>ReporteAvancePicking.vb</DependentUpon>
+    <Compile Include="ReporteKardexArticulo.Designer.vb">
+      <DependentUpon>ReporteKardexArticulo.vb</DependentUpon>
     </Compile>
-    <Compile Include="ReporteAvancePicking.vb">
+    <Compile Include="ReporteKardexArticulo.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ReporteMovimientosAlmacen.Designer.vb">
       <DependentUpon>ReporteMovimientosAlmacen.vb</DependentUpon>
     </Compile>
     <Compile Include="ReporteMovimientosAlmacen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportePartesEntradaSinUbicar.Designer.vb">
+      <DependentUpon>ReportePartesEntradaSinUbicar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportePartesEntradaSinUbicar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReporteUbicacionesVacias.Designer.vb">
+      <DependentUpon>ReporteUbicacionesVacias.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteUbicacionesVacias.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reporte\Clases\Demo.vb" />
@@ -964,6 +1000,9 @@
     <EmbeddedResource Include="BuscadorArticulosUbicaion.resx">
       <DependentUpon>BuscadorArticulosUbicaion.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GestionAnulacionPicking.resx">
+      <DependentUpon>GestionAnulacionPicking.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GestionDeliveryOnTime.resx">
       <DependentUpon>GestionDeliveryOnTime.vb</DependentUpon>
     </EmbeddedResource>
@@ -981,6 +1020,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GestionNonConformityRatio.resx">
       <DependentUpon>GestionNonConformityRatio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionParteSalida.resx">
+      <DependentUpon>GestionParteSalida.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GestionPosiciones.resx">
       <DependentUpon>GestionPosiciones.vb</DependentUpon>
@@ -1002,6 +1044,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MedicionEsfuerzo.resx">
+      <DependentUpon>MedicionEsfuerzo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuPrincipal.resx">
       <DependentUpon>MenuPrincipal.vb</DependentUpon>
@@ -1027,14 +1072,23 @@
     <EmbeddedResource Include="RegistroObservacion.resx">
       <DependentUpon>RegistroObservacion.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReporteArticulosSinCubicaje.resx">
+      <DependentUpon>ReporteArticulosSinCubicaje.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReporteArticulosSinUbicar.resx">
       <DependentUpon>ReporteArticulosSinUbicar.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReporteAvancePicking.resx">
-      <DependentUpon>ReporteAvancePicking.vb</DependentUpon>
+    <EmbeddedResource Include="ReporteKardexArticulo.resx">
+      <DependentUpon>ReporteKardexArticulo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReporteMovimientosAlmacen.resx">
       <DependentUpon>ReporteMovimientosAlmacen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportePartesEntradaSinUbicar.resx">
+      <DependentUpon>ReportePartesEntradaSinUbicar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReporteUbicacionesVacias.resx">
+      <DependentUpon>ReporteUbicacionesVacias.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reporte\EtiquetasProvincia.rdlc" />
     <EmbeddedResource Include="Reporte\HojaDeRuta.rdlc" />
@@ -1150,6 +1204,14 @@
     <None Include="Resources\icon_excel1.jpg" />
     <None Include="Resources\Logo Nordic %28Oficial%29.png" />
     <None Include="Resources\LogoNordicResize.jpg" />
+    <None Include="Resources\delete-file-icon.png" />
+    <None Include="Resources\System-Box-Empty-icon.png" />
+    <None Include="Resources\app-stock-icon %281%29.png" />
+    <None Include="Resources\Other-Power-Switch-User-Metro-icon.png" />
+    <None Include="Resources\Other-origin-icon.png" />
+    <None Include="Resources\measure-crop-icon.png" />
+    <None Include="Resources\City-No-Baggage-icon.png" />
+    <None Include="Resources\Action-window-no-fullscreen-icon.png" />
     <Content Include="SqlServerTypes\Loader.cs" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">

@@ -224,6 +224,7 @@
 
         Try
             Tabladetalle.Columns.Add("UBICAR", GetType(Boolean))
+            Tabladetalle.Columns.Add("C6_CITEM", GetType(String))
             Tabladetalle.Columns.Add("CODIGO", GetType(String))
             Tabladetalle.Columns.Add("PRODUCTO", GetType(String))
             Tabladetalle.Columns.Add("UNIDAD", GetType(String))
@@ -261,6 +262,7 @@
 
         Try
             Tabladetalle.Columns.Add("SALIDA", GetType(Boolean))
+            Tabladetalle.Columns.Add("C6_CITEM", GetType(String))
             Tabladetalle.Columns.Add("CODIGO", GetType(String))
             Tabladetalle.Columns.Add("PRODUCTO", GetType(String))
             Tabladetalle.Columns.Add("UNIDAD", GetType(String))
@@ -285,6 +287,7 @@
             Tabladetalle.Columns.Add("PROVINCIA", GetType(String))
             Tabladetalle.Columns.Add("DISTRITO", GetType(String))
             Tabladetalle.Columns.Add("TRANSPORTES", GetType(String))
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -323,6 +326,7 @@
         Dim Tabladetalle As DataTable
         Tabladetalle = New DataTable()
         Try
+            Tabladetalle.Columns.Add("CORRELATIVO", GetType(String))
             Tabladetalle.Columns.Add("ARTICULO", GetType(String))
             Tabladetalle.Columns.Add("LOTE", GetType(String))
             Tabladetalle.Columns.Add("UNIDADES", GetType(Decimal))

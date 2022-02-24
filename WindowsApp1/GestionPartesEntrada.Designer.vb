@@ -23,17 +23,18 @@ Partial Class GestionPartesEntrada
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GestionPartesEntrada))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GestionPartesEntrada))
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.Dg_Detalle = New System.Windows.Forms.DataGridView()
         Me.Dg_Cabecera = New System.Windows.Forms.DataGridView()
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.dt_desde = New System.Windows.Forms.DateTimePicker()
+        Me.dt_hasta = New System.Windows.Forms.DateTimePicker()
         Me.txt_numero = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -43,13 +44,12 @@ Partial Class GestionPartesEntrada
         Me.btn_imprimir = New System.Windows.Forms.Button()
         Me.btnBuscar = New FontAwesome.Sharp.IconButton()
         Me.cmdAceptar = New FontAwesome.Sharp.IconButton()
-        Me.dt_desde = New System.Windows.Forms.DateTimePicker()
-        Me.dt_hasta = New System.Windows.Forms.DateTimePicker()
+        Me.Dg_Detalle = New System.Windows.Forms.DataGridView()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Dg_Detalle, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Dg_Cabecera, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel6.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        CType(Me.Dg_Detalle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ErrorProvider1
@@ -76,49 +76,6 @@ Partial Class GestionPartesEntrada
         Me.Label2.TabIndex = 17
         Me.Label2.Text = "Detalle Parte Entrada"
         '
-        'Dg_Detalle
-        '
-        Me.Dg_Detalle.AllowUserToAddRows = False
-        Me.Dg_Detalle.AllowUserToDeleteRows = False
-        Me.Dg_Detalle.AllowUserToResizeColumns = False
-        Me.Dg_Detalle.AllowUserToResizeRows = False
-        Me.Dg_Detalle.BackgroundColor = System.Drawing.Color.White
-        Me.Dg_Detalle.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlDark
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ControlDark
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Dg_Detalle.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        Me.Dg_Detalle.ColumnHeadersHeight = 50
-        Me.Dg_Detalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.Dg_Detalle.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.Dg_Detalle.EnableHeadersVisualStyles = False
-        Me.Dg_Detalle.Location = New System.Drawing.Point(11, 404)
-        Me.Dg_Detalle.Margin = New System.Windows.Forms.Padding(4)
-        Me.Dg_Detalle.MultiSelect = False
-        Me.Dg_Detalle.Name = "Dg_Detalle"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ControlDark
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlDark
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Dg_Detalle.RowHeadersDefaultCellStyle = DataGridViewCellStyle2
-        Me.Dg_Detalle.RowHeadersVisible = False
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ControlLightLight
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Dg_Detalle.RowsDefaultCellStyle = DataGridViewCellStyle3
-        Me.Dg_Detalle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.Dg_Detalle.Size = New System.Drawing.Size(1259, 202)
-        Me.Dg_Detalle.TabIndex = 19
-        '
         'Dg_Cabecera
         '
         Me.Dg_Cabecera.AllowUserToAddRows = False
@@ -141,10 +98,10 @@ Partial Class GestionPartesEntrada
         '
         Me.Panel6.BackColor = System.Drawing.SystemColors.Control
         Me.Panel6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel6.Controls.Add(Me.Dg_Detalle)
         Me.Panel6.Controls.Add(Me.btn_imprimir)
         Me.Panel6.Controls.Add(Me.Panel1)
         Me.Panel6.Controls.Add(Me.Dg_Cabecera)
-        Me.Panel6.Controls.Add(Me.Dg_Detalle)
         Me.Panel6.Controls.Add(Me.cmdAceptar)
         Me.Panel6.Controls.Add(Me.Label2)
         Me.Panel6.Controls.Add(Me.Label1)
@@ -171,6 +128,26 @@ Partial Class GestionPartesEntrada
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1291, 69)
         Me.Panel1.TabIndex = 47
+        '
+        'dt_desde
+        '
+        Me.dt_desde.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dt_desde.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dt_desde.Location = New System.Drawing.Point(80, 6)
+        Me.dt_desde.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.dt_desde.Name = "dt_desde"
+        Me.dt_desde.Size = New System.Drawing.Size(209, 20)
+        Me.dt_desde.TabIndex = 82
+        '
+        'dt_hasta
+        '
+        Me.dt_hasta.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dt_hasta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dt_hasta.Location = New System.Drawing.Point(410, 6)
+        Me.dt_hasta.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.dt_hasta.Name = "dt_hasta"
+        Me.dt_hasta.Size = New System.Drawing.Size(209, 20)
+        Me.dt_hasta.TabIndex = 81
         '
         'txt_numero
         '
@@ -291,27 +268,52 @@ Partial Class GestionPartesEntrada
         Me.cmdAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.cmdAceptar.UseVisualStyleBackColor = False
         '
-        'dt_desde
+        'Dg_Detalle
         '
-        Me.dt_desde.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dt_desde.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dt_desde.Location = New System.Drawing.Point(80, 6)
-        Me.dt_desde.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.dt_desde.Name = "dt_desde"
-        Me.dt_desde.Size = New System.Drawing.Size(209, 20)
-        Me.dt_desde.TabIndex = 82
+        Me.Dg_Detalle.AllowUserToAddRows = False
+        Me.Dg_Detalle.AllowUserToDeleteRows = False
+        Me.Dg_Detalle.AllowUserToResizeRows = False
+        Me.Dg_Detalle.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Dg_Detalle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
+        Me.Dg_Detalle.BackgroundColor = System.Drawing.Color.White
+        Me.Dg_Detalle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlDark
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ControlDark
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Dg_Detalle.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        Me.Dg_Detalle.ColumnHeadersHeight = 50
+        Me.Dg_Detalle.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.Dg_Detalle.EnableHeadersVisualStyles = False
+        Me.Dg_Detalle.Location = New System.Drawing.Point(11, 404)
+        Me.Dg_Detalle.Margin = New System.Windows.Forms.Padding(4)
+        Me.Dg_Detalle.MultiSelect = False
+        Me.Dg_Detalle.Name = "Dg_Detalle"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ControlDark
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlDark
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Dg_Detalle.RowHeadersDefaultCellStyle = DataGridViewCellStyle2
+        Me.Dg_Detalle.RowHeadersVisible = False
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ControlLightLight
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.Dg_Detalle.RowsDefaultCellStyle = DataGridViewCellStyle3
+        Me.Dg_Detalle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.Dg_Detalle.Size = New System.Drawing.Size(1259, 202)
+        Me.Dg_Detalle.TabIndex = 49
         '
-        'dt_hasta
-        '
-        Me.dt_hasta.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dt_hasta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dt_hasta.Location = New System.Drawing.Point(410, 6)
-        Me.dt_hasta.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.dt_hasta.Name = "dt_hasta"
-        Me.dt_hasta.Size = New System.Drawing.Size(209, 20)
-        Me.dt_hasta.TabIndex = 81
-        '
-        'IngresoAlmacen
+        'GestionPartesEntrada
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -320,16 +322,16 @@ Partial Class GestionPartesEntrada
         Me.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MaximizeBox = False
-        Me.Name = "IngresoAlmacen"
+        Me.Name = "GestionPartesEntrada"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "IngresoAlmacen"
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Dg_Detalle, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Dg_Cabecera, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel6.ResumeLayout(False)
         Me.Panel6.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        CType(Me.Dg_Detalle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -346,10 +348,10 @@ Partial Class GestionPartesEntrada
     Friend WithEvents Label8 As Label
     Friend WithEvents Label9 As Label
     Friend WithEvents Dg_Cabecera As DataGridView
-    Public WithEvents Dg_Detalle As DataGridView
     Friend WithEvents cmdAceptar As FontAwesome.Sharp.IconButton
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents dt_desde As DateTimePicker
     Friend WithEvents dt_hasta As DateTimePicker
+    Public WithEvents Dg_Detalle As DataGridView
 End Class
