@@ -95,5 +95,14 @@
         End Set
     End Property
 
+    Private tiempo As Decimal
+    Public Property pr_tiempo() As Decimal
+        Get
+            Return tiempo
+        End Get
+        Set(ByVal value As Decimal)
+            tiempo = value
+        End Set
+    End Property
 
 End Class

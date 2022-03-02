@@ -99,6 +99,7 @@
             TablaRuta.Columns.Add("Importe", GetType(String))
             TablaRuta.Columns.Add("Tiempo", GetType(String))
             TablaRuta.Columns.Add("Guias", GetType(String))
+            TablaRuta.Columns.Add("Estado", GetType(String))
         Catch ex As Exception
             Throw ex
         End Try
@@ -515,6 +516,8 @@
         Try
             Tabladetalle.Columns.Add("idconsolidado", GetType(Integer))
             Tabladetalle.Columns.Add("NRO_GUIA", GetType(String))
+            Tabladetalle.Columns.Add("CTD", GetType(String))
+            Tabladetalle.Columns.Add("CALMA", GetType(String))
             Tabladetalle.Columns.Add("NOM_CLIENTE", GetType(String))
             Tabladetalle.Columns.Add("DIRECCION_ENTREGA", GetType(String))
             Tabladetalle.Columns.Add("CONDICION", GetType(String))

@@ -56,6 +56,75 @@ Imports System.Configuration
         End Set
     End Property
 
+    Private importetotal As Decimal
+    Public Property pr_importetotal() As Decimal
+        Get
+            Return importetotal
+        End Get
+        Set(ByVal value As Decimal)
+            importetotal = value
+        End Set
+    End Property
+
+    Private volumentotal As Decimal
+    Public Property pr_volumentotal() As Decimal
+        Get
+            Return volumentotal
+        End Get
+        Set(ByVal value As Decimal)
+            volumentotal = value
+        End Set
+    End Property
+
+    Private pesototal As Decimal
+    Public Property pr_pesototal() As Decimal
+        Get
+            Return pesototal
+        End Get
+        Set(ByVal value As Decimal)
+            pesototal = value
+        End Set
+    End Property
+
+    Private tiempototal As Decimal
+    Public Property pr_tiempototal() As Decimal
+        Get
+            Return tiempototal
+        End Get
+        Set(ByVal value As Decimal)
+            tiempototal = value
+        End Set
+    End Property
+
+    Private idvehiculo As Integer
+    Public Property pr_idvehiculo() As Integer
+        Get
+            Return idvehiculo
+        End Get
+        Set(ByVal value As Integer)
+            idvehiculo = value
+        End Set
+    End Property
+
+    Private idsite As Integer
+    Public Property pr_idsite() As Integer
+        Get
+            Return idsite
+        End Get
+        Set(ByVal value As Integer)
+            idsite = value
+        End Set
+    End Property
+
+    Private tipoEnvio As String
+    Public Property pr_tipoEnvio() As String
+        Get
+            Return tipoEnvio
+        End Get
+        Set(ByVal value As String)
+            tipoEnvio = value
+        End Set
+    End Property
 
     Public Function Serializar_RutaGuias(ByVal _BeCabGuiaRuta As BeCabGuiaRuta) As String
         Dim _oStringWriter As IO.StringWriter
@@ -125,6 +194,51 @@ Imports System.Configuration
         End Try
     End Sub
 
+
+    Public Sub RegistrarRuta_Guias_CS(ByVal _xmlserializado As String, ByRef _tiporespuesta As String, ByRef _textorespuesta As String, ByRef idRentabilidad As String, ByRef fecHoraReg As String)
+        Try
+            Conexion = System.Configuration.ConfigurationManager.ConnectionStrings("ConexionHeadMark").ConnectionString
+
+            Using oSqlConnectionMedlab As SqlConnection = New SqlConnection(Conexion)
+                Using oSqlCommandMedlab As SqlCommand = New SqlCommand("DSN_REGISTRAR_RUTA_GUIAS_CE", oSqlConnectionMedlab)
+                    oSqlCommandMedlab.CommandType = CommandType.StoredProcedure
+
+                    oSqlCommandMedlab.Parameters.Add("@Xml", SqlDbType.Xml).Value = _xmlserializado
+                    If (oSqlConnectionMedlab.State = ConnectionState.Closed) Then
+                        oSqlConnectionMedlab.Open()
+                    End If
+
+                    If (oSqlCommandMedlab.Connection.State = ConnectionState.Closed) Then
+                        oSqlCommandMedlab.Connection.Open()
+                    End If
+
+                    Using oSqlDataReader As SqlDataReader = oSqlCommandMedlab.ExecuteReader(CommandBehavior.SingleRow)
+                        If oSqlDataReader.Read Then
+                            _tiporespuesta = oSqlDataReader.GetValue(0).ToString()
+                            _textorespuesta = oSqlDataReader.GetValue(1).ToString()
+                            idRentabilidad = oSqlDataReader.GetValue(2).ToString()
+                            fecHoraReg = oSqlDataReader.GetValue(3).ToString()
+                        End If
+                        oSqlDataReader.Close()
+                    End Using
+
+                    If (oSqlCommandMedlab.Connection.State = ConnectionState.Open) Then
+                        oSqlCommandMedlab.Connection.Close()
+                    End If
+
+                    If (oSqlConnectionMedlab.State = ConnectionState.Open) Then
+                        oSqlConnectionMedlab.Close()
+                    End If
+                End Using
+            End Using
+
+
+
+        Catch ex As Exception
+            _tiporespuesta = "0"
+            _textorespuesta = ex.Message
+        End Try
+    End Sub
 
 
     Public Sub ActualizarRuta_Guias(ByVal _xmlserializado As String, ByRef _tiporespuesta As String, ByRef _textorespuesta As String, ByRef idRentabilidad As String, ByRef fecHoraReg As String)

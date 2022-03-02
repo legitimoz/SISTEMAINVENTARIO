@@ -1,4 +1,5 @@
-﻿Imports System.Text.RegularExpressions
+﻿Imports System.Configuration
+Imports System.Text.RegularExpressions
 Imports Nordic.Bl.Be
 
 Public Class EditarSalidaAlmacen
@@ -18,7 +19,11 @@ Public Class EditarSalidaAlmacen
     End Sub
 
     Public Sub CargaInicial()
+
         Try
+            idalmacen = CType(ConfigurationManager.AppSettings("idalmac").ToString.Trim, Integer)
+            idsite = CType(ConfigurationManager.AppSettings("CodigoSite").ToString.Trim, Integer)
+
             If CodArticulo <> "" And Lote <> "" And cantidad <> 0 Then
                 txt_codigo.Text = CodArticulo
                 txt_lote.Text = Lote
@@ -65,7 +70,7 @@ Public Class EditarSalidaAlmacen
 
     Public Sub Obtenerposiciones()
         If Lote <> "" And CodArticulo <> "" And cantidad <> 0 Then
-            dtPosiciones = LlamarListarPosicionesHojaPicking(CodArticulo, Lote, cantidad)
+            dtPosiciones = LlamarListarPosicionesHojaPicking(CodArticulo, Lote, cantidad, idalmacen, idsite)
             If dtPosiciones.Rows.Count > 0 Then
                 Dg_DatosPosiciones.DataSource = dtPosiciones
             Else
@@ -192,11 +197,11 @@ Public Class EditarSalidaAlmacen
         End Try
     End Function
 
-    Public Function LlamarListarPosicionesHojaPicking(codarticulo As String, lote As String, cantidad As Decimal) As DataTable
+    Public Function LlamarListarPosicionesHojaPicking(codarticulo As String, lote As String, cantidad As Decimal, idalmacen As Integer, idsite As Integer) As DataTable
 
         Dim dtretono As DataTable
         Try
-            dtretono = ObjAlmacen.ObtenerPosicionesHojaPicking(codarticulo, lote, cantidad).Copy
+            dtretono = ObjAlmacen.ObtenerPosicionesHojaPicking(codarticulo, lote, cantidad, idalmacen, idsite).Copy
         Catch ex As Exception
             Throw ex
         End Try

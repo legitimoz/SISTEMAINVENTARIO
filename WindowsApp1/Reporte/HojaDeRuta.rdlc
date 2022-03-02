@@ -993,7 +993,7 @@ HORAS</Value>
             <Top>0.17639cm</Top>
             <Left>0.03528cm</Left>
             <Height>1.82cm</Height>
-            <Width>27.44242cm</Width>
+            <Width>27.44243cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1258,10 +1258,10 @@ HORAS</Value>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox51</rd:DefaultName>
-              <Top>4.20066cm</Top>
-              <Left>2.88814cm</Left>
-              <Height>0.56444cm</Height>
-              <Width>5.53731cm</Width>
+              <Top>4.23595cm</Top>
+              <Left>3.20564cm</Left>
+              <Height>0.56443cm</Height>
+              <Width>6.11939cm</Width>
               <ZIndex>8</ZIndex>
               <Style>
                 <Border>
@@ -1293,7 +1293,7 @@ HORAS</Value>
               <Top>4.20067cm</Top>
               <Left>0.03528cm</Left>
               <Height>0.56443cm</Height>
-              <Width>3.51014cm</Width>
+              <Width>2.99397cm</Width>
               <ZIndex>9</ZIndex>
               <Style>
                 <Border>
@@ -1325,7 +1325,7 @@ HORAS</Value>
               <Top>3.48642cm</Top>
               <Left>0.03528cm</Left>
               <Height>0.59077cm</Height>
-              <Width>3.51014cm</Width>
+              <Width>2.99397cm</Width>
               <ZIndex>10</ZIndex>
               <Style>
                 <Border>
@@ -1353,10 +1353,10 @@ HORAS</Value>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox51</rd:DefaultName>
-              <Top>3.51261cm</Top>
-              <Left>2.88814cm</Left>
-              <Height>0.56458cm</Height>
-              <Width>5.53731cm</Width>
+              <Top>3.47733cm</Top>
+              <Left>3.20564cm</Left>
+              <Height>0.59986cm</Height>
+              <Width>6.11939cm</Width>
               <ZIndex>11</ZIndex>
               <Style>
                 <Border>
@@ -1387,7 +1387,7 @@ HORAS</Value>
               <rd:DefaultName>Textbox52</rd:DefaultName>
               <Top>2.75454cm</Top>
               <Height>0.59077cm</Height>
-              <Width>3.51014cm</Width>
+              <Width>3.02925cm</Width>
               <ZIndex>12</ZIndex>
               <Style>
                 <Border>
@@ -1416,10 +1416,325 @@ HORAS</Value>
               </Paragraphs>
               <rd:DefaultName>Textbox51</rd:DefaultName>
               <Top>2.74545cm</Top>
-              <Left>2.88814cm</Left>
+              <Left>3.20564cm</Left>
               <Height>0.62605cm</Height>
-              <Width>5.53731cm</Width>
+              <Width>6.11939cm</Width>
               <ZIndex>13</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <VerticalAlign>Middle</VerticalAlign>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox65">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Parameters!totalvolumen.Value</Value>
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox51</rd:DefaultName>
+              <Top>4.90621cm</Top>
+              <Left>3.20564cm</Left>
+              <Height>0.62605cm</Height>
+              <Width>6.11939cm</Width>
+              <ZIndex>14</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <VerticalAlign>Middle</VerticalAlign>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox66">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>TOTAL VOLUMEN :</Value>
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                        <FontWeight>ExtraBold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox52</rd:DefaultName>
+              <Top>4.90621cm</Top>
+              <Left>0.03528cm</Left>
+              <Height>0.62605cm</Height>
+              <Width>2.99397cm</Width>
+              <ZIndex>15</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <VerticalAlign>Middle</VerticalAlign>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox67">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Parameters!totaltiempo.Value</Value>
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox51</rd:DefaultName>
+              <Top>2.74545cm</Top>
+              <Left>12.68942cm</Left>
+              <Height>0.59077cm</Height>
+              <Width>6.40955cm</Width>
+              <ZIndex>16</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <VerticalAlign>Middle</VerticalAlign>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox68">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>TOTAL TIEMPO :</Value>
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                        <FontWeight>ExtraBold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox52</rd:DefaultName>
+              <Top>2.74545cm</Top>
+              <Left>9.83656cm</Left>
+              <Height>0.62605cm</Height>
+              <Width>2.67647cm</Width>
+              <ZIndex>17</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <VerticalAlign>Middle</VerticalAlign>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox69">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Parameters!totalimporte.Value</Value>
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox51</rd:DefaultName>
+              <Top>3.48642cm</Top>
+              <Left>12.68942cm</Left>
+              <Height>0.59077cm</Height>
+              <Width>6.40955cm</Width>
+              <ZIndex>18</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <VerticalAlign>Middle</VerticalAlign>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox71">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>TOTAL IMPORTE :</Value>
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                        <FontWeight>ExtraBold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox52</rd:DefaultName>
+              <Top>3.48642cm</Top>
+              <Left>9.83656cm</Left>
+              <Height>0.59077cm</Height>
+              <Width>2.67647cm</Width>
+              <ZIndex>19</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <VerticalAlign>Middle</VerticalAlign>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox73">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Parameters!totalpeso.Value</Value>
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox51</rd:DefaultName>
+              <Top>4.23595cm</Top>
+              <Left>12.68942cm</Left>
+              <Height>0.56443cm</Height>
+              <Width>6.40955cm</Width>
+              <ZIndex>20</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <VerticalAlign>Middle</VerticalAlign>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox74">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>TOTAL PESO :</Value>
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                        <FontWeight>ExtraBold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox52</rd:DefaultName>
+              <Top>4.23595cm</Top>
+              <Left>9.83656cm</Left>
+              <Height>0.56443cm</Height>
+              <Width>2.67647cm</Width>
+              <ZIndex>21</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <VerticalAlign>Middle</VerticalAlign>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox75">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>TOTAL ENVÍO :</Value>
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                        <FontWeight>ExtraBold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox52</rd:DefaultName>
+              <Top>4.90621cm</Top>
+              <Left>9.83656cm</Left>
+              <Height>0.63499cm</Height>
+              <Width>2.67647cm</Width>
+              <ZIndex>22</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <VerticalAlign>Middle</VerticalAlign>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox76">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Parameters!tipoenvio.Value</Value>
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox51</rd:DefaultName>
+              <Top>4.90621cm</Top>
+              <Left>12.68942cm</Left>
+              <Height>0.62605cm</Height>
+              <Width>6.40955cm</Width>
+              <ZIndex>23</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1505,11 +1820,35 @@ HORAS</Value>
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="totaltiempo">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="totalimporte">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="totalpeso">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="tipoenvio">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>5</NumberOfRows>
+      <NumberOfRows>6</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>2</ColumnIndex>
@@ -1555,6 +1894,26 @@ HORAS</Value>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>4</RowIndex>
           <ParameterName>CodRuta</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>4</RowIndex>
+          <ParameterName>totaltiempo</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>4</RowIndex>
+          <ParameterName>totalimporte</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>3</ColumnIndex>
+          <RowIndex>4</RowIndex>
+          <ParameterName>totalpeso</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>5</RowIndex>
+          <ParameterName>tipoenvio</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

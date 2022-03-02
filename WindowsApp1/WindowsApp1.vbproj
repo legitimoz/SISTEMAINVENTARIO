@@ -217,6 +217,12 @@
     <Compile Include="EditarRack.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="EditarRuta.Designer.vb">
+      <DependentUpon>EditarRuta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditarRuta.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="EditarSalidaAlmacen.Designer.vb">
       <DependentUpon>EditarSalidaAlmacen.vb</DependentUpon>
     </Compile>
@@ -858,6 +864,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditarRack.resx">
       <DependentUpon>EditarRack.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarRuta.resx">
+      <DependentUpon>EditarRuta.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditarSalidaAlmacen.resx">
       <DependentUpon>EditarSalidaAlmacen.vb</DependentUpon>

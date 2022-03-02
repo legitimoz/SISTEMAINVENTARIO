@@ -277,7 +277,7 @@ Public Class GestionGuiasRotulos
     End Sub
 
     Public Sub ProcesoImpresionPronvincia()
-        Dim numdoc, cliente, direccion, provincia, departamento, nombreempresa As String
+        Dim numdoc As String = "", cliente As String = "", direccion As String = "", provincia As String = "", departamento As String = "", nombreempresa As String = ""
         Dim CadenaGuias As String = ""
         Dim bultos As Integer = 0
         Dim logooperador As String = ""

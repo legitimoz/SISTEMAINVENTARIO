@@ -1,4 +1,5 @@
-﻿Imports ClosedXML.Excel
+﻿Imports System.Configuration
+Imports ClosedXML.Excel
 Imports Nordic.Bl.Be
 
 Public Class ReporteUbicacionesVacias
@@ -6,6 +7,7 @@ Public Class ReporteUbicacionesVacias
     Public usr_usuario As String
     Public usr_id As Integer
     Private AlmObj As New AlmacenL
+    Private idalmacen As Integer = 0, idsite As Integer = 0
     Private Sub btnSalir_Click(sender As Object, e As EventArgs) Handles btnSalir.Click
         Me.Close()
     End Sub
@@ -19,17 +21,21 @@ Public Class ReporteUbicacionesVacias
     End Sub
     Public Sub CargaInicial()
         Try
-            ListarUbicacioneVacias()
+            idalmacen = CType(ConfigurationManager.AppSettings("idalmac").ToString.Trim, Integer)
+            idsite = CType(ConfigurationManager.AppSettings("CodigoSite").ToString.Trim, Integer)
+            If idalmacen <> 0 And idsite <> 0 Then
+                ListarUbicacioneVacias(idalmacen, idsite)
+            End If
         Catch ex As Exception
-
+            Throw ex
         End Try
     End Sub
 
-    Public Sub ListarUbicacioneVacias()
+    Public Sub ListarUbicacioneVacias(idalmacen As Integer, idsite As Integer)
         If dt.Rows.Count > 0 Then
             dt.Rows.Clear()
         End If
-        dt = AlmObj.ListarUbicacionesVacias
+        dt = AlmObj.ListarUbicacionesVacias(idalmacen, idsite)
         If dt.Rows.Count > 0 Then
             DgArticulos.DataSource = dt
         End If

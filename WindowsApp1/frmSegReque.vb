@@ -103,7 +103,7 @@ Public Class frmSegReque
 
             Dim fec1 As String
             Dim fec2 As String
-            Dim dt As DataTable
+            Dim dt As New DataTable
 
             fec1 = dtpFecIni.Value.ToShortDateString
             fec2 = dtpFecFin.Value.ToShortDateString

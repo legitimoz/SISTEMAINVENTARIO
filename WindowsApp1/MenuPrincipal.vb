@@ -500,7 +500,7 @@
         End Try
     End Sub
 
-    Private Sub ArticulosSinUbicacionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ArticulosSinUbicacionToolStripMenuItem.Click
+    Private Sub ArticulosSinUbicacionToolStripMenuItem_Click(sender As Object, e As EventArgs) 
 
     End Sub
 

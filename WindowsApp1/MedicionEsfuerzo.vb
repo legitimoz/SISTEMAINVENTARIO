@@ -1,13 +1,17 @@
-﻿Imports System.Text.RegularExpressions
+﻿Imports System.Configuration
+Imports System.Text.RegularExpressions
 
 Public Class MedicionEsfuerzo
     Public datatableConsolidada As New DataTable
     Private ObjAlmacen As New AlmacenL
     Private Const PCJ As Integer = 60
     Private Const PCIU As Integer = 200
+    Private idalmacen As Integer = 0, idsite As Integer = 0
 
     Private Sub MedicionEsfuerzo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
+            idalmacen = CType(ConfigurationManager.AppSettings("idalmac").ToString.Trim, Integer)
+            idsite = CType(ConfigurationManager.AppSettings("CodigoSite").ToString.Trim, Integer)
             CargaInicial()
         Catch ex As Exception
 
@@ -92,7 +96,7 @@ Public Class MedicionEsfuerzo
 
         Dim dtretono As DataTable
         Try
-            dtretono = ObjAlmacen.ListarGuiasDET(codalmacen, tipdoc, nrodoc).Copy
+            dtretono = ObjAlmacen.ListarGuiasDET(codalmacen, tipdoc, nrodoc, idalmacen, idsite).Copy
         Catch ex As Exception
             Throw ex
         End Try

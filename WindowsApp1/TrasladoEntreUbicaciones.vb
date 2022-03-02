@@ -259,7 +259,7 @@ Public Class TrasladoEntreUbicaciones
                 End If
             End If
         Catch ex As Exception
-
+            Throw ex
         End Try
     End Sub
     Public Function ValidarNumerico(Dato As String) As Boolean

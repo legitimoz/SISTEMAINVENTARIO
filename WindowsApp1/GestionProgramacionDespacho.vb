@@ -1115,12 +1115,12 @@ Public Class GestionProgramacionDespacho
             If Dg_Cabecera.Rows.Count > 0 Then
                 For Each RowPri As DataGridViewRow In Dg_Cabecera.Rows
                     If RowPri.Cells("ESTADO").Value.ToString.Trim = "RECEPCIONADO" Or RowPri.Cells("ESTADO").Value.ToString.Trim = "REPROGRAMADO" Then
-                        If RowPri.Cells("MARCAR").Value = True Then
+                        If RowPri.Cells("MARCAR").Value = True And RowPri.Cells("SITUACION").Value.ToString.Trim <> "ANULADO" Then
                             If RowPri.Cells("LIMA_PROV").Value.ToString.Trim = "LIMA" Then
                                 If ExisteEnNueva(RowPri.Cells("DESTINO").Value.ToString.Trim) = False Then
                                     Dim rowConsolidad As DataRow = dtConsolidar.NewRow
                                     For Each rowseg As DataGridViewRow In Dg_Cabecera.Rows
-                                        If RowPri.Cells("DESTINO").Value.ToString.Trim = rowseg.Cells("DESTINO").Value.ToString.Trim And rowseg.Cells("SITUACION").Value.ToString.Trim <> "ANULADO" Then
+                                        If RowPri.Cells("DESTINO").Value.ToString.Trim = rowseg.Cells("DESTINO").Value.ToString.Trim And rowseg.Cells("SITUACION").Value.ToString.Trim <> "ANULADO" And rowseg.Cells("MARCAR").Value = True Then
                                             Dim rowDetalle As DataRow = DtDetalleConsolidado.NewRow
                                             totalimporte = totalimporte + rowseg.Cells("IMPORTE").Value
                                             totalguias = totalguias + 1
@@ -1147,6 +1147,9 @@ Public Class GestionProgramacionDespacho
                                             rowDetalle.Item("TIEMPO") = rowseg.Cells("TIEMPOENTREGA").Value
                                             rowDetalle.Item("REPRESENTANTE") = rowseg.Cells("REPRESENTANTE").Value
                                             rowDetalle.Item("RESTRICCION") = rowseg.Cells("RESTRICCION").Value
+                                            rowDetalle.Item("CTD") = rowseg.Cells("C5_CTD").Value
+                                            rowDetalle.Item("CALMA") = rowseg.Cells("C5_CALMA").Value
+
                                             DtDetalleConsolidado.Rows.Add(rowDetalle)
 
                                         End If
@@ -1172,6 +1175,7 @@ Public Class GestionProgramacionDespacho
 
                 If dtConsolidar.Rows.Count > 0 Then
                     Dim RutaForm As New EditarProgramacionRuta
+                    RutaForm.usr_id = usr_id
                     RutaForm.dtConsolidado = dtConsolidar
                     RutaForm.dtdetalleConso = DtDetalleConsolidado
                     RutaForm.Show()

@@ -3,9 +3,14 @@ Imports Nordic.Bl.Be
 
 Public Class EditarProgramacionRuta
     Public dtConsolidado, dtruta, dtRutas, dtdetalleConso As New DataTable
-
+    Public usr_id As Integer = 0
     Public Estructura As New EstructuraTabla
     Private ObjAlmacen As New AlmacenL
+    Private idconsolidadoCab As Integer = 0
+    Private nombreRutaCab As String = ""
+    Private importe As Decimal = 0, volumen As Decimal = 0, tiempo As Decimal = 0
+    Private estadoruta As String = ""
+
 
     Private Sub EditarProgramacionRuta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
@@ -36,21 +41,22 @@ Public Class EditarProgramacionRuta
                 For Each RowConsolidad As DataRow In dtConsolidado.Rows
                     DataGridConsolidado.Rows.Add()
                     DataGridConsolidado.Rows(contador).Cells(0).Value = False
-                    DataGridConsolidado.Rows(contador).Cells(1).Value = ""
-                    DataGridConsolidado.Rows(contador).Cells(2).Value = RowConsolidad.Item("NOM_CLIENTE").ToString.Trim
-                    DataGridConsolidado.Rows(contador).Cells(3).Value = RowConsolidad.Item("DESTINO").ToString.Trim
-                    DataGridConsolidado.Rows(contador).Cells(4).Value = RowConsolidad.Item("NOM_CLIENTE").ToString.Trim
-                    DataGridConsolidado.Rows(contador).Cells(5).Value = RowConsolidad.Item("DIRECCION_ENTREGA").ToString.Trim
-                    DataGridConsolidado.Rows(contador).Cells(6).Value = RowConsolidad.Item("DISTRITO").ToString.Trim
-                    DataGridConsolidado.Rows(contador).Cells(7).Value = RowConsolidad.Item("CANAL").ToString.Trim
-                    DataGridConsolidado.Rows(contador).Cells(8).Value = RowConsolidad.Item("DETALLE").ToString.Trim
-                    DataGridConsolidado.Rows(contador).Cells(9).Value = RowConsolidad.Item("RESTRICCION").ToString.Trim
-                    DataGridConsolidado.Rows(contador).Cells(10).Value = RowConsolidad.Item("TOTALIMPORTE")
-                    DataGridConsolidado.Rows(contador).Cells(11).Value = RowConsolidad.Item("TOTALMETROSCUBICOS")
-                    DataGridConsolidado.Rows(contador).Cells(12).Value = RowConsolidad.Item("CANTIDADGUIAS")
-                    DataGridConsolidado.Rows(contador).Cells(13).Value = RowConsolidad.Item("TIEMPOENTREGA")
-                    DataGridConsolidado.Rows(contador).Cells(14).Value = ""
-                    DataGridConsolidado.Rows(contador).Cells(15).Value = RowConsolidad.Item("idconsolidado")
+                    DataGridConsolidado.Rows(contador).Cells(1).Value = RowConsolidad.Item("RUTA").ToString.Trim
+                    DataGridConsolidado.Rows(contador).Cells(2).Value = ""
+                    DataGridConsolidado.Rows(contador).Cells(3).Value = RowConsolidad.Item("NOM_CLIENTE").ToString.Trim
+                    DataGridConsolidado.Rows(contador).Cells(4).Value = RowConsolidad.Item("DESTINO").ToString.Trim
+                    DataGridConsolidado.Rows(contador).Cells(5).Value = RowConsolidad.Item("NOM_CLIENTE").ToString.Trim
+                    DataGridConsolidado.Rows(contador).Cells(6).Value = RowConsolidad.Item("DIRECCION_ENTREGA").ToString.Trim
+                    DataGridConsolidado.Rows(contador).Cells(7).Value = RowConsolidad.Item("DISTRITO").ToString.Trim
+                    DataGridConsolidado.Rows(contador).Cells(8).Value = RowConsolidad.Item("CANAL").ToString.Trim
+                    DataGridConsolidado.Rows(contador).Cells(9).Value = RowConsolidad.Item("DETALLE").ToString.Trim
+                    DataGridConsolidado.Rows(contador).Cells(10).Value = RowConsolidad.Item("RESTRICCION").ToString.Trim
+                    DataGridConsolidado.Rows(contador).Cells(11).Value = RowConsolidad.Item("TOTALIMPORTE")
+                    DataGridConsolidado.Rows(contador).Cells(12).Value = RowConsolidad.Item("TOTALMETROSCUBICOS")
+                    DataGridConsolidado.Rows(contador).Cells(13).Value = RowConsolidad.Item("CANTIDADGUIAS")
+                    DataGridConsolidado.Rows(contador).Cells(14).Value = RowConsolidad.Item("TIEMPOENTREGA")
+                    DataGridConsolidado.Rows(contador).Cells(15).Value = ""
+                    DataGridConsolidado.Rows(contador).Cells(16).Value = RowConsolidad.Item("idconsolidado")
                     contador = contador + 1
                 Next
             End If
@@ -65,6 +71,7 @@ Public Class EditarProgramacionRuta
         Dg_Rutas.DataSource = dtRutas
 
         Dg_Rutas.Columns("ids").Visible = False
+
 
         Dg_Rutas.Columns("NombreRuta").HeaderText = "Nombre Ruta"
         Dg_Rutas.Columns("NombreRuta").Width = 100
@@ -101,6 +108,11 @@ Public Class EditarProgramacionRuta
         Dg_Rutas.Columns("Tiempo").Width = 80
         Dg_Rutas.Columns("Tiempo").ReadOnly = True
         Dg_Rutas.Columns("Tiempo").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+        Dg_Rutas.Columns("Estado").HeaderText = "Estado Ruta"
+        Dg_Rutas.Columns("Estado").Width = 80
+        Dg_Rutas.Columns("Estado").ReadOnly = True
+        Dg_Rutas.Columns("Estado").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
 
     End Sub
 
@@ -169,10 +181,10 @@ Public Class EditarProgramacionRuta
             If DataGridConsolidado.Rows.Count > 0 Then
                 For Each row As DataGridViewRow In DataGridConsolidado.Rows
                     If row.Cells(0).Value = True Then
-                        contadorfinalM = contadorfinalM + row.Cells(12).Value
-                        metrosfinalM = metrosfinalM + CType(row.Cells(11).Value.ToString, Decimal)
-                        importefinalM = importefinalM + CType(row.Cells(10).Value.ToString, Decimal)
-                        tiempofinalM = tiempofinalM + CType(row.Cells(13).Value.ToString, Decimal)
+                        contadorfinalM = contadorfinalM + row.Cells(13).Value
+                        metrosfinalM = metrosfinalM + CType(row.Cells(12).Value.ToString, Decimal)
+                        importefinalM = importefinalM + CType(row.Cells(11).Value.ToString, Decimal)
+                        tiempofinalM = tiempofinalM + CType(row.Cells(14).Value.ToString, Decimal)
                     End If
                 Next
                 'metrofinal.Text = metrosfinalM.ToString
@@ -195,35 +207,35 @@ Public Class EditarProgramacionRuta
         Try
             If DataGridConsolidado.Rows.Count > 0 Then
                 For Each row As DataGridViewRow In DataGridConsolidado.Rows
-                    If row.Cells("RUTA").Value.ToString.Trim = "SUR" Then
+                    If row.Cells("RutaTentativa").Value.ToString.Trim = "SUR" Then
                         contsur = contsur + 1
                         contadorsur = contadorsur + row.Cells("CANTIDADGUIAS").Value
                         metrossur = metrossur + CType(row.Cells("TOTALMETROSCUBICOS").Value.ToString, Decimal)
                         importesur = importesur + CType(row.Cells("TOTALIMPORTE").Value.ToString, Decimal)
                         tiemposur = tiemposur + CType(row.Cells("TIEMPOENTREGA").Value.ToString, Decimal)
                     Else
-                        If row.Cells("RUTA").Value.ToString.Trim = "NORTE" Then
+                        If row.Cells("RutaTentativa").Value.ToString.Trim = "NORTE" Then
                             contnorte = contnorte + 1
                             contadornorte = contadornorte + row.Cells("CANTIDADGUIAS").Value
                             metrosnorte = metrosnorte + CType(row.Cells("TOTALMETROSCUBICOS").Value.ToString, Decimal)
                             importenorte = importenorte + CType(row.Cells("TOTALIMPORTE").Value.ToString, Decimal)
                             tiemponorte = tiemponorte + CType(row.Cells("TIEMPOENTREGA").Value.ToString, Decimal)
                         Else
-                            If row.Cells("RUTA").Value.ToString.Trim = "CENTRO" Then
+                            If row.Cells("RutaTentativa").Value.ToString.Trim = "CENTRO" Then
                                 contcentro = contcentro + 1
                                 contadorcentro = contadorcentro + row.Cells("CANTIDADGUIAS").Value
                                 metroscentro = metroscentro + CType(row.Cells("TOTALMETROSCUBICOS").Value.ToString, Decimal)
                                 importecentro = importecentro + CType(row.Cells("TOTALIMPORTE").Value.ToString, Decimal)
                                 tiempocentro = tiempocentro + CType(row.Cells("TIEMPOENTREGA").Value.ToString, Decimal)
                             Else
-                                If row.Cells("RUTA").Value.ToString.Trim = "OESTE" Then
+                                If row.Cells("RutaTentativa").Value.ToString.Trim = "OESTE" Then
                                     contoeste = contoeste + 1
                                     contadoroeste = contadoroeste + row.Cells("CANTIDADGUIAS").Value
                                     metroseste = metroseste + CType(row.Cells("TOTALMETROSCUBICOS").Value.ToString, Decimal)
                                     importeoeste = importeoeste + CType(row.Cells("TOTALIMPORTE").Value.ToString, Decimal)
                                     tiempooeste = tiempooeste + CType(row.Cells("TIEMPOENTREGA").Value.ToString, Decimal)
                                 Else
-                                    If row.Cells("RUTA").Value.ToString.Trim = "OESTE1" Then
+                                    If row.Cells("RutaTentativa").Value.ToString.Trim = "OESTE1" Then
                                         contoeste1 = contoeste1 + 1
                                         contadoroeste1 = contadoroeste1 + row.Cells("CANTIDADGUIAS").Value
                                         metrososte1 = metrososte1 + CType(row.Cells("TOTALMETROSCUBICOS").Value.ToString, Decimal)
@@ -301,7 +313,7 @@ Public Class EditarProgramacionRuta
         Try
             If e.RowIndex >= 0 Then
                 'Recalcular()
-                If e.ColumnIndex = 1 Then
+                If e.ColumnIndex = 2 Then
                     Recalcular()
                 End If
             End If
@@ -319,11 +331,11 @@ Public Class EditarProgramacionRuta
                 If dtRutas.Rows.Count > 0 Then
                     For Each RowRutas As DataRow In dtRutas.Rows
                         For Each DgCon As DataGridViewRow In DataGridConsolidado.Rows
-                            If RowRutas.Item("NombreRuta").ToString.Trim = DgCon.Cells(1).Value.ToString.Trim Then
-                                Volumen = Volumen + DgCon.Cells(11).Value
-                                Tiempo = Tiempo + DgCon.Cells(13).Value
-                                Importe = Importe + DgCon.Cells(10).Value
-                                Guias = Guias + DgCon.Cells(12).Value
+                            If RowRutas.Item("NombreRuta").ToString.Trim = DgCon.Cells(2).Value.ToString.Trim Then
+                                Volumen = Volumen + DgCon.Cells(12).Value
+                                Tiempo = Tiempo + DgCon.Cells(14).Value
+                                Importe = Importe + DgCon.Cells(11).Value
+                                Guias = Guias + DgCon.Cells(13).Value
                             End If
                         Next
                         RowRutas.Item("Volumen") = Volumen
@@ -393,7 +405,7 @@ Public Class EditarProgramacionRuta
         Try
             If DataGridConsolidado.Rows.Count > 0 Then
                 For Each RowCons As DataGridViewRow In DataGridConsolidado.Rows
-                    If RowCons.Cells(0).Value = True And RowCons.Cells(1).Value = "" Then
+                    If RowCons.Cells(0).Value = True And RowCons.Cells(2).Value = "" Then
                         RP = True
                     End If
                 Next
@@ -413,8 +425,70 @@ Public Class EditarProgramacionRuta
         End Try
     End Sub
 
-    Private Sub TabPage1_Click(sender As Object, e As EventArgs) Handles TabPage1.Click
 
+    Private Sub IconButton3_Click(sender As Object, e As EventArgs) Handles IconButton3.Click
+        Try
+            Dim dtDetallePorRuta As New DataTable
+            If Dg_Rutas.Rows.Count > 0 Then
+                ObtenerRutaCab()
+                If idconsolidadoCab <> 0 And nombreRutaCab <> "" Then
+                    If estadoruta = "PENDIENTE" Then
+                        If DataGridConsolidado.Rows.Count > 0 Then
+                            dtDetallePorRuta = dtdetalleConso.Clone
+                            For Each DgCon As DataGridViewRow In DataGridConsolidado.Rows
+                                If nombreRutaCab.ToString.Trim = DgCon.Cells(2).Value.ToString.Trim Then
+                                    If dtdetalleConso.Rows.Count > 0 Then
+                                        For Each DetalleCon As DataRow In dtdetalleConso.Rows
+                                            If CType(DgCon.Cells(16).Value.ToString.Trim, Integer) = CType(DetalleCon.Item("idconsolidado").ToString.Trim, Integer) Then
+                                                dtDetallePorRuta.Rows.Add(DetalleCon.ItemArray)
+                                            End If
+                                        Next
+                                    End If
+                                End If
+                            Next
+                        End If
+                        If dtDetallePorRuta.Rows.Count > 0 Then
+                            Dim formEditRuta As New EditarRuta
+                            formEditRuta.usr_id = usr_id
+                            formEditRuta.nombreRutaCab = nombreRutaCab
+                            formEditRuta.volumen = volumen
+                            formEditRuta.tiempo = tiempo
+                            formEditRuta.importe = importe
+                            formEditRuta.flagAccion = "Nuevo"
+                            formEditRuta.dtDetalleRuta = dtDetallePorRuta
+                            formEditRuta.ShowDialog()
+                            If formEditRuta.Grabado = True Then
+                                For Each ruedit As DataRow In dtRutas.Rows
+                                    If ruedit.Item("ids").ToString = idconsolidadoCab Then
+                                        ruedit.Item("Estado") = "REGISTRADA"
+                                        Exit For
+                                    End If
+                                Next
+                            End If
+                        End If
+                    Else
+                        MsgBox("Ruta ya se encuentra registrada", MsgBoxStyle.Exclamation, "SISTEMAS NORDIC")
+                    End If
+                End If
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Public Sub ObtenerRutaCab()
+        Try
+            If Dg_Rutas.Rows.Count > 0 Then
+                idconsolidadoCab = Dg_Rutas.CurrentRow.Cells("ids").EditedFormattedValue.ToString
+                nombreRutaCab = Dg_Rutas.CurrentRow.Cells("NombreRuta").EditedFormattedValue.ToString
+                volumen = Dg_Rutas.CurrentRow.Cells("Volumen").EditedFormattedValue.ToString
+                importe = Dg_Rutas.CurrentRow.Cells("Importe").EditedFormattedValue.ToString
+                tiempo = Dg_Rutas.CurrentRow.Cells("Tiempo").EditedFormattedValue.ToString
+                estadoruta = Dg_Rutas.CurrentRow.Cells("Estado").EditedFormattedValue.ToString
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Private Sub IconButton2_Click(sender As Object, e As EventArgs) Handles IconButton2.Click
@@ -435,31 +509,32 @@ Public Class EditarProgramacionRuta
         Dim Guias As Integer = 0
         Try
             If ValidarRegistroRuta() = True Then
-                Dim Complement As New ComplemetarRuta
-                Complement.ShowDialog()
-                If Complement.grabado = True Then
-                    repartidor = Complement.repartidor
-                    movilidad = Complement.movilidad
-                    For Each RowDg As DataGridViewRow In DataGridConsolidado.Rows
-                        If RowDg.Cells(0).Value = True And RowDg.Cells(1).Value = "" Then
-                            RowDg.Cells(1).Value = NombreRuta
-                            Volumen = Volumen + RowDg.Cells(11).Value
-                            Tiempo = Tiempo + RowDg.Cells(13).Value
-                            Importe = Importe + RowDg.Cells(10).Value
-                            Guias = Guias + RowDg.Cells(12).Value
-                            RowRutaTemporal.Item("ids") = RowDg.Cells(15).Value
-                        End If
-                    Next
-                    RowRutaTemporal.Item("NombreRuta") = NombreRuta
-                    RowRutaTemporal.Item("Transportista") = repartidor
-                    RowRutaTemporal.Item("Vehiculo") = movilidad
-                    RowRutaTemporal.Item("Volumen") = Volumen.ToString + " M3"
-                    RowRutaTemporal.Item("Importe") = Importe.ToString
-                    RowRutaTemporal.Item("Guias") = Guias.ToString
-                    RowRutaTemporal.Item("Tiempo") = Tiempo.ToString
-                    dtRutas.Rows.Add(RowRutaTemporal)
-                    Dg_Rutas.DataSource = dtRutas
-                End If
+                'Dim Complement As New ComplemetarRuta
+                'Complement.ShowDialog()
+                'If Complement.grabado = True Then
+                repartidor = ""
+                movilidad = ""
+                For Each RowDg As DataGridViewRow In DataGridConsolidado.Rows
+                    If RowDg.Cells(0).Value = True And RowDg.Cells(2).Value = "" Then
+                        RowDg.Cells(2).Value = NombreRuta
+                        Volumen = Volumen + RowDg.Cells(12).Value
+                        Tiempo = Tiempo + RowDg.Cells(14).Value
+                        Importe = Importe + RowDg.Cells(11).Value
+                        Guias = Guias + RowDg.Cells(13).Value
+                        RowRutaTemporal.Item("ids") = RowDg.Cells(16).Value
+                    End If
+                Next
+                RowRutaTemporal.Item("NombreRuta") = NombreRuta
+                RowRutaTemporal.Item("Transportista") = repartidor
+                RowRutaTemporal.Item("Vehiculo") = movilidad
+                RowRutaTemporal.Item("Volumen") = Volumen.ToString + " M3"
+                RowRutaTemporal.Item("Importe") = Importe.ToString
+                RowRutaTemporal.Item("Guias") = Guias.ToString
+                RowRutaTemporal.Item("Tiempo") = Tiempo.ToString
+                RowRutaTemporal.Item("Estado") = "PENDIENTE"
+                dtRutas.Rows.Add(RowRutaTemporal)
+                Dg_Rutas.DataSource = dtRutas
+                'End If
             End If
         Catch ex As Exception
             Throw ex
@@ -510,9 +585,9 @@ Public Class EditarProgramacionRuta
                     Codigo = RowR.Item("NombreRuta").ToString.Trim + " - " + DateTime.Now.Day.ToString + "/" + DateTime.Now.Month.ToString + "/" + DateTime.Now.Year.ToString
                     dtruta.Rows.Clear()
                     For Each DgCon As DataGridViewRow In DataGridConsolidado.Rows
-                        If RowR.Item("NombreRuta").ToString.Trim = DgCon.Cells(1).Value.ToString.Trim Then
+                        If RowR.Item("NombreRuta").ToString.Trim = DgCon.Cells(2).Value.ToString.Trim Then
                             For Each DetalleCon As DataRow In dtdetalleConso.Rows
-                                If CType(DgCon.Cells(15).Value.ToString.Trim, Integer) = CType(DetalleCon.Item("idconsolidado").ToString.Trim, Integer) Then
+                                If CType(DgCon.Cells(16).Value.ToString.Trim, Integer) = CType(DetalleCon.Item("idconsolidado").ToString.Trim, Integer) Then
                                     rowRuta = dtruta.NewRow
                                     rowRuta.Item("Numero") = dtruta.Rows.Count + 1.ToString
                                     rowRuta.Item("Guia") = DetalleCon.Item("NRO_GUIA")
@@ -533,7 +608,7 @@ Public Class EditarProgramacionRuta
                     Dim reporte As New Demo
                     dtruta.TableName = "DetalleRuta"
 
-                    reporte.ImprimirRuta(Codigo, nombreempresa, RUC, Direccion, logooperador, color, "HojaDeRuta.rdlc", dtruta, repartidor, movilidad, RowR.Item("Volumen"))
+                    '  reporte.ImprimirRuta(Codigo, nombreempresa, RUC, Direccion, logooperador, color, "HojaDeRuta.rdlc", dtruta, repartidor, movilidad, RowR.Item("Volumen"))
 
                 Next
             End If
