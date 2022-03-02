@@ -1,4 +1,5 @@
-﻿Imports Nordic.Bl.Be
+﻿Imports System.Configuration
+Imports Nordic.Bl.Be
 
 Public Class GestionParteSalida
     Private dtcabecera, dtDetalle, dtalmacenessoft As New DataTable
@@ -6,6 +7,7 @@ Public Class GestionParteSalida
     Public Estructura As New EstructuraTabla
     Public usr_id As Integer
     Public usr_usuario, codalmacen, tipdoc, nrodoc, fecha, direccionCliente, ruccliente, clienterazon, codpedido As String
+    Private idalmacen As Integer = 0, idsite As Integer = 0
 
     Private Sub cmdCerrar_Click(sender As Object, e As EventArgs) Handles cmdCerrar.Click
         Me.Close()
@@ -141,7 +143,7 @@ Public Class GestionParteSalida
         fechahasta = dt_hasta.Value.Year.ToString + "/" + mes + "/" + dia
         Dim dtretono As DataTable
         Try
-            dtretono = ObjAlmacen.ListarParteSalidaCab(fechadesde, fechahasta).Copy
+            dtretono = ObjAlmacen.ListarParteSalidaCab(fechadesde, fechahasta, idalmacen, idsite).Copy
         Catch ex As Exception
             Throw ex
         End Try
@@ -384,6 +386,8 @@ Public Class GestionParteSalida
 
     Private Sub CargaInicial()
         Try
+            idalmacen = CType(ConfigurationManager.AppSettings("idalmac").ToString.Trim, Integer)
+            idsite = CType(ConfigurationManager.AppSettings("CodigoSite").ToString.Trim, Integer)
             Me.Text = "Gestion Partes de Salida"
             FormatoTablaCabecera()
             FormatoTablaDetalle()
@@ -512,7 +516,7 @@ Public Class GestionParteSalida
 
         Dim dtretono As DataTable
         Try
-            dtretono = ObjAlmacen.ListarGuiasDET(codalmacen, tipdoc, nrodoc).Copy
+            dtretono = ObjAlmacen.ListarGuiasDET(codalmacen, tipdoc, nrodoc, idalmacen, idsite).Copy
         Catch ex As Exception
             Throw ex
         End Try

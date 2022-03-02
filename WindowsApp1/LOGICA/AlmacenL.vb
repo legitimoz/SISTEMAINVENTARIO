@@ -1,28 +1,27 @@
-﻿Imports ACCESODATOS
-Imports Nordic.Bl.Be
+﻿Imports Nordic.Bl.Be
 
 Public Class AlmacenL
     Private objAlmacen As New AlmacenAD
 
-    Public Function ListarGuiasCAB(fechadesde As String, fechahasta As String) As DataTable
+    Public Function ListarGuiasCAB(fechadesde As String, fechahasta As String, idalmacen As Integer, idsite As Integer) As DataTable
         Try
-            Return objAlmacen.ListarGuiasCAB(fechadesde, fechahasta)
+            Return objAlmacen.ListarGuiasCAB(fechadesde, fechahasta, idalmacen, idsite)
         Catch ex As Exception
             Throw ex
         End Try
     End Function
 
-    Public Function ListarParteEntradaSinUbicar(fechadesde As String, fechahasta As String) As DataTable
+    Public Function ListarParteEntradaSinUbicar(fechadesde As String, fechahasta As String, idalmacen As Integer, idsite As Integer) As DataTable
         Try
-            Return objAlmacen.ListarParteEntradaSinUbicar(fechadesde, fechahasta)
+            Return objAlmacen.ListarParteEntradaSinUbicar(fechadesde, fechahasta, idalmacen, idsite)
         Catch ex As Exception
             Throw ex
         End Try
     End Function
 
-    Public Function ListarParteSalidaCab(fechadesde As String, fechahasta As String) As DataTable
+    Public Function ListarParteSalidaCab(fechadesde As String, fechahasta As String, idalmacen As Integer, idsite As Integer) As DataTable
         Try
-            Return objAlmacen.ListarParteSalidaCab(fechadesde, fechahasta)
+            Return objAlmacen.ListarParteSalidaCab(fechadesde, fechahasta, idalmacen, idsite)
         Catch ex As Exception
             Throw ex
         End Try
@@ -113,9 +112,9 @@ Public Class AlmacenL
             Throw ex
         End Try
     End Function
-    Public Function ListarVehiculoDespacho() As DataTable
+    Public Function ListarVehiculoDespacho(ByVal idsite As Integer) As DataTable
         Try
-            Return objAlmacen.ListarVehiculoDespacho
+            Return objAlmacen.ListarVehiculoDespacho(idsite)
         Catch ex As Exception
             Throw ex
         End Try
@@ -152,9 +151,9 @@ Public Class AlmacenL
             Throw ex
         End Try
     End Function
-    Public Function BuscarUbicacionArticulo() As DataTable
+    Public Function BuscarUbicacionArticulo(idalmacen As Integer, idsite As Integer) As DataTable
         Try
-            Return objAlmacen.BuscarUbicacionArticulo
+            Return objAlmacen.BuscarUbicacionArticulo(idalmacen, idsite)
         Catch ex As Exception
             Throw ex
         End Try
@@ -181,9 +180,9 @@ Public Class AlmacenL
             Throw ex
         End Try
     End Function
-    Public Function Reporte_Articulos_Sin_Ubicar() As DataTable
+    Public Function Reporte_Articulos_Sin_Ubicar(idalmacen As Integer, idsite As Integer) As DataTable
         Try
-            Return objAlmacen.Reporte_Articulos_Sin_Ubicar
+            Return objAlmacen.Reporte_Articulos_Sin_Ubicar(idalmacen, idsite)
         Catch ex As Exception
             Throw ex
         End Try
@@ -279,7 +278,7 @@ Public Class AlmacenL
         Try
             Return objAlmacen.ListarPosicionesXArticulo(codarticulo)
         Catch ex As Exception
-
+            Throw ex
         End Try
     End Function
     Public Function ListarConceptosObservacion() As DataTable
@@ -299,9 +298,9 @@ Public Class AlmacenL
         End Try
     End Function
 
-    Public Function ListarGuiasDET(codAlmacen As String, tipdoc As String, nrodoc As String) As DataTable
+    Public Function ListarGuiasDET(codAlmacen As String, tipdoc As String, nrodoc As String, idalmacen As Integer, idsite As Integer) As DataTable
         Try
-            Return objAlmacen.ListarGuiasDET(codAlmacen, tipdoc, nrodoc)
+            Return objAlmacen.ListarGuiasDET(codAlmacen, tipdoc, nrodoc, idalmacen, idsite)
         Catch ex As Exception
             Throw ex
         End Try
@@ -362,9 +361,9 @@ Public Class AlmacenL
         End Try
     End Function
 
-    Public Function ObtenerPosicionesHojaPicking(ByVal codarticulo As String, ByVal Lote As String, cantidadrequerida As Decimal) As DataTable
+    Public Function ObtenerPosicionesHojaPicking(ByVal codarticulo As String, ByVal Lote As String, cantidadrequerida As Decimal, idalmacen As Integer, idsite As Integer) As DataTable
         Try
-            Return objAlmacen.ObtenerPosicionesHojaPicking(codarticulo, Lote, cantidadrequerida)
+            Return objAlmacen.ObtenerPosicionesHojaPicking(codarticulo, Lote, cantidadrequerida, idalmacen, idsite)
         Catch ex As Exception
             Throw ex
         End Try
@@ -465,17 +464,17 @@ Public Class AlmacenL
         End Try
     End Function
 
-    Public Function ListarParteEntradaCAB(fechadesde As String, fechahasta As String) As DataTable
+    Public Function ListarParteEntradaCAB(fechadesde As String, fechahasta As String, idalmacen As Integer, idsite As Integer) As DataTable
         Try
-            Return objAlmacen.ListarParteEntradaCAB(fechadesde, fechahasta)
+            Return objAlmacen.ListarParteEntradaCAB(fechadesde, fechahasta, idalmacen, idsite)
         Catch ex As Exception
             Throw ex
         End Try
     End Function
 
-    Public Function ListarParteEntradaDET(codAlmacen As String, codcabecera As String, tipdoc As String) As DataTable
+    Public Function ListarParteEntradaDET(codAlmacen As String, codcabecera As String, tipdoc As String, idalmacen As Integer, idsite As Integer) As DataTable
         Try
-            Return objAlmacen.ListarParteEntradaDET(codAlmacen, codcabecera, tipdoc)
+            Return objAlmacen.ListarParteEntradaDET(codAlmacen, codcabecera, tipdoc, idalmacen, idsite)
         Catch ex As Exception
             Throw ex
         End Try
@@ -565,9 +564,9 @@ Public Class AlmacenL
         End Try
     End Function
 
-    Public Function ListarUbicacionesVacias() As DataTable
+    Public Function ListarUbicacionesVacias(idalmacen As Integer, idsite As Integer) As DataTable
         Try
-            Return objAlmacen.ListarUbicacionesVacias
+            Return objAlmacen.ListarUbicacionesVacias(idalmacen, idsite)
         Catch ex As Exception
             Throw ex
         End Try

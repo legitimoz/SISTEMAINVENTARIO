@@ -1,7 +1,4 @@
-﻿Imports LOGICANEGOCIO
-Imports ENTIDAD
-Imports System.Globalization
-Imports System.Reflection
+﻿
 
 Public Class GestionEmpresaForm
 

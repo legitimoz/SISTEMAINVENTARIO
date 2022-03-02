@@ -72,7 +72,6 @@ Partial Class MenuPrincipal
         Me.DispatchToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeliveryOnTimeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NonConformityRatioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ArticulosSinUbicacionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CerrarSesionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -99,35 +98,35 @@ Partial Class MenuPrincipal
         '
         Me.ArticulosToolStripMenuItem.Image = CType(resources.GetObject("ArticulosToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ArticulosToolStripMenuItem.Name = "ArticulosToolStripMenuItem"
-        Me.ArticulosToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
+        Me.ArticulosToolStripMenuItem.Size = New System.Drawing.Size(180, 26)
         Me.ArticulosToolStripMenuItem.Text = "Articulos"
         '
         'AlmacenesToolStripMenuItem
         '
         Me.AlmacenesToolStripMenuItem.Image = CType(resources.GetObject("AlmacenesToolStripMenuItem.Image"), System.Drawing.Image)
         Me.AlmacenesToolStripMenuItem.Name = "AlmacenesToolStripMenuItem"
-        Me.AlmacenesToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
+        Me.AlmacenesToolStripMenuItem.Size = New System.Drawing.Size(180, 26)
         Me.AlmacenesToolStripMenuItem.Text = "Gestion Almacenes"
         '
         'PickConfirmToolStripMenuItem
         '
         Me.PickConfirmToolStripMenuItem.Image = CType(resources.GetObject("PickConfirmToolStripMenuItem.Image"), System.Drawing.Image)
         Me.PickConfirmToolStripMenuItem.Name = "PickConfirmToolStripMenuItem"
-        Me.PickConfirmToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
+        Me.PickConfirmToolStripMenuItem.Size = New System.Drawing.Size(180, 26)
         Me.PickConfirmToolStripMenuItem.Text = "Gestion Pedidos"
         '
         'GuiasToolStripMenuItem
         '
         Me.GuiasToolStripMenuItem.Image = CType(resources.GetObject("GuiasToolStripMenuItem.Image"), System.Drawing.Image)
         Me.GuiasToolStripMenuItem.Name = "GuiasToolStripMenuItem"
-        Me.GuiasToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
+        Me.GuiasToolStripMenuItem.Size = New System.Drawing.Size(180, 26)
         Me.GuiasToolStripMenuItem.Text = "Gestion Guias "
         '
         'AnulacionPickingToolStripMenuItem
         '
         Me.AnulacionPickingToolStripMenuItem.Image = Global.WindowsApp1.My.Resources.Resources.delete_file_icon
         Me.AnulacionPickingToolStripMenuItem.Name = "AnulacionPickingToolStripMenuItem"
-        Me.AnulacionPickingToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
+        Me.AnulacionPickingToolStripMenuItem.Size = New System.Drawing.Size(180, 26)
         Me.AnulacionPickingToolStripMenuItem.Text = "Anulacion Picking"
         '
         'OtrosMovimientosToolStripMenuItem
@@ -135,7 +134,7 @@ Partial Class MenuPrincipal
         Me.OtrosMovimientosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PartesDeSalidaToolStripMenuItem})
         Me.OtrosMovimientosToolStripMenuItem.Image = Global.WindowsApp1.My.Resources.Resources.Other_origin_icon
         Me.OtrosMovimientosToolStripMenuItem.Name = "OtrosMovimientosToolStripMenuItem"
-        Me.OtrosMovimientosToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
+        Me.OtrosMovimientosToolStripMenuItem.Size = New System.Drawing.Size(180, 26)
         Me.OtrosMovimientosToolStripMenuItem.Text = "Otros Movimientos"
         '
         'PartesDeSalidaToolStripMenuItem
@@ -150,7 +149,7 @@ Partial Class MenuPrincipal
         Me.ReportesToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UbicacionesVaciasToolStripMenuItem, Me.KardexArticuloToolStripMenuItem1, Me.ArticulosSinCubicajeToolStripMenuItem, Me.ArticulosSinUbicarToolStripMenuItem, Me.PartesDeEntradaSinIngresoToolStripMenuItem})
         Me.ReportesToolStripMenuItem1.Image = CType(resources.GetObject("ReportesToolStripMenuItem1.Image"), System.Drawing.Image)
         Me.ReportesToolStripMenuItem1.Name = "ReportesToolStripMenuItem1"
-        Me.ReportesToolStripMenuItem1.Size = New System.Drawing.Size(184, 26)
+        Me.ReportesToolStripMenuItem1.Size = New System.Drawing.Size(180, 26)
         Me.ReportesToolStripMenuItem1.Text = "Reportes"
         '
         'UbicacionesVaciasToolStripMenuItem
@@ -340,7 +339,7 @@ Partial Class MenuPrincipal
         '
         'ReportesToolStripMenuItem
         '
-        Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PresupuestosToolStripMenuItem, Me.ReporteDeDespachosToolStripMenuItem, Me.ReporteVentasToolStripMenuItem, Me.ImpresiónGuiaSsendaToolStripMenuItem, Me.ReporteDeDespachosToolStripMenuItem1, Me.ReporteDocumentosPendientesToolStripMenuItem, Me.UbicacionesArticuloToolStripMenuItem, Me.PedidosProgramacionPickingToolStripMenuItem1, Me.IndicadoresToolStripMenuItem, Me.ArticulosSinUbicacionToolStripMenuItem})
+        Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PresupuestosToolStripMenuItem, Me.ReporteDeDespachosToolStripMenuItem, Me.ReporteVentasToolStripMenuItem, Me.ImpresiónGuiaSsendaToolStripMenuItem, Me.ReporteDeDespachosToolStripMenuItem1, Me.ReporteDocumentosPendientesToolStripMenuItem, Me.UbicacionesArticuloToolStripMenuItem, Me.PedidosProgramacionPickingToolStripMenuItem1, Me.IndicadoresToolStripMenuItem})
         Me.ReportesToolStripMenuItem.Image = Global.WindowsApp1.My.Resources.Resources._1172
         Me.ReportesToolStripMenuItem.Name = "ReportesToolStripMenuItem"
         Me.ReportesToolStripMenuItem.Size = New System.Drawing.Size(85, 24)
@@ -433,12 +432,6 @@ Partial Class MenuPrincipal
         Me.NonConformityRatioToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
         Me.NonConformityRatioToolStripMenuItem.Text = "Non Conformity Ratio"
         '
-        'ArticulosSinUbicacionToolStripMenuItem
-        '
-        Me.ArticulosSinUbicacionToolStripMenuItem.Name = "ArticulosSinUbicacionToolStripMenuItem"
-        Me.ArticulosSinUbicacionToolStripMenuItem.Size = New System.Drawing.Size(251, 26)
-        Me.ArticulosSinUbicacionToolStripMenuItem.Text = "Articulos Sin Ubicacion"
-        '
         'CerrarSesionToolStripMenuItem
         '
         Me.CerrarSesionToolStripMenuItem.Image = Global.WindowsApp1.My.Resources.Resources.actn112
@@ -504,7 +497,6 @@ Partial Class MenuPrincipal
     Friend WithEvents IndicadoresToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DispatchToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DeliveryOnTimeToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ArticulosSinUbicacionToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExcelRotuladosProvinciaToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents NonConformityRatioToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GenerarAbastecimientoToolStripMenuItem As ToolStripMenuItem

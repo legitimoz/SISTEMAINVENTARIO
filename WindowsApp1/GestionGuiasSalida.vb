@@ -6,6 +6,7 @@ Public Class GestionGuiasSalida
     Public usr_id As Integer
     Public usr_usuario, codalmacen, tipdoc, nrodoc, fecha, direccionCliente, ruccliente, clienterazon, codpedido As String
     Private ObjAlmacen As New AlmacenL
+    Private idalmacen As Integer = 0, idsite As Integer = 0
 
 
     Private Sub PickConfirmGuias_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -14,6 +15,8 @@ Public Class GestionGuiasSalida
 
     Private Sub CargaInicial()
         Try
+            idalmacen = CType(ConfigurationManager.AppSettings("idalmac").ToString.Trim, Integer)
+            idsite = CType(ConfigurationManager.AppSettings("CodigoSite").ToString.Trim, Integer)
             Me.Text = "Gestion Guias"
             FormatoTablaCabecera()
             FormatoTablaDetalle()
@@ -69,7 +72,7 @@ Public Class GestionGuiasSalida
 
         Dim dtretono As DataTable
         Try
-            dtretono = ObjAlmacen.ListarGuiasDET(codalmacen, tipdoc, nrodoc).Copy
+            dtretono = ObjAlmacen.ListarGuiasDET(codalmacen, tipdoc, nrodoc, idalmacen, idsite).Copy
         Catch ex As Exception
             Throw ex
         End Try
@@ -80,7 +83,7 @@ Public Class GestionGuiasSalida
 
         Dim dtretono As DataTable
         Try
-            dtretono = ObjAlmacen.ListarGuiasDET(codalmacenM, tipdocM, nrodocM).Copy
+            dtretono = ObjAlmacen.ListarGuiasDET(codalmacenM, tipdocM, nrodocM, idalmacen, idsite).Copy
         Catch ex As Exception
             Throw ex
         End Try
@@ -722,7 +725,7 @@ Public Class GestionGuiasSalida
 
         Dim dtretono As DataTable
         Try
-            dtretono = ObjAlmacen.ObtenerPosicionesHojaPicking(codarticulo, lote, cantidad).Copy
+            dtretono = ObjAlmacen.ObtenerPosicionesHojaPicking(codarticulo, lote, cantidad, idalmacen, idsite).Copy
         Catch ex As Exception
             Throw ex
         End Try
@@ -906,7 +909,7 @@ Public Class GestionGuiasSalida
         fechahasta = dt_hasta.Value.Year.ToString + "/" + mes + "/" + dia
         Dim dtretono As DataTable
         Try
-            dtretono = ObjAlmacen.ListarGuiasCAB(fechadesde, fechahasta).Copy
+            dtretono = ObjAlmacen.ListarGuiasCAB(fechadesde, fechahasta, idalmacen, idsite).Copy
         Catch ex As Exception
             Throw ex
         End Try

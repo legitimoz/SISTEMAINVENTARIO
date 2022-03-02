@@ -1,4 +1,5 @@
-﻿Imports Nordic.Bl.Be
+﻿Imports System.Configuration
+Imports Nordic.Bl.Be
 
 Public Class GestionAnulacionPicking
     Private ObjAlmacen As New AlmacenL
@@ -7,12 +8,16 @@ Public Class GestionAnulacionPicking
     Public codalmacen, tipdoc, nrodoc, fechaR, direccionclienteR, ruccliente, clienterazon, codpedido As String
     Private dtDetalle As New DataTable
     Private Estructura As New EstructuraTabla
+    Private idalmacen As Integer = 0, idsite As Integer = 0
+
     Private Sub cmdCerrar_Click(sender As Object, e As EventArgs) Handles cmdCerrar.Click
         Me.Close()
     End Sub
 
     Private Sub GestionAnulacionPicking_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
+            idalmacen = CType(ConfigurationManager.AppSettings("idalmac").ToString.Trim, Integer)
+            idsite = CType(ConfigurationManager.AppSettings("CodigoSite").ToString.Trim, Integer)
             CargaInicial()
         Catch ex As Exception
 
@@ -122,18 +127,20 @@ Public Class GestionAnulacionPicking
             If Dg_Cabecera.Rows.Count Then
                 ObtenerGuiaCab()
                 If nrodoc <> "" And tipdoc <> "" And codalmacen <> "" Then
-                    Dim dtDetalle As New DataTable
-                    dtDetalle = llamarObtenerDetallePicking()
-                    If dtDetalle.Rows.Count > 0 Then
-                        For Each DtRow As DataRow In dtDetalle.Rows
-                            rp = llamarRegistrarImpresion(CType(DtRow.Item("").ToString.Trim, Integer), usr_id)
-                            If rp = 0 Then
-                                MsgBox("Error al Revertir Picking, Contactar con el area de sistemas y validar los ingresos", MsgBoxStyle.Exclamation, "SISTEMAS NORDIC")
-                                Exit For
+                    If MessageBox.Show("Está seguro que desea revertir el Picking de la guia : " + nrodoc + " ?", Me.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                        Dim dtDetalle As New DataTable
+                        dtDetalle = llamarObtenerDetallePicking()
+                        If dtDetalle.Rows.Count > 0 Then
+                            For Each DtRow As DataRow In dtDetalle.Rows
+                                rp = llamarRegistrarImpresion(CType(DtRow.Item("dopa_iddetalle").ToString.Trim, Integer), usr_id)
+                                If rp = 0 Then
+                                    MsgBox("Error al Revertir Picking, Contactar con el area de sistemas y validar los ingresos", MsgBoxStyle.Exclamation, "SISTEMAS NORDIC")
+                                    Exit For
+                                End If
+                            Next
+                            If rp <> 0 Then
+                                MsgBox("Reversion de Picking Existosa", MsgBoxStyle.Information, "SISTEMAS NORDIC")
                             End If
-                        Next
-                        If rp <> 0 Then
-                            MsgBox("Reversion de Picking Existosa", MsgBoxStyle.Information, "SISTEMAS NORDIC")
                         End If
                     End If
                 End If
@@ -169,7 +176,7 @@ Public Class GestionAnulacionPicking
 
         Dim dtretono As DataTable
         Try
-            dtretono = ObjAlmacen.ListarGuiasDET(codalmacen, tipdoc, nrodoc).Copy
+            dtretono = ObjAlmacen.ListarGuiasDET(codalmacen, tipdoc, nrodoc, idalmacen, idsite).Copy
         Catch ex As Exception
             Throw ex
         End Try

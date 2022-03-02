@@ -1,5 +1,6 @@
 ﻿
 
+Imports System.Configuration
 Imports ClosedXML.Excel
 Imports Nordic.Bl.Be
 
@@ -9,6 +10,8 @@ Public Class BuscadorArticulosUbicaion
     Private AlmObj As New AlmacenL
     Public dt As New DataTable
     Public iddetalle As Integer = 0, cantidad As Integer = 0
+
+    Private idalmacen As Integer = 0, idsite As Integer = 0
 
     Private Sub GestionContratacionForm_Load(sender As Object, e As EventArgs)
         Try
@@ -20,6 +23,8 @@ Public Class BuscadorArticulosUbicaion
 
     Public Sub CargaInicial()
         Try
+            idalmacen = CType(ConfigurationManager.AppSettings("idalmac").ToString.Trim, Integer)
+            idsite = CType(ConfigurationManager.AppSettings("CodigoSite").ToString.Trim, Integer)
             ListarArticulos()
         Catch ex As Exception
 
@@ -30,7 +35,7 @@ Public Class BuscadorArticulosUbicaion
         If dt.Rows.Count > 0 Then
             dt.Rows.Clear()
         End If
-        dt = AlmObj.BuscarUbicacionArticulo
+        dt = AlmObj.BuscarUbicacionArticulo(idalmacen, idsite)
         If dt.Rows.Count > 0 Then
             DgArticulos.DataSource = dt
         End If
@@ -87,8 +92,8 @@ Public Class BuscadorArticulosUbicaion
                 articuloNombre = DgArticulos.CurrentRow.Cells("Articulo").Value.ToString.Trim
                 lote = DgArticulos.CurrentRow.Cells("Lote").Value.ToString.Trim
                 vencimiento = DgArticulos.CurrentRow.Cells("Vencimiento").Value.ToString.Trim
-                Dim Codigo As String = DgArticulos.CurrentRow.Cells("CODIGO").Value.ToString.Trim
-                iddetalle = CType(Codigo.Replace(DgArticulos.CurrentRow.Cells("CodArticulo").Value.ToString.Trim, ""), Integer)
+                'Dim Codigo As String = DgArticulos.CurrentRow.Cells("CODIGO").Value.ToString.Trim
+                ' iddetalle = CType(Codigo.Replace(DgArticulos.CurrentRow.Cells("CodArticulo").Value.ToString.Trim, ""), Integer)
                 cantidad = DgArticulos.CurrentRow.Cells("Cantidad").Value.ToString.Trim
             End If
         Catch ex As Exception

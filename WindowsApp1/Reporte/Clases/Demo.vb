@@ -161,7 +161,7 @@ Public Class Demo
     End Sub
 
     Public Sub ImprimirRuta(CodigoRuta As String, nombreEmpresa As String,
-                              RUC As String, Direccion As String, logooperador As String, Color As String, ByVal nombrereporte As String, ByVal Data As DataTable, transportista As String, Vehiculo As String, totalvolumen As Decimal)
+                              RUC As String, Direccion As String, logooperador As String, Color As String, ByVal nombrereporte As String, ByVal Data As DataTable, transportista As String, Vehiculo As String, totalvolumen As Decimal, totaltiempo As String, totalimporte As String, totalpeso As String, tipoenvio As String)
 
 
         Try
@@ -177,9 +177,15 @@ Public Class Demo
             Dim direccionempresaparam As New ReportParameter("direccionempresa", Direccion)
             Dim nombreimagenparam As New ReportParameter("nombreimagen", logooperador)
             Dim colorheaderparam As New ReportParameter("colorheader", Color)
-            Dim totalvolumenparam As New ReportParameter("totalvolumen", totalvolumen.ToString + " M3")
+            Dim totalvolumenparam As New ReportParameter("totalvolumen", Math.Round(totalvolumen, 2).ToString + " M3")
             Dim tipotransporteparam As New ReportParameter("tipotransporte", Vehiculo)
             Dim transportistaparam As New ReportParameter("transportista", transportista)
+
+            Dim totaltiempoparam As New ReportParameter("totaltiempo", totaltiempo)
+            Dim totalimporteparam As New ReportParameter("totalimporte", totalimporte)
+            Dim totalpesoparam As New ReportParameter("totalpeso", totalpeso)
+            Dim tipoenvioparam As New ReportParameter("tipoenvio", tipoenvio)
+
 
             Dim ps As New System.Drawing.Printing.PageSettings()
 
@@ -197,6 +203,11 @@ Public Class Demo
             report.SetParameters(tipotransporteparam)
             report.SetParameters(transportistaparam)
             report.SetParameters(CodRutaparam)
+
+            report.SetParameters(totaltiempoparam)
+            report.SetParameters(totalimporteparam)
+            report.SetParameters(totalpesoparam)
+            report.SetParameters(tipoenvioparam)
 
             ExportHorizontal(report)
             Print("H")

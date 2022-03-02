@@ -270,7 +270,7 @@ Public Class GestionPartesEntrada
 
         fechahasta = dt_hasta.Value.Year.ToString + "/" + mes + "/" + dia
         Try
-            dtretono = ObjAlmacen.ListarParteEntradaCAB(fechadesde, fechahasta).Copy
+            dtretono = ObjAlmacen.ListarParteEntradaCAB(fechadesde, fechahasta, idalmacen, idsite).Copy
         Catch ex As Exception
             Throw ex
         End Try
@@ -494,7 +494,7 @@ Public Class GestionPartesEntrada
 
         Dim dtretono As DataTable
         Try
-            dtretono = ObjAlmacen.ListarParteEntradaDET(codalmacen, coddoc, tipdoc).Copy
+            dtretono = ObjAlmacen.ListarParteEntradaDET(codalmacen, coddoc, tipdoc, idalmacen, idsite).Copy
         Catch ex As Exception
             Throw ex
         End Try

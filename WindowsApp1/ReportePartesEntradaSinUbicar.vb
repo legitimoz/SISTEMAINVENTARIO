@@ -1,4 +1,5 @@
-﻿Imports ClosedXML.Excel
+﻿Imports System.Configuration
+Imports ClosedXML.Excel
 Imports Nordic.Bl.Be
 
 Public Class ReportePartesEntradaSinUbicar
@@ -7,6 +8,7 @@ Public Class ReportePartesEntradaSinUbicar
     Private dt As New DataTable
     Public usr_id As Integer
     Public usr_usuario As String
+    Private idalmacen As Integer = 0, idsite As Integer = 0
     Public Function ExportExcel(ByVal dt As DataTable) As Boolean
         Dim RP As Boolean = False
         Dim wb As New XLWorkbook()
@@ -56,6 +58,8 @@ Public Class ReportePartesEntradaSinUbicar
     End Sub
     Private Sub CargaIicial()
         Try
+            idalmacen = CType(ConfigurationManager.AppSettings("idalmac").ToString.Trim, Integer)
+            idsite = CType(ConfigurationManager.AppSettings("CodigoSite").ToString.Trim, Integer)
             Listar()
         Catch ex As Exception
             Throw ex
@@ -127,7 +131,7 @@ Public Class ReportePartesEntradaSinUbicar
 
         fechahasta = dt_hasta.Value.Year.ToString + "/" + mes + "/" + dia
         Try
-            dtretono = ObjAlmacen.ListarParteEntradaSinUbicar(fechadesde, fechahasta).Copy
+            dtretono = ObjAlmacen.ListarParteEntradaSinUbicar(fechadesde, fechahasta, idalmacen, idsite).Copy
         Catch ex As Exception
             Throw ex
         End Try

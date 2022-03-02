@@ -7,6 +7,7 @@ Public Class GestionPedidoSalida
     Public usr_id As Integer
     Public usr_usuario, F5_CCODAGE, F5_CNUMPED, FechaPedido, clienterazon, ruccliente, direccionCliente, codalmacen As String
     Private ObjAlmacen As New AlmacenL
+    Private idalmacen As Integer = 0, idsite As Integer = 0
 
     Private Sub PickConfirm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CargaInicial()
@@ -14,6 +15,8 @@ Public Class GestionPedidoSalida
 
     Private Sub CargaInicial()
         Try
+            idalmacen = CType(ConfigurationManager.AppSettings("idalmac").ToString.Trim, Integer)
+            idsite = CType(ConfigurationManager.AppSettings("CodigoSite").ToString.Trim, Integer)
             Me.Text = "Gestion Pedidos"
             FormatoTablaCabecera()
             FormatoTablaDetalle()
@@ -333,7 +336,7 @@ Public Class GestionPedidoSalida
 
         Dim dtretono As DataTable
         Try
-            dtretono = ObjAlmacen.ObtenerPosicionesHojaPicking(codarticulo, lote, cantidad).Copy
+            dtretono = ObjAlmacen.ObtenerPosicionesHojaPicking(codarticulo, lote, cantidad, idalmacen, idsite).Copy
         Catch ex As Exception
             Throw ex
         End Try

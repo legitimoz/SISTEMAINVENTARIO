@@ -52,7 +52,7 @@
         Try
             ' Dim dtretorno As New DataTable
 
-            dt_vehiculos = AlmacenObj.ListarVehiculoDespacho
+            dt_vehiculos = AlmacenObj.ListarVehiculoDespacho(1)
             If dt_vehiculos.Rows.Count > 0 Then
                 cmb_tipotransporte.DataSource = dt_vehiculos
                 cmb_tipotransporte.DisplayMember = "veh_tipovehiculo"
