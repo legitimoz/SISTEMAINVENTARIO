@@ -23,6 +23,9 @@ Partial Class frmRequerimientoIns
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmRequerimientoIns))
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.tsbNuevo = New System.Windows.Forms.ToolStripButton()
         Me.tsbGuardar = New System.Windows.Forms.ToolStripButton()
@@ -36,6 +39,10 @@ Partial Class frmRequerimientoIns
         Me.txtUsuario = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.mtbHora = New System.Windows.Forms.MaskedTextBox()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.dtpFecEntrega = New System.Windows.Forms.DateTimePicker()
         Me.Label45 = New System.Windows.Forms.Label()
         Me.lblCantAnalisisVenta = New System.Windows.Forms.Label()
         Me.rtbDescripcion = New System.Windows.Forms.RichTextBox()
@@ -70,10 +77,13 @@ Partial Class frmRequerimientoIns
         Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.crd_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.codigo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.costo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.fecha_vcto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.observacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ToolStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -92,7 +102,7 @@ Partial Class frmRequerimientoIns
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbNuevo, Me.tsbGuardar, Me.tsbEditar, Me.tsbEliminar, Me.tsbDetener})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(917, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1328, 25)
         Me.ToolStrip1.TabIndex = 0
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -151,9 +161,9 @@ Partial Class frmRequerimientoIns
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.cboEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboEstado.FormattingEnabled = True
-        Me.cboEstado.Location = New System.Drawing.Point(635, 64)
+        Me.cboEstado.Location = New System.Drawing.Point(1143, 67)
         Me.cboEstado.Name = "cboEstado"
-        Me.cboEstado.Size = New System.Drawing.Size(124, 21)
+        Me.cboEstado.Size = New System.Drawing.Size(144, 21)
         Me.cboEstado.TabIndex = 12
         '
         'Label3
@@ -161,7 +171,7 @@ Partial Class frmRequerimientoIns
         Me.Label3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(589, 67)
+        Me.Label3.Location = New System.Drawing.Point(1097, 70)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(40, 13)
         Me.Label3.TabIndex = 11
@@ -172,9 +182,9 @@ Partial Class frmRequerimientoIns
         Me.txtFechaCreacion.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.txtFechaCreacion.Enabled = False
-        Me.txtFechaCreacion.Location = New System.Drawing.Point(635, 39)
+        Me.txtFechaCreacion.Location = New System.Drawing.Point(1143, 42)
         Me.txtFechaCreacion.Name = "txtFechaCreacion"
-        Me.txtFechaCreacion.Size = New System.Drawing.Size(124, 21)
+        Me.txtFechaCreacion.Size = New System.Drawing.Size(144, 21)
         Me.txtFechaCreacion.TabIndex = 10
         '
         'Label2
@@ -182,7 +192,7 @@ Partial Class frmRequerimientoIns
         Me.Label2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(550, 43)
+        Me.Label2.Location = New System.Drawing.Point(1058, 46)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(81, 13)
         Me.Label2.TabIndex = 9
@@ -193,9 +203,9 @@ Partial Class frmRequerimientoIns
         Me.txtUsuario.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.txtUsuario.Enabled = False
-        Me.txtUsuario.Location = New System.Drawing.Point(635, 13)
+        Me.txtUsuario.Location = New System.Drawing.Point(1143, 16)
         Me.txtUsuario.Name = "txtUsuario"
-        Me.txtUsuario.Size = New System.Drawing.Size(124, 21)
+        Me.txtUsuario.Size = New System.Drawing.Size(144, 21)
         Me.txtUsuario.TabIndex = 8
         '
         'Label4
@@ -203,7 +213,7 @@ Partial Class frmRequerimientoIns
         Me.Label4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(587, 17)
+        Me.Label4.Location = New System.Drawing.Point(1095, 20)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(43, 13)
         Me.Label4.TabIndex = 7
@@ -214,6 +224,11 @@ Partial Class frmRequerimientoIns
         Me.GroupBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox1.BackColor = System.Drawing.Color.LightGoldenrodYellow
+        Me.GroupBox1.Controls.Add(Me.mtbHora)
+        Me.GroupBox1.Controls.Add(Me.Label11)
+        Me.GroupBox1.Controls.Add(Me.Label10)
+        Me.GroupBox1.Controls.Add(Me.dtpFecEntrega)
         Me.GroupBox1.Controls.Add(Me.Label45)
         Me.GroupBox1.Controls.Add(Me.lblCantAnalisisVenta)
         Me.GroupBox1.Controls.Add(Me.rtbDescripcion)
@@ -241,9 +256,44 @@ Partial Class frmRequerimientoIns
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Location = New System.Drawing.Point(3, 24)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(902, 572)
+        Me.GroupBox1.Size = New System.Drawing.Size(1313, 739)
         Me.GroupBox1.TabIndex = 13
         Me.GroupBox1.TabStop = False
+        '
+        'mtbHora
+        '
+        Me.mtbHora.Location = New System.Drawing.Point(643, 45)
+        Me.mtbHora.Mask = "00:00"
+        Me.mtbHora.Name = "mtbHora"
+        Me.mtbHora.Size = New System.Drawing.Size(114, 21)
+        Me.mtbHora.TabIndex = 22
+        Me.mtbHora.ValidatingType = GetType(Date)
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(554, 42)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(71, 13)
+        Me.Label11.TabIndex = 21
+        Me.Label11.Text = "Hora Entrega"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(554, 19)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(77, 13)
+        Me.Label10.TabIndex = 20
+        Me.Label10.Text = "Fecha Entrega"
+        '
+        'dtpFecEntrega
+        '
+        Me.dtpFecEntrega.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpFecEntrega.Location = New System.Drawing.Point(643, 17)
+        Me.dtpFecEntrega.Name = "dtpFecEntrega"
+        Me.dtpFecEntrega.Size = New System.Drawing.Size(114, 21)
+        Me.dtpFecEntrega.TabIndex = 19
         '
         'Label45
         '
@@ -266,9 +316,9 @@ Partial Class frmRequerimientoIns
         'rtbDescripcion
         '
         Me.rtbDescripcion.Location = New System.Drawing.Point(79, 90)
-        Me.rtbDescripcion.MaxLength = 250
+        Me.rtbDescripcion.MaxLength = 500
         Me.rtbDescripcion.Name = "rtbDescripcion"
-        Me.rtbDescripcion.Size = New System.Drawing.Size(680, 57)
+        Me.rtbDescripcion.Size = New System.Drawing.Size(680, 63)
         Me.rtbDescripcion.TabIndex = 16
         Me.rtbDescripcion.Text = ""
         '
@@ -331,9 +381,9 @@ Partial Class frmRequerimientoIns
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox2.Controls.Add(Me.TabControl1)
-        Me.GroupBox2.Location = New System.Drawing.Point(7, 152)
+        Me.GroupBox2.Location = New System.Drawing.Point(7, 172)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(889, 417)
+        Me.GroupBox2.Size = New System.Drawing.Size(1300, 564)
         Me.GroupBox2.TabIndex = 9
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Listado de Articulos"
@@ -347,7 +397,7 @@ Partial Class frmRequerimientoIns
         Me.TabControl1.Location = New System.Drawing.Point(8, 19)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(875, 380)
+        Me.TabControl1.Size = New System.Drawing.Size(1286, 539)
         Me.TabControl1.TabIndex = 0
         '
         'TabPage1
@@ -356,7 +406,7 @@ Partial Class frmRequerimientoIns
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(867, 354)
+        Me.TabPage1.Size = New System.Drawing.Size(1278, 513)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Seleccion Articulos"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -379,8 +429,8 @@ Partial Class frmRequerimientoIns
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.dgvDetalleReque)
-        Me.SplitContainer1.Size = New System.Drawing.Size(855, 337)
-        Me.SplitContainer1.SplitterDistance = 311
+        Me.SplitContainer1.Size = New System.Drawing.Size(1266, 496)
+        Me.SplitContainer1.SplitterDistance = 596
         Me.SplitContainer1.TabIndex = 5
         '
         'dgvListadoArticulos
@@ -389,12 +439,15 @@ Partial Class frmRequerimientoIns
         Me.dgvListadoArticulos.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dgvListadoArticulos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
+        Me.dgvListadoArticulos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
+        Me.dgvListadoArticulos.BackgroundColor = System.Drawing.Color.White
         Me.dgvListadoArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvListadoArticulos.Location = New System.Drawing.Point(6, 54)
         Me.dgvListadoArticulos.MultiSelect = False
         Me.dgvListadoArticulos.Name = "dgvListadoArticulos"
         Me.dgvListadoArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvListadoArticulos.Size = New System.Drawing.Size(299, 278)
+        Me.dgvListadoArticulos.Size = New System.Drawing.Size(584, 437)
         Me.dgvListadoArticulos.TabIndex = 0
         '
         'txtBusqueda
@@ -403,7 +456,7 @@ Partial Class frmRequerimientoIns
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtBusqueda.Location = New System.Drawing.Point(7, 27)
         Me.txtBusqueda.Name = "txtBusqueda"
-        Me.txtBusqueda.Size = New System.Drawing.Size(298, 21)
+        Me.txtBusqueda.Size = New System.Drawing.Size(583, 21)
         Me.txtBusqueda.TabIndex = 4
         '
         'rbtCodigo
@@ -434,13 +487,14 @@ Partial Class frmRequerimientoIns
         Me.dgvDetalleReque.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dgvDetalleReque.BackgroundColor = System.Drawing.Color.White
         Me.dgvDetalleReque.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvDetalleReque.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.codigo, Me.descripcion, Me.cantidad, Me.costo})
-        Me.dgvDetalleReque.Location = New System.Drawing.Point(8, 7)
+        Me.dgvDetalleReque.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.crd_id, Me.codigo, Me.descripcion, Me.cantidad, Me.costo, Me.fecha_vcto, Me.observacion})
+        Me.dgvDetalleReque.Location = New System.Drawing.Point(8, 54)
         Me.dgvDetalleReque.MultiSelect = False
         Me.dgvDetalleReque.Name = "dgvDetalleReque"
         Me.dgvDetalleReque.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvDetalleReque.Size = New System.Drawing.Size(528, 324)
+        Me.dgvDetalleReque.Size = New System.Drawing.Size(654, 436)
         Me.dgvDetalleReque.TabIndex = 1
         '
         'txtNroReq
@@ -525,9 +579,9 @@ Partial Class frmRequerimientoIns
         '
         'StatusStrip1
         '
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 599)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 766)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(917, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(1328, 22)
         Me.StatusStrip1.TabIndex = 14
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -567,6 +621,12 @@ Partial Class frmRequerimientoIns
         Me.id.Visible = False
         Me.id.Width = 50
         '
+        'crd_id
+        '
+        Me.crd_id.HeaderText = "CRD_ID"
+        Me.crd_id.Name = "crd_id"
+        Me.crd_id.Visible = False
+        '
         'codigo
         '
         Me.codigo.HeaderText = "CODIGO"
@@ -574,27 +634,46 @@ Partial Class frmRequerimientoIns
         '
         'descripcion
         '
-        Me.descripcion.FillWeight = 150.0!
+        Me.descripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.descripcion.FillWeight = 250.0!
         Me.descripcion.HeaderText = "DESCRIPCION"
         Me.descripcion.Name = "descripcion"
-        Me.descripcion.Width = 300
+        Me.descripcion.Width = 101
         '
         'cantidad
         '
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.cantidad.DefaultCellStyle = DataGridViewCellStyle1
         Me.cantidad.HeaderText = "CANTIDAD"
         Me.cantidad.Name = "cantidad"
         '
         'costo
         '
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.costo.DefaultCellStyle = DataGridViewCellStyle2
         Me.costo.HeaderText = "COSTO"
         Me.costo.Name = "costo"
+        '
+        'fecha_vcto
+        '
+        DataGridViewCellStyle3.Format = "d"
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.fecha_vcto.DefaultCellStyle = DataGridViewCellStyle3
+        Me.fecha_vcto.HeaderText = "FECHA VCTO"
+        Me.fecha_vcto.Name = "fecha_vcto"
+        '
+        'observacion
+        '
+        Me.observacion.HeaderText = "OBSERVACION"
+        Me.observacion.Name = "observacion"
+        Me.observacion.Width = 600
         '
         'frmRequerimientoIns
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(917, 621)
+        Me.ClientSize = New System.Drawing.Size(1328, 788)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.ToolStrip1)
@@ -663,14 +742,21 @@ Partial Class frmRequerimientoIns
     Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn5 As DataGridViewTextBoxColumn
-    Friend WithEvents id As DataGridViewTextBoxColumn
-    Friend WithEvents codigo As DataGridViewTextBoxColumn
-    Friend WithEvents descripcion As DataGridViewTextBoxColumn
-    Friend WithEvents cantidad As DataGridViewTextBoxColumn
-    Friend WithEvents costo As DataGridViewTextBoxColumn
     Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents Label9 As Label
     Friend WithEvents rtbDescripcion As RichTextBox
     Friend WithEvents Label45 As Label
     Friend WithEvents lblCantAnalisisVenta As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents dtpFecEntrega As DateTimePicker
+    Friend WithEvents mtbHora As MaskedTextBox
+    Friend WithEvents Label11 As Label
+    Friend WithEvents id As DataGridViewTextBoxColumn
+    Friend WithEvents crd_id As DataGridViewTextBoxColumn
+    Friend WithEvents codigo As DataGridViewTextBoxColumn
+    Friend WithEvents descripcion As DataGridViewTextBoxColumn
+    Friend WithEvents cantidad As DataGridViewTextBoxColumn
+    Friend WithEvents costo As DataGridViewTextBoxColumn
+    Friend WithEvents fecha_vcto As DataGridViewTextBoxColumn
+    Friend WithEvents observacion As DataGridViewTextBoxColumn
 End Class

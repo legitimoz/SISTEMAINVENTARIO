@@ -648,6 +648,10 @@
 
             Tabladetalle.Columns.Add("COD_PED", GetType(String))
             Tabladetalle.Columns.Add("GUIA", GetType(String))
+            Tabladetalle.Columns.Add("RUC", GetType(String))
+            Tabladetalle.Columns.Add("CLIENTE", GetType(String))
+            Tabladetalle.Columns.Add("TRANSPORTISTA", GetType(String))
+
             Tabladetalle.Columns.Add("LIM_PROV", GetType(String))
             Tabladetalle.Columns.Add("PROVINCIA", GetType(String))
             Tabladetalle.Columns.Add("FECHA_PEDIDO", GetType(String))
@@ -661,12 +665,15 @@
             Tabladetalle.Columns.Add("AREA", GetType(String))
             Tabladetalle.Columns.Add("C5_CALMA", GetType(String))
             Tabladetalle.Columns.Add("C5_CTD", GetType(String))
+            Tabladetalle.Columns.Add("FECHA_TRANSPORTISTA", GetType(String))
+
 
         Catch ex As Exception
             Throw ex
         End Try
         Return Tabladetalle
     End Function
+
     Public Function ReporteArticulosSinUbicar() As DataTable
         Dim Tabladetalle As DataTable
         Tabladetalle = New DataTable()

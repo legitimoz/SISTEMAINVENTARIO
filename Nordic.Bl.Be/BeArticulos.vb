@@ -301,6 +301,50 @@ Public Class BeArticulos
     End Function
 
 
+    Public Function Obtener_Marcas() As DataTable
+        Try
+
+            Dim _listadoPruebas As New DataTable
+            Conexion = System.Configuration.ConfigurationManager.ConnectionStrings("ConexionHeadMark").ConnectionString
+
+            Using oSqlConnection As SqlConnection = New SqlConnection(Conexion)
+                Dim _consulta As String = String.Empty
+                _consulta = "SELECT '0' mar_id, '--SELECCIONE--' mar_descripcion UNION ALL SELECT mar_id, mar_descripcion FROM Marcas WHERE mar_est = 'A'"
+                Using oSqlCommand As SqlCommand = New SqlCommand(_consulta, oSqlConnection)
+                    oSqlCommand.CommandType = CommandType.Text
+
+                    If (oSqlConnection.State = Data.ConnectionState.Closed) Then
+                        oSqlConnection.Open()
+                    End If
+
+                    If (oSqlCommand.Connection.State = Data.ConnectionState.Closed) Then
+                        oSqlCommand.Connection.Open()
+                    End If
+
+                    Using adapter As SqlDataAdapter = New SqlDataAdapter
+                        adapter.SelectCommand = oSqlCommand
+                        adapter.Fill(_listadoPruebas)
+                    End Using
+
+                    If (oSqlCommand.Connection.State = Data.ConnectionState.Open) Then
+                        oSqlCommand.Connection.Close()
+                    End If
+
+                    If (oSqlConnection.State = Data.ConnectionState.Open) Then
+                        oSqlConnection.Close()
+                    End If
+
+                End Using
+            End Using
+
+            Return _listadoPruebas
+
+        Catch ex As Exception
+            Return Nothing
+        End Try
+
+    End Function
+
 
     Public Function Obtener_Fabricantes() As DataTable
         Try
@@ -347,7 +391,7 @@ Public Class BeArticulos
     End Function
 
 
-    Public Function Obtener_Estados() As DataTable
+    Public Function Obtener_Titulares() As DataTable
         Try
 
             Dim _listadoPruebas As New DataTable
@@ -355,7 +399,7 @@ Public Class BeArticulos
 
             Using oSqlConnection As SqlConnection = New SqlConnection(Conexion)
                 Dim _consulta As String = String.Empty
-                _consulta = "SELECT '0' est_codigo, '--SELECCIONE--' est_descripcion UNION ALL SELECT est_codigo,est_descripcion FROM Estados WHERE est_codigo in ('AC','IN','PR')
+                _consulta = "SELECT '0' tit_id, '--SELECCIONE--' tit_descripcion UNION ALL SELECT tit_id, tit_descripcion FROM Titular_Registro WHERE tit_est = 'A'
 "
                 Using oSqlCommand As SqlCommand = New SqlCommand(_consulta, oSqlConnection)
                     oSqlCommand.CommandType = CommandType.Text
@@ -442,7 +486,50 @@ Public Class BeArticulos
         End Try
     End Function
 
+    Public Function Obtener_Estados() As DataTable
+        Try
 
+            Dim _listadoPruebas As New DataTable
+            Conexion = System.Configuration.ConfigurationManager.ConnectionStrings("ConexionHeadMark").ConnectionString
+
+            Using oSqlConnection As SqlConnection = New SqlConnection(Conexion)
+                Dim _consulta As String = String.Empty
+                _consulta = "SELECT '0' est_codigo, '--SELECCIONE--' est_descripcion UNION ALL SELECT est_codigo,est_descripcion FROM Estados WHERE est_codigo in ('AC','IN','PR')
+"
+                Using oSqlCommand As SqlCommand = New SqlCommand(_consulta, oSqlConnection)
+                    oSqlCommand.CommandType = CommandType.Text
+
+                    If (oSqlConnection.State = Data.ConnectionState.Closed) Then
+                        oSqlConnection.Open()
+                    End If
+
+                    If (oSqlCommand.Connection.State = Data.ConnectionState.Closed) Then
+                        oSqlCommand.Connection.Open()
+                    End If
+
+                    Using adapter As SqlDataAdapter = New SqlDataAdapter
+                        adapter.SelectCommand = oSqlCommand
+                        adapter.Fill(_listadoPruebas)
+                    End Using
+
+                    If (oSqlCommand.Connection.State = Data.ConnectionState.Open) Then
+                        oSqlCommand.Connection.Close()
+                    End If
+
+                    If (oSqlConnection.State = Data.ConnectionState.Open) Then
+                        oSqlConnection.Close()
+                    End If
+
+                End Using
+            End Using
+
+            Return _listadoPruebas
+
+        Catch ex As Exception
+            Return Nothing
+        End Try
+
+    End Function
     Public Sub RegistrarArticulos(ByVal beArt As BeArticulos, ByRef _tiporespuesta As String, ByRef _textorespuesta As String, ByRef ar_id As String, ByRef fecHoraReg As String)
         Try
             Conexion = System.Configuration.ConfigurationManager.ConnectionStrings("ConexionHeadMark").ConnectionString

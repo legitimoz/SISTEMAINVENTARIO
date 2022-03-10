@@ -154,8 +154,55 @@ Public Class BeSolicitudInstitucional
 
             Using oSqlConnection As SqlConnection = New SqlConnection(Conexion)
                 Dim _consulta As String = String.Empty
-                _consulta = "SELECT '0' cot_codigo, '--TODOS--' cot_nombre UNION ALL SELECT cot_codigo, cot_nombre FROM Cotizadores WHERE cot_est = 'A'   
+                _consulta = "SELECT '0' cot_codigo, '--TODOS--' cot_nombre UNION ALL SELECT cot_codigo, (cot_nombre +' - '+ cot_codigo) cot_nombre  FROM Cotizadores WHERE cot_est = 'A'   
 "
+                Using oSqlCommand As SqlCommand = New SqlCommand(_consulta, oSqlConnection)
+                    oSqlCommand.CommandType = CommandType.Text
+
+                    If (oSqlConnection.State = Data.ConnectionState.Closed) Then
+                        oSqlConnection.Open()
+                    End If
+
+                    If (oSqlCommand.Connection.State = Data.ConnectionState.Closed) Then
+                        oSqlCommand.Connection.Open()
+                    End If
+
+                    Using adapter As SqlDataAdapter = New SqlDataAdapter
+                        adapter.SelectCommand = oSqlCommand
+                        adapter.Fill(_listadoPruebas)
+                    End Using
+
+                    If (oSqlCommand.Connection.State = Data.ConnectionState.Open) Then
+                        oSqlCommand.Connection.Close()
+                    End If
+
+                    If (oSqlConnection.State = Data.ConnectionState.Open) Then
+                        oSqlConnection.Close()
+                    End If
+
+                End Using
+            End Using
+
+            Return _listadoPruebas
+
+        Catch ex As Exception
+            Return Nothing
+        End Try
+
+    End Function
+
+
+    Public Function Obtener_Productos() As DataTable
+        Try
+
+            Dim _listadoPruebas As New DataTable
+            Conexion = System.Configuration.ConfigurationManager.ConnectionStrings("ConexionHeadMark").ConnectionString
+
+            Using oSqlConnection As SqlConnection = New SqlConnection(Conexion)
+                Dim _consulta As String = String.Empty
+                '_consulta = "SELECT 0 ar_id,'--SELECCIONE--' articulo UNION ALL SELECT ar_id, (rtrim(ar_codigo) +' - '+ ar_cdescri) articulo  FROM [dbo].[Articulos] order by 2 asc"
+                _consulta = "SELECT ar_id, ar_cdescri articulo  FROM [dbo].[Articulos] order by 2 asc"
+
                 Using oSqlCommand As SqlCommand = New SqlCommand(_consulta, oSqlConnection)
                     oSqlCommand.CommandType = CommandType.Text
 

@@ -101,6 +101,9 @@ Public Class GestionDeliveryOnTime
                     rowcabecera.Item("FECHA_GUIA") = RowRetorno.Item("FECHA_GUIA").ToString.Trim
                     rowcabecera.Item("FECHA_DESPACHO") = RowRetorno.Item("FECHA_DESPACHO").ToString.Trim
                     rowcabecera.Item("FECHA_RECEPCLIENTE") = RowRetorno.Item("FECHA_RECEPCLIENTE").ToString.Trim
+                    rowcabecera.Item("RUC") = RowRetorno.Item("RUC").ToString.Trim
+                    rowcabecera.Item("CLIENTE") = RowRetorno.Item("CLIENTE").ToString.Trim
+                    rowcabecera.Item("TRANSPORTISTA") = RowRetorno.Item("TRANSPORTISTA").ToString.Trim
                     rowcabecera.Item("TIEMPO_MAX") = RowRetorno.Item("TIEMPO_MAX").ToString.Trim
                     rowcabecera.Item("TIEMPO_TRASN") = RowRetorno.Item("TIEMPO_TRASN").ToString.Trim
                     rowcabecera.Item("Estado") = RowRetorno.Item("Estado").ToString.Trim
@@ -108,6 +111,7 @@ Public Class GestionDeliveryOnTime
                     rowcabecera.Item("C5_CTD") = RowRetorno.Item("C5_CTD").ToString.Trim
                     rowcabecera.Item("C5_CALMA") = RowRetorno.Item("C5_CALMA").ToString.Trim
                     rowcabecera.Item("AREA") = RowRetorno.Item("AREA").ToString.Trim
+                    rowcabecera.Item("FECHA_TRANSPORTISTA") = RowRetorno.Item("FECHA_TRANSPORTISTA").ToString.Trim
 
                     If rowcabecera.Item("Estado") IsNot Nothing Then
                         If rowcabecera.Item("Estado").ToString.Trim = "DENTRO DE TIEMPO" Then
@@ -477,6 +481,18 @@ Public Class GestionDeliveryOnTime
         Dg_Cabecera.Columns("FECHA_PEDIDO").HeaderText = "Fecha Pedido"
         Dg_Cabecera.Columns("FECHA_PEDIDO").Width = 100
         Dg_Cabecera.Columns("FECHA_PEDIDO").ReadOnly = True
+
+        Dg_Cabecera.Columns("RUC").HeaderText = "Ruc"
+        Dg_Cabecera.Columns("RUC").Width = 70
+        Dg_Cabecera.Columns("RUC").ReadOnly = True
+
+        Dg_Cabecera.Columns("CLIENTE").HeaderText = "Cliente"
+        Dg_Cabecera.Columns("CLIENTE").Width = 350
+        Dg_Cabecera.Columns("CLIENTE").ReadOnly = True
+
+        Dg_Cabecera.Columns("TRANSPORTISTA").HeaderText = "Transportista"
+        Dg_Cabecera.Columns("TRANSPORTISTA").Width = 100
+        Dg_Cabecera.Columns("TRANSPORTISTA").ReadOnly = True
 
         Dg_Cabecera.Columns("FECHA_GUIA").HeaderText = "Fecha Guia"
         Dg_Cabecera.Columns("FECHA_GUIA").Width = 100
