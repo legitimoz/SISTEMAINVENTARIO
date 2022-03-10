@@ -26,24 +26,32 @@ Partial Class EditarRuta
         Me.Dg_Detalle = New System.Windows.Forms.DataGridView()
         Me.cmdAceptar = New FontAwesome.Sharp.IconButton()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.cmb_tipoenvio = New System.Windows.Forms.ComboBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.txt_totalpeso = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.txt_importe = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.txt_tiempo = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.txt_volumen = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.cmb_tipotransporte = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.dtpFecRuta = New System.Windows.Forms.DateTimePicker()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.cbxTransportista = New System.Windows.Forms.ComboBox()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.cmb_tipotransporte = New System.Windows.Forms.ComboBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.txt_volumen = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.txt_tiempo = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.txt_importe = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.txt_totalpeso = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.cmb_tipoenvio = New System.Windows.Forms.ComboBox()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GUIA = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CTD = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ALMACEN = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -52,6 +60,12 @@ Partial Class EditarRuta
         Me.Bultos = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Peso = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TiempoGuia = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TipoRuta = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.VoluemnUn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RestriccionUn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ImporteUn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Condicion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Representante = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.Dg_Detalle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -62,7 +76,7 @@ Partial Class EditarRuta
         Me.Dg_Detalle.AllowUserToAddRows = False
         Me.Dg_Detalle.BackgroundColor = System.Drawing.Color.White
         Me.Dg_Detalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Dg_Detalle.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GUIA, Me.CTD, Me.ALMACEN, Me.Cliente, Me.Direccion, Me.Bultos, Me.Peso, Me.TiempoGuia})
+        Me.Dg_Detalle.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GUIA, Me.CTD, Me.ALMACEN, Me.Cliente, Me.Direccion, Me.Bultos, Me.Peso, Me.TiempoGuia, Me.TipoRuta, Me.VoluemnUn, Me.RestriccionUn, Me.ImporteUn, Me.Condicion, Me.Representante})
         Me.Dg_Detalle.Location = New System.Drawing.Point(12, 147)
         Me.Dg_Detalle.Name = "Dg_Detalle"
         Me.Dg_Detalle.Size = New System.Drawing.Size(943, 288)
@@ -83,11 +97,11 @@ Partial Class EditarRuta
         Me.cmdAceptar.IconFont = FontAwesome.Sharp.IconFont.Solid
         Me.cmdAceptar.IconSize = 16
         Me.cmdAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.cmdAceptar.Location = New System.Drawing.Point(851, 447)
+        Me.cmdAceptar.Location = New System.Drawing.Point(845, 447)
         Me.cmdAceptar.Margin = New System.Windows.Forms.Padding(4)
         Me.cmdAceptar.Name = "cmdAceptar"
         Me.cmdAceptar.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.cmdAceptar.Size = New System.Drawing.Size(103, 26)
+        Me.cmdAceptar.Size = New System.Drawing.Size(110, 26)
         Me.cmdAceptar.TabIndex = 141
         Me.cmdAceptar.Text = "Aceptar"
         Me.cmdAceptar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -117,6 +131,161 @@ Partial Class EditarRuta
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(943, 120)
         Me.Panel1.TabIndex = 142
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.ForeColor = System.Drawing.Color.Black
+        Me.Label8.Location = New System.Drawing.Point(30, 89)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(10, 0, 4, 0)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(65, 14)
+        Me.Label8.TabIndex = 158
+        Me.Label8.Text = "Tipo Envío : "
+        Me.Label8.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'cmb_tipoenvio
+        '
+        Me.cmb_tipoenvio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb_tipoenvio.DropDownWidth = 200
+        Me.cmb_tipoenvio.FormattingEnabled = True
+        Me.cmb_tipoenvio.Items.AddRange(New Object() {"TODOS", "EXCLUSIVO", "CONSOLIDADO"})
+        Me.cmb_tipoenvio.Location = New System.Drawing.Point(101, 86)
+        Me.cmb_tipoenvio.Name = "cmb_tipoenvio"
+        Me.cmb_tipoenvio.Size = New System.Drawing.Size(190, 21)
+        Me.cmb_tipoenvio.TabIndex = 157
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.ForeColor = System.Drawing.Color.Black
+        Me.Label6.Location = New System.Drawing.Point(341, 89)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(10, 0, 4, 0)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(65, 14)
+        Me.Label6.TabIndex = 156
+        Me.Label6.Text = "Total Peso : "
+        Me.Label6.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'txt_totalpeso
+        '
+        Me.txt_totalpeso.AutoSize = True
+        Me.txt_totalpeso.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt_totalpeso.ForeColor = System.Drawing.SystemColors.HotTrack
+        Me.txt_totalpeso.Location = New System.Drawing.Point(410, 88)
+        Me.txt_totalpeso.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.txt_totalpeso.MaximumSize = New System.Drawing.Size(120, 20)
+        Me.txt_totalpeso.MinimumSize = New System.Drawing.Size(120, 20)
+        Me.txt_totalpeso.Name = "txt_totalpeso"
+        Me.txt_totalpeso.Size = New System.Drawing.Size(120, 20)
+        Me.txt_totalpeso.TabIndex = 155
+        Me.txt_totalpeso.Text = "-"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.ForeColor = System.Drawing.Color.Black
+        Me.Label7.Location = New System.Drawing.Point(330, 64)
+        Me.Label7.Margin = New System.Windows.Forms.Padding(10, 0, 4, 0)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(76, 14)
+        Me.Label7.TabIndex = 154
+        Me.Label7.Text = "Total Importe : "
+        Me.Label7.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'txt_importe
+        '
+        Me.txt_importe.AutoSize = True
+        Me.txt_importe.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt_importe.ForeColor = System.Drawing.SystemColors.HotTrack
+        Me.txt_importe.Location = New System.Drawing.Point(410, 63)
+        Me.txt_importe.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.txt_importe.MaximumSize = New System.Drawing.Size(120, 20)
+        Me.txt_importe.MinimumSize = New System.Drawing.Size(120, 20)
+        Me.txt_importe.Name = "txt_importe"
+        Me.txt_importe.Size = New System.Drawing.Size(120, 20)
+        Me.txt_importe.TabIndex = 153
+        Me.txt_importe.Text = "-"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.Color.Black
+        Me.Label5.Location = New System.Drawing.Point(330, 39)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(10, 0, 4, 0)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(75, 14)
+        Me.Label5.TabIndex = 152
+        Me.Label5.Text = "Total Tiempo : "
+        Me.Label5.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'txt_tiempo
+        '
+        Me.txt_tiempo.AutoSize = True
+        Me.txt_tiempo.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt_tiempo.ForeColor = System.Drawing.SystemColors.HotTrack
+        Me.txt_tiempo.Location = New System.Drawing.Point(410, 38)
+        Me.txt_tiempo.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.txt_tiempo.MaximumSize = New System.Drawing.Size(120, 20)
+        Me.txt_tiempo.MinimumSize = New System.Drawing.Size(120, 20)
+        Me.txt_tiempo.Name = "txt_tiempo"
+        Me.txt_tiempo.Size = New System.Drawing.Size(120, 20)
+        Me.txt_tiempo.TabIndex = 151
+        Me.txt_tiempo.Text = "-"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.Black
+        Me.Label4.Location = New System.Drawing.Point(330, 12)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(10, 0, 4, 0)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(74, 14)
+        Me.Label4.TabIndex = 150
+        Me.Label4.Text = "Total Metros : "
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'txt_volumen
+        '
+        Me.txt_volumen.AutoSize = True
+        Me.txt_volumen.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt_volumen.ForeColor = System.Drawing.SystemColors.HotTrack
+        Me.txt_volumen.Location = New System.Drawing.Point(410, 11)
+        Me.txt_volumen.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.txt_volumen.MaximumSize = New System.Drawing.Size(120, 20)
+        Me.txt_volumen.MinimumSize = New System.Drawing.Size(120, 20)
+        Me.txt_volumen.Name = "txt_volumen"
+        Me.txt_volumen.Size = New System.Drawing.Size(120, 20)
+        Me.txt_volumen.TabIndex = 149
+        Me.txt_volumen.Text = "-"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.Black
+        Me.Label3.Location = New System.Drawing.Point(15, 38)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(10, 0, 4, 0)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(80, 14)
+        Me.Label3.TabIndex = 148
+        Me.Label3.Text = "Tipo Vehiculo : "
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'cmb_tipotransporte
+        '
+        Me.cmb_tipotransporte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb_tipotransporte.DropDownWidth = 200
+        Me.cmb_tipotransporte.FormattingEnabled = True
+        Me.cmb_tipotransporte.Location = New System.Drawing.Point(101, 35)
+        Me.cmb_tipotransporte.Name = "cmb_tipotransporte"
+        Me.cmb_tipotransporte.Size = New System.Drawing.Size(190, 21)
+        Me.cmb_tipotransporte.TabIndex = 147
         '
         'Label2
         '
@@ -169,110 +338,6 @@ Partial Class EditarRuta
         '
         Me.ErrorProvider1.ContainerControl = Me
         '
-        'cmb_tipotransporte
-        '
-        Me.cmb_tipotransporte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmb_tipotransporte.DropDownWidth = 200
-        Me.cmb_tipotransporte.FormattingEnabled = True
-        Me.cmb_tipotransporte.Location = New System.Drawing.Point(101, 35)
-        Me.cmb_tipotransporte.Name = "cmb_tipotransporte"
-        Me.cmb_tipotransporte.Size = New System.Drawing.Size(190, 21)
-        Me.cmb_tipotransporte.TabIndex = 147
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(15, 38)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(10, 0, 4, 0)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(80, 14)
-        Me.Label3.TabIndex = 148
-        Me.Label3.Text = "Tipo Vehiculo : "
-        Me.Label3.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        '
-        'txt_volumen
-        '
-        Me.txt_volumen.AutoSize = True
-        Me.txt_volumen.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txt_volumen.ForeColor = System.Drawing.SystemColors.HotTrack
-        Me.txt_volumen.Location = New System.Drawing.Point(410, 11)
-        Me.txt_volumen.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.txt_volumen.MaximumSize = New System.Drawing.Size(120, 20)
-        Me.txt_volumen.MinimumSize = New System.Drawing.Size(120, 20)
-        Me.txt_volumen.Name = "txt_volumen"
-        Me.txt_volumen.Size = New System.Drawing.Size(120, 20)
-        Me.txt_volumen.TabIndex = 149
-        Me.txt_volumen.Text = "-"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.Black
-        Me.Label4.Location = New System.Drawing.Point(330, 12)
-        Me.Label4.Margin = New System.Windows.Forms.Padding(10, 0, 4, 0)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(74, 14)
-        Me.Label4.TabIndex = 150
-        Me.Label4.Text = "Total Metros : "
-        Me.Label4.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.ForeColor = System.Drawing.Color.Black
-        Me.Label5.Location = New System.Drawing.Point(330, 39)
-        Me.Label5.Margin = New System.Windows.Forms.Padding(10, 0, 4, 0)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(75, 14)
-        Me.Label5.TabIndex = 152
-        Me.Label5.Text = "Total Tiempo : "
-        Me.Label5.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        '
-        'txt_tiempo
-        '
-        Me.txt_tiempo.AutoSize = True
-        Me.txt_tiempo.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txt_tiempo.ForeColor = System.Drawing.SystemColors.HotTrack
-        Me.txt_tiempo.Location = New System.Drawing.Point(410, 38)
-        Me.txt_tiempo.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.txt_tiempo.MaximumSize = New System.Drawing.Size(120, 20)
-        Me.txt_tiempo.MinimumSize = New System.Drawing.Size(120, 20)
-        Me.txt_tiempo.Name = "txt_tiempo"
-        Me.txt_tiempo.Size = New System.Drawing.Size(120, 20)
-        Me.txt_tiempo.TabIndex = 151
-        Me.txt_tiempo.Text = "-"
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.ForeColor = System.Drawing.Color.Black
-        Me.Label7.Location = New System.Drawing.Point(330, 64)
-        Me.Label7.Margin = New System.Windows.Forms.Padding(10, 0, 4, 0)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(76, 14)
-        Me.Label7.TabIndex = 154
-        Me.Label7.Text = "Total Importe : "
-        Me.Label7.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        '
-        'txt_importe
-        '
-        Me.txt_importe.AutoSize = True
-        Me.txt_importe.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txt_importe.ForeColor = System.Drawing.SystemColors.HotTrack
-        Me.txt_importe.Location = New System.Drawing.Point(410, 63)
-        Me.txt_importe.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.txt_importe.MaximumSize = New System.Drawing.Size(120, 20)
-        Me.txt_importe.MinimumSize = New System.Drawing.Size(120, 20)
-        Me.txt_importe.Name = "txt_importe"
-        Me.txt_importe.Size = New System.Drawing.Size(120, 20)
-        Me.txt_importe.TabIndex = 153
-        Me.txt_importe.Text = "-"
-        '
         'Label9
         '
         Me.Label9.AutoSize = True
@@ -286,56 +351,58 @@ Partial Class EditarRuta
         Me.Label9.Text = "DETALLE RUTA : "
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'Label6
+        'DataGridViewTextBoxColumn1
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.ForeColor = System.Drawing.Color.Black
-        Me.Label6.Location = New System.Drawing.Point(341, 89)
-        Me.Label6.Margin = New System.Windows.Forms.Padding(10, 0, 4, 0)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(65, 14)
-        Me.Label6.TabIndex = 156
-        Me.Label6.Text = "Total Peso : "
-        Me.Label6.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.DataGridViewTextBoxColumn1.FillWeight = 77.77779!
+        Me.DataGridViewTextBoxColumn1.HeaderText = "Guia"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
         '
-        'txt_totalpeso
+        'DataGridViewTextBoxColumn2
         '
-        Me.txt_totalpeso.AutoSize = True
-        Me.txt_totalpeso.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txt_totalpeso.ForeColor = System.Drawing.SystemColors.HotTrack
-        Me.txt_totalpeso.Location = New System.Drawing.Point(410, 88)
-        Me.txt_totalpeso.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.txt_totalpeso.MaximumSize = New System.Drawing.Size(120, 20)
-        Me.txt_totalpeso.MinimumSize = New System.Drawing.Size(120, 20)
-        Me.txt_totalpeso.Name = "txt_totalpeso"
-        Me.txt_totalpeso.Size = New System.Drawing.Size(120, 20)
-        Me.txt_totalpeso.TabIndex = 155
-        Me.txt_totalpeso.Text = "-"
+        Me.DataGridViewTextBoxColumn2.FillWeight = 86.65882!
+        Me.DataGridViewTextBoxColumn2.HeaderText = "Ctd"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        Me.DataGridViewTextBoxColumn2.Width = 111
         '
-        'Label8
+        'DataGridViewTextBoxColumn3
         '
-        Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.ForeColor = System.Drawing.Color.Black
-        Me.Label8.Location = New System.Drawing.Point(30, 89)
-        Me.Label8.Margin = New System.Windows.Forms.Padding(10, 0, 4, 0)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(65, 14)
-        Me.Label8.TabIndex = 158
-        Me.Label8.Text = "Tipo Envío : "
-        Me.Label8.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.DataGridViewTextBoxColumn3.FillWeight = 94.55309!
+        Me.DataGridViewTextBoxColumn3.HeaderText = "Almacen"
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        Me.DataGridViewTextBoxColumn3.Width = 122
         '
-        'cmb_tipoenvio
+        'DataGridViewTextBoxColumn4
         '
-        Me.cmb_tipoenvio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmb_tipoenvio.DropDownWidth = 200
-        Me.cmb_tipoenvio.FormattingEnabled = True
-        Me.cmb_tipoenvio.Items.AddRange(New Object() {"TODOS", "EXCLUSIVO", "CONSOLIDADO"})
-        Me.cmb_tipoenvio.Location = New System.Drawing.Point(101, 86)
-        Me.cmb_tipoenvio.Name = "cmb_tipoenvio"
-        Me.cmb_tipoenvio.Size = New System.Drawing.Size(190, 21)
-        Me.cmb_tipoenvio.TabIndex = 157
+        Me.DataGridViewTextBoxColumn4.FillWeight = 101.5702!
+        Me.DataGridViewTextBoxColumn4.HeaderText = "Cliente"
+        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
+        Me.DataGridViewTextBoxColumn4.Width = 131
+        '
+        'DataGridViewTextBoxColumn5
+        '
+        Me.DataGridViewTextBoxColumn5.FillWeight = 107.8076!
+        Me.DataGridViewTextBoxColumn5.HeaderText = "Direccion"
+        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
+        Me.DataGridViewTextBoxColumn5.Width = 138
+        '
+        'DataGridViewTextBoxColumn6
+        '
+        Me.DataGridViewTextBoxColumn6.FillWeight = 113.3521!
+        Me.DataGridViewTextBoxColumn6.HeaderText = "Bultos"
+        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
+        Me.DataGridViewTextBoxColumn6.Width = 146
+        '
+        'DataGridViewTextBoxColumn7
+        '
+        Me.DataGridViewTextBoxColumn7.FillWeight = 118.2804!
+        Me.DataGridViewTextBoxColumn7.HeaderText = "Peso"
+        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
+        Me.DataGridViewTextBoxColumn7.Width = 152
+        '
+        'DataGridViewTextBoxColumn8
+        '
+        Me.DataGridViewTextBoxColumn8.HeaderText = "Tiempo"
+        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
         '
         'GUIA
         '
@@ -390,11 +457,46 @@ Partial Class EditarRuta
         Me.TiempoGuia.HeaderText = "Tiempo"
         Me.TiempoGuia.Name = "TiempoGuia"
         '
+        'TipoRuta
+        '
+        Me.TipoRuta.HeaderText = "Tipo Ruta"
+        Me.TipoRuta.Items.AddRange(New Object() {"DESPACHO", "RECOJO"})
+        Me.TipoRuta.Name = "TipoRuta"
+        '
+        'VoluemnUn
+        '
+        Me.VoluemnUn.HeaderText = "Volumen"
+        Me.VoluemnUn.Name = "VoluemnUn"
+        Me.VoluemnUn.Visible = False
+        '
+        'RestriccionUn
+        '
+        Me.RestriccionUn.HeaderText = "Restriccion"
+        Me.RestriccionUn.Name = "RestriccionUn"
+        Me.RestriccionUn.Visible = False
+        '
+        'ImporteUn
+        '
+        Me.ImporteUn.HeaderText = "Importe"
+        Me.ImporteUn.Name = "ImporteUn"
+        '
+        'Condicion
+        '
+        Me.Condicion.HeaderText = "Condicion"
+        Me.Condicion.Name = "Condicion"
+        Me.Condicion.Visible = False
+        '
+        'Representante
+        '
+        Me.Representante.HeaderText = "Representante"
+        Me.Representante.Name = "Representante"
+        Me.Representante.Visible = False
+        '
         'EditarRuta
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(967, 486)
+        Me.ClientSize = New System.Drawing.Size(974, 486)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.cmdAceptar)
@@ -433,6 +535,14 @@ Partial Class EditarRuta
     Friend WithEvents txt_totalpeso As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents cmb_tipoenvio As ComboBox
+    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn5 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn6 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn7 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn8 As DataGridViewTextBoxColumn
     Friend WithEvents GUIA As DataGridViewTextBoxColumn
     Friend WithEvents CTD As DataGridViewTextBoxColumn
     Friend WithEvents ALMACEN As DataGridViewTextBoxColumn
@@ -441,4 +551,10 @@ Partial Class EditarRuta
     Friend WithEvents Bultos As DataGridViewTextBoxColumn
     Friend WithEvents Peso As DataGridViewTextBoxColumn
     Friend WithEvents TiempoGuia As DataGridViewTextBoxColumn
+    Friend WithEvents TipoRuta As DataGridViewComboBoxColumn
+    Friend WithEvents VoluemnUn As DataGridViewTextBoxColumn
+    Friend WithEvents RestriccionUn As DataGridViewTextBoxColumn
+    Friend WithEvents ImporteUn As DataGridViewTextBoxColumn
+    Friend WithEvents Condicion As DataGridViewTextBoxColumn
+    Friend WithEvents Representante As DataGridViewTextBoxColumn
 End Class

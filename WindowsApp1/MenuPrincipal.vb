@@ -530,7 +530,17 @@
 
     Private Sub GenerarAbastecimientoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GenerarAbastecimientoToolStripMenuItem.Click
         Try
-
+            Dim frmArt As New GestionAbastecimiento
+            If ExisteChildrens(frmArt) = False Then
+                frmArt.MdiParent = Me
+                frmArt.usr_id = prIdUser
+                frmArt.usr_usuario = prUser
+                ' frmArt.WindowState = FormWindowState.Maximized
+                '   frmArt.Text = "Gestion Guias"
+                frmArt.Width = Me.Width
+                frmArt.Height = Me.Height
+                frmArt.Show()
+            End If
         Catch ex As Exception
             Throw ex
         End Try

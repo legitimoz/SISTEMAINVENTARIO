@@ -57,10 +57,14 @@
           <DataField>Restriccion</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="TipoRuta">
+          <DataField>TipoRuta</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DataSetHojaRuta</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\jhonatan.punto\Desktop\PROYECTOS\SISTEMA INVENTARIO\SISTEMA_NORDIC_09_12_2021\WindowsApp1\WindowsApp1\Reporte\Dataset\DataSetHojaRuta.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Users\jhonatan.punto\Pictures\RAMA CESAR\WindowsApp1\Reporte\Dataset\DataSetHojaRuta.xsd</rd:SchemaPath>
         <rd:TableName>DataTable1</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />
@@ -82,10 +86,10 @@
                   <Width>1.52172cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>5.41046cm</Width>
+                  <Width>5.29531cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>7.06574cm</Width>
+                  <Width>5.87882cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.22932cm</Width>
@@ -100,10 +104,13 @@
                   <Width>1.49459cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.21437cm</Width>
+                  <Width>2.60583cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.36771cm</Width>
+                  <Width>2.26188cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.01643cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -603,6 +610,55 @@ HORAS</Value>
                         </Textbox>
                       </CellContents>
                     </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox1">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Tipo Ruta</Value>
+                                  <Style>
+                                    <FontSize>6pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox1</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>Gray</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Gray</Color>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Gray</Color>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Gray</Color>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Gray</Color>
+                            </RightBorder>
+                            <BackgroundColor>Silver</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
@@ -958,12 +1014,48 @@ HORAS</Value>
                         </Textbox>
                       </CellContents>
                     </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="TipoRuta">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!TipoRuta.Value</Value>
+                                  <Style>
+                                    <FontSize>6pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>TipoRuta</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>Gray</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>1pt</PaddingTop>
+                            <PaddingBottom>1pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
                   </TablixCells>
                 </TablixRow>
               </TablixRows>
             </TablixBody>
             <TablixColumnHierarchy>
               <TablixMembers>
+                <TablixMember />
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
@@ -993,7 +1085,7 @@ HORAS</Value>
             <Top>0.17639cm</Top>
             <Left>0.03528cm</Left>
             <Height>1.82cm</Height>
-            <Width>27.44243cm</Width>
+            <Width>27.44242cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1686,7 +1778,7 @@ HORAS</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>TOTAL ENVÍO :</Value>
+                      <Value>TIPO ENVÍO :</Value>
                       <Style>
                         <FontSize>8pt</FontSize>
                         <FontWeight>ExtraBold</FontWeight>

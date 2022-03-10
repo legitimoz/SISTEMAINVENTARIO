@@ -20,7 +20,7 @@ Public Class GestionAnulacionPicking
             idsite = CType(ConfigurationManager.AppSettings("CodigoSite").ToString.Trim, Integer)
             CargaInicial()
         Catch ex As Exception
-
+            Throw ex
         End Try
     End Sub
 
@@ -111,10 +111,20 @@ Public Class GestionAnulacionPicking
         End Try
     End Sub
 
-    Public Function llamarRegistrarImpresion(iddetalle As Integer, userid As Integer) As Integer
+    Public Function LlamarRevertirPicking(iddetalle As Integer, userid As Integer) As Integer
         Dim RP As Integer
         Try
             RP = ObjAlmacen.ReveritrDetallePickin(iddetalle, userid)
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return RP
+    End Function
+
+    Public Function llamarRegistrarImpresion(codalmacen As String, ctd As String, numero As String, estado As String, idpicador As Integer, idfiltro As Integer, userimpresion As Integer) As Integer
+        Dim RP As Integer
+        Try
+            RP = ObjAlmacen.CambiarEstadoGuia(codalmacen, ctd, numero, estado, idpicador, idfiltro, userimpresion)
         Catch ex As Exception
             Throw ex
         End Try
@@ -132,13 +142,14 @@ Public Class GestionAnulacionPicking
                         dtDetalle = llamarObtenerDetallePicking()
                         If dtDetalle.Rows.Count > 0 Then
                             For Each DtRow As DataRow In dtDetalle.Rows
-                                rp = llamarRegistrarImpresion(CType(DtRow.Item("dopa_iddetalle").ToString.Trim, Integer), usr_id)
+                                rp = LlamarRevertirPicking(CType(DtRow.Item("dopa_iddetalle").ToString.Trim, Integer), usr_id)
                                 If rp = 0 Then
                                     MsgBox("Error al Revertir Picking, Contactar con el area de sistemas y validar los ingresos", MsgBoxStyle.Exclamation, "SISTEMAS NORDIC")
                                     Exit For
                                 End If
                             Next
                             If rp <> 0 Then
+                                llamarRegistrarImpresion(codalmacen, tipdoc, nrodoc, "PA", 0, 0, 0)
                                 MsgBox("Reversion de Picking Existosa", MsgBoxStyle.Information, "SISTEMAS NORDIC")
                             End If
                         End If

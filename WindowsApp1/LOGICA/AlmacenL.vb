@@ -11,6 +11,14 @@ Public Class AlmacenL
         End Try
     End Function
 
+    Public Function ObtenerArticulosAbastercer(fechadesde As String, fechahasta As String) As DataTable
+        Try
+            Return objAlmacen.ObtenerArticulosAbastercer(fechadesde, fechahasta)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function ListarParteEntradaSinUbicar(fechadesde As String, fechahasta As String, idalmacen As Integer, idsite As Integer) As DataTable
         Try
             Return objAlmacen.ListarParteEntradaSinUbicar(fechadesde, fechahasta, idalmacen, idsite)
@@ -231,6 +239,15 @@ Public Class AlmacenL
     Public Function ObtenerDetallePickin(codAlmacen As String, ctd As String, nrodoc As String) As DataTable
         Try
             Return objAlmacen.ObtenerDetallePickin(codAlmacen, ctd, nrodoc)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+
+    Public Function ObtenerDataRuta(idruta As Integer) As DataTable
+        Try
+            Return objAlmacen.ObtenerDataRuta(idruta)
         Catch ex As Exception
             Throw ex
         End Try

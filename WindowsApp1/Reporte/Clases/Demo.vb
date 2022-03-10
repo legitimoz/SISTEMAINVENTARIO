@@ -203,7 +203,6 @@ Public Class Demo
             report.SetParameters(tipotransporteparam)
             report.SetParameters(transportistaparam)
             report.SetParameters(CodRutaparam)
-
             report.SetParameters(totaltiempoparam)
             report.SetParameters(totalimporteparam)
             report.SetParameters(totalpesoparam)
