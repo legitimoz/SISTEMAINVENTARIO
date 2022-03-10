@@ -229,6 +229,12 @@
     <Compile Include="EditarSalidaAlmacen.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmAsignarValor.Designer.vb">
+      <DependentUpon>frmAsignarValor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAsignarValor.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmBusquedaGuiaRotulos.Designer.vb">
       <DependentUpon>frmBusquedaGuiaRotulos.vb</DependentUpon>
     </Compile>
@@ -239,6 +245,12 @@
       <DependentUpon>frmDetallePedido.vb</DependentUpon>
     </Compile>
     <Compile Include="frmDetallePedido.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGestionArticulos.Designer.vb">
+      <DependentUpon>frmGestionArticulos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmGestionArticulos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmImpGuiaSsenda.Designer.vb">
@@ -353,12 +365,6 @@
       <DependentUpon>frmControlStock.vb</DependentUpon>
     </Compile>
     <Compile Include="frmControlStock.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmGestionArticulos.Designer.vb">
-      <DependentUpon>frmGestionArticulos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="frmGestionArticulos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmImpreMasivaPickingvb.Designer.vb">
@@ -871,11 +877,17 @@
     <EmbeddedResource Include="EditarSalidaAlmacen.resx">
       <DependentUpon>EditarSalidaAlmacen.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmAsignarValor.resx">
+      <DependentUpon>frmAsignarValor.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmBusquedaGuiaRotulos.resx">
       <DependentUpon>frmBusquedaGuiaRotulos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDetallePedido.resx">
       <DependentUpon>frmDetallePedido.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGestionArticulos.resx">
+      <DependentUpon>frmGestionArticulos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmImpGuiaSsenda.resx">
       <DependentUpon>frmImpGuiaSsenda.vb</DependentUpon>
@@ -933,9 +945,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmControlStock.resx">
       <DependentUpon>frmControlStock.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmGestionArticulos.resx">
-      <DependentUpon>frmGestionArticulos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmImpreMasivaPickingvb.resx">
       <DependentUpon>frmImpreMasivaPickingvb.vb</DependentUpon>

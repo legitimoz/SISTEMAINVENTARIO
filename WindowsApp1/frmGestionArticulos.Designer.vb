@@ -50,6 +50,12 @@ Partial Class frmGestionArticulos
         Me.cboEstado = New System.Windows.Forms.ComboBox()
         Me.btnGuadar = New System.Windows.Forms.Button()
         Me.btnSalir = New System.Windows.Forms.Button()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -77,6 +83,12 @@ Partial Class frmGestionArticulos
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.ComboBox2)
+        Me.GroupBox1.Controls.Add(Me.Label14)
+        Me.GroupBox1.Controls.Add(Me.ComboBox1)
+        Me.GroupBox1.Controls.Add(Me.Label13)
+        Me.GroupBox1.Controls.Add(Me.TextBox1)
+        Me.GroupBox1.Controls.Add(Me.Label12)
         Me.GroupBox1.Controls.Add(Me.cboFabricante)
         Me.GroupBox1.Controls.Add(Me.Label11)
         Me.GroupBox1.Controls.Add(Me.cboPaisOrigen)
@@ -95,7 +107,7 @@ Partial Class frmGestionArticulos
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Location = New System.Drawing.Point(6, 1)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(765, 390)
+        Me.GroupBox1.Size = New System.Drawing.Size(665, 390)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         '
@@ -103,96 +115,106 @@ Partial Class frmGestionArticulos
         '
         Me.cboFabricante.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboFabricante.FormattingEnabled = True
-        Me.cboFabricante.Location = New System.Drawing.Point(106, 193)
+        Me.cboFabricante.Location = New System.Drawing.Point(106, 315)
         Me.cboFabricante.Name = "cboFabricante"
         Me.cboFabricante.Size = New System.Drawing.Size(161, 21)
         Me.cboFabricante.TabIndex = 15
+        Me.cboFabricante.Visible = False
         '
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(6, 198)
+        Me.Label11.Location = New System.Drawing.Point(6, 320)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(58, 13)
         Me.Label11.TabIndex = 14
         Me.Label11.Text = "Fabricante"
+        Me.Label11.Visible = False
         '
         'cboPaisOrigen
         '
         Me.cboPaisOrigen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboPaisOrigen.FormattingEnabled = True
-        Me.cboPaisOrigen.Location = New System.Drawing.Point(106, 167)
+        Me.cboPaisOrigen.Location = New System.Drawing.Point(106, 289)
         Me.cboPaisOrigen.Name = "cboPaisOrigen"
         Me.cboPaisOrigen.Size = New System.Drawing.Size(161, 21)
         Me.cboPaisOrigen.TabIndex = 13
+        Me.cboPaisOrigen.Visible = False
         '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(6, 170)
+        Me.Label10.Location = New System.Drawing.Point(6, 292)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(76, 13)
         Me.Label10.TabIndex = 12
         Me.Label10.Text = "Pais de Origen"
+        Me.Label10.Visible = False
         '
         'cboVidaUtil
         '
         Me.cboVidaUtil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboVidaUtil.FormattingEnabled = True
-        Me.cboVidaUtil.Location = New System.Drawing.Point(106, 142)
+        Me.cboVidaUtil.Location = New System.Drawing.Point(106, 264)
         Me.cboVidaUtil.Name = "cboVidaUtil"
         Me.cboVidaUtil.Size = New System.Drawing.Size(161, 21)
         Me.cboVidaUtil.TabIndex = 11
+        Me.cboVidaUtil.Visible = False
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(6, 145)
+        Me.Label9.Location = New System.Drawing.Point(6, 267)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(45, 13)
         Me.Label9.TabIndex = 10
         Me.Label9.Text = "Vida Util"
+        Me.Label9.Visible = False
         '
         'cboPresentacion
         '
         Me.cboPresentacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboPresentacion.FormattingEnabled = True
-        Me.cboPresentacion.Location = New System.Drawing.Point(106, 116)
+        Me.cboPresentacion.Location = New System.Drawing.Point(106, 238)
         Me.cboPresentacion.Name = "cboPresentacion"
         Me.cboPresentacion.Size = New System.Drawing.Size(161, 21)
         Me.cboPresentacion.TabIndex = 9
+        Me.cboPresentacion.Visible = False
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(6, 118)
+        Me.Label8.Location = New System.Drawing.Point(6, 240)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(69, 13)
         Me.Label8.TabIndex = 8
         Me.Label8.Text = "Presentación"
+        Me.Label8.Visible = False
         '
         'cboUnidad
         '
         Me.cboUnidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboUnidad.FormattingEnabled = True
-        Me.cboUnidad.Location = New System.Drawing.Point(106, 90)
+        Me.cboUnidad.Location = New System.Drawing.Point(106, 212)
         Me.cboUnidad.Name = "cboUnidad"
         Me.cboUnidad.Size = New System.Drawing.Size(161, 21)
         Me.cboUnidad.TabIndex = 7
+        Me.cboUnidad.Visible = False
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(6, 96)
+        Me.Label7.Location = New System.Drawing.Point(6, 218)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(40, 13)
         Me.Label7.TabIndex = 6
         Me.Label7.Text = "Unidad"
+        Me.Label7.Visible = False
         '
         'txtDes2
         '
         Me.txtDes2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtDes2.Location = New System.Drawing.Point(106, 65)
+        Me.txtDes2.Location = New System.Drawing.Point(106, 92)
         Me.txtDes2.Name = "txtDes2"
         Me.txtDes2.Size = New System.Drawing.Size(440, 21)
         Me.txtDes2.TabIndex = 5
@@ -200,7 +222,7 @@ Partial Class frmGestionArticulos
         'txtDes
         '
         Me.txtDes.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtDes.Location = New System.Drawing.Point(106, 40)
+        Me.txtDes.Location = New System.Drawing.Point(106, 67)
         Me.txtDes.Name = "txtDes"
         Me.txtDes.Size = New System.Drawing.Size(440, 21)
         Me.txtDes.TabIndex = 4
@@ -208,7 +230,7 @@ Partial Class frmGestionArticulos
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(6, 69)
+        Me.Label6.Location = New System.Drawing.Point(6, 96)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(70, 13)
         Me.Label6.TabIndex = 3
@@ -217,7 +239,7 @@ Partial Class frmGestionArticulos
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(6, 45)
+        Me.Label5.Location = New System.Drawing.Point(6, 72)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(61, 13)
         Me.Label5.TabIndex = 2
@@ -236,9 +258,9 @@ Partial Class frmGestionArticulos
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(6, 18)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(94, 13)
+        Me.Label4.Size = New System.Drawing.Size(62, 13)
         Me.Label4.TabIndex = 0
-        Me.Label4.Text = "Codigo de Articulo"
+        Me.Label4.Text = "Codigo SAP"
         '
         'Label1
         '
@@ -310,6 +332,59 @@ Partial Class frmGestionArticulos
         Me.btnSalir.TabIndex = 8
         Me.btnSalir.UseVisualStyleBackColor = True
         '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(6, 43)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(67, 13)
+        Me.Label12.TabIndex = 16
+        Me.Label12.Text = "Codigo SIGA"
+        '
+        'TextBox1
+        '
+        Me.TextBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TextBox1.Location = New System.Drawing.Point(106, 41)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(108, 21)
+        Me.TextBox1.TabIndex = 17
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(6, 122)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(76, 13)
+        Me.Label13.TabIndex = 18
+        Me.Label13.Text = "Concentración"
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(106, 118)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(161, 21)
+        Me.ComboBox1.TabIndex = 19
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(6, 149)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(92, 13)
+        Me.Label14.TabIndex = 20
+        Me.Label14.Text = "Unidad de Medida"
+        '
+        'ComboBox2
+        '
+        Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox2.FormattingEnabled = True
+        Me.ComboBox2.Location = New System.Drawing.Point(106, 145)
+        Me.ComboBox2.Name = "ComboBox2"
+        Me.ComboBox2.Size = New System.Drawing.Size(161, 21)
+        Me.ComboBox2.TabIndex = 21
+        '
         'frmGestionArticulos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -365,4 +440,10 @@ Partial Class frmGestionArticulos
     Friend WithEvents Label10 As Label
     Friend WithEvents cboVidaUtil As ComboBox
     Friend WithEvents Label9 As Label
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents Label12 As Label
+    Friend WithEvents ComboBox2 As ComboBox
+    Friend WithEvents Label14 As Label
+    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents Label13 As Label
 End Class

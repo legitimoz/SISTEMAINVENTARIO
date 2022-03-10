@@ -20,12 +20,16 @@ Public Class frmRequerimientoIns
 
     Public idReq As String
 
+    Friend WithEvents BtnQuitarItem As System.Windows.Forms.Button
+    Private mnuContextual As New ContextMenuStrip
+
 
     Private Sub frmRequerimientoIns_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             DeshabilitarOpciones()
             ListarEstados()
             Inicio()
+            configurarMenucontextual()
 
             If Bandera_nuevo = True Then
                 tsbNuevo_Click(sender, e)
@@ -39,7 +43,6 @@ Public Class frmRequerimientoIns
             End If
 
             If flagAccion = "Editar" Then
-
                 Cargar_Requerimiento(idReq)
                 Inicio2()
             End If
@@ -49,12 +52,47 @@ Public Class frmRequerimientoIns
         End Try
     End Sub
 
+
+
+    Public Sub configurarMenucontextual()
+        Try
+
+            Dim oToolStripItem1 As New ToolStripMenuItem
+            oToolStripItem1.Text = "Quitar Item"
+            oToolStripItem1.Tag = "1"
+            AddHandler oToolStripItem1.Click, AddressOf BtnQuitarItem_Click
+            mnuContextual.Items.Add(oToolStripItem1)
+
+            dgvDetalleReque.ContextMenuStrip = mnuContextual
+
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+
+
+    Private Sub BtnQuitarItem_Click(sender As Object, e As EventArgs) Handles BtnQuitarItem.Click
+        Try
+
+            Dim fila As Integer
+            fila = dgvDetalleReque.CurrentCell.RowIndex
+
+            dgvDetalleReque.Rows.RemoveAt(fila)
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+
     Sub Cargar_Requerimiento(ByVal cre_id As String)
         Try
             Dim obj As New BeCabReque
             Dim obj2 As New DetReque
             Dim dt As DataTable
-
+            Dim dt2 As DataTable
 
             dt = obj.Obtener_Cabecera_Requerimiento(cre_id)
 
@@ -68,10 +106,17 @@ Public Class frmRequerimientoIns
 
             cboEstado.SelectedValue = dt.Rows(0).Item(6).ToString
             rtbDescripcion.Text = dt.Rows(0).Item(7).ToString
+            dtpFecEntrega.Value = dt.Rows(0).Item(12).ToString
+            mtbHora.Text = dt.Rows(0).Item(13).ToString
+            txtCotizador.Text = dt.Rows(0).Item(14).ToString
+            txtVendedor.Text = dt.Rows(0).Item(15).ToString
+            txtUsuario.Text = dt.Rows(0).Item(16).ToString
+            txtFechaCreacion.Text = dt.Rows(0).Item(17).ToString
 
-            For i As Integer = 0 To dt.Rows.Count - 1
+            dt2 = obj.Filtros_Requerimientos_Detalle(cre_id)
 
-                'dgvDetalleReque.Rows.Add(dt2.Rows(0).Item(0), dt2.Rows(0).Item(0),)
+            For i As Integer = 0 To dt2.Rows.Count - 1
+                dgvDetalleReque.Rows.Add(dt2.Rows(i).Item(18), dt2.Rows(i).Item(19), dt2.Rows(i).Item(6), dt2.Rows(i).Item(7), dt2.Rows(i).Item(9), dt2.Rows(i).Item(10), dt2.Rows(i).Item(11), dt2.Rows(i).Item(12))
             Next
 
             obj2.prar_id = dt.Rows(0).Item(0).ToString
@@ -152,7 +197,8 @@ Public Class frmRequerimientoIns
             txtBusqueda.Enabled = False
             cboEstado.Enabled = False
             rtbDescripcion.Enabled = False
-
+            dtpFecEntrega.Enabled = False
+            mtbHora.Enabled = False
 
         Catch ex As Exception
 
@@ -175,8 +221,11 @@ Public Class frmRequerimientoIns
             rbtNombre.Enabled = True
             rbtCodigo.Enabled = True
             txtBusqueda.Enabled = True
-            cboEstado.Enabled = True
+            cboEstado.Enabled = False
             rtbDescripcion.Enabled = True
+            dtpFecEntrega.Enabled = True
+            mtbHora.Enabled = True
+
         Catch ex As Exception
 
         End Try
@@ -293,17 +342,17 @@ Public Class frmRequerimientoIns
             descripcion = dgvListadoArticulos.CurrentRow.Cells.Item(2).Value
 
 
-            For i As Integer = 0 To dgvDetalleReque.Rows.Count - 1
+            'For i As Integer = 0 To dgvDetalleReque.Rows.Count - 1
 
-                If dgvDetalleReque.Rows(i).Cells.Item(0).Value = id Then
-                    MessageBox.Show("Ya existe el articulo seleccionado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                    bandera = True
-                    Exit For
-                End If
-            Next
+            '    If dgvDetalleReque.Rows(i).Cells.Item(0).Value = id Then
+            '        MessageBox.Show("Ya existe el articulo seleccionado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            '        bandera = True
+            '        Exit For
+            '    End If
+            'Next
 
             If bandera = False Then
-                dgvDetalleReque.Rows.Add(id, codigo, descripcion)
+                dgvDetalleReque.Rows.Add(id, "", codigo, descripcion, "0", "0.00")
             End If
 
         Catch ex As Exception
@@ -326,80 +375,119 @@ Public Class frmRequerimientoIns
             Dim idRuta As String = String.Empty
             Dim fecHorReg As String = String.Empty
             Dim fecMod As String = String.Empty
-
+            Dim fechaHoraEntrega As String = String.Empty
+            Dim hora As String
+            hora = mtbHora.Text
 
             If txtRuc.Text = "" Then
                 MessageBox.Show("Ingrese el nombre del cliente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 txtRuc.Focus()
-
             Else
-                If dgvDetalleReque.Rows.Count = 0 Then
-                    MessageBox.Show("Ingrese el detalle de articulos", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                If hora = "  :" Then
+                    MessageBox.Show("Debe indicar la hora de entrega", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 Else
-
-                    _BeCabReque.pr_cre_id = txtNroReq.Text.Trim
-                    _BeCabReque.pr_sol_id = txtSol.Text.Trim
-                    _BeCabReque.pr_codcli = txtRuc.Text.Trim
-                    _BeCabReque.pr_nomcli = txtCliente.Text.Trim
-                    _BeCabReque.pr_cvende = txtCodVend.Text.Trim
-                    _BeCabReque.pr_cvende2 = txtCodCot.Text.Trim
-                    _BeCabReque.pr_est_codigo = cboEstado.SelectedValue
-                    _BeCabReque.pr_creobs = rtbDescripcion.Text.Trim
-                    _BeCabReque.pr_usr_id = usr_id
-
-                    For i As Integer = 0 To dgvDetalleReque.Rows.Count - 1
-
-                        _BeDetReque = New DetReque
-
-                        _BeDetReque.prar_id = dgvDetalleReque.Rows(i).Cells.Item("id").Value
-                        _BeDetReque.prcrd_cant = dgvDetalleReque.Rows(i).Cells.Item("cantidad").Value
-                        _BeDetReque.prcrd_cost = dgvDetalleReque.Rows(i).Cells.Item("costo").Value
-                        _BeDetReque.prusr_id = usr_id
-
-                        _listadoDetalleGuia.Add(_BeDetReque)
-
-                    Next
-
-                    _BeCabReque.prListaItem = _listadoDetalleGuia
-                    xml = _BeCabReque.Serializar_Requerimiento(_BeCabReque)
-
-
-                    Dim obj As New BeCabReque
-
-                    If flagAccion = "Nuevo" Then
-                        obj.RegistrarRequerimiento(xml, _tipoespuesta, _textorespuesta, idRuta, fecHorReg)
-
+                    If dgvDetalleReque.Rows.Count = 0 Then
+                        MessageBox.Show("Ingrese el detalle de articulos", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     Else
-                        If flagAccion = "Actualizar" Then
-                            obj.ActualizarRequerimiento(xml, _tipoespuesta, _textorespuesta, idRuta, fecHorReg)
 
+                        _BeCabReque.pr_cre_id = txtNroReq.Text.Trim
+                        _BeCabReque.pr_sol_id = txtSol.Text.Trim
+                        _BeCabReque.pr_codcli = txtRuc.Text.Trim
+                        _BeCabReque.pr_nomcli = txtCliente.Text.Trim
+                        _BeCabReque.pr_cvende = txtCodVend.Text.Trim
+                        _BeCabReque.pr_cvende2 = txtCodCot.Text.Trim
+                        _BeCabReque.pr_est_codigo = cboEstado.SelectedValue
+                        _BeCabReque.pr_creobs = rtbDescripcion.Text.Trim
+                        _BeCabReque.pr_usr_id = usr_id
+
+                        ConvertirCadenaFechaHora(dtpFecEntrega.Value.Year, dtpFecEntrega.Value.Month, dtpFecEntrega.Value.Day, mtbHora.Text, fechaHoraEntrega)
+                        _BeCabReque.pr_cre_fecEnt = fechaHoraEntrega
+
+                        For i As Integer = 0 To dgvDetalleReque.Rows.Count - 1
+
+                            _BeDetReque = New DetReque
+
+                            _BeDetReque.prcrd_id = dgvDetalleReque.Rows(i).Cells.Item("crd_id").Value
+                            _BeDetReque.prar_id = dgvDetalleReque.Rows(i).Cells.Item("id").Value
+                            _BeDetReque.prcrd_cant = dgvDetalleReque.Rows(i).Cells.Item("cantidad").Value
+                            _BeDetReque.prcrd_cost = dgvDetalleReque.Rows(i).Cells.Item("costo").Value
+                            _BeDetReque.prusr_id = usr_id
+                            _BeDetReque.prcrd_fecVenc = dgvDetalleReque.Rows(i).Cells.Item("fecha_vcto").Value
+                            _BeDetReque.prcrd_Obs = dgvDetalleReque.Rows(i).Cells.Item("observacion").Value
+
+                            _listadoDetalleGuia.Add(_BeDetReque)
+
+                        Next
+
+                        _BeCabReque.prListaItem = _listadoDetalleGuia
+                        xml = _BeCabReque.Serializar_Requerimiento(_BeCabReque)
+
+
+                        Dim obj As New BeCabReque
+
+                        If flagAccion = "Nuevo" Then
+                            obj.RegistrarRequerimiento(xml, _tipoespuesta, _textorespuesta, idRuta, fecHorReg)
+
+                        Else
+                            If flagAccion = "Editar" Then
+                                obj.ActualizarRequerimiento(xml, _tipoespuesta, _textorespuesta, idRuta, fecHorReg)
+
+                            End If
                         End If
                     End If
                 End If
+
+
+
+                If _tipoespuesta = "1" Then
+
+
+                    If flagAccion = "Nuevo" Then
+                        txtNroReq.Text = idRuta
+                        MessageBox.Show("Se Registro el Requerimiento satisfactoriamente !", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        Me.Close()
+
+                    End If
+
+                    If flagAccion = "Editar" Then
+                        MessageBox.Show("Se actualizó el Requerimiento satisfactoriamente !", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        Me.Close()
+
+                    End If
+
+                    DeshabilitarOpciones()
+                    Inicio2()
+                Else
+                    If _tipoespuesta = "0" Then
+                        MessageBox.Show("Error en el registro :" + _textorespuesta, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                    End If
+                End If
+
+
+
             End If
 
 
 
-            If _tipoespuesta = "1" Then
+        Catch ex As Exception
+
+        End Try
+    End Sub
 
 
-                If flagAccion = "Nuevo" Then
-                    txtNroReq.Text = idRuta
-                    MessageBox.Show("Se Registro el Requerimiento satisfactoriamente !", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    Me.Close()
+    Sub ConvertirCadenaFechaHora(ByVal anio As String, ByVal mes As String, ByVal dia As String, ByVal hora As String, ByRef fechaHora As String)
+        Try
 
-                End If
-
-                If flagAccion = "Actualizar" Then
-                    MessageBox.Show("Se actualizó el Requerimiento satisfactoriamente !", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-                End If
-
-                DeshabilitarOpciones()
-                Inicio2()
-
+            If mes.Length = 1 Then
+                mes = "0" + mes
             End If
 
+            If dia.Length = 1 Then
+                dia = "0" + dia
+            End If
+
+            fechaHora = anio + "-" + dia + "-" + mes + " " + hora + ":00.000"
 
 
         Catch ex As Exception
@@ -470,4 +558,51 @@ Public Class frmRequerimientoIns
         Catch ex As Exception
         End Try
     End Sub
+
+    Private Sub tsbEditar_Click(sender As Object, e As EventArgs) Handles tsbEditar.Click
+        Try
+            HabilitarEdicion()
+            BuscarListadoAritculos(0, "")
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+
+    Sub HabilitarEdicion()
+        Try
+
+            btnCliente.Enabled = True
+            rtbDescripcion.Enabled = True
+            rbtNombre.Enabled = True
+            rbtCodigo.Enabled = True
+            txtBusqueda.Enabled = True
+            dtpFecEntrega.Enabled = True
+            mtbHora.Enabled = True
+
+            tsbNuevo.Enabled = False
+            tsbGuardar.Enabled = True
+            tsbEditar.Enabled = False
+            tsbEliminar.Enabled = False
+            tsbDetener.Enabled = True
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub dgvDetalleReque_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvDetalleReque.CellDoubleClick
+        'Try
+
+        '    Dim indice As Integer
+
+        '    indice = dgvDetalleReque.CurrentRow.Index
+
+        '    dgvDetalleReque.Rows.RemoveAt(indice)
+
+        'Catch ex As Exception
+
+        'End Try
+    End Sub
+
 End Class

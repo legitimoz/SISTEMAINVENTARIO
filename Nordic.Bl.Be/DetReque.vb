@@ -63,6 +63,91 @@ Public Class DetReque
         End Set
     End Property
 
+    Private crd_fecVenc As String
+    Public Property prcrd_fecVenc() As String
+        Get
+            Return crd_fecVenc
+        End Get
+        Set(ByVal value As String)
+            crd_fecVenc = value
+        End Set
+    End Property
+
+    Private crd_Obs As String
+    Public Property prcrd_Obs() As String
+        Get
+            Return crd_Obs
+        End Get
+        Set(ByVal value As String)
+            crd_Obs = value
+        End Set
+    End Property
+
+    '--Presentacion
+    Private pre_id As Integer
+    Public Property prpre_id() As String
+        Get
+            Return pre_id
+        End Get
+        Set(ByVal value As String)
+            pre_id = value
+        End Set
+    End Property
+
+    '--Marca
+    Private mar_id As Integer
+    Public Property prmar_id() As String
+        Get
+            Return mar_id
+        End Get
+        Set(ByVal value As String)
+            mar_id = value
+        End Set
+    End Property
+
+    '--Pais de Origen
+    Private pa_id As Integer
+    Public Property prpa_id() As String
+        Get
+            Return pa_id
+        End Get
+        Set(ByVal value As String)
+            pa_id = value
+        End Set
+    End Property
+
+    '--Fabricante
+    Private fab_id As Integer
+    Public Property prfab_id() As String
+        Get
+            Return fab_id
+        End Get
+        Set(ByVal value As String)
+            fab_id = value
+        End Set
+    End Property
+
+    '--Titular del Registro
+    Private tit_id As Integer
+    Public Property prtit_id() As String
+        Get
+            Return tit_id
+        End Get
+        Set(ByVal value As String)
+            tit_id = value
+        End Set
+    End Property
+
+    'Dim pre_id As Integer
+    'Dim mar_id As Integer
+    'Dim pa_id As Integer
+    'Dim fab_id As Integer
+    'Dim tit_id As Integer
+    'Dim costo As Double
+    'Dim FechaVcto As String
+    'Dim observacion As String
+
+
     Public Conexion As String = String.Empty
 
     Public Function Obtener_Detalle_Requerimiento(ByVal cre_id As String) As DataTable
