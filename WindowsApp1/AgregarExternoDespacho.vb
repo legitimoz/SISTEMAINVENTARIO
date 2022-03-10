@@ -8,6 +8,7 @@ Public Class AgregarExternoDespacho
     Private Sub AgregarExternoDespacho_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             CargaInicial()
+
         Catch ex As Exception
 
         End Try
