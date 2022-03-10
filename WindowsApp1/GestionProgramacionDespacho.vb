@@ -1115,42 +1115,46 @@ Public Class GestionProgramacionDespacho
             If Dg_Cabecera.Rows.Count > 0 Then
                 For Each RowPri As DataGridViewRow In Dg_Cabecera.Rows
                     If RowPri.Cells("ESTADO").Value.ToString.Trim = "RECEPCIONADO" Or RowPri.Cells("ESTADO").Value.ToString.Trim = "REPROGRAMADO" Then
-                        If RowPri.Cells("MARCAR").Value = True And RowPri.Cells("SITUACION").Value.ToString.Trim <> "ANULADO" Then
+                        If RowPri.Cells("MARCAR").EditedFormattedValue = True And RowPri.Cells("SITUACION").Value.ToString.Trim <> "ANULADO" Then
                             If RowPri.Cells("LIMA_PROV").Value.ToString.Trim = "LIMA" Then
                                 If ExisteEnNueva(RowPri.Cells("DESTINO").Value.ToString.Trim) = False Then
                                     Dim rowConsolidad As DataRow = dtConsolidar.NewRow
                                     For Each rowseg As DataGridViewRow In Dg_Cabecera.Rows
-                                        If RowPri.Cells("DESTINO").Value.ToString.Trim = rowseg.Cells("DESTINO").Value.ToString.Trim And rowseg.Cells("SITUACION").Value.ToString.Trim <> "ANULADO" And rowseg.Cells("MARCAR").Value = True Then
-                                            Dim rowDetalle As DataRow = DtDetalleConsolidado.NewRow
-                                            totalimporte = totalimporte + rowseg.Cells("IMPORTE").Value
-                                            totalguias = totalguias + 1
-                                            totalvolumen = totalvolumen + rowseg.Cells("M3FIN").Value
-                                            rowConsolidad.Item("DESTINO") = RowPri.Cells("DESTINO").Value.ToString.Trim
-                                            rowConsolidad.Item("NOM_CLIENTE") = RowPri.Cells("NOM_CLIENTE").Value.ToString.Trim
-                                            rowConsolidad.Item("DIRECCION_ENTREGA") = RowPri.Cells("DIRECCION_ENTREGA").Value.ToString.Trim
-                                            rowConsolidad.Item("DISTRITO") = RowPri.Cells("DISTRITO").Value.ToString.Trim
-                                            rowConsolidad.Item("CANAL") = RowPri.Cells("CANAL").Value.ToString.Trim
-                                            rowConsolidad.Item("RUTA") = RowPri.Cells("RUTA").Value.ToString.Trim
-                                            rowConsolidad.Item("DETALLE") = RowPri.Cells("DETALLE").Value.ToString.Trim
-                                            rowConsolidad.Item("RESTRICCION") = RowPri.Cells("RESTRICCION").Value.ToString.Trim
-                                            rowConsolidad.Item("TIEMPOENTREGA") = RowPri.Cells("TIEMPOENTREGA").Value.ToString.Trim
-                                            rowConsolidad.Item("CONDICION") = RowPri.Cells("CONDICION").Value.ToString.Trim
 
-                                            'llenar detalle'
-                                            rowDetalle.Item("idconsolidado") = idconsolidado
-                                            rowDetalle.Item("IMPORTE") = rowseg.Cells("IMPORTE").Value
-                                            rowDetalle.Item("NRO_GUIA") = rowseg.Cells("NRO_GUIA").Value
-                                            rowDetalle.Item("NOM_CLIENTE") = rowseg.Cells("NOM_CLIENTE").Value
-                                            rowDetalle.Item("DIRECCION_ENTREGA") = rowseg.Cells("DIRECCION_ENTREGA").Value
-                                            rowDetalle.Item("CONDICION") = rowseg.Cells("CONDICION").Value
-                                            rowDetalle.Item("M3UN") = rowseg.Cells("M3FIN").Value
-                                            rowDetalle.Item("TIEMPO") = rowseg.Cells("TIEMPOENTREGA").Value
-                                            rowDetalle.Item("REPRESENTANTE") = rowseg.Cells("REPRESENTANTE").Value
-                                            rowDetalle.Item("RESTRICCION") = rowseg.Cells("RESTRICCION").Value
-                                            rowDetalle.Item("CTD") = rowseg.Cells("C5_CTD").Value
-                                            rowDetalle.Item("CALMA") = rowseg.Cells("C5_CALMA").Value
+                                        If RowPri.Cells("DESTINO").Value.ToString.Trim = rowseg.Cells("DESTINO").Value.ToString.Trim And rowseg.Cells("SITUACION").Value.ToString.Trim <> "ANULADO" And rowseg.Cells("MARCAR").EditedFormattedValue = True Then
+                                            If rowseg.Cells("ESTADO").Value.ToString.Trim = "RECEPCIONADO" Or rowseg.Cells("ESTADO").Value.ToString.Trim = "REPROGRAMADO" Then
+                                                Dim rowDetalle As DataRow = DtDetalleConsolidado.NewRow
+                                                totalimporte = totalimporte + rowseg.Cells("IMPORTE").Value
+                                                totalguias = totalguias + 1
+                                                totalvolumen = totalvolumen + rowseg.Cells("M3FIN").Value
+                                                rowConsolidad.Item("DESTINO") = RowPri.Cells("DESTINO").Value.ToString.Trim
+                                                rowConsolidad.Item("NOM_CLIENTE") = RowPri.Cells("NOM_CLIENTE").Value.ToString.Trim
+                                                rowConsolidad.Item("DIRECCION_ENTREGA") = RowPri.Cells("DIRECCION_ENTREGA").Value.ToString.Trim
+                                                rowConsolidad.Item("DISTRITO") = RowPri.Cells("DISTRITO").Value.ToString.Trim
+                                                rowConsolidad.Item("CANAL") = RowPri.Cells("CANAL").Value.ToString.Trim
+                                                rowConsolidad.Item("RUTA") = RowPri.Cells("RUTA").Value.ToString.Trim
+                                                rowConsolidad.Item("DETALLE") = RowPri.Cells("DETALLE").Value.ToString.Trim
+                                                rowConsolidad.Item("RESTRICCION") = RowPri.Cells("RESTRICCION").Value.ToString.Trim
+                                                rowConsolidad.Item("TIEMPOENTREGA") = RowPri.Cells("TIEMPOENTREGA").Value.ToString.Trim
+                                                rowConsolidad.Item("CONDICION") = RowPri.Cells("CONDICION").Value.ToString.Trim
 
-                                            DtDetalleConsolidado.Rows.Add(rowDetalle)
+                                                'llenar detalle'
+                                                rowDetalle.Item("idconsolidado") = idconsolidado
+                                                rowDetalle.Item("IMPORTE") = rowseg.Cells("IMPORTE").Value
+                                                rowDetalle.Item("NRO_GUIA") = rowseg.Cells("NRO_GUIA").Value
+                                                rowDetalle.Item("NOM_CLIENTE") = rowseg.Cells("NOM_CLIENTE").Value
+                                                rowDetalle.Item("DIRECCION_ENTREGA") = rowseg.Cells("DIRECCION_ENTREGA").Value
+                                                rowDetalle.Item("CONDICION") = rowseg.Cells("CONDICION").Value
+                                                rowDetalle.Item("M3UN") = rowseg.Cells("M3FIN").Value
+                                                rowDetalle.Item("TIEMPO") = rowseg.Cells("TIEMPOENTREGA").Value
+                                                rowDetalle.Item("REPRESENTANTE") = rowseg.Cells("REPRESENTANTE").Value
+                                                rowDetalle.Item("RESTRICCION") = rowseg.Cells("RESTRICCION").Value
+                                                rowDetalle.Item("CTD") = rowseg.Cells("C5_CTD").Value
+                                                rowDetalle.Item("CALMA") = rowseg.Cells("C5_CALMA").Value
+
+                                                DtDetalleConsolidado.Rows.Add(rowDetalle)
+                                            End If
+
 
                                         End If
                                     Next

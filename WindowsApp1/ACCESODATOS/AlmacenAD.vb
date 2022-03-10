@@ -681,6 +681,30 @@ Public Class AlmacenAD
 
     End Function
 
+
+    Public Function ObtenerDataRuta(idruta As Integer) As DataTable
+
+        Try
+            Dim com As New SqlCommand("SP_CSE_OBTENER_DATA_RUTA", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+            com.Parameters.Add("@idruta", SqlDbType.Int).Value = idruta
+
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            Throw ex
+            MyBase.Conn.Close()
+        End Try
+
+    End Function
+
+
+
     Public Function ObtenerIndicarDeliveryhOnTime(fechadesde As String, fechahasta As String) As DataTable
 
         Try
@@ -733,6 +757,28 @@ Public Class AlmacenAD
             com.Parameters.Add("@fechahasta", SqlDbType.Char, 10).Value = fechahasta
             com.Parameters.Add("@idalmacen", SqlDbType.Int).Value = idalmacen
             com.Parameters.Add("@idsite", SqlDbType.Int).Value = idsite
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            Throw ex
+            MyBase.Conn.Close()
+        End Try
+
+    End Function
+
+
+    Public Function ObtenerArticulosAbastercer(fechadesde As String, fechahasta As String) As DataTable
+
+        Try
+            Dim com As New SqlCommand("SP_OBTENER_ARTICULOS_ABASTECER", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+            com.Parameters.Add("@FECINI", SqlDbType.Char, 10).Value = fechadesde
+            com.Parameters.Add("@FECFIN", SqlDbType.Char, 10).Value = fechahasta
             Dim Result As SqlDataReader
             Dim Tabla As New DataTable
             Result = com.ExecuteReader()

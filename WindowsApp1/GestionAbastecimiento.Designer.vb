@@ -25,6 +25,9 @@ Partial Class GestionAbastecimiento
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GestionAbastecimiento))
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.cmdCerrar = New System.Windows.Forms.ToolStripButton()
         Me.dt_desde = New System.Windows.Forms.DateTimePicker()
         Me.dt_hasta = New System.Windows.Forms.DateTimePicker()
@@ -37,9 +40,54 @@ Partial Class GestionAbastecimiento
         Me.combo_Almacen = New System.Windows.Forms.ComboBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Dg_Cabecera = New System.Windows.Forms.DataGridView()
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn21 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn22 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn23 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn24 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CODIGO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TIPOORIGEN = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ARTICULO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.UUCAJA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CAJASCM = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ANCHO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LARGO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ALTO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ENERO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FEBRERO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MARZO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ABRIL = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MAYO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.JUNIO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.JULIO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AGOSTO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SETIEMBRE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OCTUBRE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NOVIEMBRE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DICIEMBRE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TOTALVENTA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.VOLCJMU = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MULTIPLICACIONFACTORES = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.VOLUMENUNIDAD = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -77,6 +125,26 @@ Partial Class GestionAbastecimiento
         Me.ToolStrip1.Size = New System.Drawing.Size(1295, 40)
         Me.ToolStrip1.TabIndex = 85
         Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 40)
+        '
+        'ToolStripButton1
+        '
+        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton1.Margin = New System.Windows.Forms.Padding(1)
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(127, 38)
+        Me.ToolStripButton1.Text = "&Generar Abastecimiento"
+        Me.ToolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 40)
         '
         'cmdCerrar
         '
@@ -204,43 +272,304 @@ Partial Class GestionAbastecimiento
         '
         'Dg_Cabecera
         '
+        Me.Dg_Cabecera.AllowDrop = True
         Me.Dg_Cabecera.AllowUserToAddRows = False
         Me.Dg_Cabecera.AllowUserToDeleteRows = False
-        Me.Dg_Cabecera.AllowUserToResizeRows = False
-        Me.Dg_Cabecera.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Dg_Cabecera.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.Dg_Cabecera.BackgroundColor = System.Drawing.Color.White
-        Me.Dg_Cabecera.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.Dg_Cabecera.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Dg_Cabecera.Location = New System.Drawing.Point(12, 33)
+        Me.Dg_Cabecera.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CODIGO, Me.TIPOORIGEN, Me.ARTICULO, Me.UUCAJA, Me.CAJASCM, Me.ANCHO, Me.LARGO, Me.ALTO, Me.ENERO, Me.FEBRERO, Me.MARZO, Me.ABRIL, Me.MAYO, Me.JUNIO, Me.JULIO, Me.AGOSTO, Me.SETIEMBRE, Me.OCTUBRE, Me.NOVIEMBRE, Me.DICIEMBRE, Me.TOTALVENTA, Me.VOLCJMU, Me.MULTIPLICACIONFACTORES, Me.VOLUMENUNIDAD})
+        Me.Dg_Cabecera.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Dg_Cabecera.Location = New System.Drawing.Point(0, 0)
+        Me.Dg_Cabecera.Margin = New System.Windows.Forms.Padding(0)
         Me.Dg_Cabecera.MultiSelect = False
         Me.Dg_Cabecera.Name = "Dg_Cabecera"
         Me.Dg_Cabecera.RowHeadersVisible = False
-        Me.Dg_Cabecera.RowTemplate.Height = 24
+        Me.Dg_Cabecera.RowHeadersWidth = 20
+        Me.Dg_Cabecera.RowTemplate.Height = 20
         Me.Dg_Cabecera.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.Dg_Cabecera.Size = New System.Drawing.Size(1271, 275)
-        Me.Dg_Cabecera.TabIndex = 25
+        Me.Dg_Cabecera.Size = New System.Drawing.Size(1291, 318)
+        Me.Dg_Cabecera.TabIndex = 10
         '
-        'ToolStripSeparator1
+        'DataGridViewTextBoxColumn1
         '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 40)
+        Me.DataGridViewTextBoxColumn1.HeaderText = "Codigo Art."
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
         '
-        'ToolStripSeparator2
+        'DataGridViewTextBoxColumn2
         '
-        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 40)
+        Me.DataGridViewTextBoxColumn2.HeaderText = "Tipo Origen"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
         '
-        'ToolStripButton1
+        'DataGridViewTextBoxColumn3
         '
-        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
-        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton1.Margin = New System.Windows.Forms.Padding(1)
-        Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(127, 38)
-        Me.ToolStripButton1.Text = "&Generar Abastecimiento"
-        Me.ToolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.DataGridViewTextBoxColumn3.HeaderText = "Articulo"
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        '
+        'DataGridViewTextBoxColumn4
+        '
+        Me.DataGridViewTextBoxColumn4.HeaderText = "UU CAJA"
+        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
+        Me.DataGridViewTextBoxColumn4.Visible = False
+        '
+        'DataGridViewTextBoxColumn5
+        '
+        Me.DataGridViewTextBoxColumn5.HeaderText = "CAJAS / CM"
+        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
+        Me.DataGridViewTextBoxColumn5.Visible = False
+        '
+        'DataGridViewTextBoxColumn6
+        '
+        Me.DataGridViewTextBoxColumn6.HeaderText = "Ancho"
+        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
+        Me.DataGridViewTextBoxColumn6.Visible = False
+        '
+        'DataGridViewTextBoxColumn7
+        '
+        Me.DataGridViewTextBoxColumn7.HeaderText = "Largo"
+        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
+        Me.DataGridViewTextBoxColumn7.Visible = False
+        '
+        'DataGridViewTextBoxColumn8
+        '
+        Me.DataGridViewTextBoxColumn8.HeaderText = "Alto"
+        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
+        Me.DataGridViewTextBoxColumn8.Visible = False
+        '
+        'DataGridViewTextBoxColumn9
+        '
+        Me.DataGridViewTextBoxColumn9.HeaderText = "Enero"
+        Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
+        Me.DataGridViewTextBoxColumn9.Visible = False
+        '
+        'DataGridViewTextBoxColumn10
+        '
+        Me.DataGridViewTextBoxColumn10.HeaderText = "FEBRERO"
+        Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
+        Me.DataGridViewTextBoxColumn10.Visible = False
+        '
+        'DataGridViewTextBoxColumn11
+        '
+        Me.DataGridViewTextBoxColumn11.HeaderText = "MARZO"
+        Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
+        Me.DataGridViewTextBoxColumn11.Visible = False
+        '
+        'DataGridViewTextBoxColumn12
+        '
+        Me.DataGridViewTextBoxColumn12.HeaderText = "ABRIL"
+        Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
+        Me.DataGridViewTextBoxColumn12.Visible = False
+        '
+        'DataGridViewTextBoxColumn13
+        '
+        Me.DataGridViewTextBoxColumn13.HeaderText = "MAYO"
+        Me.DataGridViewTextBoxColumn13.Name = "DataGridViewTextBoxColumn13"
+        Me.DataGridViewTextBoxColumn13.Visible = False
+        '
+        'DataGridViewTextBoxColumn14
+        '
+        Me.DataGridViewTextBoxColumn14.HeaderText = "JUNIO"
+        Me.DataGridViewTextBoxColumn14.Name = "DataGridViewTextBoxColumn14"
+        Me.DataGridViewTextBoxColumn14.Visible = False
+        '
+        'DataGridViewTextBoxColumn15
+        '
+        Me.DataGridViewTextBoxColumn15.HeaderText = "JULIO"
+        Me.DataGridViewTextBoxColumn15.Name = "DataGridViewTextBoxColumn15"
+        Me.DataGridViewTextBoxColumn15.Visible = False
+        '
+        'DataGridViewTextBoxColumn16
+        '
+        Me.DataGridViewTextBoxColumn16.HeaderText = "AGOSTO"
+        Me.DataGridViewTextBoxColumn16.Name = "DataGridViewTextBoxColumn16"
+        Me.DataGridViewTextBoxColumn16.Visible = False
+        '
+        'DataGridViewTextBoxColumn17
+        '
+        Me.DataGridViewTextBoxColumn17.HeaderText = "SETIEMBRE"
+        Me.DataGridViewTextBoxColumn17.Name = "DataGridViewTextBoxColumn17"
+        Me.DataGridViewTextBoxColumn17.Visible = False
+        '
+        'DataGridViewTextBoxColumn18
+        '
+        Me.DataGridViewTextBoxColumn18.HeaderText = "OCTUBRE"
+        Me.DataGridViewTextBoxColumn18.Name = "DataGridViewTextBoxColumn18"
+        Me.DataGridViewTextBoxColumn18.Visible = False
+        '
+        'DataGridViewTextBoxColumn19
+        '
+        Me.DataGridViewTextBoxColumn19.HeaderText = "NOVIEMBRE"
+        Me.DataGridViewTextBoxColumn19.Name = "DataGridViewTextBoxColumn19"
+        Me.DataGridViewTextBoxColumn19.Visible = False
+        '
+        'DataGridViewTextBoxColumn20
+        '
+        Me.DataGridViewTextBoxColumn20.HeaderText = "DICIEMBRE"
+        Me.DataGridViewTextBoxColumn20.Name = "DataGridViewTextBoxColumn20"
+        Me.DataGridViewTextBoxColumn20.Visible = False
+        '
+        'DataGridViewTextBoxColumn21
+        '
+        Me.DataGridViewTextBoxColumn21.HeaderText = "Total Venta"
+        Me.DataGridViewTextBoxColumn21.Name = "DataGridViewTextBoxColumn21"
+        '
+        'DataGridViewTextBoxColumn22
+        '
+        Me.DataGridViewTextBoxColumn22.HeaderText = "Volumen CJ M."
+        Me.DataGridViewTextBoxColumn22.Name = "DataGridViewTextBoxColumn22"
+        '
+        'DataGridViewTextBoxColumn23
+        '
+        Me.DataGridViewTextBoxColumn23.HeaderText = "Mult. Factores"
+        Me.DataGridViewTextBoxColumn23.Name = "DataGridViewTextBoxColumn23"
+        '
+        'DataGridViewTextBoxColumn24
+        '
+        Me.DataGridViewTextBoxColumn24.HeaderText = "Volumen Unidad"
+        Me.DataGridViewTextBoxColumn24.Name = "DataGridViewTextBoxColumn24"
+        '
+        'CODIGO
+        '
+        Me.CODIGO.HeaderText = "Codigo Art."
+        Me.CODIGO.Name = "CODIGO"
+        Me.CODIGO.Width = 215
+        '
+        'TIPOORIGEN
+        '
+        Me.TIPOORIGEN.HeaderText = "Tipo Origen"
+        Me.TIPOORIGEN.Name = "TIPOORIGEN"
+        Me.TIPOORIGEN.Width = 214
+        '
+        'ARTICULO
+        '
+        Me.ARTICULO.HeaderText = "Articulo"
+        Me.ARTICULO.Name = "ARTICULO"
+        Me.ARTICULO.Width = 215
+        '
+        'UUCAJA
+        '
+        Me.UUCAJA.HeaderText = "UU CAJA"
+        Me.UUCAJA.Name = "UUCAJA"
+        Me.UUCAJA.Visible = False
+        '
+        'CAJASCM
+        '
+        Me.CAJASCM.HeaderText = "CAJAS / CM"
+        Me.CAJASCM.Name = "CAJASCM"
+        Me.CAJASCM.Visible = False
+        '
+        'ANCHO
+        '
+        Me.ANCHO.HeaderText = "Ancho"
+        Me.ANCHO.Name = "ANCHO"
+        Me.ANCHO.Visible = False
+        '
+        'LARGO
+        '
+        Me.LARGO.HeaderText = "Largo"
+        Me.LARGO.Name = "LARGO"
+        Me.LARGO.Visible = False
+        '
+        'ALTO
+        '
+        Me.ALTO.HeaderText = "Alto"
+        Me.ALTO.Name = "ALTO"
+        Me.ALTO.Visible = False
+        '
+        'ENERO
+        '
+        Me.ENERO.HeaderText = "Enero"
+        Me.ENERO.Name = "ENERO"
+        Me.ENERO.Visible = False
+        '
+        'FEBRERO
+        '
+        Me.FEBRERO.HeaderText = "FEBRERO"
+        Me.FEBRERO.Name = "FEBRERO"
+        Me.FEBRERO.Visible = False
+        '
+        'MARZO
+        '
+        Me.MARZO.HeaderText = "MARZO"
+        Me.MARZO.Name = "MARZO"
+        Me.MARZO.Visible = False
+        '
+        'ABRIL
+        '
+        Me.ABRIL.HeaderText = "ABRIL"
+        Me.ABRIL.Name = "ABRIL"
+        Me.ABRIL.Visible = False
+        '
+        'MAYO
+        '
+        Me.MAYO.HeaderText = "MAYO"
+        Me.MAYO.Name = "MAYO"
+        Me.MAYO.Visible = False
+        '
+        'JUNIO
+        '
+        Me.JUNIO.HeaderText = "JUNIO"
+        Me.JUNIO.Name = "JUNIO"
+        Me.JUNIO.Visible = False
+        '
+        'JULIO
+        '
+        Me.JULIO.HeaderText = "JULIO"
+        Me.JULIO.Name = "JULIO"
+        Me.JULIO.Visible = False
+        '
+        'AGOSTO
+        '
+        Me.AGOSTO.HeaderText = "AGOSTO"
+        Me.AGOSTO.Name = "AGOSTO"
+        Me.AGOSTO.Visible = False
+        '
+        'SETIEMBRE
+        '
+        Me.SETIEMBRE.HeaderText = "SETIEMBRE"
+        Me.SETIEMBRE.Name = "SETIEMBRE"
+        Me.SETIEMBRE.Visible = False
+        '
+        'OCTUBRE
+        '
+        Me.OCTUBRE.HeaderText = "OCTUBRE"
+        Me.OCTUBRE.Name = "OCTUBRE"
+        Me.OCTUBRE.Visible = False
+        '
+        'NOVIEMBRE
+        '
+        Me.NOVIEMBRE.HeaderText = "NOVIEMBRE"
+        Me.NOVIEMBRE.Name = "NOVIEMBRE"
+        Me.NOVIEMBRE.Visible = False
+        '
+        'DICIEMBRE
+        '
+        Me.DICIEMBRE.HeaderText = "DICIEMBRE"
+        Me.DICIEMBRE.Name = "DICIEMBRE"
+        Me.DICIEMBRE.Visible = False
+        '
+        'TOTALVENTA
+        '
+        Me.TOTALVENTA.HeaderText = "Total Venta"
+        Me.TOTALVENTA.Name = "TOTALVENTA"
+        Me.TOTALVENTA.Width = 215
+        '
+        'VOLCJMU
+        '
+        Me.VOLCJMU.HeaderText = "Volumen CJ M."
+        Me.VOLCJMU.Name = "VOLCJMU"
+        Me.VOLCJMU.Width = 214
+        '
+        'MULTIPLICACIONFACTORES
+        '
+        Me.MULTIPLICACIONFACTORES.HeaderText = "Mult. Factores"
+        Me.MULTIPLICACIONFACTORES.Name = "MULTIPLICACIONFACTORES"
+        Me.MULTIPLICACIONFACTORES.Visible = False
+        '
+        'VOLUMENUNIDAD
+        '
+        Me.VOLUMENUNIDAD.HeaderText = "Volumen Unidad"
+        Me.VOLUMENUNIDAD.Name = "VOLUMENUNIDAD"
+        Me.VOLUMENUNIDAD.Width = 215
         '
         'GestionAbastecimiento
         '
@@ -275,8 +604,56 @@ Partial Class GestionAbastecimiento
     Friend WithEvents Label4 As Label
     Friend WithEvents combo_Almacen As ComboBox
     Friend WithEvents Panel2 As Panel
-    Friend WithEvents Dg_Cabecera As DataGridView
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
     Friend WithEvents ToolStripButton1 As ToolStripButton
+    Friend WithEvents Dg_Cabecera As DataGridView
+    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn5 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn6 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn7 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn8 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn9 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn10 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn11 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn12 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn13 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn14 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn15 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn16 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn17 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn18 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn19 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn20 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn21 As DataGridViewTextBoxColumn
+    Friend WithEvents CODIGO As DataGridViewTextBoxColumn
+    Friend WithEvents TIPOORIGEN As DataGridViewTextBoxColumn
+    Friend WithEvents ARTICULO As DataGridViewTextBoxColumn
+    Friend WithEvents UUCAJA As DataGridViewTextBoxColumn
+    Friend WithEvents CAJASCM As DataGridViewTextBoxColumn
+    Friend WithEvents ANCHO As DataGridViewTextBoxColumn
+    Friend WithEvents LARGO As DataGridViewTextBoxColumn
+    Friend WithEvents ALTO As DataGridViewTextBoxColumn
+    Friend WithEvents ENERO As DataGridViewTextBoxColumn
+    Friend WithEvents FEBRERO As DataGridViewTextBoxColumn
+    Friend WithEvents MARZO As DataGridViewTextBoxColumn
+    Friend WithEvents ABRIL As DataGridViewTextBoxColumn
+    Friend WithEvents MAYO As DataGridViewTextBoxColumn
+    Friend WithEvents JUNIO As DataGridViewTextBoxColumn
+    Friend WithEvents JULIO As DataGridViewTextBoxColumn
+    Friend WithEvents AGOSTO As DataGridViewTextBoxColumn
+    Friend WithEvents SETIEMBRE As DataGridViewTextBoxColumn
+    Friend WithEvents OCTUBRE As DataGridViewTextBoxColumn
+    Friend WithEvents NOVIEMBRE As DataGridViewTextBoxColumn
+    Friend WithEvents DICIEMBRE As DataGridViewTextBoxColumn
+    Friend WithEvents TOTALVENTA As DataGridViewTextBoxColumn
+    Friend WithEvents VOLCJMU As DataGridViewTextBoxColumn
+    Friend WithEvents MULTIPLICACIONFACTORES As DataGridViewTextBoxColumn
+    Friend WithEvents VOLUMENUNIDAD As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn22 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn23 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn24 As DataGridViewTextBoxColumn
 End Class

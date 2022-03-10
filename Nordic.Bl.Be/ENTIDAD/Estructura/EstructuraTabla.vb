@@ -79,6 +79,7 @@
             TablaRuta.Columns.Add("TiempoEntrega", GetType(String))
             TablaRuta.Columns.Add("Numero", GetType(String))
             TablaRuta.Columns.Add("Restriccion", GetType(String))
+            TablaRuta.Columns.Add("TipoRuta", GetType(String))
 
         Catch ex As Exception
             Throw ex

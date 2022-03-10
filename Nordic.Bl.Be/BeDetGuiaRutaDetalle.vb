@@ -105,4 +105,85 @@
         End Set
     End Property
 
+    Private volumen As String
+    Public Property pr_volumen() As String
+        Get
+            Return volumen
+        End Get
+        Set(ByVal value As String)
+            volumen = value
+        End Set
+    End Property
+
+    Private restriccion As String
+    Public Property pr_restriccion() As String
+        Get
+            Return restriccion
+        End Get
+        Set(ByVal value As String)
+            restriccion = value
+        End Set
+    End Property
+
+    Private TipoRuta As String
+    Public Property pr_TipoRuta() As String
+        Get
+            Return TipoRuta
+        End Get
+        Set(ByVal value As String)
+            TipoRuta = value
+        End Set
+    End Property
+
+    Private Cliente As String
+    Public Property pr_Cliente() As String
+        Get
+            Return Cliente
+        End Get
+        Set(ByVal value As String)
+            Cliente = value
+        End Set
+    End Property
+
+    Private DireccionEntrega As String
+    Public Property pr_DireccionEntrega() As String
+        Get
+            Return DireccionEntrega
+        End Get
+        Set(ByVal value As String)
+            DireccionEntrega = value
+        End Set
+    End Property
+
+    Private importe As Decimal
+    Public Property pr_importe() As Decimal
+        Get
+            Return importe
+        End Get
+        Set(ByVal value As Decimal)
+            importe = value
+        End Set
+    End Property
+
+
+    Private Condicion As String
+    Public Property pr_Condicion() As String
+        Get
+            Return Condicion
+        End Get
+        Set(ByVal value As String)
+            Condicion = value
+        End Set
+    End Property
+
+    Private Representante As String
+    Public Property pr_Representante() As String
+        Get
+            Return Representante
+        End Get
+        Set(ByVal value As String)
+            Representante = value
+        End Set
+    End Property
+
 End Class

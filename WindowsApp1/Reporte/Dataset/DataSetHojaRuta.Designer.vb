@@ -303,6 +303,8 @@ Partial Public Class DataSetHojaRuta
         
         Private columnRestriccion As Global.System.Data.DataColumn
         
+        Private columnTipoRuta As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -419,6 +421,14 @@ Partial Public Class DataSetHojaRuta
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property TipoRutaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTipoRuta
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -455,9 +465,9 @@ Partial Public Class DataSetHojaRuta
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function AddDataTable1Row(ByVal Guia As String, ByVal Cliente As String, ByVal Direccion As String, ByVal Condicion As String, ByVal Importe As String, ByVal Representante As String, ByVal Volumen As String, ByVal TiempoEntrega As String, ByVal Numero As String, ByVal Restriccion As String) As DataTable1Row
+        Public Overloads Function AddDataTable1Row(ByVal Guia As String, ByVal Cliente As String, ByVal Direccion As String, ByVal Condicion As String, ByVal Importe As String, ByVal Representante As String, ByVal Volumen As String, ByVal TiempoEntrega As String, ByVal Numero As String, ByVal Restriccion As String, ByVal TipoRuta As String) As DataTable1Row
             Dim rowDataTable1Row As DataTable1Row = CType(Me.NewRow,DataTable1Row)
-            Dim columnValuesArray() As Object = New Object() {Guia, Cliente, Direccion, Condicion, Importe, Representante, Volumen, TiempoEntrega, Numero, Restriccion}
+            Dim columnValuesArray() As Object = New Object() {Guia, Cliente, Direccion, Condicion, Importe, Representante, Volumen, TiempoEntrega, Numero, Restriccion, TipoRuta}
             rowDataTable1Row.ItemArray = columnValuesArray
             Me.Rows.Add(rowDataTable1Row)
             Return rowDataTable1Row
@@ -490,6 +500,7 @@ Partial Public Class DataSetHojaRuta
             Me.columnTiempoEntrega = MyBase.Columns("TiempoEntrega")
             Me.columnNumero = MyBase.Columns("Numero")
             Me.columnRestriccion = MyBase.Columns("Restriccion")
+            Me.columnTipoRuta = MyBase.Columns("TipoRuta")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -515,6 +526,8 @@ Partial Public Class DataSetHojaRuta
             MyBase.Columns.Add(Me.columnNumero)
             Me.columnRestriccion = New Global.System.Data.DataColumn("Restriccion", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnRestriccion)
+            Me.columnTipoRuta = New Global.System.Data.DataColumn("TipoRuta", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTipoRuta)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -811,6 +824,21 @@ Partial Public Class DataSetHojaRuta
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property TipoRuta() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDataTable1.TipoRutaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'TipoRuta' de la tabla 'DataTable1' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDataTable1.TipoRutaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsGuiaNull() As Boolean
             Return Me.IsNull(Me.tableDataTable1.GuiaColumn)
         End Function
@@ -927,6 +955,18 @@ Partial Public Class DataSetHojaRuta
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetRestriccionNull()
             Me(Me.tableDataTable1.RestriccionColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsTipoRutaNull() As Boolean
+            Return Me.IsNull(Me.tableDataTable1.TipoRutaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetTipoRutaNull()
+            Me(Me.tableDataTable1.TipoRutaColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
