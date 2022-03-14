@@ -310,6 +310,54 @@ Public Class AlmacenAD
         End Try
     End Function
 
+    Public Function ObtenerCantidadSalidaDetalle(calma As String, ctd As String, cnumdoc As String, codarticulo As String, serie As String, item As String, idsite As Integer, idalmacen As Integer) As DataTable
+
+        Try
+            Dim com As New SqlCommand("SP_CSE_OBTENER_CANT_SALIDA", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+            com.Parameters.Add("@calma", SqlDbType.Char, 4).Value = calma
+            com.Parameters.Add("@ctd", SqlDbType.Char, 2).Value = ctd
+            com.Parameters.Add("@cnumdoc", SqlDbType.Char, 11).Value = cnumdoc
+            com.Parameters.Add("@codarticulo", SqlDbType.Char, 25).Value = codarticulo
+            com.Parameters.Add("@serie", SqlDbType.Char, 18).Value = serie
+            com.Parameters.Add("@item", SqlDbType.Char, 4).Value = item
+            com.Parameters.Add("@idsite", SqlDbType.Int).Value = idsite
+            com.Parameters.Add("@idalmacen", SqlDbType.Int).Value = idalmacen
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            Throw ex
+            MyBase.Conn.Close()
+        End Try
+
+    End Function
+
+    Public Function ObtenerComplementeArticulo(codarticulo As String, idsite As Integer, idalmacen As Integer) As DataTable
+        Try
+            Dim com As New SqlCommand("SP_CSE_OBTENER_CAPACIDAD", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+            com.Parameters.Add("@codarticulo", SqlDbType.Char, 25).Value = codarticulo
+            com.Parameters.Add("@idsite", SqlDbType.Int).Value = idsite
+            com.Parameters.Add("@idalmacen", SqlDbType.Int).Value = idalmacen
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            Throw ex
+            MyBase.Conn.Close()
+        End Try
+
+    End Function
+
     Public Function ListarMovimientosXposicion(ByVal idposicion As Integer) As DataTable
 
         Try
@@ -1144,7 +1192,7 @@ Public Class AlmacenAD
 
 
 
-    Public Function RegistrarRecepcionGuiaDespacho(CALMA As String, CTD As String, CNUMDOC As String) As Integer
+    Public Function RegistrarRecepcionGuiaDespacho(CALMA As String, CTD As String, CNUMDOC As String, userid As Integer) As Integer
         Dim rp As Integer = 0
         Dim Comm As New SqlCommand("SP_CSE_CONFIRMARRECEPCIONGUIA", MyBase.Conn)
         Try
@@ -1153,6 +1201,7 @@ Public Class AlmacenAD
                 .Add("@C5_CALMA", SqlDbType.Char, 4).Value = CALMA
                 .Add("@C5_CTD", SqlDbType.Char, 2).Value = CTD
                 .Add("@C5_CNUMDOC", SqlDbType.Char, 11).Value = CNUMDOC
+                .Add("@iduser", SqlDbType.Int).Value = userid
             End With
             MyBase.Conn.Open()
             rp = Comm.ExecuteNonQuery
@@ -1164,7 +1213,7 @@ Public Class AlmacenAD
         Return rp
     End Function
 
-    Public Function RegistrarComentarioGuiaDespacho(CALMA As String, CTD As String, CNUMDOC As String, comentario As String) As Integer
+    Public Function RegistrarComentarioGuiaDespacho(CALMA As String, CTD As String, CNUMDOC As String, comentario As String, user_id As Integer) As Integer
         Dim rp As Integer = 0
         Dim Comm As New SqlCommand("SP_CSE_RegistrarComentarioGuiaDespacho", MyBase.Conn)
         Try
@@ -1174,6 +1223,7 @@ Public Class AlmacenAD
                 .Add("@C5_CTD", SqlDbType.Char, 2).Value = CTD
                 .Add("@C5_CNUMDOC", SqlDbType.Char, 11).Value = CNUMDOC
                 .Add("@Comentario", SqlDbType.VarChar, 200).Value = comentario
+                .Add("@userId", SqlDbType.Int).Value = user_id
             End With
             MyBase.Conn.Open()
             rp = Comm.ExecuteNonQuery

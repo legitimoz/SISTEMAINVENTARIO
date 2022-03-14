@@ -1,4 +1,5 @@
-﻿Imports Nordic.Bl.Be
+﻿Imports ClosedXML.Excel
+Imports Nordic.Bl.Be
 
 Public Class GestionDispatchOnTime
 
@@ -176,15 +177,7 @@ Public Class GestionDispatchOnTime
         Dim contadorL As Integer = 0, cantidadL As Integer = 0, ContadorP As Integer = 0, cantidadP As Integer = 0
         Try
 
-            'Dim stringfiltro As String = ""
-
-            'If cmb_filtro.SelectedIndex <> Constantes.ValorEnteroInicial Then
-            '    stringfiltro = String.Format("AREA = '{0}' ", "LOGISTICO")
-            'End If
-            'dtcabecera2.DefaultView.RowFilter = stringfiltro
-
             If Dg_Cabecera.Rows.Count > 0 Then
-
                 For Each RowCab As DataRow In dtcabecera2.Rows
                     If cmb_filtro.SelectedIndex = 1 Then
                         If RowCab.Item("ESTADO") IsNot Nothing Then
@@ -265,13 +258,54 @@ Public Class GestionDispatchOnTime
 
     Private Sub btnExportar_Click(sender As Object, e As EventArgs) Handles btnExportar.Click
         Try
-            Me.Cursor = Cursors.WaitCursor
-            GridAExcel(Dg_Cabecera)
-            Me.Cursor = Cursors.Default
+            'Me.Cursor = Cursors.WaitCursor
+            'GridAExcel(Dg_Cabecera)
+            'Me.Cursor = Cursors.Default
+            If dtcabecera2.Rows.Count > 0 Then
+                ExportExcel(dtcabecera2)
+            End If
+
         Catch ex As Exception
 
         End Try
     End Sub
+
+    Public Function ExportExcel(ByVal dt As DataTable) As Boolean
+        Dim RP As Boolean = False
+        Dim wb As New XLWorkbook()
+        Dim path As String
+
+        Try
+            savedialog_Excel.Filter = "Excel File(.xlsx)|*.xlsx"
+            savedialog_Excel.Title = Text
+            savedialog_Excel.FileName = "REPORTE DISPATCH ON TIME"
+            dt.TableName = "Hoja1"
+            Dim ws As IXLWorksheet
+            If dt.Rows.Count > Constantes.ValorEnteroInicial Then
+                If savedialog_Excel.ShowDialog = Windows.Forms.DialogResult.OK Then
+                    path = savedialog_Excel.FileName
+                    wb.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left
+                    ws = wb.Worksheets.Add(dt)
+                    ws.Style.Font.FontName = "Arial"
+                    ws.Style.Font.FontSize = 8
+                    ws.Columns().AdjustToContents()
+                    wb.SaveAs(path)
+                    Process.Start(path)
+                    RP = True
+                End If
+            Else
+                MsgBox("No existe DATA para generar Excel, Confirme Orden de Pago", MsgBoxStyle.Exclamation)
+            End If
+        Catch ex As Exception
+            Dim iderror As Integer
+            iderror = ex.HResult
+            If iderror = Constantes.errorexcel Then
+                MsgBox("Archivo Excel se encuentra abierto, cierre el archivo e intente de nuevo", MsgBoxStyle.Exclamation)
+            End If
+        End Try
+        Return RP
+
+    End Function
 
     Function GridAExcel(ByVal ElGrid As DataGridView) As Boolean
 
@@ -359,7 +393,7 @@ Public Class GestionDispatchOnTime
         Dg_Cabecera.Columns("NRO_GUIA").Width = 70
         Dg_Cabecera.Columns("NRO_GUIA").ReadOnly = True
 
-        Dg_Cabecera.Columns("FECHA_GUIA").HeaderText = "Fecha Guia"
+        Dg_Cabecera.Columns("FECHA_GUIA").HeaderText = "Fech. Recep"
         Dg_Cabecera.Columns("FECHA_GUIA").Width = 100
         Dg_Cabecera.Columns("FECHA_GUIA").ReadOnly = True
 
@@ -379,7 +413,7 @@ Public Class GestionDispatchOnTime
         Dg_Cabecera.Columns("ESTADO").Width = 70
         Dg_Cabecera.Columns("ESTADO").ReadOnly = True
 
-        Dg_Cabecera.Columns("Direferencia").HeaderText = "Diferencia"
+        Dg_Cabecera.Columns("Direferencia").HeaderText = "Diferencia Horas"
         Dg_Cabecera.Columns("Direferencia").Width = 70
         Dg_Cabecera.Columns("Direferencia").ReadOnly = True
 
@@ -395,7 +429,7 @@ Public Class GestionDispatchOnTime
         Dg_Cabecera.Columns("CALMA").Visible = False
 
         Dg_Cabecera.Columns("FECHA_GUIAB").Visible = False
-        Dg_Cabecera.ColumnS("FECHA_DESPACHOB").Visible = False
+        Dg_Cabecera.Columns("FECHA_DESPACHOB").Visible = False
 
 
     End Sub

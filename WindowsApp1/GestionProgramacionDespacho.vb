@@ -167,6 +167,9 @@ Public Class GestionProgramacionDespacho
                     Dg_Cabecera.Rows(contador).Cells("FECHAREPCECION").Value = RowRetorno.Item("FECHAREPCECION").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("HORARECEPCION").Value = RowRetorno.Item("HORARECEPCION").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("FECHA_RETORNO").Value = RowRetorno.Item("FECHA_RETORNO").ToString.Trim
+                    Dg_Cabecera.Rows(contador).Cells("FECHA_RUTA").Value = RowRetorno.Item("FECHA_RUTA").ToString.Trim
+                    Dg_Cabecera.Rows(contador).Cells("TRANSPORTISTA").Value = RowRetorno.Item("TRANSPORTISTA").ToString.Trim
+                    Dg_Cabecera.Rows(contador).Cells("USUARIO_RECEPCION").Value = RowRetorno.Item("USUARIO_RECEP").ToString.Trim
 
                     Dg_Cabecera.Rows(contador).Cells("C5_CTD").Value = RowRetorno.Item("C5_CTD").ToString.Trim
 
@@ -645,7 +648,7 @@ Public Class GestionProgramacionDespacho
                     calmaM = Dg_Cabecera.Rows(e.RowIndex).Cells("C5_CALMA").EditedFormattedValue.ToString.Trim
                     comentario = Dg_Cabecera.Rows(e.RowIndex).Cells("COMENTARIO").EditedFormattedValue.ToString.Trim
                     If cnumdocM <> "" And ctdM <> "" And calmaM <> "" And comentario <> "" Then
-                        If LlamarRegistrarComentario(calmaM, ctdM, cnumdocM, comentario) <> 0 Then
+                        If LlamarRegistrarComentario(calmaM, ctdM, cnumdocM, comentario, usr_id) <> 0 Then
                             MsgBox("Comentario Registrado Correctamente", MsgBoxStyle.Information, "SISTEMAS NORDIC")
                         End If
                     End If
@@ -1060,17 +1063,17 @@ Public Class GestionProgramacionDespacho
     Public Function LlamarConfirmarRecepcion() As Integer
         Dim RP As Integer = 0
         Try
-            RP = ObjAlmacen.RegistrarRecepcionGuiaDespacho(calma, ctd, cnumdoc)
+            RP = ObjAlmacen.RegistrarRecepcionGuiaDespacho(calma, ctd, cnumdoc, usr_id)
         Catch ex As Exception
             Throw ex
         End Try
         Return RP
     End Function
 
-    Public Function LlamarRegistrarComentario(calma As String, ctd As String, cnumdoc As String, comentario As String) As Integer
+    Public Function LlamarRegistrarComentario(calma As String, ctd As String, cnumdoc As String, comentario As String, user_id As Integer) As Integer
         Dim RP As Integer = 0
         Try
-            RP = ObjAlmacen.RegistrarComentarioGuiaDespacho(calma, ctd, cnumdoc, comentario)
+            RP = ObjAlmacen.RegistrarComentarioGuiaDespacho(calma, ctd, cnumdoc, comentario, user_id)
         Catch ex As Exception
             Throw ex
         End Try
@@ -1116,8 +1119,8 @@ Public Class GestionProgramacionDespacho
                 For Each RowPri As DataGridViewRow In Dg_Cabecera.Rows
                     If RowPri.Cells("ESTADO").Value.ToString.Trim = "RECEPCIONADO" Or RowPri.Cells("ESTADO").Value.ToString.Trim = "REPROGRAMADO" Then
                         If RowPri.Cells("MARCAR").EditedFormattedValue = True And RowPri.Cells("SITUACION").Value.ToString.Trim <> "ANULADO" Then
-                            If RowPri.Cells("LIMA_PROV").Value.ToString.Trim = "LIMA" Then
-                                If ExisteEnNueva(RowPri.Cells("DESTINO").Value.ToString.Trim) = False Then
+                            'If RowPri.Cells("LIMA_PROV").Value.ToString.Trim = "LIMA" Then
+                            If ExisteEnNueva(RowPri.Cells("DESTINO").Value.ToString.Trim) = False Then
                                     Dim rowConsolidad As DataRow = dtConsolidar.NewRow
                                     For Each rowseg As DataGridViewRow In Dg_Cabecera.Rows
 
@@ -1172,8 +1175,8 @@ Public Class GestionProgramacionDespacho
                                     totalguias = 0
                                     idconsolidado = idconsolidado + 1
                                 End If
+                                'End If
                             End If
-                        End If
                     End If
                 Next
 

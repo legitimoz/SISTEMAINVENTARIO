@@ -444,16 +444,18 @@ Public Class GestionPartesEntrada
                             DetalleImprimirForm.dtDetalleParteEntrada = dtDetalle
                             DetalleImprimirForm.ShowDialog()
                             If DetalleImprimirForm.grabado = True Then
-                                Dim reporte As New HojaIngreso With {
+                            Dim reporte As New HojaIngreso With {
                                     .nrodocumento = coddoc,
                                     .DetalleParteEntrada = DetalleImprimirForm.dtIngresoImprimir,
                                     .nombrealmacen = nombrealmacen,
                                     .nombreSite = nombreSite,
                                     .fecha = fecha,
+                                    .idalmacen = idalmacen,
+                                    .idsite = idsite,
                                     .tipomovimiento = tipomovimiento,
                                     .idrack = idRack
                                 }
-                                reporte.Show()
+                            reporte.Show()
                             End If
                         End If
                         'Else

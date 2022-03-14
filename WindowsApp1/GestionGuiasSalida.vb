@@ -90,6 +90,15 @@ Public Class GestionGuiasSalida
         Return dtretono
     End Function
 
+    Public Function LlamarObtenerCantiSalida(codarticulo As String, serie As String, item As String) As DataTable
+        Dim rpRetorno As New DataTable
+        Try
+            rpRetorno = ObjAlmacen.ObtenerCantidadSalidaDetalle(codalmacen, tipdoc, nrodoc, codarticulo, serie, item, idsite, idalmacen)
+        Catch ex As Exception
+
+        End Try
+        Return rpRetorno
+    End Function
     Public Sub ListarGuiasDetalle()
         Try
             Dim dtretorno As New DataTable
@@ -114,7 +123,14 @@ Public Class GestionGuiasSalida
                     rowDetalle.Item("SERIE") = RowRetorno.Item("SERIE").ToString.Trim
                     rowDetalle.Item("FECHA_VECIMIENTO") = RowRetorno.Item("FECHA_VECIMIENTO").ToString.Trim
                     rowDetalle.Item("CANTIDAD") = RowRetorno.Item("CANTIDAD")
-                    rowDetalle.Item("SALDO") = RowRetorno.Item("SALDO")
+
+                    'rowDetalle.Item("SALDO") = RowRetorno.Item("SALDO")
+                    Dim rp As New DataTable
+                    rp = LlamarObtenerCantiSalida(rowDetalle.Item("CODIGO").ToString.Trim, rowDetalle.Item("SERIE").ToString.Trim, rowDetalle.Item("C6_CITEM").ToString.Trim)
+                    If rp.Rows.Count > 0 Then
+                        Dim SaliCant = CType(rp.Rows(0).Item("Salida").ToString, Integer)
+                        rowDetalle.Item("SALDO") = CType(rowDetalle.Item("CANTIDAD"), Integer) - SaliCant
+                    End If
 
                     If rowDetalle.Item("UNIDAD").ToString.Trim = "UND" Then
                         If rowDetalle.Item("FACTORCAJA") <> 0 Then
@@ -130,7 +146,7 @@ Public Class GestionGuiasSalida
                     End If
 
                     If rowDetalle.Item("UNIDAD").ToString.Trim = "CJA" Then
-                        rowDetalle.Item("CAJAS") = RowRetorno.Item("SALDO")
+                        rowDetalle.Item("CAJAS") = rowDetalle.Item("SALDO")
                         If rowDetalle.Item("FACTORCAJAMASTER") <> 0 And rowDetalle.Item("CAJAS") <> 0 Then
                             rowDetalle.Item("CAJASMASTER") = Math.Round(CType(rowDetalle.Item("CAJAS").ToString, Decimal) / CType(rowDetalle.Item("FACTORCAJAMASTER"), Decimal), 2)
                         Else
@@ -326,8 +342,8 @@ Public Class GestionGuiasSalida
             If dtcabecera.Rows.Count > 0 Then
                 If dtDetalle.Rows.Count > 0 Then
                     ObtenerGuiaCab()
-                    If ValidarDetalle() = False Then
-                        If nrodoc <> "" Then
+                    'If ValidarDetalle() = False Then
+                    If nrodoc <> "" Then
                             Dim reporte As New HojaPicking With {
                                 .codigoguia = nrodoc,
                                 .DtDetallePedido = dtDetalle,
@@ -340,10 +356,10 @@ Public Class GestionGuiasSalida
                             }
                             reporte.Show()
                         End If
-                    Else
-                        ''ErrorProvider1.SetError(btn_imprimir, "Pedido Tiene Articulos Sin Lote")
+                        'Else
+                        '    ''ErrorProvider1.SetError(btn_imprimir, "Pedido Tiene Articulos Sin Lote")
+                        'End If
                     End If
-                End If
             End If
         Catch ex As Exception
             Throw ex
@@ -470,8 +486,8 @@ Public Class GestionGuiasSalida
                 row.Cells("SALIDA").Value = Not row.Cells("SALIDA").EditedFormattedValue
                 Dim valorcheck = row.Cells("SALIDA").Value
                 If valorcheck Then
-                    If row.Cells("SERIE").EditedFormattedValue.ToString.Trim <> "" And row.Cells("SERIE").EditedFormattedValue.ToString.Trim <> "SIN/LOTE" Then
-                        If CType(row.Cells("SALDO").EditedFormattedValue.ToString, Decimal) > 0 Then
+                    'If row.Cells("SERIE").EditedFormattedValue.ToString.Trim <> "" And row.Cells("SERIE").EditedFormattedValue.ToString.Trim <> "SIN/LOTE" Then
+                    If CType(row.Cells("SALDO").EditedFormattedValue.ToString, Decimal) > 0 Then
                             ObtenerGuiaCab()
                             If codalmacen <> "" And nrodoc <> "" And tipdoc <> "" Then
                                 Dim RegistrarSalidaForm As New EditarSalidaAlmacen
@@ -520,11 +536,11 @@ Public Class GestionGuiasSalida
                             MsgBox("El Articulo Saliò en su totalidad", MsgBoxStyle.Exclamation)
                             row.Cells("SALIDA").Value = False
                         End If
-                    Else
-                        MsgBox("El Articulo no tiene un Lote", MsgBoxStyle.Exclamation)
-                        row.Cells("SALIDA").Value = False
+                        'Else
+                        '    MsgBox("El Articulo no tiene un Lote", MsgBoxStyle.Exclamation)
+                        '    row.Cells("SALIDA").Value = False
+                        'End If
                     End If
-                End If
             End If
         End If
     End Sub
