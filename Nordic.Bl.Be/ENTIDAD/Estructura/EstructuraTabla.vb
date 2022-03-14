@@ -31,6 +31,8 @@
                 TablaAlmacen.Columns.Add("Cajas", GetType(String))
                 TablaAlmacen.Columns.Add("CajasM", GetType(String))
                 TablaAlmacen.Columns.Add("Saldo", GetType(String))
+                TablaAlmacen.Columns.Add("CJM", GetType(String))
+                TablaAlmacen.Columns.Add("CJ", GetType(String))
             Else
                 TablaAlmacen.Columns.Add("CodArticulo", GetType(String))
                 TablaAlmacen.Columns.Add("Articulo", GetType(String))
@@ -43,6 +45,7 @@
                 TablaAlmacen.Columns.Add("Cajas", GetType(String))
                 TablaAlmacen.Columns.Add("CajasM", GetType(String))
                 TablaAlmacen.Columns.Add("Saldo", GetType(String))
+                'TablaAlmacen.Columns.Add("Unidad", GetType(String))
             End If
         Catch ex As Exception
             Throw ex

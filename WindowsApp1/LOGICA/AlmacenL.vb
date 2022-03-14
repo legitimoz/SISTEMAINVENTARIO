@@ -99,16 +99,16 @@ Public Class AlmacenL
         End Try
     End Function
 
-    Public Function RegistrarRecepcionGuiaDespacho(CALMA As String, CTD As String, CNUMDOC As String) As Integer
+    Public Function RegistrarRecepcionGuiaDespacho(CALMA As String, CTD As String, CNUMDOC As String, userid As Integer) As Integer
         Try
-            Return objAlmacen.RegistrarRecepcionGuiaDespacho(CALMA, CTD, CNUMDOC)
+            Return objAlmacen.RegistrarRecepcionGuiaDespacho(CALMA, CTD, CNUMDOC, userid)
         Catch ex As Exception
             Throw ex
         End Try
     End Function
-    Public Function RegistrarComentarioGuiaDespacho(CALMA As String, CTD As String, CNUMDOC As String, comentario As String) As Integer
+    Public Function RegistrarComentarioGuiaDespacho(CALMA As String, CTD As String, CNUMDOC As String, comentario As String, user_id As Integer) As Integer
         Try
-            Return objAlmacen.RegistrarComentarioGuiaDespacho(CALMA, CTD, CNUMDOC, comentario)
+            Return objAlmacen.RegistrarComentarioGuiaDespacho(CALMA, CTD, CNUMDOC, comentario, user_id)
         Catch ex As Exception
             Throw ex
         End Try
@@ -381,6 +381,22 @@ Public Class AlmacenL
     Public Function ObtenerPosicionesHojaPicking(ByVal codarticulo As String, ByVal Lote As String, cantidadrequerida As Decimal, idalmacen As Integer, idsite As Integer) As DataTable
         Try
             Return objAlmacen.ObtenerPosicionesHojaPicking(codarticulo, Lote, cantidadrequerida, idalmacen, idsite)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function ObtenerCantidadSalidaDetalle(calma As String, ctd As String, cnumdoc As String, codarticulo As String, serie As String, item As String, idsite As Integer, idalmacen As Integer) As DataTable
+        Try
+            Return objAlmacen.ObtenerCantidadSalidaDetalle(calma, ctd, cnumdoc, codarticulo, serie, item, idsite, idalmacen)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function ObtenerComplementeArticulo(codarticulo As String, idsite As Integer, idalmacen As Integer) As DataTable
+        Try
+            Return objAlmacen.ObtenerComplementeArticulo(codarticulo, idsite, idalmacen)
         Catch ex As Exception
             Throw ex
         End Try

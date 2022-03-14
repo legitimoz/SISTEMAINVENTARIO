@@ -24,6 +24,8 @@ Partial Class GestionNonConformityRatio
     Private Sub InitializeComponent()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.cmb_tipo = New System.Windows.Forms.ComboBox()
         Me.lbl_indicador = New System.Windows.Forms.Label()
         Me.txt_indicador = New System.Windows.Forms.Label()
         Me.LBL_can = New System.Windows.Forms.Label()
@@ -37,8 +39,6 @@ Partial Class GestionNonConformityRatio
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Dg_Cabecera = New System.Windows.Forms.DataGridView()
-        Me.cmb_tipo = New System.Windows.Forms.ComboBox()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.Dg_Cabecera, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,6 +77,25 @@ Partial Class GestionNonConformityRatio
         Me.GroupBox1.Size = New System.Drawing.Size(1291, 72)
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(37, 43)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(34, 13)
+        Me.Label4.TabIndex = 104
+        Me.Label4.Text = "Tipo :"
+        '
+        'cmb_tipo
+        '
+        Me.cmb_tipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb_tipo.FormattingEnabled = True
+        Me.cmb_tipo.Items.AddRange(New Object() {"GENERAL", "LOGISTICO"})
+        Me.cmb_tipo.Location = New System.Drawing.Point(80, 40)
+        Me.cmb_tipo.Name = "cmb_tipo"
+        Me.cmb_tipo.Size = New System.Drawing.Size(121, 21)
+        Me.cmb_tipo.TabIndex = 103
         '
         'lbl_indicador
         '
@@ -232,25 +251,6 @@ Partial Class GestionNonConformityRatio
         Me.Dg_Cabecera.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.Dg_Cabecera.Size = New System.Drawing.Size(1299, 349)
         Me.Dg_Cabecera.TabIndex = 55
-        '
-        'cmb_tipo
-        '
-        Me.cmb_tipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmb_tipo.FormattingEnabled = True
-        Me.cmb_tipo.Items.AddRange(New Object() {"GENERAL", "LOGISTICO"})
-        Me.cmb_tipo.Location = New System.Drawing.Point(80, 40)
-        Me.cmb_tipo.Name = "cmb_tipo"
-        Me.cmb_tipo.Size = New System.Drawing.Size(121, 21)
-        Me.cmb_tipo.TabIndex = 103
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(37, 43)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(34, 13)
-        Me.Label4.TabIndex = 104
-        Me.Label4.Text = "Tipo :"
         '
         'GestionNonConformityRatio
         '

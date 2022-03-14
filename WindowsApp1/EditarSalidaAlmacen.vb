@@ -24,7 +24,7 @@ Public Class EditarSalidaAlmacen
             idalmacen = CType(ConfigurationManager.AppSettings("idalmac").ToString.Trim, Integer)
             idsite = CType(ConfigurationManager.AppSettings("CodigoSite").ToString.Trim, Integer)
 
-            If CodArticulo <> "" And Lote <> "" And cantidad <> 0 Then
+            If CodArticulo <> "" And cantidad <> 0 Then
                 txt_codigo.Text = CodArticulo
                 txt_lote.Text = Lote
                 txt_cantidadsolicitada.Text = CType(cantidad, Integer)
@@ -69,7 +69,7 @@ Public Class EditarSalidaAlmacen
     End Sub
 
     Public Sub Obtenerposiciones()
-        If Lote <> "" And CodArticulo <> "" And cantidad <> 0 Then
+        If CodArticulo <> "" And cantidad <> 0 Then
             dtPosiciones = LlamarListarPosicionesHojaPicking(CodArticulo, Lote, cantidad, idalmacen, idsite)
             If dtPosiciones.Rows.Count > 0 Then
                 Dg_DatosPosiciones.DataSource = dtPosiciones

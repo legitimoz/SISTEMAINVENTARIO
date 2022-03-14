@@ -34,6 +34,9 @@ Public Class DetalleIngresoImprimir
             Dg_Detalle.Columns("CodArticulo").ReadOnly = True
             Dg_Detalle.Columns("CodArticulo").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
 
+            Dg_Detalle.Columns("CJM").Visible = False
+            Dg_Detalle.Columns("CJ").Visible = False
+
             Dg_Detalle.Columns("Articulo").HeaderText = "Articulo"
             Dg_Detalle.Columns("Articulo").Width = 250
             Dg_Detalle.Columns("Articulo").ReadOnly = True
@@ -153,6 +156,8 @@ Public Class DetalleIngresoImprimir
                     RowImpre.Item("Posicion1") = ""
                     RowImpre.Item("Posicion2") = ""
                     RowImpre.Item("Posicion3") = ""
+                    RowImpre.Item("CJM") = rowPe.Item("FACTORCAJAMASTER")
+                    RowImpre.Item("CJ") = rowPe.Item("FACTORCAJA")
 
                     If rowPe.Item("UNIDAD").ToString = "UND" Then
                         If rowPe.Item("FACTORCAJA").ToString <> 0 And rowPe.Item("FACTORCAJAMASTER").ToString <> 0 Then

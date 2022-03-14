@@ -28,6 +28,12 @@ Partial Class GestionProgramacionDespacho
         Me.Dg_Cabecera = New System.Windows.Forms.DataGridView()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.txt_anuladas = New System.Windows.Forms.Label()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.txt_pendientes = New System.Windows.Forms.Label()
+        Me.txt_recepcionadas = New System.Windows.Forms.Label()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.cmb_serie = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.CheckMarcar = New System.Windows.Forms.CheckBox()
@@ -86,17 +92,12 @@ Partial Class GestionProgramacionDespacho
         Me.DataGridViewTextBoxColumn33 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn34 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn35 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.txt_anuladas = New System.Windows.Forms.Label()
-        Me.Button5 = New System.Windows.Forms.Button()
-        Me.txt_pendientes = New System.Windows.Forms.Label()
-        Me.txt_recepcionadas = New System.Windows.Forms.Label()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.MARCAR = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.SITUACION = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ESTADO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FECHAREPCECION = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.HORARECEPCION = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.USUARIO_RECEPCION = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FECHA = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FECHA_GUIA = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.HORA = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -128,6 +129,8 @@ Partial Class GestionProgramacionDespacho
         Me.SERIE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.COMENTARIO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SERIE2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FECHA_RUTA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TRANSPORTISTA = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FECHA_RETORNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel6.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -166,7 +169,7 @@ Partial Class GestionProgramacionDespacho
         Me.Dg_Cabecera.AllowUserToDeleteRows = False
         Me.Dg_Cabecera.BackgroundColor = System.Drawing.Color.White
         Me.Dg_Cabecera.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Dg_Cabecera.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.MARCAR, Me.SITUACION, Me.ESTADO, Me.FECHAREPCECION, Me.HORARECEPCION, Me.FECHA, Me.FECHA_GUIA, Me.HORA, Me.HORA_GUIA, Me.COD_PED, Me.NRO_GUIA, Me.CONDICION, Me.RUC, Me.NOM_CLIENTE, Me.DIRECCION_ENTREGA, Me.UBIGEO, Me.PROVINCIA, Me.DEPARTAMENTO, Me.DISTRITO, Me.LIMA_PROV, Me.CANAL, Me.TRANSPORTE, Me.M3UN, Me.IMPORTE, Me.M3FIN, Me.TIEMPOENTREGA, Me.DESTINO, Me.RUTA, Me.DETALLE, Me.RESTRICCION, Me.REPRESENTANTE, Me.C5_CTD, Me.C5_CALMA, Me.SERIE, Me.COMENTARIO, Me.SERIE2, Me.FECHA_RETORNO})
+        Me.Dg_Cabecera.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.MARCAR, Me.SITUACION, Me.ESTADO, Me.FECHAREPCECION, Me.HORARECEPCION, Me.USUARIO_RECEPCION, Me.FECHA, Me.FECHA_GUIA, Me.HORA, Me.HORA_GUIA, Me.COD_PED, Me.NRO_GUIA, Me.CONDICION, Me.RUC, Me.NOM_CLIENTE, Me.DIRECCION_ENTREGA, Me.UBIGEO, Me.PROVINCIA, Me.DEPARTAMENTO, Me.DISTRITO, Me.LIMA_PROV, Me.CANAL, Me.TRANSPORTE, Me.M3UN, Me.IMPORTE, Me.M3FIN, Me.TIEMPOENTREGA, Me.DESTINO, Me.RUTA, Me.DETALLE, Me.RESTRICCION, Me.REPRESENTANTE, Me.C5_CTD, Me.C5_CALMA, Me.SERIE, Me.COMENTARIO, Me.SERIE2, Me.FECHA_RUTA, Me.TRANSPORTISTA, Me.FECHA_RETORNO})
         Me.Dg_Cabecera.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Dg_Cabecera.Location = New System.Drawing.Point(0, 0)
         Me.Dg_Cabecera.Margin = New System.Windows.Forms.Padding(0)
@@ -212,6 +215,72 @@ Partial Class GestionProgramacionDespacho
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(1295, 99)
         Me.Panel3.TabIndex = 50
+        '
+        'txt_anuladas
+        '
+        Me.txt_anuladas.AutoSize = True
+        Me.txt_anuladas.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
+        Me.txt_anuladas.Location = New System.Drawing.Point(1252, 13)
+        Me.txt_anuladas.Name = "txt_anuladas"
+        Me.txt_anuladas.Size = New System.Drawing.Size(12, 13)
+        Me.txt_anuladas.TabIndex = 101
+        Me.txt_anuladas.Text = "-"
+        '
+        'Button5
+        '
+        Me.Button5.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.Button5.Font = New System.Drawing.Font("Tahoma", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.Button5.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.Button5.Location = New System.Drawing.Point(1078, 6)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(167, 23)
+        Me.Button5.TabIndex = 100
+        Me.Button5.Text = "GUIAS ANULADAS"
+        Me.Button5.UseVisualStyleBackColor = False
+        '
+        'txt_pendientes
+        '
+        Me.txt_pendientes.AutoSize = True
+        Me.txt_pendientes.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
+        Me.txt_pendientes.Location = New System.Drawing.Point(1252, 36)
+        Me.txt_pendientes.Name = "txt_pendientes"
+        Me.txt_pendientes.Size = New System.Drawing.Size(12, 13)
+        Me.txt_pendientes.TabIndex = 99
+        Me.txt_pendientes.Text = "-"
+        '
+        'txt_recepcionadas
+        '
+        Me.txt_recepcionadas.AutoSize = True
+        Me.txt_recepcionadas.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
+        Me.txt_recepcionadas.Location = New System.Drawing.Point(1252, 60)
+        Me.txt_recepcionadas.Name = "txt_recepcionadas"
+        Me.txt_recepcionadas.Size = New System.Drawing.Size(12, 13)
+        Me.txt_recepcionadas.TabIndex = 98
+        Me.txt_recepcionadas.Text = "-"
+        '
+        'Button3
+        '
+        Me.Button3.BackColor = System.Drawing.Color.Crimson
+        Me.Button3.Font = New System.Drawing.Font("Tahoma", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.Button3.ForeColor = System.Drawing.Color.White
+        Me.Button3.Location = New System.Drawing.Point(1078, 31)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(167, 23)
+        Me.Button3.TabIndex = 97
+        Me.Button3.Text = "PENDIENTES DE RECEPCION"
+        Me.Button3.UseVisualStyleBackColor = False
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.OliveDrab
+        Me.Button1.Font = New System.Drawing.Font("Tahoma", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.Button1.ForeColor = System.Drawing.Color.White
+        Me.Button1.Location = New System.Drawing.Point(1078, 55)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(167, 23)
+        Me.Button1.TabIndex = 96
+        Me.Button1.Text = "RECEPCIONADAS"
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'cmb_serie
         '
@@ -615,72 +684,6 @@ Partial Class GestionProgramacionDespacho
         Me.DataGridViewTextBoxColumn35.Name = "DataGridViewTextBoxColumn35"
         Me.DataGridViewTextBoxColumn35.Visible = False
         '
-        'txt_anuladas
-        '
-        Me.txt_anuladas.AutoSize = True
-        Me.txt_anuladas.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.txt_anuladas.Location = New System.Drawing.Point(1252, 13)
-        Me.txt_anuladas.Name = "txt_anuladas"
-        Me.txt_anuladas.Size = New System.Drawing.Size(12, 13)
-        Me.txt_anuladas.TabIndex = 101
-        Me.txt_anuladas.Text = "-"
-        '
-        'Button5
-        '
-        Me.Button5.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.Button5.Font = New System.Drawing.Font("Tahoma", 7.0!, System.Drawing.FontStyle.Bold)
-        Me.Button5.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.Button5.Location = New System.Drawing.Point(1078, 6)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(167, 23)
-        Me.Button5.TabIndex = 100
-        Me.Button5.Text = "GUIAS ANULADAS"
-        Me.Button5.UseVisualStyleBackColor = False
-        '
-        'txt_pendientes
-        '
-        Me.txt_pendientes.AutoSize = True
-        Me.txt_pendientes.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.txt_pendientes.Location = New System.Drawing.Point(1252, 36)
-        Me.txt_pendientes.Name = "txt_pendientes"
-        Me.txt_pendientes.Size = New System.Drawing.Size(12, 13)
-        Me.txt_pendientes.TabIndex = 99
-        Me.txt_pendientes.Text = "-"
-        '
-        'txt_recepcionadas
-        '
-        Me.txt_recepcionadas.AutoSize = True
-        Me.txt_recepcionadas.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.txt_recepcionadas.Location = New System.Drawing.Point(1252, 60)
-        Me.txt_recepcionadas.Name = "txt_recepcionadas"
-        Me.txt_recepcionadas.Size = New System.Drawing.Size(12, 13)
-        Me.txt_recepcionadas.TabIndex = 98
-        Me.txt_recepcionadas.Text = "-"
-        '
-        'Button3
-        '
-        Me.Button3.BackColor = System.Drawing.Color.Crimson
-        Me.Button3.Font = New System.Drawing.Font("Tahoma", 7.0!, System.Drawing.FontStyle.Bold)
-        Me.Button3.ForeColor = System.Drawing.Color.White
-        Me.Button3.Location = New System.Drawing.Point(1078, 31)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(167, 23)
-        Me.Button3.TabIndex = 97
-        Me.Button3.Text = "PENDIENTES DE RECEPCION"
-        Me.Button3.UseVisualStyleBackColor = False
-        '
-        'Button1
-        '
-        Me.Button1.BackColor = System.Drawing.Color.OliveDrab
-        Me.Button1.Font = New System.Drawing.Font("Tahoma", 7.0!, System.Drawing.FontStyle.Bold)
-        Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(1078, 55)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(167, 23)
-        Me.Button1.TabIndex = 96
-        Me.Button1.Text = "RECEPCIONADAS"
-        Me.Button1.UseVisualStyleBackColor = False
-        '
         'MARCAR
         '
         Me.MARCAR.HeaderText = "Marcar"
@@ -705,6 +708,11 @@ Partial Class GestionProgramacionDespacho
         '
         Me.HORARECEPCION.HeaderText = "Hora Recepcion"
         Me.HORARECEPCION.Name = "HORARECEPCION"
+        '
+        'USUARIO_RECEPCION
+        '
+        Me.USUARIO_RECEPCION.HeaderText = "Usuario Recepcion"
+        Me.USUARIO_RECEPCION.Name = "USUARIO_RECEPCION"
         '
         'FECHA
         '
@@ -867,6 +875,16 @@ Partial Class GestionProgramacionDespacho
         Me.SERIE2.Name = "SERIE2"
         Me.SERIE2.Visible = False
         '
+        'FECHA_RUTA
+        '
+        Me.FECHA_RUTA.HeaderText = "Fecha Ruta"
+        Me.FECHA_RUTA.Name = "FECHA_RUTA"
+        '
+        'TRANSPORTISTA
+        '
+        Me.TRANSPORTISTA.HeaderText = "Transportista"
+        Me.TRANSPORTISTA.Name = "TRANSPORTISTA"
+        '
         'FECHA_RETORNO
         '
         Me.FECHA_RETORNO.HeaderText = "Fecha Retorno"
@@ -967,6 +985,7 @@ Partial Class GestionProgramacionDespacho
     Friend WithEvents ESTADO As DataGridViewTextBoxColumn
     Friend WithEvents FECHAREPCECION As DataGridViewTextBoxColumn
     Friend WithEvents HORARECEPCION As DataGridViewTextBoxColumn
+    Friend WithEvents USUARIO_RECEPCION As DataGridViewTextBoxColumn
     Friend WithEvents FECHA As DataGridViewTextBoxColumn
     Friend WithEvents FECHA_GUIA As DataGridViewTextBoxColumn
     Friend WithEvents HORA As DataGridViewTextBoxColumn
@@ -998,5 +1017,7 @@ Partial Class GestionProgramacionDespacho
     Friend WithEvents SERIE As DataGridViewTextBoxColumn
     Friend WithEvents COMENTARIO As DataGridViewTextBoxColumn
     Friend WithEvents SERIE2 As DataGridViewTextBoxColumn
+    Friend WithEvents FECHA_RUTA As DataGridViewTextBoxColumn
+    Friend WithEvents TRANSPORTISTA As DataGridViewTextBoxColumn
     Friend WithEvents FECHA_RETORNO As DataGridViewTextBoxColumn
 End Class
