@@ -22,10 +22,55 @@ Partial Class GestionProgramacionDespacho
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GestionProgramacionDespacho))
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Dg_Cabecera = New System.Windows.Forms.DataGridView()
+        Me.MARCAR = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.SITUACION = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ESTADO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FECHAREPCECION = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.HORARECEPCION = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.USUARIO_RECEPCION = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FECHA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FECHA_GUIA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.HORA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.HORA_GUIA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.COD_PED = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NRO_GUIA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CONDICION = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RUC = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NOM_CLIENTE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DIRECCION_ENTREGA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.UBIGEO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PROVINCIA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DEPARTAMENTO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DISTRITO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LIMA_PROV = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CANAL = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TRANSPORTE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.M3UN = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IMPORTE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.M3FIN = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TIEMPOENTREGA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DESTINO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RUTA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DETALLE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RESTRICCION = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.REPRESENTANTE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.C5_CTD = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.C5_CALMA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SERIE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.COMENTARIO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SERIE2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FECHA_RUTA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TRANSPORTISTA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FECHA_RETORNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GLOSA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FECHAVENCEOC = New WindowsApp1.DateTimeGridColumn()
+        Me.idcosto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NombreCosto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.txt_anuladas = New System.Windows.Forms.Label()
@@ -92,46 +137,11 @@ Partial Class GestionProgramacionDespacho
         Me.DataGridViewTextBoxColumn33 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn34 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn35 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MARCAR = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.SITUACION = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ESTADO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FECHAREPCECION = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.HORARECEPCION = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.USUARIO_RECEPCION = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FECHA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FECHA_GUIA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.HORA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.HORA_GUIA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.COD_PED = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NRO_GUIA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CONDICION = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RUC = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NOM_CLIENTE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DIRECCION_ENTREGA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.UBIGEO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PROVINCIA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DEPARTAMENTO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DISTRITO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LIMA_PROV = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CANAL = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TRANSPORTE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.M3UN = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IMPORTE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.M3FIN = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TIEMPOENTREGA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DESTINO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RUTA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DETALLE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RESTRICCION = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.REPRESENTANTE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.C5_CTD = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.C5_CALMA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SERIE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.COMENTARIO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SERIE2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FECHA_RUTA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TRANSPORTISTA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FECHA_RETORNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn36 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn37 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn38 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn39 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn40 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel6.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.Dg_Cabecera, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -169,7 +179,7 @@ Partial Class GestionProgramacionDespacho
         Me.Dg_Cabecera.AllowUserToDeleteRows = False
         Me.Dg_Cabecera.BackgroundColor = System.Drawing.Color.White
         Me.Dg_Cabecera.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Dg_Cabecera.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.MARCAR, Me.SITUACION, Me.ESTADO, Me.FECHAREPCECION, Me.HORARECEPCION, Me.USUARIO_RECEPCION, Me.FECHA, Me.FECHA_GUIA, Me.HORA, Me.HORA_GUIA, Me.COD_PED, Me.NRO_GUIA, Me.CONDICION, Me.RUC, Me.NOM_CLIENTE, Me.DIRECCION_ENTREGA, Me.UBIGEO, Me.PROVINCIA, Me.DEPARTAMENTO, Me.DISTRITO, Me.LIMA_PROV, Me.CANAL, Me.TRANSPORTE, Me.M3UN, Me.IMPORTE, Me.M3FIN, Me.TIEMPOENTREGA, Me.DESTINO, Me.RUTA, Me.DETALLE, Me.RESTRICCION, Me.REPRESENTANTE, Me.C5_CTD, Me.C5_CALMA, Me.SERIE, Me.COMENTARIO, Me.SERIE2, Me.FECHA_RUTA, Me.TRANSPORTISTA, Me.FECHA_RETORNO})
+        Me.Dg_Cabecera.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.MARCAR, Me.SITUACION, Me.ESTADO, Me.FECHAREPCECION, Me.HORARECEPCION, Me.USUARIO_RECEPCION, Me.FECHA, Me.FECHA_GUIA, Me.HORA, Me.HORA_GUIA, Me.COD_PED, Me.NRO_GUIA, Me.CONDICION, Me.RUC, Me.NOM_CLIENTE, Me.DIRECCION_ENTREGA, Me.UBIGEO, Me.PROVINCIA, Me.DEPARTAMENTO, Me.DISTRITO, Me.LIMA_PROV, Me.CANAL, Me.TRANSPORTE, Me.M3UN, Me.IMPORTE, Me.M3FIN, Me.TIEMPOENTREGA, Me.DESTINO, Me.RUTA, Me.DETALLE, Me.RESTRICCION, Me.REPRESENTANTE, Me.C5_CTD, Me.C5_CALMA, Me.SERIE, Me.COMENTARIO, Me.SERIE2, Me.FECHA_RUTA, Me.TRANSPORTISTA, Me.FECHA_RETORNO, Me.GLOSA, Me.FECHAVENCEOC, Me.idcosto, Me.NombreCosto})
         Me.Dg_Cabecera.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Dg_Cabecera.Location = New System.Drawing.Point(0, 0)
         Me.Dg_Cabecera.Margin = New System.Windows.Forms.Padding(0)
@@ -181,6 +191,238 @@ Partial Class GestionProgramacionDespacho
         Me.Dg_Cabecera.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.Dg_Cabecera.Size = New System.Drawing.Size(1295, 287)
         Me.Dg_Cabecera.TabIndex = 9
+        '
+        'MARCAR
+        '
+        Me.MARCAR.HeaderText = "Marcar"
+        Me.MARCAR.Name = "MARCAR"
+        '
+        'SITUACION
+        '
+        Me.SITUACION.HeaderText = "Situacion"
+        Me.SITUACION.Name = "SITUACION"
+        '
+        'ESTADO
+        '
+        Me.ESTADO.HeaderText = "Estado"
+        Me.ESTADO.Name = "ESTADO"
+        '
+        'FECHAREPCECION
+        '
+        Me.FECHAREPCECION.HeaderText = "Fecha Recepcion"
+        Me.FECHAREPCECION.Name = "FECHAREPCECION"
+        '
+        'HORARECEPCION
+        '
+        Me.HORARECEPCION.HeaderText = "Hora Recepcion"
+        Me.HORARECEPCION.Name = "HORARECEPCION"
+        '
+        'USUARIO_RECEPCION
+        '
+        Me.USUARIO_RECEPCION.HeaderText = "Usuario Recepcion"
+        Me.USUARIO_RECEPCION.Name = "USUARIO_RECEPCION"
+        '
+        'FECHA
+        '
+        Me.FECHA.HeaderText = "Fecha"
+        Me.FECHA.Name = "FECHA"
+        Me.FECHA.Visible = False
+        '
+        'FECHA_GUIA
+        '
+        Me.FECHA_GUIA.HeaderText = "Fecha Guia"
+        Me.FECHA_GUIA.Name = "FECHA_GUIA"
+        '
+        'HORA
+        '
+        Me.HORA.HeaderText = "Hora"
+        Me.HORA.Name = "HORA"
+        '
+        'HORA_GUIA
+        '
+        Me.HORA_GUIA.HeaderText = "Hora Guia"
+        Me.HORA_GUIA.Name = "HORA_GUIA"
+        Me.HORA_GUIA.Visible = False
+        '
+        'COD_PED
+        '
+        Me.COD_PED.HeaderText = "Cod Pedido"
+        Me.COD_PED.Name = "COD_PED"
+        '
+        'NRO_GUIA
+        '
+        Me.NRO_GUIA.HeaderText = "N° Guia"
+        Me.NRO_GUIA.Name = "NRO_GUIA"
+        '
+        'CONDICION
+        '
+        Me.CONDICION.HeaderText = "Condicion Pago"
+        Me.CONDICION.Name = "CONDICION"
+        '
+        'RUC
+        '
+        Me.RUC.HeaderText = "Ruc Cliente"
+        Me.RUC.Name = "RUC"
+        '
+        'NOM_CLIENTE
+        '
+        Me.NOM_CLIENTE.HeaderText = "Cliente"
+        Me.NOM_CLIENTE.Name = "NOM_CLIENTE"
+        '
+        'DIRECCION_ENTREGA
+        '
+        Me.DIRECCION_ENTREGA.HeaderText = "Direccion Entrega"
+        Me.DIRECCION_ENTREGA.Name = "DIRECCION_ENTREGA"
+        '
+        'UBIGEO
+        '
+        Me.UBIGEO.HeaderText = "Ubigeo"
+        Me.UBIGEO.Name = "UBIGEO"
+        '
+        'PROVINCIA
+        '
+        Me.PROVINCIA.HeaderText = "Provincia"
+        Me.PROVINCIA.Name = "PROVINCIA"
+        '
+        'DEPARTAMENTO
+        '
+        Me.DEPARTAMENTO.HeaderText = "Departamento"
+        Me.DEPARTAMENTO.Name = "DEPARTAMENTO"
+        '
+        'DISTRITO
+        '
+        Me.DISTRITO.HeaderText = "Distrito"
+        Me.DISTRITO.Name = "DISTRITO"
+        '
+        'LIMA_PROV
+        '
+        Me.LIMA_PROV.HeaderText = "Lima / Provincia"
+        Me.LIMA_PROV.Name = "LIMA_PROV"
+        '
+        'CANAL
+        '
+        Me.CANAL.HeaderText = "Canal"
+        Me.CANAL.Name = "CANAL"
+        '
+        'TRANSPORTE
+        '
+        Me.TRANSPORTE.HeaderText = "Transporte"
+        Me.TRANSPORTE.Name = "TRANSPORTE"
+        '
+        'M3UN
+        '
+        Me.M3UN.HeaderText = "Metros Cubicos"
+        Me.M3UN.Name = "M3UN"
+        '
+        'IMPORTE
+        '
+        Me.IMPORTE.HeaderText = "Importe"
+        Me.IMPORTE.Name = "IMPORTE"
+        '
+        'M3FIN
+        '
+        Me.M3FIN.HeaderText = "M. Cubicos Final"
+        Me.M3FIN.Name = "M3FIN"
+        '
+        'TIEMPOENTREGA
+        '
+        Me.TIEMPOENTREGA.HeaderText = "Tiempo Entrega"
+        Me.TIEMPOENTREGA.Name = "TIEMPOENTREGA"
+        '
+        'DESTINO
+        '
+        Me.DESTINO.HeaderText = "Destino"
+        Me.DESTINO.Name = "DESTINO"
+        '
+        'RUTA
+        '
+        Me.RUTA.HeaderText = "Ruta"
+        Me.RUTA.Name = "RUTA"
+        '
+        'DETALLE
+        '
+        Me.DETALLE.HeaderText = "Detalle Ruta"
+        Me.DETALLE.Name = "DETALLE"
+        '
+        'RESTRICCION
+        '
+        Me.RESTRICCION.HeaderText = "Restriccion"
+        Me.RESTRICCION.Name = "RESTRICCION"
+        '
+        'REPRESENTANTE
+        '
+        Me.REPRESENTANTE.HeaderText = "Representante"
+        Me.REPRESENTANTE.Name = "REPRESENTANTE"
+        '
+        'C5_CTD
+        '
+        Me.C5_CTD.HeaderText = "C5_CTD"
+        Me.C5_CTD.Name = "C5_CTD"
+        Me.C5_CTD.Visible = False
+        '
+        'C5_CALMA
+        '
+        Me.C5_CALMA.HeaderText = "C5_CALMA"
+        Me.C5_CALMA.Name = "C5_CALMA"
+        Me.C5_CALMA.Visible = False
+        '
+        'SERIE
+        '
+        Me.SERIE.HeaderText = "Column1"
+        Me.SERIE.Name = "SERIE"
+        Me.SERIE.Visible = False
+        '
+        'COMENTARIO
+        '
+        Me.COMENTARIO.HeaderText = "Comentario"
+        Me.COMENTARIO.Name = "COMENTARIO"
+        '
+        'SERIE2
+        '
+        Me.SERIE2.HeaderText = "SERIE2"
+        Me.SERIE2.Name = "SERIE2"
+        Me.SERIE2.Visible = False
+        '
+        'FECHA_RUTA
+        '
+        Me.FECHA_RUTA.HeaderText = "Fecha Ruta"
+        Me.FECHA_RUTA.Name = "FECHA_RUTA"
+        '
+        'TRANSPORTISTA
+        '
+        Me.TRANSPORTISTA.HeaderText = "Transportista"
+        Me.TRANSPORTISTA.Name = "TRANSPORTISTA"
+        '
+        'FECHA_RETORNO
+        '
+        Me.FECHA_RETORNO.HeaderText = "Fecha Retorno"
+        Me.FECHA_RETORNO.Name = "FECHA_RETORNO"
+        '
+        'GLOSA
+        '
+        Me.GLOSA.HeaderText = "Glosa"
+        Me.GLOSA.Name = "GLOSA"
+        '
+        'FECHAVENCEOC
+        '
+        DataGridViewCellStyle1.Format = "d"
+        DataGridViewCellStyle1.NullValue = Nothing
+        Me.FECHAVENCEOC.DefaultCellStyle = DataGridViewCellStyle1
+        Me.FECHAVENCEOC.HeaderText = "Fech. Vence OC"
+        Me.FECHAVENCEOC.Name = "FECHAVENCEOC"
+        Me.FECHAVENCEOC.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.FECHAVENCEOC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'idcosto
+        '
+        Me.idcosto.HeaderText = "idcosto"
+        Me.idcosto.Name = "idcosto"
+        Me.idcosto.Visible = False
+        '
+        'NombreCosto
+        '
+        Me.NombreCosto.HeaderText = "Centro Costos"
+        Me.NombreCosto.Name = "NombreCosto"
         '
         'Panel1
         '
@@ -546,6 +788,7 @@ Partial Class GestionProgramacionDespacho
         '
         Me.DataGridViewTextBoxColumn9.HeaderText = "Cliente"
         Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
+        Me.DataGridViewTextBoxColumn9.Visible = False
         '
         'DataGridViewTextBoxColumn10
         '
@@ -677,6 +920,7 @@ Partial Class GestionProgramacionDespacho
         '
         Me.DataGridViewTextBoxColumn34.HeaderText = "Comentario"
         Me.DataGridViewTextBoxColumn34.Name = "DataGridViewTextBoxColumn34"
+        Me.DataGridViewTextBoxColumn34.Visible = False
         '
         'DataGridViewTextBoxColumn35
         '
@@ -684,211 +928,31 @@ Partial Class GestionProgramacionDespacho
         Me.DataGridViewTextBoxColumn35.Name = "DataGridViewTextBoxColumn35"
         Me.DataGridViewTextBoxColumn35.Visible = False
         '
-        'MARCAR
+        'DataGridViewTextBoxColumn36
         '
-        Me.MARCAR.HeaderText = "Marcar"
-        Me.MARCAR.Name = "MARCAR"
+        Me.DataGridViewTextBoxColumn36.HeaderText = "SERIE2"
+        Me.DataGridViewTextBoxColumn36.Name = "DataGridViewTextBoxColumn36"
+        Me.DataGridViewTextBoxColumn36.Visible = False
         '
-        'SITUACION
+        'DataGridViewTextBoxColumn37
         '
-        Me.SITUACION.HeaderText = "Situacion"
-        Me.SITUACION.Name = "SITUACION"
+        Me.DataGridViewTextBoxColumn37.HeaderText = "Fecha Ruta"
+        Me.DataGridViewTextBoxColumn37.Name = "DataGridViewTextBoxColumn37"
         '
-        'ESTADO
+        'DataGridViewTextBoxColumn38
         '
-        Me.ESTADO.HeaderText = "Estado"
-        Me.ESTADO.Name = "ESTADO"
+        Me.DataGridViewTextBoxColumn38.HeaderText = "Transportista"
+        Me.DataGridViewTextBoxColumn38.Name = "DataGridViewTextBoxColumn38"
         '
-        'FECHAREPCECION
+        'DataGridViewTextBoxColumn39
         '
-        Me.FECHAREPCECION.HeaderText = "Fecha Recepcion"
-        Me.FECHAREPCECION.Name = "FECHAREPCECION"
+        Me.DataGridViewTextBoxColumn39.HeaderText = "Fecha Retorno"
+        Me.DataGridViewTextBoxColumn39.Name = "DataGridViewTextBoxColumn39"
         '
-        'HORARECEPCION
+        'DataGridViewTextBoxColumn40
         '
-        Me.HORARECEPCION.HeaderText = "Hora Recepcion"
-        Me.HORARECEPCION.Name = "HORARECEPCION"
-        '
-        'USUARIO_RECEPCION
-        '
-        Me.USUARIO_RECEPCION.HeaderText = "Usuario Recepcion"
-        Me.USUARIO_RECEPCION.Name = "USUARIO_RECEPCION"
-        '
-        'FECHA
-        '
-        Me.FECHA.HeaderText = "Fecha"
-        Me.FECHA.Name = "FECHA"
-        Me.FECHA.Visible = False
-        '
-        'FECHA_GUIA
-        '
-        Me.FECHA_GUIA.HeaderText = "Fecha Guia"
-        Me.FECHA_GUIA.Name = "FECHA_GUIA"
-        '
-        'HORA
-        '
-        Me.HORA.HeaderText = "Hora"
-        Me.HORA.Name = "HORA"
-        '
-        'HORA_GUIA
-        '
-        Me.HORA_GUIA.HeaderText = "Hora Guia"
-        Me.HORA_GUIA.Name = "HORA_GUIA"
-        Me.HORA_GUIA.Visible = False
-        '
-        'COD_PED
-        '
-        Me.COD_PED.HeaderText = "Cod Pedido"
-        Me.COD_PED.Name = "COD_PED"
-        '
-        'NRO_GUIA
-        '
-        Me.NRO_GUIA.HeaderText = "N° Guia"
-        Me.NRO_GUIA.Name = "NRO_GUIA"
-        '
-        'CONDICION
-        '
-        Me.CONDICION.HeaderText = "Condicion Pago"
-        Me.CONDICION.Name = "CONDICION"
-        '
-        'RUC
-        '
-        Me.RUC.HeaderText = "Ruc Cliente"
-        Me.RUC.Name = "RUC"
-        '
-        'NOM_CLIENTE
-        '
-        Me.NOM_CLIENTE.HeaderText = "Cliente"
-        Me.NOM_CLIENTE.Name = "NOM_CLIENTE"
-        '
-        'DIRECCION_ENTREGA
-        '
-        Me.DIRECCION_ENTREGA.HeaderText = "Direccion Entrega"
-        Me.DIRECCION_ENTREGA.Name = "DIRECCION_ENTREGA"
-        '
-        'UBIGEO
-        '
-        Me.UBIGEO.HeaderText = "Ubigeo"
-        Me.UBIGEO.Name = "UBIGEO"
-        '
-        'PROVINCIA
-        '
-        Me.PROVINCIA.HeaderText = "Provincia"
-        Me.PROVINCIA.Name = "PROVINCIA"
-        '
-        'DEPARTAMENTO
-        '
-        Me.DEPARTAMENTO.HeaderText = "Departamento"
-        Me.DEPARTAMENTO.Name = "DEPARTAMENTO"
-        '
-        'DISTRITO
-        '
-        Me.DISTRITO.HeaderText = "Distrito"
-        Me.DISTRITO.Name = "DISTRITO"
-        '
-        'LIMA_PROV
-        '
-        Me.LIMA_PROV.HeaderText = "Lima / Provincia"
-        Me.LIMA_PROV.Name = "LIMA_PROV"
-        '
-        'CANAL
-        '
-        Me.CANAL.HeaderText = "Canal"
-        Me.CANAL.Name = "CANAL"
-        '
-        'TRANSPORTE
-        '
-        Me.TRANSPORTE.HeaderText = "Transporte"
-        Me.TRANSPORTE.Name = "TRANSPORTE"
-        '
-        'M3UN
-        '
-        Me.M3UN.HeaderText = "Metros Cubicos"
-        Me.M3UN.Name = "M3UN"
-        '
-        'IMPORTE
-        '
-        Me.IMPORTE.HeaderText = "Importe"
-        Me.IMPORTE.Name = "IMPORTE"
-        '
-        'M3FIN
-        '
-        Me.M3FIN.HeaderText = "M. Cubicos Final"
-        Me.M3FIN.Name = "M3FIN"
-        '
-        'TIEMPOENTREGA
-        '
-        Me.TIEMPOENTREGA.HeaderText = "Tiempo Entrega"
-        Me.TIEMPOENTREGA.Name = "TIEMPOENTREGA"
-        '
-        'DESTINO
-        '
-        Me.DESTINO.HeaderText = "Destino"
-        Me.DESTINO.Name = "DESTINO"
-        '
-        'RUTA
-        '
-        Me.RUTA.HeaderText = "Ruta"
-        Me.RUTA.Name = "RUTA"
-        '
-        'DETALLE
-        '
-        Me.DETALLE.HeaderText = "Detalle Ruta"
-        Me.DETALLE.Name = "DETALLE"
-        '
-        'RESTRICCION
-        '
-        Me.RESTRICCION.HeaderText = "Restriccion"
-        Me.RESTRICCION.Name = "RESTRICCION"
-        '
-        'REPRESENTANTE
-        '
-        Me.REPRESENTANTE.HeaderText = "Representante"
-        Me.REPRESENTANTE.Name = "REPRESENTANTE"
-        '
-        'C5_CTD
-        '
-        Me.C5_CTD.HeaderText = "C5_CTD"
-        Me.C5_CTD.Name = "C5_CTD"
-        Me.C5_CTD.Visible = False
-        '
-        'C5_CALMA
-        '
-        Me.C5_CALMA.HeaderText = "C5_CALMA"
-        Me.C5_CALMA.Name = "C5_CALMA"
-        Me.C5_CALMA.Visible = False
-        '
-        'SERIE
-        '
-        Me.SERIE.HeaderText = "Column1"
-        Me.SERIE.Name = "SERIE"
-        Me.SERIE.Visible = False
-        '
-        'COMENTARIO
-        '
-        Me.COMENTARIO.HeaderText = "Comentario"
-        Me.COMENTARIO.Name = "COMENTARIO"
-        '
-        'SERIE2
-        '
-        Me.SERIE2.HeaderText = "SERIE2"
-        Me.SERIE2.Name = "SERIE2"
-        Me.SERIE2.Visible = False
-        '
-        'FECHA_RUTA
-        '
-        Me.FECHA_RUTA.HeaderText = "Fecha Ruta"
-        Me.FECHA_RUTA.Name = "FECHA_RUTA"
-        '
-        'TRANSPORTISTA
-        '
-        Me.TRANSPORTISTA.HeaderText = "Transportista"
-        Me.TRANSPORTISTA.Name = "TRANSPORTISTA"
-        '
-        'FECHA_RETORNO
-        '
-        Me.FECHA_RETORNO.HeaderText = "Fecha Retorno"
-        Me.FECHA_RETORNO.Name = "FECHA_RETORNO"
+        Me.DataGridViewTextBoxColumn40.HeaderText = "Glosa"
+        Me.DataGridViewTextBoxColumn40.Name = "DataGridViewTextBoxColumn40"
         '
         'GestionProgramacionDespacho
         '
@@ -980,6 +1044,11 @@ Partial Class GestionProgramacionDespacho
     Friend WithEvents Button3 As Button
     Friend WithEvents Button1 As Button
     Friend WithEvents DataGridViewTextBoxColumn35 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn36 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn37 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn38 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn39 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn40 As DataGridViewTextBoxColumn
     Friend WithEvents MARCAR As DataGridViewCheckBoxColumn
     Friend WithEvents SITUACION As DataGridViewTextBoxColumn
     Friend WithEvents ESTADO As DataGridViewTextBoxColumn
@@ -1020,4 +1089,8 @@ Partial Class GestionProgramacionDespacho
     Friend WithEvents FECHA_RUTA As DataGridViewTextBoxColumn
     Friend WithEvents TRANSPORTISTA As DataGridViewTextBoxColumn
     Friend WithEvents FECHA_RETORNO As DataGridViewTextBoxColumn
+    Friend WithEvents GLOSA As DataGridViewTextBoxColumn
+    Friend WithEvents FECHAVENCEOC As DateTimeGridColumn
+    Friend WithEvents idcosto As DataGridViewTextBoxColumn
+    Friend WithEvents NombreCosto As DataGridViewTextBoxColumn
 End Class

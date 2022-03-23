@@ -186,4 +186,47 @@
         End Set
     End Property
 
+    Private idcosto As Integer
+    Public Property pr_idcosto() As Integer
+        Get
+            Return idcosto
+        End Get
+        Set(ByVal value As Integer)
+            idcosto = value
+        End Set
+    End Property
+
+    Private FechaRecepcion As String
+    Public Property pr_FechaRecepcion() As String
+        Get
+            Return FechaRecepcion
+        End Get
+        Set(ByVal value As String)
+            FechaRecepcion = value
+        End Set
+    End Property
+
+    Private HoraRecepcion As String
+    Public Property pr_HoraRecepcion() As String
+        Get
+            Return HoraRecepcion
+        End Get
+        Set(ByVal value As String)
+            HoraRecepcion = value
+        End Set
+    End Property
+
+
+    Private idsite As Integer
+    Public Property pr_idsite() As Integer
+        Get
+            Return idsite
+        End Get
+        Set(ByVal value As Integer)
+            idsite = value
+        End Set
+    End Property
+
+
+
 End Class

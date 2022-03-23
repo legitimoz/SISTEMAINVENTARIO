@@ -29,6 +29,8 @@ Partial Class AgregarGuiaDespacho
         Me.combo_Almacen = New System.Windows.Forms.ComboBox()
         Me.cmdAceptar = New FontAwesome.Sharp.IconButton()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Cmb_Costos = New System.Windows.Forms.ComboBox()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -86,7 +88,7 @@ Partial Class AgregarGuiaDespacho
         Me.cmdAceptar.IconFont = FontAwesome.Sharp.IconFont.Solid
         Me.cmdAceptar.IconSize = 16
         Me.cmdAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.cmdAceptar.Location = New System.Drawing.Point(236, 90)
+        Me.cmdAceptar.Location = New System.Drawing.Point(236, 125)
         Me.cmdAceptar.Margin = New System.Windows.Forms.Padding(4)
         Me.cmdAceptar.Name = "cmdAceptar"
         Me.cmdAceptar.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
@@ -101,11 +103,31 @@ Partial Class AgregarGuiaDespacho
         '
         Me.ErrorProvider1.ContainerControl = Me
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(10, 89)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(91, 13)
+        Me.Label1.TabIndex = 84
+        Me.Label1.Text = "Centro de Costos:"
+        '
+        'Cmb_Costos
+        '
+        Me.Cmb_Costos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.Cmb_Costos.FormattingEnabled = True
+        Me.Cmb_Costos.Location = New System.Drawing.Point(124, 86)
+        Me.Cmb_Costos.Name = "Cmb_Costos"
+        Me.Cmb_Costos.Size = New System.Drawing.Size(209, 21)
+        Me.Cmb_Costos.TabIndex = 83
+        '
         'AgregarGuiaDespacho
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(352, 129)
+        Me.ClientSize = New System.Drawing.Size(352, 164)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.Cmb_Costos)
         Me.Controls.Add(Me.cmdAceptar)
         Me.Controls.Add(Me.txt_numero)
         Me.Controls.Add(Me.Label6)
@@ -127,4 +149,6 @@ Partial Class AgregarGuiaDespacho
     Friend WithEvents combo_Almacen As ComboBox
     Friend WithEvents cmdAceptar As FontAwesome.Sharp.IconButton
     Friend WithEvents ErrorProvider1 As ErrorProvider
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Cmb_Costos As ComboBox
 End Class

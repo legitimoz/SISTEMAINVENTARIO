@@ -170,6 +170,12 @@
     <Compile Include="ComplementarRotuloProvincia.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ComplementoDespacho.Designer.vb">
+      <DependentUpon>ComplementoDespacho.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ComplementoDespacho.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ComplemetarRuta.Designer.vb">
       <DependentUpon>ComplemetarRuta.vb</DependentUpon>
     </Compile>
@@ -850,6 +856,9 @@
     <EmbeddedResource Include="ComplementarRotuloProvincia.resx">
       <DependentUpon>ComplementarRotuloProvincia.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ComplementoDespacho.resx">
+      <DependentUpon>ComplementoDespacho.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ComplemetarRuta.resx">
       <DependentUpon>ComplemetarRuta.vb</DependentUpon>
     </EmbeddedResource>
@@ -1230,6 +1239,7 @@
     <None Include="Resources\measure-crop-icon.png" />
     <None Include="Resources\City-No-Baggage-icon.png" />
     <None Include="Resources\Action-window-no-fullscreen-icon.png" />
+    <None Include="Resources\Folder-Add-icon.png" />
     <Content Include="SqlServerTypes\Loader.cs" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">

@@ -19,7 +19,24 @@ Public Class EditarRuta
         CargaInicial()
     End Sub
 
+    Private Sub CargarSite()
+        Try
+            Dim dt As New DataTable
+            dt = AlmacenObj.ListarSites
+
+            Dim cbo = CType(Dg_Detalle.Columns("SITE"), DataGridViewComboBoxColumn)
+            cbo.DataSource = dt
+            cbo.ValueMember = "sit_idsite"
+            cbo.DisplayMember = "sit_nombre"
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
     Private Sub CargaInicial()
+        CargarSite()
+
         cmb_tipoenvio.SelectedIndex = 0
         idsite = CType(ConfigurationManager.AppSettings("CodigoSite").ToString.Trim, Integer)
         dtruta = Estructura.HojaDeRuta
@@ -47,6 +64,13 @@ Public Class EditarRuta
                     Dg_Detalle.Rows(contador).Cells("Representante").Value = RowRuta.Item("REPRESENTANTE").ToString
                     Dg_Detalle.Rows(contador).Cells("Condicion").Value = RowRuta.Item("CONDICION").ToString
                     Dg_Detalle.Rows(contador).Cells("ImporteUn").Value = RowRuta.Item("IMPORTE").ToString
+                    Dg_Detalle.Rows(contador).Cells("idcosto").Value = RowRuta.Item("idcosto").ToString
+                    Dg_Detalle.Rows(contador).Cells("nombrecosto").Value = RowRuta.Item("nombrecosto").ToString
+                    Dg_Detalle.Rows(contador).Cells("FECHARECEPCION").Value = RowRuta.Item("FechaRecepcion").ToString
+                    Dg_Detalle.Rows(contador).Cells("HORARECEPCION").Value = RowRuta.Item("HoraRecepcion").ToString
+
+
+
                     contador = contador + 1
                 Next
             End If
@@ -106,6 +130,10 @@ Public Class EditarRuta
                     _BeDetGuiaRutaDetalle.pr_importe = Dg_Detalle.Rows(i).Cells.Item("ImporteUn").Value
                     _BeDetGuiaRutaDetalle.pr_Condicion = Dg_Detalle.Rows(i).Cells.Item("Condicion").Value
                     _BeDetGuiaRutaDetalle.pr_Representante = Dg_Detalle.Rows(i).Cells.Item("Representante").Value
+                    _BeDetGuiaRutaDetalle.pr_idcosto = Dg_Detalle.Rows(i).Cells.Item("idcosto").Value
+                    _BeDetGuiaRutaDetalle.pr_FechaRecepcion = Dg_Detalle.Rows(i).Cells.Item("FECHARECEPCION").Value
+                    _BeDetGuiaRutaDetalle.pr_HoraRecepcion = Dg_Detalle.Rows(i).Cells.Item("HORARECEPCION").Value
+                    _BeDetGuiaRutaDetalle.pr_idsite = Dg_Detalle.Rows(i).Cells.Item("SITE").Value
 
                     _listadoDetalleGuia.Add(_BeDetGuiaRutaDetalle)
                 Next
@@ -193,7 +221,7 @@ Public Class EditarRuta
                 rowRuta.Item("Restriccion") = DetalleCon.Item("RESTRICCION")
                 rowRuta.Item("Direccion") = DetalleCon.Item("DIRECCION_ENTREGA")
                 rowRuta.Item("Condicion") = DetalleCon.Item("CONDICION")
-                rowRuta.Item("Importe") = CType(DetalleCon.Item("IMPORTE"), Integer)
+                rowRuta.Item("Importe") = CType(DetalleCon.Item("IMPORTE"), Decimal)
                 rowRuta.Item("Representante") = DetalleCon.Item("REPRESENTANTE")
                 rowRuta.Item("Volumen") = Math.Round(CType(DetalleCon.Item("M3UN"), Decimal), 3)
                 rowRuta.Item("TiempoEntrega") = DetalleCon.Item("TIEMPO")
@@ -346,6 +374,17 @@ Public Class EditarRuta
                     Else
                         If rowdg.Cells("TipoRuta").Value.ToString.Trim = "" Then
                             ErrorProvider1.SetError(Dg_Detalle, "Ingrese Tipo Despacho")
+                            rp = False
+                            Exit For
+                        End If
+                    End If
+                    If rowdg.Cells("SITE").Value Is Nothing Then
+                        ErrorProvider1.SetError(Dg_Detalle, "Ingrese Site Origen")
+                        rp = False
+                        Exit For
+                    Else
+                        If rowdg.Cells("SITE").Value.ToString.Trim = "" Then
+                            ErrorProvider1.SetError(Dg_Detalle, "Ingrese Site Origen")
                             rp = False
                             Exit For
                         End If

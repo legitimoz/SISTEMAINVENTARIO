@@ -29,6 +29,7 @@ Public Class GestionDeliveryOnTime
     Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
         Try
             ListarGuiasCabecera()
+            MsgBox(Dg_Cabecera.Rows.Count.ToString, MsgBoxStyle.Information, "MENSAJE")
         Catch ex As Exception
             Throw ex
         End Try
@@ -89,31 +90,54 @@ Public Class GestionDeliveryOnTime
 
 
 
-                    rowcabecera.Item("COD_PED") = RowRetorno.Item("COD_PED").ToString.Trim
-
-                    rowcabecera.Item("GUIA") = RowRetorno.Item("GUIA").ToString.Trim
-                    rowcabecera.Item("LIM_PROV") = RowRetorno.Item("LIM_PROV").ToString.Trim
-                    rowcabecera.Item("PROVINCIA") = RowRetorno.Item("PROVINCIA").ToString.Trim
-                    If rowcabecera.Item("PROVINCIA").ToString.Trim = "BARRANCA" Or rowcabecera.Item("PROVINCIA").ToString.Trim = "CAÑETE" Then
-                        rowcabecera.Item("LIM_PROV") = "PROVINCIA".Trim
-                    End If
-                    rowcabecera.Item("FECHA_PEDIDO") = RowRetorno.Item("FECHA_PEDIDO").ToString.Trim
-                    rowcabecera.Item("FECHA_GUIA") = RowRetorno.Item("FECHA_GUIA").ToString.Trim
+                    rowcabecera.Item("NRO_GUIA") = RowRetorno.Item("NRO_GUIA").ToString.Trim
                     rowcabecera.Item("FECHA_DESPACHO") = RowRetorno.Item("FECHA_DESPACHO").ToString.Trim
-                    rowcabecera.Item("FECHA_RECEPCLIENTE") = RowRetorno.Item("FECHA_RECEPCLIENTE").ToString.Trim
-                    rowcabecera.Item("RUC") = RowRetorno.Item("RUC").ToString.Trim
+                    rowcabecera.Item("FECHA_RECEPCION_CLIENTE") = RowRetorno.Item("FECHA_RECEPCION_CLIENTE").ToString.Trim
+                    rowcabecera.Item("RUC_CLIENTE") = RowRetorno.Item("RUC_CLIENTE").ToString.Trim
                     rowcabecera.Item("CLIENTE") = RowRetorno.Item("CLIENTE").ToString.Trim
+                    rowcabecera.Item("DIRECCION_CLIENTE") = RowRetorno.Item("DIRECCION_CLIENTE").ToString.Trim
                     rowcabecera.Item("TRANSPORTISTA") = RowRetorno.Item("TRANSPORTISTA").ToString.Trim
-                    rowcabecera.Item("TIEMPO_MAX") = RowRetorno.Item("TIEMPO_MAX").ToString.Trim
-                    rowcabecera.Item("TIEMPO_TRASN") = RowRetorno.Item("TIEMPO_TRASN").ToString.Trim
-                    rowcabecera.Item("Estado") = RowRetorno.Item("Estado").ToString.Trim
+                    rowcabecera.Item("LIM_PROV") = RowRetorno.Item("LIM_PROV").ToString.Trim
                     rowcabecera.Item("MOTIVO") = RowRetorno.Item("MOTIVO").ToString.Trim
-                    rowcabecera.Item("C5_CTD") = RowRetorno.Item("C5_CTD").ToString.Trim
-                    rowcabecera.Item("C5_CALMA") = RowRetorno.Item("C5_CALMA").ToString.Trim
                     rowcabecera.Item("AREA") = RowRetorno.Item("AREA").ToString.Trim
-                    rowcabecera.Item("FECHA_TRANSPORTISTA") = RowRetorno.Item("FECHA_TRANSPORTISTA").ToString.Trim
+                    rowcabecera.Item("HORA_DESPACHO") = RowRetorno.Item("HORA_DESPACHO").ToString.Trim
 
-                    If rowcabecera.Item("Estado") IsNot Nothing Then
+
+                    Dim Diferencia As Integer = 0
+                    If RowRetorno.Item("FECHA_DESPACHO").ToString.Trim <> "" And RowRetorno.Item("FECHA_RECEPCION_CLIENTE").ToString.Trim <> "" Then
+                        Diferencia = DateDiff(DateInterval.Day, Convert.ToDateTime(RowRetorno.Item("FECHA_DESPACHO").ToString.Trim), Convert.ToDateTime(RowRetorno.Item("FECHA_RECEPCION_CLIENTE").ToString.Trim))
+                    ElseIf RowRetorno.Item("FECHA_DESPACHO").ToString.Trim <> "" And RowRetorno.Item("FECHA_RECEPCION_CLIENTE").ToString.Trim = "" Then
+                        Diferencia = DateDiff(DateInterval.Day, Convert.ToDateTime(RowRetorno.Item("FECHA_DESPACHO").ToString.Trim), Convert.ToDateTime(Now))
+                    End If
+
+                    rowcabecera.Item("Diferencia") = Diferencia
+                    Dim Tolerancia As Integer = 1
+
+                    If RowRetorno.Item("LIM_PROV").ToString.Trim = "LIMA" Then
+                        If RowRetorno.Item("HORA_DESPACHO").ToString.Trim > #04:30:00 PM# Then
+                            Tolerancia = 2
+                        End If
+                    End If
+
+                    If RowRetorno.Item("LIM_PROV").ToString.Trim = "PROVINCIA" Then
+                        If RowRetorno.Item("HORA_DESPACHO").ToString.Trim > #12:00:00 PM# Then
+                            Tolerancia = 2
+                        End If
+                    End If
+
+                    rowcabecera.Item("Tolerancia") = Tolerancia
+
+                    Dim Estado As String = ""
+                    If Diferencia <= Tolerancia Then
+                        Estado = "DENTRO DE TIEMPO"
+                    ElseIf Diferencia > Tolerancia Then
+                        Estado = "FUERA DE TIEMPO"
+                    End If
+
+                    rowcabecera.Item("ESTADO") = Estado
+
+
+                    If rowcabecera.Item("ESTADO") IsNot Nothing Then
                         If rowcabecera.Item("Estado").ToString.Trim = "DENTRO DE TIEMPO" Then
                             contador = contador + 1
                         End If
@@ -121,21 +145,18 @@ Public Class GestionDeliveryOnTime
 
                     If rowcabecera.Item("LIM_PROV").ToString.Trim = "LIMA" Then
                         cantidadL = cantidadL + 1
-                        If rowcabecera.Item("Estado").ToString.Trim = "DENTRO DE TIEMPO" Then
+                        If rowcabecera.Item("ESTADO").ToString.Trim = "DENTRO DE TIEMPO" Then
                             contadorL = contadorL + 1
                         End If
                     End If
                     If rowcabecera.Item("LIM_PROV").ToString.Trim = "PROVINCIA" Then
                         cantidadP = cantidadP + 1
-                        If rowcabecera.Item("Estado").ToString.Trim = "DENTRO DE TIEMPO" Then
+                        If rowcabecera.Item("ESTADO").ToString.Trim = "DENTRO DE TIEMPO" Then
                             ContadorP = ContadorP + 1
                         End If
                     End If
 
-                    ' rowcabecera.Item("Estado") = "FUERA DE TIEMPO"
-
                     dtcabecera2.Rows.Add(rowcabecera)
-
                 Next
                 cant = dtcabecera2.Rows.Count
 
@@ -470,65 +491,53 @@ Public Class GestionDeliveryOnTime
         dtcabecera2 = Estructura.IndicadorDeliveryOnTime
         Dg_Cabecera.DataSource = dtcabecera2
 
-        Dg_Cabecera.Columns("COD_PED").HeaderText = "N° Pedido"
-        Dg_Cabecera.Columns("COD_PED").Width = 70
-        Dg_Cabecera.Columns("COD_PED").ReadOnly = True
+        Dg_Cabecera.Columns("NRO_GUIA").HeaderText = "N° Guia"
+        Dg_Cabecera.Columns("NRO_GUIA").Width = 70
+        Dg_Cabecera.Columns("NRO_GUIA").ReadOnly = True
 
-        Dg_Cabecera.Columns("GUIA").HeaderText = "N° Guia"
-        Dg_Cabecera.Columns("GUIA").Width = 70
-        Dg_Cabecera.Columns("GUIA").ReadOnly = True
-
-        Dg_Cabecera.Columns("FECHA_PEDIDO").HeaderText = "Fecha Pedido"
-        Dg_Cabecera.Columns("FECHA_PEDIDO").Width = 100
-        Dg_Cabecera.Columns("FECHA_PEDIDO").ReadOnly = True
-
-        Dg_Cabecera.Columns("RUC").HeaderText = "Ruc"
-        Dg_Cabecera.Columns("RUC").Width = 70
-        Dg_Cabecera.Columns("RUC").ReadOnly = True
-
-        Dg_Cabecera.Columns("CLIENTE").HeaderText = "Cliente"
-        Dg_Cabecera.Columns("CLIENTE").Width = 350
-        Dg_Cabecera.Columns("CLIENTE").ReadOnly = True
-
-        Dg_Cabecera.Columns("TRANSPORTISTA").HeaderText = "Transportista"
-        Dg_Cabecera.Columns("TRANSPORTISTA").Width = 100
-        Dg_Cabecera.Columns("TRANSPORTISTA").ReadOnly = True
-
-        Dg_Cabecera.Columns("FECHA_GUIA").HeaderText = "Fecha Guia"
-        Dg_Cabecera.Columns("FECHA_GUIA").Width = 100
-        Dg_Cabecera.Columns("FECHA_GUIA").ReadOnly = True
-
-        Dg_Cabecera.Columns("FECHA_DESPACHO").HeaderText = "Fecha Despacho"
+        Dg_Cabecera.Columns("FECHA_DESPACHO").HeaderText = "Fech. Despacho"
         Dg_Cabecera.Columns("FECHA_DESPACHO").Width = 100
         Dg_Cabecera.Columns("FECHA_DESPACHO").ReadOnly = True
+
+        Dg_Cabecera.Columns("HORA_DESPACHO").HeaderText = "Hora Despacho"
+        Dg_Cabecera.Columns("HORA_DESPACHO").Width = 100
+        Dg_Cabecera.Columns("HORA_DESPACHO").ReadOnly = True
+
+        Dg_Cabecera.Columns("FECHA_RECEPCION_CLIENTE").HeaderText = "Fech. Recepción Cliente"
+        Dg_Cabecera.Columns("FECHA_RECEPCION_CLIENTE").Width = 100
+        Dg_Cabecera.Columns("FECHA_RECEPCION_CLIENTE").ReadOnly = True
+
+        Dg_Cabecera.Columns("Diferencia").HeaderText = "Diferencia Días"
+        Dg_Cabecera.Columns("Diferencia").Width = 70
+        Dg_Cabecera.Columns("Diferencia").ReadOnly = True
+
+        Dg_Cabecera.Columns("Tolerancia").HeaderText = "Tolerancia Días"
+        Dg_Cabecera.Columns("Tolerancia").Width = 70
+        Dg_Cabecera.Columns("Tolerancia").ReadOnly = True
+
+        Dg_Cabecera.Columns("ESTADO").HeaderText = "Estado"
+        Dg_Cabecera.Columns("ESTADO").Width = 100
+        Dg_Cabecera.Columns("ESTADO").ReadOnly = True
+
+        Dg_Cabecera.Columns("RUC_CLIENTE").HeaderText = "Ruc Cliente"
+        Dg_Cabecera.Columns("RUC_CLIENTE").Width = 100
+        Dg_Cabecera.Columns("RUC_CLIENTE").ReadOnly = True
+
+        Dg_Cabecera.Columns("CLIENTE").HeaderText = "Cliente"
+        Dg_Cabecera.Columns("CLIENTE").Width = 250
+        Dg_Cabecera.Columns("CLIENTE").ReadOnly = True
+
+        Dg_Cabecera.Columns("DIRECCION_CLIENTE").HeaderText = "Direccion Cliente"
+        Dg_Cabecera.Columns("DIRECCION_CLIENTE").Width = 250
+        Dg_Cabecera.Columns("DIRECCION_CLIENTE").ReadOnly = True
+
+        Dg_Cabecera.Columns("TRANSPORTISTA").HeaderText = "Transportista"
+        Dg_Cabecera.Columns("TRANSPORTISTA").Width = 120
+        Dg_Cabecera.Columns("TRANSPORTISTA").ReadOnly = True
 
         Dg_Cabecera.Columns("LIM_PROV").HeaderText = "Lima Provincia"
         Dg_Cabecera.Columns("LIM_PROV").Width = 100
         Dg_Cabecera.Columns("LIM_PROV").ReadOnly = True
-
-        Dg_Cabecera.Columns("PROVINCIA").HeaderText = "Provincia"
-        Dg_Cabecera.Columns("PROVINCIA").Width = 100
-        Dg_Cabecera.Columns("PROVINCIA").ReadOnly = True
-
-        Dg_Cabecera.Columns("FECHA_RECEPCLIENTE").HeaderText = "Fecha Recepcion Cliente"
-        Dg_Cabecera.Columns("FECHA_RECEPCLIENTE").Width = 70
-        Dg_Cabecera.Columns("FECHA_RECEPCLIENTE").ReadOnly = True
-
-        Dg_Cabecera.Columns("TIEMPO_MAX").HeaderText = "Tiempo Maximo"
-        Dg_Cabecera.Columns("TIEMPO_MAX").Width = 70
-        Dg_Cabecera.Columns("TIEMPO_MAX").ReadOnly = True
-
-        Dg_Cabecera.Columns("TIEMPO_TRASN").HeaderText = "Tiempo Transcurrido"
-        Dg_Cabecera.Columns("TIEMPO_TRASN").Width = 70
-        Dg_Cabecera.Columns("TIEMPO_TRASN").ReadOnly = True
-
-        Dg_Cabecera.Columns("Estado").HeaderText = "Estado"
-        Dg_Cabecera.Columns("Estado").Width = 70
-        Dg_Cabecera.Columns("Estado").ReadOnly = True
-
-        Dg_Cabecera.Columns("C5_CTD").Visible = False
-        Dg_Cabecera.Columns("C5_CALMA").Visible = False
-
 
         Dg_Cabecera.Columns("MOTIVO").HeaderText = "Motivo"
         Dg_Cabecera.Columns("MOTIVO").Width = 80

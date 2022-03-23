@@ -425,8 +425,7 @@ Public Class EditarProgramacionRuta
         End Try
     End Sub
 
-
-    Private Sub IconButton3_Click(sender As Object, e As EventArgs) Handles IconButton3.Click
+    Private Sub cmdAceptar_Click(sender As Object, e As EventArgs) Handles cmdAceptar.Click
         Try
             Dim dtDetallePorRuta As New DataTable
             If Dg_Rutas.Rows.Count > 0 Then
@@ -476,6 +475,7 @@ Public Class EditarProgramacionRuta
             Throw ex
         End Try
     End Sub
+
     Public Sub ObtenerRutaCab()
         Try
             If Dg_Rutas.Rows.Count > 0 Then
@@ -491,7 +491,7 @@ Public Class EditarProgramacionRuta
         End Try
     End Sub
 
-    Private Sub IconButton2_Click(sender As Object, e As EventArgs) Handles IconButton2.Click
+    Private Sub IconButton2_Click(sender As Object, e As EventArgs)
         Try
             ImprimirRuta()
         Catch ex As Exception

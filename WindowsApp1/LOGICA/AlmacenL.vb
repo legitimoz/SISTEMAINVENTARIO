@@ -11,6 +11,22 @@ Public Class AlmacenL
         End Try
     End Function
 
+    Public Function SP_OBTENER_COSTOS() As DataTable
+        Try
+            Return objAlmacen.SP_OBTENER_COSTOS
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function ListarSites() As DataTable
+        Try
+            Return objAlmacen.ListarSites()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function ObtenerArticulosAbastercer(fechadesde As String, fechahasta As String) As DataTable
         Try
             Return objAlmacen.ObtenerArticulosAbastercer(fechadesde, fechahasta)
@@ -99,9 +115,16 @@ Public Class AlmacenL
         End Try
     End Function
 
-    Public Function RegistrarRecepcionGuiaDespacho(CALMA As String, CTD As String, CNUMDOC As String, userid As Integer) As Integer
+    Public Function RegistrarRecepcionGuiaDespacho(CALMA As String, CTD As String, CNUMDOC As String, userid As Integer, idcosto As Integer) As Integer
         Try
-            Return objAlmacen.RegistrarRecepcionGuiaDespacho(CALMA, CTD, CNUMDOC, userid)
+            Return objAlmacen.RegistrarRecepcionGuiaDespacho(CALMA, CTD, CNUMDOC, userid, idcosto)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function SP_CSE_RegistrarFechaVC_OC(CALMA As String, CTD As String, CNUMDOC As String, userid As Integer, fecha As String) As Integer
+        Try
+            Return objAlmacen.SP_CSE_RegistrarFechaVC_OC(CALMA, CTD, CNUMDOC, userid, fecha)
         Catch ex As Exception
             Throw ex
         End Try
@@ -188,6 +211,15 @@ Public Class AlmacenL
             Throw ex
         End Try
     End Function
+
+    Public Function SP_CSE_OBTENER_PRD_X_DESCRIPCION(descripcion As String) As DataTable
+        Try
+            Return objAlmacen.SP_CSE_OBTENER_PRD_X_DESCRIPCION(descripcion)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function Reporte_Articulos_Sin_Ubicar(idalmacen As Integer, idsite As Integer) As DataTable
         Try
             Return objAlmacen.Reporte_Articulos_Sin_Ubicar(idalmacen, idsite)
@@ -262,6 +294,14 @@ Public Class AlmacenL
             rp.Merge(rp2)
 
             Return rp
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function obtenerStock_ATE_CJM_X_CODIGOARTI(Codarticulo As String) As DataTable
+        Try
+            Return objAlmacen.obtenerStock_ATE_CJM_X_CODIGOARTI(Codarticulo)
         Catch ex As Exception
             Throw ex
         End Try
@@ -381,6 +421,22 @@ Public Class AlmacenL
     Public Function ObtenerPosicionesHojaPicking(ByVal codarticulo As String, ByVal Lote As String, cantidadrequerida As Decimal, idalmacen As Integer, idsite As Integer) As DataTable
         Try
             Return objAlmacen.ObtenerPosicionesHojaPicking(codarticulo, Lote, cantidadrequerida, idalmacen, idsite)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function ObtenerDatosCliente(ruc As String) As DataTable
+        Try
+            Return objAlmacen.ObtenerDatosCliente(ruc)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function ObtenerDireccionesCliente(ruc As String) As DataTable
+        Try
+            Return objAlmacen.ObtenerDireccionesCliente(ruc)
         Catch ex As Exception
             Throw ex
         End Try
