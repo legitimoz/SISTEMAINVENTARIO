@@ -49,6 +49,7 @@ Partial Class frmReporteDespacho
         Me.tslCantEntregados = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel4 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.tslCantRechaz = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.savedialog_Excel = New System.Windows.Forms.SaveFileDialog()
         Me.Filtros.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvListarRutas_Guias, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -266,7 +267,7 @@ Partial Class frmReporteDespacho
         'ToolStripStatusLabel1
         '
         Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(86, 17)
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(87, 17)
         Me.ToolStripStatusLabel1.Text = "Cantidad Total:"
         '
         'tsbCantTotal
@@ -363,4 +364,5 @@ Partial Class frmReporteDespacho
     Friend WithEvents tslCantEntregados As ToolStripStatusLabel
     Friend WithEvents ToolStripStatusLabel4 As ToolStripStatusLabel
     Friend WithEvents tslCantRechaz As ToolStripStatusLabel
+    Friend WithEvents savedialog_Excel As SaveFileDialog
 End Class

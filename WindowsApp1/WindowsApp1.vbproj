@@ -553,6 +553,12 @@
     <Compile Include="GestionImportarRotulosProvincia.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GestionLiquidacionDocumentaria.Designer.vb">
+      <DependentUpon>GestionLiquidacionDocumentaria.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GestionLiquidacionDocumentaria.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GestionNonConformityRatio.Designer.vb">
       <DependentUpon>GestionNonConformityRatio.vb</DependentUpon>
     </Compile>
@@ -1044,6 +1050,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GestionImportarRotulosProvincia.resx">
       <DependentUpon>GestionImportarRotulosProvincia.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionLiquidacionDocumentaria.resx">
+      <DependentUpon>GestionLiquidacionDocumentaria.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GestionNonConformityRatio.resx">
       <DependentUpon>GestionNonConformityRatio.vb</DependentUpon>

@@ -112,7 +112,7 @@ Public Class EditarRuta
                 _BeCabGuiaRuta.pr_tipoEnvio = cmb_tipoenvio.Text.ToString
                 _BeCabGuiaRuta.pr_idvehiculo = cmb_tipotransporte.SelectedValue
                 _BeCabGuiaRuta.pr_idsite = idsite
-
+                _BeCabGuiaRuta.pr_Comentario = txt_comentario.Text
                 For i As Integer = 0 To Dg_Detalle.Rows.Count - 1
                     _BeDetGuiaRutaDetalle = New BeDetGuiaRutaDetalle
                     _BeDetGuiaRutaDetalle.pr_c5_calma = Dg_Detalle.Rows(i).Cells.Item("ALMACEN").Value

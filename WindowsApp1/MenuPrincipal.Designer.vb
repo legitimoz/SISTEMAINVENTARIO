@@ -73,6 +73,7 @@ Partial Class MenuPrincipal
         Me.DeliveryOnTimeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NonConformityRatioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CerrarSesionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LiquidacionDocumentariaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -408,7 +409,7 @@ Partial Class MenuPrincipal
         '
         'IndicadoresToolStripMenuItem
         '
-        Me.IndicadoresToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DispatchToolStripMenuItem, Me.DeliveryOnTimeToolStripMenuItem, Me.NonConformityRatioToolStripMenuItem})
+        Me.IndicadoresToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DispatchToolStripMenuItem, Me.DeliveryOnTimeToolStripMenuItem, Me.NonConformityRatioToolStripMenuItem, Me.LiquidacionDocumentariaToolStripMenuItem})
         Me.IndicadoresToolStripMenuItem.Image = Global.WindowsApp1.My.Resources.Resources._412
         Me.IndicadoresToolStripMenuItem.Name = "IndicadoresToolStripMenuItem"
         Me.IndicadoresToolStripMenuItem.Size = New System.Drawing.Size(251, 26)
@@ -417,19 +418,19 @@ Partial Class MenuPrincipal
         'DispatchToolStripMenuItem
         '
         Me.DispatchToolStripMenuItem.Name = "DispatchToolStripMenuItem"
-        Me.DispatchToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
+        Me.DispatchToolStripMenuItem.Size = New System.Drawing.Size(214, 22)
         Me.DispatchToolStripMenuItem.Text = "Dispatch On Time"
         '
         'DeliveryOnTimeToolStripMenuItem
         '
         Me.DeliveryOnTimeToolStripMenuItem.Name = "DeliveryOnTimeToolStripMenuItem"
-        Me.DeliveryOnTimeToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
+        Me.DeliveryOnTimeToolStripMenuItem.Size = New System.Drawing.Size(214, 22)
         Me.DeliveryOnTimeToolStripMenuItem.Text = "Delivery On Time"
         '
         'NonConformityRatioToolStripMenuItem
         '
         Me.NonConformityRatioToolStripMenuItem.Name = "NonConformityRatioToolStripMenuItem"
-        Me.NonConformityRatioToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
+        Me.NonConformityRatioToolStripMenuItem.Size = New System.Drawing.Size(214, 22)
         Me.NonConformityRatioToolStripMenuItem.Text = "Non Conformity Ratio"
         '
         'CerrarSesionToolStripMenuItem
@@ -438,6 +439,12 @@ Partial Class MenuPrincipal
         Me.CerrarSesionToolStripMenuItem.Name = "CerrarSesionToolStripMenuItem"
         Me.CerrarSesionToolStripMenuItem.Size = New System.Drawing.Size(108, 24)
         Me.CerrarSesionToolStripMenuItem.Text = "Cerrar Sesion"
+        '
+        'LiquidacionDocumentariaToolStripMenuItem
+        '
+        Me.LiquidacionDocumentariaToolStripMenuItem.Name = "LiquidacionDocumentariaToolStripMenuItem"
+        Me.LiquidacionDocumentariaToolStripMenuItem.Size = New System.Drawing.Size(214, 22)
+        Me.LiquidacionDocumentariaToolStripMenuItem.Text = "Liquidacion Documentaria"
         '
         'MenuPrincipal
         '
@@ -510,4 +517,5 @@ Partial Class MenuPrincipal
     Friend WithEvents ArticulosSinCubicajeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ArticulosSinUbicarToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PartesDeEntradaSinIngresoToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LiquidacionDocumentariaToolStripMenuItem As ToolStripMenuItem
 End Class

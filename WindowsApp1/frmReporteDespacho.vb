@@ -1,4 +1,5 @@
 ﻿
+Imports ClosedXML.Excel
 Imports Nordic.Bl.Be
 
 
@@ -7,6 +8,7 @@ Public Class frmReporteDespacho
 
     Private mnuContextual As New ContextMenuStrip
     Friend WithEvents BtnVerImagen As System.Windows.Forms.Button
+    Dim DTretorno As New DataTable
 
     Private Sub frmReporteDespacho_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
@@ -108,6 +110,7 @@ Public Class frmReporteDespacho
             If dt.Rows.Count = 0 Then
                 MessageBox.Show("No se encontraron registros", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             Else
+                DTretorno = dt.Copy
                 dgvListarRutas_Guias.DataSource = dt
 
             End If
@@ -187,17 +190,56 @@ Public Class frmReporteDespacho
 
     Private Sub btnExportar_Click(sender As Object, e As EventArgs) Handles btnExportar.Click
         Try
-            Me.Cursor = Cursors.WaitCursor
+            'Me.Cursor = Cursors.WaitCursor
 
-            GridAExcel(dgvListarRutas_Guias)
+            'GridAExcel(dgvListarRutas_Guias)
 
-            Me.Cursor = Cursors.Default
+            'Me.Cursor = Cursors.Default
+            If DTretorno.Rows.Count > 0 Then
+                ExportExcel(DTretorno)
+            End If
+
 
         Catch ex As Exception
 
         End Try
     End Sub
+    Public Function ExportExcel(ByVal dt As DataTable) As Boolean
+        Dim RP As Boolean = False
+        Dim wb As New XLWorkbook()
+        Dim path As String
 
+        Try
+            savedialog_Excel.Filter = "Excel File(.xlsx)|*.xlsx"
+            savedialog_Excel.Title = Text
+            savedialog_Excel.FileName = "REPORTE DESPACHO " + Now.Day.ToString + "_" + Now.Month.ToString + "_" + Now.Year.ToString
+            dt.TableName = "Hoja1"
+            Dim ws As IXLWorksheet
+            If dt.Rows.Count > Constantes.ValorEnteroInicial Then
+                If savedialog_Excel.ShowDialog = Windows.Forms.DialogResult.OK Then
+                    path = savedialog_Excel.FileName
+                    wb.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left
+                    ws = wb.Worksheets.Add(dt)
+                    ws.Style.Font.FontName = "Arial"
+                    ws.Style.Font.FontSize = 8
+                    ws.Columns().AdjustToContents()
+                    wb.SaveAs(path)
+                    Process.Start(path)
+                    RP = True
+                End If
+            Else
+                MsgBox("No existe DATA para generar Excel, Confirme Orden de Pago", MsgBoxStyle.Exclamation)
+            End If
+        Catch ex As Exception
+            Dim iderror As Integer
+            iderror = ex.HResult
+            If iderror = Constantes.errorexcel Then
+                MsgBox("Archivo Excel se encuentra abierto, cierre el archivo e intente de nuevo", MsgBoxStyle.Exclamation)
+            End If
+        End Try
+        Return RP
+
+    End Function
 
 
     Function GridAExcel(ByVal ElGrid As DataGridView) As Boolean

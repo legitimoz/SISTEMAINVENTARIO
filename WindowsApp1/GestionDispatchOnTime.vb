@@ -317,7 +317,7 @@ Public Class GestionDispatchOnTime
         Try
             savedialog_Excel.Filter = "Excel File(.xlsx)|*.xlsx"
             savedialog_Excel.Title = Text
-            savedialog_Excel.FileName = "REPORTE DISPATCH ON TIME"
+            savedialog_Excel.FileName = "REPORTE DISPATCH ON TIME " + Now.Day.ToString + "_" + Now.Month.ToString + "_" + Now.Year.ToString
             dt.TableName = "Hoja1"
             Dim ws As IXLWorksheet
             If dt.Rows.Count > Constantes.ValorEnteroInicial Then

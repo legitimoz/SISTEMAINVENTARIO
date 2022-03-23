@@ -29,7 +29,7 @@ Public Class GestionDeliveryOnTime
     Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
         Try
             ListarGuiasCabecera()
-            MsgBox(Dg_Cabecera.Rows.Count.ToString, MsgBoxStyle.Information, "MENSAJE")
+            ' MsgBox(Dg_Cabecera.Rows.Count.ToString, MsgBoxStyle.Information, "MENSAJE")
         Catch ex As Exception
             Throw ex
         End Try
@@ -86,13 +86,10 @@ Public Class GestionDeliveryOnTime
 
                     Dim rowcabecera As DataRow
                     rowcabecera = dtcabecera2.NewRow
-
-
-
-
                     rowcabecera.Item("NRO_GUIA") = RowRetorno.Item("NRO_GUIA").ToString.Trim
                     rowcabecera.Item("FECHA_DESPACHO") = RowRetorno.Item("FECHA_DESPACHO").ToString.Trim
                     rowcabecera.Item("FECHA_RECEPCION_CLIENTE") = RowRetorno.Item("FECHA_RECEPCION_CLIENTE").ToString.Trim
+                    rowcabecera.Item("FECHA_SUBE_FOTO") = RowRetorno.Item("FECHA_SUBE_FOTO").ToString.Trim
                     rowcabecera.Item("RUC_CLIENTE") = RowRetorno.Item("RUC_CLIENTE").ToString.Trim
                     rowcabecera.Item("CLIENTE") = RowRetorno.Item("CLIENTE").ToString.Trim
                     rowcabecera.Item("DIRECCION_CLIENTE") = RowRetorno.Item("DIRECCION_CLIENTE").ToString.Trim
@@ -103,14 +100,21 @@ Public Class GestionDeliveryOnTime
                     rowcabecera.Item("HORA_DESPACHO") = RowRetorno.Item("HORA_DESPACHO").ToString.Trim
 
 
-                    Dim Diferencia As Integer = 0
-                    If RowRetorno.Item("FECHA_DESPACHO").ToString.Trim <> "" And RowRetorno.Item("FECHA_RECEPCION_CLIENTE").ToString.Trim <> "" Then
-                        Diferencia = DateDiff(DateInterval.Day, Convert.ToDateTime(RowRetorno.Item("FECHA_DESPACHO").ToString.Trim), Convert.ToDateTime(RowRetorno.Item("FECHA_RECEPCION_CLIENTE").ToString.Trim))
-                    ElseIf RowRetorno.Item("FECHA_DESPACHO").ToString.Trim <> "" And RowRetorno.Item("FECHA_RECEPCION_CLIENTE").ToString.Trim = "" Then
+                    Dim Diferencia As Integer = 0, DiferenciaRecep As Integer = 0
+                    If RowRetorno.Item("FECHA_DESPACHO").ToString.Trim <> "" And RowRetorno.Item("FECHA_SUBE_FOTO").ToString.Trim <> "" Then
+                        Diferencia = DateDiff(DateInterval.Day, Convert.ToDateTime(RowRetorno.Item("FECHA_DESPACHO").ToString.Trim), Convert.ToDateTime(RowRetorno.Item("FECHA_SUBE_FOTO").ToString.Trim))
+                    ElseIf RowRetorno.Item("FECHA_DESPACHO").ToString.Trim <> "" And RowRetorno.Item("FECHA_SUBE_FOTO").ToString.Trim = "" Then
                         Diferencia = DateDiff(DateInterval.Day, Convert.ToDateTime(RowRetorno.Item("FECHA_DESPACHO").ToString.Trim), Convert.ToDateTime(Now))
                     End If
 
-                    rowcabecera.Item("Diferencia") = Diferencia
+                    If RowRetorno.Item("FECHA_DESPACHO").ToString.Trim <> "" And RowRetorno.Item("FECHA_RECEPCION_CLIENTE").ToString.Trim <> "" Then
+                        DiferenciaRecep = DateDiff(DateInterval.Day, Convert.ToDateTime(RowRetorno.Item("FECHA_DESPACHO").ToString.Trim), Convert.ToDateTime(RowRetorno.Item("FECHA_RECEPCION_CLIENTE").ToString.Trim))
+                    ElseIf RowRetorno.Item("FECHA_DESPACHO").ToString.Trim <> "" And RowRetorno.Item("FECHA_RECEPCION_CLIENTE").ToString.Trim = "" Then
+                        DiferenciaRecep = DateDiff(DateInterval.Day, Convert.ToDateTime(RowRetorno.Item("FECHA_DESPACHO").ToString.Trim), Convert.ToDateTime(Now))
+                    End If
+
+                    rowcabecera.Item("Diferencia Foto") = Diferencia
+                    rowcabecera.Item("Diferencia Recepcion") = DiferenciaRecep
                     Dim Tolerancia As Integer = 1
 
                     If RowRetorno.Item("LIM_PROV").ToString.Trim = "LIMA" Then
@@ -127,18 +131,27 @@ Public Class GestionDeliveryOnTime
 
                     rowcabecera.Item("Tolerancia") = Tolerancia
 
-                    Dim Estado As String = ""
+                    Dim Estado As String = "", Estado2 As String = ""
                     If Diferencia <= Tolerancia Then
                         Estado = "DENTRO DE TIEMPO"
                     ElseIf Diferencia > Tolerancia Then
                         Estado = "FUERA DE TIEMPO"
                     End If
 
+
+                    If DiferenciaRecep <= Tolerancia Then
+                        Estado2 = "DENTRO DE TIEMPO"
+                    ElseIf DiferenciaRecep > Tolerancia Then
+                        Estado2 = "FUERA DE TIEMPO"
+                    End If
+
+
                     rowcabecera.Item("ESTADO") = Estado
+                    rowcabecera.Item("ESTADO2") = Estado2
 
 
                     If rowcabecera.Item("ESTADO") IsNot Nothing Then
-                        If rowcabecera.Item("Estado").ToString.Trim = "DENTRO DE TIEMPO" Then
+                        If rowcabecera.Item("ESTADO").ToString.Trim = "DENTRO DE TIEMPO" Then
                             contador = contador + 1
                         End If
                     End If
@@ -443,7 +456,7 @@ Public Class GestionDeliveryOnTime
         Try
             savedialog_Excel.Filter = "Excel File(.xlsx)|*.xlsx"
             savedialog_Excel.Title = Text
-            savedialog_Excel.FileName = "REPORTE DELIVERY ON TIME"
+            savedialog_Excel.FileName = "REPORTE DELIVERY ON TIME " + Now.Day.ToString + "_" + Now.Month.ToString + "_" + Now.Year.ToString
             dt.TableName = "Hoja1"
             Dim ws As IXLWorksheet
             If dt.Rows.Count > Constantes.ValorEnteroInicial Then
@@ -503,21 +516,33 @@ Public Class GestionDeliveryOnTime
         Dg_Cabecera.Columns("HORA_DESPACHO").Width = 100
         Dg_Cabecera.Columns("HORA_DESPACHO").ReadOnly = True
 
-        Dg_Cabecera.Columns("FECHA_RECEPCION_CLIENTE").HeaderText = "Fech. Recepción Cliente"
+        Dg_Cabecera.Columns("FECHA_SUBE_FOTO").HeaderText = "Fech. Sube Foto"
+        Dg_Cabecera.Columns("FECHA_SUBE_FOTO").Width = 100
+        Dg_Cabecera.Columns("FECHA_SUBE_FOTO").ReadOnly = True
+
+        Dg_Cabecera.Columns("FECHA_RECEPCION_CLIENTE").HeaderText = "Fech. Recepcion Cliente"
         Dg_Cabecera.Columns("FECHA_RECEPCION_CLIENTE").Width = 100
         Dg_Cabecera.Columns("FECHA_RECEPCION_CLIENTE").ReadOnly = True
 
-        Dg_Cabecera.Columns("Diferencia").HeaderText = "Diferencia Días"
-        Dg_Cabecera.Columns("Diferencia").Width = 70
-        Dg_Cabecera.Columns("Diferencia").ReadOnly = True
+        Dg_Cabecera.Columns("Diferencia Foto").HeaderText = "Diferencia Días Foto"
+        Dg_Cabecera.Columns("Diferencia Foto").Width = 70
+        Dg_Cabecera.Columns("Diferencia Foto").ReadOnly = True
+
+        Dg_Cabecera.Columns("Diferencia Recepcion").HeaderText = "Diferencia Días Recepcion"
+        Dg_Cabecera.Columns("Diferencia Recepcion").Width = 70
+        Dg_Cabecera.Columns("Diferencia Recepcion").ReadOnly = True
 
         Dg_Cabecera.Columns("Tolerancia").HeaderText = "Tolerancia Días"
         Dg_Cabecera.Columns("Tolerancia").Width = 70
         Dg_Cabecera.Columns("Tolerancia").ReadOnly = True
 
-        Dg_Cabecera.Columns("ESTADO").HeaderText = "Estado"
+        Dg_Cabecera.Columns("ESTADO").HeaderText = "Estado Foto"
         Dg_Cabecera.Columns("ESTADO").Width = 100
         Dg_Cabecera.Columns("ESTADO").ReadOnly = True
+
+        Dg_Cabecera.Columns("ESTADO2").HeaderText = "Estado Recepcion"
+        Dg_Cabecera.Columns("ESTADO2").Width = 100
+        Dg_Cabecera.Columns("ESTADO2").ReadOnly = True
 
         Dg_Cabecera.Columns("RUC_CLIENTE").HeaderText = "Ruc Cliente"
         Dg_Cabecera.Columns("RUC_CLIENTE").Width = 100

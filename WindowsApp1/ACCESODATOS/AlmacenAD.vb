@@ -874,6 +874,27 @@ Public Class AlmacenAD
 
     End Function
 
+    Public Function ObtenerIndicarLiquidacionDocumentaria(fechadesde As String, fechahasta As String) As DataTable
+
+        Try
+            Dim com As New SqlCommand("SP_CSE_INDICADOR_LIQUIDACION", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+            com.Parameters.Add("@FECINI", SqlDbType.Char, 20).Value = fechadesde
+            com.Parameters.Add("@FECFIN", SqlDbType.Char, 20).Value = fechahasta
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            Throw ex
+            MyBase.Conn.Close()
+        End Try
+
+    End Function
+
     Public Function ListarPedidosPicking(fechadesde As String, fechahasta As String) As DataTable
 
         Try

@@ -3,6 +3,13 @@
 Public Class AlmacenL
     Private objAlmacen As New AlmacenAD
 
+    Public Function ObtenerIndicarLiquidacionDocumentaria(fechadesde As String, fechahasta As String) As DataTable
+        Try
+            Return objAlmacen.ObtenerIndicarLiquidacionDocumentaria(fechadesde, fechahasta)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function ListarGuiasCAB(fechadesde As String, fechahasta As String, idalmacen As Integer, idsite As Integer) As DataTable
         Try
             Return objAlmacen.ListarGuiasCAB(fechadesde, fechahasta, idalmacen, idsite)

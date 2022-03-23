@@ -661,12 +661,13 @@
             Tabladetalle.Columns.Add("TRANSPORTISTA", GetType(String))
             Tabladetalle.Columns.Add("FECHA_DESPACHO", GetType(String))
             Tabladetalle.Columns.Add("HORA_DESPACHO", GetType(String))
-
+            Tabladetalle.Columns.Add("FECHA_SUBE_FOTO", GetType(String))
             Tabladetalle.Columns.Add("FECHA_RECEPCION_CLIENTE", GetType(String))
-            Tabladetalle.Columns.Add("Diferencia", GetType(String))
             Tabladetalle.Columns.Add("Tolerancia", GetType(String))
+            Tabladetalle.Columns.Add("Diferencia Foto", GetType(String))
+            Tabladetalle.Columns.Add("Diferencia Recepcion", GetType(String))
             Tabladetalle.Columns.Add("ESTADO", GetType(String))
-
+            Tabladetalle.Columns.Add("ESTADO2", GetType(String))
             Tabladetalle.Columns.Add("MOTIVO", GetType(String))
             Tabladetalle.Columns.Add("AREA", GetType(String))
 
@@ -676,7 +677,26 @@
         Return Tabladetalle
     End Function
 
-
+    Public Function IndicadorLiquidacionDocumentaria() As DataTable
+        Dim Tabladetalle As DataTable
+        Tabladetalle = New DataTable()
+        Try
+            Tabladetalle.Columns.Add("NRO_GUIA", GetType(String))
+            Tabladetalle.Columns.Add("RUC_CLIENTE", GetType(String))
+            Tabladetalle.Columns.Add("CLIENTE", GetType(String))
+            Tabladetalle.Columns.Add("DIRECCION_CLIENTE", GetType(String))
+            Tabladetalle.Columns.Add("LIM_PROV", GetType(String))
+            Tabladetalle.Columns.Add("TRANSPORTISTA", GetType(String))
+            Tabladetalle.Columns.Add("FECHA_DESPACHO", GetType(String))
+            Tabladetalle.Columns.Add("FECHA_RETORNO", GetType(String))
+            Tabladetalle.Columns.Add("Diferencia", GetType(String))
+            Tabladetalle.Columns.Add("Tolerancia", GetType(String))
+            Tabladetalle.Columns.Add("ESTADO", GetType(String))
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return Tabladetalle
+    End Function
 
     Public Function IndicadorDispatchOnTime() As DataTable
         Dim Tabladetalle As DataTable
