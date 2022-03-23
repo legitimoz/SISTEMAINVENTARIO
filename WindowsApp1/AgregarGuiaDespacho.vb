@@ -1,7 +1,9 @@
 ﻿Public Class AgregarGuiaDespacho
     Public grabado As Boolean = False
     Public rowRetorno As DataRow
-    Public dtalmacenessoft As New DataTable
+    Public dtalmacenessoft, DtCentrosCosto As New DataTable
+    Public nombrecosto As String = ""
+    Public idcosto As Integer = 0
     Private ObjAlmacen As New AlmacenL
 
     Private Sub cmdAceptar_Click(sender As Object, e As EventArgs) Handles cmdAceptar.Click
@@ -23,6 +25,8 @@
                 If dtGuia.Rows.Count > 0 Then
                     grabado = True
                     rowRetorno = dtGuia.Rows(0)
+                    idcosto = Cmb_Costos.SelectedValue
+                    nombrecosto = Cmb_Costos.Text
                     Me.Close()
                 End If
             End If
@@ -44,6 +48,7 @@
 
     Private Sub CargaInicial()
         Try
+            CargarCentrosCosto()
             ListarAlmacenSoftcom()
         Catch ex As Exception
             Throw ex
@@ -68,6 +73,19 @@
         End Try
         Return dtretono
     End Function
+
+    Private Sub CargarCentrosCosto()
+        Try
+            DtCentrosCosto = ObjAlmacen.SP_OBTENER_COSTOS
+            If DtCentrosCosto.Rows.Count > 0 Then
+                Cmb_Costos.DataSource = DtCentrosCosto
+                Cmb_Costos.DisplayMember = "nombre"
+                Cmb_Costos.ValueMember = "idcliente"
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
     Public Sub ListarAlmacenSoftcom()
         Try

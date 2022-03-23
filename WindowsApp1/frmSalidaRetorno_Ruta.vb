@@ -11,13 +11,10 @@ Public Class frmSalidaRetorno_Ruta
 
     Private Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevo.Click
         Try
-            Dim objFrmRegRuta As New frmRegistrarRuta
-
-            objFrmRegRuta.usr_id = usr_id
-            objFrmRegRuta.flagAccion = "Nuevo"
-
-            objFrmRegRuta.ShowDialog()
-
+            'Dim objFrmRegRuta As New frmRegistrarRuta
+            'objFrmRegRuta.usr_id = usr_id
+            'objFrmRegRuta.flagAccion = "Nuevo"
+            'objFrmRegRuta.ShowDialog()
 
         Catch ex As Exception
 
@@ -266,7 +263,7 @@ Public Class frmSalidaRetorno_Ruta
                         rowRuta.Item("Restriccion") = DetalleCon.Item("RESTRICCION").ToString.Trim
                         rowRuta.Item("Direccion") = DetalleCon.Item("DIRECCION_ENTREGA").ToString.Trim
                         rowRuta.Item("Condicion") = DetalleCon.Item("CONDICION").ToString.Trim
-                        rowRuta.Item("Importe") = CType(DetalleCon.Item("IMPORTE"), Integer)
+                        rowRuta.Item("Importe") = CType(DetalleCon.Item("IMPORTE"), Decimal)
                         rowRuta.Item("Representante") = DetalleCon.Item("REPRESENTANTE").ToString.Trim
                         rowRuta.Item("Volumen") = Math.Round(CType(DetalleCon.Item("M3UN"), Decimal), 3)
                         rowRuta.Item("TiempoEntrega") = DetalleCon.Item("TIEMPO")

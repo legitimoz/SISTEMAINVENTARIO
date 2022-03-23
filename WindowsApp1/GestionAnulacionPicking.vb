@@ -151,6 +151,7 @@ Public Class GestionAnulacionPicking
                             If rp <> 0 Then
                                 llamarRegistrarImpresion(codalmacen, tipdoc, nrodoc, "PA", 0, 0, 0)
                                 MsgBox("Reversion de Picking Existosa", MsgBoxStyle.Information, "SISTEMAS NORDIC")
+                                ListarGuiasCabecera()
                             End If
                         End If
                     End If

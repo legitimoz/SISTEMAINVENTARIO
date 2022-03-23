@@ -52,6 +52,13 @@ Partial Class EditarRuta
         Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GUIA = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CTD = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ALMACEN = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -66,6 +73,11 @@ Partial Class EditarRuta
         Me.ImporteUn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Condicion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Representante = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.idcosto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.nombrecosto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FECHARECEPCION = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.HORARECEPCION = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SITE = New System.Windows.Forms.DataGridViewComboBoxColumn()
         CType(Me.Dg_Detalle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -76,7 +88,7 @@ Partial Class EditarRuta
         Me.Dg_Detalle.AllowUserToAddRows = False
         Me.Dg_Detalle.BackgroundColor = System.Drawing.Color.White
         Me.Dg_Detalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Dg_Detalle.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GUIA, Me.CTD, Me.ALMACEN, Me.Cliente, Me.Direccion, Me.Bultos, Me.Peso, Me.TiempoGuia, Me.TipoRuta, Me.VoluemnUn, Me.RestriccionUn, Me.ImporteUn, Me.Condicion, Me.Representante})
+        Me.Dg_Detalle.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GUIA, Me.CTD, Me.ALMACEN, Me.Cliente, Me.Direccion, Me.Bultos, Me.Peso, Me.TiempoGuia, Me.TipoRuta, Me.VoluemnUn, Me.RestriccionUn, Me.ImporteUn, Me.Condicion, Me.Representante, Me.idcosto, Me.nombrecosto, Me.FECHARECEPCION, Me.HORARECEPCION, Me.SITE})
         Me.Dg_Detalle.Location = New System.Drawing.Point(12, 147)
         Me.Dg_Detalle.Name = "Dg_Detalle"
         Me.Dg_Detalle.Size = New System.Drawing.Size(943, 288)
@@ -404,6 +416,46 @@ Partial Class EditarRuta
         Me.DataGridViewTextBoxColumn8.HeaderText = "Tiempo"
         Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
         '
+        'DataGridViewTextBoxColumn9
+        '
+        Me.DataGridViewTextBoxColumn9.HeaderText = "Volumen"
+        Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
+        Me.DataGridViewTextBoxColumn9.Visible = False
+        '
+        'DataGridViewTextBoxColumn10
+        '
+        Me.DataGridViewTextBoxColumn10.HeaderText = "Restriccion"
+        Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
+        Me.DataGridViewTextBoxColumn10.Visible = False
+        '
+        'DataGridViewTextBoxColumn11
+        '
+        Me.DataGridViewTextBoxColumn11.HeaderText = "Importe"
+        Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
+        '
+        'DataGridViewTextBoxColumn12
+        '
+        Me.DataGridViewTextBoxColumn12.HeaderText = "Condicion"
+        Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
+        Me.DataGridViewTextBoxColumn12.Visible = False
+        '
+        'DataGridViewTextBoxColumn13
+        '
+        Me.DataGridViewTextBoxColumn13.HeaderText = "Representante"
+        Me.DataGridViewTextBoxColumn13.Name = "DataGridViewTextBoxColumn13"
+        Me.DataGridViewTextBoxColumn13.Visible = False
+        '
+        'DataGridViewTextBoxColumn14
+        '
+        Me.DataGridViewTextBoxColumn14.HeaderText = "idcosto"
+        Me.DataGridViewTextBoxColumn14.Name = "DataGridViewTextBoxColumn14"
+        Me.DataGridViewTextBoxColumn14.Visible = False
+        '
+        'DataGridViewTextBoxColumn15
+        '
+        Me.DataGridViewTextBoxColumn15.HeaderText = "Centro Costo"
+        Me.DataGridViewTextBoxColumn15.Name = "DataGridViewTextBoxColumn15"
+        '
         'GUIA
         '
         Me.GUIA.FillWeight = 77.77779!
@@ -492,6 +544,34 @@ Partial Class EditarRuta
         Me.Representante.Name = "Representante"
         Me.Representante.Visible = False
         '
+        'idcosto
+        '
+        Me.idcosto.HeaderText = "idcosto"
+        Me.idcosto.Name = "idcosto"
+        Me.idcosto.Visible = False
+        '
+        'nombrecosto
+        '
+        Me.nombrecosto.HeaderText = "Centro Costo"
+        Me.nombrecosto.Name = "nombrecosto"
+        '
+        'FECHARECEPCION
+        '
+        Me.FECHARECEPCION.HeaderText = "FECHARECEP"
+        Me.FECHARECEPCION.Name = "FECHARECEPCION"
+        Me.FECHARECEPCION.Visible = False
+        '
+        'HORARECEPCION
+        '
+        Me.HORARECEPCION.HeaderText = "horarecepcion"
+        Me.HORARECEPCION.Name = "HORARECEPCION"
+        Me.HORARECEPCION.Visible = False
+        '
+        'SITE
+        '
+        Me.SITE.HeaderText = "Site"
+        Me.SITE.Name = "SITE"
+        '
         'EditarRuta
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -543,6 +623,13 @@ Partial Class EditarRuta
     Friend WithEvents DataGridViewTextBoxColumn6 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn7 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn8 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn9 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn10 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn11 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn12 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn13 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn14 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn15 As DataGridViewTextBoxColumn
     Friend WithEvents GUIA As DataGridViewTextBoxColumn
     Friend WithEvents CTD As DataGridViewTextBoxColumn
     Friend WithEvents ALMACEN As DataGridViewTextBoxColumn
@@ -557,4 +644,9 @@ Partial Class EditarRuta
     Friend WithEvents ImporteUn As DataGridViewTextBoxColumn
     Friend WithEvents Condicion As DataGridViewTextBoxColumn
     Friend WithEvents Representante As DataGridViewTextBoxColumn
+    Friend WithEvents idcosto As DataGridViewTextBoxColumn
+    Friend WithEvents nombrecosto As DataGridViewTextBoxColumn
+    Friend WithEvents FECHARECEPCION As DataGridViewTextBoxColumn
+    Friend WithEvents HORARECEPCION As DataGridViewTextBoxColumn
+    Friend WithEvents SITE As DataGridViewComboBoxColumn
 End Class

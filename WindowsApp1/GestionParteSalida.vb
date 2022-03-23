@@ -522,7 +522,15 @@ Public Class GestionParteSalida
         End Try
         Return dtretono
     End Function
+    Public Function LlamarObtenerCantiSalida(codarticulo As String, serie As String, item As String) As DataTable
+        Dim rpRetorno As New DataTable
+        Try
+            rpRetorno = ObjAlmacen.ObtenerCantidadSalidaDetalle(codalmacen, tipdoc, nrodoc, codarticulo, serie, item, idsite, idalmacen)
+        Catch ex As Exception
 
+        End Try
+        Return rpRetorno
+    End Function
     Public Sub ListarGuiasDetalle()
         Try
             Dim dtretorno As New DataTable
@@ -547,7 +555,15 @@ Public Class GestionParteSalida
                     rowDetalle.Item("SERIE") = RowRetorno.Item("SERIE").ToString.Trim
                     rowDetalle.Item("FECHA_VECIMIENTO") = RowRetorno.Item("FECHA_VECIMIENTO").ToString.Trim
                     rowDetalle.Item("CANTIDAD") = RowRetorno.Item("CANTIDAD")
-                    rowDetalle.Item("SALDO") = RowRetorno.Item("SALDO")
+                    'rowDetalle.Item("SALDO") = RowRetorno.Item("SALDO")
+                    Dim rp As New DataTable
+                    rp = LlamarObtenerCantiSalida(rowDetalle.Item("CODIGO").ToString.Trim, rowDetalle.Item("SERIE").ToString.Trim, rowDetalle.Item("C6_CITEM").ToString.Trim)
+                    If rp.Rows.Count > 0 Then
+                        Dim SaliCant = CType(rp.Rows(0).Item("Salida").ToString, Integer)
+                        rowDetalle.Item("SALDO") = CType(rowDetalle.Item("CANTIDAD"), Integer) - SaliCant
+                    Else
+                        rowDetalle.Item("SALDO") = rowDetalle.Item("CANTIDAD")
+                    End If
 
                     If rowDetalle.Item("UNIDAD").ToString.Trim = "UND" Then
                         If rowDetalle.Item("FACTORCAJA") <> 0 Then

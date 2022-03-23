@@ -4,8 +4,8 @@ Imports System.Text.RegularExpressions
 Public Class MedicionEsfuerzo
     Public datatableConsolidada As New DataTable
     Private ObjAlmacen As New AlmacenL
-    Private Const PCJ As Integer = 60 '150'
-    Private Const PCIU As Integer = 200 '240
+    Private Const PCJ As Integer = 150 '150'
+    Private Const PCIU As Integer = 240 '240
     Private idalmacen As Integer = 0, idsite As Integer = 0
 
     Private Sub MedicionEsfuerzo_Load(sender As Object, e As EventArgs) Handles MyBase.Load

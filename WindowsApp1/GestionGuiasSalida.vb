@@ -130,6 +130,8 @@ Public Class GestionGuiasSalida
                     If rp.Rows.Count > 0 Then
                         Dim SaliCant = CType(rp.Rows(0).Item("Salida").ToString, Integer)
                         rowDetalle.Item("SALDO") = CType(rowDetalle.Item("CANTIDAD"), Integer) - SaliCant
+                    Else
+                        rowDetalle.Item("SALDO") = rowDetalle.Item("CANTIDAD")
                     End If
 
                     If rowDetalle.Item("UNIDAD").ToString.Trim = "UND" Then
@@ -210,7 +212,15 @@ Public Class GestionGuiasSalida
                     rowDetalle.Item("SERIE") = RowRetorno.Item("SERIE").ToString.Trim
                     rowDetalle.Item("FECHA_VECIMIENTO") = RowRetorno.Item("FECHA_VECIMIENTO").ToString.Trim
                     rowDetalle.Item("CANTIDAD") = RowRetorno.Item("CANTIDAD")
-                    rowDetalle.Item("SALDO") = RowRetorno.Item("SALDO")
+                    'rowDetalle.Item("SALDO") = RowRetorno.Item("SALDO")
+                    Dim rp As New DataTable
+                    rp = LlamarObtenerCantiSalida(rowDetalle.Item("CODIGO").ToString.Trim, rowDetalle.Item("SERIE").ToString.Trim, rowDetalle.Item("C6_CITEM").ToString.Trim)
+                    If rp.Rows.Count > 0 Then
+                        Dim SaliCant = CType(rp.Rows(0).Item("Salida").ToString, Integer)
+                        rowDetalle.Item("SALDO") = CType(rowDetalle.Item("CANTIDAD"), Integer) - SaliCant
+                    Else
+                        rowDetalle.Item("SALDO") = rowDetalle.Item("CANTIDAD")
+                    End If
 
                     If rowDetalle.Item("UNIDAD").ToString.Trim = "UND" Then
                         If rowDetalle.Item("FACTORCAJA") <> 0 Then
@@ -226,7 +236,7 @@ Public Class GestionGuiasSalida
                     End If
 
                     If rowDetalle.Item("UNIDAD").ToString.Trim = "CJA" Then
-                        rowDetalle.Item("CAJAS") = RowRetorno.Item("SALDO")
+                        rowDetalle.Item("CAJAS") = rowDetalle.Item("SALDO").ToString
                         If rowDetalle.Item("FACTORCAJAMASTER") <> 0 And rowDetalle.Item("CAJAS") <> 0 Then
                             rowDetalle.Item("CAJASMASTER") = Math.Round(CType(rowDetalle.Item("CAJAS").ToString, Decimal) / CType(rowDetalle.Item("FACTORCAJAMASTER"), Decimal), 2)
                         Else
@@ -401,6 +411,7 @@ Public Class GestionGuiasSalida
                                 RowDetalleReporte.Item("Articulo") = rowDetalle.Item("PRODUCTO")
                                 RowDetalleReporte.Item("Lote") = rowDetalle.Item("SERIE")
                                 RowDetalleReporte.Item("CantidadSalida") = rowDetalle.Item("SALDO")
+
                                 RowDetalleReporte.Item("Unidad") = rowDetalle.Item("UNIDAD")
                                 RowDetalleReporte.Item("Vencimiento") = rowDetalle.Item("FECHA_VECIMIENTO")
                                 If rowDetalle.Item("UNIDAD").ToString = "UND" Then
