@@ -36,6 +36,17 @@ Imports System.Configuration
         End Set
     End Property
 
+
+    Private Comentario As String
+    Public Property pr_Comentario() As String
+        Get
+            Return Comentario
+        End Get
+        Set(ByVal value As String)
+            Comentario = value
+        End Set
+    End Property
+
     Private crg_fechaRuta As String
     Public Property pr_crg_fechaRuta() As String
         Get

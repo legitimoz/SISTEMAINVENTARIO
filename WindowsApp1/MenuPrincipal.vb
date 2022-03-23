@@ -692,4 +692,20 @@
             Throw ex
         End Try
     End Sub
+
+    Private Sub LiquidacionDocumentariaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LiquidacionDocumentariaToolStripMenuItem.Click
+        Try
+            Try
+                Dim frmPed As New GestionLiquidacionDocumentaria
+                If ExisteChildrens(frmPed) = False Then
+                    frmPed.MdiParent = Me
+                    frmPed.Show()
+                End If
+            Catch ex As Exception
+                Throw ex
+            End Try
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class
