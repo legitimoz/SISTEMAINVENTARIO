@@ -30,6 +30,134 @@ Public Class GestionAbastecimiento
         End Try
     End Sub
 
+    Function GridAExcel_Stock(ByVal ElGrid As DataGridView) As Boolean
+
+        Dim exApp As Object
+        Dim exLibro As Object
+        Dim exHoja As Object
+
+        exApp = CreateObject("Excel.Application")
+
+        ' -- Referencia a la Hoja activa ( la que añade por defecto Excel )   
+        exHoja = exApp.ActiveSheet
+
+        Try
+
+            'Añadimos el Libro al programa, y la hoja al libro
+            exLibro = exApp.Workbooks.Add()
+            exHoja = exLibro.Worksheets(1)
+
+
+
+            'exLibro = exApp.Workbooks
+            'exHoja = exLibro.Worksheets.Add()
+
+            ' ¿Cuantas columnas y cuantas filas?
+            Dim NCol As Integer = ElGrid.ColumnCount
+            Dim NRow As Integer = ElGrid.RowCount
+
+            'Aqui recorremos todas las filas, y por cada fila todas las columnas y vamos escribiendo.
+            For i As Integer = 1 To NCol
+                exHoja.Cells.Item(1, i) = ElGrid.Columns(i - 1).HeaderText.ToString()
+                exHoja.Cells.Item(1, i).Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.DarkBlue)
+                'exHoja.Cells.Item(1, i).HorizontalAlignment = 3
+            Next
+
+            Dim fecha As String = String.Empty
+
+            For Fila As Integer = 0 To NRow - 1
+                For Col As Integer = 0 To NCol - 1
+
+
+                    'If Col <> 19 And Col <> 20 And Col <> 21 Then
+                    If ElGrid.Rows(Fila).Cells(Col).Value Is DBNull.Value Then
+                        exHoja.Cells.Item(Fila + 2, Col + 1) = ""
+                    Else
+                        exHoja.Cells.Item(Fila + 2, Col + 1) = CStr(ElGrid.Rows(Fila).Cells(Col).Value)
+                    End If
+
+                    'End If
+
+
+
+                    'exHoja.Cells.Item(Fila + 2, Col + 1).Font.Name = "Calibri"
+                    'exHoja.Cells.Item(Fila + 2, Col + 1).Font.Size = 9
+                    'If Col = 3 Or Col = 0 Or Col = 13 Or Col = 14 Or Col = 15 Or Col = 16 Or Col = 17 Then
+                    '    fecha = "'" & CStr(ElGrid.Rows(Fila).Cells(Col).Value)
+                    '    exHoja.Cells.Item(Fila + 2, Col + 1) = "'" & CStr(ElGrid.Rows(Fila).Cells(Col).Value)
+                    'Else
+                    '    If ElGrid.Rows(Fila).Cells(Col).Value Is DBNull.Value Then
+                    '        exHoja.Cells.Item(Fila + 2, Col + 1) = ""
+                    '    Else
+                    '        exHoja.Cells.Item(Fila + 2, Col + 1) = CStr(ElGrid.Rows(Fila).Cells(Col).Value)
+                    '    End If
+
+                    'End If
+                Next
+            Next
+
+
+            'For i As Integer = 0 To dgvControlStock.Rows.Count - 1
+            '    Dim valor2 As String
+            '    'Dim valor As Integer = CType(e.Value, Integer)
+            '    valor2 = CStr(dgvControlStock.Rows(i).Cells.Item("COLOR1").Value)
+
+
+            '    If valor2 = "NEGRO" Then
+            '        exHoja.Cells.Item(i + 2, 4).Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Black)
+
+            '    Else
+            '        If valor2 = "ROJO" Then
+            '            exHoja.Cells.Item(i + 2, 4).Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Red)
+
+            '        Else
+            '            If valor2 = "NARANJA" Then
+            '                exHoja.Cells.Item(i + 2, 4).Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Orange)
+
+            '            Else
+            '                If valor2 = "AMARILLO" Then
+            '                    exHoja.Cells.Item(i + 2, 4).Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Yellow)
+
+            '                End If
+            '            End If
+            '        End If
+            '    End If
+
+
+            'Next
+
+            'exHoja.Cells.Item(2, 1).Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Red)
+
+            'Titulo en negrita, Alineado al centro y que el tamaño de la columna se
+            'ajuste al texto
+            exHoja.Rows.Item(1).Font.Name = "Calibri"
+            exHoja.Rows.Item(1).Font.Size = 9
+            exHoja.Rows.Item(1).Font.color = Color.White
+            exHoja.Rows.Item(1).Font.Bold = 1
+            exHoja.Rows.Item(1).HorizontalAlignment = 3
+
+            exHoja.Columns.AutoFit()
+
+            'exHoja.Rows.AutoFit()
+
+            'exHoja.RowHeight = 12
+
+            'Aplicación visible
+            exApp.Application.Visible = True
+
+            exHoja = Nothing
+            exLibro = Nothing
+            exApp = Nothing
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error al exportar a Excel")
+            Return False
+        End Try
+
+        Return True
+
+    End Function
+
     Private Sub btnBuscar_Click_1(sender As Object, e As EventArgs) Handles btnBuscar.Click
         Dim Dt_Almacen As New DataTable
         Try
@@ -112,6 +240,8 @@ Public Class GestionAbastecimiento
                                         RowRet.Item("OCTUBRE") = RowRet.Item("OCTUBRE").ToString + CType(RowVal2.Item("OCTUBRE").ToString, Integer)
                                         RowRet.Item("NOVIEMBRE") = RowRet.Item("NOVIEMBRE").ToString + CType(RowVal2.Item("NOVIEMBRE").ToString, Integer)
                                         RowRet.Item("DICIEMBRE") = RowRet.Item("DICIEMBRE").ToString + CType(RowVal2.Item("DICIEMBRE").ToString, Integer)
+                                        RowRet.Item("TOTAL") = RowRet.Item("TOTAL").ToString + CType(RowVal2.Item("TOTAL").ToString, Integer)
+                                        RowRet.Item("ABC CI") = RowRet.Item("ABC CI").ToString + CType(RowVal2.Item("ABC CI").ToString, Integer)
                                         rp = True
                                         Exit For
                                     End If
@@ -146,73 +276,6 @@ Public Class GestionAbastecimiento
             totalabcci = 0
             AcumuladoPorcentaje = 0
             mesesDiferencia()
-            Dim ContadorMeses As Integer = MesInicio
-            While (ContadorMeses <> MesFin) = True
-                Select Case ContadorMeses
-                    Case 1
-                        Dg_Cabecera.Columns("ENERO").Visible = True
-
-                    Case 2
-                        Dg_Cabecera.Columns("FEBRERO").Visible = True
-
-                    Case 3
-                        Dg_Cabecera.Columns("MARZO").Visible = True
-                    Case 4
-                        Dg_Cabecera.Columns("ABRIL").Visible = True
-                    Case 5
-                        Dg_Cabecera.Columns("MAYO").Visible = True
-                    Case 6
-                        Dg_Cabecera.Columns("JUNIO").Visible = True
-                    Case 7
-                        Dg_Cabecera.Columns("JULIO").Visible = True
-                    Case 8
-                        Dg_Cabecera.Columns("AGOSTO").Visible = True
-                    Case 9
-                        Dg_Cabecera.Columns("SETIEMBRE").Visible = True
-                    Case 10
-                        Dg_Cabecera.Columns("OCTUBRE").Visible = True
-                    Case 11
-                        Dg_Cabecera.Columns("NOVIEMBRE").Visible = True
-                    Case 12
-                        Dg_Cabecera.Columns("DICIEMBRE").Visible = True
-                End Select
-                If ContadorMeses < 12 Then
-                    ContadorMeses = ContadorMeses + 1
-                Else
-                    If ContadorMeses = 12 Then
-                        ContadorMeses = 1
-                    End If
-                End If
-
-            End While
-            Select Case MesFin
-                Case 1
-                    Dg_Cabecera.Columns("ENERO").Visible = True
-
-                Case 2
-                    Dg_Cabecera.Columns("FEBRERO").Visible = True
-
-                Case 3
-                    Dg_Cabecera.Columns("MARZO").Visible = True
-                Case 4
-                    Dg_Cabecera.Columns("ABRIL").Visible = True
-                Case 5
-                    Dg_Cabecera.Columns("MAYO").Visible = True
-                Case 6
-                    Dg_Cabecera.Columns("JUNIO").Visible = True
-                Case 7
-                    Dg_Cabecera.Columns("JULIO").Visible = True
-                Case 8
-                    Dg_Cabecera.Columns("AGOSTO").Visible = True
-                Case 9
-                    Dg_Cabecera.Columns("SETIEMBRE").Visible = True
-                Case 10
-                    Dg_Cabecera.Columns("OCTUBRE").Visible = True
-                Case 11
-                    Dg_Cabecera.Columns("NOVIEMBRE").Visible = True
-                Case 12
-                    Dg_Cabecera.Columns("DICIEMBRE").Visible = True
-            End Select
 
             Dim DataAbastecer As New DataTable
             Dim RetornoTabla As New DataTable
@@ -227,10 +290,16 @@ Public Class GestionAbastecimiento
 
                 For Each Recorre As DataRow In dtretorno.Rows
                     RowAbastercer = DataAbastecer.NewRow
+
+                    If Recorre.Item("CODIGO").ToString.Trim = "PRD0000160" Then
+                        Dim gola As Integer = 0
+                        gola = 2
+                    End If
+
                     RowAbastercer.Item("CODIGO") = Recorre.Item("CODIGO").ToString.Trim
                     RowAbastercer.Item("TIPO ORIGEN") = Recorre.Item("TIPO ORIGEN").ToString.Trim
                     RowAbastercer.Item("ARTICULO") = Recorre.Item("ARTICULO").ToString.Trim
-                    RowAbastercer.Item("UU CAJA") = Recorre.Item("UU CAJA").ToString.Trim
+                    RowAbastercer.Item("UU CAJA") = CType(Recorre.Item("UU CAJA").ToString.Trim, Integer)
                     RowAbastercer.Item("AR_NANCHO") = Recorre.Item("AR_NANCHO").ToString.Trim
                     RowAbastercer.Item("AR_NLARGO") = Recorre.Item("AR_NLARGO").ToString.Trim
                     RowAbastercer.Item("AR_CTALLA") = Recorre.Item("AR_CTALLA").ToString.Trim
@@ -272,6 +341,11 @@ Public Class GestionAbastecimiento
 
                         Dg_Cabecera.Rows.Add()
                         Dg_Cabecera.Rows(contador).Cells("CODIGO").Value = RowRetorno.Item("CODIGO").ToString.Trim
+
+                        If RowRetorno.Item("CODIGO").ToString.Trim = "PRD0000160" Then
+                            Dim gola As Integer = 0
+                            gola = 2
+                        End If
                         Dg_Cabecera.Rows(contador).Cells("TIPOORIGEN").Value = RowRetorno.Item("TIPO ORIGEN").ToString.Trim
                         Dg_Cabecera.Rows(contador).Cells("ARTICULO").Value = RowRetorno.Item("ARTICULO").ToString.Trim
                         Dg_Cabecera.Rows(contador).Cells("UUCAJA").Value = RowRetorno.Item("UU CAJA").ToString
@@ -595,10 +669,26 @@ Public Class GestionAbastecimiento
 
                         Dim Total As Integer = 0
                         Total = (CType(RowRetorno.Item("TOTAL").ToString, Integer))
-                        If Frecuencia > 3 Then
-                            Total = Total - Mayor
+                        'If Frecuencia > 3 Then
+                        '    Total = Total - Mayor
+                        'End If
+
+
+
+                        Dg_Cabecera.Rows(contador).Cells("VENTAMES").Value = Math.Ceiling(Total / (MesesTranscurridos))
+
+                        Dim PromedioActual As Integer = Dg_Cabecera.Rows(contador).Cells("VENTAMES").Value
+
+                        Dim Dt_Promedio As New DataTable
+                        Dt_Promedio = AlmacenObj.sp_obtener_promedio_fijo(RowRetorno.Item("CODIGO").ToString.Trim)
+                        If Dt_Promedio.Rows.Count > 0 Then
+                            Dim PromedioFijo As Integer = 0
+                            PromedioFijo = Dt_Promedio.Rows(0).Item("PROMEDIO").ToString
+                            If PromedioFijo > PromedioActual Then
+                                Dg_Cabecera.Rows(contador).Cells("VENTAMES").Value = PromedioFijo
+                            End If
                         End If
-                        Dg_Cabecera.Rows(contador).Cells("VENTAMES").Value = Math.Ceiling(Total / MesesTranscurridos)
+
                         Dg_Cabecera.Rows(contador).Cells("METROSVF").Value = Math.Ceiling(CType(Dg_Cabecera.Rows(contador).Cells("VENTAMES").Value * Dg_Cabecera.Rows(contador).Cells("VOLUMENUNIDAD").Value, Decimal))
                         Dg_Cabecera.Rows(contador).Cells("PORCENABASTECER").Value = 100
                         If Dg_Cabecera.Rows(contador).Cells("CODIGO").Value.ToString.Trim = "PRD0002663".Trim Then
@@ -641,6 +731,7 @@ Public Class GestionAbastecimiento
                         Dg_Cabecera.Rows(contador).Cells("ABASTUNI").Value = Dg_Cabecera.Rows(contador).Cells("ABASTECJMATE").Value * Dg_Cabecera.Rows(contador).Cells("MULTIPLICACIONFACTORES").Value
                         Dg_Cabecera.Rows(contador).Cells("STOCKFINALATE").Value = Dg_Cabecera.Rows(contador).Cells("ABASTUNI").Value + Dg_Cabecera.Rows(contador).Cells("STOCKATE").Value
                         Dg_Cabecera.Rows(contador).Cells("COBERTFINAL").Value = Math.Ceiling((Dg_Cabecera.Rows(contador).Cells("STOCKFINALATE").Value / Dg_Cabecera.Rows(contador).Cells("VENTAMES").Value) * 30)
+                        Dg_Cabecera.Rows(contador).Cells("SELECCIONAR").Value = False
                         If CType(Dg_Cabecera.Rows(contador).Cells("COBERTFINAL").Value, Integer) <= 7 Then
                             Dg_Cabecera.Rows(contador).Cells("ACCION").Value = "ABASTECER"
                         Else
@@ -670,16 +761,19 @@ Public Class GestionAbastecimiento
                             End If
                         End If
 
+                        Dg_Cabecera.Rows(contador).Cells("DEVOLVERCJM").Value = CType(0, Decimal)
+                        Dg_Cabecera.Rows(contador).Cells("M3DEVOLVERCJM").Value = CType(0, Decimal)
+
                         If Dg_Cabecera.Rows(contador).Cells("ACCION").Value.ToString = "DEVOLVER CJM" Then
-                            Dg_Cabecera.Rows(contador).Cells("DEVOLVERCJM").Value = Math.Ceiling(((CType(Dg_Cabecera.Rows(contador).Cells("STOCKFINALATE").Value, Integer) - Dg_Cabecera.Rows(contador).Cells("VENTAMES").Value) * 2) / Dg_Cabecera.Rows(contador).Cells("MULTIPLICACIONFACTORES").Value)
+                            Dg_Cabecera.Rows(contador).Cells("DEVOLVERCJM").Value = CType(Math.Ceiling(((CType(Dg_Cabecera.Rows(contador).Cells("STOCKFINALATE").Value, Integer) - Dg_Cabecera.Rows(contador).Cells("VENTAMES").Value) * 2) / Dg_Cabecera.Rows(contador).Cells("MULTIPLICACIONFACTORES").Value), Decimal)
                             If Dg_Cabecera.Rows(contador).Cells("DEVOLVERCJM").Value <> 0 Then
-                                Dg_Cabecera.Rows(contador).Cells("M3DEVOLVERCJM").Value = Math.Ceiling(Dg_Cabecera.Rows(contador).Cells("DEVOLVERCJM").Value * Dg_Cabecera.Rows(contador).Cells("VOLCJMU").Value)
+                                Dg_Cabecera.Rows(contador).Cells("M3DEVOLVERCJM").Value = CType(Math.Ceiling(Dg_Cabecera.Rows(contador).Cells("DEVOLVERCJM").Value * Dg_Cabecera.Rows(contador).Cells("VOLCJMU").Value), Decimal)
                             Else
-                                Dg_Cabecera.Rows(contador).Cells("M3DEVOLVERCJM").Value = 0
+                                Dg_Cabecera.Rows(contador).Cells("M3DEVOLVERCJM").Value = CType(0, Decimal)
                             End If
                         Else
-                            Dg_Cabecera.Rows(contador).Cells("DEVOLVERCJM").Value = 0
-                            Dg_Cabecera.Rows(contador).Cells("M3DEVOLVERCJM").Value = 0
+                            Dg_Cabecera.Rows(contador).Cells("DEVOLVERCJM").Value = CType(0, Decimal)
+                            Dg_Cabecera.Rows(contador).Cells("M3DEVOLVERCJM").Value = CType(0, Decimal)
                         End If
 
                         contador = contador + 1
@@ -784,16 +878,19 @@ Public Class GestionAbastecimiento
                         End If
                     End If
 
+                    Dg_Cabecera.Rows(e.RowIndex).Cells("DEVOLVERCJM").Value = CType(0, Decimal)
+                    Dg_Cabecera.Rows(e.RowIndex).Cells("M3DEVOLVERCJM").Value = CType(0, Decimal)
+
                     If Dg_Cabecera.Rows(e.RowIndex).Cells("ACCION").Value.ToString = "DEVOLVER CJM" Then
-                        Dg_Cabecera.Rows(e.RowIndex).Cells("DEVOLVERCJM").Value = Math.Ceiling(((CType(Dg_Cabecera.Rows(e.RowIndex).Cells("STOCKFINALATE").Value, Integer) - Dg_Cabecera.Rows(e.RowIndex).Cells("VENTAMES").Value) * 2) / Dg_Cabecera.Rows(e.RowIndex).Cells("MULTIPLICACIONFACTORES").Value)
+                        Dg_Cabecera.Rows(e.RowIndex).Cells("DEVOLVERCJM").Value = Math.Ceiling(CType(((CType(Dg_Cabecera.Rows(e.RowIndex).Cells("STOCKFINALATE").Value, Integer) - Dg_Cabecera.Rows(e.RowIndex).Cells("VENTAMES").Value) * 2) / Dg_Cabecera.Rows(e.RowIndex).Cells("MULTIPLICACIONFACTORES").Value, Decimal))
                         If Dg_Cabecera.Rows(e.RowIndex).Cells("DEVOLVERCJM").Value <> 0 Then
-                            Dg_Cabecera.Rows(e.RowIndex).Cells("M3DEVOLVERCJM").Value = Math.Ceiling(Dg_Cabecera.Rows(e.RowIndex).Cells("DEVOLVERCJM").Value * Dg_Cabecera.Rows(e.RowIndex).Cells("VOLCJMU").Value)
+                            Dg_Cabecera.Rows(e.RowIndex).Cells("M3DEVOLVERCJM").Value = Math.Ceiling(CType(Dg_Cabecera.Rows(e.RowIndex).Cells("DEVOLVERCJM").Value * Dg_Cabecera.Rows(e.RowIndex).Cells("VOLCJMU").Value, Decimal))
                         Else
-                            Dg_Cabecera.Rows(e.RowIndex).Cells("M3DEVOLVERCJM").Value = 0
+                            Dg_Cabecera.Rows(e.RowIndex).Cells("M3DEVOLVERCJM").Value = CType(0, Decimal)
                         End If
                     Else
-                        Dg_Cabecera.Rows(e.RowIndex).Cells("DEVOLVERCJM").Value = 0
-                        Dg_Cabecera.Rows(e.RowIndex).Cells("M3DEVOLVERCJM").Value = 0
+                        Dg_Cabecera.Rows(e.RowIndex).Cells("DEVOLVERCJM").Value = CType(0, Decimal)
+                        Dg_Cabecera.Rows(e.RowIndex).Cells("M3DEVOLVERCJM").Value = CType(0, Decimal)
                     End If
 
                 End If
@@ -808,14 +905,16 @@ Public Class GestionAbastecimiento
             If Dg_Cabecera.Rows.Count > 0 Then
                 For Each Dgrow As DataGridViewRow In Dg_Cabecera.Rows
                     If CType(Dgrow.Cells("ABASTECJMATE").EditedFormattedValue.ToString, Integer) > 0 Then
-                        Dim RowAdd As DataRow = DtReporte.NewRow
-                        RowAdd.Item("Cod Articulo") = Dgrow.Cells("CODIGO").EditedFormattedValue.ToString
-                        RowAdd.Item("Articulo") = Dgrow.Cells("ARTICULO").EditedFormattedValue.ToString
-                        RowAdd.Item("CJ Master Abastercer") = Dgrow.Cells("ABASTECJMATE").EditedFormattedValue.ToString
-                        RowAdd.Item("M3 Abastecer") = Dgrow.Cells("ABASTEM3").EditedFormattedValue.ToString
-                        RowAdd.Item("Cobertura Final Dias") = Dgrow.Cells("COBERTFINAL").EditedFormattedValue.ToString
-                        RowAdd.Item("Cobertura Actual Dias") = Dgrow.Cells("COBERTACTUAL").EditedFormattedValue.ToString
-                        DtReporte.Rows.Add(RowAdd)
+                        If Dgrow.Cells("SELECCIONAR").EditedFormattedValue = True Then
+                            Dim RowAdd As DataRow = DtReporte.NewRow
+                            RowAdd.Item("Cod Articulo") = Dgrow.Cells("CODIGO").EditedFormattedValue.ToString
+                            RowAdd.Item("Articulo") = Dgrow.Cells("ARTICULO").EditedFormattedValue.ToString
+                            RowAdd.Item("CJ Master Abastercer") = Dgrow.Cells("ABASTECJMATE").EditedFormattedValue.ToString
+                            RowAdd.Item("M3 Abastecer") = Dgrow.Cells("ABASTEM3").EditedFormattedValue.ToString
+                            RowAdd.Item("Cobertura Final Dias") = Dgrow.Cells("COBERTFINAL").EditedFormattedValue.ToString
+                            RowAdd.Item("Cobertura Actual Dias") = Dgrow.Cells("COBERTACTUAL").EditedFormattedValue.ToString
+                            DtReporte.Rows.Add(RowAdd)
+                        End If
                     End If
                 Next
             End If
@@ -869,9 +968,16 @@ Public Class GestionAbastecimiento
             If Check_mostrar.Checked = True Then
                 Dg_Cabecera.Columns("UUCAJA").Visible = True
                 Dg_Cabecera.Columns("CAJASCM").Visible = True
+                Dg_Cabecera.Columns("MULTIPLICACIONFACTORES").Visible = True
+                Dg_Cabecera.Columns("VOLCJMU").Visible = True
+                Dg_Cabecera.Columns("VOLUMENUNIDAD").Visible = True
+
             ElseIf Check_mostrar.Checked = False Then
                 Dg_Cabecera.Columns("UUCAJA").Visible = False
                 Dg_Cabecera.Columns("CAJASCM").Visible = False
+                Dg_Cabecera.Columns("MULTIPLICACIONFACTORES").Visible = False
+                Dg_Cabecera.Columns("VOLCJMU").Visible = False
+                Dg_Cabecera.Columns("VOLUMENUNIDAD").Visible = False
             End If
         Catch ex As Exception
 
@@ -899,11 +1005,140 @@ Public Class GestionAbastecimiento
         End Try
     End Sub
 
-    'Public Sub MySub()
-    '    If strName Like "Mr*" Then
-    '        blnResult = True
-    '    Else
-    '        blnResult = False
-    '    End If
-    'End Sub
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        If Dg_Cabecera.Rows.Count > 0 Then
+            GridAExcel_Stock(Dg_Cabecera)
+        End If
+    End Sub
+
+    Private Sub CheckBox1_CheckedChanged_1(sender As Object, e As EventArgs) Handles Check_MostrarDemanda.CheckedChanged
+        Try
+            If Check_MostrarDemanda.Checked = True Then
+                Dim ContadorMeses As Integer = MesInicio
+                While (ContadorMeses <> MesFin) = True
+                    Select Case ContadorMeses
+                        Case 1
+                            Dg_Cabecera.Columns("ENERO").Visible = True
+
+                        Case 2
+                            Dg_Cabecera.Columns("FEBRERO").Visible = True
+
+                        Case 3
+                            Dg_Cabecera.Columns("MARZO").Visible = True
+                        Case 4
+                            Dg_Cabecera.Columns("ABRIL").Visible = True
+                        Case 5
+                            Dg_Cabecera.Columns("MAYO").Visible = True
+                        Case 6
+                            Dg_Cabecera.Columns("JUNIO").Visible = True
+                        Case 7
+                            Dg_Cabecera.Columns("JULIO").Visible = True
+                        Case 8
+                            Dg_Cabecera.Columns("AGOSTO").Visible = True
+                        Case 9
+                            Dg_Cabecera.Columns("SETIEMBRE").Visible = True
+                        Case 10
+                            Dg_Cabecera.Columns("OCTUBRE").Visible = True
+                        Case 11
+                            Dg_Cabecera.Columns("NOVIEMBRE").Visible = True
+                        Case 12
+                            Dg_Cabecera.Columns("DICIEMBRE").Visible = True
+                    End Select
+                    If ContadorMeses < 12 Then
+                        ContadorMeses = ContadorMeses + 1
+                    Else
+                        If ContadorMeses = 12 Then
+                            ContadorMeses = 1
+                        End If
+                    End If
+
+                End While
+                Select Case MesFin
+                    Case 1
+                        Dg_Cabecera.Columns("ENERO").Visible = True
+
+                    Case 2
+                        Dg_Cabecera.Columns("FEBRERO").Visible = True
+
+                    Case 3
+                        Dg_Cabecera.Columns("MARZO").Visible = True
+                    Case 4
+                        Dg_Cabecera.Columns("ABRIL").Visible = True
+                    Case 5
+                        Dg_Cabecera.Columns("MAYO").Visible = True
+                    Case 6
+                        Dg_Cabecera.Columns("JUNIO").Visible = True
+                    Case 7
+                        Dg_Cabecera.Columns("JULIO").Visible = True
+                    Case 8
+                        Dg_Cabecera.Columns("AGOSTO").Visible = True
+                    Case 9
+                        Dg_Cabecera.Columns("SETIEMBRE").Visible = True
+                    Case 10
+                        Dg_Cabecera.Columns("OCTUBRE").Visible = True
+                    Case 11
+                        Dg_Cabecera.Columns("NOVIEMBRE").Visible = True
+                    Case 12
+                        Dg_Cabecera.Columns("DICIEMBRE").Visible = True
+                End Select
+                Dg_Cabecera.Columns("TOTALVENTA").Visible = True
+
+            ElseIf Check_MostrarDemanda.Checked = False Then
+
+                Dg_Cabecera.Columns("ENERO").Visible = False
+                Dg_Cabecera.Columns("FEBRERO").Visible = False
+                Dg_Cabecera.Columns("MARZO").Visible = False
+                Dg_Cabecera.Columns("ABRIL").Visible = False
+                Dg_Cabecera.Columns("MAYO").Visible = False
+                Dg_Cabecera.Columns("JUNIO").Visible = False
+                Dg_Cabecera.Columns("JULIO").Visible = False
+                Dg_Cabecera.Columns("AGOSTO").Visible = False
+                Dg_Cabecera.Columns("SETIEMBRE").Visible = False
+                Dg_Cabecera.Columns("OCTUBRE").Visible = False
+                Dg_Cabecera.Columns("NOVIEMBRE").Visible = False
+                Dg_Cabecera.Columns("DICIEMBRE").Visible = False
+                Dg_Cabecera.Columns("TOTALVENTA").Visible = False
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub Check_MostrarTipo_CheckedChanged(sender As Object, e As EventArgs) Handles Check_MostrarTipo.CheckedChanged
+
+        If Check_MostrarTipo.Checked = True Then
+
+            Dg_Cabecera.Columns("ABCCI").Visible = True
+            Dg_Cabecera.Columns("PORCENTAJE").Visible = True
+            Dg_Cabecera.Columns("PORCENACUMU").Visible = True
+            Dg_Cabecera.Columns("FRECUENCIA").Visible = True
+            Dg_Cabecera.Columns("FRECUENCIAB").Visible = True
+
+        ElseIf Check_MostrarTipo.Checked = False Then
+            Dg_Cabecera.Columns("ABCCI").Visible = False
+            Dg_Cabecera.Columns("PORCENTAJE").Visible = False
+            Dg_Cabecera.Columns("PORCENACUMU").Visible = False
+            Dg_Cabecera.Columns("FRECUENCIA").Visible = False
+            Dg_Cabecera.Columns("FRECUENCIAB").Visible = False
+        End If
+
+    End Sub
+
+    Private Sub Check_MostrarOtros_CheckedChanged(sender As Object, e As EventArgs) Handles Check_MostrarOtros.CheckedChanged
+        If Check_MostrarOtros.Checked = True Then
+
+            Dg_Cabecera.Columns("UUABASTECE").Visible = True
+            Dg_Cabecera.Columns("M3ABASTECER").Visible = True
+            Dg_Cabecera.Columns("UUABASTATE").Visible = True
+            Dg_Cabecera.Columns("UUREALABASATE").Visible = True
+
+
+        ElseIf Check_MostrarOtros.Checked = False Then
+            Dg_Cabecera.Columns("UUABASTECE").Visible = False
+            Dg_Cabecera.Columns("M3ABASTECER").Visible = False
+            Dg_Cabecera.Columns("UUABASTATE").Visible = False
+            Dg_Cabecera.Columns("UUREALABASATE").Visible = False
+
+        End If
+    End Sub
 End Class

@@ -11,7 +11,7 @@ Public Class EditarSalidaAlmacen
     Private ObjAlmacen As New AlmacenL
     Private Estructura As New EstructuraTabla
     Private idposicion As Integer = 0
-    Public iduser, idrack, idalmacen, idsite, idmovimiento As Integer
+    Public iduser, idrack, idalmacen, idsite, idmovimiento, perfilusuario As Integer
     Public grabado As Boolean = False
 
     Private Sub EditarSalidaAlmacen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -70,7 +70,7 @@ Public Class EditarSalidaAlmacen
 
     Public Sub Obtenerposiciones()
         If CodArticulo <> "" And cantidad <> 0 Then
-            dtPosiciones = LlamarListarPosicionesHojaPicking(CodArticulo, Lote, cantidad, idalmacen, idsite)
+            dtPosiciones = LlamarListarPosicionesHojaPicking(CodArticulo, Lote, cantidad, idalmacen, idsite, perfilusuario)
             If dtPosiciones.Rows.Count > 0 Then
                 Dg_DatosPosiciones.DataSource = dtPosiciones
             Else
@@ -197,11 +197,11 @@ Public Class EditarSalidaAlmacen
         End Try
     End Function
 
-    Public Function LlamarListarPosicionesHojaPicking(codarticulo As String, lote As String, cantidad As Decimal, idalmacen As Integer, idsite As Integer) As DataTable
+    Public Function LlamarListarPosicionesHojaPicking(codarticulo As String, lote As String, cantidad As Decimal, idalmacen As Integer, idsite As Integer, PerfilUsuario As Integer) As DataTable
 
         Dim dtretono As DataTable
         Try
-            dtretono = ObjAlmacen.ObtenerPosicionesHojaPicking(codarticulo, lote, cantidad, idalmacen, idsite).Copy
+            dtretono = ObjAlmacen.ObtenerPosicionesHojaPicking(codarticulo, lote, cantidad, idalmacen, idsite, PerfilUsuario).Copy
         Catch ex As Exception
             Throw ex
         End Try

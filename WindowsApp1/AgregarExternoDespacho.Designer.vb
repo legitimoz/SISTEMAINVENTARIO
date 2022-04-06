@@ -44,11 +44,17 @@ Partial Class AgregarExternoDespacho
         Me.Label10 = New System.Windows.Forms.Label()
         Me.cmb_canal = New System.Windows.Forms.ComboBox()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.cmdAceptar = New FontAwesome.Sharp.IconButton()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Cmb_Costos = New System.Windows.Forms.ComboBox()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.cmb_direcciones = New System.Windows.Forms.ComboBox()
+        Me.cmdAceptar = New FontAwesome.Sharp.IconButton()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Cmb_Rrepe = New System.Windows.Forms.ComboBox()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.cmb_site = New System.Windows.Forms.ComboBox()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.cmb_fisico = New System.Windows.Forms.ComboBox()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -268,32 +274,6 @@ Partial Class AgregarExternoDespacho
         '
         Me.ErrorProvider1.ContainerControl = Me
         '
-        'cmdAceptar
-        '
-        Me.cmdAceptar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmdAceptar.BackColor = System.Drawing.SystemColors.Control
-        Me.cmdAceptar.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.cmdAceptar.FlatAppearance.BorderColor = System.Drawing.Color.ForestGreen
-        Me.cmdAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cmdAceptar.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdAceptar.ForeColor = System.Drawing.Color.ForestGreen
-        Me.cmdAceptar.IconChar = FontAwesome.Sharp.IconChar.CheckCircle
-        Me.cmdAceptar.IconColor = System.Drawing.Color.ForestGreen
-        Me.cmdAceptar.IconFont = FontAwesome.Sharp.IconFont.Solid
-        Me.cmdAceptar.IconSize = 16
-        Me.cmdAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.cmdAceptar.Location = New System.Drawing.Point(350, 354)
-        Me.cmdAceptar.Margin = New System.Windows.Forms.Padding(4)
-        Me.cmdAceptar.Name = "cmdAceptar"
-        Me.cmdAceptar.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.cmdAceptar.Size = New System.Drawing.Size(92, 26)
-        Me.cmdAceptar.TabIndex = 147
-        Me.cmdAceptar.Text = "Aceptar"
-        Me.cmdAceptar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.cmdAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.cmdAceptar.UseVisualStyleBackColor = False
-        '
         'Label11
         '
         Me.Label11.AutoSize = True
@@ -330,12 +310,99 @@ Partial Class AgregarExternoDespacho
         Me.cmb_direcciones.Size = New System.Drawing.Size(324, 21)
         Me.cmb_direcciones.TabIndex = 150
         '
+        'cmdAceptar
+        '
+        Me.cmdAceptar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmdAceptar.BackColor = System.Drawing.SystemColors.Control
+        Me.cmdAceptar.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdAceptar.FlatAppearance.BorderColor = System.Drawing.Color.ForestGreen
+        Me.cmdAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cmdAceptar.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdAceptar.ForeColor = System.Drawing.Color.ForestGreen
+        Me.cmdAceptar.IconChar = FontAwesome.Sharp.IconChar.CheckCircle
+        Me.cmdAceptar.IconColor = System.Drawing.Color.ForestGreen
+        Me.cmdAceptar.IconFont = FontAwesome.Sharp.IconFont.Solid
+        Me.cmdAceptar.IconSize = 16
+        Me.cmdAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.cmdAceptar.Location = New System.Drawing.Point(350, 442)
+        Me.cmdAceptar.Margin = New System.Windows.Forms.Padding(4)
+        Me.cmdAceptar.Name = "cmdAceptar"
+        Me.cmdAceptar.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
+        Me.cmdAceptar.Size = New System.Drawing.Size(92, 26)
+        Me.cmdAceptar.TabIndex = 147
+        Me.cmdAceptar.Text = "Aceptar"
+        Me.cmdAceptar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.cmdAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.cmdAceptar.UseVisualStyleBackColor = False
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(18, 352)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(80, 13)
+        Me.Label13.TabIndex = 153
+        Me.Label13.Text = "Representante:"
+        '
+        'Cmb_Rrepe
+        '
+        Me.Cmb_Rrepe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.Cmb_Rrepe.FormattingEnabled = True
+        Me.Cmb_Rrepe.Location = New System.Drawing.Point(118, 349)
+        Me.Cmb_Rrepe.Name = "Cmb_Rrepe"
+        Me.Cmb_Rrepe.Size = New System.Drawing.Size(324, 21)
+        Me.Cmb_Rrepe.TabIndex = 152
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(5, 413)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(88, 13)
+        Me.Label14.TabIndex = 160
+        Me.Label14.Text = "Site Liquidacion :"
+        '
+        'cmb_site
+        '
+        Me.cmb_site.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb_site.FormattingEnabled = True
+        Me.cmb_site.Location = New System.Drawing.Point(118, 410)
+        Me.cmb_site.Name = "cmb_site"
+        Me.cmb_site.Size = New System.Drawing.Size(324, 21)
+        Me.cmb_site.TabIndex = 159
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(57, 382)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(40, 13)
+        Me.Label15.TabIndex = 158
+        Me.Label15.Text = "Fisico :"
+        '
+        'cmb_fisico
+        '
+        Me.cmb_fisico.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb_fisico.FormattingEnabled = True
+        Me.cmb_fisico.Items.AddRange(New Object() {"SI", "NO"})
+        Me.cmb_fisico.Location = New System.Drawing.Point(118, 379)
+        Me.cmb_fisico.Name = "cmb_fisico"
+        Me.cmb_fisico.Size = New System.Drawing.Size(324, 21)
+        Me.cmb_fisico.TabIndex = 157
+        '
         'AgregarExternoDespacho
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(455, 393)
+        Me.ClientSize = New System.Drawing.Size(455, 481)
+        Me.Controls.Add(Me.Label14)
+        Me.Controls.Add(Me.cmb_site)
+        Me.Controls.Add(Me.Label15)
+        Me.Controls.Add(Me.cmb_fisico)
+        Me.Controls.Add(Me.Label13)
+        Me.Controls.Add(Me.Cmb_Rrepe)
         Me.Controls.Add(Me.Label12)
         Me.Controls.Add(Me.cmb_direcciones)
         Me.Controls.Add(Me.Label11)
@@ -398,4 +465,10 @@ Partial Class AgregarExternoDespacho
     Friend WithEvents Cmb_Costos As ComboBox
     Friend WithEvents Label12 As Label
     Friend WithEvents cmb_direcciones As ComboBox
+    Friend WithEvents Label13 As Label
+    Friend WithEvents Cmb_Rrepe As ComboBox
+    Friend WithEvents Label14 As Label
+    Friend WithEvents cmb_site As ComboBox
+    Friend WithEvents Label15 As Label
+    Friend WithEvents cmb_fisico As ComboBox
 End Class

@@ -1,11 +1,12 @@
-﻿Imports Nordic.Bl.Be
+﻿Imports System.Configuration
+Imports Nordic.Bl.Be
 
 Public Class SeleccionarPosicionesIngreso
 
     Private dtPosiciones As New DataTable
     Private almacenobj As New AlmacenL
     Private Estructura As New EstructuraTabla
-    Public idrack As Integer
+    Public idrack, idsite, idalmacen As Integer
     Public grabado As Boolean
     Public posiciones As New List(Of String)
     Public codArticulo As String
@@ -16,6 +17,8 @@ Public Class SeleccionarPosicionesIngreso
 
     Private Sub CargaInicial()
         Try
+            idalmacen = CType(ConfigurationManager.AppSettings("idalmac").ToString.Trim, Integer)
+            idsite = CType(ConfigurationManager.AppSettings("CodigoSite").ToString.Trim, Integer)
             FormatoTablaDetalle()
             ListarPosiciones()
         Catch ex As Exception
@@ -34,10 +37,10 @@ Public Class SeleccionarPosicionesIngreso
         Return dtretono
     End Function
 
-    Public Function LlamarListarPosicionesXCodArticulo() As DataTable
+    Public Function LlamarListarPosicionesXCodArticulo(idsite As Integer, idalmacen As Integer) As DataTable
         Dim dtretono As DataTable
         Try
-            dtretono = almacenobj.ListarPosicionesXArticulo(codArticulo).Copy
+            dtretono = almacenobj.ListarPosicionesXArticulo(codArticulo, idsite, idalmacen).Copy
         Catch ex As Exception
             Throw ex
         End Try
@@ -47,7 +50,7 @@ Public Class SeleccionarPosicionesIngreso
     Public Sub ListarPosiciones()
         Try
             Dim dtretorno As New DataTable
-            dtretorno = LlamarListarPosicionesXCodArticulo()
+            dtretorno = LlamarListarPosicionesXCodArticulo(idsite, idalmacen)
             If dtretorno.Rows.Count > 0 Then
                 dtPosiciones.Rows.Clear()
                 For Each RowRetorno As DataRow In dtretorno.Rows
@@ -144,8 +147,8 @@ Public Class SeleccionarPosicionesIngreso
             ErrorProvider1.SetError(Dg_Posiciones, "")
             'If ConteoSeleccionados() > 0 Then
             LlenarPosicion()
-                grabado = True
-                Me.Close()
+            grabado = True
+            Me.Close()
             'Else
             'ErrorProvider1.SetError(Dg_Posiciones, "Debe seleccionar al menos 1 Posicion")
             'MsgBox("Hay Errores, valide", MsgBoxStyle.Exclamation)

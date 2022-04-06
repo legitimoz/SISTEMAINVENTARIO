@@ -100,20 +100,40 @@ Public Class GestionDispatchOnTime
                     rowcabecera.Item("TRANSPORTISTA") = RowRetorno.Item("TRANSPORTISTA").ToString.Trim
                     rowcabecera.Item("DIRECCION_CLIENTE") = RowRetorno.Item("DIRECCION_CLIENTE").ToString.Trim
                     rowcabecera.Item("RUC_CLIENTE") = RowRetorno.Item("RUC_CLIENTE").ToString.Trim
+                    rowcabecera.Item("TIPO_DOCUMENTO") = RowRetorno.Item("TIPO_DOCUMENTO").ToString.Trim
+                    rowcabecera.Item("ALMACEN") = RowRetorno.Item("ALMACEN").ToString.Trim
+
+
+                    If RowRetorno.Item("PROVINCIA").ToString.Trim = "CAÑETE".Trim Or RowRetorno.Item("PROVINCIA").ToString.Trim = "HUARAL".Trim Or RowRetorno.Item("PROVINCIA").ToString.Trim = "HUAURA".Trim Then
+                        rowcabecera.Item("LIM_PROV") = "PROVINCIA"
+                    End If
 
                     Dim Diferencia As Integer = 0
                     Diferencia = DateDiff(DateInterval.Day, Convert.ToDateTime(RowRetorno.Item("FECHA_RECEPCION").ToString.Trim), Convert.ToDateTime(RowRetorno.Item("FECHA_DESPACHO").ToString.Trim))
                     rowcabecera.Item("Diferencia") = Diferencia
                     Dim Tolerancia As Integer = 1
 
+                    Dim FechaRecepcion As Date
+
+                    FechaRecepcion = RowRetorno.Item("FECHA_RECEPCION").ToString.Trim
+
+                    Dim DIA As Integer = 0
+                    DIA = FechaRecepcion.DayOfWeek
                     If RowRetorno.Item("LIM_PROV").ToString.Trim = "LIMA" Then
                         If RowRetorno.Item("HORA_RECEPCION").ToString.Trim > #04:30:00 PM# Then
                             Tolerancia = 2
                         End If
+                        If DIA = 6 Then
+                            Tolerancia = 2
+                        End If
+
                     End If
 
                     If RowRetorno.Item("LIM_PROV").ToString.Trim = "PROVINCIA" Then
                         If RowRetorno.Item("HORA_RECEPCION").ToString.Trim > #12:00:00 PM# Then
+                            Tolerancia = 2
+                        End If
+                        If DIA = 6 Then
                             Tolerancia = 2
                         End If
                     End If
@@ -189,8 +209,8 @@ Public Class GestionDispatchOnTime
         Try
             If Dg_Cabecera.Rows.Count > 0 Then
                 CNUMDOC = Dg_Cabecera.CurrentRow.Cells("NRO_GUIA").EditedFormattedValue.ToString
-                CTD = Dg_Cabecera.CurrentRow.Cells("CTD").EditedFormattedValue.ToString
-                CALMA = Dg_Cabecera.CurrentRow.Cells("CALMA").EditedFormattedValue.ToString
+                CTD = Dg_Cabecera.CurrentRow.Cells("TIPO_DOCUMENTO").EditedFormattedValue.ToString
+                CALMA = Dg_Cabecera.CurrentRow.Cells("ALMACEN").EditedFormattedValue.ToString
                 estado = Dg_Cabecera.CurrentRow.Cells("ESTADO").EditedFormattedValue.ToString
             End If
         Catch ex As Exception
@@ -433,6 +453,15 @@ Public Class GestionDispatchOnTime
         Dg_Cabecera.Columns("NRO_GUIA").HeaderText = "Nro Guia"
         Dg_Cabecera.Columns("NRO_GUIA").Width = 70
         Dg_Cabecera.Columns("NRO_GUIA").ReadOnly = True
+
+        Dg_Cabecera.Columns("TIPO_DOCUMENTO").HeaderText = "NTro Guia"
+        Dg_Cabecera.Columns("TIPO_DOCUMENTO").Width = 70
+        Dg_Cabecera.Columns("TIPO_DOCUMENTO").Visible = False
+
+        Dg_Cabecera.Columns("ALMACEN").HeaderText = "Nro Guia"
+        Dg_Cabecera.Columns("ALMACEN").Width = 70
+        Dg_Cabecera.Columns("ALMACEN").Visible = False
+
 
         Dg_Cabecera.Columns("FECHA_RECEPCION").HeaderText = "Fech. Recep Guia"
         Dg_Cabecera.Columns("FECHA_RECEPCION").Width = 100

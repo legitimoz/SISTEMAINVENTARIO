@@ -24,6 +24,45 @@ Partial Class EditarRuta
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.Dg_Detalle = New System.Windows.Forms.DataGridView()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.txt_comentario = New System.Windows.Forms.TextBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.cmb_tipoenvio = New System.Windows.Forms.ComboBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.txt_totalpeso = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.txt_importe = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.txt_tiempo = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.txt_volumen = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.cmb_tipotransporte = New System.Windows.Forms.ComboBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.dtpFecRuta = New System.Windows.Forms.DateTimePicker()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.cbxTransportista = New System.Windows.Forms.ComboBox()
+        Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.cmdAceptar = New FontAwesome.Sharp.IconButton()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GUIA = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CTD = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ALMACEN = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -43,43 +82,11 @@ Partial Class EditarRuta
         Me.FECHARECEPCION = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.HORARECEPCION = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SITE = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.cmdAceptar = New FontAwesome.Sharp.IconButton()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.cmb_tipoenvio = New System.Windows.Forms.ComboBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.txt_totalpeso = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.txt_importe = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.txt_tiempo = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.txt_volumen = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.cmb_tipotransporte = New System.Windows.Forms.ComboBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.dtpFecRuta = New System.Windows.Forms.DateTimePicker()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.cbxTransportista = New System.Windows.Forms.ComboBox()
-        Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.txt_comentario = New System.Windows.Forms.TextBox()
-        Me.Label10 = New System.Windows.Forms.Label()
+        Me.DEPARTAMENTO = New WindowsApp1.ProgressColumn()
+        Me.PROVINCIA = New WindowsApp1.ProgressColumn()
+        Me.DISTRITO = New WindowsApp1.ProgressColumn()
+        Me.FISICO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.siteliq = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.Dg_Detalle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -90,153 +97,11 @@ Partial Class EditarRuta
         Me.Dg_Detalle.AllowUserToAddRows = False
         Me.Dg_Detalle.BackgroundColor = System.Drawing.Color.White
         Me.Dg_Detalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Dg_Detalle.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GUIA, Me.CTD, Me.ALMACEN, Me.Cliente, Me.Direccion, Me.Bultos, Me.Peso, Me.TiempoGuia, Me.TipoRuta, Me.VoluemnUn, Me.RestriccionUn, Me.ImporteUn, Me.Condicion, Me.Representante, Me.idcosto, Me.nombrecosto, Me.FECHARECEPCION, Me.HORARECEPCION, Me.SITE})
+        Me.Dg_Detalle.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GUIA, Me.CTD, Me.ALMACEN, Me.Cliente, Me.Direccion, Me.Bultos, Me.Peso, Me.TiempoGuia, Me.TipoRuta, Me.VoluemnUn, Me.RestriccionUn, Me.ImporteUn, Me.Condicion, Me.Representante, Me.idcosto, Me.nombrecosto, Me.FECHARECEPCION, Me.HORARECEPCION, Me.SITE, Me.DEPARTAMENTO, Me.PROVINCIA, Me.DISTRITO, Me.FISICO, Me.siteliq})
         Me.Dg_Detalle.Location = New System.Drawing.Point(12, 147)
         Me.Dg_Detalle.Name = "Dg_Detalle"
         Me.Dg_Detalle.Size = New System.Drawing.Size(943, 288)
         Me.Dg_Detalle.TabIndex = 0
-        '
-        'GUIA
-        '
-        Me.GUIA.FillWeight = 77.77779!
-        Me.GUIA.HeaderText = "Guia"
-        Me.GUIA.Name = "GUIA"
-        '
-        'CTD
-        '
-        Me.CTD.FillWeight = 86.65882!
-        Me.CTD.HeaderText = "Ctd"
-        Me.CTD.Name = "CTD"
-        Me.CTD.Width = 111
-        '
-        'ALMACEN
-        '
-        Me.ALMACEN.FillWeight = 94.55309!
-        Me.ALMACEN.HeaderText = "Almacen"
-        Me.ALMACEN.Name = "ALMACEN"
-        Me.ALMACEN.Width = 122
-        '
-        'Cliente
-        '
-        Me.Cliente.FillWeight = 101.5702!
-        Me.Cliente.HeaderText = "Cliente"
-        Me.Cliente.Name = "Cliente"
-        Me.Cliente.Width = 131
-        '
-        'Direccion
-        '
-        Me.Direccion.FillWeight = 107.8076!
-        Me.Direccion.HeaderText = "Direccion"
-        Me.Direccion.Name = "Direccion"
-        Me.Direccion.Width = 138
-        '
-        'Bultos
-        '
-        Me.Bultos.FillWeight = 113.3521!
-        Me.Bultos.HeaderText = "Bultos"
-        Me.Bultos.Name = "Bultos"
-        Me.Bultos.Width = 146
-        '
-        'Peso
-        '
-        Me.Peso.FillWeight = 118.2804!
-        Me.Peso.HeaderText = "Peso"
-        Me.Peso.Name = "Peso"
-        Me.Peso.Width = 152
-        '
-        'TiempoGuia
-        '
-        Me.TiempoGuia.HeaderText = "Tiempo"
-        Me.TiempoGuia.Name = "TiempoGuia"
-        '
-        'TipoRuta
-        '
-        Me.TipoRuta.HeaderText = "Tipo Ruta"
-        Me.TipoRuta.Items.AddRange(New Object() {"DESPACHO", "RECOJO"})
-        Me.TipoRuta.Name = "TipoRuta"
-        '
-        'VoluemnUn
-        '
-        Me.VoluemnUn.HeaderText = "Volumen"
-        Me.VoluemnUn.Name = "VoluemnUn"
-        Me.VoluemnUn.Visible = False
-        '
-        'RestriccionUn
-        '
-        Me.RestriccionUn.HeaderText = "Restriccion"
-        Me.RestriccionUn.Name = "RestriccionUn"
-        Me.RestriccionUn.Visible = False
-        '
-        'ImporteUn
-        '
-        Me.ImporteUn.HeaderText = "Importe"
-        Me.ImporteUn.Name = "ImporteUn"
-        '
-        'Condicion
-        '
-        Me.Condicion.HeaderText = "Condicion"
-        Me.Condicion.Name = "Condicion"
-        Me.Condicion.Visible = False
-        '
-        'Representante
-        '
-        Me.Representante.HeaderText = "Representante"
-        Me.Representante.Name = "Representante"
-        Me.Representante.Visible = False
-        '
-        'idcosto
-        '
-        Me.idcosto.HeaderText = "idcosto"
-        Me.idcosto.Name = "idcosto"
-        Me.idcosto.Visible = False
-        '
-        'nombrecosto
-        '
-        Me.nombrecosto.HeaderText = "Centro Costo"
-        Me.nombrecosto.Name = "nombrecosto"
-        '
-        'FECHARECEPCION
-        '
-        Me.FECHARECEPCION.HeaderText = "FECHARECEP"
-        Me.FECHARECEPCION.Name = "FECHARECEPCION"
-        Me.FECHARECEPCION.Visible = False
-        '
-        'HORARECEPCION
-        '
-        Me.HORARECEPCION.HeaderText = "horarecepcion"
-        Me.HORARECEPCION.Name = "HORARECEPCION"
-        Me.HORARECEPCION.Visible = False
-        '
-        'SITE
-        '
-        Me.SITE.HeaderText = "Site"
-        Me.SITE.Name = "SITE"
-        '
-        'cmdAceptar
-        '
-        Me.cmdAceptar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmdAceptar.BackColor = System.Drawing.SystemColors.Control
-        Me.cmdAceptar.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.cmdAceptar.FlatAppearance.BorderColor = System.Drawing.Color.ForestGreen
-        Me.cmdAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cmdAceptar.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdAceptar.ForeColor = System.Drawing.Color.ForestGreen
-        Me.cmdAceptar.IconChar = FontAwesome.Sharp.IconChar.CheckCircle
-        Me.cmdAceptar.IconColor = System.Drawing.Color.ForestGreen
-        Me.cmdAceptar.IconFont = FontAwesome.Sharp.IconFont.Solid
-        Me.cmdAceptar.IconSize = 16
-        Me.cmdAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.cmdAceptar.Location = New System.Drawing.Point(845, 447)
-        Me.cmdAceptar.Margin = New System.Windows.Forms.Padding(4)
-        Me.cmdAceptar.Name = "cmdAceptar"
-        Me.cmdAceptar.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.cmdAceptar.Size = New System.Drawing.Size(110, 26)
-        Me.cmdAceptar.TabIndex = 141
-        Me.cmdAceptar.Text = "Aceptar"
-        Me.cmdAceptar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.cmdAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.cmdAceptar.UseVisualStyleBackColor = False
         '
         'Panel1
         '
@@ -263,6 +128,26 @@ Partial Class EditarRuta
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(943, 120)
         Me.Panel1.TabIndex = 142
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.ForeColor = System.Drawing.Color.Black
+        Me.Label10.Location = New System.Drawing.Point(25, 39)
+        Me.Label10.Margin = New System.Windows.Forms.Padding(10, 0, 4, 0)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(70, 14)
+        Me.Label10.TabIndex = 160
+        Me.Label10.Text = "Comentario : "
+        Me.Label10.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'txt_comentario
+        '
+        Me.txt_comentario.Location = New System.Drawing.Point(101, 36)
+        Me.txt_comentario.Name = "txt_comentario"
+        Me.txt_comentario.Size = New System.Drawing.Size(190, 20)
+        Me.txt_comentario.TabIndex = 159
         '
         'Label8
         '
@@ -483,6 +368,32 @@ Partial Class EditarRuta
         Me.Label9.Text = "DETALLE RUTA : "
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
+        'cmdAceptar
+        '
+        Me.cmdAceptar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmdAceptar.BackColor = System.Drawing.SystemColors.Control
+        Me.cmdAceptar.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdAceptar.FlatAppearance.BorderColor = System.Drawing.Color.ForestGreen
+        Me.cmdAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cmdAceptar.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdAceptar.ForeColor = System.Drawing.Color.ForestGreen
+        Me.cmdAceptar.IconChar = FontAwesome.Sharp.IconChar.CheckCircle
+        Me.cmdAceptar.IconColor = System.Drawing.Color.ForestGreen
+        Me.cmdAceptar.IconFont = FontAwesome.Sharp.IconFont.Solid
+        Me.cmdAceptar.IconSize = 16
+        Me.cmdAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.cmdAceptar.Location = New System.Drawing.Point(845, 447)
+        Me.cmdAceptar.Margin = New System.Windows.Forms.Padding(4)
+        Me.cmdAceptar.Name = "cmdAceptar"
+        Me.cmdAceptar.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
+        Me.cmdAceptar.Size = New System.Drawing.Size(110, 26)
+        Me.cmdAceptar.TabIndex = 141
+        Me.cmdAceptar.Text = "Aceptar"
+        Me.cmdAceptar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.cmdAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.cmdAceptar.UseVisualStyleBackColor = False
+        '
         'DataGridViewTextBoxColumn1
         '
         Me.DataGridViewTextBoxColumn1.FillWeight = 77.77779!
@@ -576,25 +487,163 @@ Partial Class EditarRuta
         Me.DataGridViewTextBoxColumn15.HeaderText = "Centro Costo"
         Me.DataGridViewTextBoxColumn15.Name = "DataGridViewTextBoxColumn15"
         '
-        'txt_comentario
+        'DataGridViewTextBoxColumn16
         '
-        Me.txt_comentario.Location = New System.Drawing.Point(101, 36)
-        Me.txt_comentario.Name = "txt_comentario"
-        Me.txt_comentario.Size = New System.Drawing.Size(190, 20)
-        Me.txt_comentario.TabIndex = 159
+        Me.DataGridViewTextBoxColumn16.HeaderText = "FECHARECEP"
+        Me.DataGridViewTextBoxColumn16.Name = "DataGridViewTextBoxColumn16"
+        Me.DataGridViewTextBoxColumn16.Visible = False
         '
-        'Label10
+        'DataGridViewTextBoxColumn17
         '
-        Me.Label10.AutoSize = True
-        Me.Label10.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.ForeColor = System.Drawing.Color.Black
-        Me.Label10.Location = New System.Drawing.Point(25, 39)
-        Me.Label10.Margin = New System.Windows.Forms.Padding(10, 0, 4, 0)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(70, 14)
-        Me.Label10.TabIndex = 160
-        Me.Label10.Text = "Comentario : "
-        Me.Label10.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.DataGridViewTextBoxColumn17.HeaderText = "horarecepcion"
+        Me.DataGridViewTextBoxColumn17.Name = "DataGridViewTextBoxColumn17"
+        Me.DataGridViewTextBoxColumn17.Visible = False
+        '
+        'GUIA
+        '
+        Me.GUIA.FillWeight = 77.77779!
+        Me.GUIA.HeaderText = "Guia"
+        Me.GUIA.Name = "GUIA"
+        '
+        'CTD
+        '
+        Me.CTD.FillWeight = 86.65882!
+        Me.CTD.HeaderText = "Ctd"
+        Me.CTD.Name = "CTD"
+        Me.CTD.Width = 111
+        '
+        'ALMACEN
+        '
+        Me.ALMACEN.FillWeight = 94.55309!
+        Me.ALMACEN.HeaderText = "Almacen"
+        Me.ALMACEN.Name = "ALMACEN"
+        Me.ALMACEN.Width = 122
+        '
+        'Cliente
+        '
+        Me.Cliente.FillWeight = 101.5702!
+        Me.Cliente.HeaderText = "Cliente"
+        Me.Cliente.Name = "Cliente"
+        Me.Cliente.Width = 131
+        '
+        'Direccion
+        '
+        Me.Direccion.FillWeight = 107.8076!
+        Me.Direccion.HeaderText = "Direccion"
+        Me.Direccion.Name = "Direccion"
+        Me.Direccion.Width = 138
+        '
+        'Bultos
+        '
+        Me.Bultos.FillWeight = 113.3521!
+        Me.Bultos.HeaderText = "Bultos"
+        Me.Bultos.Name = "Bultos"
+        Me.Bultos.Width = 146
+        '
+        'Peso
+        '
+        Me.Peso.FillWeight = 118.2804!
+        Me.Peso.HeaderText = "Peso"
+        Me.Peso.Name = "Peso"
+        Me.Peso.Width = 152
+        '
+        'TiempoGuia
+        '
+        Me.TiempoGuia.HeaderText = "Tiempo"
+        Me.TiempoGuia.Name = "TiempoGuia"
+        '
+        'TipoRuta
+        '
+        Me.TipoRuta.HeaderText = "Tipo Ruta"
+        Me.TipoRuta.Items.AddRange(New Object() {"DESPACHO", "RECOJO"})
+        Me.TipoRuta.Name = "TipoRuta"
+        '
+        'VoluemnUn
+        '
+        Me.VoluemnUn.HeaderText = "Volumen"
+        Me.VoluemnUn.Name = "VoluemnUn"
+        Me.VoluemnUn.Visible = False
+        '
+        'RestriccionUn
+        '
+        Me.RestriccionUn.HeaderText = "Restriccion"
+        Me.RestriccionUn.Name = "RestriccionUn"
+        Me.RestriccionUn.Visible = False
+        '
+        'ImporteUn
+        '
+        Me.ImporteUn.HeaderText = "Importe"
+        Me.ImporteUn.Name = "ImporteUn"
+        '
+        'Condicion
+        '
+        Me.Condicion.HeaderText = "Condicion"
+        Me.Condicion.Name = "Condicion"
+        Me.Condicion.Visible = False
+        '
+        'Representante
+        '
+        Me.Representante.HeaderText = "Representante"
+        Me.Representante.Name = "Representante"
+        Me.Representante.Visible = False
+        '
+        'idcosto
+        '
+        Me.idcosto.HeaderText = "idcosto"
+        Me.idcosto.Name = "idcosto"
+        Me.idcosto.Visible = False
+        '
+        'nombrecosto
+        '
+        Me.nombrecosto.HeaderText = "Centro Costo"
+        Me.nombrecosto.Name = "nombrecosto"
+        '
+        'FECHARECEPCION
+        '
+        Me.FECHARECEPCION.HeaderText = "FECHARECEP"
+        Me.FECHARECEPCION.Name = "FECHARECEPCION"
+        Me.FECHARECEPCION.Visible = False
+        '
+        'HORARECEPCION
+        '
+        Me.HORARECEPCION.HeaderText = "horarecepcion"
+        Me.HORARECEPCION.Name = "HORARECEPCION"
+        Me.HORARECEPCION.Visible = False
+        '
+        'SITE
+        '
+        Me.SITE.HeaderText = "Site"
+        Me.SITE.Name = "SITE"
+        '
+        'DEPARTAMENTO
+        '
+        Me.DEPARTAMENTO.HeaderText = "DEPARTAMENTO"
+        Me.DEPARTAMENTO.Name = "DEPARTAMENTO"
+        Me.DEPARTAMENTO.Visible = False
+        '
+        'PROVINCIA
+        '
+        Me.PROVINCIA.HeaderText = "PROVINCIA"
+        Me.PROVINCIA.Name = "PROVINCIA"
+        Me.PROVINCIA.Visible = False
+        '
+        'DISTRITO
+        '
+        Me.DISTRITO.HeaderText = "DISTRITO"
+        Me.DISTRITO.Name = "DISTRITO"
+        Me.DISTRITO.Visible = False
+        '
+        'FISICO
+        '
+        Me.FISICO.HeaderText = "Column1"
+        Me.FISICO.Name = "FISICO"
+        Me.FISICO.Visible = False
+        '
+        'siteliq
+        '
+        Me.siteliq.HeaderText = "Column1"
+        Me.siteliq.Name = "siteliq"
+        Me.siteliq.Visible = False
         '
         'EditarRuta
         '
@@ -654,6 +703,10 @@ Partial Class EditarRuta
     Friend WithEvents DataGridViewTextBoxColumn13 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn14 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn15 As DataGridViewTextBoxColumn
+    Friend WithEvents Label10 As Label
+    Friend WithEvents txt_comentario As TextBox
+    Friend WithEvents DataGridViewTextBoxColumn16 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn17 As DataGridViewTextBoxColumn
     Friend WithEvents GUIA As DataGridViewTextBoxColumn
     Friend WithEvents CTD As DataGridViewTextBoxColumn
     Friend WithEvents ALMACEN As DataGridViewTextBoxColumn
@@ -673,6 +726,9 @@ Partial Class EditarRuta
     Friend WithEvents FECHARECEPCION As DataGridViewTextBoxColumn
     Friend WithEvents HORARECEPCION As DataGridViewTextBoxColumn
     Friend WithEvents SITE As DataGridViewComboBoxColumn
-    Friend WithEvents Label10 As Label
-    Friend WithEvents txt_comentario As TextBox
+    Friend WithEvents DEPARTAMENTO As ProgressColumn
+    Friend WithEvents PROVINCIA As ProgressColumn
+    Friend WithEvents DISTRITO As ProgressColumn
+    Friend WithEvents FISICO As DataGridViewTextBoxColumn
+    Friend WithEvents siteliq As DataGridViewTextBoxColumn
 End Class

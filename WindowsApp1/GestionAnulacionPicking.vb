@@ -3,7 +3,7 @@ Imports Nordic.Bl.Be
 
 Public Class GestionAnulacionPicking
     Private ObjAlmacen As New AlmacenL
-    Public usr_id As Integer
+    Public usr_id, perfilusuario As Integer
     Public usr_usuario As String
     Public codalmacen, tipdoc, nrodoc, fechaR, direccionclienteR, ruccliente, clienterazon, codpedido As String
     Private dtDetalle As New DataTable
@@ -96,7 +96,7 @@ Public Class GestionAnulacionPicking
         fechahasta = dt_hasta.Value.Year.ToString + "/" + mes + "/" + dia
         Dim dtretono As DataTable
         Try
-            dtretono = ObjAlmacen.ListarGuiasAnularPicking(fechadesde, fechahasta).Copy
+            dtretono = ObjAlmacen.ListarGuiasAnularPicking(fechadesde, fechahasta, idsite, idalmacen).Copy
         Catch ex As Exception
             Throw ex
         End Try
@@ -124,7 +124,7 @@ Public Class GestionAnulacionPicking
     Public Function llamarRegistrarImpresion(codalmacen As String, ctd As String, numero As String, estado As String, idpicador As Integer, idfiltro As Integer, userimpresion As Integer) As Integer
         Dim RP As Integer
         Try
-            RP = ObjAlmacen.CambiarEstadoGuia(codalmacen, ctd, numero, estado, idpicador, idfiltro, userimpresion)
+            RP = ObjAlmacen.CambiarEstadoGuia(codalmacen, ctd, numero, estado, idpicador, idfiltro, userimpresion, "")
         Catch ex As Exception
             Throw ex
         End Try
@@ -315,6 +315,7 @@ Public Class GestionAnulacionPicking
                             Dim reporte As New HojaPicking With {
                                 .codigoguia = nrodoc,
                                 .DtDetallePedido = dtDetalle,
+                                .idperfil = perfilusuario,
                                 .codalmacen = codalmacen,
                                 .fechapedido = fechaR,
                                 .razoncliente = clienterazon,

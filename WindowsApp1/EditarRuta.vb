@@ -68,9 +68,11 @@ Public Class EditarRuta
                     Dg_Detalle.Rows(contador).Cells("nombrecosto").Value = RowRuta.Item("nombrecosto").ToString
                     Dg_Detalle.Rows(contador).Cells("FECHARECEPCION").Value = RowRuta.Item("FechaRecepcion").ToString
                     Dg_Detalle.Rows(contador).Cells("HORARECEPCION").Value = RowRuta.Item("HoraRecepcion").ToString
-
-
-
+                    Dg_Detalle.Rows(contador).Cells("DEPARTAMENTO").Value = RowRuta.Item("DEPARTAMENTO").ToString
+                    Dg_Detalle.Rows(contador).Cells("PROVINCIA").Value = RowRuta.Item("PROVINCIA").ToString
+                    Dg_Detalle.Rows(contador).Cells("DISTRITO").Value = RowRuta.Item("DISTRITO").ToString
+                    Dg_Detalle.Rows(contador).Cells("FISICO").Value = RowRuta.Item("FISICO").ToString
+                    Dg_Detalle.Rows(contador).Cells("siteliq").Value = RowRuta.Item("siteliq").ToString
                     contador = contador + 1
                 Next
             End If
@@ -134,6 +136,11 @@ Public Class EditarRuta
                     _BeDetGuiaRutaDetalle.pr_FechaRecepcion = Dg_Detalle.Rows(i).Cells.Item("FECHARECEPCION").Value
                     _BeDetGuiaRutaDetalle.pr_HoraRecepcion = Dg_Detalle.Rows(i).Cells.Item("HORARECEPCION").Value
                     _BeDetGuiaRutaDetalle.pr_idsite = Dg_Detalle.Rows(i).Cells.Item("SITE").Value
+                    _BeDetGuiaRutaDetalle.pr_departamento = Dg_Detalle.Rows(i).Cells.Item("DEPARTAMENTO").Value
+                    _BeDetGuiaRutaDetalle.pr_provincia = Dg_Detalle.Rows(i).Cells.Item("PROVINCIA").Value
+                    _BeDetGuiaRutaDetalle.pr_distrito = Dg_Detalle.Rows(i).Cells.Item("DISTRITO").Value
+                    _BeDetGuiaRutaDetalle.pr_fisico = Dg_Detalle.Rows(i).Cells.Item("FISICO").Value
+                    _BeDetGuiaRutaDetalle.pr_idsiteliq = Dg_Detalle.Rows(i).Cells.Item("siteliq").Value
 
                     _listadoDetalleGuia.Add(_BeDetGuiaRutaDetalle)
                 Next
@@ -221,7 +228,8 @@ Public Class EditarRuta
                 rowRuta.Item("Restriccion") = DetalleCon.Item("RESTRICCION")
                 rowRuta.Item("Direccion") = DetalleCon.Item("DIRECCION_ENTREGA")
                 rowRuta.Item("Condicion") = DetalleCon.Item("CONDICION")
-                rowRuta.Item("Importe") = CType(DetalleCon.Item("IMPORTE"), Decimal)
+                'rowRuta.Item("Importe") = CType(DetalleCon.Item("IMPORTE"), Decimal)
+                rowRuta.Item("Importe") = CType(0, Decimal)
                 rowRuta.Item("Representante") = DetalleCon.Item("REPRESENTANTE")
                 rowRuta.Item("Volumen") = Math.Round(CType(DetalleCon.Item("M3UN"), Decimal), 3)
                 rowRuta.Item("TiempoEntrega") = DetalleCon.Item("TIEMPO")
@@ -230,7 +238,8 @@ Public Class EditarRuta
             Next
             Dim reporte As New Demo
             dtruta.TableName = "DetalleRuta"
-            reporte.ImprimirRuta(Codigo, nombreempresa, RUC, Direccion, logooperador, color, "HojaDeRuta.rdlc", dtruta, repartidor, movilidad, volumen, Math.Round(tiempo, 2).ToString + " Horas", "S/. " + importe.ToString, totalpeso.ToString + " KG.", tipoEnvio)
+            'reporte.ImprimirRuta(Codigo, nombreempresa, RUC, Direccion, logooperador, color, "HojaDeRuta.rdlc", dtruta, repartidor, movilidad, volumen, Math.Round(tiempo, 2).ToString + " Horas", "S/. " + importe.ToString, totalpeso.ToString + " KG.", tipoEnvio)
+            reporte.ImprimirRuta(Codigo, nombreempresa, RUC, Direccion, logooperador, color, "HojaDeRuta.rdlc", dtruta, repartidor, movilidad, volumen, Math.Round(tiempo, 2).ToString + " Horas", "S/. " + 0.ToString, totalpeso.ToString + " KG.", tipoEnvio)
             'Dim REPORT As New HojaRuta
             'REPORT.CodigoRuta = Codigo
             'REPORT.totalvolumen = volumen.ToString + " M3"

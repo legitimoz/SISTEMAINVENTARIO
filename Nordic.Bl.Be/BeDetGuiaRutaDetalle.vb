@@ -227,6 +227,55 @@
         End Set
     End Property
 
+    Private departamento As String
+    Public Property pr_departamento() As String
+        Get
+            Return departamento
+        End Get
+        Set(ByVal value As String)
+            departamento = value
+        End Set
+    End Property
 
+    Private provincia As String
+    Public Property pr_provincia() As String
+        Get
+            Return provincia
+        End Get
+        Set(ByVal value As String)
+            provincia = value
+        End Set
+    End Property
+
+
+    Private distrito As String
+    Public Property pr_distrito() As String
+        Get
+            Return distrito
+        End Get
+        Set(ByVal value As String)
+            distrito = value
+        End Set
+    End Property
+
+    Private fisico As String
+    Public Property pr_fisico() As String
+        Get
+            Return fisico
+        End Get
+        Set(ByVal value As String)
+            fisico = value
+        End Set
+    End Property
+
+    Private idsiteliq As Integer
+    Public Property pr_idsiteliq() As Integer
+        Get
+            Return idsiteliq
+        End Get
+        Set(ByVal value As Integer)
+            idsiteliq = value
+        End Set
+    End Property
 
 End Class

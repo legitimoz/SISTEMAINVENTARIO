@@ -1,18 +1,35 @@
 ﻿Imports System.Text.RegularExpressions
+Imports Nordic.Bl.Be
 
 Public Class AgregarExternoDespacho
     Private dt_Caneles, DtCentrosCosto As New DataTable
     Private almacenObj As New AlmacenL
     Public grabado As Boolean = False
-    Public idcosto As Integer = 0
-    Public nombrecosto As String = ""
+    Public idcosto As Integer = 0, idsiteliq As Integer = 0
+    Public nombrecosto As String = "", fisico As String = ""
 
     Private Sub AgregarExternoDespacho_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             CargaInicial()
         Catch ex As Exception
-
+            Throw ex
         End Try
+    End Sub
+    Private Sub CargarSite()
+        Try
+            Dim dt As New DataTable
+            dt = almacenObj.ListarSites
+
+            If dt.Rows.Count > 0 Then
+                cmb_site.DataSource = dt
+                cmb_site.ValueMember = "sit_idsite"
+                cmb_site.DisplayMember = "sit_nombre"
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+
     End Sub
 
     Private Sub CargarCentrosCosto()
@@ -28,6 +45,42 @@ Public Class AgregarExternoDespacho
         End Try
     End Sub
 
+    Private Function LlamarListarRepresentaste(ByVal flag As String, ByVal nombre As String, ByVal fecIni As String, ByVal fecFin As String, ByVal prefijo As String) As DataTable
+        Dim dt As DataTable
+        Try
+            Dim obj As New BeRepresentante
+            dt = obj.Listar_Representante(flag, nombre, fecIni, fecFin, prefijo)
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return dt
+    End Function
+
+
+    Public Sub ListarRepresentaste()
+        Dim dtRepre As New DataTable
+        Dim mes As String = ""
+        Dim dia As String = ""
+        dia = Now.Day.ToString
+        If dia.Length = 1 Then
+            dia = "0" + dia
+        End If
+
+        mes = Now.Month.ToString
+        If mes.Length = 1 Then
+            mes = "0" + mes
+        End If
+        Try
+            dtRepre = LlamarListarRepresentaste(0, "", dia.ToString + "/" + mes.ToString + "/" + Now.Year.ToString, dia.ToString + "/" + mes.ToString + "/" + Now.Year.ToString, "TODOS")
+            If dtRepre.Rows.Count > 0 Then
+                Cmb_Rrepe.DataSource = dtRepre
+                Cmb_Rrepe.DisplayMember = "representante"
+                Cmb_Rrepe.ValueMember = "codrepresentante"
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     Public Function ValidarAceptar() As Boolean
         Dim retorno As Boolean = True
 
@@ -42,6 +95,12 @@ Public Class AgregarExternoDespacho
             ErrorProvider1.SetError(cmb_canal, "")
             ErrorProvider1.SetError(txt_volumen, "")
             ErrorProvider1.SetError(txt_importe, "")
+            ErrorProvider1.SetError(cmb_fisico, "")
+
+            If cmb_fisico.Text = "" Then
+                ErrorProvider1.SetError(cmb_fisico, "Seleccione Fisico")
+                retorno = False
+            End If
 
             If txt_documento.Text = "" Then
                 ErrorProvider1.SetError(txt_documento, "Ingrese Documento")
@@ -121,6 +180,8 @@ Public Class AgregarExternoDespacho
 
     Public Sub CargaInicial()
         Try
+            CargarSite()
+            ListarRepresentaste()
             CargarCentrosCosto()
             ListarCaneles()
             cmb_canal.SelectedIndex = 0
@@ -147,6 +208,8 @@ Public Class AgregarExternoDespacho
             If ValidarAceptar() = True Then
                 idcosto = Cmb_Costos.SelectedValue
                 nombrecosto = Cmb_Costos.Text.ToString
+                idsiteliq = cmb_site.SelectedValue
+                fisico = cmb_fisico.Text.Trim
                 grabado = True
                 Me.Close()
             Else

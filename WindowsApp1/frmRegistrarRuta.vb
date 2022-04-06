@@ -101,11 +101,11 @@ Public Class frmRegistrarRuta
 
     Private Sub txtNroGuia_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtNroGuia.KeyPress
         Try
-            If e.KeyChar = Convert.ToChar(Keys.Enter) Then
+            'If e.KeyChar = Convert.ToChar(Keys.Enter) Then
 
-                Anadir_GuiaRuta(txtNroGuia.Text.Trim)
+            '    Anadir_GuiaRuta(txtNroGuia.Text.Trim)
 
-            End If
+            'End If
 
         Catch ex As Exception
 
@@ -171,6 +171,9 @@ Public Class frmRegistrarRuta
 
     Public Sub Cargar_Detalle_Ruta(ByVal crg_id As String)
         Try
+            If dgvGuiaRuta.Rows.Count > 0 Then
+                dgvGuiaRuta.Rows.Clear()
+            End If
             Dim objRuta As New BeCabGuiaRuta
             Dim dt As New DataTable
 
@@ -310,6 +313,20 @@ Public Class frmRegistrarRuta
                 Me.Close()
             End If
 
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Try
+            Dim FrameAddGuia As New AgregarGuiaCabeceraRuta
+            FrameAddGuia.crg_id = CType(lblNroRuta.Text, Integer)
+            FrameAddGuia.user_id = CType(usr_id, Integer)
+            FrameAddGuia.ShowDialog()
+            If FrameAddGuia.grabado = True Then
+                Cargar_Detalle_Ruta(crg_id)
+            End If
         Catch ex As Exception
 
         End Try

@@ -36,8 +36,8 @@ Public Class MedicionEsfuerzo
                             Dim cajas As Decimal = 0, cajasm As Decimal = 0, saldo As Decimal = 0
                             If rowDetalle.Item("UNIDAD").ToString = "UND" Then
                                 If rowDetalle.Item("FACTORCAJA").ToString <> 0 And rowDetalle.Item("FACTORCAJAMASTER").ToString <> 0 Then
-                                    cajas = (rowDetalle.Item("SALDO") / rowDetalle.Item("FACTORCAJA"))
-                                    saldo = rowDetalle.Item("SALDO") Mod rowDetalle.Item("FACTORCAJA")
+                                    cajas = (rowDetalle.Item("CANTIDAD") / rowDetalle.Item("FACTORCAJA"))
+                                    saldo = rowDetalle.Item("CANTIDAD") Mod rowDetalle.Item("FACTORCAJA")
                                     cajasm = cajas / rowDetalle.Item("FACTORCAJAMASTER")
                                     cajasm = Math.Floor(cajasm)
                                     cajas = cajas Mod rowDetalle.Item("FACTORCAJAMASTER")
@@ -45,7 +45,7 @@ Public Class MedicionEsfuerzo
                             Else
                                 If rowDetalle.Item("UNIDAD").ToString = "CJA" Then
                                     saldo = 0
-                                    cajas = rowDetalle.Item("SALDO")
+                                    cajas = rowDetalle.Item("CANTIDAD")
                                     cajasm = cajas / rowDetalle.Item("FACTORCAJAMASTER")
                                     cajasm = Math.Floor(cajasm)
                                     cajas = cajas Mod rowDetalle.Item("FACTORCAJAMASTER")

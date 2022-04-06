@@ -2,13 +2,14 @@
     Public grabado As Boolean = False
     Public rowRetorno As DataRow
     Public dtalmacenessoft, DtCentrosCosto As New DataTable
-    Public nombrecosto As String = ""
-    Public idcosto As Integer = 0
+    Public nombrecosto As String = "", fisico As String = ""
+    Public idcosto As Integer = 0, idsiteliq As Integer = 0
     Private ObjAlmacen As New AlmacenL
 
     Private Sub cmdAceptar_Click(sender As Object, e As EventArgs) Handles cmdAceptar.Click
         Try
             Aceptar()
+            cmb_fisico.SelectedIndex = 0
         Catch ex As Exception
             Throw ex
         End Try
@@ -27,6 +28,8 @@
                     rowRetorno = dtGuia.Rows(0)
                     idcosto = Cmb_Costos.SelectedValue
                     nombrecosto = Cmb_Costos.Text
+                    idsiteliq = cmb_site.SelectedValue
+                    fisico = cmb_fisico.Text.Trim
                     Me.Close()
                 End If
             End If
@@ -48,11 +51,27 @@
 
     Private Sub CargaInicial()
         Try
+            CargarSite()
             CargarCentrosCosto()
             ListarAlmacenSoftcom()
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub CargarSite()
+        Try
+            Dim dt As New DataTable
+            dt = ObjAlmacen.ListarSites
+            If dt.Rows.Count > 0 Then
+                cmb_site.DataSource = dt
+                cmb_site.ValueMember = "sit_idsite"
+                cmb_site.DisplayMember = "sit_nombre"
+            End If
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 
     Private Sub AgregarGuiaDespacho_Load(sender As Object, e As EventArgs) Handles MyBase.Load

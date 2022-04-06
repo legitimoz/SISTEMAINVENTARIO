@@ -41,6 +41,9 @@ Public Class GestionLiquidacionDocumentaria
                     rowcabecera.Item("TRANSPORTISTA") = RowRetorno.Item("TRANSPORTISTA").ToString.Trim
                     rowcabecera.Item("LIM_PROV") = RowRetorno.Item("LIM_PROV").ToString.Trim
 
+                    If RowRetorno.Item("PROVINCIA").ToString.Trim = "CAÑETE".Trim Or RowRetorno.Item("PROVINCIA").ToString.Trim = "HUARAL".Trim Or RowRetorno.Item("PROVINCIA").ToString.Trim = "HUAURA".Trim Then
+                        rowcabecera.Item("LIM_PROV") = "PROVINCIA"
+                    End If
 
                     Dim Diferencia As Integer = 0
                     If RowRetorno.Item("FECHA_DESPACHO").ToString.Trim <> "" And RowRetorno.Item("FECHA_RETORNO").ToString.Trim <> "" Then
@@ -65,6 +68,14 @@ Public Class GestionLiquidacionDocumentaria
                             Tolerancia = 16
                         End If
                     End If
+                    Dim fechadespacho As Date
+                    fechadespacho = RowRetorno.Item("FECHA_DESPACHO").ToString.Trim
+
+                    Dim DIA As Integer = 0
+                    DIA = fechadespacho.DayOfWeek
+                    If DIA = 6 Then
+                        Tolerancia = Tolerancia + 1
+                    End If
 
                     rowcabecera.Item("Tolerancia") = Tolerancia
 
@@ -80,58 +91,58 @@ Public Class GestionLiquidacionDocumentaria
                     'rowcabecera.Item("ESTADO2") = Estado2
 
 
-                    'If rowcabecera.Item("ESTADO") IsNot Nothing Then
-                    '    If rowcabecera.Item("ESTADO").ToString.Trim = "DENTRO DE TIEMPO" Then
-                    '        contador = contador + 1
-                    '    End If
-                    'End If
+                    If rowcabecera.Item("ESTADO") IsNot Nothing Then
+                        If rowcabecera.Item("ESTADO").ToString.Trim = "DENTRO DE TIEMPO" Then
+                            contador = contador + 1
+                        End If
+                    End If
 
-                    'If rowcabecera.Item("LIM_PROV").ToString.Trim = "LIMA" Then
-                    '    cantidadL = cantidadL + 1
-                    '    If rowcabecera.Item("ESTADO").ToString.Trim = "DENTRO DE TIEMPO" Then
-                    '        contadorL = contadorL + 1
-                    '    End If
-                    'End If
-                    'If rowcabecera.Item("LIM_PROV").ToString.Trim = "PROVINCIA" Then
-                    '    cantidadP = cantidadP + 1
-                    '    If rowcabecera.Item("ESTADO").ToString.Trim = "DENTRO DE TIEMPO" Then
-                    '        ContadorP = ContadorP + 1
-                    '    End If
-                    'End If
+                    If rowcabecera.Item("LIM_PROV").ToString.Trim = "LIMA" Then
+                        cantidadL = cantidadL + 1
+                        If rowcabecera.Item("ESTADO").ToString.Trim = "DENTRO DE TIEMPO" Then
+                            contadorL = contadorL + 1
+                        End If
+                    End If
+                    If rowcabecera.Item("LIM_PROV").ToString.Trim = "PROVINCIA" Then
+                        cantidadP = cantidadP + 1
+                        If rowcabecera.Item("ESTADO").ToString.Trim = "DENTRO DE TIEMPO" Then
+                            ContadorP = ContadorP + 1
+                        End If
+                    End If
 
                     dtcabecera2.Rows.Add(rowcabecera)
                 Next
                 cant = dtcabecera2.Rows.Count
 
-                'Dg_Cabecera.DataSource = dtcabecera2
-                'txt_Cantpedidos.Text = dtcabecera2.Rows.Count.ToString
-                'txt_cantatiempo.Text = contador.ToString
-                'txt_indicador.Text = CType((contador / cant) * 100, Integer).ToString + " %"
-                'Else
-                '    dtcabecera2.Rows.Clear()
-                '    txt_Cantpedidos.Text = "0"
-                '    txt_cantatiempo.Text = "0"
-                '    txt_indicador.Text = "0 %"
-                'End If
+                Dg_Cabecera.DataSource = dtcabecera2
+                txt_Cantpedidos.Text = dtcabecera2.Rows.Count.ToString
+                txt_cantatiempo.Text = contador.ToString
+                txt_indicador.Text = CType((contador / cant) * 100, Integer).ToString + " %"
+            Else
+                dtcabecera2.Rows.Clear()
+                txt_Cantpedidos.Text = "0"
+                txt_cantatiempo.Text = "0"
+                txt_indicador.Text = "0 %"
+            End If
 
-                'If cantidadL <> 0 Then
-                '    txt_cantlim.Text = cantidadL.ToString
-                '    txt_dentrolim.Text = contadorL.ToString
-                '    txt_indlima.Text = CType((contadorL / cantidadL) * 100, Integer).ToString + " %"
-                'Else
-                '    txt_cantlim.Text = "0"
-                '    txt_dentrolim.Text = "0"
-                '    txt_indlima.Text = "0 %"
-                'End If
+            If cantidadL <> 0 Then
+                txt_cantlim.Text = cantidadL.ToString
+                txt_dentrolim.Text = contadorL.ToString
+                txt_indlima.Text = CType((contadorL / cantidadL) * 100, Integer).ToString + " %"
+            Else
+                txt_cantlim.Text = "0"
+                txt_dentrolim.Text = "0"
+                txt_indlima.Text = "0 %"
+            End If
 
-                'If cantidadP <> 0 Then
-                '    txt_cantpro.Text = cantidadP.ToString
-                '    txt_dentropro.Text = ContadorP.ToString
-                '    txt_indpro.Text = CType((ContadorP / cantidadP) * 100, Integer).ToString + " %"
-                'Else
-                '    txt_cantpro.Text = "0"
-                '    txt_dentropro.Text = "0"
-                '    txt_indpro.Text = "0 %"
+            If cantidadP <> 0 Then
+                txt_cantpro.Text = cantidadP.ToString
+                txt_dentropro.Text = ContadorP.ToString
+                txt_indpro.Text = CType((ContadorP / cantidadP) * 100, Integer).ToString + " %"
+            Else
+                txt_cantpro.Text = "0"
+                txt_dentropro.Text = "0"
+                txt_indpro.Text = "0 %"
             End If
         Catch ex As Exception
             Throw ex

@@ -31,13 +31,17 @@ Partial Class AgregarGuiaDespacho
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Cmb_Costos = New System.Windows.Forms.ComboBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.cmb_site = New System.Windows.Forms.ComboBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.cmb_fisico = New System.Windows.Forms.ComboBox()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'txt_numero
         '
         Me.txt_numero.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txt_numero.Location = New System.Drawing.Point(124, 48)
+        Me.txt_numero.Location = New System.Drawing.Point(124, 39)
         Me.txt_numero.Name = "txt_numero"
         Me.txt_numero.Size = New System.Drawing.Size(209, 20)
         Me.txt_numero.TabIndex = 81
@@ -46,7 +50,7 @@ Partial Class AgregarGuiaDespacho
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(22, 51)
+        Me.Label6.Location = New System.Drawing.Point(11, 42)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(79, 14)
         Me.Label6.TabIndex = 80
@@ -57,7 +61,7 @@ Partial Class AgregarGuiaDespacho
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(47, 15)
+        Me.Label4.Location = New System.Drawing.Point(12, 15)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(55, 14)
         Me.Label4.TabIndex = 79
@@ -88,7 +92,7 @@ Partial Class AgregarGuiaDespacho
         Me.cmdAceptar.IconFont = FontAwesome.Sharp.IconFont.Solid
         Me.cmdAceptar.IconSize = 16
         Me.cmdAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.cmdAceptar.Location = New System.Drawing.Point(236, 125)
+        Me.cmdAceptar.Location = New System.Drawing.Point(236, 163)
         Me.cmdAceptar.Margin = New System.Windows.Forms.Padding(4)
         Me.cmdAceptar.Name = "cmdAceptar"
         Me.cmdAceptar.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
@@ -106,7 +110,7 @@ Partial Class AgregarGuiaDespacho
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(10, 89)
+        Me.Label1.Location = New System.Drawing.Point(10, 68)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(91, 13)
         Me.Label1.TabIndex = 84
@@ -116,16 +120,57 @@ Partial Class AgregarGuiaDespacho
         '
         Me.Cmb_Costos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.Cmb_Costos.FormattingEnabled = True
-        Me.Cmb_Costos.Location = New System.Drawing.Point(124, 86)
+        Me.Cmb_Costos.Location = New System.Drawing.Point(124, 65)
         Me.Cmb_Costos.Name = "Cmb_Costos"
         Me.Cmb_Costos.Size = New System.Drawing.Size(209, 21)
         Me.Cmb_Costos.TabIndex = 83
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(11, 122)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(88, 13)
+        Me.Label3.TabIndex = 156
+        Me.Label3.Text = "Site Liquidacion :"
+        '
+        'cmb_site
+        '
+        Me.cmb_site.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb_site.FormattingEnabled = True
+        Me.cmb_site.Location = New System.Drawing.Point(124, 119)
+        Me.cmb_site.Name = "cmb_site"
+        Me.cmb_site.Size = New System.Drawing.Size(209, 21)
+        Me.cmb_site.TabIndex = 155
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(10, 95)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(40, 13)
+        Me.Label2.TabIndex = 154
+        Me.Label2.Text = "Fisico :"
+        '
+        'cmb_fisico
+        '
+        Me.cmb_fisico.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb_fisico.FormattingEnabled = True
+        Me.cmb_fisico.Items.AddRange(New Object() {"SI", "NO"})
+        Me.cmb_fisico.Location = New System.Drawing.Point(124, 92)
+        Me.cmb_fisico.Name = "cmb_fisico"
+        Me.cmb_fisico.Size = New System.Drawing.Size(209, 21)
+        Me.cmb_fisico.TabIndex = 153
         '
         'AgregarGuiaDespacho
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(352, 164)
+        Me.ClientSize = New System.Drawing.Size(352, 203)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.cmb_site)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.cmb_fisico)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Cmb_Costos)
         Me.Controls.Add(Me.cmdAceptar)
@@ -151,4 +196,8 @@ Partial Class AgregarGuiaDespacho
     Friend WithEvents ErrorProvider1 As ErrorProvider
     Friend WithEvents Label1 As Label
     Friend WithEvents Cmb_Costos As ComboBox
+    Friend WithEvents Label3 As Label
+    Friend WithEvents cmb_site As ComboBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents cmb_fisico As ComboBox
 End Class

@@ -4,7 +4,7 @@ Imports Nordic.Bl.Be
 Public Class GestionPedidoSalida
     Private dtcabecera, dtDetalle, dtDetalleM, dtalmacenessoft As New DataTable
     Public Estructura As New EstructuraTabla
-    Public usr_id As Integer
+    Public usr_id, idperfil As Integer
     Public usr_usuario, F5_CCODAGE, F5_CNUMPED, FechaPedido, clienterazon, ruccliente, direccionCliente, codalmacen As String
     Private ObjAlmacen As New AlmacenL
     Private idalmacen As Integer = 0, idsite As Integer = 0
@@ -336,7 +336,7 @@ Public Class GestionPedidoSalida
 
         Dim dtretono As DataTable
         Try
-            dtretono = ObjAlmacen.ObtenerPosicionesHojaPicking(codarticulo, lote, cantidad, idalmacen, idsite).Copy
+            dtretono = ObjAlmacen.ObtenerPosicionesHojaPicking(codarticulo, lote, cantidad, idalmacen, idsite, idperfil).Copy
         Catch ex As Exception
             Throw ex
         End Try
@@ -466,6 +466,7 @@ Public Class GestionPedidoSalida
                         If F5_CNUMPED <> "" Then
                             Dim reporte As New HojaPicking With {
                                 .codpedido = F5_CNUMPED,
+                                .idperfil =
                                 .codigoguia = "",
                                 .codalmacen = codalmacen,
                                 .DtDetallePedido = dtDetalle,
@@ -531,6 +532,7 @@ Public Class GestionPedidoSalida
                             ObtenerCabecera()
                             If F5_CCODAGE <> "" And F5_CNUMPED <> "" Then
                                 Dim RegistrarSalidaForm As New EditarSalidaAlmacen
+                                RegistrarSalidaForm.perfilusuario = idperfil
                                 RegistrarSalidaForm.Lote = row.Cells("SERIE").EditedFormattedValue.ToString.Trim
                                 RegistrarSalidaForm.articulo = row.Cells("PRODUCTO").EditedFormattedValue.ToString.Trim
                                 RegistrarSalidaForm.CodArticulo = row.Cells("CODIGO").EditedFormattedValue.ToString.Trim

@@ -1,4 +1,6 @@
-﻿Public Class RegistrarPicking
+﻿Imports System.Configuration
+
+Public Class RegistrarPicking
 
     Private Almacenobj As New AlmacenL
     Private dtpicador, dtfiltro As New DataTable
@@ -6,13 +8,17 @@
     Public idpicador As Integer = 0
     Public idfiltro As Integer = 0
     Public nrodocM As String
+    Public idsite As Integer = 0, idalmacen As Integer = 0
     Private Sub RegistrarPicking_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         CargaInicial()
     End Sub
 
 
     Private Sub CargaInicial()
         Try
+            idalmacen = CType(ConfigurationManager.AppSettings("idalmac").ToString.Trim, Integer)
+            idsite = CType(ConfigurationManager.AppSettings("CodigoSite").ToString.Trim, Integer)
             LlenarCombos()
         Catch ex As Exception
             Throw ex
@@ -39,8 +45,8 @@
     Private Sub LlenarCombos()
         Try
             Dim dtpicadores, dtfiltros As DataTable
-            dtpicadores = Almacenobj.ListarPicadores
-            dtfiltros = Almacenobj.ListarPicadores
+            dtpicadores = Almacenobj.ListarPicadores(idsite)
+            dtfiltros = Almacenobj.ListarPicadores(idsite)
 
             If dtpicadores.Rows.Count > 0 Then
                 dtpicador = dtpicadores

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetGraficoAvanceLinea" targetNamespace="http://tempuri.org/DataSetGraficoAvanceLinea.xsd" xmlns:mstns="http://tempuri.org/DataSetGraficoAvanceLinea.xsd" xmlns="http://tempuri.org/DataSetGraficoAvanceLinea.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetGraficoAvanceLinea" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetGraficoAvanceLinea" msprop:Generator_UserDSName="DataSetGraficoAvanceLinea">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="TABLA" msprop:Generator_TableClassName="TABLADataTable" msprop:Generator_TableVarName="tableTABLA" msprop:Generator_TablePropName="TABLA" msprop:Generator_RowDeletingName="TABLARowDeleting" msprop:Generator_RowChangingName="TABLARowChanging" msprop:Generator_RowEvHandlerName="TABLARowChangeEventHandler" msprop:Generator_RowDeletedName="TABLARowDeleted" msprop:Generator_UserTableName="TABLA" msprop:Generator_RowChangedName="TABLARowChanged" msprop:Generator_RowEvArgName="TABLARowChangeEvent" msprop:Generator_RowClassName="TABLARow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="LINEA" msprop:Generator_ColumnVarNameInTable="columnLINEA" msprop:Generator_ColumnPropNameInRow="LINEA" msprop:Generator_ColumnPropNameInTable="LINEAColumn" msprop:Generator_UserColumnName="LINEA" type="xs:string" minOccurs="0" />
+              <xs:element name="PORCENTAJE" msprop:Generator_ColumnVarNameInTable="columnPORCENTAJE" msprop:Generator_ColumnPropNameInRow="PORCENTAJE" msprop:Generator_ColumnPropNameInTable="PORCENTAJEColumn" msprop:Generator_UserColumnName="PORCENTAJE" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -8,6 +8,8 @@ Public Class HojaPicking
     Private ObjAlmacen As New AlmacenL
     Private Estructura As New EstructuraTabla
     Private idalmacen As Integer = 0, idsite As Integer = 0
+    Public idperfil As Integer = 0
+
     Private Sub HojaPicking_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             idalmacen = CType(ConfigurationManager.AppSettings("idalmac").ToString.Trim, Integer)
@@ -23,7 +25,7 @@ Public Class HojaPicking
 
         Dim dtretono As DataTable
         Try
-            dtretono = ObjAlmacen.ObtenerPosicionesHojaPicking(codarticulo, lote, cantidad, idalmacen, idsite).Copy
+            dtretono = ObjAlmacen.ObtenerPosicionesHojaPicking(codarticulo, lote, cantidad, idalmacen, idsite, idperfil).Copy
         Catch ex As Exception
             Throw ex
         End Try

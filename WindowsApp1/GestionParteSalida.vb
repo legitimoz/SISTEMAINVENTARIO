@@ -5,7 +5,7 @@ Public Class GestionParteSalida
     Private dtcabecera, dtDetalle, dtalmacenessoft As New DataTable
     Private ObjAlmacen As New AlmacenL
     Public Estructura As New EstructuraTabla
-    Public usr_id As Integer
+    Public usr_id As Integer, perfilUsuario As Integer
     Public usr_usuario, codalmacen, tipdoc, nrodoc, fecha, direccionCliente, ruccliente, clienterazon, codpedido As String
     Private idalmacen As Integer = 0, idsite As Integer = 0
 
@@ -300,6 +300,7 @@ Public Class GestionParteSalida
                             ObtenerGuiaCab()
                             If codalmacen <> "" And nrodoc <> "" And tipdoc <> "" Then
                                 Dim RegistrarSalidaForm As New EditarSalidaAlmacen
+                                RegistrarSalidaForm.perfilusuario = perfilUsuario
                                 RegistrarSalidaForm.Lote = row.Cells("SERIE").EditedFormattedValue.ToString.Trim
                                 RegistrarSalidaForm.correlativo = row.Cells("C6_CITEM").EditedFormattedValue.ToString.Trim
                                 RegistrarSalidaForm.articulo = row.Cells("PRODUCTO").EditedFormattedValue.ToString.Trim
@@ -579,7 +580,7 @@ Public Class GestionParteSalida
                     End If
 
                     If rowDetalle.Item("UNIDAD").ToString.Trim = "CJA" Then
-                        rowDetalle.Item("CAJAS") = RowRetorno.Item("SALDO")
+                        rowDetalle.Item("CAJAS") = rowDetalle.Item("SALDO")
                         If rowDetalle.Item("FACTORCAJAMASTER") <> 0 And rowDetalle.Item("CAJAS") <> 0 Then
                             rowDetalle.Item("CAJASMASTER") = Math.Round(CType(rowDetalle.Item("CAJAS").ToString, Decimal) / CType(rowDetalle.Item("FACTORCAJAMASTER"), Decimal), 2)
                         Else

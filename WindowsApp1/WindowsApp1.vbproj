@@ -152,6 +152,12 @@
     <Compile Include="AgregarExternoDespacho.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="AgregarGuiaCabeceraRuta.Designer.vb">
+      <DependentUpon>AgregarGuiaCabeceraRuta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarGuiaCabeceraRuta.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="AgregarGuiaDespacho.Designer.vb">
       <DependentUpon>AgregarGuiaDespacho.vb</DependentUpon>
     </Compile>
@@ -174,6 +180,12 @@
       <DependentUpon>ComplementoDespacho.vb</DependentUpon>
     </Compile>
     <Compile Include="ComplementoDespacho.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComplementoReverPendiente.Designer.vb">
+      <DependentUpon>ComplementoReverPendiente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ComplementoReverPendiente.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ComplemetarRuta.Designer.vb">
@@ -203,6 +215,12 @@
       <DependentUpon>DetallePosiciones.vb</DependentUpon>
     </Compile>
     <Compile Include="DetallePosiciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetalleProductosXLinea.Designer.vb">
+      <DependentUpon>DetalleProductosXLinea.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DetalleProductosXLinea.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EditarPosicionesComplemento.Designer.vb">
@@ -253,6 +271,12 @@
     <Compile Include="frmDetallePedido.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmDockToStock.Designer.vb">
+      <DependentUpon>frmDockToStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDockToStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmGestionArticulos.Designer.vb">
       <DependentUpon>frmGestionArticulos.vb</DependentUpon>
     </Compile>
@@ -287,6 +311,12 @@
       <DependentUpon>frmProgramarReque.vb</DependentUpon>
     </Compile>
     <Compile Include="frmProgramarReque.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRecepcionMercaderia.Designer.vb">
+      <DependentUpon>frmRecepcionMercaderia.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmRecepcionMercaderia.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmRegistroRequerimiento.Designer.vb">
@@ -523,6 +553,12 @@
     <Compile Include="GestionAnulacionPicking.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GestionControlLinea.Designer.vb">
+      <DependentUpon>GestionControlLinea.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GestionControlLinea.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GestionDeliveryOnTime.Designer.vb">
       <DependentUpon>GestionDeliveryOnTime.vb</DependentUpon>
     </Compile>
@@ -713,6 +749,11 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reporte\Clases\Demo.vb" />
+    <Compile Include="Reporte\Dataset\DataSetGraficoAvanceLinea.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetGraficoAvanceLinea.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reporte\Dataset\DatasetHojaPicking.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -774,6 +815,12 @@
       <DependentUpon>HojaRuta.vb</DependentUpon>
     </Compile>
     <Compile Include="Reporte\HojaRuta.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reporte\ReporteAvance.Designer.vb">
+      <DependentUpon>ReporteAvance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\ReporteAvance.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reporte\ReporteMovimientos.Designer.vb">
@@ -853,6 +900,9 @@
     <EmbeddedResource Include="AgregarExternoDespacho.resx">
       <DependentUpon>AgregarExternoDespacho.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AgregarGuiaCabeceraRuta.resx">
+      <DependentUpon>AgregarGuiaCabeceraRuta.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AgregarGuiaDespacho.resx">
       <DependentUpon>AgregarGuiaDespacho.vb</DependentUpon>
     </EmbeddedResource>
@@ -865,6 +915,9 @@
     <EmbeddedResource Include="ComplementoDespacho.resx">
       <DependentUpon>ComplementoDespacho.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ComplementoReverPendiente.resx">
+      <DependentUpon>ComplementoReverPendiente.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ComplemetarRuta.resx">
       <DependentUpon>ComplemetarRuta.vb</DependentUpon>
     </EmbeddedResource>
@@ -876,6 +929,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DetallePosiciones.resx">
       <DependentUpon>DetallePosiciones.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetalleProductosXLinea.resx">
+      <DependentUpon>DetalleProductosXLinea.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditarPosicionesComplemento.resx">
       <DependentUpon>EditarPosicionesComplemento.vb</DependentUpon>
@@ -901,6 +957,9 @@
     <EmbeddedResource Include="frmDetallePedido.resx">
       <DependentUpon>frmDetallePedido.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmDockToStock.resx">
+      <DependentUpon>frmDockToStock.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmGestionArticulos.resx">
       <DependentUpon>frmGestionArticulos.vb</DependentUpon>
     </EmbeddedResource>
@@ -918,6 +977,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmProgramarReque.resx">
       <DependentUpon>frmProgramarReque.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRecepcionMercaderia.resx">
+      <DependentUpon>frmRecepcionMercaderia.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRegistroRequerimiento.resx">
       <DependentUpon>frmRegistroRequerimiento.vb</DependentUpon>
@@ -1036,6 +1098,9 @@
     <EmbeddedResource Include="GestionAnulacionPicking.resx">
       <DependentUpon>GestionAnulacionPicking.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GestionControlLinea.resx">
+      <DependentUpon>GestionControlLinea.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GestionDeliveryOnTime.resx">
       <DependentUpon>GestionDeliveryOnTime.vb</DependentUpon>
     </EmbeddedResource>
@@ -1126,6 +1191,7 @@
     <EmbeddedResource Include="ReporteUbicacionesVacias.resx">
       <DependentUpon>ReporteUbicacionesVacias.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\CuadroAvance.rdlc" />
     <EmbeddedResource Include="Reporte\EtiquetasProvincia.rdlc" />
     <EmbeddedResource Include="Reporte\HojaDeRuta.rdlc" />
     <EmbeddedResource Include="Reporte\HojaRuta.resx">
@@ -1142,6 +1208,9 @@
     <EmbeddedResource Include="Reporte\HojaPicking.rdlc" />
     <EmbeddedResource Include="Reporte\HojaPicking.resx">
       <DependentUpon>HojaPicking.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\ReporteAvance.resx">
+      <DependentUpon>ReporteAvance.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reporte\ReporteMovimientos.resx">
       <DependentUpon>ReporteMovimientos.vb</DependentUpon>
@@ -1193,6 +1262,7 @@
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
+    <None Include="My Project\DataSources\DataSetGraficoAvanceLinea.datasource" />
     <None Include="My Project\DataSources\DatasetHojaPickin.datasource" />
     <None Include="My Project\DataSources\DatasetHojaPicking.datasource" />
     <None Include="My Project\DataSources\DataSetHojaRuta.datasource" />
@@ -1219,6 +1289,17 @@
     <Content Include="hospital-3_icon-icons.com_66075.ico" />
     <Content Include="LogoNordic.ico" />
     <Content Include="pie_chart_21427.ico" />
+    <None Include="Reporte\Dataset\DataSetGraficoAvanceLinea.xsc">
+      <DependentUpon>DataSetGraficoAvanceLinea.xsd</DependentUpon>
+    </None>
+    <None Include="Reporte\Dataset\DataSetGraficoAvanceLinea.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetGraficoAvanceLinea.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Reporte\Dataset\DataSetGraficoAvanceLinea.xss">
+      <DependentUpon>DataSetGraficoAvanceLinea.xsd</DependentUpon>
+    </None>
     <None Include="Reporte\Dataset\DataSetHojaRuta.xsc">
       <DependentUpon>DataSetHojaRuta.xsd</DependentUpon>
     </None>
@@ -1249,6 +1330,7 @@
     <None Include="Resources\City-No-Baggage-icon.png" />
     <None Include="Resources\Action-window-no-fullscreen-icon.png" />
     <None Include="Resources\Folder-Add-icon.png" />
+    <None Include="Resources\System-control-panel-icon.png" />
     <Content Include="SqlServerTypes\Loader.cs" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
