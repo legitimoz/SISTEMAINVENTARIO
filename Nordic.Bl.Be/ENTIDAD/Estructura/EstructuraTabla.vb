@@ -14,6 +14,37 @@
         Return TablaAlmacen
     End Function
 
+    Public Function GraficoAvanceLinea() As DataTable
+        Dim TablaAlmacen As DataTable
+        TablaAlmacen = New DataTable()
+        Try
+            TablaAlmacen.Columns.Add("LINEA", GetType(String))
+            TablaAlmacen.Columns.Add("PORCENTAJE", GetType(Integer))
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+        Return TablaAlmacen
+    End Function
+
+    Public Function DetalleProductosXLinea() As DataTable
+        Dim TablaAlmacen As DataTable
+        TablaAlmacen = New DataTable()
+        Try
+            TablaAlmacen.Columns.Add("CODIGO", GetType(String))
+            TablaAlmacen.Columns.Add("ARTICULO", GetType(String))
+            TablaAlmacen.Columns.Add("LOTE", GetType(String))
+            TablaAlmacen.Columns.Add("CANTIDAD", GetType(String))
+            TablaAlmacen.Columns.Add("CANT_MESES", GetType(String))
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+        Return TablaAlmacen
+    End Function
+
+
+
     Public Function ReporteAbastecimiento() As DataTable
         Dim TablaAlmacen As DataTable
         TablaAlmacen = New DataTable()
@@ -503,6 +534,8 @@
             Tabladetalle.Columns.Add("DIRECCIONCLIENTE", GetType(String))
             Tabladetalle.Columns.Add("PICADOR", GetType(String))
             Tabladetalle.Columns.Add("FILTRO", GetType(String))
+            Tabladetalle.Columns.Add("Comentario", GetType(String))
+
 
         Catch ex As Exception
             Throw ex
@@ -593,6 +626,11 @@
             Tabladetalle.Columns.Add("nombrecosto", GetType(String))
             Tabladetalle.Columns.Add("FechaRecepcion", GetType(String))
             Tabladetalle.Columns.Add("HoraRecepcion", GetType(String))
+            Tabladetalle.Columns.Add("DEPARTAMENTO", GetType(String))
+            Tabladetalle.Columns.Add("DISTRITO", GetType(String))
+            Tabladetalle.Columns.Add("PROVINCIA", GetType(String))
+            Tabladetalle.Columns.Add("FISICO", GetType(String))
+            Tabladetalle.Columns.Add("siteliq", GetType(String))
         Catch ex As Exception
             Throw ex
         End Try
@@ -648,34 +686,7 @@
         Return Tabladetalle
     End Function
 
-    Public Function IndicadorDeliveryOnTime() As DataTable
-        Dim Tabladetalle As DataTable
-        Tabladetalle = New DataTable()
-        Try
 
-            Tabladetalle.Columns.Add("NRO_GUIA", GetType(String))
-            Tabladetalle.Columns.Add("RUC_CLIENTE", GetType(String))
-            Tabladetalle.Columns.Add("CLIENTE", GetType(String))
-            Tabladetalle.Columns.Add("DIRECCION_CLIENTE", GetType(String))
-            Tabladetalle.Columns.Add("LIM_PROV", GetType(String))
-            Tabladetalle.Columns.Add("TRANSPORTISTA", GetType(String))
-            Tabladetalle.Columns.Add("FECHA_DESPACHO", GetType(String))
-            Tabladetalle.Columns.Add("HORA_DESPACHO", GetType(String))
-            Tabladetalle.Columns.Add("FECHA_SUBE_FOTO", GetType(String))
-            Tabladetalle.Columns.Add("FECHA_RECEPCION_CLIENTE", GetType(String))
-            Tabladetalle.Columns.Add("Tolerancia", GetType(String))
-            Tabladetalle.Columns.Add("Diferencia Foto", GetType(String))
-            Tabladetalle.Columns.Add("Diferencia Recepcion", GetType(String))
-            Tabladetalle.Columns.Add("ESTADO", GetType(String))
-            Tabladetalle.Columns.Add("ESTADO2", GetType(String))
-            Tabladetalle.Columns.Add("MOTIVO", GetType(String))
-            Tabladetalle.Columns.Add("AREA", GetType(String))
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-        Return Tabladetalle
-    End Function
 
     Public Function IndicadorLiquidacionDocumentaria() As DataTable
         Dim Tabladetalle As DataTable
@@ -703,6 +714,8 @@
         Tabladetalle = New DataTable()
         Try
             Tabladetalle.Columns.Add("NRO_GUIA", GetType(String))
+            Tabladetalle.Columns.Add("TIPO_DOCUMENTO", GetType(String))
+            Tabladetalle.Columns.Add("ALMACEN", GetType(String))
             Tabladetalle.Columns.Add("RUC_CLIENTE", GetType(String))
             Tabladetalle.Columns.Add("CLIENTE", GetType(String))
             Tabladetalle.Columns.Add("DIRECCION_CLIENTE", GetType(String))
@@ -716,6 +729,37 @@
             Tabladetalle.Columns.Add("ESTADO", GetType(String))
             Tabladetalle.Columns.Add("MOTIVO", GetType(String))
             Tabladetalle.Columns.Add("AREA", GetType(String))
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return Tabladetalle
+    End Function
+
+    Public Function IndicadorDeliveryOnTime() As DataTable
+        Dim Tabladetalle As DataTable
+        Tabladetalle = New DataTable()
+        Try
+
+            Tabladetalle.Columns.Add("NRO_GUIA", GetType(String))
+            Tabladetalle.Columns.Add("TIPO_DOCUMENTO", GetType(String))
+            Tabladetalle.Columns.Add("ALMACEN", GetType(String))
+            Tabladetalle.Columns.Add("RUC_CLIENTE", GetType(String))
+            Tabladetalle.Columns.Add("CLIENTE", GetType(String))
+            Tabladetalle.Columns.Add("DIRECCION_CLIENTE", GetType(String))
+            Tabladetalle.Columns.Add("LIM_PROV", GetType(String))
+            Tabladetalle.Columns.Add("TRANSPORTISTA", GetType(String))
+            Tabladetalle.Columns.Add("FECHA_DESPACHO", GetType(String))
+            Tabladetalle.Columns.Add("HORA_DESPACHO", GetType(String))
+            Tabladetalle.Columns.Add("FECHA_SUBE_FOTO", GetType(String))
+            Tabladetalle.Columns.Add("FECHA_RECEPCION_CLIENTE", GetType(String))
+            Tabladetalle.Columns.Add("Tolerancia", GetType(String))
+            Tabladetalle.Columns.Add("Diferencia Foto", GetType(String))
+            Tabladetalle.Columns.Add("Diferencia Recepcion", GetType(String))
+            Tabladetalle.Columns.Add("ESTADO", GetType(String))
+            Tabladetalle.Columns.Add("ESTADO2", GetType(String))
+            Tabladetalle.Columns.Add("MOTIVO", GetType(String))
+            Tabladetalle.Columns.Add("AREA", GetType(String))
+
         Catch ex As Exception
             Throw ex
         End Try

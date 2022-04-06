@@ -1,4 +1,5 @@
-﻿Imports Nordic.Bl.Be
+﻿Imports System.Configuration
+Imports Nordic.Bl.Be
 
 Public Class GestionPosiciones
     Public idRack, X, Y, idalmacen, idsite As Integer
@@ -93,6 +94,7 @@ Public Class GestionPosiciones
 
     Private Sub GestionPosiciones_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
+            idsite = ConfigurationManager.AppSettings("CodigoSite").ToString.Trim
             CargaInicial()
         Catch ex As Exception
             Throw ex
@@ -263,101 +265,200 @@ Public Class GestionPosiciones
     Public Sub ListarPosiciones()
         Try
             Try
-                dtposicones = LlamarListarPosiciones()
-                If dtposicones.Rows.Count > 0 Then
-                    panelbotones.Controls.Clear()
-                    Dim label2 As New Label
-                    label2.Name = "label"
-                    label2.Visible = False
-                    label2.Location = New Point(12, 22)
-                    panelbotones.Controls.Add(label2)
-                    Dim a As Integer = 10
-                    Dim b As Integer = 0
+                If idsite = 2 And idalmacen = 4 Then
+                    dtposicones = LlamarListarPosiciones()
+                    If dtposicones.Rows.Count > 0 Then
+                        panelbotones.Controls.Clear()
+                        Dim label2 As New Label
+                        label2.Name = "label"
+                        label2.Visible = False
+                        label2.Location = New Point(12, 22)
+                        panelbotones.Controls.Add(label2)
+                        Dim a As Integer = 10
+                        Dim b As Integer = 0
 
-                    Dim merlokacionin As Point = label2.Location
-                    n = Y
-                    m = X
-                    Dim i, j As Integer
-                    For i = 1 To n
-                        a = merlokacionin.X + 10
-                        If i <> 1 Then
-                            b = b + 45
-                        End If
-
-                        For j = 1 To m
-                            If j <> 1 Then
-                                a = a + 65
+                        Dim merlokacionin As Point = label2.Location
+                        n = Y
+                        m = X
+                        Dim i, j As Integer
+                        For i = 1 To n
+                            a = merlokacionin.X + 10
+                            If i <> 1 Then
+                                b = b + 45
                             End If
-                            Dim codigo As String = ""
-                            Dim idespacio As Integer = 0
-                            Dim disponible As Integer
-                            Dim Capacidad As Decimal = 0, Ocupado As Decimal = 0
-                            Dim PuntoMedio As Decimal = 0
-                            Dim color As String = ""
-                            For Each RowPosicion As DataRow In dtposicones.Rows
 
-                                If CType(RowPosicion("esp_ubicacionx").ToString(), Integer) = j And CType(RowPosicion("esp_ubicaciony").ToString(), Integer) = i Then
-                                    codigo = RowPosicion("esp_codigoespacio").ToString()
-                                    idespacio = CType(RowPosicion("esp_idespacio").ToString(), Integer)
-                                    Capacidad = CType(RowPosicion("Capacidad").ToString(), Decimal)
-                                    Ocupado = CType(RowPosicion("Ocupado").ToString(), Decimal)
-                                    disponible = CType(RowPosicion("Disponible").ToString(), Integer)
-                                    PuntoMedio = Capacidad / 2
-
-                                    If Ocupado = 0 Then
-                                        color = "BLANCO"
-                                    Else
-                                        If Ocupado > 0 Then
-                                            color = "VERDE"
-                                        End If
-                                    End If
-
-                                    If RowPosicion("observado") = True Then
-                                        color = "ROJO"
-                                    End If
-
-                                    Exit For
+                            For j = 1 To m
+                                If j <> 1 Then
+                                    a = a + 65
                                 End If
+                                Dim codigo As String = ""
+                                Dim idespacio As Integer = 0
+                                Dim disponible As Integer
+                                Dim Capacidad As Decimal = 0, Ocupado As Decimal = 0
+                                Dim PuntoMedio As Decimal = 0
+                                Dim color As String = ""
+                                For Each RowPosicion As DataRow In dtposicones.Rows
+
+                                    If CType(RowPosicion("esp_ubicacionx").ToString(), Integer) = j And CType(RowPosicion("esp_ubicaciony").ToString(), Integer) = i Then
+                                        codigo = RowPosicion("esp_codigoespacio").ToString()
+                                        idespacio = CType(RowPosicion("esp_idespacio").ToString(), Integer)
+                                        Capacidad = CType(RowPosicion("Capacidad").ToString(), Decimal)
+                                        Ocupado = CType(RowPosicion("Ocupado").ToString(), Decimal)
+                                        disponible = CType(RowPosicion("Disponible").ToString(), Integer)
+                                        PuntoMedio = Capacidad / 2
+
+                                        If Ocupado = 0 Then
+                                            color = "BLANCO"
+                                        Else
+                                            If Ocupado > 0 Then
+                                                color = "VERDE"
+                                            End If
+                                        End If
+
+                                        If RowPosicion("observado") = True Then
+                                            color = "ROJO"
+                                        End If
+
+                                        Exit For
+                                    End If
+                                Next
+
+                                ''validar cuando disponible es menor a 0
+                                If disponible < 0 Then
+                                    disponible = 0
+                                End If
+
+                                Dim buttonnew As New Button
+                                buttonnew.Text = codigo
+                                buttonnew.Name = codigo
+                                buttonnew.TabIndex = disponible
+                                buttonnew.ImageIndex = idespacio
+                                If color = "BLANCO" Then
+                                    buttonnew.BackColor = Drawing.Color.White
+                                    buttonnew.ForeColor = Drawing.Color.Black
+
+                                End If
+                                If color = "VERDE" Then
+                                    buttonnew.BackColor = Drawing.Color.LightGreen
+                                    buttonnew.ForeColor = Drawing.Color.Black
+                                End If
+
+                                If color = "ROJO" Then
+                                    buttonnew.BackColor = Drawing.Color.IndianRed
+                                    buttonnew.ForeColor = Drawing.Color.Black
+                                End If
+
+                                buttonnew.Width = 60
+                                buttonnew.Height = 40
+                                buttonnew.Location = New Point(a, b)
+                                If disponible >= volumen Then
+                                    buttonnew.Enabled = True
+                                Else
+                                    'buttonnew.Enabled = False
+                                End If
+                                AddHandler buttonnew.Click, AddressOf Buton_Clicked
+                                Me.panelbotones.Controls.Add(buttonnew)
                             Next
-
-                            ''validar cuando disponible es menor a 0
-                            If disponible < 0 Then
-                                disponible = 0
-                            End If
-
-                            Dim buttonnew As New Button
-                            buttonnew.Text = codigo
-                            buttonnew.Name = codigo
-                            buttonnew.TabIndex = disponible
-                            buttonnew.ImageIndex = idespacio
-                            If color = "BLANCO" Then
-                                buttonnew.BackColor = Drawing.Color.White
-                                buttonnew.ForeColor = Drawing.Color.Black
-
-                            End If
-                            If color = "VERDE" Then
-                                buttonnew.BackColor = Drawing.Color.LightGreen
-                                buttonnew.ForeColor = Drawing.Color.Black
-                            End If
-
-                            If color = "ROJO" Then
-                                buttonnew.BackColor = Drawing.Color.IndianRed
-                                buttonnew.ForeColor = Drawing.Color.Black
-                            End If
-
-                            buttonnew.Width = 60
-                            buttonnew.Height = 40
-                            buttonnew.Location = New Point(a, b)
-                            If disponible >= volumen Then
-                                buttonnew.Enabled = True
-                            Else
-                                'buttonnew.Enabled = False
-                            End If
-                            AddHandler buttonnew.Click, AddressOf Buton_Clicked
-                            Me.panelbotones.Controls.Add(buttonnew)
                         Next
-                    Next
 
+                    End If
+                ElseIf idalmacen = 1 And idsite = 1 Then
+                    dtposicones = LlamarListarPosiciones()
+                    If dtposicones.Rows.Count > 0 Then
+                        panelbotones.Controls.Clear()
+                        Dim label2 As New Label
+                        label2.Name = "label"
+                        label2.Visible = False
+                        label2.Location = New Point(12, 22)
+                        panelbotones.Controls.Add(label2)
+                        Dim a As Integer = 10
+                        Dim b As Integer = 0
+
+                        Dim merlokacionin As Point = label2.Location
+                        n = Y
+                        m = X
+                        Dim i, j As Integer
+                        For i = 1 To n
+                            a = merlokacionin.X + 10
+                            If i <> 1 Then
+                                b = b + 30 ' separacion vertical
+                            End If
+
+                            For j = 1 To m
+                                If j <> 1 Then
+                                    a = a + 65
+                                End If
+                                Dim codigo As String = ""
+                                Dim idespacio As Integer = 0
+                                Dim disponible As Integer
+                                Dim Capacidad As Decimal = 0, Ocupado As Decimal = 0
+                                Dim PuntoMedio As Decimal = 0
+                                Dim color As String = ""
+                                For Each RowPosicion As DataRow In dtposicones.Rows
+
+                                    If CType(RowPosicion("esp_ubicacionx").ToString(), Integer) = j And CType(RowPosicion("esp_ubicaciony").ToString(), Integer) = i Then
+                                        codigo = RowPosicion("esp_codigoespacio").ToString()
+                                        idespacio = CType(RowPosicion("esp_idespacio").ToString(), Integer)
+                                        Capacidad = CType(RowPosicion("Capacidad").ToString(), Decimal)
+                                        Ocupado = CType(RowPosicion("Ocupado").ToString(), Decimal)
+                                        disponible = CType(RowPosicion("Disponible").ToString(), Integer)
+                                        PuntoMedio = Capacidad / 2
+
+                                        If Ocupado = 0 Then
+                                            color = "BLANCO"
+                                        Else
+                                            If Ocupado > 0 Then
+                                                color = "VERDE"
+                                            End If
+                                        End If
+
+                                        If RowPosicion("observado") = True Then
+                                            color = "ROJO"
+                                        End If
+
+                                        Exit For
+                                    End If
+                                Next
+
+                                ''validar cuando disponible es menor a 0
+                                If disponible < 0 Then
+                                    disponible = 0
+                                End If
+
+                                Dim buttonnew As New Button
+                                buttonnew.Text = codigo
+                                buttonnew.Name = codigo
+                                buttonnew.TabIndex = disponible
+                                buttonnew.ImageIndex = idespacio
+                                If color = "BLANCO" Then
+                                    buttonnew.BackColor = Drawing.Color.White
+                                    buttonnew.ForeColor = Drawing.Color.Black
+
+                                End If
+                                If color = "VERDE" Then
+                                    buttonnew.BackColor = Drawing.Color.LightGreen
+                                    buttonnew.ForeColor = Drawing.Color.Black
+                                End If
+
+                                If color = "ROJO" Then
+                                    buttonnew.BackColor = Drawing.Color.IndianRed
+                                    buttonnew.ForeColor = Drawing.Color.Black
+                                End If
+
+                                buttonnew.Width = 60 'ANCHO BOTON
+                                buttonnew.Height = 30 'ALTO BOTON
+                                buttonnew.Location = New Point(a, b)
+                                If disponible >= volumen Then
+                                    buttonnew.Enabled = True
+                                Else
+                                    'buttonnew.Enabled = False
+                                End If
+                                AddHandler buttonnew.Click, AddressOf Buton_Clicked
+                                Me.panelbotones.Controls.Add(buttonnew)
+                            Next
+                        Next
+
+                    End If
                 End If
 
             Catch ex As Exception

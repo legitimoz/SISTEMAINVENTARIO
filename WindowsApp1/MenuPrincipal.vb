@@ -365,6 +365,7 @@
             If ExisteChildrens(frmArt) = False Then
                 frmArt.MdiParent = Me
                 frmArt.usr_id = prIdUser
+                frmArt.idperfil = prPerId
                 frmArt.usr_usuario = prUser
                 frmArt.WindowState = FormWindowState.Maximized
                 frmArt.Text = "Gestion Pedidos"
@@ -383,6 +384,7 @@
             If ExisteChildrens(frmArt) = False Then
                 frmArt.MdiParent = Me
                 frmArt.usr_id = prIdUser
+                frmArt.PerfilUsuario = prPerId
                 frmArt.usr_usuario = prUser
                 frmArt.WindowState = FormWindowState.Maximized
                 frmArt.Text = "Gestion Guias"
@@ -439,7 +441,7 @@
             If ExisteChildrens(frmArt) = False Then
                 frmArt.MdiParent = Me
                 frmArt.usr_id = prIdUser
-                frmArt.usr_usuario = prUser
+                frmArt.usr_usuario = PrUserName
                 ' frmArt.WindowState = FormWindowState.Maximized
                 frmArt.Width = Me.Width
                 frmArt.Height = Me.Height
@@ -516,7 +518,7 @@
         End Try
     End Sub
 
-    Private Sub NonConformityRatioToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NonConformityRatioToolStripMenuItem.Click
+    Private Sub NonConformityRatioToolStripMenuItem_Click(sender As Object, e As EventArgs) 
         Try
             Dim frmPed As New GestionNonConformityRatio
             If ExisteChildrens(frmPed) = False Then
@@ -575,6 +577,7 @@
                 frmArt.MdiParent = Me
                 frmArt.usr_id = prIdUser
                 frmArt.usr_usuario = prUser
+                frmArt.perfilusuario = prPerId
                 ' frmArt.WindowState = FormWindowState.Maximized
                 '   frmArt.Text = "Gestion Guias"
                 frmArt.Width = Me.Width
@@ -614,6 +617,7 @@
             If ExisteChildrens(frmArt) = False Then
                 frmArt.MdiParent = Me
                 frmArt.usr_id = prIdUser
+                frmArt.perfilUsuario = prPerId
                 frmArt.usr_usuario = prUser
                 frmArt.WindowState = FormWindowState.Maximized
                 frmArt.Text = "Gestion Partes Salida"
@@ -704,6 +708,40 @@
             Catch ex As Exception
                 Throw ex
             End Try
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub ControlVencimientoPorLineaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ControlVencimientoPorLineaToolStripMenuItem.Click
+        Try
+            Try
+                Dim frmPed As New GestionControlLinea
+                If ExisteChildrens(frmPed) = False Then
+                    frmPed.MdiParent = Me
+                    frmPed.Show()
+                End If
+            Catch ex As Exception
+                Throw ex
+            End Try
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub CorrerToolStripMenuItem_Click(sender As Object, e As EventArgs)
+        Try
+            Dim Dt_Estudia As New DataTable
+            Dim obj As New AlmacenL
+            Dt_Estudia = obj.Proceso
+            If Dt_Estudia.Rows.Count > 0 Then
+                For Each estudi As DataRow In Dt_Estudia.Rows
+                    Dim rp As Integer = obj.reemplazar(CType(estudi.Item("drg_id").ToString, Integer))
+                    'If rp Then
+
+                    'End If
+                Next
+            End If
         Catch ex As Exception
 
         End Try

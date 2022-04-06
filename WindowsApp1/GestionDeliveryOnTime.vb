@@ -3,7 +3,7 @@ Imports Nordic.Bl.Be
 
 Public Class GestionDeliveryOnTime
 
-    Private dtcabecera2, dtcabecera As New DataTable
+    Private dtcabecera2, dtcabecera, DTtiemposJJ As New DataTable
     Public Estructura As New EstructuraTabla
     Private ObjAlmacen As New AlmacenL
     Private CNUMDOC, CTD, CALMA, Estado As String
@@ -18,11 +18,21 @@ Public Class GestionDeliveryOnTime
 
     Private Sub CargaInicial()
         Try
+            CargarTiemposJJ()
             cmb_filtro.SelectedIndex = 0
             FormatoTablaCabecera()
             'ListarGuiasCabecera()
         Catch ex As Exception
 
+        End Try
+    End Sub
+
+
+    Private Sub CargarTiemposJJ()
+        Try
+            DTtiemposJJ = ObjAlmacen.CSE_SP_LISTAR_TIEMPSO_JJ
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 
@@ -98,36 +108,91 @@ Public Class GestionDeliveryOnTime
                     rowcabecera.Item("MOTIVO") = RowRetorno.Item("MOTIVO").ToString.Trim
                     rowcabecera.Item("AREA") = RowRetorno.Item("AREA").ToString.Trim
                     rowcabecera.Item("HORA_DESPACHO") = RowRetorno.Item("HORA_DESPACHO").ToString.Trim
+                    rowcabecera.Item("TIPO_DOCUMENTO") = RowRetorno.Item("TIPO_DOCUMENTO").ToString.Trim
+                    rowcabecera.Item("ALMACEN") = RowRetorno.Item("ALMACEN").ToString.Trim
+
+                    If RowRetorno.Item("PROVINCIA").ToString.Trim = "CAÑETE".Trim Or RowRetorno.Item("PROVINCIA").ToString.Trim = "HUARAL".Trim Or RowRetorno.Item("PROVINCIA").ToString.Trim = "HUAURA".Trim Then
+                        rowcabecera.Item("LIM_PROV") = "PROVINCIA"
+                    End If
 
 
                     Dim Diferencia As Integer = 0, DiferenciaRecep As Integer = 0
-                    If RowRetorno.Item("FECHA_DESPACHO").ToString.Trim <> "" And RowRetorno.Item("FECHA_SUBE_FOTO").ToString.Trim <> "" Then
-                        Diferencia = DateDiff(DateInterval.Day, Convert.ToDateTime(RowRetorno.Item("FECHA_DESPACHO").ToString.Trim), Convert.ToDateTime(RowRetorno.Item("FECHA_SUBE_FOTO").ToString.Trim))
-                    ElseIf RowRetorno.Item("FECHA_DESPACHO").ToString.Trim <> "" And RowRetorno.Item("FECHA_SUBE_FOTO").ToString.Trim = "" Then
-                        Diferencia = DateDiff(DateInterval.Day, Convert.ToDateTime(RowRetorno.Item("FECHA_DESPACHO").ToString.Trim), Convert.ToDateTime(Now))
-                    End If
-
-                    If RowRetorno.Item("FECHA_DESPACHO").ToString.Trim <> "" And RowRetorno.Item("FECHA_RECEPCION_CLIENTE").ToString.Trim <> "" Then
-                        DiferenciaRecep = DateDiff(DateInterval.Day, Convert.ToDateTime(RowRetorno.Item("FECHA_DESPACHO").ToString.Trim), Convert.ToDateTime(RowRetorno.Item("FECHA_RECEPCION_CLIENTE").ToString.Trim))
-                    ElseIf RowRetorno.Item("FECHA_DESPACHO").ToString.Trim <> "" And RowRetorno.Item("FECHA_RECEPCION_CLIENTE").ToString.Trim = "" Then
-                        DiferenciaRecep = DateDiff(DateInterval.Day, Convert.ToDateTime(RowRetorno.Item("FECHA_DESPACHO").ToString.Trim), Convert.ToDateTime(Now))
-                    End If
-
-                    rowcabecera.Item("Diferencia Foto") = Diferencia
-                    rowcabecera.Item("Diferencia Recepcion") = DiferenciaRecep
                     Dim Tolerancia As Integer = 1
 
                     If RowRetorno.Item("LIM_PROV").ToString.Trim = "LIMA" Then
+
+                        If RowRetorno.Item("FECHA_DESPACHO").ToString.Trim <> "" Then
+                            Dim FechaRecepcion, FechaFoto As Date
+                            If RowRetorno.Item("FECHA_SUBE_FOTO").ToString.Trim <> "" And RowRetorno.Item("FECHA_RECEPCION_CLIENTE").ToString.Trim <> "" Then
+                                FechaRecepcion = DateTime.Parse(RowRetorno.Item("FECHA_RECEPCION_CLIENTE").ToString.Trim)
+                                FechaFoto = DateTime.Parse(RowRetorno.Item("FECHA_SUBE_FOTO").ToString.Trim)
+                                If FechaRecepcion > FechaFoto Then
+                                    Diferencia = DateDiff(DateInterval.Day, Convert.ToDateTime(RowRetorno.Item("FECHA_DESPACHO").ToString.Trim), FechaFoto)
+                                ElseIf FechaFoto > FechaRecepcion Then
+                                    Diferencia = DateDiff(DateInterval.Day, Convert.ToDateTime(RowRetorno.Item("FECHA_DESPACHO").ToString.Trim), FechaRecepcion)
+                                End If
+                            ElseIf RowRetorno.Item("FECHA_SUBE_FOTO").ToString.Trim = "" And RowRetorno.Item("FECHA_RECEPCION_CLIENTE").ToString.Trim <> "" Then
+                                FechaRecepcion = DateTime.Parse(RowRetorno.Item("FECHA_RECEPCION_CLIENTE").ToString.Trim)
+                                Diferencia = DateDiff(DateInterval.Day, Convert.ToDateTime(RowRetorno.Item("FECHA_DESPACHO").ToString.Trim), FechaRecepcion)
+                            ElseIf RowRetorno.Item("FECHA_SUBE_FOTO").ToString.Trim <> "" And RowRetorno.Item("FECHA_RECEPCION_CLIENTE").ToString.Trim = "" Then
+                                FechaFoto = DateTime.Parse(RowRetorno.Item("FECHA_SUBE_FOTO").ToString.Trim)
+                                Diferencia = DateDiff(DateInterval.Day, Convert.ToDateTime(RowRetorno.Item("FECHA_DESPACHO").ToString.Trim), FechaFoto)
+                            ElseIf RowRetorno.Item("FECHA_SUBE_FOTO").ToString.Trim = "" And RowRetorno.Item("FECHA_RECEPCION_CLIENTE").ToString.Trim = "" Then
+                                Diferencia = DateDiff(DateInterval.Day, Convert.ToDateTime(RowRetorno.Item("FECHA_DESPACHO").ToString.Trim), Now)
+                            End If
+                        End If
+
+                        If RowRetorno.Item("FECHA_DESPACHO").ToString.Trim <> "" And RowRetorno.Item("FECHA_RECEPCION_CLIENTE").ToString.Trim <> "" Then
+                            DiferenciaRecep = DateDiff(DateInterval.Day, Convert.ToDateTime(RowRetorno.Item("FECHA_DESPACHO").ToString.Trim), Convert.ToDateTime(RowRetorno.Item("FECHA_RECEPCION_CLIENTE").ToString.Trim))
+                        ElseIf RowRetorno.Item("FECHA_DESPACHO").ToString.Trim <> "" And RowRetorno.Item("FECHA_RECEPCION_CLIENTE").ToString.Trim = "" Then
+                            DiferenciaRecep = DateDiff(DateInterval.Day, Convert.ToDateTime(RowRetorno.Item("FECHA_DESPACHO").ToString.Trim), Convert.ToDateTime(Now))
+                        End If
+
                         If RowRetorno.Item("HORA_DESPACHO").ToString.Trim > #04:30:00 PM# Then
                             Tolerancia = 2
                         End If
                     End If
 
                     If RowRetorno.Item("LIM_PROV").ToString.Trim = "PROVINCIA" Then
+
+                        If RowRetorno.Item("FECHA_DESPACHO").ToString.Trim <> "" And RowRetorno.Item("FECHA_SUBE_FOTO").ToString.Trim <> "" Then
+                            Diferencia = DateDiff(DateInterval.Day, Convert.ToDateTime(RowRetorno.Item("FECHA_DESPACHO").ToString.Trim), Convert.ToDateTime(RowRetorno.Item("FECHA_SUBE_FOTO").ToString.Trim))
+                        ElseIf RowRetorno.Item("FECHA_DESPACHO").ToString.Trim <> "" And RowRetorno.Item("FECHA_SUBE_FOTO").ToString.Trim = "" Then
+                            Diferencia = DateDiff(DateInterval.Day, Convert.ToDateTime(RowRetorno.Item("FECHA_DESPACHO").ToString.Trim), Convert.ToDateTime(Now))
+                        End If
+
+                        If RowRetorno.Item("FECHA_DESPACHO").ToString.Trim <> "" And RowRetorno.Item("FECHA_RECEPCION_CLIENTE").ToString.Trim <> "" Then
+                            DiferenciaRecep = DateDiff(DateInterval.Day, Convert.ToDateTime(RowRetorno.Item("FECHA_DESPACHO").ToString.Trim), Convert.ToDateTime(RowRetorno.Item("FECHA_RECEPCION_CLIENTE").ToString.Trim))
+                        ElseIf RowRetorno.Item("FECHA_DESPACHO").ToString.Trim <> "" And RowRetorno.Item("FECHA_RECEPCION_CLIENTE").ToString.Trim = "" Then
+                            DiferenciaRecep = DateDiff(DateInterval.Day, Convert.ToDateTime(RowRetorno.Item("FECHA_DESPACHO").ToString.Trim), Convert.ToDateTime(Now))
+                        End If
+
                         If RowRetorno.Item("HORA_DESPACHO").ToString.Trim > #12:00:00 PM# Then
                             Tolerancia = 2
                         End If
+
+                        If RowRetorno.Item("TRANSPORTISTA").ToString.Trim = "J Y J CARGO S.A.C - PRIVADO".Trim Or RowRetorno.Item("TRANSPORTISTA").ToString.Trim = "J Y J CARGO S.A.C - REPRESENTANTE".Trim Or RowRetorno.Item("TRANSPORTISTA").ToString.Trim = "J Y J CARGO S.A.C - ENCOMIENDAS".Trim Then
+                            Dim nuevaoTolerancia As Integer = 0
+                            nuevaoTolerancia = ObtenerToleranciaXProvincia(RowRetorno.Item("PROVINCIA").ToString.Trim, "P")
+                            If nuevaoTolerancia <> 0 Then
+                                Tolerancia = nuevaoTolerancia
+                            End If
+                        ElseIf RowRetorno.Item("TRANSPORTISTA").ToString.Trim = "J Y J CARGO S.A.C - INSTITUCIONAL".Trim Then
+                            Dim nuevaoTolerancia As Integer = 0
+                            nuevaoTolerancia = ObtenerToleranciaXProvincia(RowRetorno.Item("PROVINCIA").ToString.Trim, "I")
+                            If nuevaoTolerancia <> 0 Then
+                                Tolerancia = nuevaoTolerancia
+                            End If
+                        End If
+
                     End If
+
+                    rowcabecera.Item("Diferencia Foto") = Diferencia
+                    rowcabecera.Item("Diferencia Recepcion") = DiferenciaRecep
+
+                    'If RowRetorno.Item("ALMACEN").ToString.Trim = "" Then
+
+                    'End If
 
                     rowcabecera.Item("Tolerancia") = Tolerancia
 
@@ -207,6 +272,25 @@ Public Class GestionDeliveryOnTime
             Throw ex
         End Try
     End Sub
+
+    Private Function ObtenerToleranciaXProvincia(PROVINCIA As String, Tipo As String) As Integer
+        Dim Tolerancia As Integer = 0
+        Try
+            For Each RowTiempos As DataRow In DTtiemposJJ.Rows
+                If RowTiempos.Item("PROVINCIA").ToString.Trim = PROVINCIA.Trim Then
+                    If Tipo = "P" Then
+                        Tolerancia = CType(RowTiempos.Item("PRIVADO").ToString, Integer)
+                    ElseIf Tipo = "I" Then
+                        Tolerancia = CType(RowTiempos.Item("INSTITUCIONAL").ToString, Integer)
+                    End If
+                    Exit For
+                End If
+            Next
+        Catch ex As Exception
+
+        End Try
+        Return Tolerancia
+    End Function
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Try
@@ -488,10 +572,10 @@ Public Class GestionDeliveryOnTime
     Public Sub Obtener()
         Try
             If Dg_Cabecera.Rows.Count > 0 Then
-                CNUMDOC = Dg_Cabecera.CurrentRow.Cells("GUIA").EditedFormattedValue.ToString
-                CTD = Dg_Cabecera.CurrentRow.Cells("C5_CTD").EditedFormattedValue.ToString
-                CALMA = Dg_Cabecera.CurrentRow.Cells("C5_CALMA").EditedFormattedValue.ToString
-                Estado = Dg_Cabecera.CurrentRow.Cells("Estado").EditedFormattedValue.ToString
+                CNUMDOC = Dg_Cabecera.CurrentRow.Cells("NRO_GUIA").EditedFormattedValue.ToString
+                CTD = Dg_Cabecera.CurrentRow.Cells("TIPO_DOCUMENTO").EditedFormattedValue.ToString
+                CALMA = Dg_Cabecera.CurrentRow.Cells("ALMACEN").EditedFormattedValue.ToString
+                Estado = Dg_Cabecera.CurrentRow.Cells("ESTADO").EditedFormattedValue.ToString
             End If
         Catch ex As Exception
 
@@ -507,6 +591,14 @@ Public Class GestionDeliveryOnTime
         Dg_Cabecera.Columns("NRO_GUIA").HeaderText = "N° Guia"
         Dg_Cabecera.Columns("NRO_GUIA").Width = 70
         Dg_Cabecera.Columns("NRO_GUIA").ReadOnly = True
+
+        Dg_Cabecera.Columns("TIPO_DOCUMENTO").HeaderText = "NTro Guia"
+        Dg_Cabecera.Columns("TIPO_DOCUMENTO").Width = 70
+        Dg_Cabecera.Columns("TIPO_DOCUMENTO").Visible = False
+
+        Dg_Cabecera.Columns("ALMACEN").HeaderText = "Nro Guia"
+        Dg_Cabecera.Columns("ALMACEN").Width = 70
+        Dg_Cabecera.Columns("ALMACEN").Visible = False
 
         Dg_Cabecera.Columns("FECHA_DESPACHO").HeaderText = "Fech. Despacho"
         Dg_Cabecera.Columns("FECHA_DESPACHO").Width = 100

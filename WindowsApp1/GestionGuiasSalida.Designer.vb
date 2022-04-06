@@ -23,10 +23,10 @@ Partial Class GestionGuiasSalida
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GestionGuiasSalida))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.txt_total = New System.Windows.Forms.Label()
@@ -40,22 +40,15 @@ Partial Class GestionGuiasSalida
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-        Me.cmdVerReporte = New System.Windows.Forms.ToolStripButton()
         Me.separador5 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.btn_imprimir = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.cmdGenerarExcel = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
-        Me.cmdCerrar = New System.Windows.Forms.ToolStripButton()
         Me.dt_desde = New System.Windows.Forms.DateTimePicker()
         Me.dt_hasta = New System.Windows.Forms.DateTimePicker()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.btnBuscar = New FontAwesome.Sharp.IconButton()
         Me.txt_numero = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -67,6 +60,15 @@ Partial Class GestionGuiasSalida
         Me.Dg_Detalle = New System.Windows.Forms.DataGridView()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.cmdVerReporte = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.btn_imprimir = New System.Windows.Forms.ToolStripButton()
+        Me.cmdGenerarExcel = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
+        Me.cmdCerrar = New System.Windows.Forms.ToolStripButton()
+        Me.btnBuscar = New FontAwesome.Sharp.IconButton()
+        Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
@@ -223,7 +225,7 @@ Partial Class GestionGuiasSalida
         Me.ToolStrip1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdVerReporte, Me.separador5, Me.ToolStripButton1, Me.ToolStripSeparator2, Me.btn_imprimir, Me.ToolStripSeparator1, Me.cmdGenerarExcel, Me.ToolStripSeparator3, Me.ToolStripButton2, Me.ToolStripSeparator4, Me.cmdCerrar})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdVerReporte, Me.separador5, Me.ToolStripButton1, Me.ToolStripSeparator2, Me.btn_imprimir, Me.ToolStripSeparator1, Me.cmdGenerarExcel, Me.ToolStripSeparator3, Me.ToolStripButton2, Me.ToolStripSeparator4, Me.ToolStripButton3, Me.ToolStripSeparator5, Me.cmdCerrar})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
@@ -231,90 +233,30 @@ Partial Class GestionGuiasSalida
         Me.ToolStrip1.TabIndex = 85
         Me.ToolStrip1.Text = "ToolStrip1"
         '
-        'cmdVerReporte
-        '
-        Me.cmdVerReporte.Image = CType(resources.GetObject("cmdVerReporte.Image"), System.Drawing.Image)
-        Me.cmdVerReporte.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.cmdVerReporte.Margin = New System.Windows.Forms.Padding(1)
-        Me.cmdVerReporte.Name = "cmdVerReporte"
-        Me.cmdVerReporte.Size = New System.Drawing.Size(69, 38)
-        Me.cmdVerReporte.Text = "&Vista Previa"
-        Me.cmdVerReporte.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
         'separador5
         '
         Me.separador5.Name = "separador5"
         Me.separador5.Size = New System.Drawing.Size(6, 40)
-        '
-        'ToolStripButton1
-        '
-        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
-        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton1.Margin = New System.Windows.Forms.Padding(1)
-        Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(81, 38)
-        Me.ToolStripButton1.Text = "&Picking Masivo"
-        Me.ToolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
         Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 40)
         '
-        'btn_imprimir
-        '
-        Me.btn_imprimir.Image = CType(resources.GetObject("btn_imprimir.Image"), System.Drawing.Image)
-        Me.btn_imprimir.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.btn_imprimir.Margin = New System.Windows.Forms.Padding(1)
-        Me.btn_imprimir.Name = "btn_imprimir"
-        Me.btn_imprimir.Size = New System.Drawing.Size(94, 38)
-        Me.btn_imprimir.Text = "&Confirmar Picking"
-        Me.btn_imprimir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 40)
-        '
-        'cmdGenerarExcel
-        '
-        Me.cmdGenerarExcel.Image = CType(resources.GetObject("cmdGenerarExcel.Image"), System.Drawing.Image)
-        Me.cmdGenerarExcel.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.cmdGenerarExcel.Margin = New System.Windows.Forms.Padding(1)
-        Me.cmdGenerarExcel.Name = "cmdGenerarExcel"
-        Me.cmdGenerarExcel.Size = New System.Drawing.Size(81, 38)
-        Me.cmdGenerarExcel.Text = "&Exportar Excel"
-        Me.cmdGenerarExcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
         Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 40)
         '
-        'ToolStripButton2
-        '
-        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
-        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton2.Margin = New System.Windows.Forms.Padding(1)
-        Me.ToolStripButton2.Name = "ToolStripButton2"
-        Me.ToolStripButton2.Size = New System.Drawing.Size(76, 38)
-        Me.ToolStripButton2.Text = "&Productividad"
-        Me.ToolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
         'ToolStripSeparator4
         '
         Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
         Me.ToolStripSeparator4.Size = New System.Drawing.Size(6, 40)
-        '
-        'cmdCerrar
-        '
-        Me.cmdCerrar.Image = CType(resources.GetObject("cmdCerrar.Image"), System.Drawing.Image)
-        Me.cmdCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.cmdCerrar.Margin = New System.Windows.Forms.Padding(1)
-        Me.cmdCerrar.Name = "cmdCerrar"
-        Me.cmdCerrar.Size = New System.Drawing.Size(32, 38)
-        Me.cmdCerrar.Text = "&Salir"
-        Me.cmdCerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'dt_desde
         '
@@ -357,28 +299,6 @@ Partial Class GestionGuiasSalida
         Me.Label9.TabIndex = 82
         Me.Label9.Text = "Hasta:"
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        '
-        'btnBuscar
-        '
-        Me.btnBuscar.BackColor = System.Drawing.SystemColors.Control
-        Me.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnBuscar.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.btnBuscar.FlatAppearance.BorderSize = 0
-        Me.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnBuscar.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.btnBuscar.IconChar = FontAwesome.Sharp.IconChar.Search
-        Me.btnBuscar.IconColor = System.Drawing.SystemColors.ControlText
-        Me.btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Solid
-        Me.btnBuscar.IconSize = 16
-        Me.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnBuscar.Location = New System.Drawing.Point(635, 75)
-        Me.btnBuscar.Name = "btnBuscar"
-        Me.btnBuscar.Padding = New System.Windows.Forms.Padding(0, 3, 0, 0)
-        Me.btnBuscar.Size = New System.Drawing.Size(25, 20)
-        Me.btnBuscar.TabIndex = 78
-        Me.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnBuscar.UseVisualStyleBackColor = False
         '
         'txt_numero
         '
@@ -494,14 +414,14 @@ Partial Class GestionGuiasSalida
         Me.Dg_Detalle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.Dg_Detalle.BackgroundColor = System.Drawing.Color.White
         Me.Dg_Detalle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlDark
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Tahoma", 7.8!)
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ControlDark
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Dg_Detalle.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.ControlDark
+        DataGridViewCellStyle10.Font = New System.Drawing.Font("Tahoma", 7.8!)
+        DataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.ControlDark
+        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Dg_Detalle.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle10
         Me.Dg_Detalle.ColumnHeadersHeight = 50
         Me.Dg_Detalle.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.Dg_Detalle.EnableHeadersVisualStyles = False
@@ -509,21 +429,21 @@ Partial Class GestionGuiasSalida
         Me.Dg_Detalle.Margin = New System.Windows.Forms.Padding(4)
         Me.Dg_Detalle.MultiSelect = False
         Me.Dg_Detalle.Name = "Dg_Detalle"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ControlDark
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Tahoma", 7.8!)
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlDark
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Dg_Detalle.RowHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.ControlDark
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Tahoma", 7.8!)
+        DataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.ControlDark
+        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Dg_Detalle.RowHeadersDefaultCellStyle = DataGridViewCellStyle11
         Me.Dg_Detalle.RowHeadersVisible = False
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ControlLightLight
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Dg_Detalle.RowsDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.ControlLightLight
+        DataGridViewCellStyle12.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.Dg_Detalle.RowsDefaultCellStyle = DataGridViewCellStyle12
         Me.Dg_Detalle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.Dg_Detalle.Size = New System.Drawing.Size(1259, 155)
         Me.Dg_Detalle.TabIndex = 24
@@ -547,6 +467,103 @@ Partial Class GestionGuiasSalida
         Me.Label1.Size = New System.Drawing.Size(44, 13)
         Me.Label1.TabIndex = 21
         Me.Label1.Text = "Pedidos"
+        '
+        'cmdVerReporte
+        '
+        Me.cmdVerReporte.Image = CType(resources.GetObject("cmdVerReporte.Image"), System.Drawing.Image)
+        Me.cmdVerReporte.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.cmdVerReporte.Margin = New System.Windows.Forms.Padding(1)
+        Me.cmdVerReporte.Name = "cmdVerReporte"
+        Me.cmdVerReporte.Size = New System.Drawing.Size(69, 38)
+        Me.cmdVerReporte.Text = "&Vista Previa"
+        Me.cmdVerReporte.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'ToolStripButton1
+        '
+        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton1.Margin = New System.Windows.Forms.Padding(1)
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(81, 38)
+        Me.ToolStripButton1.Text = "&Picking Masivo"
+        Me.ToolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'btn_imprimir
+        '
+        Me.btn_imprimir.Image = CType(resources.GetObject("btn_imprimir.Image"), System.Drawing.Image)
+        Me.btn_imprimir.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btn_imprimir.Margin = New System.Windows.Forms.Padding(1)
+        Me.btn_imprimir.Name = "btn_imprimir"
+        Me.btn_imprimir.Size = New System.Drawing.Size(94, 38)
+        Me.btn_imprimir.Text = "&Confirmar Picking"
+        Me.btn_imprimir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'cmdGenerarExcel
+        '
+        Me.cmdGenerarExcel.Image = CType(resources.GetObject("cmdGenerarExcel.Image"), System.Drawing.Image)
+        Me.cmdGenerarExcel.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.cmdGenerarExcel.Margin = New System.Windows.Forms.Padding(1)
+        Me.cmdGenerarExcel.Name = "cmdGenerarExcel"
+        Me.cmdGenerarExcel.Size = New System.Drawing.Size(81, 38)
+        Me.cmdGenerarExcel.Text = "&Exportar Excel"
+        Me.cmdGenerarExcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'ToolStripButton2
+        '
+        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
+        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton2.Margin = New System.Windows.Forms.Padding(1)
+        Me.ToolStripButton2.Name = "ToolStripButton2"
+        Me.ToolStripButton2.Size = New System.Drawing.Size(76, 38)
+        Me.ToolStripButton2.Text = "&Productividad"
+        Me.ToolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'cmdCerrar
+        '
+        Me.cmdCerrar.Image = CType(resources.GetObject("cmdCerrar.Image"), System.Drawing.Image)
+        Me.cmdCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.cmdCerrar.Margin = New System.Windows.Forms.Padding(1)
+        Me.cmdCerrar.Name = "cmdCerrar"
+        Me.cmdCerrar.Size = New System.Drawing.Size(32, 38)
+        Me.cmdCerrar.Text = "&Salir"
+        Me.cmdCerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'btnBuscar
+        '
+        Me.btnBuscar.BackColor = System.Drawing.SystemColors.Control
+        Me.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnBuscar.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.btnBuscar.FlatAppearance.BorderSize = 0
+        Me.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnBuscar.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.btnBuscar.IconChar = FontAwesome.Sharp.IconChar.Search
+        Me.btnBuscar.IconColor = System.Drawing.SystemColors.ControlText
+        Me.btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Solid
+        Me.btnBuscar.IconSize = 16
+        Me.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnBuscar.Location = New System.Drawing.Point(635, 75)
+        Me.btnBuscar.Name = "btnBuscar"
+        Me.btnBuscar.Padding = New System.Windows.Forms.Padding(0, 3, 0, 0)
+        Me.btnBuscar.Size = New System.Drawing.Size(25, 20)
+        Me.btnBuscar.TabIndex = 78
+        Me.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnBuscar.UseVisualStyleBackColor = False
+        '
+        'ToolStripButton3
+        '
+        Me.ToolStripButton3.Image = CType(resources.GetObject("ToolStripButton3.Image"), System.Drawing.Image)
+        Me.ToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton3.Margin = New System.Windows.Forms.Padding(1)
+        Me.ToolStripButton3.Name = "ToolStripButton3"
+        Me.ToolStripButton3.Size = New System.Drawing.Size(92, 38)
+        Me.ToolStripButton3.Text = "&Volver Pendiente"
+        Me.ToolStripButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'ToolStripSeparator5
+        '
+        Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
+        Me.ToolStripSeparator5.Size = New System.Drawing.Size(6, 40)
         '
         'GestionGuiasSalida
         '
@@ -611,4 +628,6 @@ Partial Class GestionGuiasSalida
     Friend WithEvents Button5 As Button
     Friend WithEvents ToolStripButton2 As ToolStripButton
     Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
+    Friend WithEvents ToolStripButton3 As ToolStripButton
+    Friend WithEvents ToolStripSeparator5 As ToolStripSeparator
 End Class

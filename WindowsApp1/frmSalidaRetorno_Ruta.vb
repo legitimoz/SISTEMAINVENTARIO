@@ -195,7 +195,7 @@ Public Class frmSalidaRetorno_Ruta
             End If
 
         Catch ex As Exception
-
+            Throw ex
         End Try
     End Sub
 
@@ -251,7 +251,8 @@ Public Class frmSalidaRetorno_Ruta
                     Codigo = idruta.ToString + " - " + fecha
                     totalvolumen = dtDetalleRuta.Rows(0).Item("volumentotal").ToString
                     totaltiempo = dtDetalleRuta.Rows(0).Item("tiempototal").ToString
-                    totalimporte = dtDetalleRuta.Rows(0).Item("importetotal").ToString
+                    'totalimporte = dtDetalleRuta.Rows(0).Item("importetotal").ToString
+                    totalimporte = 0
                     totalpeso = dtDetalleRuta.Rows(0).Item("pesototal").ToString
                     dtruta.Rows.Clear()
                     Dim contador As Integer = 1
@@ -263,7 +264,8 @@ Public Class frmSalidaRetorno_Ruta
                         rowRuta.Item("Restriccion") = DetalleCon.Item("RESTRICCION").ToString.Trim
                         rowRuta.Item("Direccion") = DetalleCon.Item("DIRECCION_ENTREGA").ToString.Trim
                         rowRuta.Item("Condicion") = DetalleCon.Item("CONDICION").ToString.Trim
-                        rowRuta.Item("Importe") = CType(DetalleCon.Item("IMPORTE"), Decimal)
+                        'rowRuta.Item("Importe") = CType(DetalleCon.Item("IMPORTE"), Decimal)
+                        rowRuta.Item("Importe") = CType(0, Decimal)
                         rowRuta.Item("Representante") = DetalleCon.Item("REPRESENTANTE").ToString.Trim
                         rowRuta.Item("Volumen") = Math.Round(CType(DetalleCon.Item("M3UN"), Decimal), 3)
                         rowRuta.Item("TiempoEntrega") = DetalleCon.Item("TIEMPO")

@@ -23,11 +23,20 @@ Partial Class GestionAbastecimiento
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GestionAbastecimiento))
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Check_mostrar = New System.Windows.Forms.CheckBox()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.cmdGenerarExcel = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.cmdCerrar = New System.Windows.Forms.ToolStripButton()
         Me.dt_desde = New System.Windows.Forms.DateTimePicker()
         Me.dt_hasta = New System.Windows.Forms.DateTimePicker()
@@ -39,7 +48,8 @@ Partial Class GestionAbastecimiento
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Dg_Cabecera = New System.Windows.Forms.DataGridView()
         Me.savedialog_Excel = New System.Windows.Forms.SaveFileDialog()
-        Me.Check_mostrar = New System.Windows.Forms.CheckBox()
+        Me.Check_MostrarDemanda = New System.Windows.Forms.CheckBox()
+        Me.Check_MostrarTipo = New System.Windows.Forms.CheckBox()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -95,6 +105,9 @@ Partial Class GestionAbastecimiento
         Me.ARTICULO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.UUCAJA = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CAJASCM = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MULTIPLICACIONFACTORES = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.VOLCJMU = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.VOLUMENUNIDAD = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ANCHO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.LARGO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ALTO = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -111,15 +124,12 @@ Partial Class GestionAbastecimiento
         Me.NOVIEMBRE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DICIEMBRE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TOTALVENTA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.VOLCJMU = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MULTIPLICACIONFACTORES = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.VOLUMENUNIDAD = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ABCCI = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PORCENTAJE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PORCENACUMU = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ABC = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FRECUENCIA = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FRECUENCIAB = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ABC = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TIPO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.VENTAMES = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.METROSVF = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -130,6 +140,7 @@ Partial Class GestionAbastecimiento
         Me.M3ABASTECER = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.UUABASTATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.UUREALABASATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SELECCIONAR = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.ABASTECJMATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ABASTUNI = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ABASTEM3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -140,6 +151,7 @@ Partial Class GestionAbastecimiento
         Me.ACCIONFINAL = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DEVOLVERCJM = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.M3DEVOLVERCJM = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Check_MostrarOtros = New System.Windows.Forms.CheckBox()
         Me.Panel1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -148,6 +160,9 @@ Partial Class GestionAbastecimiento
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.Check_MostrarOtros)
+        Me.Panel1.Controls.Add(Me.Check_MostrarTipo)
+        Me.Panel1.Controls.Add(Me.Check_MostrarDemanda)
         Me.Panel1.Controls.Add(Me.Check_mostrar)
         Me.Panel1.Controls.Add(Me.ToolStrip1)
         Me.Panel1.Controls.Add(Me.dt_desde)
@@ -163,13 +178,23 @@ Partial Class GestionAbastecimiento
         Me.Panel1.Size = New System.Drawing.Size(1295, 118)
         Me.Panel1.TabIndex = 48
         '
+        'Check_mostrar
+        '
+        Me.Check_mostrar.AutoSize = True
+        Me.Check_mostrar.Location = New System.Drawing.Point(363, 87)
+        Me.Check_mostrar.Name = "Check_mostrar"
+        Me.Check_mostrar.Size = New System.Drawing.Size(105, 17)
+        Me.Check_mostrar.TabIndex = 86
+        Me.Check_mostrar.Text = "Mostrar Factores"
+        Me.Check_mostrar.UseVisualStyleBackColor = True
+        '
         'ToolStrip1
         '
         Me.ToolStrip1.BackColor = System.Drawing.SystemColors.Control
         Me.ToolStrip1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripSeparator2, Me.cmdGenerarExcel, Me.ToolStripSeparator1, Me.cmdCerrar})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripSeparator2, Me.cmdGenerarExcel, Me.ToolStripSeparator1, Me.ToolStripButton1, Me.ToolStripSeparator3, Me.cmdCerrar})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
@@ -196,6 +221,21 @@ Partial Class GestionAbastecimiento
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 40)
+        '
+        'ToolStripButton1
+        '
+        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton1.Margin = New System.Windows.Forms.Padding(1)
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(106, 38)
+        Me.ToolStripButton1.Text = "&Exportar Excel Total"
+        Me.ToolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'ToolStripSeparator3
+        '
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 40)
         '
         'cmdCerrar
         '
@@ -308,7 +348,7 @@ Partial Class GestionAbastecimiento
         Me.Dg_Cabecera.AllowUserToDeleteRows = False
         Me.Dg_Cabecera.BackgroundColor = System.Drawing.Color.White
         Me.Dg_Cabecera.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Dg_Cabecera.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CODIGO, Me.TIPOORIGEN, Me.ARTICULO, Me.UUCAJA, Me.CAJASCM, Me.ANCHO, Me.LARGO, Me.ALTO, Me.ENERO, Me.FEBRERO, Me.MARZO, Me.ABRIL, Me.MAYO, Me.JUNIO, Me.JULIO, Me.AGOSTO, Me.SETIEMBRE, Me.OCTUBRE, Me.NOVIEMBRE, Me.DICIEMBRE, Me.TOTALVENTA, Me.VOLCJMU, Me.MULTIPLICACIONFACTORES, Me.VOLUMENUNIDAD, Me.ABCCI, Me.PORCENTAJE, Me.PORCENACUMU, Me.ABC, Me.FRECUENCIA, Me.FRECUENCIAB, Me.TIPO, Me.VENTAMES, Me.METROSVF, Me.STOCKATE, Me.STOCKCJM, Me.PORCENABASTECER, Me.UUABASTECE, Me.M3ABASTECER, Me.UUABASTATE, Me.UUREALABASATE, Me.ABASTECJMATE, Me.ABASTUNI, Me.ABASTEM3, Me.COBERTACTUAL, Me.COBERTFINAL, Me.STOCKFINALATE, Me.ACCION, Me.ACCIONFINAL, Me.DEVOLVERCJM, Me.M3DEVOLVERCJM})
+        Me.Dg_Cabecera.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CODIGO, Me.TIPOORIGEN, Me.ARTICULO, Me.UUCAJA, Me.CAJASCM, Me.MULTIPLICACIONFACTORES, Me.VOLCJMU, Me.VOLUMENUNIDAD, Me.ANCHO, Me.LARGO, Me.ALTO, Me.ENERO, Me.FEBRERO, Me.MARZO, Me.ABRIL, Me.MAYO, Me.JUNIO, Me.JULIO, Me.AGOSTO, Me.SETIEMBRE, Me.OCTUBRE, Me.NOVIEMBRE, Me.DICIEMBRE, Me.TOTALVENTA, Me.ABCCI, Me.PORCENTAJE, Me.PORCENACUMU, Me.FRECUENCIA, Me.FRECUENCIAB, Me.ABC, Me.TIPO, Me.VENTAMES, Me.METROSVF, Me.STOCKATE, Me.STOCKCJM, Me.PORCENABASTECER, Me.UUABASTECE, Me.M3ABASTECER, Me.UUABASTATE, Me.UUREALABASATE, Me.SELECCIONAR, Me.ABASTECJMATE, Me.ABASTUNI, Me.ABASTEM3, Me.COBERTACTUAL, Me.COBERTFINAL, Me.STOCKFINALATE, Me.ACCION, Me.ACCIONFINAL, Me.DEVOLVERCJM, Me.M3DEVOLVERCJM})
         Me.Dg_Cabecera.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Dg_Cabecera.Location = New System.Drawing.Point(0, 0)
         Me.Dg_Cabecera.Margin = New System.Windows.Forms.Padding(0)
@@ -321,30 +361,43 @@ Partial Class GestionAbastecimiento
         Me.Dg_Cabecera.Size = New System.Drawing.Size(1291, 318)
         Me.Dg_Cabecera.TabIndex = 10
         '
-        'Check_mostrar
+        'Check_MostrarDemanda
         '
-        Me.Check_mostrar.AutoSize = True
-        Me.Check_mostrar.Location = New System.Drawing.Point(363, 87)
-        Me.Check_mostrar.Name = "Check_mostrar"
-        Me.Check_mostrar.Size = New System.Drawing.Size(105, 17)
-        Me.Check_mostrar.TabIndex = 86
-        Me.Check_mostrar.Text = "Mostrar Factores"
-        Me.Check_mostrar.UseVisualStyleBackColor = True
+        Me.Check_MostrarDemanda.AutoSize = True
+        Me.Check_MostrarDemanda.Location = New System.Drawing.Point(683, 51)
+        Me.Check_MostrarDemanda.Name = "Check_MostrarDemanda"
+        Me.Check_MostrarDemanda.Size = New System.Drawing.Size(110, 17)
+        Me.Check_MostrarDemanda.TabIndex = 87
+        Me.Check_MostrarDemanda.Text = "Mostrar Demanda"
+        Me.Check_MostrarDemanda.UseVisualStyleBackColor = True
+        '
+        'Check_MostrarTipo
+        '
+        Me.Check_MostrarTipo.AutoSize = True
+        Me.Check_MostrarTipo.Location = New System.Drawing.Point(683, 86)
+        Me.Check_MostrarTipo.Name = "Check_MostrarTipo"
+        Me.Check_MostrarTipo.Size = New System.Drawing.Size(131, 17)
+        Me.Check_MostrarTipo.TabIndex = 88
+        Me.Check_MostrarTipo.Text = "Mostrar Tipo Producto"
+        Me.Check_MostrarTipo.UseVisualStyleBackColor = True
         '
         'DataGridViewTextBoxColumn1
         '
+        Me.DataGridViewTextBoxColumn1.Frozen = True
         Me.DataGridViewTextBoxColumn1.HeaderText = "Codigo Art."
         Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
         Me.DataGridViewTextBoxColumn1.Width = 215
         '
         'DataGridViewTextBoxColumn2
         '
+        Me.DataGridViewTextBoxColumn2.Frozen = True
         Me.DataGridViewTextBoxColumn2.HeaderText = "Tipo Origen"
         Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
         Me.DataGridViewTextBoxColumn2.Width = 214
         '
         'DataGridViewTextBoxColumn3
         '
+        Me.DataGridViewTextBoxColumn3.Frozen = True
         Me.DataGridViewTextBoxColumn3.HeaderText = "Articulo"
         Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
         Me.DataGridViewTextBoxColumn3.Width = 215
@@ -372,12 +425,14 @@ Partial Class GestionAbastecimiento
         Me.DataGridViewTextBoxColumn7.HeaderText = "Largo"
         Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
         Me.DataGridViewTextBoxColumn7.Visible = False
+        Me.DataGridViewTextBoxColumn7.Width = 214
         '
         'DataGridViewTextBoxColumn8
         '
         Me.DataGridViewTextBoxColumn8.HeaderText = "Alto"
         Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
         Me.DataGridViewTextBoxColumn8.Visible = False
+        Me.DataGridViewTextBoxColumn8.Width = 215
         '
         'DataGridViewTextBoxColumn9
         '
@@ -455,12 +510,14 @@ Partial Class GestionAbastecimiento
         '
         Me.DataGridViewTextBoxColumn21.HeaderText = "Total Venta"
         Me.DataGridViewTextBoxColumn21.Name = "DataGridViewTextBoxColumn21"
+        Me.DataGridViewTextBoxColumn21.Visible = False
         Me.DataGridViewTextBoxColumn21.Width = 215
         '
         'DataGridViewTextBoxColumn22
         '
         Me.DataGridViewTextBoxColumn22.HeaderText = "Volumen CJ M."
         Me.DataGridViewTextBoxColumn22.Name = "DataGridViewTextBoxColumn22"
+        Me.DataGridViewTextBoxColumn22.Visible = False
         Me.DataGridViewTextBoxColumn22.Width = 214
         '
         'DataGridViewTextBoxColumn23
@@ -468,37 +525,44 @@ Partial Class GestionAbastecimiento
         Me.DataGridViewTextBoxColumn23.HeaderText = "Mult. Factores"
         Me.DataGridViewTextBoxColumn23.Name = "DataGridViewTextBoxColumn23"
         Me.DataGridViewTextBoxColumn23.Visible = False
+        Me.DataGridViewTextBoxColumn23.Width = 214
         '
         'DataGridViewTextBoxColumn24
         '
         Me.DataGridViewTextBoxColumn24.HeaderText = "Volumen Unidad"
         Me.DataGridViewTextBoxColumn24.Name = "DataGridViewTextBoxColumn24"
+        Me.DataGridViewTextBoxColumn24.Visible = False
         Me.DataGridViewTextBoxColumn24.Width = 215
         '
         'DataGridViewTextBoxColumn25
         '
         Me.DataGridViewTextBoxColumn25.HeaderText = "ABC CI"
         Me.DataGridViewTextBoxColumn25.Name = "DataGridViewTextBoxColumn25"
+        Me.DataGridViewTextBoxColumn25.Visible = False
         '
         'DataGridViewTextBoxColumn26
         '
         Me.DataGridViewTextBoxColumn26.HeaderText = "%"
         Me.DataGridViewTextBoxColumn26.Name = "DataGridViewTextBoxColumn26"
+        Me.DataGridViewTextBoxColumn26.Visible = False
         '
         'DataGridViewTextBoxColumn27
         '
         Me.DataGridViewTextBoxColumn27.HeaderText = "% ACUMULADO"
         Me.DataGridViewTextBoxColumn27.Name = "DataGridViewTextBoxColumn27"
+        Me.DataGridViewTextBoxColumn27.Visible = False
         '
         'DataGridViewTextBoxColumn28
         '
         Me.DataGridViewTextBoxColumn28.HeaderText = "ABC"
         Me.DataGridViewTextBoxColumn28.Name = "DataGridViewTextBoxColumn28"
+        Me.DataGridViewTextBoxColumn28.Visible = False
         '
         'DataGridViewTextBoxColumn29
         '
         Me.DataGridViewTextBoxColumn29.HeaderText = "Frecuencia"
         Me.DataGridViewTextBoxColumn29.Name = "DataGridViewTextBoxColumn29"
+        Me.DataGridViewTextBoxColumn29.Visible = False
         '
         'DataGridViewTextBoxColumn30
         '
@@ -522,11 +586,17 @@ Partial Class GestionAbastecimiento
         '
         'DataGridViewTextBoxColumn34
         '
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black
+        Me.DataGridViewTextBoxColumn34.DefaultCellStyle = DataGridViewCellStyle4
         Me.DataGridViewTextBoxColumn34.HeaderText = "% Abastecer"
         Me.DataGridViewTextBoxColumn34.Name = "DataGridViewTextBoxColumn34"
         '
         'DataGridViewTextBoxColumn35
         '
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black
+        Me.DataGridViewTextBoxColumn35.DefaultCellStyle = DataGridViewCellStyle5
         Me.DataGridViewTextBoxColumn35.HeaderText = "Stock ATE"
         Me.DataGridViewTextBoxColumn35.Name = "DataGridViewTextBoxColumn35"
         '
@@ -559,6 +629,9 @@ Partial Class GestionAbastecimiento
         '
         'DataGridViewTextBoxColumn41
         '
+        DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black
+        Me.DataGridViewTextBoxColumn41.DefaultCellStyle = DataGridViewCellStyle6
         Me.DataGridViewTextBoxColumn41.HeaderText = "Abastecer Cajas Master"
         Me.DataGridViewTextBoxColumn41.Name = "DataGridViewTextBoxColumn41"
         '
@@ -610,18 +683,21 @@ Partial Class GestionAbastecimiento
         '
         'CODIGO
         '
+        Me.CODIGO.Frozen = True
         Me.CODIGO.HeaderText = "Codigo Art."
         Me.CODIGO.Name = "CODIGO"
         Me.CODIGO.Width = 215
         '
         'TIPOORIGEN
         '
+        Me.TIPOORIGEN.Frozen = True
         Me.TIPOORIGEN.HeaderText = "Tipo Origen"
         Me.TIPOORIGEN.Name = "TIPOORIGEN"
         Me.TIPOORIGEN.Width = 214
         '
         'ARTICULO
         '
+        Me.ARTICULO.Frozen = True
         Me.ARTICULO.HeaderText = "Articulo"
         Me.ARTICULO.Name = "ARTICULO"
         Me.ARTICULO.Width = 215
@@ -637,6 +713,26 @@ Partial Class GestionAbastecimiento
         Me.CAJASCM.HeaderText = "CAJAS / CM"
         Me.CAJASCM.Name = "CAJASCM"
         Me.CAJASCM.Visible = False
+        '
+        'MULTIPLICACIONFACTORES
+        '
+        Me.MULTIPLICACIONFACTORES.HeaderText = "UU CJM"
+        Me.MULTIPLICACIONFACTORES.Name = "MULTIPLICACIONFACTORES"
+        Me.MULTIPLICACIONFACTORES.Visible = False
+        '
+        'VOLCJMU
+        '
+        Me.VOLCJMU.HeaderText = "Volumen C. MASTER"
+        Me.VOLCJMU.Name = "VOLCJMU"
+        Me.VOLCJMU.Visible = False
+        Me.VOLCJMU.Width = 214
+        '
+        'VOLUMENUNIDAD
+        '
+        Me.VOLUMENUNIDAD.HeaderText = "Volumen Unitario"
+        Me.VOLUMENUNIDAD.Name = "VOLUMENUNIDAD"
+        Me.VOLUMENUNIDAD.Visible = False
+        Me.VOLUMENUNIDAD.Width = 215
         '
         'ANCHO
         '
@@ -732,55 +828,43 @@ Partial Class GestionAbastecimiento
         '
         Me.TOTALVENTA.HeaderText = "Total Venta"
         Me.TOTALVENTA.Name = "TOTALVENTA"
+        Me.TOTALVENTA.Visible = False
         Me.TOTALVENTA.Width = 215
-        '
-        'VOLCJMU
-        '
-        Me.VOLCJMU.HeaderText = "Volumen C. MASTER"
-        Me.VOLCJMU.Name = "VOLCJMU"
-        Me.VOLCJMU.Width = 214
-        '
-        'MULTIPLICACIONFACTORES
-        '
-        Me.MULTIPLICACIONFACTORES.HeaderText = "Mult. Factores"
-        Me.MULTIPLICACIONFACTORES.Name = "MULTIPLICACIONFACTORES"
-        Me.MULTIPLICACIONFACTORES.Visible = False
-        '
-        'VOLUMENUNIDAD
-        '
-        Me.VOLUMENUNIDAD.HeaderText = "Volumen Unitario"
-        Me.VOLUMENUNIDAD.Name = "VOLUMENUNIDAD"
-        Me.VOLUMENUNIDAD.Width = 215
         '
         'ABCCI
         '
         Me.ABCCI.HeaderText = "ABC F(CJ INT.)"
         Me.ABCCI.Name = "ABCCI"
+        Me.ABCCI.Visible = False
         '
         'PORCENTAJE
         '
         Me.PORCENTAJE.HeaderText = "% CJ INT."
         Me.PORCENTAJE.Name = "PORCENTAJE"
+        Me.PORCENTAJE.Visible = False
         '
         'PORCENACUMU
         '
         Me.PORCENACUMU.HeaderText = "% ACU_CJ INT."
         Me.PORCENACUMU.Name = "PORCENACUMU"
-        '
-        'ABC
-        '
-        Me.ABC.HeaderText = "ABC CJ INT."
-        Me.ABC.Name = "ABC"
+        Me.PORCENACUMU.Visible = False
         '
         'FRECUENCIA
         '
         Me.FRECUENCIA.HeaderText = "Frecuencia Venta"
         Me.FRECUENCIA.Name = "FRECUENCIA"
+        Me.FRECUENCIA.Visible = False
         '
         'FRECUENCIAB
         '
         Me.FRECUENCIAB.HeaderText = "Frecuencia 3 ULT. MESES"
         Me.FRECUENCIAB.Name = "FRECUENCIAB"
+        Me.FRECUENCIAB.Visible = False
+        '
+        'ABC
+        '
+        Me.ABC.HeaderText = "ABC"
+        Me.ABC.Name = "ABC"
         '
         'TIPO
         '
@@ -799,11 +883,17 @@ Partial Class GestionAbastecimiento
         '
         'STOCKATE
         '
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black
+        Me.STOCKATE.DefaultCellStyle = DataGridViewCellStyle1
         Me.STOCKATE.HeaderText = "Stock ATE"
         Me.STOCKATE.Name = "STOCKATE"
         '
         'STOCKCJM
         '
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black
+        Me.STOCKCJM.DefaultCellStyle = DataGridViewCellStyle2
         Me.STOCKCJM.HeaderText = "Stock CJM"
         Me.STOCKCJM.Name = "STOCKCJM"
         '
@@ -816,24 +906,36 @@ Partial Class GestionAbastecimiento
         '
         Me.UUABASTECE.HeaderText = "UND Teoricas Abastecer"
         Me.UUABASTECE.Name = "UUABASTECE"
+        Me.UUABASTECE.Visible = False
         '
         'M3ABASTECER
         '
         Me.M3ABASTECER.HeaderText = "M3 Abastecer"
         Me.M3ABASTECER.Name = "M3ABASTECER"
+        Me.M3ABASTECER.Visible = False
         '
         'UUABASTATE
         '
         Me.UUABASTATE.HeaderText = "UND Abastecer ATE"
         Me.UUABASTATE.Name = "UUABASTATE"
+        Me.UUABASTATE.Visible = False
         '
         'UUREALABASATE
         '
         Me.UUREALABASATE.HeaderText = "UND Real Abastecer"
         Me.UUREALABASATE.Name = "UUREALABASATE"
+        Me.UUREALABASATE.Visible = False
+        '
+        'SELECCIONAR
+        '
+        Me.SELECCIONAR.HeaderText = "SELECCIONAR"
+        Me.SELECCIONAR.Name = "SELECCIONAR"
         '
         'ABASTECJMATE
         '
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black
+        Me.ABASTECJMATE.DefaultCellStyle = DataGridViewCellStyle3
         Me.ABASTECJMATE.HeaderText = "Abastecer Cajas Master"
         Me.ABASTECJMATE.Name = "ABASTECJMATE"
         '
@@ -882,6 +984,16 @@ Partial Class GestionAbastecimiento
         '
         Me.M3DEVOLVERCJM.HeaderText = "M3 Devolver CJM"
         Me.M3DEVOLVERCJM.Name = "M3DEVOLVERCJM"
+        '
+        'Check_MostrarOtros
+        '
+        Me.Check_MostrarOtros.AutoSize = True
+        Me.Check_MostrarOtros.Location = New System.Drawing.Point(842, 51)
+        Me.Check_MostrarOtros.Name = "Check_MostrarOtros"
+        Me.Check_MostrarOtros.Size = New System.Drawing.Size(89, 17)
+        Me.Check_MostrarOtros.TabIndex = 89
+        Me.Check_MostrarOtros.Text = "Mostrar Otros"
+        Me.Check_MostrarOtros.UseVisualStyleBackColor = True
         '
         'GestionAbastecimiento
         '
@@ -967,11 +1079,21 @@ Partial Class GestionAbastecimiento
     Friend WithEvents DataGridViewTextBoxColumn48 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn49 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn50 As DataGridViewTextBoxColumn
+    Friend WithEvents cmdGenerarExcel As ToolStripButton
+    Friend WithEvents savedialog_Excel As SaveFileDialog
+    Friend WithEvents Check_mostrar As CheckBox
+    Friend WithEvents ToolStripButton1 As ToolStripButton
+    Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
+    Friend WithEvents Check_MostrarDemanda As CheckBox
+    Friend WithEvents Check_MostrarTipo As CheckBox
     Friend WithEvents CODIGO As DataGridViewTextBoxColumn
     Friend WithEvents TIPOORIGEN As DataGridViewTextBoxColumn
     Friend WithEvents ARTICULO As DataGridViewTextBoxColumn
     Friend WithEvents UUCAJA As DataGridViewTextBoxColumn
     Friend WithEvents CAJASCM As DataGridViewTextBoxColumn
+    Friend WithEvents MULTIPLICACIONFACTORES As DataGridViewTextBoxColumn
+    Friend WithEvents VOLCJMU As DataGridViewTextBoxColumn
+    Friend WithEvents VOLUMENUNIDAD As DataGridViewTextBoxColumn
     Friend WithEvents ANCHO As DataGridViewTextBoxColumn
     Friend WithEvents LARGO As DataGridViewTextBoxColumn
     Friend WithEvents ALTO As DataGridViewTextBoxColumn
@@ -988,15 +1110,12 @@ Partial Class GestionAbastecimiento
     Friend WithEvents NOVIEMBRE As DataGridViewTextBoxColumn
     Friend WithEvents DICIEMBRE As DataGridViewTextBoxColumn
     Friend WithEvents TOTALVENTA As DataGridViewTextBoxColumn
-    Friend WithEvents VOLCJMU As DataGridViewTextBoxColumn
-    Friend WithEvents MULTIPLICACIONFACTORES As DataGridViewTextBoxColumn
-    Friend WithEvents VOLUMENUNIDAD As DataGridViewTextBoxColumn
     Friend WithEvents ABCCI As DataGridViewTextBoxColumn
     Friend WithEvents PORCENTAJE As DataGridViewTextBoxColumn
     Friend WithEvents PORCENACUMU As DataGridViewTextBoxColumn
-    Friend WithEvents ABC As DataGridViewTextBoxColumn
     Friend WithEvents FRECUENCIA As DataGridViewTextBoxColumn
     Friend WithEvents FRECUENCIAB As DataGridViewTextBoxColumn
+    Friend WithEvents ABC As DataGridViewTextBoxColumn
     Friend WithEvents TIPO As DataGridViewTextBoxColumn
     Friend WithEvents VENTAMES As DataGridViewTextBoxColumn
     Friend WithEvents METROSVF As DataGridViewTextBoxColumn
@@ -1007,6 +1126,7 @@ Partial Class GestionAbastecimiento
     Friend WithEvents M3ABASTECER As DataGridViewTextBoxColumn
     Friend WithEvents UUABASTATE As DataGridViewTextBoxColumn
     Friend WithEvents UUREALABASATE As DataGridViewTextBoxColumn
+    Friend WithEvents SELECCIONAR As DataGridViewCheckBoxColumn
     Friend WithEvents ABASTECJMATE As DataGridViewTextBoxColumn
     Friend WithEvents ABASTUNI As DataGridViewTextBoxColumn
     Friend WithEvents ABASTEM3 As DataGridViewTextBoxColumn
@@ -1017,7 +1137,5 @@ Partial Class GestionAbastecimiento
     Friend WithEvents ACCIONFINAL As DataGridViewTextBoxColumn
     Friend WithEvents DEVOLVERCJM As DataGridViewTextBoxColumn
     Friend WithEvents M3DEVOLVERCJM As DataGridViewTextBoxColumn
-    Friend WithEvents cmdGenerarExcel As ToolStripButton
-    Friend WithEvents savedialog_Excel As SaveFileDialog
-    Friend WithEvents Check_mostrar As CheckBox
+    Friend WithEvents Check_MostrarOtros As CheckBox
 End Class

@@ -18,6 +18,35 @@ Public Class AlmacenL
         End Try
     End Function
 
+    Public Function SP_LISTAR_REPORTE_AVANCE_LINEA() As DataTable
+        Try
+            Return objAlmacen.SP_LISTAR_REPORTE_AVANCE_LINEA
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function SP_CSE_OBTENER_DATA_ACTUAL() As DataTable
+        Try
+            Return objAlmacen.SP_CSE_OBTENER_DATA_ACTUAL
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function SP_CSE_OBTENER_DATA_ACTUAL_DETALLE() As DataTable
+        Try
+            Return objAlmacen.SP_CSE_OBTENER_DATA_ACTUAL_DETALLE
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function sp_obtener_promedio_fijo(codarticulo As String) As DataTable
+        Try
+            Return objAlmacen.sp_obtener_promedio_fijo(codarticulo)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function SP_OBTENER_COSTOS() As DataTable
         Try
             Return objAlmacen.SP_OBTENER_COSTOS
@@ -58,9 +87,9 @@ Public Class AlmacenL
         End Try
     End Function
 
-    Public Function ListarGuiasAnularPicking(fechadesde As String, fechahasta As String) As DataTable
+    Public Function ListarGuiasAnularPicking(fechadesde As String, fechahasta As String, idsite As Integer, idalmacen As Integer) As DataTable
         Try
-            Return objAlmacen.ListarGuiasAnularPicking(fechadesde, fechahasta)
+            Return objAlmacen.ListarGuiasAnularPicking(fechadesde, fechahasta, idsite, idalmacen)
         Catch ex As Exception
             Throw ex
         End Try
@@ -122,9 +151,9 @@ Public Class AlmacenL
         End Try
     End Function
 
-    Public Function RegistrarRecepcionGuiaDespacho(CALMA As String, CTD As String, CNUMDOC As String, userid As Integer, idcosto As Integer) As Integer
+    Public Function RegistrarRecepcionGuiaDespacho(CALMA As String, CTD As String, CNUMDOC As String, userid As Integer, idcosto As Integer, fisico As String, idsiteliq As Integer, idsitePicking As Integer) As Integer
         Try
-            Return objAlmacen.RegistrarRecepcionGuiaDespacho(CALMA, CTD, CNUMDOC, userid, idcosto)
+            Return objAlmacen.RegistrarRecepcionGuiaDespacho(CALMA, CTD, CNUMDOC, userid, idcosto, fisico, idsiteliq, idsitePicking)
         Catch ex As Exception
             Throw ex
         End Try
@@ -174,17 +203,17 @@ Public Class AlmacenL
         End Try
     End Function
 
-    Public Function ListarPicadores() As DataTable
+    Public Function ListarPicadores(idsite As Integer) As DataTable
         Try
-            Return objAlmacen.ListarPicadores
+            Return objAlmacen.ListarPicadores(idsite)
         Catch ex As Exception
             Throw ex
         End Try
     End Function
 
-    Public Function CambiarEstadoGuia(C5_CALMA As String, C5_CTD As String, C5_CNUMDOC As String, ESTADO As String, idpicador As Integer, idfiltro As Integer, userimpresion As Integer) As Integer
+    Public Function CambiarEstadoGuia(C5_CALMA As String, C5_CTD As String, C5_CNUMDOC As String, ESTADO As String, idpicador As Integer, idfiltro As Integer, userimpresion As Integer, comentario As String) As Integer
         Try
-            Return objAlmacen.CambiarEstadoGuia(C5_CALMA, C5_CTD, C5_CNUMDOC, ESTADO, idpicador, idfiltro, userimpresion)
+            Return objAlmacen.CambiarEstadoGuia(C5_CALMA, C5_CTD, C5_CNUMDOC, ESTADO, idpicador, idfiltro, userimpresion, comentario)
         Catch ex As Exception
             Throw ex
         End Try
@@ -292,12 +321,12 @@ Public Class AlmacenL
         End Try
     End Function
 
-    Public Function ListarPedidosDespacho(fechadesde As String, fechahasta As String) As DataTable
+    Public Function ListarPedidosDespacho(fechadesde As String, fechahasta As String, idalmacen As Integer, idsite As Integer) As DataTable
         Try
 
             Dim rp, rp2 As New DataTable
-            rp = objAlmacen.ListarPedidosDespacho(fechadesde, fechahasta)
-            rp2 = objAlmacen.ListarPedidosDespachoReprogramar
+            rp = objAlmacen.ListarPedidosDespacho(fechadesde, fechahasta, idalmacen, idsite)
+            rp2 = objAlmacen.ListarPedidosDespachoReprogramar(idsite, idalmacen)
             rp.Merge(rp2)
 
             Return rp
@@ -321,6 +350,21 @@ Public Class AlmacenL
             Throw ex
         End Try
     End Function
+    Public Function Agregar_Guia_Ruta(crg_id As Integer, calma As String, ctd As String, cnumdoc As String, userid As Integer, peso As Decimal, bultos As Integer, tiempo As Decimal, volumen As Decimal, restriccion As String, tiporuta As String, cliente As String, Direccion As String, importe As Decimal, condicion As String, REPRESENTATE As String, idcosto As Integer, fecharecepcion As String, horarecepcion As String, idsite As Integer, departamento As String, provincia As String, distrito As String, fisico As String, idsiteliq As Integer) As Integer
+        Try
+            Return objAlmacen.Agregar_Guia_Ruta(crg_id, calma, ctd, cnumdoc, userid, peso, bultos, tiempo, volumen, restriccion, tiporuta, cliente, Direccion, importe, condicion, REPRESENTATE, idcosto, fecharecepcion, horarecepcion, idsite, departamento, provincia, distrito, fisico, idsiteliq)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function CSE_SP_LISTAR_TIEMPSO_JJ() As DataTable
+        Try
+            Return objAlmacen.CSE_SP_LISTAR_TIEMPSO_JJ
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
     Public Function ListarTiemposEntrega() As DataTable
         Try
@@ -338,9 +382,9 @@ Public Class AlmacenL
         End Try
     End Function
 
-    Public Function ListarPosicionesXArticulo(ByVal codarticulo As String) As DataTable
+    Public Function ListarPosicionesXArticulo(ByVal codarticulo As String, idsite As Integer, idalmacen As Integer) As DataTable
         Try
-            Return objAlmacen.ListarPosicionesXArticulo(codarticulo)
+            Return objAlmacen.ListarPosicionesXArticulo(codarticulo, idsite, idalmacen)
         Catch ex As Exception
             Throw ex
         End Try
@@ -425,9 +469,9 @@ Public Class AlmacenL
         End Try
     End Function
 
-    Public Function ObtenerPosicionesHojaPicking(ByVal codarticulo As String, ByVal Lote As String, cantidadrequerida As Decimal, idalmacen As Integer, idsite As Integer) As DataTable
+    Public Function ObtenerPosicionesHojaPicking(ByVal codarticulo As String, ByVal Lote As String, cantidadrequerida As Decimal, idalmacen As Integer, idsite As Integer, PerfilUsuario As Integer) As DataTable
         Try
-            Return objAlmacen.ObtenerPosicionesHojaPicking(codarticulo, Lote, cantidadrequerida, idalmacen, idsite)
+            Return objAlmacen.ObtenerPosicionesHojaPicking(codarticulo, Lote, cantidadrequerida, idalmacen, idsite, PerfilUsuario)
         Catch ex As Exception
             Throw ex
         End Try
@@ -695,6 +739,21 @@ Public Class AlmacenL
     Public Function Obtener_Guia_Impresion_Rotulos(ByVal flag As String, ByVal fecIni As String, ByVal fecFin As String, ByVal c5_ccodtra As String) As DataTable
         Try
             Return objAlmacen.Obtener_Guia_Impresion_Rotulos(flag, fecIni, fecFin, c5_ccodtra)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function Proceso() As DataTable
+        Try
+            Return objAlmacen.Proceso
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function reemplazar(id As Integer) As Integer
+        Try
+            Return objAlmacen.reemplazar(id)
         Catch ex As Exception
             Throw ex
         End Try

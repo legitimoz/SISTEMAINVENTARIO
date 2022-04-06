@@ -43,6 +43,7 @@ Partial Class MenuPrincipal
         Me.VisorDeRepresentantesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ControlDeStockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LotesYUbicacionesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ControlVencimientoPorLineaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmGestorRequerimientos = New System.Windows.Forms.ToolStripMenuItem()
         Me.RegistrarDocumentosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -71,9 +72,8 @@ Partial Class MenuPrincipal
         Me.IndicadoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DispatchToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeliveryOnTimeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.NonConformityRatioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CerrarSesionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LiquidacionDocumentariaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CerrarSesionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -99,7 +99,7 @@ Partial Class MenuPrincipal
         '
         Me.ArticulosToolStripMenuItem.Image = CType(resources.GetObject("ArticulosToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ArticulosToolStripMenuItem.Name = "ArticulosToolStripMenuItem"
-        Me.ArticulosToolStripMenuItem.Size = New System.Drawing.Size(180, 26)
+        Me.ArticulosToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
         Me.ArticulosToolStripMenuItem.Text = "Articulos"
         '
         'AlmacenesToolStripMenuItem
@@ -190,7 +190,7 @@ Partial Class MenuPrincipal
         '
         'SeguimientoToolStripMenuItem
         '
-        Me.SeguimientoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AprobacionDePedidosToolStripMenuItem, Me.VisorDeRepresentantesToolStripMenuItem, Me.ControlDeStockToolStripMenuItem, Me.LotesYUbicacionesToolStripMenuItem})
+        Me.SeguimientoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AprobacionDePedidosToolStripMenuItem, Me.VisorDeRepresentantesToolStripMenuItem, Me.ControlDeStockToolStripMenuItem, Me.LotesYUbicacionesToolStripMenuItem, Me.ControlVencimientoPorLineaToolStripMenuItem})
         Me.SeguimientoToolStripMenuItem.Image = CType(resources.GetObject("SeguimientoToolStripMenuItem.Image"), System.Drawing.Image)
         Me.SeguimientoToolStripMenuItem.Name = "SeguimientoToolStripMenuItem"
         Me.SeguimientoToolStripMenuItem.Size = New System.Drawing.Size(106, 24)
@@ -200,29 +200,36 @@ Partial Class MenuPrincipal
         '
         Me.AprobacionDePedidosToolStripMenuItem.Image = Global.WindowsApp1.My.Resources.Resources._1178
         Me.AprobacionDePedidosToolStripMenuItem.Name = "AprobacionDePedidosToolStripMenuItem"
-        Me.AprobacionDePedidosToolStripMenuItem.Size = New System.Drawing.Size(218, 26)
+        Me.AprobacionDePedidosToolStripMenuItem.Size = New System.Drawing.Size(256, 26)
         Me.AprobacionDePedidosToolStripMenuItem.Text = "Visor de Pedidos"
         '
         'VisorDeRepresentantesToolStripMenuItem
         '
         Me.VisorDeRepresentantesToolStripMenuItem.Image = Global.WindowsApp1.My.Resources.Resources._074
         Me.VisorDeRepresentantesToolStripMenuItem.Name = "VisorDeRepresentantesToolStripMenuItem"
-        Me.VisorDeRepresentantesToolStripMenuItem.Size = New System.Drawing.Size(218, 26)
+        Me.VisorDeRepresentantesToolStripMenuItem.Size = New System.Drawing.Size(256, 26)
         Me.VisorDeRepresentantesToolStripMenuItem.Text = "Dashboard Representantes"
         '
         'ControlDeStockToolStripMenuItem
         '
         Me.ControlDeStockToolStripMenuItem.Image = Global.WindowsApp1.My.Resources.Resources.actn017
         Me.ControlDeStockToolStripMenuItem.Name = "ControlDeStockToolStripMenuItem"
-        Me.ControlDeStockToolStripMenuItem.Size = New System.Drawing.Size(218, 26)
+        Me.ControlDeStockToolStripMenuItem.Size = New System.Drawing.Size(256, 26)
         Me.ControlDeStockToolStripMenuItem.Text = "Control de Stock"
         '
         'LotesYUbicacionesToolStripMenuItem
         '
         Me.LotesYUbicacionesToolStripMenuItem.Image = CType(resources.GetObject("LotesYUbicacionesToolStripMenuItem.Image"), System.Drawing.Image)
         Me.LotesYUbicacionesToolStripMenuItem.Name = "LotesYUbicacionesToolStripMenuItem"
-        Me.LotesYUbicacionesToolStripMenuItem.Size = New System.Drawing.Size(218, 26)
+        Me.LotesYUbicacionesToolStripMenuItem.Size = New System.Drawing.Size(256, 26)
         Me.LotesYUbicacionesToolStripMenuItem.Text = "Lotes y Ubicaciones"
+        '
+        'ControlVencimientoPorLineaToolStripMenuItem
+        '
+        Me.ControlVencimientoPorLineaToolStripMenuItem.Image = Global.WindowsApp1.My.Resources.Resources.System_control_panel_icon
+        Me.ControlVencimientoPorLineaToolStripMenuItem.Name = "ControlVencimientoPorLineaToolStripMenuItem"
+        Me.ControlVencimientoPorLineaToolStripMenuItem.Size = New System.Drawing.Size(256, 26)
+        Me.ControlVencimientoPorLineaToolStripMenuItem.Text = "Control De Vencimiento Por Linea"
         '
         'ToolStripMenuItem1
         '
@@ -409,7 +416,7 @@ Partial Class MenuPrincipal
         '
         'IndicadoresToolStripMenuItem
         '
-        Me.IndicadoresToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DispatchToolStripMenuItem, Me.DeliveryOnTimeToolStripMenuItem, Me.NonConformityRatioToolStripMenuItem, Me.LiquidacionDocumentariaToolStripMenuItem})
+        Me.IndicadoresToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DispatchToolStripMenuItem, Me.DeliveryOnTimeToolStripMenuItem, Me.LiquidacionDocumentariaToolStripMenuItem})
         Me.IndicadoresToolStripMenuItem.Image = Global.WindowsApp1.My.Resources.Resources._412
         Me.IndicadoresToolStripMenuItem.Name = "IndicadoresToolStripMenuItem"
         Me.IndicadoresToolStripMenuItem.Size = New System.Drawing.Size(251, 26)
@@ -427,11 +434,11 @@ Partial Class MenuPrincipal
         Me.DeliveryOnTimeToolStripMenuItem.Size = New System.Drawing.Size(214, 22)
         Me.DeliveryOnTimeToolStripMenuItem.Text = "Delivery On Time"
         '
-        'NonConformityRatioToolStripMenuItem
+        'LiquidacionDocumentariaToolStripMenuItem
         '
-        Me.NonConformityRatioToolStripMenuItem.Name = "NonConformityRatioToolStripMenuItem"
-        Me.NonConformityRatioToolStripMenuItem.Size = New System.Drawing.Size(214, 22)
-        Me.NonConformityRatioToolStripMenuItem.Text = "Non Conformity Ratio"
+        Me.LiquidacionDocumentariaToolStripMenuItem.Name = "LiquidacionDocumentariaToolStripMenuItem"
+        Me.LiquidacionDocumentariaToolStripMenuItem.Size = New System.Drawing.Size(214, 22)
+        Me.LiquidacionDocumentariaToolStripMenuItem.Text = "Liquidacion Documentaria"
         '
         'CerrarSesionToolStripMenuItem
         '
@@ -439,12 +446,6 @@ Partial Class MenuPrincipal
         Me.CerrarSesionToolStripMenuItem.Name = "CerrarSesionToolStripMenuItem"
         Me.CerrarSesionToolStripMenuItem.Size = New System.Drawing.Size(108, 24)
         Me.CerrarSesionToolStripMenuItem.Text = "Cerrar Sesion"
-        '
-        'LiquidacionDocumentariaToolStripMenuItem
-        '
-        Me.LiquidacionDocumentariaToolStripMenuItem.Name = "LiquidacionDocumentariaToolStripMenuItem"
-        Me.LiquidacionDocumentariaToolStripMenuItem.Size = New System.Drawing.Size(214, 22)
-        Me.LiquidacionDocumentariaToolStripMenuItem.Text = "Liquidacion Documentaria"
         '
         'MenuPrincipal
         '
@@ -505,7 +506,6 @@ Partial Class MenuPrincipal
     Friend WithEvents DispatchToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DeliveryOnTimeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExcelRotuladosProvinciaToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents NonConformityRatioToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GenerarAbastecimientoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RotulosProvinciaAnteriorToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AnulacionPickingToolStripMenuItem As ToolStripMenuItem
@@ -518,4 +518,5 @@ Partial Class MenuPrincipal
     Friend WithEvents ArticulosSinUbicarToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PartesDeEntradaSinIngresoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LiquidacionDocumentariaToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ControlVencimientoPorLineaToolStripMenuItem As ToolStripMenuItem
 End Class
