@@ -30,6 +30,7 @@ Partial Class frmVisorPedidos
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.dgvListarPedidos = New System.Windows.Forms.DataGridView()
         Me.F5_CCODAGE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.F5_CNUMPED = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -55,6 +56,7 @@ Partial Class frmVisorPedidos
         Me.FV_CCODIGO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.VAR_OBS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.OBSERV = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GLOSA = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.tslCantidad = New System.Windows.Forms.ToolStripStatusLabel()
@@ -87,6 +89,11 @@ Partial Class frmVisorPedidos
         Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.dgvCuentasxCobrar = New System.Windows.Forms.DataGridView()
+        Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.Dg_Bonificacion = New System.Windows.Forms.DataGridView()
+        Me.CODIGO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ARTICULO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CANTIDAD = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.chk_PendAprob = New System.Windows.Forms.CheckBox()
         Me.chkPendFact = New System.Windows.Forms.CheckBox()
         Me.chkTodo = New System.Windows.Forms.CheckBox()
@@ -131,6 +138,8 @@ Partial Class frmVisorPedidos
         CType(Me.dgvListarObservaciones, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage4.SuspendLayout()
         CType(Me.dgvCuentasxCobrar, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage5.SuspendLayout()
+        CType(Me.Dg_Bonificacion, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -151,7 +160,7 @@ Partial Class frmVisorPedidos
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgvListarPedidos.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvListarPedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvListarPedidos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.F5_CCODAGE, Me.F5_CNUMPED, Me.FV_CDESCRI, Me.ORDEN_COMPRA, Me.VAR_GUIA, Me.VAR_FACTURA, Me.FECHA_HORA, Me.DIFERENCIA, Me.Column2, Me.TIEMPO, Me.F5_CCODCLI, Me.F5_CNOMBRE, Me.F5_NIMPORT, Me.SALDO, Me.CL_CDEPT, Me.ESTADO, Me.F5_CUSUAP, Me.F5_DFECAPR, Me.TU_ALIAS, Me.TU_NOMUSU, Me.F5_CESTADO, Me.FV_CCODIGO, Me.VAR_OBS, Me.OBSERV})
+        Me.dgvListarPedidos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.F5_CCODAGE, Me.F5_CNUMPED, Me.FV_CDESCRI, Me.ORDEN_COMPRA, Me.VAR_GUIA, Me.VAR_FACTURA, Me.FECHA_HORA, Me.DIFERENCIA, Me.Column2, Me.TIEMPO, Me.F5_CCODCLI, Me.F5_CNOMBRE, Me.F5_NIMPORT, Me.SALDO, Me.CL_CDEPT, Me.ESTADO, Me.F5_CUSUAP, Me.F5_DFECAPR, Me.TU_ALIAS, Me.TU_NOMUSU, Me.F5_CESTADO, Me.FV_CCODIGO, Me.VAR_OBS, Me.OBSERV, Me.GLOSA})
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -163,7 +172,6 @@ Partial Class frmVisorPedidos
         Me.dgvListarPedidos.Location = New System.Drawing.Point(3, 3)
         Me.dgvListarPedidos.MultiSelect = False
         Me.dgvListarPedidos.Name = "dgvListarPedidos"
-        Me.dgvListarPedidos.ReadOnly = True
         Me.dgvListarPedidos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvListarPedidos.Size = New System.Drawing.Size(991, 282)
         Me.dgvListarPedidos.TabIndex = 38
@@ -172,55 +180,47 @@ Partial Class frmVisorPedidos
         '
         Me.F5_CCODAGE.HeaderText = "F5_CCODAGE"
         Me.F5_CCODAGE.Name = "F5_CCODAGE"
-        Me.F5_CCODAGE.ReadOnly = True
         Me.F5_CCODAGE.Visible = False
         '
         'F5_CNUMPED
         '
         Me.F5_CNUMPED.HeaderText = "NRO PEDIDO"
         Me.F5_CNUMPED.Name = "F5_CNUMPED"
-        Me.F5_CNUMPED.ReadOnly = True
         '
         'FV_CDESCRI
         '
         Me.FV_CDESCRI.FillWeight = 250.0!
         Me.FV_CDESCRI.HeaderText = "FORMA DE PAGO"
         Me.FV_CDESCRI.Name = "FV_CDESCRI"
-        Me.FV_CDESCRI.ReadOnly = True
         Me.FV_CDESCRI.Width = 180
         '
         'ORDEN_COMPRA
         '
         Me.ORDEN_COMPRA.HeaderText = "ORDEN COMPRA"
         Me.ORDEN_COMPRA.Name = "ORDEN_COMPRA"
-        Me.ORDEN_COMPRA.ReadOnly = True
         Me.ORDEN_COMPRA.Width = 80
         '
         'VAR_GUIA
         '
         Me.VAR_GUIA.HeaderText = "GUIA"
         Me.VAR_GUIA.Name = "VAR_GUIA"
-        Me.VAR_GUIA.ReadOnly = True
         Me.VAR_GUIA.Width = 80
         '
         'VAR_FACTURA
         '
         Me.VAR_FACTURA.HeaderText = "FACTURA"
         Me.VAR_FACTURA.Name = "VAR_FACTURA"
-        Me.VAR_FACTURA.ReadOnly = True
         '
         'FECHA_HORA
         '
         Me.FECHA_HORA.HeaderText = "FECHA HORA"
         Me.FECHA_HORA.Name = "FECHA_HORA"
-        Me.FECHA_HORA.ReadOnly = True
         Me.FECHA_HORA.Width = 120
         '
         'DIFERENCIA
         '
         Me.DIFERENCIA.HeaderText = "TIEMPO TRANSCURRIDO"
         Me.DIFERENCIA.Name = "DIFERENCIA"
-        Me.DIFERENCIA.ReadOnly = True
         Me.DIFERENCIA.Visible = False
         Me.DIFERENCIA.Width = 75
         '
@@ -228,7 +228,6 @@ Partial Class frmVisorPedidos
         '
         Me.Column2.HeaderText = "PROGRESO"
         Me.Column2.Name = "Column2"
-        Me.Column2.ReadOnly = True
         Me.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         Me.Column2.Width = 200
@@ -237,7 +236,6 @@ Partial Class frmVisorPedidos
         '
         Me.TIEMPO.HeaderText = "TIEMPO"
         Me.TIEMPO.Name = "TIEMPO"
-        Me.TIEMPO.ReadOnly = True
         Me.TIEMPO.Visible = False
         Me.TIEMPO.Width = 50
         '
@@ -245,95 +243,86 @@ Partial Class frmVisorPedidos
         '
         Me.F5_CCODCLI.HeaderText = "RUC"
         Me.F5_CCODCLI.Name = "F5_CCODCLI"
-        Me.F5_CCODCLI.ReadOnly = True
         '
         'F5_CNOMBRE
         '
         Me.F5_CNOMBRE.HeaderText = "CLIENTE"
         Me.F5_CNOMBRE.Name = "F5_CNOMBRE"
-        Me.F5_CNOMBRE.ReadOnly = True
         Me.F5_CNOMBRE.Width = 200
         '
         'F5_NIMPORT
         '
         Me.F5_NIMPORT.HeaderText = "IMPORTE"
         Me.F5_NIMPORT.Name = "F5_NIMPORT"
-        Me.F5_NIMPORT.ReadOnly = True
         Me.F5_NIMPORT.Width = 70
         '
         'SALDO
         '
         Me.SALDO.HeaderText = "SALDO"
         Me.SALDO.Name = "SALDO"
-        Me.SALDO.ReadOnly = True
         Me.SALDO.Width = 70
         '
         'CL_CDEPT
         '
         Me.CL_CDEPT.HeaderText = "DEPARTAMENTO"
         Me.CL_CDEPT.Name = "CL_CDEPT"
-        Me.CL_CDEPT.ReadOnly = True
         '
         'ESTADO
         '
         Me.ESTADO.HeaderText = "ESTADO"
         Me.ESTADO.Name = "ESTADO"
-        Me.ESTADO.ReadOnly = True
         Me.ESTADO.Width = 200
         '
         'F5_CUSUAP
         '
         Me.F5_CUSUAP.HeaderText = "USUARIO APROBACION"
         Me.F5_CUSUAP.Name = "F5_CUSUAP"
-        Me.F5_CUSUAP.ReadOnly = True
         Me.F5_CUSUAP.Width = 70
         '
         'F5_DFECAPR
         '
         Me.F5_DFECAPR.HeaderText = "FECHA APROBACION"
         Me.F5_DFECAPR.Name = "F5_DFECAPR"
-        Me.F5_DFECAPR.ReadOnly = True
         '
         'TU_ALIAS
         '
         Me.TU_ALIAS.HeaderText = "USUARIO REPRE"
         Me.TU_ALIAS.Name = "TU_ALIAS"
-        Me.TU_ALIAS.ReadOnly = True
         Me.TU_ALIAS.Width = 70
         '
         'TU_NOMUSU
         '
         Me.TU_NOMUSU.HeaderText = "REPRESENTANTE"
         Me.TU_NOMUSU.Name = "TU_NOMUSU"
-        Me.TU_NOMUSU.ReadOnly = True
         Me.TU_NOMUSU.Width = 150
         '
         'F5_CESTADO
         '
         Me.F5_CESTADO.HeaderText = "F5_CESTADO"
         Me.F5_CESTADO.Name = "F5_CESTADO"
-        Me.F5_CESTADO.ReadOnly = True
         Me.F5_CESTADO.Width = 40
         '
         'FV_CCODIGO
         '
         Me.FV_CCODIGO.HeaderText = "FV_CCODIGO"
         Me.FV_CCODIGO.Name = "FV_CCODIGO"
-        Me.FV_CCODIGO.ReadOnly = True
         Me.FV_CCODIGO.Width = 40
         '
         'VAR_OBS
         '
         Me.VAR_OBS.HeaderText = "OBSER"
         Me.VAR_OBS.Name = "VAR_OBS"
-        Me.VAR_OBS.ReadOnly = True
         Me.VAR_OBS.Width = 40
         '
         'OBSERV
         '
         Me.OBSERV.HeaderText = "OBSERV"
         Me.OBSERV.Name = "OBSERV"
-        Me.OBSERV.ReadOnly = True
+        '
+        'GLOSA
+        '
+        Me.GLOSA.HeaderText = "GLOSA"
+        Me.GLOSA.Name = "GLOSA"
         '
         'StatusStrip1
         '
@@ -349,7 +338,7 @@ Partial Class frmVisorPedidos
         'ToolStripStatusLabel1
         '
         Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(87, 17)
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(88, 17)
         Me.ToolStripStatusLabel1.Text = "#Total Pedidos:"
         '
         'tslCantidad
@@ -385,7 +374,7 @@ Partial Class frmVisorPedidos
         'ToolStripStatusLabel2
         '
         Me.ToolStripStatusLabel2.Name = "ToolStripStatusLabel2"
-        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(74, 17)
+        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(75, 17)
         Me.ToolStripStatusLabel2.Text = "Monto Total:"
         '
         'tslMontoTotal
@@ -465,7 +454,7 @@ Partial Class frmVisorPedidos
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.SplitContainer1.Location = New System.Drawing.Point(4, 90)
-        Me.SplitContainer1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.SplitContainer1.Margin = New System.Windows.Forms.Padding(2)
         Me.SplitContainer1.Name = "SplitContainer1"
         Me.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal
         '
@@ -490,20 +479,21 @@ Partial Class frmVisorPedidos
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage4)
+        Me.TabControl1.Controls.Add(Me.TabPage5)
         Me.TabControl1.Location = New System.Drawing.Point(3, 3)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(979, 172)
+        Me.TabControl1.Size = New System.Drawing.Size(979, 179)
         Me.TabControl1.TabIndex = 1
         '
         'TabPage3
         '
         Me.TabPage3.Controls.Add(Me.dgvTrazabilidad)
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage3.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TabPage3.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.TabPage3.Size = New System.Drawing.Size(971, 146)
+        Me.TabPage3.Padding = New System.Windows.Forms.Padding(2)
+        Me.TabPage3.Size = New System.Drawing.Size(971, 153)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Trazabilidad"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -526,10 +516,9 @@ Partial Class frmVisorPedidos
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dgvTrazabilidad.DefaultCellStyle = DataGridViewCellStyle3
         Me.dgvTrazabilidad.Location = New System.Drawing.Point(6, 5)
-        Me.dgvTrazabilidad.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.dgvTrazabilidad.Margin = New System.Windows.Forms.Padding(2)
         Me.dgvTrazabilidad.MultiSelect = False
         Me.dgvTrazabilidad.Name = "dgvTrazabilidad"
-        Me.dgvTrazabilidad.ReadOnly = True
         Me.dgvTrazabilidad.RowTemplate.Height = 24
         Me.dgvTrazabilidad.Size = New System.Drawing.Size(961, 141)
         Me.dgvTrazabilidad.TabIndex = 2
@@ -539,8 +528,8 @@ Partial Class frmVisorPedidos
         Me.TabPage1.Controls.Add(Me.dgvListarDetalleProductos)
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
-        Me.TabPage1.Size = New System.Drawing.Size(971, 145)
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(971, 153)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Detalle de Productos"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -563,10 +552,9 @@ Partial Class frmVisorPedidos
         DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dgvListarDetalleProductos.DefaultCellStyle = DataGridViewCellStyle4
         Me.dgvListarDetalleProductos.Location = New System.Drawing.Point(5, 5)
-        Me.dgvListarDetalleProductos.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.dgvListarDetalleProductos.Margin = New System.Windows.Forms.Padding(2)
         Me.dgvListarDetalleProductos.MultiSelect = False
         Me.dgvListarDetalleProductos.Name = "dgvListarDetalleProductos"
-        Me.dgvListarDetalleProductos.ReadOnly = True
         Me.dgvListarDetalleProductos.RowTemplate.Height = 24
         Me.dgvListarDetalleProductos.Size = New System.Drawing.Size(896, 132)
         Me.dgvListarDetalleProductos.TabIndex = 0
@@ -576,8 +564,8 @@ Partial Class frmVisorPedidos
         Me.TabPage2.Controls.Add(Me.dgvListarObservaciones)
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
-        Me.TabPage2.Size = New System.Drawing.Size(971, 145)
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(971, 153)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Historial Observaciones"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -601,10 +589,9 @@ Partial Class frmVisorPedidos
         DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dgvListarObservaciones.DefaultCellStyle = DataGridViewCellStyle5
         Me.dgvListarObservaciones.Location = New System.Drawing.Point(5, 5)
-        Me.dgvListarObservaciones.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.dgvListarObservaciones.Margin = New System.Windows.Forms.Padding(2)
         Me.dgvListarObservaciones.MultiSelect = False
         Me.dgvListarObservaciones.Name = "dgvListarObservaciones"
-        Me.dgvListarObservaciones.ReadOnly = True
         Me.dgvListarObservaciones.RowTemplate.Height = 24
         Me.dgvListarObservaciones.Size = New System.Drawing.Size(896, 131)
         Me.dgvListarObservaciones.TabIndex = 1
@@ -613,37 +600,33 @@ Partial Class frmVisorPedidos
         '
         Me.obp_id.HeaderText = "ID"
         Me.obp_id.Name = "obp_id"
-        Me.obp_id.ReadOnly = True
         Me.obp_id.Width = 40
         '
         'Column1
         '
         Me.Column1.HeaderText = "FECHA HORA"
         Me.Column1.Name = "Column1"
-        Me.Column1.ReadOnly = True
         '
         'Column3
         '
         Me.Column3.HeaderText = "USUARIO"
         Me.Column3.Name = "Column3"
-        Me.Column3.ReadOnly = True
         Me.Column3.Width = 120
         '
         'Column4
         '
         Me.Column4.HeaderText = "OBSERVACION"
         Me.Column4.Name = "Column4"
-        Me.Column4.ReadOnly = True
         Me.Column4.Width = 1000
         '
         'TabPage4
         '
         Me.TabPage4.Controls.Add(Me.dgvCuentasxCobrar)
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage4.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TabPage4.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage4.Name = "TabPage4"
-        Me.TabPage4.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.TabPage4.Size = New System.Drawing.Size(971, 145)
+        Me.TabPage4.Padding = New System.Windows.Forms.Padding(2)
+        Me.TabPage4.Size = New System.Drawing.Size(971, 153)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "Cuentas x Cobrar"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -666,13 +649,64 @@ Partial Class frmVisorPedidos
         DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dgvCuentasxCobrar.DefaultCellStyle = DataGridViewCellStyle6
         Me.dgvCuentasxCobrar.Location = New System.Drawing.Point(6, 4)
-        Me.dgvCuentasxCobrar.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.dgvCuentasxCobrar.Margin = New System.Windows.Forms.Padding(2)
         Me.dgvCuentasxCobrar.MultiSelect = False
         Me.dgvCuentasxCobrar.Name = "dgvCuentasxCobrar"
-        Me.dgvCuentasxCobrar.ReadOnly = True
         Me.dgvCuentasxCobrar.RowTemplate.Height = 24
         Me.dgvCuentasxCobrar.Size = New System.Drawing.Size(961, 140)
         Me.dgvCuentasxCobrar.TabIndex = 3
+        '
+        'TabPage5
+        '
+        Me.TabPage5.Controls.Add(Me.Dg_Bonificacion)
+        Me.TabPage5.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage5.Name = "TabPage5"
+        Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage5.Size = New System.Drawing.Size(971, 153)
+        Me.TabPage5.TabIndex = 4
+        Me.TabPage5.Text = "Bonificaciones"
+        Me.TabPage5.UseVisualStyleBackColor = True
+        '
+        'Dg_Bonificacion
+        '
+        Me.Dg_Bonificacion.AllowUserToAddRows = False
+        Me.Dg_Bonificacion.AllowUserToDeleteRows = False
+        Me.Dg_Bonificacion.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Dg_Bonificacion.BackgroundColor = System.Drawing.Color.White
+        Me.Dg_Bonificacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.Dg_Bonificacion.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CODIGO, Me.ARTICULO, Me.CANTIDAD})
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Dg_Bonificacion.DefaultCellStyle = DataGridViewCellStyle7
+        Me.Dg_Bonificacion.Location = New System.Drawing.Point(5, 5)
+        Me.Dg_Bonificacion.Margin = New System.Windows.Forms.Padding(2)
+        Me.Dg_Bonificacion.MultiSelect = False
+        Me.Dg_Bonificacion.Name = "Dg_Bonificacion"
+        Me.Dg_Bonificacion.RowTemplate.Height = 24
+        Me.Dg_Bonificacion.Size = New System.Drawing.Size(961, 131)
+        Me.Dg_Bonificacion.TabIndex = 2
+        '
+        'CODIGO
+        '
+        Me.CODIGO.HeaderText = "COD. ARTICULO"
+        Me.CODIGO.Name = "CODIGO"
+        '
+        'ARTICULO
+        '
+        Me.ARTICULO.HeaderText = "ARTICULO"
+        Me.ARTICULO.Name = "ARTICULO"
+        '
+        'CANTIDAD
+        '
+        Me.CANTIDAD.HeaderText = "CANT. BONIFICAR"
+        Me.CANTIDAD.Name = "CANTIDAD"
         '
         'chk_PendAprob
         '
@@ -739,7 +773,7 @@ Partial Class frmVisorPedidos
         '
         Me.chkPendContado.AutoSize = True
         Me.chkPendContado.Location = New System.Drawing.Point(710, 9)
-        Me.chkPendContado.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.chkPendContado.Margin = New System.Windows.Forms.Padding(2)
         Me.chkPendContado.Name = "chkPendContado"
         Me.chkPendContado.Size = New System.Drawing.Size(117, 17)
         Me.chkPendContado.TabIndex = 49
@@ -771,7 +805,7 @@ Partial Class frmVisorPedidos
         Me.Panel1.Controls.Add(Me.chkFiltroFecha)
         Me.Panel1.ForeColor = System.Drawing.Color.White
         Me.Panel1.Location = New System.Drawing.Point(4, 28)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(998, 61)
         Me.Panel1.TabIndex = 50
@@ -783,7 +817,7 @@ Partial Class frmVisorPedidos
         Me.btnExportar.Image = Global.WindowsApp1.My.Resources.Resources.icon_excel1
         Me.btnExportar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnExportar.Location = New System.Drawing.Point(722, 28)
-        Me.btnExportar.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnExportar.Margin = New System.Windows.Forms.Padding(2)
         Me.btnExportar.Name = "btnExportar"
         Me.btnExportar.Size = New System.Drawing.Size(87, 28)
         Me.btnExportar.TabIndex = 52
@@ -799,7 +833,7 @@ Partial Class frmVisorPedidos
         Me.btnBuscar.Image = Global.WindowsApp1.My.Resources.Resources._1041
         Me.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnBuscar.Location = New System.Drawing.Point(616, 27)
-        Me.btnBuscar.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnBuscar.Margin = New System.Windows.Forms.Padding(2)
         Me.btnBuscar.Name = "btnBuscar"
         Me.btnBuscar.Size = New System.Drawing.Size(92, 28)
         Me.btnBuscar.TabIndex = 51
@@ -811,7 +845,7 @@ Partial Class frmVisorPedidos
         '
         Me.txtPedido.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtPedido.Location = New System.Drawing.Point(320, 30)
-        Me.txtPedido.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtPedido.Margin = New System.Windows.Forms.Padding(2)
         Me.txtPedido.Name = "txtPedido"
         Me.txtPedido.Size = New System.Drawing.Size(111, 20)
         Me.txtPedido.TabIndex = 59
@@ -830,7 +864,7 @@ Partial Class frmVisorPedidos
         '
         Me.txtGuia.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtGuia.Location = New System.Drawing.Point(74, 30)
-        Me.txtGuia.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtGuia.Margin = New System.Windows.Forms.Padding(2)
         Me.txtGuia.Name = "txtGuia"
         Me.txtGuia.Size = New System.Drawing.Size(126, 20)
         Me.txtGuia.TabIndex = 57
@@ -849,7 +883,7 @@ Partial Class frmVisorPedidos
         '
         Me.txtDocumento.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtDocumento.Location = New System.Drawing.Point(722, 5)
-        Me.txtDocumento.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtDocumento.Margin = New System.Windows.Forms.Padding(2)
         Me.txtDocumento.Name = "txtDocumento"
         Me.txtDocumento.Size = New System.Drawing.Size(88, 20)
         Me.txtDocumento.TabIndex = 56
@@ -878,7 +912,7 @@ Partial Class frmVisorPedidos
         '
         Me.txtSerie.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtSerie.Location = New System.Drawing.Point(616, 5)
-        Me.txtSerie.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtSerie.Margin = New System.Windows.Forms.Padding(2)
         Me.txtSerie.Name = "txtSerie"
         Me.txtSerie.Size = New System.Drawing.Size(46, 20)
         Me.txtSerie.TabIndex = 53
@@ -887,7 +921,7 @@ Partial Class frmVisorPedidos
         '
         Me.txtTD.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtTD.Location = New System.Drawing.Point(550, 5)
-        Me.txtTD.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtTD.Margin = New System.Windows.Forms.Padding(2)
         Me.txtTD.Name = "txtTD"
         Me.txtTD.Size = New System.Drawing.Size(32, 20)
         Me.txtTD.TabIndex = 52
@@ -999,7 +1033,7 @@ Partial Class frmVisorPedidos
         Me.Controls.Add(Me.SplitContainer1)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.StatusStrip1)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "frmVisorPedidos"
         Me.Text = "Visor Pedidos"
         CType(Me.dgvListarPedidos, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1020,6 +1054,8 @@ Partial Class frmVisorPedidos
         CType(Me.dgvListarObservaciones, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage4.ResumeLayout(False)
         CType(Me.dgvCuentasxCobrar, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage5.ResumeLayout(False)
+        CType(Me.Dg_Bonificacion, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
@@ -1087,6 +1123,8 @@ Partial Class frmVisorPedidos
     Friend WithEvents TabPage4 As TabPage
     Friend WithEvents dgvCuentasxCobrar As DataGridView
     Friend WithEvents chkAprobarComercial As CheckBox
+    Friend WithEvents lblSincro As Label
+    Friend WithEvents TabPage5 As TabPage
     Friend WithEvents F5_CCODAGE As DataGridViewTextBoxColumn
     Friend WithEvents F5_CNUMPED As DataGridViewTextBoxColumn
     Friend WithEvents FV_CDESCRI As DataGridViewTextBoxColumn
@@ -1111,5 +1149,9 @@ Partial Class frmVisorPedidos
     Friend WithEvents FV_CCODIGO As DataGridViewTextBoxColumn
     Friend WithEvents VAR_OBS As DataGridViewTextBoxColumn
     Friend WithEvents OBSERV As DataGridViewTextBoxColumn
-    Friend WithEvents lblSincro As Label
+    Friend WithEvents GLOSA As DataGridViewTextBoxColumn
+    Friend WithEvents Dg_Bonificacion As DataGridView
+    Friend WithEvents CODIGO As DataGridViewTextBoxColumn
+    Friend WithEvents ARTICULO As DataGridViewTextBoxColumn
+    Friend WithEvents CANTIDAD As DataGridViewTextBoxColumn
 End Class

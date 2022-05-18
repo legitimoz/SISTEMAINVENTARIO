@@ -3,7 +3,7 @@ Imports Microsoft.Reporting.WinForms
 Imports Nordic.Bl.Be
 
 Public Class HojaPicking
-    Public codigoguia, fechapedido, razoncliente, ruccliente, direccioncliente, codalmacen, codpedido As String
+    Public codigoguia, fechapedido, razoncliente, ruccliente, direccioncliente, codalmacen, codpedido, Glosa As String
     Public DtDetallePedido As DataTable
     Private ObjAlmacen As New AlmacenL
     Private Estructura As New EstructuraTabla
@@ -128,7 +128,7 @@ Public Class HojaPicking
                 If posiciones.Count > 0 Then
                     RowDetalleReporte.Item("Posicion1") = posiciones.ElementAt(0)
                     RowDetalleReporte.Item("Posicion2") = posiciones.ElementAt(1)
-
+                    RowDetalleReporte.Item("Posicion3") = posiciones.ElementAt(2)
                 End If
                 totalvolumen = totalvolumen + rowDetalle.Item("VOLUMEN")
                 DtDetalleReporte.Rows.Add(RowDetalleReporte)
@@ -163,7 +163,7 @@ Public Class HojaPicking
             Dim cantidadbultosparam As New ReportParameter("cantbultos", DtDetalleReporte.Rows.Count)
             Dim totalvolumenparam As New ReportParameter("totalvolumen", totalvolumen.ToString + " M3")
             Dim codalmacenparam As New ReportParameter("almacenSoftcom", codalmacen)
-
+            Dim Glosaparam As New ReportParameter("Glosa", Glosa)
 
             Me.ReportViewer1.LocalReport.SetParameters(codParteEntradaparam)
             Me.ReportViewer1.LocalReport.SetParameters(nombreempresaparam)
@@ -179,6 +179,7 @@ Public Class HojaPicking
             Me.ReportViewer1.LocalReport.SetParameters(totalvolumenparam)
             Me.ReportViewer1.LocalReport.SetParameters(codalmacenparam)
             Me.ReportViewer1.LocalReport.SetParameters(codGuiaparam)
+            Me.ReportViewer1.LocalReport.SetParameters(Glosaparam)
 
             Me.ReportViewer1.LocalReport.DisplayName = Text
             Me.ReportViewer1.SetDisplayMode(DisplayMode.PrintLayout)

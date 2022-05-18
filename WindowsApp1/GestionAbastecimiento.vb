@@ -4,7 +4,7 @@ Imports Nordic.Bl.Be
 Public Class GestionAbastecimiento
     Public usr_id As Integer
     Public usr_usuario As String
-
+    Public bandera As Integer = 0
     Private AlmacenObj As New AlmacenL
     Private Estructura As New EstructuraTabla
     Private totalabcci As Decimal = 0
@@ -797,6 +797,12 @@ Public Class GestionAbastecimiento
 
     Public Sub mesesDiferencia()
         Dim meses As Integer = 0
+        Dim Fecha As Date
+
+        If bandera = 1 Then
+            Fecha = DateAdd(DateInterval.Month, -6, Now).ToShortDateString()
+            dt_desde.Value = "01/" + Fecha.Month.ToString + "/" + Fecha.Year.ToString
+        End If
 
         Dim fechaIni As Date = dt_desde.Value
         Dim FechaFin As Date = dt_hasta.Value
@@ -813,6 +819,7 @@ Public Class GestionAbastecimiento
             ' MsgBox("meses transcurridos" & meses & "NumDias: " & dias & "residuo: " & residuo)
         End If
         MesesTranscurridos = meses
+
         MesInicio = CType(fechaIni.Month.ToString, Integer)
         MesFin = CType(FechaFin.Month.ToString, Integer)
 
@@ -913,6 +920,7 @@ Public Class GestionAbastecimiento
                             RowAdd.Item("M3 Abastecer") = Dgrow.Cells("ABASTEM3").EditedFormattedValue.ToString
                             RowAdd.Item("Cobertura Final Dias") = Dgrow.Cells("COBERTFINAL").EditedFormattedValue.ToString
                             RowAdd.Item("Cobertura Actual Dias") = Dgrow.Cells("COBERTACTUAL").EditedFormattedValue.ToString
+                            RowAdd.Item("Accion") = Dgrow.Cells("ACCIONFINAL").EditedFormattedValue.ToString
                             DtReporte.Rows.Add(RowAdd)
                         End If
                     End If

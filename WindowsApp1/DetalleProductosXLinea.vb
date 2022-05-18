@@ -85,4 +85,15 @@ Public Class DetalleProductosXLinea
     Private Sub cmdCerrar_Click_1(sender As Object, e As EventArgs) Handles cmdCerrar.Click
         Me.Close()
     End Sub
+
+    Private Sub cmdGenerarExcel_Click_1(sender As Object, e As EventArgs) Handles cmdGenerarExcel.Click
+        Try
+            If dtDetalle.Rows.Count > 0 Then
+                ExportExcel(dtDetalle)
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
 End Class

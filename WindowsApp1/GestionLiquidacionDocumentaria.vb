@@ -5,6 +5,8 @@ Public Class GestionLiquidacionDocumentaria
     Private dtcabecera2 As New DataTable
     Private Estructura As New EstructuraTabla
     Private ObjAlmacen As New AlmacenL
+    Private CNUMDOC As String = "", CTD As String = "", CALMA As String = "", Estado As String = ""
+    Private GUIA As String = ""
     Private Sub cmdCerrar_Click(sender As Object, e As EventArgs) Handles cmdCerrar.Click
         Me.Close()
     End Sub
@@ -18,7 +20,6 @@ Public Class GestionLiquidacionDocumentaria
     End Sub
 
     Public Sub ListarGuiasCabecera()
-
         Try
             Dim contadorL As Integer = 0, cantidadL As Integer = 0, ContadorP As Integer = 0, cantidadP As Integer = 0
             Dim dtretorno As New DataTable
@@ -29,10 +30,10 @@ Public Class GestionLiquidacionDocumentaria
 
                 dtcabecera2.Rows.Clear()
                 For Each RowRetorno As DataRow In dtretorno.Rows
-
                     Dim rowcabecera As DataRow
                     rowcabecera = dtcabecera2.NewRow
                     rowcabecera.Item("NRO_GUIA") = RowRetorno.Item("NRO_GUIA").ToString.Trim
+                    GUIA = RowRetorno.Item("NRO_GUIA").ToString.Trim
                     rowcabecera.Item("FECHA_DESPACHO") = RowRetorno.Item("FECHA_DESPACHO").ToString.Trim
                     rowcabecera.Item("FECHA_RETORNO") = RowRetorno.Item("FECHA_RETORNO").ToString.Trim
                     rowcabecera.Item("RUC_CLIENTE") = RowRetorno.Item("RUC_CLIENTE").ToString.Trim
@@ -40,23 +41,33 @@ Public Class GestionLiquidacionDocumentaria
                     rowcabecera.Item("DIRECCION_CLIENTE") = RowRetorno.Item("DIRECCION_CLIENTE").ToString.Trim
                     rowcabecera.Item("TRANSPORTISTA") = RowRetorno.Item("TRANSPORTISTA").ToString.Trim
                     rowcabecera.Item("LIM_PROV") = RowRetorno.Item("LIM_PROV").ToString.Trim
+                    rowcabecera.Item("C5_CTD") = RowRetorno.Item("C5_CTD").ToString.Trim
+                    rowcabecera.Item("C5_CALMA") = RowRetorno.Item("C5_CALMA").ToString.Trim
+                    rowcabecera.Item("MOTIVO") = RowRetorno.Item("MOTIVO").ToString.Trim
+                    rowcabecera.Item("AREA") = RowRetorno.Item("AREA").ToString.Trim
+                    rowcabecera.Item("FACTURA TRANSPORTISTA") = RowRetorno.Item("FacturaTransportista").ToString.Trim
+
 
                     If RowRetorno.Item("PROVINCIA").ToString.Trim = "CAÑETE".Trim Or RowRetorno.Item("PROVINCIA").ToString.Trim = "HUARAL".Trim Or RowRetorno.Item("PROVINCIA").ToString.Trim = "HUAURA".Trim Then
                         rowcabecera.Item("LIM_PROV") = "PROVINCIA"
                     End If
-
+                    'If GUIA = "0120014131" Then
+                    '    Dim HOLA As Integer = 0
+                    '    HOLA = 1
+                    'End If
                     Dim Diferencia As Integer = 0
                     If RowRetorno.Item("FECHA_DESPACHO").ToString.Trim <> "" And RowRetorno.Item("FECHA_RETORNO").ToString.Trim <> "" Then
                         Diferencia = DateDiff(DateInterval.Day, Convert.ToDateTime(RowRetorno.Item("FECHA_DESPACHO").ToString.Trim), Convert.ToDateTime(RowRetorno.Item("FECHA_RETORNO").ToString.Trim))
                     ElseIf RowRetorno.Item("FECHA_DESPACHO").ToString.Trim <> "" And RowRetorno.Item("FECHA_RETORNO").ToString.Trim = "" Then
-                        Diferencia = DateDiff(DateInterval.Day, Convert.ToDateTime(RowRetorno.Item("FECHA_DESPACHO").ToString.Trim), Convert.ToDateTime(Now))
+                        Diferencia = DateDiff(DateInterval.Day, Convert.ToDateTime(RowRetorno.Item("FECHA_DESPACHO")), Convert.ToDateTime(Now))
+                        'Diferencia = DateDiff(DateInterval.Day, Convert.ToDateTime(Now), Convert.ToDateTime(Now))
                     End If
 
                     rowcabecera.Item("Diferencia") = Diferencia
 
                     Dim Tolerancia As Integer = 1
 
-                    If RowRetorno.Item("LIM_PROV").ToString.Trim = "PROVINCIA" Then
+                    If rowcabecera.Item("LIM_PROV").ToString.Trim = "PROVINCIA" Then
                         'If RowRetorno.Item("HORA_DESPACHO").ToString.Trim > #12:00:00 PM# Then
                         '    Tolerancia = 2
                         'End If
@@ -75,6 +86,10 @@ Public Class GestionLiquidacionDocumentaria
                     DIA = fechadespacho.DayOfWeek
                     If DIA = 6 Then
                         Tolerancia = Tolerancia + 1
+                    End If
+
+                    If RowRetorno.Item("TRANSPORTISTA").ToString.Trim = "NORDIC BASE LA VICTORIA".Trim Then
+                        Tolerancia = 15
                     End If
 
                     rowcabecera.Item("Tolerancia") = Tolerancia
@@ -230,6 +245,14 @@ Public Class GestionLiquidacionDocumentaria
         Dg_Cabecera.Columns("CLIENTE").Width = 250
         Dg_Cabecera.Columns("CLIENTE").ReadOnly = True
 
+        Dg_Cabecera.Columns("C5_CTD").HeaderText = "CTD"
+        Dg_Cabecera.Columns("C5_CTD").Width = 250
+        Dg_Cabecera.Columns("C5_CTD").Visible = False
+
+        Dg_Cabecera.Columns("C5_CALMA").HeaderText = "CALMA"
+        Dg_Cabecera.Columns("C5_CALMA").Width = 250
+        Dg_Cabecera.Columns("C5_CALMA").Visible = False
+
         Dg_Cabecera.Columns("DIRECCION_CLIENTE").HeaderText = "Direccion Cliente"
         Dg_Cabecera.Columns("DIRECCION_CLIENTE").Width = 250
         Dg_Cabecera.Columns("DIRECCION_CLIENTE").ReadOnly = True
@@ -241,6 +264,19 @@ Public Class GestionLiquidacionDocumentaria
         Dg_Cabecera.Columns("LIM_PROV").HeaderText = "Lima Provincia"
         Dg_Cabecera.Columns("LIM_PROV").Width = 100
         Dg_Cabecera.Columns("LIM_PROV").ReadOnly = True
+
+        Dg_Cabecera.Columns("MOTIVO").HeaderText = "Motivo"
+        Dg_Cabecera.Columns("MOTIVO").Width = 80
+        Dg_Cabecera.Columns("MOTIVO").ReadOnly = True
+
+        Dg_Cabecera.Columns("AREA").HeaderText = "Area Responsable"
+        Dg_Cabecera.Columns("AREA").Width = 80
+        Dg_Cabecera.Columns("AREA").ReadOnly = True
+
+        Dg_Cabecera.Columns("FACTURA TRANSPORTISTA").HeaderText = "FACTURA TRANSPORTISTA"
+        Dg_Cabecera.Columns("FACTURA TRANSPORTISTA").Width = 80
+        Dg_Cabecera.Columns("FACTURA TRANSPORTISTA").ReadOnly = True
+
     End Sub
 
     Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
@@ -297,4 +333,38 @@ Public Class GestionLiquidacionDocumentaria
         Return RP
 
     End Function
+    Public Sub Obtener()
+        Try
+            If Dg_Cabecera.Rows.Count > 0 Then
+                CNUMDOC = Dg_Cabecera.CurrentRow.Cells("NRO_GUIA").EditedFormattedValue.ToString
+                CTD = Dg_Cabecera.CurrentRow.Cells("C5_CTD").EditedFormattedValue.ToString
+                CALMA = Dg_Cabecera.CurrentRow.Cells("C5_CALMA").EditedFormattedValue.ToString
+                Estado = Dg_Cabecera.CurrentRow.Cells("ESTADO").EditedFormattedValue.ToString
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
+        Try
+            If Dg_Cabecera.Rows.Count > 0 Then
+                Obtener()
+                If Estado.Trim <> "DENTRO DE TIEMPO" Then
+                    If CNUMDOC <> "" And CTD <> "" And CALMA <> "" Then
+                        Dim RegistroForm As New RegistroObservacion
+                        RegistroForm.cnumdoc = CNUMDOC
+                        RegistroForm.ctd = CTD
+                        RegistroForm.calma = CALMA
+                        RegistroForm.tipoobservacion = 3
+                        RegistroForm.ShowDialog()
+                        If RegistroForm.grabado = True Then
+                            ListarGuiasCabecera()
+                        End If
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

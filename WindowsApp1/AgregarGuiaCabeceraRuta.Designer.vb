@@ -51,6 +51,10 @@ Partial Class AgregarGuiaCabeceraRuta
         Me.cmb_siteliq = New System.Windows.Forms.ComboBox()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.cmb_fisico = New System.Windows.Forms.ComboBox()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.txt_canal = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.cmb_SitePicking = New System.Windows.Forms.ComboBox()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -131,7 +135,7 @@ Partial Class AgregarGuiaCabeceraRuta
         Me.cmdAceptar.IconFont = FontAwesome.Sharp.IconFont.Solid
         Me.cmdAceptar.IconSize = 16
         Me.cmdAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.cmdAceptar.Location = New System.Drawing.Point(245, 384)
+        Me.cmdAceptar.Location = New System.Drawing.Point(245, 440)
         Me.cmdAceptar.Margin = New System.Windows.Forms.Padding(4)
         Me.cmdAceptar.Name = "cmdAceptar"
         Me.cmdAceptar.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
@@ -177,9 +181,9 @@ Partial Class AgregarGuiaCabeceraRuta
         Me.Site.AutoSize = True
         Me.Site.Location = New System.Drawing.Point(16, 122)
         Me.Site.Name = "Site"
-        Me.Site.Size = New System.Drawing.Size(31, 13)
+        Me.Site.Size = New System.Drawing.Size(83, 13)
         Me.Site.TabIndex = 95
-        Me.Site.Text = "Site: "
+        Me.Site.Text = "Site Despacho: "
         '
         'txt_peso
         '
@@ -227,7 +231,7 @@ Partial Class AgregarGuiaCabeceraRuta
         '
         Me.txt_glosa.AutoSize = True
         Me.txt_glosa.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.txt_glosa.Location = New System.Drawing.Point(127, 259)
+        Me.txt_glosa.Location = New System.Drawing.Point(127, 286)
         Me.txt_glosa.Name = "txt_glosa"
         Me.txt_glosa.Size = New System.Drawing.Size(12, 13)
         Me.txt_glosa.TabIndex = 100
@@ -237,7 +241,7 @@ Partial Class AgregarGuiaCabeceraRuta
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(16, 258)
+        Me.Label7.Location = New System.Drawing.Point(16, 285)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(38, 14)
         Me.Label7.TabIndex = 101
@@ -248,7 +252,7 @@ Partial Class AgregarGuiaCabeceraRuta
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(16, 287)
+        Me.Label8.Location = New System.Drawing.Point(16, 314)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(77, 14)
         Me.Label8.TabIndex = 103
@@ -259,7 +263,7 @@ Partial Class AgregarGuiaCabeceraRuta
         '
         Me.txt_departamento.AutoSize = True
         Me.txt_departamento.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.txt_departamento.Location = New System.Drawing.Point(127, 288)
+        Me.txt_departamento.Location = New System.Drawing.Point(127, 315)
         Me.txt_departamento.Name = "txt_departamento"
         Me.txt_departamento.Size = New System.Drawing.Size(12, 13)
         Me.txt_departamento.TabIndex = 102
@@ -269,7 +273,7 @@ Partial Class AgregarGuiaCabeceraRuta
         '
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(16, 317)
+        Me.Label10.Location = New System.Drawing.Point(16, 344)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(54, 14)
         Me.Label10.TabIndex = 105
@@ -280,7 +284,7 @@ Partial Class AgregarGuiaCabeceraRuta
         '
         Me.txt_provincia.AutoSize = True
         Me.txt_provincia.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.txt_provincia.Location = New System.Drawing.Point(127, 318)
+        Me.txt_provincia.Location = New System.Drawing.Point(127, 345)
         Me.txt_provincia.Name = "txt_provincia"
         Me.txt_provincia.Size = New System.Drawing.Size(12, 13)
         Me.txt_provincia.TabIndex = 104
@@ -290,7 +294,7 @@ Partial Class AgregarGuiaCabeceraRuta
         '
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(16, 348)
+        Me.Label12.Location = New System.Drawing.Point(16, 375)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(43, 14)
         Me.Label12.TabIndex = 107
@@ -301,7 +305,7 @@ Partial Class AgregarGuiaCabeceraRuta
         '
         Me.txt_distrito.AutoSize = True
         Me.txt_distrito.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.txt_distrito.Location = New System.Drawing.Point(127, 349)
+        Me.txt_distrito.Location = New System.Drawing.Point(127, 376)
         Me.txt_distrito.Name = "txt_distrito"
         Me.txt_distrito.Size = New System.Drawing.Size(12, 13)
         Me.txt_distrito.TabIndex = 106
@@ -344,12 +348,55 @@ Partial Class AgregarGuiaCabeceraRuta
         Me.cmb_fisico.Size = New System.Drawing.Size(209, 21)
         Me.cmb_fisico.TabIndex = 153
         '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.Location = New System.Drawing.Point(16, 404)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(37, 14)
+        Me.Label13.TabIndex = 158
+        Me.Label13.Text = "Canal:"
+        Me.Label13.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'txt_canal
+        '
+        Me.txt_canal.AutoSize = True
+        Me.txt_canal.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
+        Me.txt_canal.Location = New System.Drawing.Point(127, 405)
+        Me.txt_canal.Name = "txt_canal"
+        Me.txt_canal.Size = New System.Drawing.Size(12, 13)
+        Me.txt_canal.TabIndex = 157
+        Me.txt_canal.Text = "-"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(16, 256)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(69, 13)
+        Me.Label14.TabIndex = 160
+        Me.Label14.Text = "Site Picking :"
+        '
+        'cmb_SitePicking
+        '
+        Me.cmb_SitePicking.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb_SitePicking.FormattingEnabled = True
+        Me.cmb_SitePicking.Location = New System.Drawing.Point(130, 253)
+        Me.cmb_SitePicking.Name = "cmb_SitePicking"
+        Me.cmb_SitePicking.Size = New System.Drawing.Size(209, 21)
+        Me.cmb_SitePicking.TabIndex = 159
+        '
         'AgregarGuiaCabeceraRuta
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(355, 423)
+        Me.ClientSize = New System.Drawing.Size(355, 479)
+        Me.Controls.Add(Me.Label14)
+        Me.Controls.Add(Me.cmb_SitePicking)
+        Me.Controls.Add(Me.Label13)
+        Me.Controls.Add(Me.txt_canal)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.cmb_siteliq)
         Me.Controls.Add(Me.Label11)
@@ -416,4 +463,8 @@ Partial Class AgregarGuiaCabeceraRuta
     Friend WithEvents cmb_siteliq As ComboBox
     Friend WithEvents Label11 As Label
     Friend WithEvents cmb_fisico As ComboBox
+    Friend WithEvents Label13 As Label
+    Friend WithEvents txt_canal As Label
+    Friend WithEvents Label14 As Label
+    Friend WithEvents cmb_SitePicking As ComboBox
 End Class

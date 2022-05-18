@@ -115,7 +115,7 @@ Public Class Demo
 
     Public Sub ReportePicking(ByVal nombrereporte As String, ByVal Data As DataTable, codigoguia As String, codpedido As String, nombreEmpresa As String,
                               RUC As String, Direccion As String, logooperador As String, Color As String, fechapedido As String,
-                              razoncliente As String, ruccliente As String, direccioncliente As String, codalmacen As String, cantidadItems As Integer, totalvolumen As Decimal)
+                              razoncliente As String, ruccliente As String, direccioncliente As String, codalmacen As String, cantidadItems As Integer, totalvolumen As Decimal, GlosaPicking As String)
 
 
         Try
@@ -138,6 +138,7 @@ Public Class Demo
             Dim cantidadbultosparam As New ReportParameter("cantbultos", cantidadItems)
             Dim totalvolumenparam As New ReportParameter("totalvolumen", totalvolumen.ToString + "M3")
             Dim codalmacenparam As New ReportParameter("almacenSoftcom", codalmacen)
+            Dim glosaparam As New ReportParameter("Glosa", GlosaPicking)
 
             report.SetParameters(nombreempresaparam)
             report.SetParameters(codParteEntradaparam)
@@ -153,6 +154,7 @@ Public Class Demo
             report.SetParameters(cantidadbultosparam)
             report.SetParameters(totalvolumenparam)
             report.SetParameters(codalmacenparam)
+            report.SetParameters(glosaparam)
             Export(report)
             Print("V")
         Catch ex As Exception

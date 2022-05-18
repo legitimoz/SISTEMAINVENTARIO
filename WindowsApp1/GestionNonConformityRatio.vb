@@ -124,6 +124,10 @@ Public Class GestionNonConformityRatio
     End Sub
 
     Private Sub btnExportar_Click(sender As Object, e As EventArgs) Handles btnExportar.Click
+        Try
 
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

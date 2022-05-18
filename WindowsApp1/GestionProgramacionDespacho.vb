@@ -11,11 +11,13 @@ Public Class GestionProgramacionDespacho
     Private dtcabecera2, dtcabecera, dtTiempos, dtrutas, dtConsolidar, DtDetalleConsolidado As New DataTable
 
     Private Sub GestionProgramacionDespacho_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         Try
             CargaInicial()
         Catch ex As Exception
             Throw ex
         End Try
+
     End Sub
 
     Private Sub CargaInicial()
@@ -23,6 +25,9 @@ Public Class GestionProgramacionDespacho
             idalmacen = CType(ConfigurationManager.AppSettings("idalmac").ToString.Trim, Integer)
             idsite = CType(ConfigurationManager.AppSettings("CodigoSite").ToString.Trim, Integer)
             cmb_serie.SelectedIndex = 0
+            cmb_limaprov.SelectedIndex = 0
+            cmb_recep.SelectedIndex = 0
+            cmb_estado.SelectedIndex = 0
             dtConsolidar = Estructura.TablaConsolidadaDestino
             DtDetalleConsolidado = Estructura.DetalleConsolidado
             CheckMarcar.Checked = True
@@ -60,7 +65,7 @@ Public Class GestionProgramacionDespacho
                     RP = True
                 End If
             Else
-                MsgBox("No existe DATA para generar Excel, Confirme Orden de Pago", MsgBoxStyle.Exclamation)
+                MsgBox("No existe DATA para generar Excel", MsgBoxStyle.Exclamation)
             End If
         Catch ex As Exception
             Dim iderror As Integer
@@ -169,6 +174,7 @@ Public Class GestionProgramacionDespacho
                     Dg_Cabecera.Rows(contador).Cells("SERIE2").Value = RowRetorno.Item("SERIE2").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("COMENTARIO").Value = RowRetorno.Item("COMENTARIO").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("SITUACION").Value = RowRetorno.Item("SITUACION").ToString.Trim
+                    Dg_Cabecera.Rows(contador).Cells("EstadoRuta").Value = RowRetorno.Item("EstadoRuta").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("FECHAREPCECION").Value = RowRetorno.Item("FECHAREPCECION").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("HORARECEPCION").Value = RowRetorno.Item("HORARECEPCION").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("FECHA_RETORNO").Value = RowRetorno.Item("FECHA_RETORNO").ToString.Trim
@@ -179,6 +185,9 @@ Public Class GestionProgramacionDespacho
                     Dg_Cabecera.Rows(contador).Cells("NombreCosto").Value = RowRetorno.Item("NombreCosto").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("FISICO").Value = RowRetorno.Item("FISICO").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("siteliq").Value = RowRetorno.Item("siteliq").ToString.Trim
+                    Dg_Cabecera.Rows(contador).Cells("sitepick").Value = RowRetorno.Item("sitepick").ToString.Trim
+                    Dg_Cabecera.Rows(contador).Cells("nombrepicking").Value = RowRetorno.Item("nombrepicking").ToString.Trim
+                    Dg_Cabecera.Rows(contador).Cells("nombreliquidacion").Value = RowRetorno.Item("nombreliquidacion").ToString.Trim
 
                     If RowRetorno.Item("FECHA_VENCE_OC").ToString.Trim <> "" Then
                         Dg_Cabecera.Rows(contador).Cells("FECHAVENCEOC").Value = RowRetorno.Item("FECHA_VENCE_OC").ToString.Trim
@@ -565,30 +574,7 @@ Public Class GestionProgramacionDespacho
         End Try
     End Sub
 
-    Private Sub ComboBox1_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmb_serie.SelectionChangeCommitted
-        Try
-            If cmb_serie.Text.Trim = "TODAS" Then
-                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
-                    Dg_Cabecera.Rows(i).Visible = True
-                Next
-            Else
-                If cmb_serie.SelectedIndex = 4 Then
-                    Dim n = cmb_serie.Text
-                    For i As Integer = 0 To Dg_Cabecera.RowCount - 1
-                        Dg_Cabecera.Rows(i).Visible = (Dg_Cabecera.Rows(i).Cells("SERIE2").Value = n)
-                    Next
-                Else
-                    Dim n = cmb_serie.Text
-                    For i As Integer = 0 To Dg_Cabecera.RowCount - 1
-                        Dg_Cabecera.Rows(i).Visible = (Dg_Cabecera.Rows(i).Cells("SERIE").Value = n)
-                    Next
 
-                End If
-            End If
-        Catch ex As Exception
-
-        End Try
-    End Sub
 
     Private Sub Dg_Cabecera_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles Dg_Cabecera.CellValueChanged
 
@@ -606,19 +592,25 @@ Public Class GestionProgramacionDespacho
                         Dim idsiteliq As Integer = ComplementoDespachoForm.idsiteliqu
                         Dim IdCosto As Integer = ComplementoDespachoForm.idCosto
                         Dim idsitePicking As Integer = ComplementoDespachoForm.idsitePicking
+                        Dim Comentario As String = ComplementoDespachoForm.Comentario
+                        Dim RpoP As Integer = 0
                         For Each dg As DataGridViewRow In Dg_Cabecera.Rows
                             '  If dg.Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim = "0110032261" Then
                             If dg.Cells("MARCAR").EditedFormattedValue = True Then
-                                If dg.Cells("ESTADO").EditedFormattedValue.ToString.Trim <> "RECEPCIONADO" And dg.Cells("ESTADO").EditedFormattedValue.ToString.Trim <> "REPROGRAMADO" Then
+                                If dg.Cells("ESTADO").EditedFormattedValue.ToString.Trim <> "REPROGRAMADO" Then
                                     cnumdoc = dg.Cells("NRO_GUIA").EditedFormattedValue.ToString
                                     ctd = dg.Cells("C5_CTD").EditedFormattedValue.ToString
                                     calma = dg.Cells("C5_CALMA").EditedFormattedValue.ToString
-                                    LlamarConfirmarRecepcion(IdCosto, Fisico, idsiteliq, idsitePicking)
+                                    RpoP = LlamarConfirmarRecepcion(IdCosto, Fisico, idsiteliq, idsitePicking, Comentario)
                                 End If
                             End If
                             'End If
                         Next
-                        MsgBox("Guias Recepcionadas Correctamente", MsgBoxStyle.Information, "SISTEMAS NORDIC")
+                        If RpoP <> 0 Then
+                            MsgBox("Guias Recepcionadas Correctamente", MsgBoxStyle.Information, "SISTEMAS NORDIC")
+                        Else
+                            MsgBox("Es Probable que algunas guias no se hayan recepcionado Correctamente, Valide e intente nuevamente", MsgBoxStyle.Information, "SISTEMAS NORDIC")
+                        End If
                         ListarGuiasCabecera()
                     Else
                         MsgBox("No se Recuperó el Centro de Costos, intente nuevamente", MsgBoxStyle.Exclamation, "SISTEMAS NORDIC")
@@ -626,7 +618,7 @@ Public Class GestionProgramacionDespacho
                 End If
             End If
         Catch ex As Exception
-
+            MsgBox(ex.Message + " Contactar con el area de Sistemas", MsgBoxStyle.Critical, "SISTEMAS NORDIC")
         End Try
     End Sub
 
@@ -692,6 +684,10 @@ Public Class GestionProgramacionDespacho
                     Dg_Cabecera.Rows(contador).Cells("PROVINCIA").Value = Datarow.Item("PROVINCIA").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("DEPARTAMENTO").Value = Datarow.Item("DEPARTAMENTO").ToString.Trim
                     'Dg_Cabecera.Rows(contador).Cells("ESTADO").Value = Datarow.Item("ESTADO_RECEP").ToString.Trim
+
+                    Dg_Cabecera.Rows(contador).Cells("EstadoRuta").Value = ""
+                    Dg_Cabecera.Rows(contador).Cells("FECHA_RETORNO").Value = ""
+
                     Dg_Cabecera.Rows(contador).Cells("SERIE").Value = Datarow.Item("SERIE").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("SERIE2").Value = Datarow.Item("SERIE2").ToString.Trim 'OK
                     Dg_Cabecera.Rows(contador).Cells("COMENTARIO").Value = Datarow.Item("COMENTARIO").ToString.Trim
@@ -706,11 +702,12 @@ Public Class GestionProgramacionDespacho
                     Dg_Cabecera.Rows(contador).Cells("NombreCosto").Value = AgregarGuiaForm.nombrecosto
                     Dg_Cabecera.Rows(contador).Cells("FISICO").Value = AgregarGuiaForm.fisico
                     Dg_Cabecera.Rows(contador).Cells("siteliq").Value = AgregarGuiaForm.idsiteliq
-
+                    Dg_Cabecera.Rows(contador).Cells("sitepick").Value = AgregarGuiaForm.idsitepicking
                     Dg_Cabecera.Rows(contador).Cells("C5_CTD").Value = Datarow.Item("C5_CTD").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("C5_CALMA").Value = Datarow.Item("C5_CALMA").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("ESTADO").Value = "RECEPCIONADO"
-
+                    Dg_Cabecera.Rows(contador).Cells("nombrepicking").Value = AgregarGuiaForm.nombrepicking
+                    Dg_Cabecera.Rows(contador).Cells("nombreliquidacion").Value = AgregarGuiaForm.nombreliquidacion
 
                     If Dg_Cabecera.Rows(contador).Cells("ESTADO").Value.ToString.Trim = "PENDIENTE DE REPCEPCION" Then
                         Dg_Cabecera.Rows(contador).DefaultCellStyle.BackColor = Color.LightPink
@@ -863,6 +860,93 @@ Public Class GestionProgramacionDespacho
 
         End Try
     End Sub
+    Private Sub ComboBox1_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmb_serie.SelectionChangeCommitted
+        Try
+            If cmb_serie.Text.Trim = "TODAS" Then
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    Dg_Cabecera.Rows(i).Visible = True
+                Next
+            Else
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    Dim Cod As String = cmb_serie.Text.ToString.Trim + "*"
+                    If Dg_Cabecera.Rows(i).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim Like Cod Then
+                        Dg_Cabecera.Rows(i).Visible = True
+                    Else
+                        Dg_Cabecera.Rows(i).Visible = False
+                    End If
+                Next
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub cmb_estado_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmb_recep.SelectionChangeCommitted
+        Try
+            If cmb_recep.Text.Trim = "TODAS" Then
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    Dg_Cabecera.Rows(i).Visible = True
+                Next
+            Else
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    Dim Cod As String = "*" + cmb_recep.Text.ToString.Trim + "*"
+
+                    If Dg_Cabecera.Rows(i).Cells("ESTADO").EditedFormattedValue.ToString.Trim Like Cod Then
+                        Dg_Cabecera.Rows(i).Visible = True
+                    Else
+                        Dg_Cabecera.Rows(i).Visible = False
+                    End If
+                Next
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub cmb_limaprov_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmb_limaprov.SelectionChangeCommitted
+        Try
+            If cmb_limaprov.Text.Trim = "TODAS" Then
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    Dg_Cabecera.Rows(i).Visible = True
+                Next
+            Else
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    Dim Cod As String = "*" + cmb_limaprov.Text.ToString.Trim + "*"
+
+                    If Dg_Cabecera.Rows(i).Cells("LIMA_PROV").EditedFormattedValue.ToString.Trim Like Cod Then
+                        Dg_Cabecera.Rows(i).Visible = True
+                    Else
+                        Dg_Cabecera.Rows(i).Visible = False
+                    End If
+                Next
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub cmb_estado_SelectionChangeCommitted_1(sender As Object, e As EventArgs) Handles cmb_estado.SelectionChangeCommitted
+        Try
+            If cmb_estado.Text.Trim = "TODAS" Then
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    Dg_Cabecera.Rows(i).Visible = True
+                Next
+            Else
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    Dim Cod As String = "*" + cmb_estado.Text.ToString.Trim + "*"
+
+                    If Dg_Cabecera.Rows(i).Cells("SITUACION").EditedFormattedValue.ToString.Trim Like Cod Then
+                        Dg_Cabecera.Rows(i).Visible = True
+                    Else
+                        Dg_Cabecera.Rows(i).Visible = False
+                    End If
+                Next
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
     Public Function ExisteGuia(calma As String, ctd As String, cnumdoc As String) As Boolean
         Dim rp As Boolean = False
         Try
@@ -918,6 +1002,13 @@ Public Class GestionProgramacionDespacho
                     Dg_Cabecera.Rows(contador).Cells("DIRECCION_ENTREGA").Value = ExternoForm.txt_direccion.Text
                     Dg_Cabecera.Rows(contador).Cells("FISICO").Value = ExternoForm.fisico
                     Dg_Cabecera.Rows(contador).Cells("siteliq").Value = ExternoForm.idsiteliq
+                    Dg_Cabecera.Rows(contador).Cells("sitepick").Value = ExternoForm.idsitepick '' --- >
+                    Dg_Cabecera.Rows(contador).Cells("nombrepicking").Value = ExternoForm.nombrepicking
+                    Dg_Cabecera.Rows(contador).Cells("nombreliquidacion").Value = ExternoForm.nombreliquidacion
+
+
+                    Dg_Cabecera.Rows(contador).Cells("EstadoRuta").Value = ""
+                    Dg_Cabecera.Rows(contador).Cells("FECHA_RETORNO").Value = ""
 
                     Dg_Cabecera.Rows(contador).Cells("UBIGEO").Value = ""
                     Dg_Cabecera.Rows(contador).Cells("PROVINCIA").Value = ExternoForm.txt_provincia.Text
@@ -1086,10 +1177,10 @@ Public Class GestionProgramacionDespacho
         End Try
     End Sub
 
-    Public Function LlamarConfirmarRecepcion(idcosto As Integer, fisico As String, idsiteliq As Integer, idsitePicking As Integer) As Integer
+    Public Function LlamarConfirmarRecepcion(idcosto As Integer, fisico As String, idsiteliq As Integer, idsitePicking As Integer, Comentario As String) As Integer
         Dim RP As Integer = 0
         Try
-            RP = ObjAlmacen.RegistrarRecepcionGuiaDespacho(calma, ctd, cnumdoc, usr_id, idcosto, fisico, idsiteliq, idsitePicking)
+            RP = ObjAlmacen.RegistrarRecepcionGuiaDespacho(calma, ctd, cnumdoc, usr_id, idcosto, fisico, idsiteliq, idsitePicking, Comentario)
         Catch ex As Exception
             Throw ex
         End Try
@@ -1155,71 +1246,78 @@ Public Class GestionProgramacionDespacho
                 For Each RowPri As DataGridViewRow In Dg_Cabecera.Rows
                     If RowPri.Cells("ESTADO").Value.ToString.Trim = "RECEPCIONADO" Or RowPri.Cells("ESTADO").Value.ToString.Trim = "REPROGRAMADO" Then
                         If RowPri.Cells("MARCAR").EditedFormattedValue = True And RowPri.Cells("SITUACION").Value.ToString.Trim <> "ANULADO" Then
-                            'If RowPri.Cells("LIMA_PROV").Value.ToString.Trim = "LIMA" Then
-                            If ExisteEnNueva(RowPri.Cells("DESTINO").Value.ToString.Trim) = False Then
-                                Dim rowConsolidad As DataRow = dtConsolidar.NewRow
-                                For Each rowseg As DataGridViewRow In Dg_Cabecera.Rows
+                            If (RowPri.Cells("EstadoRuta").Value.ToString.Trim = "RE" And RowPri.Cells("FECHA_RETORNO").Value.ToString.Trim <> "") Or RowPri.Cells("EstadoRuta").Value.ToString.Trim = "" Then
+                                If ExisteEnNueva(RowPri.Cells("DESTINO").Value.ToString.Trim) = False Then
+                                    Dim rowConsolidad As DataRow = dtConsolidar.NewRow
+                                    For Each rowseg As DataGridViewRow In Dg_Cabecera.Rows
 
-                                    If RowPri.Cells("DESTINO").Value.ToString.Trim = rowseg.Cells("DESTINO").Value.ToString.Trim And rowseg.Cells("SITUACION").Value.ToString.Trim <> "ANULADO" And rowseg.Cells("MARCAR").EditedFormattedValue = True Then
-                                        If rowseg.Cells("ESTADO").Value.ToString.Trim = "RECEPCIONADO" Or rowseg.Cells("ESTADO").Value.ToString.Trim = "REPROGRAMADO" Then
-                                            Dim rowDetalle As DataRow = DtDetalleConsolidado.NewRow
-                                            totalimporte = totalimporte + rowseg.Cells("IMPORTE").Value
-                                            totalguias = totalguias + 1
-                                            totalvolumen = totalvolumen + rowseg.Cells("M3FIN").Value
-                                            rowConsolidad.Item("DESTINO") = RowPri.Cells("DESTINO").Value.ToString.Trim
-                                            rowConsolidad.Item("NOM_CLIENTE") = RowPri.Cells("NOM_CLIENTE").Value.ToString.Trim
-                                            rowConsolidad.Item("DIRECCION_ENTREGA") = RowPri.Cells("DIRECCION_ENTREGA").Value.ToString.Trim
-                                            rowConsolidad.Item("DISTRITO") = RowPri.Cells("DISTRITO").Value.ToString.Trim
-                                            rowConsolidad.Item("CANAL") = RowPri.Cells("CANAL").Value.ToString.Trim
-                                            rowConsolidad.Item("RUTA") = RowPri.Cells("RUTA").Value.ToString.Trim
-                                            rowConsolidad.Item("DETALLE") = RowPri.Cells("DETALLE").Value.ToString.Trim
-                                            rowConsolidad.Item("RESTRICCION") = RowPri.Cells("RESTRICCION").Value.ToString.Trim
-                                            rowConsolidad.Item("TIEMPOENTREGA") = RowPri.Cells("TIEMPOENTREGA").Value.ToString.Trim
-                                            rowConsolidad.Item("CONDICION") = RowPri.Cells("CONDICION").Value.ToString.Trim
-                                            rowConsolidad.Item("idcosto") = RowPri.Cells("idcosto").Value.ToString.Trim
-                                            rowConsolidad.Item("nombrecosto") = RowPri.Cells("NombreCosto").Value.ToString.Trim
+                                        If RowPri.Cells("DESTINO").Value.ToString.Trim = rowseg.Cells("DESTINO").Value.ToString.Trim And rowseg.Cells("SITUACION").Value.ToString.Trim <> "ANULADO" And rowseg.Cells("MARCAR").EditedFormattedValue = True Then
+                                            If rowseg.Cells("ESTADO").Value.ToString.Trim = "RECEPCIONADO" Or rowseg.Cells("ESTADO").Value.ToString.Trim = "REPROGRAMADO" Then
+                                                If (rowseg.Cells("EstadoRuta").Value.ToString.Trim = "RE" And rowseg.Cells("FECHA_RETORNO").Value.ToString.Trim <> "") Or rowseg.Cells("EstadoRuta").Value.ToString.Trim = "" Then
+                                                    Dim rowDetalle As DataRow = DtDetalleConsolidado.NewRow
+                                                    totalimporte = totalimporte + rowseg.Cells("IMPORTE").Value
+                                                    totalguias = totalguias + 1
+                                                    totalvolumen = totalvolumen + rowseg.Cells("M3FIN").Value
+                                                    rowConsolidad.Item("DESTINO") = RowPri.Cells("DESTINO").Value.ToString.Trim
+                                                    rowConsolidad.Item("NOM_CLIENTE") = RowPri.Cells("NOM_CLIENTE").Value.ToString.Trim
+                                                    rowConsolidad.Item("DIRECCION_ENTREGA") = RowPri.Cells("DIRECCION_ENTREGA").Value.ToString.Trim
+                                                    rowConsolidad.Item("DISTRITO") = RowPri.Cells("DISTRITO").Value.ToString.Trim
+                                                    rowConsolidad.Item("CANAL") = RowPri.Cells("CANAL").Value.ToString.Trim
+                                                    rowConsolidad.Item("RUTA") = RowPri.Cells("RUTA").Value.ToString.Trim
+                                                    rowConsolidad.Item("DETALLE") = RowPri.Cells("DETALLE").Value.ToString.Trim
+                                                    rowConsolidad.Item("RESTRICCION") = RowPri.Cells("RESTRICCION").Value.ToString.Trim
+                                                    rowConsolidad.Item("TIEMPOENTREGA") = RowPri.Cells("TIEMPOENTREGA").Value.ToString.Trim
+                                                    rowConsolidad.Item("CONDICION") = RowPri.Cells("CONDICION").Value.ToString.Trim
+                                                    rowConsolidad.Item("idcosto") = RowPri.Cells("idcosto").Value.ToString.Trim
+                                                    rowConsolidad.Item("nombrecosto") = RowPri.Cells("NombreCosto").Value.ToString.Trim
 
-                                            'llenar detalle'
-                                            rowDetalle.Item("idconsolidado") = idconsolidado
-                                            rowDetalle.Item("IMPORTE") = rowseg.Cells("IMPORTE").Value
-                                            rowDetalle.Item("NRO_GUIA") = rowseg.Cells("NRO_GUIA").Value
-                                            rowDetalle.Item("NOM_CLIENTE") = rowseg.Cells("NOM_CLIENTE").Value
-                                            rowDetalle.Item("DIRECCION_ENTREGA") = rowseg.Cells("DIRECCION_ENTREGA").Value
-                                            rowDetalle.Item("CONDICION") = rowseg.Cells("CONDICION").Value
-                                            rowDetalle.Item("M3UN") = rowseg.Cells("M3FIN").Value
-                                            rowDetalle.Item("TIEMPO") = rowseg.Cells("TIEMPOENTREGA").Value
-                                            rowDetalle.Item("REPRESENTANTE") = rowseg.Cells("REPRESENTANTE").Value
-                                            rowDetalle.Item("RESTRICCION") = rowseg.Cells("RESTRICCION").Value
-                                            rowDetalle.Item("CTD") = rowseg.Cells("C5_CTD").Value
-                                            rowDetalle.Item("CALMA") = rowseg.Cells("C5_CALMA").Value
-                                            rowDetalle.Item("idcosto") = rowseg.Cells("idcosto").Value
-                                            rowDetalle.Item("nombrecosto") = rowseg.Cells("NombreCosto").Value
-                                            rowDetalle.Item("FechaRecepcion") = rowseg.Cells("FECHAREPCECION").Value
-                                            rowDetalle.Item("HoraRecepcion") = rowseg.Cells("HORARECEPCION").Value
-                                            rowDetalle.Item("DEPARTAMENTO") = rowseg.Cells("DEPARTAMENTO").Value
-                                            rowDetalle.Item("PROVINCIA") = rowseg.Cells("PROVINCIA").Value
-                                            rowDetalle.Item("DISTRITO") = rowseg.Cells("DISTRITO").Value
-                                            rowDetalle.Item("FISICO") = rowseg.Cells("FISICO").Value
-                                            rowDetalle.Item("siteliq") = rowseg.Cells("siteliq").Value
-                                            DtDetalleConsolidado.Rows.Add(rowDetalle)
+                                                    'llenar detalle'
+                                                    rowDetalle.Item("idconsolidado") = idconsolidado
+                                                    rowDetalle.Item("NOMBRECOSTO") = rowseg.Cells("NombreCosto").Value.ToString.Trim
+                                                    rowDetalle.Item("IMPORTE") = rowseg.Cells("IMPORTE").Value
+                                                    rowDetalle.Item("NRO_GUIA") = rowseg.Cells("NRO_GUIA").Value
+                                                    rowDetalle.Item("NOM_CLIENTE") = rowseg.Cells("NOM_CLIENTE").Value
+                                                    rowDetalle.Item("DIRECCION_ENTREGA") = rowseg.Cells("DIRECCION_ENTREGA").Value
+                                                    rowDetalle.Item("CONDICION") = rowseg.Cells("CONDICION").Value
+                                                    rowDetalle.Item("M3UN") = rowseg.Cells("M3FIN").Value
+                                                    rowDetalle.Item("TIEMPO") = rowseg.Cells("TIEMPOENTREGA").Value
+                                                    rowDetalle.Item("REPRESENTANTE") = rowseg.Cells("REPRESENTANTE").Value
+                                                    rowDetalle.Item("RESTRICCION") = rowseg.Cells("RESTRICCION").Value
+                                                    rowDetalle.Item("CTD") = rowseg.Cells("C5_CTD").Value
+                                                    rowDetalle.Item("CALMA") = rowseg.Cells("C5_CALMA").Value
+                                                    rowDetalle.Item("idcosto") = rowseg.Cells("idcosto").Value
+                                                    rowDetalle.Item("nombrecosto") = rowseg.Cells("NombreCosto").Value
+                                                    rowDetalle.Item("FechaRecepcion") = rowseg.Cells("FECHAREPCECION").Value
+                                                    rowDetalle.Item("HoraRecepcion") = rowseg.Cells("HORARECEPCION").Value
+                                                    rowDetalle.Item("DEPARTAMENTO") = rowseg.Cells("DEPARTAMENTO").Value
+                                                    rowDetalle.Item("PROVINCIA") = rowseg.Cells("PROVINCIA").Value
+                                                    rowDetalle.Item("DISTRITO") = rowseg.Cells("DISTRITO").Value
+                                                    rowDetalle.Item("FISICO") = rowseg.Cells("FISICO").Value
+                                                    rowDetalle.Item("siteliq") = rowseg.Cells("siteliq").Value
+                                                    rowDetalle.Item("sitepick") = rowseg.Cells("sitepick").Value
+                                                    rowDetalle.Item("CANAL") = rowseg.Cells("CANAL").Value
+                                                    rowDetalle.Item("LIMA_PROV") = rowseg.Cells("LIMA_PROV").Value
+
+                                                    DtDetalleConsolidado.Rows.Add(rowDetalle)
+                                                End If
+                                            End If
                                         End If
-                                    End If
-                                Next
+                                    Next
 
-                                rowConsolidad.Item("TOTALIMPORTE") = totalimporte
-                                rowConsolidad.Item("TOTALMETROSCUBICOS") = totalvolumen
-                                rowConsolidad.Item("CANTIDADGUIAS") = totalguias
-                                If rowConsolidad.Item("RESTRICCION").ToString.Trim = "Cita - TODO EL DIA" Then
-                                    rowConsolidad.Item("RUTA") = "INDEPENDIENTE"
+                                    rowConsolidad.Item("TOTALIMPORTE") = totalimporte
+                                    rowConsolidad.Item("TOTALMETROSCUBICOS") = totalvolumen
+                                    rowConsolidad.Item("CANTIDADGUIAS") = totalguias
+                                    If rowConsolidad.Item("RESTRICCION").ToString.Trim = "Cita - TODO EL DIA" Then
+                                        rowConsolidad.Item("RUTA") = "INDEPENDIENTE"
+                                    End If
+                                    rowConsolidad.Item("idconsolidado") = idconsolidado
+                                    dtConsolidar.Rows.Add(rowConsolidad)
+                                    totalimporte = 0
+                                    totalvolumen = 0
+                                    totalguias = 0
+                                    idconsolidado = idconsolidado + 1
                                 End If
-                                rowConsolidad.Item("idconsolidado") = idconsolidado
-                                dtConsolidar.Rows.Add(rowConsolidad)
-                                totalimporte = 0
-                                totalvolumen = 0
-                                totalguias = 0
-                                idconsolidado = idconsolidado + 1
                             End If
-                            'End If
                         End If
                     End If
                 Next
@@ -1242,21 +1340,22 @@ Public Class GestionProgramacionDespacho
 
     Private Sub txt_numero_TextChanged(sender As Object, e As EventArgs) Handles txt_numero.TextChanged
         Try
-            Buscar()
+            If txt_numero.Text <> "" Then
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    Dim Cod As String = "*" + txt_numero.Text.Trim + "*"
+                    If Dg_Cabecera.Rows(i).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim Like Cod Then
+                        Dg_Cabecera.Rows(i).Visible = True
+                    Else
+                        Dg_Cabecera.Rows(i).Visible = False
+                    End If
+                Next
+            Else
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    Dg_Cabecera.Rows(i).Visible = True
+                Next
+            End If
         Catch ex As Exception
 
-        End Try
-    End Sub
-
-    Public Sub Buscar()
-        Dim dtbusqueda As New DataTable
-        Try
-            Dim stringfiltro As String = ""
-            stringfiltro = String.Format("NRO_GUIA Like '%{0}%' ", txt_numero.Text)
-            dtcabecera2.DefaultView.RowFilter = stringfiltro
-        Catch ex As Exception
-            Throw ex
-            MsgBox(Constantes.MensajeErrorServer, MsgBoxStyle.Critical)
         End Try
     End Sub
 

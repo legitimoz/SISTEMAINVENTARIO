@@ -300,6 +300,7 @@ Public Class GestionPedidoSalida
                                 If posiciones.Count > 0 Then
                                     RowDetalleReporte.Item("Posicion1") = posiciones.ElementAt(0)
                                     RowDetalleReporte.Item("Posicion2") = posiciones.ElementAt(1)
+                                    RowDetalleReporte.Item("Posicion3") = posiciones.ElementAt(2)
                                 End If
                                 totalvolumen = totalvolumen + rowDetalle.Item("VOLUMEN")
                                 DtDetalleReporte.Rows.Add(RowDetalleReporte)
@@ -319,7 +320,7 @@ Public Class GestionPedidoSalida
                             If DtDetalleReporte.Rows.Count > 0 Then
                                 Dim reporte As New Demo
                                 DtDetalleReporte.TableName = "DetalleHojaPicking"
-                                reporte.ReportePicking("HojaPicking.rdlc", DtDetalleReporte, "", F5_CNUMPEDM, nombreempresa, RUC, Direccion, logooperador, color, FechaPedidoM, clienterazonM, rucclienteM, direccionClienteM, codalmacenM, DtDetalleReporte.Rows.Count, totalvolumen)
+                                reporte.ReportePicking("HojaPicking.rdlc", DtDetalleReporte, "", F5_CNUMPEDM, nombreempresa, RUC, Direccion, logooperador, color, FechaPedidoM, clienterazonM, rucclienteM, direccionClienteM, codalmacenM, DtDetalleReporte.Rows.Count, totalvolumen, "")
                             End If
 
                         End If

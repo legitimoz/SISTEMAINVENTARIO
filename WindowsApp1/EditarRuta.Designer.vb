@@ -63,6 +63,14 @@ Partial Class EditarRuta
         Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ProgressColumn1 = New WindowsApp1.ProgressColumn()
+        Me.ProgressColumn2 = New WindowsApp1.ProgressColumn()
+        Me.ProgressColumn3 = New WindowsApp1.ProgressColumn()
+        Me.DataGridViewTextBoxColumn18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn21 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Orden = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GUIA = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CTD = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ALMACEN = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -87,6 +95,9 @@ Partial Class EditarRuta
         Me.DISTRITO = New WindowsApp1.ProgressColumn()
         Me.FISICO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.siteliq = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.sitepick = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CANAL = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LIMA_PROV = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.Dg_Detalle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -97,7 +108,7 @@ Partial Class EditarRuta
         Me.Dg_Detalle.AllowUserToAddRows = False
         Me.Dg_Detalle.BackgroundColor = System.Drawing.Color.White
         Me.Dg_Detalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Dg_Detalle.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GUIA, Me.CTD, Me.ALMACEN, Me.Cliente, Me.Direccion, Me.Bultos, Me.Peso, Me.TiempoGuia, Me.TipoRuta, Me.VoluemnUn, Me.RestriccionUn, Me.ImporteUn, Me.Condicion, Me.Representante, Me.idcosto, Me.nombrecosto, Me.FECHARECEPCION, Me.HORARECEPCION, Me.SITE, Me.DEPARTAMENTO, Me.PROVINCIA, Me.DISTRITO, Me.FISICO, Me.siteliq})
+        Me.Dg_Detalle.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Orden, Me.GUIA, Me.CTD, Me.ALMACEN, Me.Cliente, Me.Direccion, Me.Bultos, Me.Peso, Me.TiempoGuia, Me.TipoRuta, Me.VoluemnUn, Me.RestriccionUn, Me.ImporteUn, Me.Condicion, Me.Representante, Me.idcosto, Me.nombrecosto, Me.FECHARECEPCION, Me.HORARECEPCION, Me.SITE, Me.DEPARTAMENTO, Me.PROVINCIA, Me.DISTRITO, Me.FISICO, Me.siteliq, Me.sitepick, Me.CANAL, Me.LIMA_PROV})
         Me.Dg_Detalle.Location = New System.Drawing.Point(12, 147)
         Me.Dg_Detalle.Name = "Dg_Detalle"
         Me.Dg_Detalle.Size = New System.Drawing.Size(943, 288)
@@ -167,7 +178,6 @@ Partial Class EditarRuta
         Me.cmb_tipoenvio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmb_tipoenvio.DropDownWidth = 200
         Me.cmb_tipoenvio.FormattingEnabled = True
-        Me.cmb_tipoenvio.Items.AddRange(New Object() {"TODOS", "EXCLUSIVO", "CONSOLIDADO"})
         Me.cmb_tipoenvio.Location = New System.Drawing.Point(407, 8)
         Me.cmb_tipoenvio.Name = "cmb_tipoenvio"
         Me.cmb_tipoenvio.Size = New System.Drawing.Size(190, 21)
@@ -499,6 +509,55 @@ Partial Class EditarRuta
         Me.DataGridViewTextBoxColumn17.Name = "DataGridViewTextBoxColumn17"
         Me.DataGridViewTextBoxColumn17.Visible = False
         '
+        'ProgressColumn1
+        '
+        Me.ProgressColumn1.HeaderText = "DEPARTAMENTO"
+        Me.ProgressColumn1.Name = "ProgressColumn1"
+        Me.ProgressColumn1.Visible = False
+        '
+        'ProgressColumn2
+        '
+        Me.ProgressColumn2.HeaderText = "PROVINCIA"
+        Me.ProgressColumn2.Name = "ProgressColumn2"
+        Me.ProgressColumn2.Visible = False
+        '
+        'ProgressColumn3
+        '
+        Me.ProgressColumn3.HeaderText = "DISTRITO"
+        Me.ProgressColumn3.Name = "ProgressColumn3"
+        Me.ProgressColumn3.Visible = False
+        '
+        'DataGridViewTextBoxColumn18
+        '
+        Me.DataGridViewTextBoxColumn18.HeaderText = "Column1"
+        Me.DataGridViewTextBoxColumn18.Name = "DataGridViewTextBoxColumn18"
+        Me.DataGridViewTextBoxColumn18.Visible = False
+        '
+        'DataGridViewTextBoxColumn19
+        '
+        Me.DataGridViewTextBoxColumn19.HeaderText = "Column1"
+        Me.DataGridViewTextBoxColumn19.Name = "DataGridViewTextBoxColumn19"
+        Me.DataGridViewTextBoxColumn19.Visible = False
+        '
+        'DataGridViewTextBoxColumn20
+        '
+        Me.DataGridViewTextBoxColumn20.HeaderText = "sitepick"
+        Me.DataGridViewTextBoxColumn20.Name = "DataGridViewTextBoxColumn20"
+        Me.DataGridViewTextBoxColumn20.Visible = False
+        '
+        'DataGridViewTextBoxColumn21
+        '
+        Me.DataGridViewTextBoxColumn21.HeaderText = "CANAL"
+        Me.DataGridViewTextBoxColumn21.Name = "DataGridViewTextBoxColumn21"
+        Me.DataGridViewTextBoxColumn21.Visible = False
+        '
+        'Orden
+        '
+        Me.Orden.HeaderText = "N° Orden"
+        Me.Orden.Name = "Orden"
+        Me.Orden.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Orden.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
         'GUIA
         '
         Me.GUIA.FillWeight = 77.77779!
@@ -568,7 +627,6 @@ Partial Class EditarRuta
         '
         Me.RestriccionUn.HeaderText = "Restriccion"
         Me.RestriccionUn.Name = "RestriccionUn"
-        Me.RestriccionUn.Visible = False
         '
         'ImporteUn
         '
@@ -645,6 +703,24 @@ Partial Class EditarRuta
         Me.siteliq.Name = "siteliq"
         Me.siteliq.Visible = False
         '
+        'sitepick
+        '
+        Me.sitepick.HeaderText = "sitepick"
+        Me.sitepick.Name = "sitepick"
+        Me.sitepick.Visible = False
+        '
+        'CANAL
+        '
+        Me.CANAL.HeaderText = "CANAL"
+        Me.CANAL.Name = "CANAL"
+        Me.CANAL.Visible = False
+        '
+        'LIMA_PROV
+        '
+        Me.LIMA_PROV.HeaderText = "LIMA_PROV"
+        Me.LIMA_PROV.Name = "LIMA_PROV"
+        Me.LIMA_PROV.Visible = False
+        '
         'EditarRuta
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -707,6 +783,14 @@ Partial Class EditarRuta
     Friend WithEvents txt_comentario As TextBox
     Friend WithEvents DataGridViewTextBoxColumn16 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn17 As DataGridViewTextBoxColumn
+    Friend WithEvents ProgressColumn1 As ProgressColumn
+    Friend WithEvents ProgressColumn2 As ProgressColumn
+    Friend WithEvents ProgressColumn3 As ProgressColumn
+    Friend WithEvents DataGridViewTextBoxColumn18 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn19 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn20 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn21 As DataGridViewTextBoxColumn
+    Friend WithEvents Orden As DataGridViewTextBoxColumn
     Friend WithEvents GUIA As DataGridViewTextBoxColumn
     Friend WithEvents CTD As DataGridViewTextBoxColumn
     Friend WithEvents ALMACEN As DataGridViewTextBoxColumn
@@ -731,4 +815,7 @@ Partial Class EditarRuta
     Friend WithEvents DISTRITO As ProgressColumn
     Friend WithEvents FISICO As DataGridViewTextBoxColumn
     Friend WithEvents siteliq As DataGridViewTextBoxColumn
+    Friend WithEvents sitepick As DataGridViewTextBoxColumn
+    Friend WithEvents CANAL As DataGridViewTextBoxColumn
+    Friend WithEvents LIMA_PROV As DataGridViewTextBoxColumn
 End Class

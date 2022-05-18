@@ -33,6 +33,8 @@ Partial Class ComplementoDespacho
         Me.cmb_site = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.cmb_SitePicking = New System.Windows.Forms.ComboBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -69,7 +71,7 @@ Partial Class ComplementoDespacho
         Me.cmdAceptar.IconFont = FontAwesome.Sharp.IconFont.Solid
         Me.cmdAceptar.IconSize = 16
         Me.cmdAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.cmdAceptar.Location = New System.Drawing.Point(225, 149)
+        Me.cmdAceptar.Location = New System.Drawing.Point(225, 197)
         Me.cmdAceptar.Margin = New System.Windows.Forms.Padding(4)
         Me.cmdAceptar.Name = "cmdAceptar"
         Me.cmdAceptar.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
@@ -134,16 +136,35 @@ Partial Class ComplementoDespacho
         '
         Me.cmb_SitePicking.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmb_SitePicking.FormattingEnabled = True
-        Me.cmb_SitePicking.Location = New System.Drawing.Point(113, 98)
+        Me.cmb_SitePicking.Location = New System.Drawing.Point(114, 98)
         Me.cmb_SitePicking.Name = "cmb_SitePicking"
-        Me.cmb_SitePicking.Size = New System.Drawing.Size(212, 21)
+        Me.cmb_SitePicking.Size = New System.Drawing.Size(211, 21)
         Me.cmb_SitePicking.TabIndex = 153
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(12, 128)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(66, 13)
+        Me.Label5.TabIndex = 156
+        Me.Label5.Text = "Comentario :"
+        '
+        'RichTextBox1
+        '
+        Me.RichTextBox1.Location = New System.Drawing.Point(114, 128)
+        Me.RichTextBox1.Name = "RichTextBox1"
+        Me.RichTextBox1.Size = New System.Drawing.Size(211, 62)
+        Me.RichTextBox1.TabIndex = 157
+        Me.RichTextBox1.Text = ""
         '
         'ComplementoDespacho
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(338, 188)
+        Me.ClientSize = New System.Drawing.Size(338, 236)
+        Me.Controls.Add(Me.RichTextBox1)
+        Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.cmb_SitePicking)
         Me.Controls.Add(Me.Label3)
@@ -173,4 +194,6 @@ Partial Class ComplementoDespacho
     Friend WithEvents cmb_site As ComboBox
     Friend WithEvents Label4 As Label
     Friend WithEvents cmb_SitePicking As ComboBox
+    Friend WithEvents RichTextBox1 As RichTextBox
+    Friend WithEvents Label5 As Label
 End Class

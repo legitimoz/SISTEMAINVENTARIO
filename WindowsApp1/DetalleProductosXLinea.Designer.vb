@@ -31,6 +31,7 @@ Partial Class DetalleProductosXLinea
         Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.savedialog_Excel = New System.Windows.Forms.SaveFileDialog()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.lbl_Cabecera = New System.Windows.Forms.Label()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.cmdGenerarExcel = New System.Windows.Forms.ToolStripButton()
@@ -42,7 +43,6 @@ Partial Class DetalleProductosXLinea
         Me.LOTE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CANTIDAD = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CANT_MESES = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.lbl_Cabecera = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
@@ -54,7 +54,7 @@ Partial Class DetalleProductosXLinea
         Me.Panel1.Controls.Add(Me.Dg_Detalle)
         Me.Panel1.Location = New System.Drawing.Point(0, 88)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(954, 264)
+        Me.Panel1.Size = New System.Drawing.Size(954, 345)
         Me.Panel1.TabIndex = 87
         '
         'DataGridViewTextBoxColumn1
@@ -96,6 +96,17 @@ Partial Class DetalleProductosXLinea
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(954, 82)
         Me.Panel2.TabIndex = 88
+        '
+        'lbl_Cabecera
+        '
+        Me.lbl_Cabecera.AutoSize = True
+        Me.lbl_Cabecera.Font = New System.Drawing.Font("Century Gothic", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_Cabecera.ForeColor = System.Drawing.Color.Blue
+        Me.lbl_Cabecera.Location = New System.Drawing.Point(13, 44)
+        Me.lbl_Cabecera.Name = "lbl_Cabecera"
+        Me.lbl_Cabecera.Size = New System.Drawing.Size(433, 28)
+        Me.lbl_Cabecera.TabIndex = 91
+        Me.lbl_Cabecera.Text = "PRODUCTOS PROXIMOS A VENCER _ "
         '
         'ToolStrip1
         '
@@ -158,8 +169,8 @@ Partial Class DetalleProductosXLinea
         Me.Dg_Detalle.RowHeadersVisible = False
         Me.Dg_Detalle.RowTemplate.Height = 24
         Me.Dg_Detalle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.Dg_Detalle.Size = New System.Drawing.Size(954, 264)
-        Me.Dg_Detalle.TabIndex = 28
+        Me.Dg_Detalle.Size = New System.Drawing.Size(954, 345)
+        Me.Dg_Detalle.TabIndex = 29
         '
         'CODIGO
         '
@@ -191,22 +202,11 @@ Partial Class DetalleProductosXLinea
         Me.CANT_MESES.Name = "CANT_MESES"
         Me.CANT_MESES.Width = 136
         '
-        'lbl_Cabecera
-        '
-        Me.lbl_Cabecera.AutoSize = True
-        Me.lbl_Cabecera.Font = New System.Drawing.Font("Century Gothic", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_Cabecera.ForeColor = System.Drawing.Color.Blue
-        Me.lbl_Cabecera.Location = New System.Drawing.Point(13, 44)
-        Me.lbl_Cabecera.Name = "lbl_Cabecera"
-        Me.lbl_Cabecera.Size = New System.Drawing.Size(433, 28)
-        Me.lbl_Cabecera.TabIndex = 91
-        Me.lbl_Cabecera.Text = "PRODUCTOS PROXIMOS A VENCER _ "
-        '
         'DetalleProductosXLinea
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(954, 354)
+        Me.ClientSize = New System.Drawing.Size(954, 433)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
         Me.MaximizeBox = False

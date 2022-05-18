@@ -1,9 +1,10 @@
-﻿Imports System.Configuration
+﻿Imports System.ComponentModel
+Imports System.Configuration
 Imports System.Text.RegularExpressions
 Imports Nordic.Bl.Be
 
 Public Class EditarRuta
-    Public dtDetalleRuta As New DataTable
+    Public dtDetalleRuta, dt_tipoenvio As New DataTable
     Public Grabado As Boolean = False
     Private dt_vehiculos As New DataTable
     Public volumen As Decimal, tiempo As Decimal, importe As Decimal, totalpeso As Decimal = 0
@@ -37,20 +38,22 @@ Public Class EditarRuta
     Private Sub CargaInicial()
         CargarSite()
 
-        cmb_tipoenvio.SelectedIndex = 0
+        '  cmb_tipoenvio.SelectedIndex = 0
         idsite = CType(ConfigurationManager.AppSettings("CodigoSite").ToString.Trim, Integer)
         dtruta = Estructura.HojaDeRuta
         Try
             txt_volumen.Text = Math.Round(volumen, 2).ToString + " M3"
             txt_tiempo.Text = Math.Round(tiempo, 2).ToString + " Horas"
-            txt_importe.Text = "S/. " + Math.Round(importe, 2).ToString
+            txt_importe.Text = "S/. " + importe.ToString
             txt_totalpeso.Text = "0 KG."
             Cargar_Transportistas()
             ListarVehiculos()
+            ListarTipoEnvioRuta()
             Dim contador As Integer = 0
             If dtDetalleRuta.Rows.Count > 0 Then
                 For Each RowRuta As DataRow In dtDetalleRuta.Rows
                     Dg_Detalle.Rows.Add()
+                    Dg_Detalle.Rows(contador).Cells("Orden").Value = ""
                     Dg_Detalle.Rows(contador).Cells("GUIA").Value = RowRuta.Item("NRO_GUIA").ToString.Trim
                     Dg_Detalle.Rows(contador).Cells("CTD").Value = RowRuta.Item("CTD").ToString.Trim
                     Dg_Detalle.Rows(contador).Cells("ALMACEN").Value = RowRuta.Item("CALMA").ToString.Trim
@@ -73,6 +76,11 @@ Public Class EditarRuta
                     Dg_Detalle.Rows(contador).Cells("DISTRITO").Value = RowRuta.Item("DISTRITO").ToString
                     Dg_Detalle.Rows(contador).Cells("FISICO").Value = RowRuta.Item("FISICO").ToString
                     Dg_Detalle.Rows(contador).Cells("siteliq").Value = RowRuta.Item("siteliq").ToString
+                    Dg_Detalle.Rows(contador).Cells("sitepick").Value = RowRuta.Item("sitepick").ToString
+                    Dg_Detalle.Rows(contador).Cells("CANAL").Value = RowRuta.Item("CANAL").ToString
+                    Dg_Detalle.Rows(contador).Cells("LIMA_PROV").Value = RowRuta.Item("LIMA_PROV").ToString
+
+
                     contador = contador + 1
                 Next
             End If
@@ -99,6 +107,7 @@ Public Class EditarRuta
 
     Private Sub cmdAceptar_Click(sender As Object, e As EventArgs) Handles cmdAceptar.Click
         Try
+            Dg_Detalle.Sort(Dg_Detalle.Columns(0), ListSortDirection.Ascending)
             Dim _BeDetGuiaRutaDetalle As BeDetGuiaRutaDetalle
             Dim _BeCabGuiaRuta As New BeCabGuiaRuta
             Dim _listadoDetalleGuia As New List(Of BeDetGuiaRutaDetalle)
@@ -141,7 +150,9 @@ Public Class EditarRuta
                     _BeDetGuiaRutaDetalle.pr_distrito = Dg_Detalle.Rows(i).Cells.Item("DISTRITO").Value
                     _BeDetGuiaRutaDetalle.pr_fisico = Dg_Detalle.Rows(i).Cells.Item("FISICO").Value
                     _BeDetGuiaRutaDetalle.pr_idsiteliq = Dg_Detalle.Rows(i).Cells.Item("siteliq").Value
-
+                    _BeDetGuiaRutaDetalle.pr_idsitepicking = Dg_Detalle.Rows(i).Cells.Item("sitepick").Value
+                    _BeDetGuiaRutaDetalle.pr_canal = Dg_Detalle.Rows(i).Cells.Item("CANAL").Value
+                    _BeDetGuiaRutaDetalle.pr_nroorden = Dg_Detalle.Rows(i).Cells.Item("Orden").Value
                     _listadoDetalleGuia.Add(_BeDetGuiaRutaDetalle)
                 Next
 
@@ -163,7 +174,7 @@ Public Class EditarRuta
                     If flagAccion = "Nuevo" Then
                         MessageBox.Show("Se Registro la Ruta satisfactoriamente !", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         Grabado = True
-                        ImprimirRuta()
+                        ImprimirRuta(idRuta)
                         Me.Close()
                     End If
                 Else
@@ -179,7 +190,7 @@ Public Class EditarRuta
         End Try
     End Sub
 
-    Public Sub ImprimirRuta()
+    Public Sub ImprimirRuta(idruta As String)
         Dim rowRuta As DataRow
         Dim nombreempresa, RUC, Direccion As String
         Dim totalvolumen As Decimal = 0
@@ -218,22 +229,23 @@ Public Class EditarRuta
             repartidor = cbxTransportista.Text.ToString
             movilidad = cmb_tipotransporte.Text.ToString
             tipoEnvio = cmb_tipoenvio.Text.ToString
-            Codigo = nombreRutaCab.ToString.Trim + " - " + DateTime.Now.Day.ToString + "/" + DateTime.Now.Month.ToString + "/" + DateTime.Now.Year.ToString
+            Codigo = idruta.ToString.Trim + " - " + DateTime.Now.Day.ToString + "/" + DateTime.Now.Month.ToString + "/" + DateTime.Now.Year.ToString
             dtruta.Rows.Clear()
-            For Each DetalleCon As DataRow In dtDetalleRuta.Rows
+
+            For Each DetalleCon As DataGridViewRow In Dg_Detalle.Rows
                 rowRuta = dtruta.NewRow
-                rowRuta.Item("Numero") = dtruta.Rows.Count + 1.ToString
-                rowRuta.Item("Guia") = DetalleCon.Item("NRO_GUIA")
-                rowRuta.Item("Cliente") = DetalleCon.Item("NOM_CLIENTE")
-                rowRuta.Item("Restriccion") = DetalleCon.Item("RESTRICCION")
-                rowRuta.Item("Direccion") = DetalleCon.Item("DIRECCION_ENTREGA")
-                rowRuta.Item("Condicion") = DetalleCon.Item("CONDICION")
-                'rowRuta.Item("Importe") = CType(DetalleCon.Item("IMPORTE"), Decimal)
-                rowRuta.Item("Importe") = CType(0, Decimal)
-                rowRuta.Item("Representante") = DetalleCon.Item("REPRESENTANTE")
-                rowRuta.Item("Volumen") = Math.Round(CType(DetalleCon.Item("M3UN"), Decimal), 3)
-                rowRuta.Item("TiempoEntrega") = DetalleCon.Item("TIEMPO")
-                rowRuta.Item("TipoRuta") = ObtenerTipoRuta(DetalleCon.Item("NRO_GUIA").ToString.Trim)
+                rowRuta.Item("Numero") = DetalleCon.Cells("Orden").Value
+                rowRuta.Item("Guia") = DetalleCon.Cells("GUIA").Value
+                rowRuta.Item("Cliente") = DetalleCon.Cells("Cliente").Value
+                rowRuta.Item("Restriccion") = DetalleCon.Cells("RestriccionUn").Value
+                rowRuta.Item("Direccion") = DetalleCon.Cells("Direccion").Value
+                rowRuta.Item("Condicion") = DetalleCon.Cells("Condicion").Value
+                rowRuta.Item("Importe") = DetalleCon.Cells("nombrecosto").Value
+                'rowRuta.Item("Importe") = CType(0, Decimal)
+                rowRuta.Item("Representante") = DetalleCon.Cells("Representante").Value
+                rowRuta.Item("Volumen") = Math.Round(CType(DetalleCon.Cells("VoluemnUn").Value, Decimal), 3)
+                rowRuta.Item("TiempoEntrega") = DetalleCon.Cells("TiempoGuia").Value
+                rowRuta.Item("TipoRuta") = ""
                 dtruta.Rows.Add(rowRuta)
             Next
             Dim reporte As New Demo
@@ -289,25 +301,66 @@ Public Class EditarRuta
         End Try
     End Sub
 
+    Public Sub ListarTipoEnvioRuta()
+        Try
+            ' Dim dtretorno As New DataTable
+
+            dt_tipoenvio = AlmacenObj.SP_CSE_LISTARTIPOENVIORUTA()
+            If dt_tipoenvio.Rows.Count > 0 Then
+                cmb_tipoenvio.DataSource = dt_tipoenvio
+                cmb_tipoenvio.DisplayMember = "descripcion"
+                cmb_tipoenvio.ValueMember = "tip_idtipo"
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
     Private Sub Dg_Detalle_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles Dg_Detalle.CellEndEdit
         Try
             If e.RowIndex >= 0 Then
-                If e.ColumnIndex = 6 Then
+                If e.ColumnIndex = 7 Then
                     ErrorProvider1.SetError(Dg_Detalle, "")
-                    If ValidarDecimal(Dg_Detalle.Rows(e.RowIndex).Cells(6).EditedFormattedValue.ToString) = False Then
+                    If ValidarDecimal(Dg_Detalle.Rows(e.RowIndex).Cells("Peso").EditedFormattedValue.ToString) = False Then
                         ErrorProvider1.SetError(Dg_Detalle, "Peso debe valor numérico")
-                        Dg_Detalle.Rows(e.RowIndex).Cells(6).Value = 0
+                        Dg_Detalle.Rows(e.RowIndex).Cells("Peso").Value = 0
                     Else
-                        Dim Nueva As Decimal = CType(Dg_Detalle.Rows(e.RowIndex).Cells(6).EditedFormattedValue, Decimal)
+                        Dim Nueva As Decimal = CType(Dg_Detalle.Rows(e.RowIndex).Cells("Peso").EditedFormattedValue, Decimal)
                         If Nueva < 0 Then
                             ErrorProvider1.SetError(Dg_Detalle, "Peso debe ser mayor o igual 0")
-                            Dg_Detalle.Rows(e.RowIndex).Cells(6).Value = 0
+                            Dg_Detalle.Rows(e.RowIndex).Cells("Peso").Value = 0
                         Else
                             totalpeso = 0
                             For Each dgDet As DataGridViewRow In Dg_Detalle.Rows
-                                totalpeso = totalpeso + CType(dgDet.Cells(6).Value, Decimal)
+                                totalpeso = totalpeso + CType(dgDet.Cells("Peso").Value, Decimal)
                             Next
                             txt_totalpeso.Text = totalpeso.ToString + " KG."
+                        End If
+                    End If
+                End If
+                If e.ColumnIndex = 0 Then
+                    ErrorProvider1.SetError(Dg_Detalle, "")
+                    If Dg_Detalle.Rows(e.RowIndex).Cells("Orden").EditedFormattedValue Is Nothing Then
+                        ErrorProvider1.SetError(Dg_Detalle, "Debe Ingresar el Orden de Reparto")
+                        Dg_Detalle.Rows(e.RowIndex).Cells("Orden").Value = ""
+                    Else
+                        If ValidarNumerico(Dg_Detalle.Rows(e.RowIndex).Cells("Orden").EditedFormattedValue) = False Then
+                            ErrorProvider1.SetError(Dg_Detalle, "Nro Orden debe ser un dato numerico")
+                            Dg_Detalle.Rows(e.RowIndex).Cells("Orden").Value = ""
+                        Else
+                            If CType(Dg_Detalle.Rows(e.RowIndex).Cells("Orden").EditedFormattedValue, Integer) <= 0 Then
+                                ErrorProvider1.SetError(Dg_Detalle, "Nro Orden debe ser mayor a 0")
+                                Dg_Detalle.Rows(e.RowIndex).Cells("Orden").Value = ""
+                            Else
+                                If Dg_Detalle.Rows.Count > 1 Then
+                                    For Each DgVal As DataGridViewRow In Dg_Detalle.Rows
+                                        If CType(DgVal.Cells("Orden").Value.ToString.Trim, Integer) = CType(Dg_Detalle.Rows(e.RowIndex).Cells("Orden").Value.ToString.Trim, Integer) And DgVal.Cells("GUIA").Value.ToString.Trim <> Dg_Detalle.Rows(e.RowIndex).Cells("GUIA").Value.ToString.Trim Then
+                                            ErrorProvider1.SetError(Dg_Detalle, "Nro Orden ya fue asignada a otra guia")
+                                            Dg_Detalle.Rows(e.RowIndex).Cells("Orden").Value = ""
+                                        End If
+                                    Next
+                                End If
+                            End If
                         End If
                     End If
                 End If
@@ -322,6 +375,19 @@ Public Class EditarRuta
         Return retorno
     End Function
 
+
+    Public Function ValidarNumerico(Dato As String) As Boolean
+        Dim canConvert As Boolean
+        Try
+            Dim convertido As Integer
+            canConvert = Integer.TryParse(Dato, convertido)
+
+        Catch ex As Exception
+
+        End Try
+        Return canConvert
+    End Function
+
     Private Function ValidarAceptar() As Boolean
         Dim rp As Boolean = True
 
@@ -334,13 +400,14 @@ Public Class EditarRuta
                 rp = False
             End If
 
-            If cmb_tipoenvio.SelectedIndex = 0 Then
+            If cmb_tipoenvio.SelectedValue = 0 Then
                 ErrorProvider1.SetError(cmb_tipoenvio, "Seleccione Tipo de Envio")
                 rp = False
             End If
 
             If Dg_Detalle.Rows.Count > 0 Then
                 For Each rowdg As DataGridViewRow In Dg_Detalle.Rows
+
                     If rowdg.Cells("Bultos").Value.ToString.Trim = "" Then
                         ErrorProvider1.SetError(Dg_Detalle, "Ingrese Cantidad de Bultos")
                         rp = False
@@ -351,7 +418,7 @@ Public Class EditarRuta
                             rp = False
                             Exit For
                         Else
-                            If CType(rowdg.Cells("Bultos").Value.ToString.Trim, Integer) < 0 Then
+                            If CType(rowdg.Cells("Bultos").Value.ToString.Trim, Integer) <= 0 Then
                                 ErrorProvider1.SetError(Dg_Detalle, "Cantidad Bultos debe ser mayor o igual a 0")
                                 rp = False
                                 Exit For
@@ -369,13 +436,14 @@ Public Class EditarRuta
                             rp = False
                             Exit For
                         Else
-                            If CType(rowdg.Cells("Peso").Value.ToString.Trim, Decimal) < 0 Then
+                            If CType(rowdg.Cells("Peso").Value.ToString.Trim, Decimal) <= 0 Then
                                 ErrorProvider1.SetError(Dg_Detalle, "Peso debe ser mayor o igual a 0")
                                 rp = False
                                 Exit For
                             End If
                         End If
                     End If
+
                     If rowdg.Cells("TipoRuta").Value Is Nothing Then
                         ErrorProvider1.SetError(Dg_Detalle, "Ingrese Tipo Despacho")
                         rp = False
@@ -396,6 +464,30 @@ Public Class EditarRuta
                             ErrorProvider1.SetError(Dg_Detalle, "Ingrese Site Origen")
                             rp = False
                             Exit For
+                        End If
+                    End If
+
+                    If rowdg.Cells("Orden").Value Is Nothing Then
+                        ErrorProvider1.SetError(Dg_Detalle, "Ingrese N° Orden de todas las guias")
+                        rp = False
+                        Exit For
+                    Else
+                        If rowdg.Cells("Orden").Value.ToString.Trim = "" Then
+                            ErrorProvider1.SetError(Dg_Detalle, "Ingrese N° Orden de todas las guias")
+                            rp = False
+                            Exit For
+                        Else
+                            If ValidarNumerico(rowdg.Cells("Orden").Value.ToString.Trim) = False Then
+                                ErrorProvider1.SetError(Dg_Detalle, "N° Orden deben ser datos numericos")
+                                rp = False
+                                Exit For
+                            Else
+                                If CType(rowdg.Cells("Orden").Value.ToString.Trim, Integer) <= 0 Then
+                                    ErrorProvider1.SetError(Dg_Detalle, "N° Orden debe ser un valor mayor a 0")
+                                    rp = False
+                                    Exit For
+                                End If
+                            End If
                         End If
                     End If
                 Next

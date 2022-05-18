@@ -18,6 +18,8 @@ Public Class GestionParteSalida
         dtcabecera = Estructura.TablaCabeceraGuia
         Dg_Cabecera.DataSource = dtcabecera
 
+        Dg_Cabecera.Columns("GlosaPicking").Visible = False
+
         Dg_Cabecera.Columns("MARCAR").HeaderText = "Marcar"
         Dg_Cabecera.Columns("MARCAR").Width = 50
         Dg_Cabecera.Columns("MARCAR").ReadOnly = True

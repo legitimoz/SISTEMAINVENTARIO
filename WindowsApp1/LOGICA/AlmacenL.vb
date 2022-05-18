@@ -2,7 +2,13 @@
 
 Public Class AlmacenL
     Private objAlmacen As New AlmacenAD
-
+    Public Function SP_CSE_ValidarAlerta() As DataTable
+        Try
+            Return objAlmacen.SP_CSE_ValidarAlerta
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function ObtenerIndicarLiquidacionDocumentaria(fechadesde As String, fechahasta As String) As DataTable
         Try
             Return objAlmacen.ObtenerIndicarLiquidacionDocumentaria(fechadesde, fechahasta)
@@ -10,9 +16,65 @@ Public Class AlmacenL
             Throw ex
         End Try
     End Function
+
+    Public Function SP_LISTAR_ARTICULOS_CUBICAJE() As DataTable
+        Try
+            Return objAlmacen.SP_LISTAR_ARTICULOS_CUBICAJE()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function ListarGuiasCAB(fechadesde As String, fechahasta As String, idalmacen As Integer, idsite As Integer) As DataTable
         Try
             Return objAlmacen.ListarGuiasCAB(fechadesde, fechahasta, idalmacen, idsite)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function SP_CSE_ObtenerEstadoValidacion(CodArticulo As String) As DataTable
+        Try
+            Return objAlmacen.SP_CSE_ObtenerEstadoValidacion(CodArticulo)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function ObtenerDataBonificacion(CCODAGE As String, CNUMPED As String) As DataTable
+        Try
+            Return objAlmacen.ObtenerDataBonificacion(CCODAGE, CNUMPED)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function SP_CSE_ACTUALIZAR_CUBICAJE_ART(codarticulo As String, alto As Decimal, ancho As Decimal, largo As Decimal, factorcji As Decimal, factorcjm As Decimal) As Integer
+        Try
+            Return objAlmacen.SP_CSE_ACTUALIZAR_CUBICAJE_ART(codarticulo, alto, ancho, largo, factorcji, factorcjm)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function SP_CSE_RegistrarValidacionArticulo(codarticulo As String, userid As Integer) As Integer
+        Try
+            Return objAlmacen.SP_CSE_RegistrarValidacionArticulo(codarticulo, userid)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function SP_CSE_REPORTE_RUTAS(fechadesde As String, fechahasta As String) As DataTable
+        Try
+            Return objAlmacen.SP_CSE_REPORTE_RUTAS(fechadesde, fechahasta)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function SP_CSE_REPORTE_DESPACHOS(fechadesde As String, fechahasta As String) As DataTable
+        Try
+            Return objAlmacen.SP_CSE_REPORTE_DESPACHOS(fechadesde, fechahasta)
         Catch ex As Exception
             Throw ex
         End Try
@@ -58,6 +120,14 @@ Public Class AlmacenL
     Public Function ListarSites() As DataTable
         Try
             Return objAlmacen.ListarSites()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function RegistrarAlerta() As Integer
+        Try
+            Return objAlmacen.RegistrarAlerta()
         Catch ex As Exception
             Throw ex
         End Try
@@ -127,6 +197,14 @@ Public Class AlmacenL
         End Try
     End Function
 
+    Public Function ListarMotivosLiquidacion() As DataTable
+        Try
+            Return objAlmacen.ListarMotivosLiquidacion
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function RegistrarObservacionDispatch(CALMA As String, CTD As String, CNUMDOC As String, idmotivo As Integer) As Integer
         Try
             Return objAlmacen.RegistrarObservacionDispatch(CALMA, CTD, CNUMDOC, idmotivo)
@@ -143,6 +221,14 @@ Public Class AlmacenL
         End Try
     End Function
 
+    Public Function SP_CSE_RegistrarObservacionLiquidacion(CALMA As String, CTD As String, CNUMDOC As String, idmotivo As Integer) As Integer
+        Try
+            Return objAlmacen.SP_CSE_RegistrarObservacionLiquidacion(CALMA, CTD, CNUMDOC, idmotivo)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function ReporteRotulosProducto(ByVal CALMA As String, ByVal CTD As String, CNUMDOC As String) As DataTable
         Try
             Return objAlmacen.ReporteRotulosProducto(CALMA, CTD, CNUMDOC)
@@ -151,9 +237,9 @@ Public Class AlmacenL
         End Try
     End Function
 
-    Public Function RegistrarRecepcionGuiaDespacho(CALMA As String, CTD As String, CNUMDOC As String, userid As Integer, idcosto As Integer, fisico As String, idsiteliq As Integer, idsitePicking As Integer) As Integer
+    Public Function RegistrarRecepcionGuiaDespacho(CALMA As String, CTD As String, CNUMDOC As String, userid As Integer, idcosto As Integer, fisico As String, idsiteliq As Integer, idsitePicking As Integer, Comentario As String) As Integer
         Try
-            Return objAlmacen.RegistrarRecepcionGuiaDespacho(CALMA, CTD, CNUMDOC, userid, idcosto, fisico, idsiteliq, idsitePicking)
+            Return objAlmacen.RegistrarRecepcionGuiaDespacho(CALMA, CTD, CNUMDOC, userid, idcosto, fisico, idsiteliq, idsitePicking, Comentario)
         Catch ex As Exception
             Throw ex
         End Try
@@ -240,6 +326,14 @@ Public Class AlmacenL
         End Try
     End Function
 
+    Public Function RegistrarFacturaTransportista(CNUMDOC As String, factura As String) As Integer
+        Try
+            Return objAlmacen.RegistrarFacturaTransportista(CNUMDOC, factura)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function ObtenrCodigoAlternoArticulo(CodArticulo As String, Serie As String) As DataTable
         Try
             Return objAlmacen.ObtenrCodigoAlternoArticulo(CodArticulo, Serie)
@@ -321,6 +415,14 @@ Public Class AlmacenL
         End Try
     End Function
 
+    Public Function SP_VALIDAR_DOCUMENTO(C5_CNUMDOC As String) As DataTable
+        Try
+            Return objAlmacen.SP_VALIDAR_DOCUMENTO(C5_CNUMDOC)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function ListarPedidosDespacho(fechadesde As String, fechahasta As String, idalmacen As Integer, idsite As Integer) As DataTable
         Try
 
@@ -333,6 +435,15 @@ Public Class AlmacenL
         Catch ex As Exception
             Throw ex
         End Try
+    End Function
+    Public Function SP_CSE_LISTARTIPOENVIORUTA() As DataTable
+        Dim rp, rp2 As New DataTable
+        Try
+            rp = objAlmacen.SP_CSE_LISTARTIPOENVIORUTA()
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return rp
     End Function
 
     Public Function obtenerStock_ATE_CJM_X_CODIGOARTI(Codarticulo As String) As DataTable
@@ -350,9 +461,9 @@ Public Class AlmacenL
             Throw ex
         End Try
     End Function
-    Public Function Agregar_Guia_Ruta(crg_id As Integer, calma As String, ctd As String, cnumdoc As String, userid As Integer, peso As Decimal, bultos As Integer, tiempo As Decimal, volumen As Decimal, restriccion As String, tiporuta As String, cliente As String, Direccion As String, importe As Decimal, condicion As String, REPRESENTATE As String, idcosto As Integer, fecharecepcion As String, horarecepcion As String, idsite As Integer, departamento As String, provincia As String, distrito As String, fisico As String, idsiteliq As Integer) As Integer
+    Public Function Agregar_Guia_Ruta(crg_id As Integer, calma As String, ctd As String, cnumdoc As String, userid As Integer, peso As Decimal, bultos As Integer, tiempo As Decimal, volumen As Decimal, restriccion As String, tiporuta As String, cliente As String, Direccion As String, importe As Decimal, condicion As String, REPRESENTATE As String, idcosto As Integer, fecharecepcion As String, horarecepcion As String, idsite As Integer, departamento As String, provincia As String, distrito As String, fisico As String, idsiteliq As Integer, idsitepicking As Integer, canal As String) As Integer
         Try
-            Return objAlmacen.Agregar_Guia_Ruta(crg_id, calma, ctd, cnumdoc, userid, peso, bultos, tiempo, volumen, restriccion, tiporuta, cliente, Direccion, importe, condicion, REPRESENTATE, idcosto, fecharecepcion, horarecepcion, idsite, departamento, provincia, distrito, fisico, idsiteliq)
+            Return objAlmacen.Agregar_Guia_Ruta(crg_id, calma, ctd, cnumdoc, userid, peso, bultos, tiempo, volumen, restriccion, tiporuta, cliente, Direccion, importe, condicion, REPRESENTATE, idcosto, fecharecepcion, horarecepcion, idsite, departamento, provincia, distrito, fisico, idsiteliq, idsitepicking, canal)
         Catch ex As Exception
             Throw ex
         End Try

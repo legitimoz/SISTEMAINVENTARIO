@@ -5,7 +5,8 @@ Public Class AgregarExternoDespacho
     Private dt_Caneles, DtCentrosCosto As New DataTable
     Private almacenObj As New AlmacenL
     Public grabado As Boolean = False
-    Public idcosto As Integer = 0, idsiteliq As Integer = 0
+    Public idcosto As Integer = 0, idsiteliq As Integer = 0, idsitepick As Integer = 0
+    Public nombrepicking As String, nombreliquidacion As String = ""
     Public nombrecosto As String = "", fisico As String = ""
 
     Private Sub AgregarExternoDespacho_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -15,6 +16,24 @@ Public Class AgregarExternoDespacho
             Throw ex
         End Try
     End Sub
+
+    Private Sub CargarSitePicking()
+        Try
+            Dim dt As New DataTable
+            dt = almacenObj.ListarSites
+
+            If dt.Rows.Count > 0 Then
+                cmb_SitePicking.DataSource = dt
+                cmb_SitePicking.ValueMember = "sit_idsite"
+                cmb_SitePicking.DisplayMember = "sit_nombre"
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Sub
+
     Private Sub CargarSite()
         Try
             Dim dt As New DataTable
@@ -180,6 +199,7 @@ Public Class AgregarExternoDespacho
 
     Public Sub CargaInicial()
         Try
+            CargarSitePicking()
             CargarSite()
             ListarRepresentaste()
             CargarCentrosCosto()
@@ -206,12 +226,20 @@ Public Class AgregarExternoDespacho
     Private Sub cmdAceptar_Click(sender As Object, e As EventArgs) Handles cmdAceptar.Click
         Try
             If ValidarAceptar() = True Then
-                idcosto = Cmb_Costos.SelectedValue
-                nombrecosto = Cmb_Costos.Text.ToString
-                idsiteliq = cmb_site.SelectedValue
-                fisico = cmb_fisico.Text.Trim
-                grabado = True
-                Me.Close()
+                If ValidarDocumento() = 1 Then
+                    idcosto = Cmb_Costos.SelectedValue
+                    nombrecosto = Cmb_Costos.Text.ToString
+                    idsiteliq = cmb_site.SelectedValue
+                    idsitepick = cmb_SitePicking.SelectedValue
+                    nombrepicking = cmb_SitePicking.Text.ToString.Trim
+                    nombreliquidacion = cmb_site.Text.ToString.Trim
+                    fisico = cmb_fisico.Text.Trim
+                    grabado = True
+                    Me.Close()
+                Else
+                    MsgBox("Documento se encuentra en otra ruta, por favor cierre la ruta anterior e intente de nuevo", MsgBoxStyle.Exclamation, "SISTEMAS NORDIC")
+
+                End If
             Else
                 MsgBox("Existen Erroes, Valide e intente nuevamente", MsgBoxStyle.Exclamation, "SISTEMAS NORDIC")
             End If
@@ -219,6 +247,16 @@ Public Class AgregarExternoDespacho
 
         End Try
     End Sub
+
+    Public Function ValidarDocumento() As Integer
+        Dim rp As Integer = Nothing
+        Try
+            rp = CInt(almacenObj.SP_VALIDAR_DOCUMENTO(txt_documento.Text.Trim).Rows(0).Item("Respuesta"))
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return rp
+    End Function
 
 
     Private Sub txt_ruccliente_KeyUp(sender As Object, e As KeyEventArgs) Handles txt_ruccliente.KeyUp

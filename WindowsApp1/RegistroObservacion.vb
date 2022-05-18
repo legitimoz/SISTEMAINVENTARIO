@@ -40,6 +40,16 @@
                 Else
                     MsgBox("Motivo NO Registrado Correctamente", MsgBoxStyle.Critical, "SISTEMAS NORDIC")
                 End If
+            Else
+                If tipoobservacion = 3 Then
+                    If LlamarRegistrarObservacionLiquidacion() <> 0 Then
+                        MsgBox("Motivo RegistradO Correctamente", MsgBoxStyle.Information, "SISTEMAS NORDIC")
+                        grabado = True
+                        Me.Close()
+                    Else
+                        MsgBox("Motivo NO Registrado Correctamente", MsgBoxStyle.Critical, "SISTEMAS NORDIC")
+                    End If
+                End If
             End If
         End If
     End Sub
@@ -61,6 +71,18 @@
 
         Try
             rp = almacenObj.RegistrarObservacionDelivery(calma, ctd, cnumdoc, cmb_motivos.SelectedValue)
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+        Return rp
+    End Function
+
+    Public Function LlamarRegistrarObservacionLiquidacion() As Integer
+        Dim rp As Integer = 0
+
+        Try
+            rp = almacenObj.SP_CSE_RegistrarObservacionLiquidacion(calma, ctd, cnumdoc, cmb_motivos.SelectedValue)
         Catch ex As Exception
             Throw ex
         End Try
@@ -98,6 +120,21 @@
         End Try
     End Sub
 
+    Public Sub ListarMotivosLiquidacion()
+        Try
+            Dim dt As New DataTable
+            dt = almacenObj.ListarMotivosLiquidacion
+            If dt.Rows.Count > 0 Then
+                dtobservacion = dt
+                cmb_motivos.DataSource = dtobservacion
+                cmb_motivos.DisplayMember = "mot_descripcion"
+                cmb_motivos.ValueMember = "mot_idmotivo"
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
     Private Sub CargaInicial()
         Try
             txt_guia.Text = cnumdoc
@@ -108,6 +145,11 @@
                 If tipoobservacion = 2 Then
                     Me.Text = "Registrar Observacion DeliveryOnTime"
                     ListarMotivosDelivery()
+                Else
+                    If tipoobservacion = 3 Then
+                        Me.Text = "Registrar Observacion Liquidacion Documentaria"
+                        ListarMotivosLiquidacion()
+                    End If
                 End If
             End If
         Catch ex As Exception

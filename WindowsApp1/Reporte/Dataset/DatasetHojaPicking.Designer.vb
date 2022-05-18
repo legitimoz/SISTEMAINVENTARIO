@@ -305,6 +305,8 @@ Partial Public Class DatasetHojaPicking
         
         Private columnSaldo As Global.System.Data.DataColumn
         
+        Private columnPosicion3 As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -429,6 +431,14 @@ Partial Public Class DatasetHojaPicking
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property Posicion3Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPosicion3
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -465,9 +475,9 @@ Partial Public Class DatasetHojaPicking
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function AddDataTable2Row(ByVal CodArticulo As String, ByVal Articulo As String, ByVal Lote As String, ByVal CantidadSalida As String, ByVal Unidad As String, ByVal Posicion1 As String, ByVal Posicion2 As String, ByVal Vencimiento As String, ByVal CajasM As String, ByVal CajasI As String, ByVal Saldo As String) As DataTable2Row
+        Public Overloads Function AddDataTable2Row(ByVal CodArticulo As String, ByVal Articulo As String, ByVal Lote As String, ByVal CantidadSalida As String, ByVal Unidad As String, ByVal Posicion1 As String, ByVal Posicion2 As String, ByVal Vencimiento As String, ByVal CajasM As String, ByVal CajasI As String, ByVal Saldo As String, ByVal Posicion3 As String) As DataTable2Row
             Dim rowDataTable2Row As DataTable2Row = CType(Me.NewRow,DataTable2Row)
-            Dim columnValuesArray() As Object = New Object() {CodArticulo, Articulo, Lote, CantidadSalida, Unidad, Posicion1, Posicion2, Vencimiento, CajasM, CajasI, Saldo}
+            Dim columnValuesArray() As Object = New Object() {CodArticulo, Articulo, Lote, CantidadSalida, Unidad, Posicion1, Posicion2, Vencimiento, CajasM, CajasI, Saldo, Posicion3}
             rowDataTable2Row.ItemArray = columnValuesArray
             Me.Rows.Add(rowDataTable2Row)
             Return rowDataTable2Row
@@ -501,6 +511,7 @@ Partial Public Class DatasetHojaPicking
             Me.columnCajasM = MyBase.Columns("CajasM")
             Me.columnCajasI = MyBase.Columns("CajasI")
             Me.columnSaldo = MyBase.Columns("Saldo")
+            Me.columnPosicion3 = MyBase.Columns("Posicion3")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -528,6 +539,8 @@ Partial Public Class DatasetHojaPicking
             MyBase.Columns.Add(Me.columnCajasI)
             Me.columnSaldo = New Global.System.Data.DataColumn("Saldo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnSaldo)
+            Me.columnPosicion3 = New Global.System.Data.DataColumn("Posicion3", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPosicion3)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -839,6 +852,21 @@ Partial Public Class DatasetHojaPicking
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property Posicion3() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDataTable2.Posicion3Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'Posicion3' de la tabla 'DataTable2' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDataTable2.Posicion3Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsCodArticuloNull() As Boolean
             Return Me.IsNull(Me.tableDataTable2.CodArticuloColumn)
         End Function
@@ -967,6 +995,18 @@ Partial Public Class DatasetHojaPicking
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetSaldoNull()
             Me(Me.tableDataTable2.SaldoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsPosicion3Null() As Boolean
+            Return Me.IsNull(Me.tableDataTable2.Posicion3Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetPosicion3Null()
+            Me(Me.tableDataTable2.Posicion3Column) = Global.System.Convert.DBNull
         End Sub
     End Class
     

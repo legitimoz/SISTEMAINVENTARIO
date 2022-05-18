@@ -81,6 +81,7 @@ Partial Class frmRetornoRuta
         Me.fechaInterFactura = New WindowsApp1.DateTimeGridColumn()
         Me.fecha_vto_oc = New WindowsApp1.DateTimeGridColumn()
         Me.fecReProg = New WindowsApp1.DateTimeGridColumn()
+        Me.FacturaTransporte = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.dgvRetornoRuta, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -280,7 +281,7 @@ Partial Class frmRetornoRuta
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvRetornoRuta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvRetornoRuta.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.C5_CNUMDOC, Me.C5_CNOMCLI, Me.DE_CDEPT, Me.DE_CPROV, Me.TG_CDESCRI, Me.C5_CDIRENV, Me.color1, Me.EST_CODIGO2, Me.motivo, Me.EST_CODIGO, Me.FECHA_SALIDARUTA, Me.USUARIO_SALIDARUTA, Me.FECHA_RETORNORUTA, Me.USUARIO_RETORNORUTA, Me.fechaRecepCliente, Me.fechaInterFactura, Me.fecha_vto_oc, Me.fecReProg})
+        Me.dgvRetornoRuta.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.C5_CNUMDOC, Me.C5_CNOMCLI, Me.DE_CDEPT, Me.DE_CPROV, Me.TG_CDESCRI, Me.C5_CDIRENV, Me.color1, Me.EST_CODIGO2, Me.motivo, Me.EST_CODIGO, Me.FECHA_SALIDARUTA, Me.USUARIO_SALIDARUTA, Me.FECHA_RETORNORUTA, Me.USUARIO_RETORNORUTA, Me.fechaRecepCliente, Me.fechaInterFactura, Me.fecha_vto_oc, Me.fecReProg, Me.FacturaTransporte})
         Me.dgvRetornoRuta.Location = New System.Drawing.Point(5, 19)
         Me.dgvRetornoRuta.Name = "dgvRetornoRuta"
         Me.dgvRetornoRuta.Size = New System.Drawing.Size(1110, 433)
@@ -565,6 +566,11 @@ Partial Class frmRetornoRuta
         Me.fecReProg.HeaderText = "Fecha Re-Programación"
         Me.fecReProg.Name = "fecReProg"
         '
+        'FacturaTransporte
+        '
+        Me.FacturaTransporte.HeaderText = "Factura Transporte"
+        Me.FacturaTransporte.Name = "FacturaTransporte"
+        '
         'frmRetornoRuta
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -651,4 +657,5 @@ Partial Class frmRetornoRuta
     Friend WithEvents fechaInterFactura As DateTimeGridColumn
     Friend WithEvents fecha_vto_oc As DateTimeGridColumn
     Friend WithEvents fecReProg As DateTimeGridColumn
+    Friend WithEvents FacturaTransporte As DataGridViewTextBoxColumn
 End Class

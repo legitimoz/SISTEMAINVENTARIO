@@ -55,6 +55,8 @@ Partial Class AgregarExternoDespacho
         Me.cmb_site = New System.Windows.Forms.ComboBox()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.cmb_fisico = New System.Windows.Forms.ComboBox()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.cmb_SitePicking = New System.Windows.Forms.ComboBox()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -325,7 +327,7 @@ Partial Class AgregarExternoDespacho
         Me.cmdAceptar.IconFont = FontAwesome.Sharp.IconFont.Solid
         Me.cmdAceptar.IconSize = 16
         Me.cmdAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.cmdAceptar.Location = New System.Drawing.Point(350, 442)
+        Me.cmdAceptar.Location = New System.Drawing.Point(350, 474)
         Me.cmdAceptar.Margin = New System.Windows.Forms.Padding(4)
         Me.cmdAceptar.Name = "cmdAceptar"
         Me.cmdAceptar.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
@@ -391,12 +393,32 @@ Partial Class AgregarExternoDespacho
         Me.cmb_fisico.Size = New System.Drawing.Size(324, 21)
         Me.cmb_fisico.TabIndex = 157
         '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(24, 444)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(69, 13)
+        Me.Label16.TabIndex = 162
+        Me.Label16.Text = "Site Picking :"
+        '
+        'cmb_SitePicking
+        '
+        Me.cmb_SitePicking.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb_SitePicking.FormattingEnabled = True
+        Me.cmb_SitePicking.Location = New System.Drawing.Point(118, 441)
+        Me.cmb_SitePicking.Name = "cmb_SitePicking"
+        Me.cmb_SitePicking.Size = New System.Drawing.Size(324, 21)
+        Me.cmb_SitePicking.TabIndex = 161
+        '
         'AgregarExternoDespacho
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(455, 481)
+        Me.ClientSize = New System.Drawing.Size(455, 513)
+        Me.Controls.Add(Me.Label16)
+        Me.Controls.Add(Me.cmb_SitePicking)
         Me.Controls.Add(Me.Label14)
         Me.Controls.Add(Me.cmb_site)
         Me.Controls.Add(Me.Label15)
@@ -471,4 +493,6 @@ Partial Class AgregarExternoDespacho
     Friend WithEvents cmb_site As ComboBox
     Friend WithEvents Label15 As Label
     Friend WithEvents cmb_fisico As ComboBox
+    Friend WithEvents Label16 As Label
+    Friend WithEvents cmb_SitePicking As ComboBox
 End Class

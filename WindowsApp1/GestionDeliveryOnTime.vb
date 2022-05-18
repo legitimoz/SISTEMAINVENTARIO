@@ -79,7 +79,7 @@ Public Class GestionDeliveryOnTime
         End Try
         Return dtretono
     End Function
-
+    Private guia As String = ""
     Public Sub ListarGuiasCabecera()
 
         Try
@@ -97,6 +97,7 @@ Public Class GestionDeliveryOnTime
                     Dim rowcabecera As DataRow
                     rowcabecera = dtcabecera2.NewRow
                     rowcabecera.Item("NRO_GUIA") = RowRetorno.Item("NRO_GUIA").ToString.Trim
+                    '  guia = RowRetorno.Item("NRO_GUIA").ToString.Trim
                     rowcabecera.Item("FECHA_DESPACHO") = RowRetorno.Item("FECHA_DESPACHO").ToString.Trim
                     rowcabecera.Item("FECHA_RECEPCION_CLIENTE") = RowRetorno.Item("FECHA_RECEPCION_CLIENTE").ToString.Trim
                     rowcabecera.Item("FECHA_SUBE_FOTO") = RowRetorno.Item("FECHA_SUBE_FOTO").ToString.Trim
@@ -110,16 +111,21 @@ Public Class GestionDeliveryOnTime
                     rowcabecera.Item("HORA_DESPACHO") = RowRetorno.Item("HORA_DESPACHO").ToString.Trim
                     rowcabecera.Item("TIPO_DOCUMENTO") = RowRetorno.Item("TIPO_DOCUMENTO").ToString.Trim
                     rowcabecera.Item("ALMACEN") = RowRetorno.Item("ALMACEN").ToString.Trim
+                    rowcabecera.Item("FECHA_RETORNO_GUIA") = RowRetorno.Item("FECHA_RETORNO_GUIA").ToString.Trim
 
-                    If RowRetorno.Item("PROVINCIA").ToString.Trim = "CAÑETE".Trim Or RowRetorno.Item("PROVINCIA").ToString.Trim = "HUARAL".Trim Or RowRetorno.Item("PROVINCIA").ToString.Trim = "HUAURA".Trim Then
-                        rowcabecera.Item("LIM_PROV") = "PROVINCIA"
+                    If RowRetorno.Item("NRO_GUIA").ToString.Trim = "0110034879".Trim Then
+                        Dim GUIA As String = "a"
+                        GUIA = "0120014046"
                     End If
 
+                    If RowRetorno.Item("PROVINCIA").ToString.Trim = "BARRANCA".Trim Or RowRetorno.Item("PROVINCIA").ToString.Trim = "CAÑETE".Trim Or RowRetorno.Item("PROVINCIA").ToString.Trim = "HUARAL".Trim Or RowRetorno.Item("PROVINCIA").ToString.Trim = "HUAURA".Trim Then
+                        rowcabecera.Item("LIM_PROV") = "PROVINCIA"
+                    End If
 
                     Dim Diferencia As Integer = 0, DiferenciaRecep As Integer = 0
                     Dim Tolerancia As Integer = 1
 
-                    If RowRetorno.Item("LIM_PROV").ToString.Trim = "LIMA" Then
+                    If rowcabecera.Item("LIM_PROV").ToString.Trim = "LIMA" Then
 
                         If RowRetorno.Item("FECHA_DESPACHO").ToString.Trim <> "" Then
                             Dim FechaRecepcion, FechaFoto As Date
@@ -151,9 +157,23 @@ Public Class GestionDeliveryOnTime
                         If RowRetorno.Item("HORA_DESPACHO").ToString.Trim > #04:30:00 PM# Then
                             Tolerancia = 2
                         End If
+                        Dim FechaDespacho As Date
+                        FechaDespacho = RowRetorno.Item("FECHA_DESPACHO").ToString.Trim
+                        Dim DIA As Integer = 0
+                        DIA = FechaDespacho.DayOfWeek
+
+                        If DIA = 6 Then
+                            If RowRetorno.Item("HORA_DESPACHO").ToString.Trim > #10:30:00 AM# Then
+                                Tolerancia = 3
+                            Else
+                                Tolerancia = 2
+                            End If
+
+                        End If
+
                     End If
 
-                    If RowRetorno.Item("LIM_PROV").ToString.Trim = "PROVINCIA" Then
+                    If rowcabecera.Item("LIM_PROV").ToString.Trim = "PROVINCIA" Then
 
                         If RowRetorno.Item("FECHA_DESPACHO").ToString.Trim <> "" And RowRetorno.Item("FECHA_SUBE_FOTO").ToString.Trim <> "" Then
                             Diferencia = DateDiff(DateInterval.Day, Convert.ToDateTime(RowRetorno.Item("FECHA_DESPACHO").ToString.Trim), Convert.ToDateTime(RowRetorno.Item("FECHA_SUBE_FOTO").ToString.Trim))
@@ -185,6 +205,20 @@ Public Class GestionDeliveryOnTime
                             End If
                         End If
 
+                        Dim FechaDespacho As Date
+                        FechaDespacho = RowRetorno.Item("FECHA_DESPACHO").ToString.Trim
+                        Dim DIA As Integer = 0
+                        DIA = FechaDespacho.DayOfWeek
+
+                        If DIA = 6 Then
+                            If RowRetorno.Item("HORA_DESPACHO").ToString.Trim > #10:30:00 AM# Then
+                                Tolerancia = 2
+                            Else
+                                Tolerancia = 2
+                            End If
+
+                        End If
+
                     End If
 
                     rowcabecera.Item("Diferencia Foto") = Diferencia
@@ -210,26 +244,33 @@ Public Class GestionDeliveryOnTime
                         Estado2 = "FUERA DE TIEMPO"
                     End If
 
+                    'Dg_Cabecera.Columns("ESTADO FECHA FOTO").HeaderText = "Estado Foto"
+                    'Dg_Cabecera.Columns("ESTADO FECHA FOTO").Width = 100
+                    'Dg_Cabecera.Columns("ESTADO FECHA FOTO").ReadOnly = True
 
-                    rowcabecera.Item("ESTADO") = Estado
-                    rowcabecera.Item("ESTADO2") = Estado2
+                    'Dg_Cabecera.Columns("ESTADO FECHA RECEPCION").HeaderText = "Estado Recepcion"
+                    'Dg_Cabecera.Columns("ESTADO FECHA RECEPCION").Width = 100
+                    'Dg_Cabecera.Columns("ESTADO FECHA RECEPCION").ReadOnly = True
+
+                    rowcabecera.Item("ESTADO FECHA FOTO") = Estado
+                    rowcabecera.Item("ESTADO FECHA RECEPCION") = Estado2
 
 
-                    If rowcabecera.Item("ESTADO") IsNot Nothing Then
-                        If rowcabecera.Item("ESTADO").ToString.Trim = "DENTRO DE TIEMPO" Then
+                    If rowcabecera.Item("ESTADO FECHA FOTO") IsNot Nothing Then
+                        If rowcabecera.Item("ESTADO FECHA FOTO").ToString.Trim = "DENTRO DE TIEMPO" Then
                             contador = contador + 1
                         End If
                     End If
 
                     If rowcabecera.Item("LIM_PROV").ToString.Trim = "LIMA" Then
                         cantidadL = cantidadL + 1
-                        If rowcabecera.Item("ESTADO").ToString.Trim = "DENTRO DE TIEMPO" Then
+                        If rowcabecera.Item("ESTADO FECHA FOTO").ToString.Trim = "DENTRO DE TIEMPO" Then
                             contadorL = contadorL + 1
                         End If
                     End If
                     If rowcabecera.Item("LIM_PROV").ToString.Trim = "PROVINCIA" Then
                         cantidadP = cantidadP + 1
-                        If rowcabecera.Item("ESTADO").ToString.Trim = "DENTRO DE TIEMPO" Then
+                        If rowcabecera.Item("ESTADO FECHA FOTO").ToString.Trim = "DENTRO DE TIEMPO" Then
                             ContadorP = ContadorP + 1
                         End If
                     End If
@@ -279,9 +320,9 @@ Public Class GestionDeliveryOnTime
             For Each RowTiempos As DataRow In DTtiemposJJ.Rows
                 If RowTiempos.Item("PROVINCIA").ToString.Trim = PROVINCIA.Trim Then
                     If Tipo = "P" Then
-                        Tolerancia = CType(RowTiempos.Item("PRIVADO").ToString, Integer)
+                        Tolerancia = CType(RowTiempos.Item("PRIVADO").ToString, Integer) + 1
                     ElseIf Tipo = "I" Then
-                        Tolerancia = CType(RowTiempos.Item("INSTITUCIONAL").ToString, Integer)
+                        Tolerancia = CType(RowTiempos.Item("INSTITUCIONAL").ToString, Integer) + 1
                     End If
                     Exit For
                 End If
@@ -340,39 +381,39 @@ Public Class GestionDeliveryOnTime
 
                 For Each RowCab As DataRow In dtcabecera2.Rows
                     If cmb_filtro.SelectedIndex = 1 Then
-                        If RowCab.Item("Estado") IsNot Nothing Then
-                            If RowCab.Item("Estado").ToString.Trim = "DENTRO DE TIEMPO" Or RowCab.Item("AREA").ToString.Trim = "LOGISTICO" Then
+                        If RowCab.Item("ESTADO FECHA FOTO") IsNot Nothing Then
+                            If RowCab.Item("ESTADO FECHA FOTO").ToString.Trim = "DENTRO DE TIEMPO" Or RowCab.Item("AREA").ToString.Trim = "LOGISTICO" Then
                                 contador = contador + 1
                             End If
                             If RowCab.Item("LIM_PROV").ToString.Trim = "LIMA" Then
                                 cantidadL = cantidadL + 1
-                                If RowCab.Item("Estado").ToString.Trim = "DENTRO DE TIEMPO" Or RowCab.Item("AREA").ToString.Trim = "LOGISTICO" Then
+                                If RowCab.Item("ESTADO FECHA FOTO").ToString.Trim = "DENTRO DE TIEMPO" Or RowCab.Item("AREA").ToString.Trim = "LOGISTICO" Then
                                     contadorL = contadorL + 1
                                 End If
                             End If
                             If RowCab.Item("LIM_PROV").ToString.Trim = "PROVINCIA" Then
                                 cantidadP = cantidadP + 1
-                                If RowCab.Item("Estado").ToString.Trim = "DENTRO DE TIEMPO" Or RowCab.Item("AREA").ToString.Trim = "LOGISTICO" Then
+                                If RowCab.Item("ESTADO FECHA FOTO").ToString.Trim = "DENTRO DE TIEMPO" Or RowCab.Item("AREA").ToString.Trim = "LOGISTICO" Then
                                     ContadorP = ContadorP + 1
                                 End If
                             End If
                         End If
                     Else
                         If cmb_filtro.SelectedIndex = 0 Then
-                            If RowCab.Item("Estado") IsNot Nothing Then
-                                If RowCab.Item("Estado").ToString.Trim = "DENTRO DE TIEMPO" Then
+                            If RowCab.Item("ESTADO FECHA FOTO") IsNot Nothing Then
+                                If RowCab.Item("ESTADO FECHA FOTO").ToString.Trim = "DENTRO DE TIEMPO" Then
                                     contador = contador + 1
                                 End If
                             End If
                             If RowCab.Item("LIM_PROV").ToString.Trim = "LIMA" Then
                                 cantidadL = cantidadL + 1
-                                If RowCab.Item("Estado").ToString.Trim = "DENTRO DE TIEMPO" Then
+                                If RowCab.Item("ESTADO FECHA FOTO").ToString.Trim = "DENTRO DE TIEMPO" Then
                                     contadorL = contadorL + 1
                                 End If
                             End If
                             If RowCab.Item("LIM_PROV").ToString.Trim = "PROVINCIA" Then
                                 cantidadP = cantidadP + 1
-                                If RowCab.Item("Estado").ToString.Trim = "DENTRO DE TIEMPO" Then
+                                If RowCab.Item("ESTADO FECHA FOTO").ToString.Trim = "DENTRO DE TIEMPO" Then
                                     ContadorP = ContadorP + 1
                                 End If
                             End If
@@ -575,7 +616,7 @@ Public Class GestionDeliveryOnTime
                 CNUMDOC = Dg_Cabecera.CurrentRow.Cells("NRO_GUIA").EditedFormattedValue.ToString
                 CTD = Dg_Cabecera.CurrentRow.Cells("TIPO_DOCUMENTO").EditedFormattedValue.ToString
                 CALMA = Dg_Cabecera.CurrentRow.Cells("ALMACEN").EditedFormattedValue.ToString
-                Estado = Dg_Cabecera.CurrentRow.Cells("ESTADO").EditedFormattedValue.ToString
+                Estado = Dg_Cabecera.CurrentRow.Cells("ESTADO FECHA FOTO").EditedFormattedValue.ToString
             End If
         Catch ex As Exception
 
@@ -595,6 +636,12 @@ Public Class GestionDeliveryOnTime
         Dg_Cabecera.Columns("TIPO_DOCUMENTO").HeaderText = "NTro Guia"
         Dg_Cabecera.Columns("TIPO_DOCUMENTO").Width = 70
         Dg_Cabecera.Columns("TIPO_DOCUMENTO").Visible = False
+
+        Dg_Cabecera.Columns("FECHA_RETORNO_GUIA").HeaderText = "Fecha Retorno"
+        Dg_Cabecera.Columns("FECHA_RETORNO_GUIA").Width = 70
+        Dg_Cabecera.Columns("FECHA_RETORNO_GUIA").Visible = True
+
+
 
         Dg_Cabecera.Columns("ALMACEN").HeaderText = "Nro Guia"
         Dg_Cabecera.Columns("ALMACEN").Width = 70
@@ -628,13 +675,14 @@ Public Class GestionDeliveryOnTime
         Dg_Cabecera.Columns("Tolerancia").Width = 70
         Dg_Cabecera.Columns("Tolerancia").ReadOnly = True
 
-        Dg_Cabecera.Columns("ESTADO").HeaderText = "Estado Foto"
-        Dg_Cabecera.Columns("ESTADO").Width = 100
-        Dg_Cabecera.Columns("ESTADO").ReadOnly = True
 
-        Dg_Cabecera.Columns("ESTADO2").HeaderText = "Estado Recepcion"
-        Dg_Cabecera.Columns("ESTADO2").Width = 100
-        Dg_Cabecera.Columns("ESTADO2").ReadOnly = True
+        Dg_Cabecera.Columns("ESTADO FECHA FOTO").HeaderText = "Estado Foto"
+        Dg_Cabecera.Columns("ESTADO FECHA FOTO").Width = 100
+        Dg_Cabecera.Columns("ESTADO FECHA FOTO").ReadOnly = True
+
+        Dg_Cabecera.Columns("ESTADO FECHA RECEPCION").HeaderText = "Estado Recepcion"
+        Dg_Cabecera.Columns("ESTADO FECHA RECEPCION").Width = 100
+        Dg_Cabecera.Columns("ESTADO FECHA RECEPCION").ReadOnly = True
 
         Dg_Cabecera.Columns("RUC_CLIENTE").HeaderText = "Ruc Cliente"
         Dg_Cabecera.Columns("RUC_CLIENTE").Width = 100

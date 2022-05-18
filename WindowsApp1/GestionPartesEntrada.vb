@@ -197,10 +197,10 @@ Public Class GestionPartesEntrada
         Dg_Detalle.Columns("UBICAR").ReadOnly = False
 
         Dim btn As New DataGridViewButtonColumn With {
-            .Name = "Posicion",
-            .DataPropertyName = "Posicion",
-            .HeaderText = "Posiciones",
-            .Text = "Ver",
+            .Name = "ValidarCubicaje",
+            .DataPropertyName = "ValidarCubicaje",
+            .HeaderText = "Accion",
+            .Text = "Validar Cubicaje Articulo",
             .UseColumnTextForButtonValue = True,
             .Width = 70
         }
@@ -362,19 +362,13 @@ Public Class GestionPartesEntrada
 
             If e.ColumnIndex = 26 Then
                 Dim row As DataGridViewRow = Dg_Detalle.Rows(e.RowIndex)
-                Dim Item As String = ""
-                Dim Lote As String = ""
-                Item = row.Cells("CODIGO").EditedFormattedValue.ToString
-                Lote = row.Cells("SERIE").EditedFormattedValue.ToString
-                Dim formDetallePos As New DetallePosiciones
-                formDetallePos.txt_item.Text = Item
-                formDetallePos.txt_lote.Text = row.Cells("SERIE").EditedFormattedValue.ToString
-
-                formDetallePos.codalmacen = codalmacen
-                formDetallePos.codarticulo = row.Cells("CODIGO").EditedFormattedValue.ToString
-                formDetallePos.lote = row.Cells("SERIE").EditedFormattedValue.ToString
-                formDetallePos.tipodoc = tipdoc
-                formDetallePos.numdoc = coddoc
+                Dim CodArticulo As String = ""
+                Dim Descripcion As String = ""
+                CodArticulo = row.Cells("CODIGO").EditedFormattedValue.ToString.Trim
+                Descripcion = row.Cells("PRODUCTO").EditedFormattedValue.ToString.Trim
+                Dim formDetallePos As New ValidarCubicajeArticulo
+                formDetallePos.CodArticulo = CodArticulo
+                formDetallePos.DescripArticulo = Descripcion
                 formDetallePos.Show()
             End If
             Dg_Detalle.Refresh()

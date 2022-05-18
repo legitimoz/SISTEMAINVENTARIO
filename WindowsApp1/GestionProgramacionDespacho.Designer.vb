@@ -23,12 +23,19 @@ Partial Class GestionProgramacionDespacho
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GestionProgramacionDespacho))
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Dg_Cabecera = New System.Windows.Forms.DataGridView()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.cmb_estado = New System.Windows.Forms.ComboBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.cmb_limaprov = New System.Windows.Forms.ComboBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.cmb_recep = New System.Windows.Forms.ComboBox()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.txt_anuladas = New System.Windows.Forms.Label()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.txt_pendientes = New System.Windows.Forms.Label()
@@ -98,6 +105,12 @@ Partial Class GestionProgramacionDespacho
         Me.DataGridViewTextBoxColumn38 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn39 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn40 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateTimeGridColumn1 = New WindowsApp1.DateTimeGridColumn()
+        Me.DataGridViewTextBoxColumn41 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn42 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn43 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn44 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn45 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MARCAR = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.SITUACION = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ESTADO = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -144,6 +157,10 @@ Partial Class GestionProgramacionDespacho
         Me.NombreCosto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FISICO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.siteliq = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.sitepick = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.nombrepicking = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.nombreliquidacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EstadoRuta = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel6.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.Dg_Cabecera, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -162,7 +179,7 @@ Partial Class GestionProgramacionDespacho
         Me.Panel6.Location = New System.Drawing.Point(0, 0)
         Me.Panel6.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(1299, 430)
+        Me.Panel6.Size = New System.Drawing.Size(1295, 444)
         Me.Panel6.TabIndex = 55
         '
         'Panel2
@@ -171,7 +188,7 @@ Partial Class GestionProgramacionDespacho
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(0, 139)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1295, 287)
+        Me.Panel2.Size = New System.Drawing.Size(1291, 301)
         Me.Panel2.TabIndex = 48
         '
         'Dg_Cabecera
@@ -181,7 +198,7 @@ Partial Class GestionProgramacionDespacho
         Me.Dg_Cabecera.AllowUserToDeleteRows = False
         Me.Dg_Cabecera.BackgroundColor = System.Drawing.Color.White
         Me.Dg_Cabecera.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Dg_Cabecera.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.MARCAR, Me.SITUACION, Me.ESTADO, Me.FECHAREPCECION, Me.HORARECEPCION, Me.USUARIO_RECEPCION, Me.FECHA, Me.FECHA_GUIA, Me.HORA, Me.HORA_GUIA, Me.COD_PED, Me.NRO_GUIA, Me.CONDICION, Me.RUC, Me.NOM_CLIENTE, Me.DIRECCION_ENTREGA, Me.UBIGEO, Me.PROVINCIA, Me.DEPARTAMENTO, Me.DISTRITO, Me.LIMA_PROV, Me.CANAL, Me.TRANSPORTE, Me.M3UN, Me.IMPORTE, Me.M3FIN, Me.TIEMPOENTREGA, Me.DESTINO, Me.RUTA, Me.DETALLE, Me.RESTRICCION, Me.REPRESENTANTE, Me.C5_CTD, Me.C5_CALMA, Me.SERIE, Me.COMENTARIO, Me.SERIE2, Me.FECHA_RUTA, Me.TRANSPORTISTA, Me.FECHA_RETORNO, Me.GLOSA, Me.FECHAVENCEOC, Me.idcosto, Me.NombreCosto, Me.FISICO, Me.siteliq})
+        Me.Dg_Cabecera.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.MARCAR, Me.SITUACION, Me.ESTADO, Me.FECHAREPCECION, Me.HORARECEPCION, Me.USUARIO_RECEPCION, Me.FECHA, Me.FECHA_GUIA, Me.HORA, Me.HORA_GUIA, Me.COD_PED, Me.NRO_GUIA, Me.CONDICION, Me.RUC, Me.NOM_CLIENTE, Me.DIRECCION_ENTREGA, Me.UBIGEO, Me.PROVINCIA, Me.DEPARTAMENTO, Me.DISTRITO, Me.LIMA_PROV, Me.CANAL, Me.TRANSPORTE, Me.M3UN, Me.IMPORTE, Me.M3FIN, Me.TIEMPOENTREGA, Me.DESTINO, Me.RUTA, Me.DETALLE, Me.RESTRICCION, Me.REPRESENTANTE, Me.C5_CTD, Me.C5_CALMA, Me.SERIE, Me.COMENTARIO, Me.SERIE2, Me.FECHA_RUTA, Me.TRANSPORTISTA, Me.FECHA_RETORNO, Me.GLOSA, Me.FECHAVENCEOC, Me.idcosto, Me.NombreCosto, Me.FISICO, Me.siteliq, Me.sitepick, Me.nombrepicking, Me.nombreliquidacion, Me.EstadoRuta})
         Me.Dg_Cabecera.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Dg_Cabecera.Location = New System.Drawing.Point(0, 0)
         Me.Dg_Cabecera.Margin = New System.Windows.Forms.Padding(0)
@@ -191,7 +208,7 @@ Partial Class GestionProgramacionDespacho
         Me.Dg_Cabecera.RowHeadersWidth = 20
         Me.Dg_Cabecera.RowTemplate.Height = 20
         Me.Dg_Cabecera.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.Dg_Cabecera.Size = New System.Drawing.Size(1295, 287)
+        Me.Dg_Cabecera.Size = New System.Drawing.Size(1291, 301)
         Me.Dg_Cabecera.TabIndex = 9
         '
         'Panel1
@@ -201,11 +218,17 @@ Partial Class GestionProgramacionDespacho
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1295, 139)
+        Me.Panel1.Size = New System.Drawing.Size(1291, 139)
         Me.Panel1.TabIndex = 47
         '
         'Panel3
         '
+        Me.Panel3.Controls.Add(Me.cmb_estado)
+        Me.Panel3.Controls.Add(Me.Label4)
+        Me.Panel3.Controls.Add(Me.cmb_limaprov)
+        Me.Panel3.Controls.Add(Me.Label3)
+        Me.Panel3.Controls.Add(Me.cmb_recep)
+        Me.Panel3.Controls.Add(Me.Label2)
         Me.Panel3.Controls.Add(Me.txt_anuladas)
         Me.Panel3.Controls.Add(Me.Button5)
         Me.Panel3.Controls.Add(Me.txt_pendientes)
@@ -225,8 +248,72 @@ Partial Class GestionProgramacionDespacho
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel3.Location = New System.Drawing.Point(0, 40)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(1295, 99)
+        Me.Panel3.Size = New System.Drawing.Size(1291, 99)
         Me.Panel3.TabIndex = 50
+        '
+        'cmb_estado
+        '
+        Me.cmb_estado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb_estado.FormattingEnabled = True
+        Me.cmb_estado.Items.AddRange(New Object() {"TODAS", "VIGENTE", "ANULADO"})
+        Me.cmb_estado.Location = New System.Drawing.Point(843, 9)
+        Me.cmb_estado.Name = "cmb_estado"
+        Me.cmb_estado.Size = New System.Drawing.Size(161, 21)
+        Me.cmb_estado.TabIndex = 107
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(794, 12)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(43, 14)
+        Me.Label4.TabIndex = 106
+        Me.Label4.Text = "Estado:"
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'cmb_limaprov
+        '
+        Me.cmb_limaprov.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb_limaprov.FormattingEnabled = True
+        Me.cmb_limaprov.Items.AddRange(New Object() {"TODAS", "LIMA", "PROVINCIA"})
+        Me.cmb_limaprov.Location = New System.Drawing.Point(604, 39)
+        Me.cmb_limaprov.Name = "cmb_limaprov"
+        Me.cmb_limaprov.Size = New System.Drawing.Size(161, 21)
+        Me.cmb_limaprov.TabIndex = 105
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(513, 46)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(85, 14)
+        Me.Label3.TabIndex = 104
+        Me.Label3.Text = "Lima / Provincia:"
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'cmb_recep
+        '
+        Me.cmb_recep.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb_recep.DropDownWidth = 250
+        Me.cmb_recep.FormattingEnabled = True
+        Me.cmb_recep.Items.AddRange(New Object() {"TODAS", "PENDIENTE DE REPCEPCION", "RECEPCIONADO"})
+        Me.cmb_recep.Location = New System.Drawing.Point(604, 9)
+        Me.cmb_recep.Name = "cmb_recep"
+        Me.cmb_recep.Size = New System.Drawing.Size(161, 21)
+        Me.cmb_recep.TabIndex = 103
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(513, 13)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(61, 14)
+        Me.Label2.TabIndex = 102
+        Me.Label2.Text = "Recepcion:"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'txt_anuladas
         '
@@ -298,17 +385,17 @@ Partial Class GestionProgramacionDespacho
         '
         Me.cmb_serie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmb_serie.FormattingEnabled = True
-        Me.cmb_serie.Items.AddRange(New Object() {"TODAS", "007", "011", "012", "0013"})
-        Me.cmb_serie.Location = New System.Drawing.Point(408, 42)
+        Me.cmb_serie.Items.AddRange(New Object() {"TODAS", "007", "011", "012", "0013", "007", "0009", "015"})
+        Me.cmb_serie.Location = New System.Drawing.Point(324, 39)
         Me.cmb_serie.Name = "cmb_serie"
-        Me.cmb_serie.Size = New System.Drawing.Size(219, 21)
+        Me.cmb_serie.Size = New System.Drawing.Size(161, 21)
         Me.cmb_serie.TabIndex = 92
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(365, 49)
+        Me.Label1.Location = New System.Drawing.Point(281, 46)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(35, 14)
         Me.Label1.TabIndex = 91
@@ -328,26 +415,26 @@ Partial Class GestionProgramacionDespacho
         'txt_numero
         '
         Me.txt_numero.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txt_numero.Location = New System.Drawing.Point(95, 43)
+        Me.txt_numero.Location = New System.Drawing.Point(95, 40)
         Me.txt_numero.Name = "txt_numero"
-        Me.txt_numero.Size = New System.Drawing.Size(209, 20)
+        Me.txt_numero.Size = New System.Drawing.Size(161, 20)
         Me.txt_numero.TabIndex = 89
         '
         'dt_hasta
         '
         Me.dt_hasta.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dt_hasta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dt_hasta.Location = New System.Drawing.Point(408, 12)
+        Me.dt_hasta.Location = New System.Drawing.Point(324, 9)
         Me.dt_hasta.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.dt_hasta.Name = "dt_hasta"
-        Me.dt_hasta.Size = New System.Drawing.Size(219, 20)
+        Me.dt_hasta.Size = New System.Drawing.Size(161, 20)
         Me.dt_hasta.TabIndex = 86
         '
         'Label6
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(10, 46)
+        Me.Label6.Location = New System.Drawing.Point(10, 43)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(79, 14)
         Me.Label6.TabIndex = 88
@@ -358,7 +445,7 @@ Partial Class GestionProgramacionDespacho
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(365, 16)
+        Me.Label9.Location = New System.Drawing.Point(281, 13)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(38, 14)
         Me.Label9.TabIndex = 84
@@ -369,17 +456,17 @@ Partial Class GestionProgramacionDespacho
         '
         Me.dt_desde.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dt_desde.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dt_desde.Location = New System.Drawing.Point(95, 12)
+        Me.dt_desde.Location = New System.Drawing.Point(95, 9)
         Me.dt_desde.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.dt_desde.Name = "dt_desde"
-        Me.dt_desde.Size = New System.Drawing.Size(208, 20)
+        Me.dt_desde.Size = New System.Drawing.Size(161, 20)
         Me.dt_desde.TabIndex = 87
         '
         'Label8
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(17, 16)
+        Me.Label8.Location = New System.Drawing.Point(11, 13)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(41, 14)
         Me.Label8.TabIndex = 83
@@ -399,7 +486,7 @@ Partial Class GestionProgramacionDespacho
         Me.btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Solid
         Me.btnBuscar.IconSize = 16
         Me.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnBuscar.Location = New System.Drawing.Point(632, 13)
+        Me.btnBuscar.Location = New System.Drawing.Point(1010, 10)
         Me.btnBuscar.Name = "btnBuscar"
         Me.btnBuscar.Padding = New System.Windows.Forms.Padding(0, 3, 0, 0)
         Me.btnBuscar.Size = New System.Drawing.Size(25, 20)
@@ -418,7 +505,7 @@ Partial Class GestionProgramacionDespacho
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.ToolStrip1.Size = New System.Drawing.Size(1295, 40)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1291, 40)
         Me.ToolStrip1.TabIndex = 49
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -724,6 +811,44 @@ Partial Class GestionProgramacionDespacho
         Me.DataGridViewTextBoxColumn40.HeaderText = "Glosa"
         Me.DataGridViewTextBoxColumn40.Name = "DataGridViewTextBoxColumn40"
         '
+        'DateTimeGridColumn1
+        '
+        DataGridViewCellStyle2.Format = "d"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.DateTimeGridColumn1.DefaultCellStyle = DataGridViewCellStyle2
+        Me.DateTimeGridColumn1.HeaderText = "Fech. Vence OC"
+        Me.DateTimeGridColumn1.Name = "DateTimeGridColumn1"
+        Me.DateTimeGridColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DateTimeGridColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'DataGridViewTextBoxColumn41
+        '
+        Me.DataGridViewTextBoxColumn41.HeaderText = "idcosto"
+        Me.DataGridViewTextBoxColumn41.Name = "DataGridViewTextBoxColumn41"
+        Me.DataGridViewTextBoxColumn41.Visible = False
+        '
+        'DataGridViewTextBoxColumn42
+        '
+        Me.DataGridViewTextBoxColumn42.HeaderText = "Centro Costos"
+        Me.DataGridViewTextBoxColumn42.Name = "DataGridViewTextBoxColumn42"
+        '
+        'DataGridViewTextBoxColumn43
+        '
+        Me.DataGridViewTextBoxColumn43.HeaderText = "Fisico"
+        Me.DataGridViewTextBoxColumn43.Name = "DataGridViewTextBoxColumn43"
+        '
+        'DataGridViewTextBoxColumn44
+        '
+        Me.DataGridViewTextBoxColumn44.HeaderText = "Site Liquidacion"
+        Me.DataGridViewTextBoxColumn44.Name = "DataGridViewTextBoxColumn44"
+        Me.DataGridViewTextBoxColumn44.Visible = False
+        '
+        'DataGridViewTextBoxColumn45
+        '
+        Me.DataGridViewTextBoxColumn45.HeaderText = "Site Picking"
+        Me.DataGridViewTextBoxColumn45.Name = "DataGridViewTextBoxColumn45"
+        Me.DataGridViewTextBoxColumn45.Visible = False
+        '
         'MARCAR
         '
         Me.MARCAR.HeaderText = "Marcar"
@@ -967,11 +1092,33 @@ Partial Class GestionProgramacionDespacho
         Me.siteliq.Name = "siteliq"
         Me.siteliq.Visible = False
         '
+        'sitepick
+        '
+        Me.sitepick.HeaderText = "Site Picking"
+        Me.sitepick.Name = "sitepick"
+        Me.sitepick.Visible = False
+        '
+        'nombrepicking
+        '
+        Me.nombrepicking.HeaderText = "Site Picking"
+        Me.nombrepicking.Name = "nombrepicking"
+        '
+        'nombreliquidacion
+        '
+        Me.nombreliquidacion.HeaderText = "Site Liquidacion"
+        Me.nombreliquidacion.Name = "nombreliquidacion"
+        '
+        'EstadoRuta
+        '
+        Me.EstadoRuta.HeaderText = "EstadoRuta"
+        Me.EstadoRuta.Name = "EstadoRuta"
+        Me.EstadoRuta.Visible = False
+        '
         'GestionProgramacionDespacho
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1299, 430)
+        Me.ClientSize = New System.Drawing.Size(1295, 444)
         Me.Controls.Add(Me.Panel6)
         Me.Name = "GestionProgramacionDespacho"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -992,24 +1139,14 @@ Partial Class GestionProgramacionDespacho
     Friend WithEvents Panel2 As Panel
     Friend WithEvents savedialog_Excel As SaveFileDialog
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents txt_numero As TextBox
-    Friend WithEvents Label6 As Label
-    Friend WithEvents dt_desde As DateTimePicker
-    Friend WithEvents dt_hasta As DateTimePicker
-    Friend WithEvents btnBuscar As FontAwesome.Sharp.IconButton
-    Friend WithEvents Label8 As Label
-    Friend WithEvents Label9 As Label
-    Friend WithEvents Panel3 As Panel
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents cmdGenerarExcel As ToolStripButton
     Friend WithEvents separador5 As ToolStripSeparator
     Friend WithEvents cmdCerrar As ToolStripButton
-    Friend WithEvents CheckMarcar As CheckBox
     Friend WithEvents ToolStripButton1 As ToolStripButton
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents ToolStripButton2 As ToolStripButton
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
-    Friend WithEvents Dg_Cabecera As DataGridView
     Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
@@ -1039,8 +1176,6 @@ Partial Class GestionProgramacionDespacho
     Friend WithEvents DataGridViewTextBoxColumn27 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn28 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn29 As DataGridViewTextBoxColumn
-    Friend WithEvents Label1 As Label
-    Friend WithEvents cmb_serie As ComboBox
     Friend WithEvents DataGridViewTextBoxColumn30 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn31 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn32 As DataGridViewTextBoxColumn
@@ -1050,18 +1185,42 @@ Partial Class GestionProgramacionDespacho
     Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
     Friend WithEvents DataGridViewTextBoxColumn33 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn34 As DataGridViewTextBoxColumn
-    Friend WithEvents txt_anuladas As Label
-    Friend WithEvents Button5 As Button
-    Friend WithEvents txt_pendientes As Label
-    Friend WithEvents txt_recepcionadas As Label
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button1 As Button
     Friend WithEvents DataGridViewTextBoxColumn35 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn36 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn37 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn38 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn39 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn40 As DataGridViewTextBoxColumn
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents txt_anuladas As Label
+    Friend WithEvents Button5 As Button
+    Friend WithEvents txt_pendientes As Label
+    Friend WithEvents txt_recepcionadas As Label
+    Friend WithEvents Button3 As Button
+    Friend WithEvents Button1 As Button
+    Friend WithEvents cmb_serie As ComboBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents CheckMarcar As CheckBox
+    Friend WithEvents txt_numero As TextBox
+    Friend WithEvents dt_hasta As DateTimePicker
+    Friend WithEvents Label6 As Label
+    Friend WithEvents Label9 As Label
+    Friend WithEvents dt_desde As DateTimePicker
+    Friend WithEvents Label8 As Label
+    Friend WithEvents btnBuscar As FontAwesome.Sharp.IconButton
+    Friend WithEvents Dg_Cabecera As DataGridView
+    Friend WithEvents DateTimeGridColumn1 As DateTimeGridColumn
+    Friend WithEvents DataGridViewTextBoxColumn41 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn42 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn43 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn44 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn45 As DataGridViewTextBoxColumn
+    Friend WithEvents cmb_limaprov As ComboBox
+    Friend WithEvents Label3 As Label
+    Friend WithEvents cmb_recep As ComboBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents cmb_estado As ComboBox
+    Friend WithEvents Label4 As Label
     Friend WithEvents MARCAR As DataGridViewCheckBoxColumn
     Friend WithEvents SITUACION As DataGridViewTextBoxColumn
     Friend WithEvents ESTADO As DataGridViewTextBoxColumn
@@ -1108,4 +1267,8 @@ Partial Class GestionProgramacionDespacho
     Friend WithEvents NombreCosto As DataGridViewTextBoxColumn
     Friend WithEvents FISICO As DataGridViewTextBoxColumn
     Friend WithEvents siteliq As DataGridViewTextBoxColumn
+    Friend WithEvents sitepick As DataGridViewTextBoxColumn
+    Friend WithEvents nombrepicking As DataGridViewTextBoxColumn
+    Friend WithEvents nombreliquidacion As DataGridViewTextBoxColumn
+    Friend WithEvents EstadoRuta As DataGridViewTextBoxColumn
 End Class
