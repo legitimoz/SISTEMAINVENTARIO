@@ -136,14 +136,17 @@
   <data name="actn039" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\actn039.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="412" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\412.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="LogoNordicResize" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LogoNordicResize.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="571" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\571.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="412" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\412.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="app-stock-icon (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\app-stock-icon (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="print-icon3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\print-icon3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -153,6 +156,9 @@
   </data>
   <data name="actn1121" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\actn112.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bus-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Bus-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon_excel3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_excel.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -165,9 +171,6 @@
   </data>
   <data name="Folder-Add-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Folder-Add-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="app-stock-icon (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\app-stock-icon (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="delete-file-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\delete-file-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -189,6 +192,9 @@
   </data>
   <data name="1043" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\104.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_delete_on1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_delete_on1.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="actn0391" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\actn039.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -217,8 +223,11 @@
   <data name="1167" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1167.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon_delete_on1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon_delete_on1.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="004" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\004.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="System-control-panel-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\System-control-panel-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="emergencia" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\emergencia.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -253,9 +262,6 @@
   <data name="104" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\104.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="004" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\004.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="icon_excel11" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_excel1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -280,7 +286,7 @@
   <data name="icon_excel1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_excel.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="System-control-panel-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\System-control-panel-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="delivery-box-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\delivery-box-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

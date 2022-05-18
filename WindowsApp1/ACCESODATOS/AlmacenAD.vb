@@ -21,6 +21,23 @@ Public Class AlmacenAD
 
     End Function
 
+    Public Function SP_CSE_ValidarAlerta() As DataTable
+        Try
+            Dim com As New SqlCommand("SP_CSE_ValidarAlerta", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            Return Nothing
+        End Try
+
+    End Function
+
     Public Function CSE_SP_LISTAR_TIEMPSO_JJ() As DataTable
         Try
             Dim com As New SqlCommand("CSE_SP_LISTAR_TIEMPSO_JJ", MyBase.Conn)
@@ -112,6 +129,49 @@ Public Class AlmacenAD
         End Try
 
     End Function
+
+    Public Function SP_CSE_ObtenerEstadoValidacion(CodArticulo As String) As DataTable
+        Try
+            Dim com As New SqlCommand("SP_CSE_ObtenerEstadoValidacion", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+            com.Parameters.Add("@codarticulo", SqlDbType.Char, 25).Value = CodArticulo
+
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            MyBase.Conn.Close()
+            Throw ex
+            Return Nothing
+        End Try
+
+    End Function
+
+    Public Function SP_LISTAR_ARTICULOS_CUBICAJE() As DataTable
+        Try
+            Dim com As New SqlCommand("SP_LISTAR_ARTICULOS_CUBICAJE", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+
+
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            MyBase.Conn.Close()
+            Throw ex
+            Return Nothing
+        End Try
+
+    End Function
+
 
     Public Function ListarTransportistaDespacho() As DataTable
         Try
@@ -436,6 +496,44 @@ Public Class AlmacenAD
             MyBase.Conn.Close()
         End Try
 
+    End Function
+
+    Public Function SP_CSE_REPORTE_RUTAS(fechadesde As String, fechahasta As String) As DataTable
+        Try
+            Dim com As New SqlCommand("SP_CSE_REPORTE_RUTAS", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+            com.Parameters.Add("@fechainicio", SqlDbType.Char, 10).Value = fechadesde
+            com.Parameters.Add("@fechafin", SqlDbType.Char, 10).Value = fechahasta
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            Throw ex
+            MyBase.Conn.Close()
+        End Try
+    End Function
+
+    Public Function SP_CSE_REPORTE_DESPACHOS(fechadesde As String, fechahasta As String) As DataTable
+        Try
+            Dim com As New SqlCommand("SP_CSE_REPORTE_DESPACHOS", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+            com.Parameters.Add("@fechainicio", SqlDbType.Char, 10).Value = fechadesde
+            com.Parameters.Add("@fechafin", SqlDbType.Char, 10).Value = fechahasta
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            Throw ex
+            MyBase.Conn.Close()
+        End Try
     End Function
 
     Public Function ListarMovimientosXAlmacen(ByVal idalmacen As Integer, fechadesde As String, fechahasta As String) As DataTable
@@ -832,6 +930,44 @@ Public Class AlmacenAD
 
     End Function
 
+    Public Function SP_VALIDAR_DOCUMENTO(C5_CNUMDOC As String) As DataTable
+        Try
+            Dim com As New SqlCommand("SP_VALIDAR_DOCUMENTO", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+            com.Parameters.Add("@CNUMDOC", SqlDbType.Char, 11).Value = C5_CNUMDOC
+
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            Throw ex
+            MyBase.Conn.Close()
+        End Try
+
+    End Function
+
+    Public Function SP_CSE_LISTARTIPOENVIORUTA() As DataTable
+        Try
+            Dim com As New SqlCommand("SP_CSE_LISTARTIPOENVIORUTA", MyBase.Conn)
+            MyBase.Conn.Open()
+
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            Throw ex
+            MyBase.Conn.Close()
+        End Try
+
+    End Function
+
     Public Function ObtenerIndicarDIspatchOnTime(fechadesde As String, fechahasta As String) As DataTable
         Try
             Dim com As New SqlCommand("SPDSN_DISPATCH_ONTIME", MyBase.Conn)
@@ -1155,6 +1291,25 @@ Public Class AlmacenAD
         End Try
     End Function
 
+    Public Function ObtenerDataBonificacion(CCODAGE As String, CNUMPED As String) As DataTable
+        Try
+            Dim com As New SqlCommand("SP_CSE_OBTENER_BONIFICACION", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+            com.Parameters.Add("@F5_CCODAGE", SqlDbType.Char, 20).Value = CCODAGE
+            com.Parameters.Add("@F5_CNUMPED", SqlDbType.Char, 20).Value = CNUMPED
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            Throw ex
+            MyBase.Conn.Close()
+        End Try
+    End Function
+
     Public Function ObtenerArticulosSinCubicaje() As DataTable
         Try
             Dim com As New SqlCommand("SP_CSE_ARTICULOS_SIN_CUBICAE", MyBase.Conn)
@@ -1293,6 +1448,25 @@ Public Class AlmacenAD
 
     End Function
 
+    Public Function ListarMotivosLiquidacion() As DataTable
+
+        Try
+            Dim com As New SqlCommand("SP_CSE_ListarMotivosLiquidacion", MyBase.Conn)
+            MyBase.Conn.Open()
+            com.CommandType = CommandType.StoredProcedure
+            Dim Result As SqlDataReader
+            Dim Tabla As New DataTable
+            Result = com.ExecuteReader()
+            Tabla.Load(Result)
+            MyBase.Conn.Close()
+            Return Tabla
+        Catch ex As Exception
+            Throw ex
+            MyBase.Conn.Close()
+        End Try
+
+    End Function
+
     Public Function ListarPosicionesDetalle(codAlmacen As String, codcabecera As String, tipdoc As String, codarticulo As String, codlote As String) As DataTable
 
         Try
@@ -1344,10 +1518,104 @@ Public Class AlmacenAD
     End Function
 
 
+    Public Function RegistrarFacturaTransportista(CNUMDOC As String, factura As String) As Integer
+        Dim rp As Integer = 0
+        'Dim RpStore As SqlDataReader = Nothing
+        Dim Comm As New SqlCommand("SP_REGISTRAR_FACTURA_GUIA_RUTA", MyBase.Conn)
+        Try
+            Comm.CommandType = CommandType.StoredProcedure
+            With Comm.Parameters
 
+                .Add("@C5_CNUMDOC", SqlDbType.Char, 15).Value = CNUMDOC
+                .Add("@factura", SqlDbType.Char, 50).Value = factura
+            End With
+            MyBase.Conn.Open()
+            ''RpStore = Comm.ExecuteReader(CommandBehavior.SingleRow)
+            ''If (RpStore.Read()) Then
+            ''    rp = Convert.ToInt32(RpStore.GetValue(0).ToString())
+            ''End If
+            rp = Comm.ExecuteNonQuery
 
+            MyBase.Conn.Close()
+        Catch ex As Exception
+            MyBase.Conn.Close()
+        End Try
+        Return rp
+    End Function
 
+    Public Function RegistrarAlerta() As Integer
+        Dim rp As Integer = 0
+        'Dim RpStore As SqlDataReader = Nothing
+        Dim Comm As New SqlCommand("SP_CSE_RegistrarAlerta", MyBase.Conn)
+        Try
+            Comm.CommandType = CommandType.StoredProcedure
 
+            MyBase.Conn.Open()
+            ''RpStore = Comm.ExecuteReader(CommandBehavior.SingleRow)
+            ''If (RpStore.Read()) Then
+            ''    rp = Convert.ToInt32(RpStore.GetValue(0).ToString())
+            ''End If
+            rp = Comm.ExecuteNonQuery
+
+            MyBase.Conn.Close()
+        Catch ex As Exception
+            MyBase.Conn.Close()
+        End Try
+        Return rp
+    End Function
+
+    Public Function SP_CSE_ACTUALIZAR_CUBICAJE_ART(codarticulo As String, alto As Decimal, ancho As Decimal, largo As Decimal, factorcji As Decimal, factorcjm As Decimal) As Integer
+        Dim rp As Integer = 0
+        Dim RpStore As SqlDataReader = Nothing
+        Dim Comm As New SqlCommand("SP_CSE_ACTUALIZAR_CUBICAJE_ART", MyBase.Conn)
+        Try
+            Comm.CommandType = CommandType.StoredProcedure
+            With Comm.Parameters
+                .Add("@codarticulo", SqlDbType.Char, 25).Value = codarticulo
+                .Add("@alto", SqlDbType.Decimal, 16, 3).Value = alto
+                .Add("@ancho", SqlDbType.Decimal, 16, 3).Value = ancho
+                .Add("@largo", SqlDbType.Decimal, 16, 3).Value = largo
+                .Add("@factorcji", SqlDbType.Decimal, 16, 3).Value = factorcji
+                .Add("@factorcjm", SqlDbType.Decimal, 16, 3).Value = factorcjm
+            End With
+            MyBase.Conn.Open()
+            RpStore = Comm.ExecuteReader(CommandBehavior.SingleRow)
+            If (RpStore.Read()) Then
+                rp = Convert.ToInt32(RpStore.GetValue(0).ToString())
+            End If
+            'rp = Comm.ExecuteNonQuery
+
+            MyBase.Conn.Close()
+        Catch ex As Exception
+            MyBase.Conn.Close()
+        End Try
+        Return rp
+    End Function
+
+    Public Function SP_CSE_RegistrarValidacionArticulo(codarticulo As String, userid As Integer) As Integer
+        Dim rp As Integer = 0
+        Dim RpStore As SqlDataReader = Nothing
+        Dim Comm As New SqlCommand("SP_CSE_RegistrarValidacionArticulo", MyBase.Conn)
+        Try
+            Comm.CommandType = CommandType.StoredProcedure
+            With Comm.Parameters
+                .Add("@codarticulo", SqlDbType.Char, 25).Value = codarticulo
+                .Add("@user_id", SqlDbType.Int).Value = userid
+
+            End With
+            MyBase.Conn.Open()
+            RpStore = Comm.ExecuteReader(CommandBehavior.SingleRow)
+            If (RpStore.Read()) Then
+                rp = Convert.ToInt32(RpStore.GetValue(0).ToString())
+            End If
+            'rp = Comm.ExecuteNonQuery
+
+            MyBase.Conn.Close()
+        Catch ex As Exception
+            MyBase.Conn.Close()
+        End Try
+        Return rp
+    End Function
 
 
     '@representante varchar (100),
@@ -1356,7 +1624,7 @@ Public Class AlmacenAD
     '@horarecepcion char (8),
     '@idsite int
 
-    Public Function Agregar_Guia_Ruta(crg_id As Integer, calma As String, ctd As String, cnumdoc As String, userid As Integer, peso As Decimal, bultos As Integer, tiempo As Decimal, volumen As Decimal, restriccion As String, tiporuta As String, cliente As String, Direccion As String, importe As Decimal, condicion As String, REPRESENTATE As String, idcosto As Integer, fecharecepcion As String, horarecepcion As String, idsite As Integer, departamento As String, provincia As String, distrito As String, fisico As String, idsiteliq As Integer) As Integer
+    Public Function Agregar_Guia_Ruta(crg_id As Integer, calma As String, ctd As String, cnumdoc As String, userid As Integer, peso As Decimal, bultos As Integer, tiempo As Decimal, volumen As Decimal, restriccion As String, tiporuta As String, cliente As String, Direccion As String, importe As Decimal, condicion As String, REPRESENTATE As String, idcosto As Integer, fecharecepcion As String, horarecepcion As String, idsite As Integer, departamento As String, provincia As String, distrito As String, fisico As String, idsiteliq As Integer, idsitepicking As Integer, canal As String) As Integer
         Dim rp As Integer = 0
         'Dim RpStore As SqlDataReader = Nothing
         Dim Comm As New SqlCommand("SP_CSE_AGREGAR_DETALLE_RUTA", MyBase.Conn)
@@ -1388,6 +1656,8 @@ Public Class AlmacenAD
                 .Add("@distrito", SqlDbType.Char, 50).Value = distrito
                 .Add("@fisico", SqlDbType.Char, 2).Value = fisico
                 .Add("@idsiteliq", SqlDbType.Int).Value = idsiteliq
+                .Add("@idsitepicking", SqlDbType.Int).Value = idsitepicking
+                .Add("@canal", SqlDbType.Char, 50).Value = canal
             End With
             MyBase.Conn.Open()
             ''RpStore = Comm.ExecuteReader(CommandBehavior.SingleRow)
@@ -1480,8 +1750,29 @@ Public Class AlmacenAD
         Return rp
     End Function
 
+    Public Function SP_CSE_RegistrarObservacionLiquidacion(CALMA As String, CTD As String, CNUMDOC As String, idmotivo As Integer) As Integer
+        Dim rp As Integer = 0
+        Dim Comm As New SqlCommand("SP_CSE_RegistrarObservacionLiquidacion", MyBase.Conn)
+        Try
+            Comm.CommandType = CommandType.StoredProcedure
+            With Comm.Parameters
+                .Add("@CALMA", SqlDbType.Char, 4).Value = CALMA
+                .Add("@CTD", SqlDbType.Char, 2).Value = CTD
+                .Add("@CNUMDOC", SqlDbType.Char, 11).Value = CNUMDOC
+                .Add("@idMotivo", SqlDbType.Int).Value = idmotivo
+            End With
+            MyBase.Conn.Open()
+            rp = Comm.ExecuteNonQuery
 
-    Public Function RegistrarRecepcionGuiaDespacho(CALMA As String, CTD As String, CNUMDOC As String, userid As Integer, idcosto As Integer, fisico As String, idsiteliq As Integer, idsitePicking As Integer) As Integer
+            MyBase.Conn.Close()
+        Catch ex As Exception
+            MyBase.Conn.Close()
+        End Try
+        Return rp
+    End Function
+
+
+    Public Function RegistrarRecepcionGuiaDespacho(CALMA As String, CTD As String, CNUMDOC As String, userid As Integer, idcosto As Integer, fisico As String, idsiteliq As Integer, idsitePicking As Integer, Comentario As String) As Integer
         Dim rp As Integer = 0
         Dim Comm As New SqlCommand("SP_CSE_CONFIRMARRECEPCIONGUIAV2", MyBase.Conn)
         Try
@@ -1495,6 +1786,7 @@ Public Class AlmacenAD
                 .Add("@fisico", SqlDbType.Char, 2).Value = fisico
                 .Add("@idsiteliq", SqlDbType.Int).Value = idsiteliq
                 .Add("@idsitepicking", SqlDbType.Int).Value = idsitePicking
+                .Add("@ComentarioPicking", SqlDbType.VarChar, 300).Value = Comentario
             End With
             MyBase.Conn.Open()
             rp = Comm.ExecuteNonQuery

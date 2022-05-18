@@ -136,7 +136,7 @@ Public Class frmVisorPedidos
 
 
             For i As Integer = 0 To dt.Rows.Count - 1
-                dgvListarPedidos.Rows.Add(dt.Rows(i).Item("F5_CCODAGE").ToString, dt.Rows(i).Item("F5_CNUMPED").ToString, dt.Rows(i).Item("FV_CDESCRI").ToString, dt.Rows(i).Item("ORDEN_COMPRA").ToString, dt.Rows(i).Item("GUIA").ToString, dt.Rows(i).Item("FACTURA").ToString, dt.Rows(i).Item("FECHA_HORA").ToString, dt.Rows(i).Item("DIFERENCIA").ToString, dt.Rows(i).Item("DIFERENCIA").ToString & "-" & dt.Rows(i).Item("TIEMPO").ToString, dt.Rows(i).Item("TIEMPO").ToString, dt.Rows(i).Item("F5_CCODCLI").ToString, dt.Rows(i).Item("F5_CNOMBRE").ToString, dt.Rows(i).Item("F5_NIMPORT").ToString, dt.Rows(i).Item("CD_NSALDMN").ToString, dt.Rows(i).Item("CL_CDEPT").ToString, dt.Rows(i).Item("ESTADO").ToString, dt.Rows(i).Item("F5_CUSUAP").ToString, dt.Rows(i).Item("F5_DFECAPR").ToString, dt.Rows(i).Item("TU_ALIAS").ToString, dt.Rows(i).Item("TU_NOMUSU").ToString, dt.Rows(i).Item("F5_CESTADO").ToString, dt.Rows(i).Item("FV_CCODIGO").ToString, dt.Rows(i).Item("OBS").ToString, dt.Rows(i).Item("OBSERV").ToString)
+                dgvListarPedidos.Rows.Add(dt.Rows(i).Item("F5_CCODAGE").ToString, dt.Rows(i).Item("F5_CNUMPED").ToString, dt.Rows(i).Item("FV_CDESCRI").ToString, dt.Rows(i).Item("ORDEN_COMPRA").ToString, dt.Rows(i).Item("GUIA").ToString, dt.Rows(i).Item("FACTURA").ToString, dt.Rows(i).Item("FECHA_HORA").ToString, dt.Rows(i).Item("DIFERENCIA").ToString, dt.Rows(i).Item("DIFERENCIA").ToString & "-" & dt.Rows(i).Item("TIEMPO").ToString, dt.Rows(i).Item("TIEMPO").ToString, dt.Rows(i).Item("F5_CCODCLI").ToString, dt.Rows(i).Item("F5_CNOMBRE").ToString, dt.Rows(i).Item("F5_NIMPORT").ToString, dt.Rows(i).Item("CD_NSALDMN").ToString, dt.Rows(i).Item("CL_CDEPT").ToString, dt.Rows(i).Item("ESTADO").ToString, dt.Rows(i).Item("F5_CUSUAP").ToString, dt.Rows(i).Item("F5_DFECAPR").ToString, dt.Rows(i).Item("TU_ALIAS").ToString, dt.Rows(i).Item("TU_NOMUSU").ToString, dt.Rows(i).Item("F5_CESTADO").ToString, dt.Rows(i).Item("FV_CCODIGO").ToString, dt.Rows(i).Item("OBS").ToString, dt.Rows(i).Item("OBSERV").ToString, dt.Rows(i).Item("GLOSA").ToString)
                 acum = acum + CInt(dt.Rows(i).Item("F5_NIMPORT").ToString)
 
                 If dt.Rows(i).Item("FV_CCODIGO").ToString = "C01" Or dt.Rows(i).Item("FV_CCODIGO").ToString = "C06" Or dt.Rows(i).Item("FV_CCODIGO").ToString = "C07" Then
@@ -287,14 +287,12 @@ Public Class frmVisorPedidos
 
             codPro = dgvListarPedidos.CurrentRow.Cells.Item("F5_CCODAGE").Value.ToString
             numPed = dgvListarPedidos.CurrentRow.Cells.Item("F5_CNUMPED").Value.ToString
-
             ruc = dgvListarPedidos.CurrentRow.Cells.Item("F5_CCODCLI").Value.ToString
-
             CargarDetalleProductos(codPro, numPed)
             CargarDetalleObservacion(codPro, numPed)
             CargarTrazabilidadPedio(codPro, numPed)
             CargarCuentasXCobrar(ruc)
-
+            CargarDataBonificaciones(codPro, numPed)
 
         Catch ex As Exception
 
@@ -316,6 +314,37 @@ Public Class frmVisorPedidos
             dgvListarDetalleProductos.Columns(2).Width = 150
             dgvListarDetalleProductos.Columns(3).Width = 400
             dgvListarDetalleProductos.Columns(4).Width = 100
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Public Sub CargarDataBonificaciones(CCODAGE As String, CNUMPED As String)
+        Dim almacenObj As New AlmacenL
+        Dim dt_Bonificacion As New DataTable
+        Try
+            If Dg_Bonificacion.Rows.Count > 0 Then
+                Dg_Bonificacion.Rows.Clear()
+            End If
+            dt_Bonificacion = almacenObj.ObtenerDataBonificacion(CCODAGE, CNUMPED)
+            If dt_Bonificacion.Rows.Count > 0 Then
+
+                'Dg_Bonificacion.DataSource = dt_Bonificacion
+                Dim contador As Integer = 0
+                If Dg_Bonificacion.Rows.Count <> dt_Bonificacion.Rows.Count Then
+                    For Each RowRetorno As DataRow In dt_Bonificacion.Rows
+                        Dg_Bonificacion.Rows.Add()
+                        Dg_Bonificacion.Rows(contador).Cells("CODIGO").Value = RowRetorno.Item("CODIGO").ToString.Trim
+                        Dg_Bonificacion.Rows(contador).Cells("ARTICULO").Value = RowRetorno.Item("ARTICULO").ToString.Trim
+                        Dg_Bonificacion.Rows(contador).Cells("CANTIDAD").Value = RowRetorno.Item("CANTIDAD").ToString.Trim
+                        contador = contador + 1
+                    Next
+                End If
+                Dg_Bonificacion.Columns(1).Width = 400
+            Else
+                dgvCuentasxCobrar.Rows.Clear()
+            End If
 
         Catch ex As Exception
 
@@ -1058,7 +1087,26 @@ Public Class frmVisorPedidos
         End Try
     End Sub
 
+    Private Sub dgvListarPedidos_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvListarPedidos.CellContentDoubleClick
+        Try
+            Dim Glosa As String = ""
+            If dgvListarPedidos.Rows.Count > 0 Then
 
+                If e.RowIndex >= 0 Then
+                    If e.ColumnIndex = 24 Then
+                        Glosa = dgvListarPedidos.Rows(e.RowIndex).Cells(24).ToString.Trim
+                        If Glosa <> "" Then
+                            Dim Form As New FrameVisorGlosaPedido
+                            Form.Glosa = Glosa
+                            Form.ShowDialog()
+                        End If
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
 
 

@@ -89,10 +89,10 @@
                   <Width>5.29531cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>5.87882cm</Width>
+                  <Width>5.12877cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.22932cm</Width>
+                  <Width>1.70557cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.33584cm</Width>
@@ -322,8 +322,8 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>IMPORTE
-SOLES</Value>
+                                  <Value>CLIENTE
+INTERNO</Value>
                                   <Style>
                                     <FontSize>6pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -619,7 +619,7 @@ HORAS</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Tipo Ruta</Value>
+                                  <Value>Comentario</Value>
                                   <Style>
                                     <FontSize>6pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -1085,7 +1085,7 @@ HORAS</Value>
             <Top>0.17639cm</Top>
             <Left>0.03528cm</Left>
             <Height>1.82cm</Height>
-            <Width>27.44242cm</Width>
+            <Width>27.16862cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1094,6 +1094,52 @@ HORAS</Value>
               <FontSize>7pt</FontSize>
             </Style>
           </Tablix>
+          <Textbox Name="Textbox77">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>OBSERVACIONES ADICIONALES :</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                      <FontWeight>ExtraBold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox52</rd:DefaultName>
+            <Top>2.53322cm</Top>
+            <Left>0.03528cm</Left>
+            <Height>0.59077cm</Height>
+            <Width>4.72258cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+            </Style>
+          </Textbox>
+          <Line Name="Line23">
+            <Top>3.12399cm</Top>
+            <Left>4.90654cm</Left>
+            <Height>0cm</Height>
+            <Width>16.71211cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Color>DimGray</Color>
+                <Style>Solid</Style>
+                <Width>0.5pt</Width>
+              </Border>
+            </Style>
+          </Line>
         </ReportItems>
         <Height>1.41475in</Height>
         <Style />

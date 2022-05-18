@@ -35,6 +35,8 @@ Partial Class AgregarGuiaDespacho
         Me.cmb_site = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.cmb_fisico = New System.Windows.Forms.ComboBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.cmb_SitePicking = New System.Windows.Forms.ComboBox()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -92,7 +94,7 @@ Partial Class AgregarGuiaDespacho
         Me.cmdAceptar.IconFont = FontAwesome.Sharp.IconFont.Solid
         Me.cmdAceptar.IconSize = 16
         Me.cmdAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.cmdAceptar.Location = New System.Drawing.Point(236, 163)
+        Me.cmdAceptar.Location = New System.Drawing.Point(236, 183)
         Me.cmdAceptar.Margin = New System.Windows.Forms.Padding(4)
         Me.cmdAceptar.Name = "cmdAceptar"
         Me.cmdAceptar.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
@@ -162,11 +164,31 @@ Partial Class AgregarGuiaDespacho
         Me.cmb_fisico.Size = New System.Drawing.Size(209, 21)
         Me.cmb_fisico.TabIndex = 153
         '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(10, 149)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(69, 13)
+        Me.Label5.TabIndex = 158
+        Me.Label5.Text = "Site Picking :"
+        '
+        'cmb_SitePicking
+        '
+        Me.cmb_SitePicking.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb_SitePicking.FormattingEnabled = True
+        Me.cmb_SitePicking.Location = New System.Drawing.Point(124, 146)
+        Me.cmb_SitePicking.Name = "cmb_SitePicking"
+        Me.cmb_SitePicking.Size = New System.Drawing.Size(209, 21)
+        Me.cmb_SitePicking.TabIndex = 157
+        '
         'AgregarGuiaDespacho
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(352, 203)
+        Me.ClientSize = New System.Drawing.Size(352, 222)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.cmb_SitePicking)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.cmb_site)
         Me.Controls.Add(Me.Label2)
@@ -200,4 +222,6 @@ Partial Class AgregarGuiaDespacho
     Friend WithEvents cmb_site As ComboBox
     Friend WithEvents Label2 As Label
     Friend WithEvents cmb_fisico As ComboBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents cmb_SitePicking As ComboBox
 End Class

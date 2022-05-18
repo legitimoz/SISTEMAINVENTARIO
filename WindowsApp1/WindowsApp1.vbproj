@@ -253,6 +253,12 @@
     <Compile Include="EditarSalidaAlmacen.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FrameVisorGlosaPedido.Designer.vb">
+      <DependentUpon>FrameVisorGlosaPedido.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrameVisorGlosaPedido.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmAsignarValor.Designer.vb">
       <DependentUpon>frmAsignarValor.vb</DependentUpon>
     </Compile>
@@ -724,6 +730,12 @@
     <Compile Include="ReporteArticulosSinUbicar.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ReporteDespachos.Designer.vb">
+      <DependentUpon>ReporteDespachos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteDespachos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ReporteKardexArticulo.Designer.vb">
       <DependentUpon>ReporteKardexArticulo.vb</DependentUpon>
     </Compile>
@@ -740,6 +752,12 @@
       <DependentUpon>ReportePartesEntradaSinUbicar.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportePartesEntradaSinUbicar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReporteRutas.Designer.vb">
+      <DependentUpon>ReporteRutas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteRutas.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ReporteUbicacionesVacias.Designer.vb">
@@ -889,6 +907,12 @@
     <Compile Include="TrasladoEntreUbicaciones.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ValidarCubicajeArticulo.Designer.vb">
+      <DependentUpon>ValidarCubicajeArticulo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ValidarCubicajeArticulo.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AgregarArticuloUnidad.resx">
@@ -947,6 +971,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditarSalidaAlmacen.resx">
       <DependentUpon>EditarSalidaAlmacen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrameVisorGlosaPedido.resx">
+      <DependentUpon>FrameVisorGlosaPedido.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAsignarValor.resx">
       <DependentUpon>frmAsignarValor.vb</DependentUpon>
@@ -1179,6 +1206,9 @@
     <EmbeddedResource Include="ReporteArticulosSinUbicar.resx">
       <DependentUpon>ReporteArticulosSinUbicar.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReporteDespachos.resx">
+      <DependentUpon>ReporteDespachos.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReporteKardexArticulo.resx">
       <DependentUpon>ReporteKardexArticulo.vb</DependentUpon>
     </EmbeddedResource>
@@ -1187,6 +1217,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportePartesEntradaSinUbicar.resx">
       <DependentUpon>ReportePartesEntradaSinUbicar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReporteRutas.resx">
+      <DependentUpon>ReporteRutas.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReporteUbicacionesVacias.resx">
       <DependentUpon>ReporteUbicacionesVacias.vb</DependentUpon>
@@ -1254,6 +1287,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TrasladoEntreUbicaciones.resx">
       <DependentUpon>TrasladoEntreUbicaciones.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ValidarCubicajeArticulo.resx">
+      <DependentUpon>ValidarCubicajeArticulo.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -1331,6 +1367,8 @@
     <None Include="Resources\Action-window-no-fullscreen-icon.png" />
     <None Include="Resources\Folder-Add-icon.png" />
     <None Include="Resources\System-control-panel-icon.png" />
+    <None Include="Resources\Bus-icon.png" />
+    <None Include="Resources\delivery-box-icon.png" />
     <Content Include="SqlServerTypes\Loader.cs" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">

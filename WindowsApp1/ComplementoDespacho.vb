@@ -4,6 +4,7 @@
     Public idCosto As Integer = 0
     Public idsiteliqu As Integer = 0
     Public idsitePicking As Integer = 0
+    Public Comentario As String = ""
     Private DtCentrosCosto As New DataTable
     Private AlmacenObj As New AlmacenL
 
@@ -82,8 +83,9 @@
             idCosto = CType(Cmb_Costos.SelectedValue.ToString, Integer)
             idsiteliqu = CType(cmb_site.SelectedValue.ToString, Integer)
             idsitePicking = CType(cmb_SitePicking.SelectedValue.ToString, Integer)
-
             If ValidarAceptar() Then
+
+                Comentario = RichTextBox1.Text.ToString.Trim
                 Grabado = True
                 Me.Close()
             Else
@@ -108,6 +110,7 @@
                 ErrorProvider1.SetError(cmb_fisico, "Seleccione Fisico")
                 rp = False
             End If
+
         Catch ex As Exception
             Throw ex
         End Try

@@ -119,22 +119,37 @@ Public Class GestionDispatchOnTime
 
                     Dim DIA As Integer = 0
                     DIA = FechaRecepcion.DayOfWeek
-                    If RowRetorno.Item("LIM_PROV").ToString.Trim = "LIMA" Then
+                    If rowcabecera.Item("LIM_PROV").ToString.Trim = "LIMA" Then
                         If RowRetorno.Item("HORA_RECEPCION").ToString.Trim > #04:30:00 PM# Then
                             Tolerancia = 2
+                        Else
+                            Tolerancia = 1
                         End If
+
                         If DIA = 6 Then
-                            Tolerancia = 2
+                            If RowRetorno.Item("HORA_RECEPCION").ToString.Trim > #10:30:00 AM# Then
+                                Tolerancia = 3
+                            Else
+                                Tolerancia = 2
+                            End If
+
                         End If
 
                     End If
 
-                    If RowRetorno.Item("LIM_PROV").ToString.Trim = "PROVINCIA" Then
+                    If rowcabecera.Item("LIM_PROV").ToString.Trim = "PROVINCIA" Then
                         If RowRetorno.Item("HORA_RECEPCION").ToString.Trim > #12:00:00 PM# Then
-                            Tolerancia = 2
+                            Tolerancia = 1
+                        Else
+                            Tolerancia = 0
                         End If
+
                         If DIA = 6 Then
-                            Tolerancia = 2
+                            If RowRetorno.Item("HORA_RECEPCION").ToString.Trim > #10:30:00 AM# Then
+                                Tolerancia = 2
+                            Else
+                                Tolerancia = 0
+                            End If
                         End If
                     End If
 

@@ -205,7 +205,7 @@ Public Class frmRetornoRuta
                                          dt.Rows(0).Item("USUARIO_SALIDARUTA").ToString, dt.Rows(0).Item("FECHA_RETORNORUTA").ToString,
                                          dt.Rows(0).Item("USUARIO_RETORNORUTA").ToString,
                                          dt.Rows(0).Item("FECHA_RECEPCION_CLIENTE").ToString, dt.Rows(0).Item("FECHA_INTER_FACTURA").ToString,
-                                         dt.Rows(0).Item("FECHA_VTO_OC").ToString, dt.Rows(0).Item("FECHA_REPROG").ToString)
+                                         dt.Rows(0).Item("FECHA_VTO_OC").ToString, dt.Rows(0).Item("FECHA_REPROG").ToString, dt.Rows(0).Item("FacturaTransporte").ToString)
 
                                     Pintar_GrillaSemaforo()
 
@@ -337,39 +337,52 @@ Public Class frmRetornoRuta
         Try
 
             If dgvRetornoRuta.Rows.Count > 0 Then
-                Dim numeroGuia As String = String.Empty
-                Dim fechaRecepClienteDate As String = String.Empty
-                Dim fechaInterFacturaDate As String = String.Empty
-                Dim fechaVtoOrdenCompraDate As String = String.Empty
+                If e.ColumnIndex <> 18 Then
+                    Dim numeroGuia As String = String.Empty
+                    Dim fechaRecepClienteDate As String = String.Empty
+                    Dim fechaInterFacturaDate As String = String.Empty
+                    Dim fechaVtoOrdenCompraDate As String = String.Empty
 
-                Dim fechaRecepClienteCadena As String = String.Empty
-                Dim fechaInterFacturaCadena As String = String.Empty
-                Dim fechaVtoOrdenCompraCadena As String = String.Empty
-                Dim tipoTextoRespuesta As String = String.Empty
-                Dim fechaReProgramacion As String = String.Empty
-
-
-                numeroGuia = dgvRetornoRuta.CurrentRow.Cells.Item("C5_CNUMDOC").Value.ToString()
-                fechaRecepClienteDate = ConversionFechaDate(dgvRetornoRuta.CurrentRow.Cells.Item("fechaRecepCliente").Value.ToString())
-                fechaInterFacturaDate = ConversionFechaDate(dgvRetornoRuta.CurrentRow.Cells.Item("fechaInterFactura").Value.ToString())
-                fechaVtoOrdenCompraDate = ConversionFechaDate(dgvRetornoRuta.CurrentRow.Cells.Item("fecha_vto_oc").Value.ToString())
-                fechaReProgramacion = ConversionFechaDate(dgvRetornoRuta.CurrentRow.Cells.Item("fecReProg").Value.ToString())
-
-                fechaRecepClienteCadena = ConversionFechaTexto(dgvRetornoRuta.CurrentRow.Cells.Item("fechaRecepCliente").Value.ToString())
-                fechaInterFacturaCadena = ConversionFechaTexto(dgvRetornoRuta.CurrentRow.Cells.Item("fechaInterFactura").Value.ToString())
-                fechaVtoOrdenCompraCadena = ConversionFechaTexto(dgvRetornoRuta.CurrentRow.Cells.Item("fecha_vto_oc").Value.ToString())
+                    Dim fechaRecepClienteCadena As String = String.Empty
+                    Dim fechaInterFacturaCadena As String = String.Empty
+                    Dim fechaVtoOrdenCompraCadena As String = String.Empty
+                    Dim tipoTextoRespuesta As String = String.Empty
+                    Dim fechaReProgramacion As String = String.Empty
 
 
-                Dim objGuias As New BeCabGuiaRuta
+                    numeroGuia = dgvRetornoRuta.CurrentRow.Cells.Item("C5_CNUMDOC").Value.ToString()
+                    fechaRecepClienteDate = ConversionFechaDate(dgvRetornoRuta.CurrentRow.Cells.Item("fechaRecepCliente").Value.ToString())
+                    fechaInterFacturaDate = ConversionFechaDate(dgvRetornoRuta.CurrentRow.Cells.Item("fechaInterFactura").Value.ToString())
+                    fechaVtoOrdenCompraDate = ConversionFechaDate(dgvRetornoRuta.CurrentRow.Cells.Item("fecha_vto_oc").Value.ToString())
+                    fechaReProgramacion = ConversionFechaDate(dgvRetornoRuta.CurrentRow.Cells.Item("fecReProg").Value.ToString())
 
-                If nroRuta <> "SINRUTA" Then
-                    objGuias.RegistrarFechaRetornoRuta(lblRuta.Text, numeroGuia, fechaRecepClienteDate, fechaInterFacturaDate, fechaVtoOrdenCompraDate, fechaRecepClienteCadena, fechaInterFacturaCadena, fechaVtoOrdenCompraCadena, fechaReProgramacion, tipoTextoRespuesta)
-                Else
-                    objGuias.RegistrarFechaRetornoRuta_SinRuta(numeroGuia, fechaRecepClienteDate, fechaInterFacturaDate, fechaVtoOrdenCompraDate, fechaRecepClienteCadena, fechaInterFacturaCadena, fechaVtoOrdenCompraCadena, fechaReProgramacion, tipoTextoRespuesta)
-                End If
+                    fechaRecepClienteCadena = ConversionFechaTexto(dgvRetornoRuta.CurrentRow.Cells.Item("fechaRecepCliente").Value.ToString())
+                    fechaInterFacturaCadena = ConversionFechaTexto(dgvRetornoRuta.CurrentRow.Cells.Item("fechaInterFactura").Value.ToString())
+                    fechaVtoOrdenCompraCadena = ConversionFechaTexto(dgvRetornoRuta.CurrentRow.Cells.Item("fecha_vto_oc").Value.ToString())
 
-                If tipoTextoRespuesta = "1" Then
-                    MessageBox.Show("Se acualizó satisfactoriamente", "Aviso", MessageBoxButtons.OK)
+
+                    Dim objGuias As New BeCabGuiaRuta
+
+                    If nroRuta <> "SINRUTA" Then
+                        objGuias.RegistrarFechaRetornoRuta(lblRuta.Text, numeroGuia, fechaRecepClienteDate, fechaInterFacturaDate, fechaVtoOrdenCompraDate, fechaRecepClienteCadena, fechaInterFacturaCadena, fechaVtoOrdenCompraCadena, fechaReProgramacion, tipoTextoRespuesta)
+                    Else
+                        objGuias.RegistrarFechaRetornoRuta_SinRuta(numeroGuia, fechaRecepClienteDate, fechaInterFacturaDate, fechaVtoOrdenCompraDate, fechaRecepClienteCadena, fechaInterFacturaCadena, fechaVtoOrdenCompraCadena, fechaReProgramacion, tipoTextoRespuesta)
+                    End If
+
+                    If tipoTextoRespuesta = "1" Then
+                        MessageBox.Show("Se acualizó satisfactoriamente", "Aviso", MessageBoxButtons.OK)
+                    End If
+                ElseIf e.ColumnIndex = 18 Then
+                    Dim numeroGuia As String
+                    numeroGuia = dgvRetornoRuta.CurrentRow.Cells.Item("C5_CNUMDOC").Value.ToString()
+                    Dim Rp As Integer = 0
+                    Dim objalmacen As New AlmacenL
+                    Dim Factura As String = ""
+                    Factura = dgvRetornoRuta.Rows(e.RowIndex).Cells(e.ColumnIndex).EditedFormattedValue
+                    Rp = objalmacen.RegistrarFacturaTransportista(numeroGuia.Trim, Factura.Trim)
+                    If Rp <> 0 Then
+                        MessageBox.Show("Se acualizó satisfactoriamente", "Aviso", MessageBoxButtons.OK)
+                    End If
                 End If
             End If
 

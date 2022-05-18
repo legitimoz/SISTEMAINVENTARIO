@@ -258,18 +258,18 @@ Public Class frmSalidaRetorno_Ruta
                     Dim contador As Integer = 1
                     For Each DetalleCon As DataRow In dtDetalleRuta.Rows
                         rowRuta = dtruta.NewRow
-                        rowRuta.Item("Numero") = contador
+                        rowRuta.Item("Numero") = DetalleCon.Item("orden").ToString.Trim
                         rowRuta.Item("Guia") = DetalleCon.Item("NRO_GUIA").ToString.Trim
                         rowRuta.Item("Cliente") = DetalleCon.Item("NOM_CLIENTE").ToString.Trim
                         rowRuta.Item("Restriccion") = DetalleCon.Item("RESTRICCION").ToString.Trim
                         rowRuta.Item("Direccion") = DetalleCon.Item("DIRECCION_ENTREGA").ToString.Trim
                         rowRuta.Item("Condicion") = DetalleCon.Item("CONDICION").ToString.Trim
-                        'rowRuta.Item("Importe") = CType(DetalleCon.Item("IMPORTE"), Decimal)
-                        rowRuta.Item("Importe") = CType(0, Decimal)
+                        rowRuta.Item("Importe") = DetalleCon.Item("IMPORTE")
+                        'rowRuta.Item("Importe") = CType(0, Decimal)
                         rowRuta.Item("Representante") = DetalleCon.Item("REPRESENTANTE").ToString.Trim
                         rowRuta.Item("Volumen") = Math.Round(CType(DetalleCon.Item("M3UN"), Decimal), 3)
                         rowRuta.Item("TiempoEntrega") = DetalleCon.Item("TIEMPO")
-                        rowRuta.Item("TipoRuta") = DetalleCon.Item("TipoRuta").ToString.Trim
+                        rowRuta.Item("TipoRuta") = ""
                         dtruta.Rows.Add(rowRuta)
                         contador = contador + 1
                     Next

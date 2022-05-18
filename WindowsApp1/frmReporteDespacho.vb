@@ -68,8 +68,6 @@ Public Class frmReporteDespacho
             fecInicio = dtpFechaInicio.Value.ToShortDateString
             fecFin = dtpFecFin.Value.ToShortDateString
 
-
-
             If chkBxGuia.Checked = True Then
                 NumGuias = txtGuia.Text.Trim
 
@@ -413,24 +411,17 @@ Public Class frmReporteDespacho
         End Try
     End Sub
 
-
-
-
     Public Sub configurarMenucontextual()
         Try
-
             Dim oToolStripItem1 As New ToolStripMenuItem
             oToolStripItem1.Text = "Ver Imagen"
             oToolStripItem1.Tag = "1"
             AddHandler oToolStripItem1.Click, AddressOf BtnVerImagen_Click
             mnuContextual.Items.Add(oToolStripItem1)
-
             dgvListarRutas_Guias.ContextMenuStrip = mnuContextual
-
         Catch ex As Exception
 
         End Try
-
     End Sub
 
 

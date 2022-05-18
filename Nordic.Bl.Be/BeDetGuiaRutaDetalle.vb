@@ -278,4 +278,34 @@
         End Set
     End Property
 
+    Private idsitepicking As Integer
+    Public Property pr_idsitepicking() As Integer
+        Get
+            Return idsitepicking
+        End Get
+        Set(ByVal value As Integer)
+            idsitepicking = value
+        End Set
+    End Property
+
+    Private canal As String
+    Public Property pr_canal() As String
+        Get
+            Return canal
+        End Get
+        Set(ByVal value As String)
+            canal = value
+        End Set
+    End Property
+
+    Private nroorden As Integer
+    Public Property pr_nroorden() As Integer
+        Get
+            Return nroorden
+        End Get
+        Set(ByVal value As Integer)
+            nroorden = value
+        End Set
+    End Property
+
 End Class

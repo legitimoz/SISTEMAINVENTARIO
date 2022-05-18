@@ -12,7 +12,7 @@
   <xs:element name="DatasetHojaPicking" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DatasetHojaPicking" msprop:Generator_UserDSName="DatasetHojaPicking">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="DataTable2" msprop:Generator_TableClassName="DataTable2DataTable" msprop:Generator_TableVarName="tableDataTable2" msprop:Generator_RowChangedName="DataTable2RowChanged" msprop:Generator_TablePropName="DataTable2" msprop:Generator_RowDeletingName="DataTable2RowDeleting" msprop:Generator_RowChangingName="DataTable2RowChanging" msprop:Generator_RowEvHandlerName="DataTable2RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable2RowDeleted" msprop:Generator_RowClassName="DataTable2Row" msprop:Generator_UserTableName="DataTable2" msprop:Generator_RowEvArgName="DataTable2RowChangeEvent">
+        <xs:element name="DataTable2" msprop:Generator_TableClassName="DataTable2DataTable" msprop:Generator_TableVarName="tableDataTable2" msprop:Generator_TablePropName="DataTable2" msprop:Generator_RowDeletingName="DataTable2RowDeleting" msprop:Generator_RowChangingName="DataTable2RowChanging" msprop:Generator_RowEvHandlerName="DataTable2RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable2RowDeleted" msprop:Generator_UserTableName="DataTable2" msprop:Generator_RowChangedName="DataTable2RowChanged" msprop:Generator_RowEvArgName="DataTable2RowChangeEvent" msprop:Generator_RowClassName="DataTable2Row">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CodArticulo" msprop:Generator_ColumnVarNameInTable="columnCodArticulo" msprop:Generator_ColumnPropNameInRow="CodArticulo" msprop:Generator_ColumnPropNameInTable="CodArticuloColumn" msprop:Generator_UserColumnName="CodArticulo" type="xs:string" minOccurs="0" />
@@ -26,6 +26,7 @@
               <xs:element name="CajasM" msprop:Generator_ColumnVarNameInTable="columnCajasM" msprop:Generator_ColumnPropNameInRow="CajasM" msprop:Generator_ColumnPropNameInTable="CajasMColumn" msprop:Generator_UserColumnName="CajasM" type="xs:string" minOccurs="0" />
               <xs:element name="CajasI" msprop:Generator_ColumnVarNameInTable="columnCajasI" msprop:Generator_ColumnPropNameInRow="CajasI" msprop:Generator_ColumnPropNameInTable="CajasIColumn" msprop:Generator_UserColumnName="CajasI" type="xs:string" minOccurs="0" />
               <xs:element name="Saldo" msprop:Generator_ColumnVarNameInTable="columnSaldo" msprop:Generator_ColumnPropNameInRow="Saldo" msprop:Generator_ColumnPropNameInTable="SaldoColumn" msprop:Generator_UserColumnName="Saldo" type="xs:string" minOccurs="0" />
+              <xs:element name="Posicion3" msprop:Generator_ColumnVarNameInTable="columnPosicion3" msprop:Generator_ColumnPropNameInRow="Posicion3" msprop:Generator_ColumnPropNameInTable="Posicion3Column" msprop:Generator_UserColumnName="Posicion3" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

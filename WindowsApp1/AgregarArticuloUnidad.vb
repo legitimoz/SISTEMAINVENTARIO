@@ -9,6 +9,7 @@ Public Class AgregarArticuloUnidad
     Public idsite As Integer = 0, idrack As Integer = 0
     Public Sub CargaInicial()
         Try
+            LimpiarCampos()
             idalmacen = ConfigurationManager.AppSettings("idalmac").ToString.Trim
             idsite = ConfigurationManager.AppSettings("CodigoSite").ToString.Trim
             If idalmacen <> 0 And idsite <> 0 Then
@@ -170,6 +171,16 @@ Public Class AgregarArticuloUnidad
         Return rp
     End Function
 
+    Private Sub LimpiarCampos()
+        txt_codarti.Text = ""
+        txt_codlote.Text = ""
+        txt_vence.Text = ""
+        txt_cantidad.Text = ""
+        cmb_Rack.DataSource = Nothing
+        cmb_posiciones.DataSource = Nothing
+
+    End Sub
+
     Public Sub Aceptar()
         Try
             If ValidarAceptar() = True Then
@@ -179,6 +190,7 @@ Public Class AgregarArticuloUnidad
                 If rp <> 0 Then
                     grabado = True
                     MsgBox("Articulo Registrado Correctamente", MsgBoxStyle.Information, "SISTEMAS NORDIC")
+                    '  LimpiarCampos()
                     Me.Close()
                 Else
                     MsgBox("Fallo al registrar Articulo, Contactar con el area de sistemas", MsgBoxStyle.Information, "SISTEMAS NORDIC")

@@ -12,6 +12,7 @@ Public Class AgregarGuiaCabeceraRuta
 
     Private Sub CargaInicial()
         Try
+            CargarSitePicking()
             CargarSite2()
             CargarCentrosCosto()
             ListarAlmacenSoftcom()
@@ -76,39 +77,49 @@ Public Class AgregarGuiaCabeceraRuta
             Else
                 dtGuia = LlamarObtenerGuiaDespacho(combo_Almacen.SelectedValue.ToString.Trim, "GS", txt_numero.Text.Trim)
                 If dtGuia.Rows.Count > 0 Then
-                    'grabado = True
-                    'rowRetorno = dtGuia.Rows(0)
-                    'idcosto = Cmb_Costos.SelectedValue
-                    'nombrecosto = Cmb_Costos.Text
-                    'Me.Close()
-                    Cmb_Costos.Enabled = True
+                    If ValidarDocumento() = 1 Then
+                        'grabado = True
+                        'rowRetorno = dtGuia.Rows(0)
+                        'idcosto = Cmb_Costos.SelectedValue
+                        'nombrecosto = Cmb_Costos.Text
+                        'Me.Close()
+                        Cmb_Costos.Enabled = True
 
-                    cmb_tipo.Enabled = True
-                    Cmb_Site.Enabled = True
-                    txt_peso.Enabled = True
-                    txt_bultos.Enabled = True
-                    If dtGuia.Rows(0).Item("GLOSA").ToString.Trim <> "" Then
-                        txt_glosa.Text = dtGuia.Rows(0).Item("GLOSA").ToString.Trim
-                    Else
-                        txt_glosa.Text = "-"
-                    End If
+                        cmb_tipo.Enabled = True
+                        Cmb_Site.Enabled = True
+                        txt_peso.Enabled = True
+                        txt_bultos.Enabled = True
+                        If dtGuia.Rows(0).Item("GLOSA").ToString.Trim <> "" Then
+                            txt_glosa.Text = dtGuia.Rows(0).Item("GLOSA").ToString.Trim
+                        Else
+                            txt_glosa.Text = "-"
+                        End If
 
-                    If dtGuia.Rows(0).Item("DEPARTAMENTO").ToString.Trim <> "" Then
-                        txt_departamento.Text = dtGuia.Rows(0).Item("DEPARTAMENTO").ToString.Trim
-                    Else
-                        txt_departamento.Text = "-"
-                    End If
+                        If dtGuia.Rows(0).Item("DEPARTAMENTO").ToString.Trim <> "" Then
+                            txt_departamento.Text = dtGuia.Rows(0).Item("DEPARTAMENTO").ToString.Trim
+                        Else
+                            txt_departamento.Text = "-"
+                        End If
 
-                    If dtGuia.Rows(0).Item("PROVINCIA").ToString.Trim <> "" Then
-                        txt_provincia.Text = dtGuia.Rows(0).Item("PROVINCIA").ToString.Trim
-                    Else
-                        txt_provincia.Text = "-"
-                    End If
+                        If dtGuia.Rows(0).Item("PROVINCIA").ToString.Trim <> "" Then
+                            txt_provincia.Text = dtGuia.Rows(0).Item("PROVINCIA").ToString.Trim
+                        Else
+                            txt_provincia.Text = "-"
+                        End If
 
-                    If dtGuia.Rows(0).Item("DISTRITO").ToString.Trim <> "" Then
-                        txt_distrito.Text = dtGuia.Rows(0).Item("DISTRITO").ToString.Trim
+                        If dtGuia.Rows(0).Item("DISTRITO").ToString.Trim <> "" Then
+                            txt_distrito.Text = dtGuia.Rows(0).Item("DISTRITO").ToString.Trim
+                        Else
+                            txt_distrito.Text = "-"
+                        End If
+
+                        If dtGuia.Rows(0).Item("CANAL").ToString.Trim <> "" Then
+                            txt_canal.Text = dtGuia.Rows(0).Item("CANAL").ToString.Trim
+                        Else
+                            txt_canal.Text = "-"
+                        End If
                     Else
-                        txt_distrito.Text = "-"
+                        MsgBox("Documento se encuentra en otra ruta, por favor cierre la ruta anterior e intente de nuevo", MsgBoxStyle.Exclamation, "SISTEMAS NORDIC")
                     End If
 
                 Else
@@ -118,6 +129,10 @@ Public Class AgregarGuiaCabeceraRuta
                     txt_peso.Enabled = False
                     txt_bultos.Enabled = False
                     txt_glosa.Text = "-"
+                    txt_canal.Text = "-"
+                    txt_distrito.Text = "-"
+                    txt_provincia.Text = "-"
+                    txt_departamento.Text = "-"
                 End If
             End If
         Catch ex As Exception
@@ -139,7 +154,9 @@ Public Class AgregarGuiaCabeceraRuta
     Private Sub cmdAceptar_Click(sender As Object, e As EventArgs) Handles cmdAceptar.Click
         Try
             If ValidarAceptar() = True Then
+                'If ValidarDocumento() = 1 Then
                 Aceptar()
+                'End If
             Else
                 MsgBox("Existen Errores, Valide e intente nuevamente", MsgBoxStyle.Information)
             End If
@@ -148,11 +165,21 @@ Public Class AgregarGuiaCabeceraRuta
         End Try
     End Sub
 
-    Private Function LlamarRegistrar(crg_id As Integer, calma As String, ctd As String, cnumdoc As String, userid As Integer, peso As Decimal, bultos As Integer, tiempo As Decimal, volumen As Decimal, restriccion As String, tiporuta As String, cliente As String, Direccion As String, importe As Decimal, condicion As String, REPRESENTATE As String, idcosto As Integer, fecharecepcion As String, horarecepcion As String, idsite As Integer, departamento As String, provincia As String, distrito As String, fisico As String, idsiteliq As Integer) As Integer
+    Public Function ValidarDocumento() As Integer
+        Dim rp As Integer = Nothing
+        Try
+            rp = CInt(ObjAlmacen.SP_VALIDAR_DOCUMENTO(txt_numero.Text.Trim).Rows(0).Item("Respuesta"))
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return rp
+    End Function
+
+    Private Function LlamarRegistrar(crg_id As Integer, calma As String, ctd As String, cnumdoc As String, userid As Integer, peso As Decimal, bultos As Integer, tiempo As Decimal, volumen As Decimal, restriccion As String, tiporuta As String, cliente As String, Direccion As String, importe As Decimal, condicion As String, REPRESENTATE As String, idcosto As Integer, fecharecepcion As String, horarecepcion As String, idsite As Integer, departamento As String, provincia As String, distrito As String, fisico As String, idsiteliq As Integer, idsitepicking As Integer, canal As String) As Integer
         Dim rp As Integer = 0
 
         Try
-            rp = ObjAlmacen.Agregar_Guia_Ruta(crg_id, calma, ctd, cnumdoc, userid, peso, bultos, tiempo, volumen, restriccion, tiporuta, cliente, Direccion, importe, condicion, REPRESENTATE, idcosto, fecharecepcion, horarecepcion, idsite, departamento, provincia, distrito, fisico, idsiteliq)
+            rp = ObjAlmacen.Agregar_Guia_Ruta(crg_id, calma, ctd, cnumdoc, userid, peso, bultos, tiempo, volumen, restriccion, tiporuta, cliente, Direccion, importe, condicion, REPRESENTATE, idcosto, fecharecepcion, horarecepcion, idsite, departamento, provincia, distrito, fisico, idsiteliq, idsitepicking, canal)
         Catch ex As Exception
             Throw ex
         End Try
@@ -213,7 +240,7 @@ Public Class AgregarGuiaCabeceraRuta
                     ErrorProvider1.SetError(txt_bultos, "Bultos debe ser un valor numerico")
                     rp = False
                 Else
-                    If CType(txt_bultos.Text, Integer) < 0 Then
+                    If CType(txt_bultos.Text, Integer) <= 0 Then
                         ErrorProvider1.SetError(txt_bultos, "Bultos debe ser mayor o igual a 0")
                         rp = False
                     End If
@@ -228,7 +255,7 @@ Public Class AgregarGuiaCabeceraRuta
                     ErrorProvider1.SetError(txt_peso, "Peso debe ser un valor numerico")
                     rp = False
                 Else
-                    If CType(txt_peso.Text, Integer) < 0 Then
+                    If CType(txt_peso.Text, Integer) <= 0 Then
                         ErrorProvider1.SetError(txt_peso, "Peso debe ser mayor o igual a 0")
                         rp = False
                     End If
@@ -254,6 +281,23 @@ Public Class AgregarGuiaCabeceraRuta
         Return canConvert
     End Function
 
+
+    Private Sub CargarSitePicking()
+        Try
+            Dim dt As New DataTable
+            dt = ObjAlmacen.ListarSites
+
+            If dt.Rows.Count > 0 Then
+                cmb_SitePicking.DataSource = dt
+                cmb_SitePicking.ValueMember = "sit_idsite"
+                cmb_SitePicking.DisplayMember = "sit_nombre"
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Sub
     Private Sub CargarSite()
         Try
             Dim dt As New DataTable
@@ -275,9 +319,9 @@ Public Class AgregarGuiaCabeceraRuta
             If dtGuia.Rows.Count > 0 Then
                 Dim fechaactual As DateTime
                 Dim tiempo As Decimal = 0, volumen As Decimal = 0, Importe As Decimal = 0, peso As Decimal = 0
-                Dim Restriccion As String = "", TipoRuta As String = "", Cliente As String = "", Direccion As String = "", Condicion As String = "", Representante As String = "", fecharecep As String = "", horadescrip As String = "", cnumdoc As String = "", ctd As String = "", calma As String = "", departamento As String = "", provincia As String = "", distrito As String = "", fisico As String = ""
+                Dim Restriccion As String = "", TipoRuta As String = "", Cliente As String = "", Direccion As String = "", Condicion As String = "", Representante As String = "", fecharecep As String = "", horadescrip As String = "", cnumdoc As String = "", ctd As String = "", calma As String = "", departamento As String = "", provincia As String = "", distrito As String = "", fisico As String = "", canal As String = ""
 
-                Dim idcosto As Integer = 0, idsite As Integer = 0, bultos As Integer = 0, idsiteliquidacion As Integer = 0
+                Dim idcosto As Integer = 0, idsite As Integer = 0, bultos As Integer = 0, idsiteliquidacion As Integer = 0, idsitePicking As Integer = 0
                 fechaactual = Date.Now
 
 
@@ -286,6 +330,8 @@ Public Class AgregarGuiaCabeceraRuta
                 TipoRuta = cmb_tipo.Text.ToString
                 fisico = cmb_fisico.Text.ToString
                 idsiteliquidacion = cmb_siteliq.SelectedValue
+
+                idsitePicking = cmb_SitePicking.SelectedValue
 
                 Cliente = dtGuia.Rows(0).Item("NOM_CLIENTE").ToString.Trim
                 Direccion = dtGuia.Rows(0).Item("DIRECCION_ENTREGA").ToString.Trim
@@ -306,6 +352,8 @@ Public Class AgregarGuiaCabeceraRuta
                 departamento = dtGuia.Rows(0).Item("DEPARTAMENTO").ToString.Trim
                 provincia = dtGuia.Rows(0).Item("PROVINCIA").ToString.Trim
                 distrito = dtGuia.Rows(0).Item("DISTRITO").ToString.Trim
+
+                canal = dtGuia.Rows(0).Item("CANAL").ToString.Trim
 
                 Importe = dtGuia.Rows(0).Item("IMPORTE").ToString.Trim
                 peso = CType(txt_peso.Text, Decimal)
@@ -393,13 +441,13 @@ Public Class AgregarGuiaCabeceraRuta
                         End If
                     End If
                 End If
-                If LlamarRegistrar(crg_id, calma, ctd, cnumdoc, user_id, peso, bultos, tiempo, volumen, Restriccion, TipoRuta, Cliente, Direccion, Importe, Condicion, Representante, idcosto, fecharecep, horadescrip, idsite, departamento, provincia, distrito, fisico, idsiteliquidacion) Then
+                If LlamarRegistrar(crg_id, calma, ctd, cnumdoc, user_id, peso, bultos, tiempo, volumen, Restriccion, TipoRuta, Cliente, Direccion, Importe, Condicion, Representante, idcosto, fecharecep, horadescrip, idsite, departamento, provincia, distrito, fisico, idsiteliquidacion, idsitePicking, canal) Then
                     MsgBox("GUIA SE AGREGÓ A RUTA CORRECTAMENTE", MsgBoxStyle.Information, "SISTEMAS NORDIC")
                     grabado = True
                     Me.Close()
                 End If
             Else
-
+                MsgBox("Documento No existe", MsgBoxStyle.Exclamation, "SISTEMAS NORDIC")
             End If
         Catch ex As Exception
             Throw ex

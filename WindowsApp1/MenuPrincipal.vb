@@ -518,16 +518,8 @@
         End Try
     End Sub
 
-    Private Sub NonConformityRatioToolStripMenuItem_Click(sender As Object, e As EventArgs) 
-        Try
-            Dim frmPed As New GestionNonConformityRatio
-            If ExisteChildrens(frmPed) = False Then
-                frmPed.MdiParent = Me
-                frmPed.Show()
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
+    Private Sub NonConformityRatioToolStripMenuItem_Click(sender As Object, e As EventArgs)
+
     End Sub
 
     Private Sub GenerarAbastecimientoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GenerarAbastecimientoToolStripMenuItem.Click
@@ -744,6 +736,73 @@
             End If
         Catch ex As Exception
 
+        End Try
+    End Sub
+
+    Private Sub NonConformityToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NonConformityToolStripMenuItem.Click
+        Try
+            Dim frmPed As New GestionNonConformityRatio
+            If ExisteChildrens(frmPed) = False Then
+                frmPed.MdiParent = Me
+                frmPed.Show()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub ReporteRutasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReporteRutasToolStripMenuItem.Click
+        Try
+            Dim frmArt As New ReporteRutas
+            If ExisteChildrens(frmArt) = False Then
+                frmArt.MdiParent = Me
+                'frmArt.usr_id = prIdUser
+                'frmArt.usr_usuario = PrUserName
+                ' frmArt.WindowState = FormWindowState.Maximized
+                frmArt.Width = Me.Width
+                frmArt.Height = Me.Height
+                frmArt.Show()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub ReporteDespachosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReporteDespachosToolStripMenuItem.Click
+        Try
+            Dim frmArt As New ReporteDespachos
+            If ExisteChildrens(frmArt) = False Then
+                frmArt.MdiParent = Me
+                'frmArt.usr_id = prIdUser
+                'frmArt.usr_usuario = PrUserName
+                ' frmArt.WindowState = FormWindowState.Maximized
+                frmArt.Width = Me.Width
+                frmArt.Height = Me.Height
+                frmArt.Show()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub ValidarCubicajeArticulosToolStripMenuItem_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub ValidarCubicajeArticulosToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ValidarCubicajeArticulosToolStripMenuItem1.Click
+        Try
+            Dim frmArt As New ValidarCubicajeArticulo
+            If ExisteChildrens(frmArt) = False Then
+                frmArt.MdiParent = Me
+                frmArt.usr_id = prIdUser
+                'frmArt.usr_usuario = PrUserName
+                ' frmArt.WindowState = FormWindowState.Maximized
+                'frmArt.Width = Me.Width
+                'frmArt.Height = Me.Height
+                frmArt.Show()
+            End If
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 End Class

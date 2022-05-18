@@ -23,11 +23,14 @@ Partial Class GestionControlLinea
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GestionControlLinea))
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.savedialog_Excel = New System.Windows.Forms.SaveFileDialog()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
@@ -35,8 +38,11 @@ Partial Class GestionControlLinea
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.cmdCerrar = New System.Windows.Forms.ToolStripButton()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Dg_Detalle = New System.Windows.Forms.DataGridView()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.Dg_Cabecera = New System.Windows.Forms.DataGridView()
         Me.DETALLE = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -49,6 +55,7 @@ Partial Class GestionControlLinea
         Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.LINEA = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MES1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MES2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -57,6 +64,7 @@ Partial Class GestionControlLinea
         Me.MES5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MES6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.UNIDADESTOLTA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PORCENTAJETOTAL = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TOTALACTUAL = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PORCENTAJE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -65,7 +73,6 @@ Partial Class GestionControlLinea
         Me.DataGridViewTextBoxColumn14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn49 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -102,6 +109,7 @@ Partial Class GestionControlLinea
         Me.ToolStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
+        CType(Me.Dg_Detalle, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Dg_Cabecera, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -115,7 +123,7 @@ Partial Class GestionControlLinea
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.ToolStrip1.Size = New System.Drawing.Size(1295, 40)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1370, 40)
         Me.ToolStrip1.TabIndex = 85
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -151,29 +159,102 @@ Partial Class GestionControlLinea
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Controls.Add(Me.Panel3)
         Me.Panel1.Controls.Add(Me.ToolStrip1)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1295, 89)
+        Me.Panel1.Size = New System.Drawing.Size(1370, 117)
         Me.Panel1.TabIndex = 50
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label1.Location = New System.Drawing.Point(3, 87)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(156, 16)
+        Me.Label1.TabIndex = 86
+        Me.Label1.Text = "Avance Por Total Linea"
         '
         'Panel3
         '
-        Me.Panel3.Location = New System.Drawing.Point(1048, 124)
+        Me.Panel3.Location = New System.Drawing.Point(1223, 163)
+        Me.Panel3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(200, 319)
+        Me.Panel3.Size = New System.Drawing.Size(233, 418)
         Me.Panel3.TabIndex = 52
         '
         'Panel2
         '
+        Me.Panel2.Controls.Add(Me.Dg_Detalle)
+        Me.Panel2.Controls.Add(Me.Label2)
         Me.Panel2.Controls.Add(Me.Dg_Cabecera)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel2.Location = New System.Drawing.Point(0, 89)
+        Me.Panel2.Location = New System.Drawing.Point(0, 117)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1295, 429)
+        Me.Panel2.Size = New System.Drawing.Size(1370, 561)
         Me.Panel2.TabIndex = 51
+        '
+        'Dg_Detalle
+        '
+        Me.Dg_Detalle.AllowUserToAddRows = False
+        Me.Dg_Detalle.AllowUserToDeleteRows = False
+        Me.Dg_Detalle.AllowUserToResizeRows = False
+        Me.Dg_Detalle.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Dg_Detalle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
+        Me.Dg_Detalle.BackgroundColor = System.Drawing.Color.White
+        Me.Dg_Detalle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlDark
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ControlDark
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Dg_Detalle.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        Me.Dg_Detalle.ColumnHeadersHeight = 50
+        Me.Dg_Detalle.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.Dg_Detalle.EnableHeadersVisualStyles = False
+        Me.Dg_Detalle.Location = New System.Drawing.Point(0, 392)
+        Me.Dg_Detalle.Margin = New System.Windows.Forms.Padding(5)
+        Me.Dg_Detalle.MultiSelect = False
+        Me.Dg_Detalle.Name = "Dg_Detalle"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ControlDark
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlDark
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Dg_Detalle.RowHeadersDefaultCellStyle = DataGridViewCellStyle2
+        Me.Dg_Detalle.RowHeadersVisible = False
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ControlLightLight
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.Dg_Detalle.RowsDefaultCellStyle = DataGridViewCellStyle3
+        Me.Dg_Detalle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.Dg_Detalle.Size = New System.Drawing.Size(1370, 164)
+        Me.Dg_Detalle.TabIndex = 88
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label2.Location = New System.Drawing.Point(3, 371)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(156, 16)
+        Me.Label2.TabIndex = 87
+        Me.Label2.Text = "Avance Por Total Linea"
         '
         'Dg_Cabecera
         '
@@ -184,18 +265,16 @@ Partial Class GestionControlLinea
         Me.Dg_Cabecera.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.Dg_Cabecera.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken
         Me.Dg_Cabecera.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Dg_Cabecera.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.LINEA, Me.MES1, Me.MES2, Me.MES3, Me.MES4, Me.MES5, Me.MES6, Me.UNIDADESTOLTA, Me.TOTALACTUAL, Me.PORCENTAJE, Me.DETALLE})
-        Me.Dg_Cabecera.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Dg_Cabecera.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.LINEA, Me.MES1, Me.MES2, Me.MES3, Me.MES4, Me.MES5, Me.MES6, Me.UNIDADESTOLTA, Me.PORCENTAJETOTAL, Me.TOTALACTUAL, Me.PORCENTAJE, Me.DETALLE})
         Me.Dg_Cabecera.GridColor = System.Drawing.Color.DarkGray
         Me.Dg_Cabecera.Location = New System.Drawing.Point(0, 0)
         Me.Dg_Cabecera.Margin = New System.Windows.Forms.Padding(0)
-        Me.Dg_Cabecera.MultiSelect = False
         Me.Dg_Cabecera.Name = "Dg_Cabecera"
         Me.Dg_Cabecera.RowHeadersVisible = False
         Me.Dg_Cabecera.RowHeadersWidth = 20
         Me.Dg_Cabecera.RowTemplate.Height = 20
         Me.Dg_Cabecera.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.Dg_Cabecera.Size = New System.Drawing.Size(1295, 429)
+        Me.Dg_Cabecera.Size = New System.Drawing.Size(1511, 349)
         Me.Dg_Cabecera.TabIndex = 14
         '
         'DETALLE
@@ -208,10 +287,10 @@ Partial Class GestionControlLinea
         '
         'DataGridViewTextBoxColumn1
         '
-        DataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black
-        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black
+        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle5
         Me.DataGridViewTextBoxColumn1.Frozen = True
         Me.DataGridViewTextBoxColumn1.HeaderText = "Codigo Art."
         Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
@@ -275,58 +354,69 @@ Partial Class GestionControlLinea
         Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
         Me.DataGridViewTextBoxColumn10.Visible = False
         '
+        'DataGridViewTextBoxColumn11
+        '
+        Me.DataGridViewTextBoxColumn11.HeaderText = "MARZO"
+        Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
+        Me.DataGridViewTextBoxColumn11.Visible = False
+        '
         'LINEA
         '
-        DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black
-        Me.LINEA.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black
+        Me.LINEA.DefaultCellStyle = DataGridViewCellStyle4
         Me.LINEA.HeaderText = "LINEA"
         Me.LINEA.Name = "LINEA"
         '
         'MES1
         '
-        Me.MES1.HeaderText = "1 PARA VENCER"
+        Me.MES1.HeaderText = "Und x vencer 1 mes"
         Me.MES1.Name = "MES1"
         '
         'MES2
         '
-        Me.MES2.HeaderText = "2 PARA VENCER"
+        Me.MES2.HeaderText = "Und x vencer 2 meses"
         Me.MES2.Name = "MES2"
         '
         'MES3
         '
-        Me.MES3.HeaderText = "3 PARA VENCER"
+        Me.MES3.HeaderText = "Und x vencer 3 meses"
         Me.MES3.Name = "MES3"
         '
         'MES4
         '
-        Me.MES4.HeaderText = "4 PARA VENCER"
+        Me.MES4.HeaderText = "Und x vencer 4 meses"
         Me.MES4.Name = "MES4"
         '
         'MES5
         '
-        Me.MES5.HeaderText = "5 PARA VENCER"
+        Me.MES5.HeaderText = "Und x vencer 5 meses"
         Me.MES5.Name = "MES5"
         '
         'MES6
         '
-        Me.MES6.HeaderText = "6 PARA VENCER"
+        Me.MES6.HeaderText = "Und x vencer 6 meses"
         Me.MES6.Name = "MES6"
         '
         'UNIDADESTOLTA
         '
-        Me.UNIDADESTOLTA.HeaderText = "TOTAL CONSOLIDADO"
+        Me.UNIDADESTOLTA.HeaderText = "Tot_Und Inicial"
         Me.UNIDADESTOLTA.Name = "UNIDADESTOLTA"
+        '
+        'PORCENTAJETOTAL
+        '
+        Me.PORCENTAJETOTAL.HeaderText = "% tot_"
+        Me.PORCENTAJETOTAL.Name = "PORCENTAJETOTAL"
         '
         'TOTALACTUAL
         '
-        Me.TOTALACTUAL.HeaderText = "TOTAL ACTUAL"
+        Me.TOTALACTUAL.HeaderText = "Tot_Und actual"
         Me.TOTALACTUAL.Name = "TOTALACTUAL"
         '
         'PORCENTAJE
         '
-        Me.PORCENTAJE.HeaderText = "% AVANCE A LA FECHA"
+        Me.PORCENTAJE.HeaderText = "% avance_tot_linea"
         Me.PORCENTAJE.Name = "PORCENTAJE"
         '
         'DataGridViewTextBoxColumn17
@@ -364,12 +454,6 @@ Partial Class GestionControlLinea
         Me.DataGridViewTextBoxColumn12.HeaderText = "ABRIL"
         Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
         Me.DataGridViewTextBoxColumn12.Visible = False
-        '
-        'DataGridViewTextBoxColumn11
-        '
-        Me.DataGridViewTextBoxColumn11.HeaderText = "MARZO"
-        Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
-        Me.DataGridViewTextBoxColumn11.Visible = False
         '
         'DataGridViewTextBoxColumn18
         '
@@ -431,9 +515,9 @@ Partial Class GestionControlLinea
         '
         'DataGridViewTextBoxColumn41
         '
-        DataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black
-        Me.DataGridViewTextBoxColumn41.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black
+        Me.DataGridViewTextBoxColumn41.DefaultCellStyle = DataGridViewCellStyle6
         Me.DataGridViewTextBoxColumn41.HeaderText = "Abastecer Cajas Master"
         Me.DataGridViewTextBoxColumn41.Name = "DataGridViewTextBoxColumn41"
         '
@@ -466,17 +550,17 @@ Partial Class GestionControlLinea
         '
         'DataGridViewTextBoxColumn35
         '
-        DataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        DataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black
-        Me.DataGridViewTextBoxColumn35.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        DataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black
+        Me.DataGridViewTextBoxColumn35.DefaultCellStyle = DataGridViewCellStyle7
         Me.DataGridViewTextBoxColumn35.HeaderText = "Stock ATE"
         Me.DataGridViewTextBoxColumn35.Name = "DataGridViewTextBoxColumn35"
         '
         'DataGridViewTextBoxColumn34
         '
-        DataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        DataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black
-        Me.DataGridViewTextBoxColumn34.DefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black
+        Me.DataGridViewTextBoxColumn34.DefaultCellStyle = DataGridViewCellStyle8
         Me.DataGridViewTextBoxColumn34.HeaderText = "% Abastecer"
         Me.DataGridViewTextBoxColumn34.Name = "DataGridViewTextBoxColumn34"
         '
@@ -566,11 +650,13 @@ Partial Class GestionControlLinea
         '
         'GestionControlLinea
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 17.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1295, 518)
+        Me.ClientSize = New System.Drawing.Size(1370, 678)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
+        Me.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "GestionControlLinea"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "GestionControlLinea"
@@ -580,6 +666,8 @@ Partial Class GestionControlLinea
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
+        CType(Me.Dg_Detalle, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Dg_Cabecera, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -653,7 +741,11 @@ Partial Class GestionControlLinea
     Friend WithEvents MES5 As DataGridViewTextBoxColumn
     Friend WithEvents MES6 As DataGridViewTextBoxColumn
     Friend WithEvents UNIDADESTOLTA As DataGridViewTextBoxColumn
+    Friend WithEvents PORCENTAJETOTAL As DataGridViewTextBoxColumn
     Friend WithEvents TOTALACTUAL As DataGridViewTextBoxColumn
     Friend WithEvents PORCENTAJE As DataGridViewTextBoxColumn
     Friend WithEvents DETALLE As DataGridViewButtonColumn
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label2 As Label
+    Public WithEvents Dg_Detalle As DataGridView
 End Class
