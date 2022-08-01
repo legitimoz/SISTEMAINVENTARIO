@@ -57,7 +57,7 @@ Public Class frmReporteDespacho
         End Try
     End Sub
 
-    Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
+    Private Sub buscar()
         Try
             Dim objBeCabRuta As New BeCabGuiaRuta
             Dim dt As New DataTable
@@ -109,6 +109,7 @@ Public Class frmReporteDespacho
                 MessageBox.Show("No se encontraron registros", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             Else
                 DTretorno = dt.Copy
+
                 dgvListarRutas_Guias.DataSource = dt
 
             End If
@@ -118,7 +119,15 @@ Public Class frmReporteDespacho
 
 
         Catch ex As Exception
+            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical, "SISTEMAS SSENDA")
+        End Try
+    End Sub
 
+    Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
+        Try
+            buscar()
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 
@@ -451,6 +460,52 @@ Public Class frmReporteDespacho
 
         Catch ex As Exception
 
+        End Try
+    End Sub
+
+    Private Sub dgvListarRutas_Guias_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgvListarRutas_Guias.CellValueChanged
+        Dim Columname As String = ""
+        Try
+            If dgvListarRutas_Guias.Rows.Count > 0 Then
+                If dgvListarRutas_Guias.CurrentRow IsNot Nothing Then
+                    If e.RowIndex >= 0 Then
+                        Columname = dgvListarRutas_Guias.Columns(e.ColumnIndex).Name
+                        If Columname = "FACTURA TRANSPORTE" Then
+                            Dim numeroGuia, ctd, calma As String
+                            numeroGuia = dgvListarRutas_Guias.CurrentRow.Cells.Item("GUIA").Value.ToString()
+                            ctd = dgvListarRutas_Guias.CurrentRow.Cells.Item("CTD").Value.ToString()
+                            calma = dgvListarRutas_Guias.CurrentRow.Cells.Item("CALMA").Value.ToString()
+                            Dim Rp As Integer = 0
+                            Dim objalmacen As New AlmacenL
+                            Dim Factura As String = ""
+                            Factura = dgvListarRutas_Guias.Rows(e.RowIndex).Cells(e.ColumnIndex).EditedFormattedValue
+                            Rp = objalmacen.RegistrarFacturaTransportista(numeroGuia.Trim, Factura.Trim, ctd, calma)
+                            If Rp > 0 Then
+                                MessageBox.Show("Se acualizó satisfactoriamente", "Aviso", MessageBoxButtons.OK)
+                            Else
+                                MessageBox.Show("No se registró la factura de transportista", "Aviso", MessageBoxButtons.OK)
+                            End If
+                        ElseIf Columname = "FACTURA INYECTADO" Then
+                            Dim numeroGuia, ctd, calma As String
+                            numeroGuia = dgvListarRutas_Guias.CurrentRow.Cells.Item("GUIA").Value.ToString()
+                            ctd = dgvListarRutas_Guias.CurrentRow.Cells.Item("CTD").Value.ToString()
+                            calma = dgvListarRutas_Guias.CurrentRow.Cells.Item("CALMA").Value.ToString()
+                            Dim Rp As Integer = 0
+                            Dim objalmacen As New AlmacenL
+                            Dim Factura As String = ""
+                            Factura = dgvListarRutas_Guias.Rows(e.RowIndex).Cells(e.ColumnIndex).EditedFormattedValue
+                            Rp = objalmacen.RegistrarFacturaInyectado(numeroGuia.Trim, Factura.Trim, ctd, calma)
+                            If Rp <> 0 Then
+                                MessageBox.Show("Se registró factura Inyectado", "Aviso", MessageBoxButtons.OK)
+                            Else
+                                MessageBox.Show("No Se registró factura Inyectado", "Aviso", MessageBoxButtons.OK)
+                            End If
+                        End If
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "SISTEMAS SSENDA")
         End Try
     End Sub
 

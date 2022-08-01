@@ -30,26 +30,28 @@ Partial Class GestionAbastecimiento
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Check_MostrarOtros = New System.Windows.Forms.CheckBox()
+        Me.Check_MostrarTipo = New System.Windows.Forms.CheckBox()
+        Me.Check_MostrarDemanda = New System.Windows.Forms.CheckBox()
         Me.Check_mostrar = New System.Windows.Forms.CheckBox()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.cmdGenerarExcel = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
-        Me.cmdCerrar = New System.Windows.Forms.ToolStripButton()
         Me.dt_desde = New System.Windows.Forms.DateTimePicker()
         Me.dt_hasta = New System.Windows.Forms.DateTimePicker()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.btnBuscar = New FontAwesome.Sharp.IconButton()
         Me.txt_numero = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Dg_Cabecera = New System.Windows.Forms.DataGridView()
+        Me.SELECCIONAR = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.savedialog_Excel = New System.Windows.Forms.SaveFileDialog()
-        Me.Check_MostrarDemanda = New System.Windows.Forms.CheckBox()
-        Me.Check_MostrarTipo = New System.Windows.Forms.CheckBox()
+        Me.cmdGenerarExcel = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.cmdCerrar = New System.Windows.Forms.ToolStripButton()
+        Me.btnBuscar = New FontAwesome.Sharp.IconButton()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -140,7 +142,6 @@ Partial Class GestionAbastecimiento
         Me.M3ABASTECER = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.UUABASTATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.UUREALABASATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SELECCIONAR = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.ABASTECJMATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ABASTUNI = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ABASTEM3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -151,7 +152,6 @@ Partial Class GestionAbastecimiento
         Me.ACCIONFINAL = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DEVOLVERCJM = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.M3DEVOLVERCJM = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Check_MostrarOtros = New System.Windows.Forms.CheckBox()
         Me.Panel1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -177,6 +177,36 @@ Partial Class GestionAbastecimiento
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1295, 118)
         Me.Panel1.TabIndex = 48
+        '
+        'Check_MostrarOtros
+        '
+        Me.Check_MostrarOtros.AutoSize = True
+        Me.Check_MostrarOtros.Location = New System.Drawing.Point(842, 51)
+        Me.Check_MostrarOtros.Name = "Check_MostrarOtros"
+        Me.Check_MostrarOtros.Size = New System.Drawing.Size(89, 17)
+        Me.Check_MostrarOtros.TabIndex = 89
+        Me.Check_MostrarOtros.Text = "Mostrar Otros"
+        Me.Check_MostrarOtros.UseVisualStyleBackColor = True
+        '
+        'Check_MostrarTipo
+        '
+        Me.Check_MostrarTipo.AutoSize = True
+        Me.Check_MostrarTipo.Location = New System.Drawing.Point(683, 86)
+        Me.Check_MostrarTipo.Name = "Check_MostrarTipo"
+        Me.Check_MostrarTipo.Size = New System.Drawing.Size(131, 17)
+        Me.Check_MostrarTipo.TabIndex = 88
+        Me.Check_MostrarTipo.Text = "Mostrar Tipo Producto"
+        Me.Check_MostrarTipo.UseVisualStyleBackColor = True
+        '
+        'Check_MostrarDemanda
+        '
+        Me.Check_MostrarDemanda.AutoSize = True
+        Me.Check_MostrarDemanda.Location = New System.Drawing.Point(683, 51)
+        Me.Check_MostrarDemanda.Name = "Check_MostrarDemanda"
+        Me.Check_MostrarDemanda.Size = New System.Drawing.Size(110, 17)
+        Me.Check_MostrarDemanda.TabIndex = 87
+        Me.Check_MostrarDemanda.Text = "Mostrar Demanda"
+        Me.Check_MostrarDemanda.UseVisualStyleBackColor = True
         '
         'Check_mostrar
         '
@@ -207,45 +237,15 @@ Partial Class GestionAbastecimiento
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
         Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 40)
         '
-        'cmdGenerarExcel
-        '
-        Me.cmdGenerarExcel.Image = CType(resources.GetObject("cmdGenerarExcel.Image"), System.Drawing.Image)
-        Me.cmdGenerarExcel.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.cmdGenerarExcel.Margin = New System.Windows.Forms.Padding(1)
-        Me.cmdGenerarExcel.Name = "cmdGenerarExcel"
-        Me.cmdGenerarExcel.Size = New System.Drawing.Size(81, 38)
-        Me.cmdGenerarExcel.Text = "&Exportar Excel"
-        Me.cmdGenerarExcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 40)
         '
-        'ToolStripButton1
-        '
-        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
-        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton1.Margin = New System.Windows.Forms.Padding(1)
-        Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(106, 38)
-        Me.ToolStripButton1.Text = "&Exportar Excel Total"
-        Me.ToolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
         Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 40)
-        '
-        'cmdCerrar
-        '
-        Me.cmdCerrar.Image = CType(resources.GetObject("cmdCerrar.Image"), System.Drawing.Image)
-        Me.cmdCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.cmdCerrar.Margin = New System.Windows.Forms.Padding(1)
-        Me.cmdCerrar.Name = "cmdCerrar"
-        Me.cmdCerrar.Size = New System.Drawing.Size(32, 38)
-        Me.cmdCerrar.Text = "&Salir"
-        Me.cmdCerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'dt_desde
         '
@@ -288,28 +288,6 @@ Partial Class GestionAbastecimiento
         Me.Label9.TabIndex = 82
         Me.Label9.Text = "Hasta:"
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        '
-        'btnBuscar
-        '
-        Me.btnBuscar.BackColor = System.Drawing.SystemColors.Control
-        Me.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnBuscar.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.btnBuscar.FlatAppearance.BorderSize = 0
-        Me.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnBuscar.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.btnBuscar.IconChar = FontAwesome.Sharp.IconChar.Search
-        Me.btnBuscar.IconColor = System.Drawing.SystemColors.ControlText
-        Me.btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Solid
-        Me.btnBuscar.IconSize = 16
-        Me.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnBuscar.Location = New System.Drawing.Point(634, 48)
-        Me.btnBuscar.Name = "btnBuscar"
-        Me.btnBuscar.Padding = New System.Windows.Forms.Padding(0, 3, 0, 0)
-        Me.btnBuscar.Size = New System.Drawing.Size(25, 20)
-        Me.btnBuscar.TabIndex = 78
-        Me.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnBuscar.UseVisualStyleBackColor = False
         '
         'txt_numero
         '
@@ -361,25 +339,62 @@ Partial Class GestionAbastecimiento
         Me.Dg_Cabecera.Size = New System.Drawing.Size(1291, 318)
         Me.Dg_Cabecera.TabIndex = 10
         '
-        'Check_MostrarDemanda
+        'SELECCIONAR
         '
-        Me.Check_MostrarDemanda.AutoSize = True
-        Me.Check_MostrarDemanda.Location = New System.Drawing.Point(683, 51)
-        Me.Check_MostrarDemanda.Name = "Check_MostrarDemanda"
-        Me.Check_MostrarDemanda.Size = New System.Drawing.Size(110, 17)
-        Me.Check_MostrarDemanda.TabIndex = 87
-        Me.Check_MostrarDemanda.Text = "Mostrar Demanda"
-        Me.Check_MostrarDemanda.UseVisualStyleBackColor = True
+        Me.SELECCIONAR.HeaderText = "SELECCIONAR"
+        Me.SELECCIONAR.Name = "SELECCIONAR"
         '
-        'Check_MostrarTipo
+        'cmdGenerarExcel
         '
-        Me.Check_MostrarTipo.AutoSize = True
-        Me.Check_MostrarTipo.Location = New System.Drawing.Point(683, 86)
-        Me.Check_MostrarTipo.Name = "Check_MostrarTipo"
-        Me.Check_MostrarTipo.Size = New System.Drawing.Size(131, 17)
-        Me.Check_MostrarTipo.TabIndex = 88
-        Me.Check_MostrarTipo.Text = "Mostrar Tipo Producto"
-        Me.Check_MostrarTipo.UseVisualStyleBackColor = True
+        Me.cmdGenerarExcel.Image = CType(resources.GetObject("cmdGenerarExcel.Image"), System.Drawing.Image)
+        Me.cmdGenerarExcel.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.cmdGenerarExcel.Margin = New System.Windows.Forms.Padding(1)
+        Me.cmdGenerarExcel.Name = "cmdGenerarExcel"
+        Me.cmdGenerarExcel.Size = New System.Drawing.Size(81, 38)
+        Me.cmdGenerarExcel.Text = "&Exportar Excel"
+        Me.cmdGenerarExcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'ToolStripButton1
+        '
+        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton1.Margin = New System.Windows.Forms.Padding(1)
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(106, 38)
+        Me.ToolStripButton1.Text = "&Exportar Excel Total"
+        Me.ToolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'cmdCerrar
+        '
+        Me.cmdCerrar.Image = CType(resources.GetObject("cmdCerrar.Image"), System.Drawing.Image)
+        Me.cmdCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.cmdCerrar.Margin = New System.Windows.Forms.Padding(1)
+        Me.cmdCerrar.Name = "cmdCerrar"
+        Me.cmdCerrar.Size = New System.Drawing.Size(32, 38)
+        Me.cmdCerrar.Text = "&Salir"
+        Me.cmdCerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'btnBuscar
+        '
+        Me.btnBuscar.BackColor = System.Drawing.SystemColors.Control
+        Me.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnBuscar.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.btnBuscar.FlatAppearance.BorderSize = 0
+        Me.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnBuscar.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.btnBuscar.IconChar = FontAwesome.Sharp.IconChar.Search
+        Me.btnBuscar.IconColor = System.Drawing.SystemColors.ControlText
+        Me.btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Solid
+        Me.btnBuscar.IconSize = 16
+        Me.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnBuscar.Location = New System.Drawing.Point(634, 48)
+        Me.btnBuscar.Name = "btnBuscar"
+        Me.btnBuscar.Padding = New System.Windows.Forms.Padding(0, 3, 0, 0)
+        Me.btnBuscar.Size = New System.Drawing.Size(25, 20)
+        Me.btnBuscar.TabIndex = 78
+        Me.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnBuscar.UseVisualStyleBackColor = False
         '
         'DataGridViewTextBoxColumn1
         '
@@ -621,11 +636,13 @@ Partial Class GestionAbastecimiento
         '
         Me.DataGridViewTextBoxColumn39.HeaderText = "UU Abastecer ATE"
         Me.DataGridViewTextBoxColumn39.Name = "DataGridViewTextBoxColumn39"
+        Me.DataGridViewTextBoxColumn39.Visible = False
         '
         'DataGridViewTextBoxColumn40
         '
         Me.DataGridViewTextBoxColumn40.HeaderText = "UU Real Abastecer"
         Me.DataGridViewTextBoxColumn40.Name = "DataGridViewTextBoxColumn40"
+        Me.DataGridViewTextBoxColumn40.Visible = False
         '
         'DataGridViewTextBoxColumn41
         '
@@ -926,11 +943,6 @@ Partial Class GestionAbastecimiento
         Me.UUREALABASATE.Name = "UUREALABASATE"
         Me.UUREALABASATE.Visible = False
         '
-        'SELECCIONAR
-        '
-        Me.SELECCIONAR.HeaderText = "SELECCIONAR"
-        Me.SELECCIONAR.Name = "SELECCIONAR"
-        '
         'ABASTECJMATE
         '
         DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
@@ -985,16 +997,6 @@ Partial Class GestionAbastecimiento
         Me.M3DEVOLVERCJM.HeaderText = "M3 Devolver CJM"
         Me.M3DEVOLVERCJM.Name = "M3DEVOLVERCJM"
         '
-        'Check_MostrarOtros
-        '
-        Me.Check_MostrarOtros.AutoSize = True
-        Me.Check_MostrarOtros.Location = New System.Drawing.Point(842, 51)
-        Me.Check_MostrarOtros.Name = "Check_MostrarOtros"
-        Me.Check_MostrarOtros.Size = New System.Drawing.Size(89, 17)
-        Me.Check_MostrarOtros.TabIndex = 89
-        Me.Check_MostrarOtros.Text = "Mostrar Otros"
-        Me.Check_MostrarOtros.UseVisualStyleBackColor = True
-        '
         'GestionAbastecimiento
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1028,7 +1030,6 @@ Partial Class GestionAbastecimiento
     Friend WithEvents Panel2 As Panel
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
-    Friend WithEvents Dg_Cabecera As DataGridView
     Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
@@ -1138,4 +1139,5 @@ Partial Class GestionAbastecimiento
     Friend WithEvents DEVOLVERCJM As DataGridViewTextBoxColumn
     Friend WithEvents M3DEVOLVERCJM As DataGridViewTextBoxColumn
     Friend WithEvents Check_MostrarOtros As CheckBox
+    Public WithEvents Dg_Cabecera As DataGridView
 End Class

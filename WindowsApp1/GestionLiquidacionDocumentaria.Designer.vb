@@ -56,6 +56,8 @@ Partial Class GestionLiquidacionDocumentaria
         Me.btnBuscar = New FontAwesome.Sharp.IconButton()
         Me.Dg_Cabecera = New System.Windows.Forms.DataGridView()
         Me.savedialog_Excel = New System.Windows.Forms.SaveFileDialog()
+        Me.txt_guia = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.Dg_Cabecera, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -63,6 +65,8 @@ Partial Class GestionLiquidacionDocumentaria
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.txt_guia)
+        Me.Panel1.Controls.Add(Me.Label6)
         Me.Panel1.Controls.Add(Me.Label11)
         Me.Panel1.Controls.Add(Me.txt_indlima)
         Me.Panel1.Controls.Add(Me.Label13)
@@ -477,6 +481,22 @@ Partial Class GestionLiquidacionDocumentaria
         Me.Dg_Cabecera.Size = New System.Drawing.Size(1299, 315)
         Me.Dg_Cabecera.TabIndex = 57
         '
+        'txt_guia
+        '
+        Me.txt_guia.Location = New System.Drawing.Point(91, 74)
+        Me.txt_guia.Name = "txt_guia"
+        Me.txt_guia.Size = New System.Drawing.Size(208, 20)
+        Me.txt_guia.TabIndex = 138
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(5, 77)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(35, 13)
+        Me.Label6.TabIndex = 137
+        Me.Label6.Text = "Guia :"
+        '
         'GestionLiquidacionDocumentaria
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -528,4 +548,6 @@ Partial Class GestionLiquidacionDocumentaria
     Friend WithEvents txt_Cantpedidos As Label
     Friend WithEvents ToolStripButton2 As ToolStripButton
     Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
+    Friend WithEvents txt_guia As TextBox
+    Friend WithEvents Label6 As Label
 End Class

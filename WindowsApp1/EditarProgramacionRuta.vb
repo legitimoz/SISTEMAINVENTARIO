@@ -16,7 +16,7 @@ Public Class EditarProgramacionRuta
         Try
             CargaInicial()
         Catch ex As Exception
-
+            Throw ex
         End Try
     End Sub
 
@@ -81,13 +81,13 @@ Public Class EditarProgramacionRuta
         Dg_Rutas.Columns("Transportista").HeaderText = "Transportista"
         Dg_Rutas.Columns("Transportista").Width = 150
         Dg_Rutas.Columns("Transportista").ReadOnly = True
-        Dg_Rutas.Columns("Transportista").Visible = True
+        Dg_Rutas.Columns("Transportista").Visible = False
 
         Dg_Rutas.Columns("Vehiculo").HeaderText = "Vehiculo"
         Dg_Rutas.Columns("Vehiculo").Width = 100
         Dg_Rutas.Columns("Vehiculo").ReadOnly = True
         Dg_Rutas.Columns("Vehiculo").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
-        Dg_Rutas.Columns("Vehiculo").Visible = True
+        Dg_Rutas.Columns("Vehiculo").Visible = False
 
         Dg_Rutas.Columns("Importe").HeaderText = "Total Importe"
         Dg_Rutas.Columns("Importe").Width = 100
@@ -114,10 +114,21 @@ Public Class EditarProgramacionRuta
         Dg_Rutas.Columns("Estado").ReadOnly = True
         Dg_Rutas.Columns("Estado").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
 
+        Dim btn As New DataGridViewButtonColumn With {
+           .Name = "Modificar",
+           .DataPropertyName = "Modificar",
+           .HeaderText = "Accion",
+           .Text = "Modificar",
+           .UseColumnTextForButtonValue = True,
+           .Width = 80
+       }
+        btn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+        Dg_Rutas.Columns.Add(btn)
+
     End Sub
 
 
-    Private Sub DataGridConsolidado_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles DataGridConsolidado.DragDrop
+    Private Sub DataGridConsolidado_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs)
         'Dim handler = CType(sender, DataGridView)
         'Dim row = CType(e.Data.GetData(GetType(DataGridViewRow)), DataGridViewRow)
         'handler.Rows.Add(row.Cells(0).Value, row.Cells(1).Value, row.Cells(2).Value, row.Cells(3).Value, row.Cells(4).Value, row.Cells(5).Value, row.Cells(6).Value, row.Cells(7).Value, row.Cells(8).Value, row.Cells(9).Value, row.Cells(10).Value, row.Cells(11).Value, row.Cells(12).Value)
@@ -125,7 +136,7 @@ Public Class EditarProgramacionRuta
         'DataGridConsolidado.Rows.RemoveAt(row.Index)
     End Sub
 
-    Private Sub DataGridConsolidado_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles DataGridConsolidado.DragEnter
+    Private Sub DataGridConsolidado_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs)
         ' e.Effect = DragDropEffects.Move
     End Sub
 
@@ -137,7 +148,7 @@ Public Class EditarProgramacionRuta
 
     Private Sub DataGridConsolidado_MouseDown(sender As Object,
                                     ByVal e As MouseEventArgs) _
-                                    Handles DataGridConsolidado.MouseDown
+
 
         'Dim rowIndex As Integer = DataGridConsolidado.HitTest(e.X, e.Y).RowIndex
         'Dim cell As Integer = DataGridConsolidado.HitTest(e.X, e.Y).ColumnIndex
@@ -309,7 +320,7 @@ Public Class EditarProgramacionRuta
 
     End Sub
 
-    Private Sub DataGridConsolidado_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridConsolidado.CellEndEdit
+    Private Sub DataGridConsolidado_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs)
         Try
             If e.RowIndex >= 0 Then
                 'Recalcular()
@@ -362,7 +373,7 @@ Public Class EditarProgramacionRuta
 
 
 
-    Private Sub DataGridConsolidado_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridConsolidado.CellContentClick
+    Private Sub DataGridConsolidado_CellContentClick(sender As Object, e As DataGridViewCellEventArgs)
         Try
             'CalcularFinal()
             If e.ColumnIndex = 0 Then
@@ -390,7 +401,7 @@ Public Class EditarProgramacionRuta
         End Try
     End Sub
 
-    Private Sub DataGridConsolidado_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridConsolidado.CellContentDoubleClick
+    Private Sub DataGridConsolidado_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs)
         'CalcularFinal()
         If e.ColumnIndex = 0 Then
             Dim row As DataGridViewRow = DataGridConsolidado.Rows(e.RowIndex)
@@ -415,13 +426,102 @@ Public Class EditarProgramacionRuta
         End Try
         Return RP
     End Function
+    Private Sub IconButton1_Click_1(sender As Object, e As EventArgs)
 
-    Private Sub IconButton1_Click_1(sender As Object, e As EventArgs) Handles IconButton1.Click
+    End Sub
+    Private Sub bt_modificar_Click(sender As Object, e As EventArgs)
+        Try
+            If Dg_Rutas.Rows.Count > Constantes.ValorEnteroInicial Then
+                If Dg_Rutas.CurrentRow IsNot Nothing Then
+                    ProcesoModificar(Dg_Rutas.CurrentRow.Cells("NombreRuta").Value.ToString.Trim)
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "SISTEMAS NORDIC")
+        End Try
+    End Sub
+    Private Sub ProcesoModificar(RutaMod As String)
+        Try
+            For Each RowConsolidados As DataGridViewRow In DataGridConsolidado.Rows
+                If RowConsolidados.Cells("Marcar").EditedFormattedValue = True Then
+                    RowConsolidados.Cells("RUTA").Value = RutaMod
+                End If
+            Next
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub Dg_Rutas_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles Dg_Rutas.CellContentClick
+        Dim dtRutasB As New DataTable
+        Dim NombreRuta As String = ""
+        Dim Row As DataRow = Nothing
+        Try
+            If Dg_Rutas.Rows.Count > Constantes.ValorEnteroInicial Then
+                If Dg_Rutas.CurrentRow IsNot Nothing Then
+                    If Dg_Rutas.CurrentRow.Cells("Estado").Value <> "REGISTRADA" Then
+                        NombreRuta = Dg_Rutas.CurrentRow.Cells("NombreRuta").Value.ToString.Trim
+                        If DataGridConsolidado.Rows.Count > Constantes.ValorEnteroInicial Then
+                            dtRutasB = Estructura.RutaPreliminar
+                            For Each Rowcon As DataGridViewRow In DataGridConsolidado.Rows
+                                If NombreRuta = Rowcon.Cells("RUTA").Value.ToString.Trim Or Rowcon.Cells("RUTA").Value.ToString.Trim = "" Then
+                                    Row = dtRutasB.NewRow
+                                    If NombreRuta = Rowcon.Cells("RUTA").Value.ToString.Trim Then
+                                        Row.Item("Marcar") = True
+                                    ElseIf Rowcon.Cells("RUTA").Value.ToString.Trim = "" Then
+                                        Row.Item("Marcar") = False
+                                    End If
+                                    Row.Item("idconsolidado") = Rowcon.Cells("idconsolidado").Value.ToString
+                                    Row.Item("RutaTentativa") = Rowcon.Cells("RutaTentativa").Value.ToString
+                                    Row.Item("Destino") = Rowcon.Cells("DESTINO").Value
+                                    Row.Item("Cliente") = Rowcon.Cells("NOM_CLIENTE").Value
+                                    dtRutasB.Rows.Add(Row)
+                                End If
+                            Next
+                            If dtRutasB.Rows.Count > Constantes.ValorEnteroInicial Then
+                                Dim FormModificarRuta As New ModificarRutaPreliminar
+                                FormModificarRuta.dt_Rutas = dtRutasB
+                                FormModificarRuta.Ruta = NombreRuta
+                                FormModificarRuta.ShowDialog()
+                                If FormModificarRuta.grabado = True Then
+                                    If FormModificarRuta.dt_Rutas.Rows.Count > Constantes.ValorEnteroInicial Then
+                                        For Each RowMod As DataRow In FormModificarRuta.dt_Rutas.Rows
+                                            If DataGridConsolidado.Rows.Count > Constantes.ValorEnteroInicial Then
+                                                For Each RowConsoM As DataGridViewRow In DataGridConsolidado.Rows
+                                                    If RowMod.Item("Marcar") = True Then
+                                                        If RowMod.Item("idconsolidado") = RowConsoM.Cells("idconsolidado").Value Then
+                                                            RowConsoM.Cells("RUTA").Value = NombreRuta
+                                                            RowConsoM.Cells("Marcar").Value = True
+                                                        End If
+                                                    ElseIf RowMod.Item("Marcar") = False Then
+                                                        If RowMod.Item("idconsolidado") = RowConsoM.Cells("idconsolidado").Value And RowConsoM.Cells("RUTA").Value = NombreRuta Then
+                                                            RowConsoM.Cells("RUTA").Value = ""
+                                                            RowConsoM.Cells("Marcar").Value = False
+                                                        End If
+                                                    End If
+                                                Next
+                                            End If
+                                        Next
+                                    End If
+                                    Recalcular()
+                                End If
+                            End If
+                        End If
+                    Else
+                        MsgBox("Ruta se encuentra registrada, no se peude modificar", MsgBoxStyle.Exclamation, "SISTEMAS NORDIC")
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "SISTEMAS SSENDA")
+        End Try
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Try
             GuardarRuta()
             Recalcular()
         Catch ex As Exception
-            Throw ex
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "SISTEMAS SSENDA")
         End Try
     End Sub
 
@@ -470,11 +570,11 @@ Public Class EditarProgramacionRuta
                     End If
                 End If
             End If
-
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
+
 
     Public Sub ObtenerRutaCab()
         Try
@@ -490,6 +590,7 @@ Public Class EditarProgramacionRuta
             Throw ex
         End Try
     End Sub
+
 
     Private Sub IconButton2_Click(sender As Object, e As EventArgs)
         Try
@@ -509,9 +610,6 @@ Public Class EditarProgramacionRuta
         Dim Guias As Integer = 0
         Try
             If ValidarRegistroRuta() = True Then
-                'Dim Complement As New ComplemetarRuta
-                'Complement.ShowDialog()
-                'If Complement.grabado = True Then
                 repartidor = ""
                 movilidad = ""
                 For Each RowDg As DataGridViewRow In DataGridConsolidado.Rows

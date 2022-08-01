@@ -373,16 +373,16 @@ Public Class frmRetornoRuta
                         MessageBox.Show("Se acualizó satisfactoriamente", "Aviso", MessageBoxButtons.OK)
                     End If
                 ElseIf e.ColumnIndex = 18 Then
-                    Dim numeroGuia As String
-                    numeroGuia = dgvRetornoRuta.CurrentRow.Cells.Item("C5_CNUMDOC").Value.ToString()
-                    Dim Rp As Integer = 0
-                    Dim objalmacen As New AlmacenL
-                    Dim Factura As String = ""
-                    Factura = dgvRetornoRuta.Rows(e.RowIndex).Cells(e.ColumnIndex).EditedFormattedValue
-                    Rp = objalmacen.RegistrarFacturaTransportista(numeroGuia.Trim, Factura.Trim)
-                    If Rp <> 0 Then
-                        MessageBox.Show("Se acualizó satisfactoriamente", "Aviso", MessageBoxButtons.OK)
-                    End If
+                    'Dim numeroGuia As String
+                    'numeroGuia = dgvRetornoRuta.CurrentRow.Cells.Item("C5_CNUMDOC").Value.ToString()
+                    'Dim Rp As Integer = 0
+                    'Dim objalmacen As New AlmacenL
+                    'Dim Factura As String = ""
+                    'Factura = dgvRetornoRuta.Rows(e.RowIndex).Cells(e.ColumnIndex).EditedFormattedValue
+                    'Rp = objalmacen.RegistrarFacturaTransportista(numeroGuia.Trim, Factura.Trim)
+                    'If Rp <> 0 Then
+                    '    MessageBox.Show("Se acualizó satisfactoriamente", "Aviso", MessageBoxButtons.OK)
+                    'End If
                 End If
             End If
 

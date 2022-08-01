@@ -63,6 +63,7 @@ Partial Class ReporteDespachos
         Me.Direccion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Departamento = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Provincia = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Distrito = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Lima_Provincia = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Recojo_Despacho = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Canal = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -75,6 +76,11 @@ Partial Class ReporteDespachos
         Me.KG = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Bulto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FechaRetorno = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Restriccion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Ruc = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Site = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Comentario = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
@@ -248,7 +254,7 @@ Partial Class ReporteDespachos
         Me.Dg_Cabecera.AllowUserToDeleteRows = False
         Me.Dg_Cabecera.BackgroundColor = System.Drawing.Color.White
         Me.Dg_Cabecera.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Dg_Cabecera.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CodRuta, Me.FechaDespacho, Me.Guia, Me.Cliente, Me.Direccion, Me.Departamento, Me.Provincia, Me.Lima_Provincia, Me.Recojo_Despacho, Me.Canal, Me.Consolidado_Exclusivo, Me.Transportista, Me.Vehiculo, Me.Capacidad, Me.CentroCosto, Me.M3, Me.KG, Me.Bulto, Me.FechaRetorno})
+        Me.Dg_Cabecera.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CodRuta, Me.FechaDespacho, Me.Guia, Me.Cliente, Me.Direccion, Me.Departamento, Me.Provincia, Me.Distrito, Me.Lima_Provincia, Me.Recojo_Despacho, Me.Canal, Me.Consolidado_Exclusivo, Me.Transportista, Me.Vehiculo, Me.Capacidad, Me.CentroCosto, Me.M3, Me.KG, Me.Bulto, Me.FechaRetorno, Me.Restriccion, Me.Ruc, Me.Site, Me.Comentario, Me.Importe})
         Me.Dg_Cabecera.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Dg_Cabecera.Location = New System.Drawing.Point(0, 0)
         Me.Dg_Cabecera.Margin = New System.Windows.Forms.Padding(0)
@@ -382,6 +388,11 @@ Partial Class ReporteDespachos
         Me.Provincia.HeaderText = "Provincia"
         Me.Provincia.Name = "Provincia"
         '
+        'Distrito
+        '
+        Me.Distrito.HeaderText = "Distrito"
+        Me.Distrito.Name = "Distrito"
+        '
         'Lima_Provincia
         '
         Me.Lima_Provincia.HeaderText = "Lima_Provincia"
@@ -441,6 +452,31 @@ Partial Class ReporteDespachos
         '
         Me.FechaRetorno.HeaderText = "Fecha Retorno"
         Me.FechaRetorno.Name = "FechaRetorno"
+        '
+        'Restriccion
+        '
+        Me.Restriccion.HeaderText = "Restriccion"
+        Me.Restriccion.Name = "Restriccion"
+        '
+        'Ruc
+        '
+        Me.Ruc.HeaderText = "Ruc"
+        Me.Ruc.Name = "Ruc"
+        '
+        'Site
+        '
+        Me.Site.HeaderText = "Site"
+        Me.Site.Name = "Site"
+        '
+        'Comentario
+        '
+        Me.Comentario.HeaderText = "Comentario"
+        Me.Comentario.Name = "Comentario"
+        '
+        'Importe
+        '
+        Me.Importe.HeaderText = "Importe"
+        Me.Importe.Name = "Importe"
         '
         'ReporteDespachos
         '
@@ -504,6 +540,7 @@ Partial Class ReporteDespachos
     Friend WithEvents Direccion As DataGridViewTextBoxColumn
     Friend WithEvents Departamento As DataGridViewTextBoxColumn
     Friend WithEvents Provincia As DataGridViewTextBoxColumn
+    Friend WithEvents Distrito As DataGridViewTextBoxColumn
     Friend WithEvents Lima_Provincia As DataGridViewTextBoxColumn
     Friend WithEvents Recojo_Despacho As DataGridViewTextBoxColumn
     Friend WithEvents Canal As DataGridViewTextBoxColumn
@@ -516,4 +553,9 @@ Partial Class ReporteDespachos
     Friend WithEvents KG As DataGridViewTextBoxColumn
     Friend WithEvents Bulto As DataGridViewTextBoxColumn
     Friend WithEvents FechaRetorno As DataGridViewTextBoxColumn
+    Friend WithEvents Restriccion As DataGridViewTextBoxColumn
+    Friend WithEvents Ruc As DataGridViewTextBoxColumn
+    Friend WithEvents Site As DataGridViewTextBoxColumn
+    Friend WithEvents Comentario As DataGridViewTextBoxColumn
+    Friend WithEvents Importe As DataGridViewTextBoxColumn
 End Class

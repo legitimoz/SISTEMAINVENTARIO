@@ -7,7 +7,7 @@ Public Class EditarRuta
     Public dtDetalleRuta, dt_tipoenvio As New DataTable
     Public Grabado As Boolean = False
     Private dt_vehiculos As New DataTable
-    Public volumen As Decimal, tiempo As Decimal, importe As Decimal, totalpeso As Decimal = 0
+    Public volumen As Decimal, tiempo As Decimal, importe As Decimal, totalpeso As Decimal = 0, totalbultos As Integer = Constantes.ValorEnteroInicial
     Public flagAccion As String
     Public idsite As Integer = 0
     Public usr_id As Integer
@@ -15,6 +15,8 @@ Public Class EditarRuta
     Private Estructura As New EstructuraTabla
     Public nombreRutaCab As String
     Private dtruta As New DataTable
+
+
 
     Private Sub EditarRuta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CargaInicial()
@@ -29,23 +31,32 @@ Public Class EditarRuta
             cbo.DataSource = dt
             cbo.ValueMember = "sit_idsite"
             cbo.DisplayMember = "sit_nombre"
+
         Catch ex As Exception
-
+            Throw ex
         End Try
-
     End Sub
 
+    Public Function LlamarListarGuiasDET(codalmacen As String, tipdoc As String, nrodoc As String) As DataTable
+
+        Dim dtretono As DataTable
+        Try
+            dtretono = AlmacenObj.ListarGuiasDET(codalmacen, tipdoc, nrodoc, 0, 0).Copy
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return dtretono
+    End Function
+
     Private Sub CargaInicial()
+        idsite = CType(ConfigurationManager.AppSettings("CodigoSite").ToString.Trim, Integer)
         CargarSite()
 
-        '  cmb_tipoenvio.SelectedIndex = 0
-        idsite = CType(ConfigurationManager.AppSettings("CodigoSite").ToString.Trim, Integer)
         dtruta = Estructura.HojaDeRuta
         Try
-            txt_volumen.Text = Math.Round(volumen, 2).ToString + " M3"
+            txt_volumen.Text = Math.Round(volumen, 3).ToString + " M3"
             txt_tiempo.Text = Math.Round(tiempo, 2).ToString + " Horas"
             txt_importe.Text = "S/. " + importe.ToString
-            txt_totalpeso.Text = "0 KG."
             Cargar_Transportistas()
             ListarVehiculos()
             ListarTipoEnvioRuta()
@@ -59,8 +70,12 @@ Public Class EditarRuta
                     Dg_Detalle.Rows(contador).Cells("ALMACEN").Value = RowRuta.Item("CALMA").ToString.Trim
                     Dg_Detalle.Rows(contador).Cells("Cliente").Value = RowRuta.Item("NOM_CLIENTE").ToString.Trim
                     Dg_Detalle.Rows(contador).Cells("Direccion").Value = RowRuta.Item("DIRECCION_ENTREGA").ToString.Trim
-                    Dg_Detalle.Rows(contador).Cells("Peso").Value = 0
-                    Dg_Detalle.Rows(contador).Cells("Bultos").Value = 0
+                    Dim RepuestaCalculos As New List(Of Decimal)
+                    RepuestaCalculos = CalcularBultos_Pesos(RowRuta.Item("CALMA").ToString.Trim, RowRuta.Item("CTD").ToString.Trim, RowRuta.Item("NRO_GUIA").ToString.Trim)
+                    totalpeso = totalpeso + RepuestaCalculos.ElementAt(1)
+                    totalbultos = totalbultos + RepuestaCalculos.ElementAt(0)
+                    Dg_Detalle.Rows(contador).Cells("Peso").Value = Math.Round(RepuestaCalculos.ElementAt(1), 3)
+                    Dg_Detalle.Rows(contador).Cells("Bultos").Value = CType(RepuestaCalculos.ElementAt(0), Integer)
                     Dg_Detalle.Rows(contador).Cells("TiempoGuia").Value = RowRuta.Item("TIEMPO").ToString
                     Dg_Detalle.Rows(contador).Cells("RestriccionUn").Value = RowRuta.Item("RESTRICCION").ToString
                     Dg_Detalle.Rows(contador).Cells("VoluemnUn").Value = RowRuta.Item("M3UN").ToString
@@ -74,32 +89,148 @@ Public Class EditarRuta
                     Dg_Detalle.Rows(contador).Cells("DEPARTAMENTO").Value = RowRuta.Item("DEPARTAMENTO").ToString
                     Dg_Detalle.Rows(contador).Cells("PROVINCIA").Value = RowRuta.Item("PROVINCIA").ToString
                     Dg_Detalle.Rows(contador).Cells("DISTRITO").Value = RowRuta.Item("DISTRITO").ToString
+                    Dg_Detalle.Rows(contador).Cells("TipoRuta").Value = "DESPACHO"
                     Dg_Detalle.Rows(contador).Cells("FISICO").Value = RowRuta.Item("FISICO").ToString
                     Dg_Detalle.Rows(contador).Cells("siteliq").Value = RowRuta.Item("siteliq").ToString
+                    Dg_Detalle.Rows(contador).Cells("SITE").Value = idsite
                     Dg_Detalle.Rows(contador).Cells("sitepick").Value = RowRuta.Item("sitepick").ToString
                     Dg_Detalle.Rows(contador).Cells("CANAL").Value = RowRuta.Item("CANAL").ToString
                     Dg_Detalle.Rows(contador).Cells("LIMA_PROV").Value = RowRuta.Item("LIMA_PROV").ToString
-
-
                     contador = contador + 1
                 Next
+                txt_totalpeso.Text = Math.Round(totalpeso, 3).ToString + " KG."
+                lbl_totalbultos.Text = totalbultos.ToString
             End If
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
+    Private Function CalcularBultos_Pesos(Calma As String, Ctd As String, Cnumdoc As String) As List(Of Decimal)
+        Dim ReturnRp As New List(Of Decimal)
+        Dim bultos As Integer = Constantes.ValorEnteroInicial
+        Dim Peso As Decimal = Constantes.ValorEnteroInicial
+        Dim DtDetalle As New DataTable
+        Dim cajas As Decimal = 0, cajasm As Decimal = 0, saldo As Decimal = 0
+        'variables bultos & Pesos
+        Dim BultosCaja As Integer = Constantes.ValorEnteroInicial, bultosUni As Integer = Constantes.ValorEnteroInicial
+        Dim VolUniFinal As Decimal = Constantes.ValorEnteroInicial
+        Dim Division As Decimal = Constantes.ValorEnteroInicial
+
+        Try
+            DtDetalle = LlamarListarGuiasDET(Calma, Ctd, Cnumdoc)
+            If DtDetalle.Rows.Count > Constantes.ValorEnteroInicial Then
+                For Each rowDetalle As DataRow In DtDetalle.Rows
+                    Dim VolumenUnitario As Decimal = Constantes.ValorEnteroInicial
+                    Dim undCajas As Integer = Constantes.ValorEnteroInicial 'Unidades de CajasI + Saldo
+                    Dim Undfactor As Integer = Constantes.ValorEnteroInicial 'Factor Cjm * Factor Cji' 
+                    Dim VolumenMaster As Decimal = Constantes.ValorEnteroInicial, VolumenUn As Decimal = Constantes.ValorEnteroInicial
+                    If rowDetalle.Item("UNIDAD").ToString = "UND" Then
+                        If rowDetalle.Item("FACTORCAJAMASTER").ToString.Trim <> "" Then
+                            If rowDetalle.Item("FACTORCAJA").ToString <> 0 And rowDetalle.Item("FACTORCAJAMASTER").ToString.Trim <> 0 Then
+                                cajas = (rowDetalle.Item("CANTIDAD") / rowDetalle.Item("FACTORCAJA"))
+                                saldo = rowDetalle.Item("CANTIDAD") Mod rowDetalle.Item("FACTORCAJA")
+                                cajasm = cajas / rowDetalle.Item("FACTORCAJAMASTER")
+                                cajasm = Math.Floor(cajasm)
+                                cajas = cajas Mod rowDetalle.Item("FACTORCAJAMASTER")
+                            End If
+                        End If
+                    Else
+                        If rowDetalle.Item("FACTORCAJAMASTER").ToString.Trim <> "" Then
+                            If rowDetalle.Item("UNIDAD").ToString = "CJA" Then
+                                If rowDetalle.Item("FACTORCAJA").ToString <> 0 And rowDetalle.Item("FACTORCAJAMASTER").ToString <> 0 Then
+                                    saldo = 0
+                                    cajas = rowDetalle.Item("CANTIDAD")
+                                    cajasm = cajas / rowDetalle.Item("FACTORCAJAMASTER")
+                                    cajasm = Math.Floor(cajasm)
+                                    cajas = cajas Mod rowDetalle.Item("FACTORCAJAMASTER")
+                                End If
+                            End If
+                        End If
+                    End If
+                    'CALCULO BULTOS INICIO'
+                    BultosCaja = BultosCaja + cajasm
+
+                    If cajas > Constantes.ValorEnteroInicial And rowDetalle.Item("FACTORCAJA").ToString > Constantes.ValorEnteroInicial Then
+                        undCajas = cajas * rowDetalle.Item("FACTORCAJA").ToString
+                    Else
+                        undCajas = Constantes.ValorEnteroInicial
+                    End If
+                    undCajas = undCajas + saldo
+                    If rowDetalle.Item("FACTORCAJAMASTER").ToString.Trim <> "" And rowDetalle.Item("ALTO").ToString.Trim <> "" Then
+                        If rowDetalle.Item("FACTORCAJA").ToString > 0 And rowDetalle.Item("FACTORCAJAMASTER").ToString.Trim > 0 And rowDetalle.Item("ALTO").ToString.Trim > 0 And rowDetalle.Item("LARGO").ToString > 0 And rowDetalle.Item("ANCHO").ToString > 0 Then
+                            Undfactor = rowDetalle.Item("FACTORCAJA").ToString * rowDetalle.Item("FACTORCAJAMASTER").ToString
+                            VolumenMaster = rowDetalle.Item("ALTO").ToString * rowDetalle.Item("LARGO").ToString * rowDetalle.Item("ANCHO").ToString
+                            VolumenUn = VolumenMaster / Undfactor
+                            If VolumenUn > 0 Then
+                                VolumenUnitario = undCajas * VolumenUn
+                            End If
+                        End If
+                    End If
+                    VolUniFinal = VolUniFinal + VolumenUnitario
+                    Dim PesoCajasM As Decimal = Constantes.ValorEnteroInicial, PesoUnidades As Decimal = Constantes.ValorEnteroInicial 'Peso Caja Master & Peso Saldos + UndCajaI
+                    Dim PesoUnitaria As Decimal = Constantes.ValorEnteroInicial
+
+                    If rowDetalle.Item("Peso").ToString.Trim > Constantes.ValorEnteroInicial Then
+                        If cajasm > Constantes.ValorEnteroInicial Then
+                            PesoCajasM = cajasm * rowDetalle.Item("Peso")
+                        Else
+                            PesoCajasM = Constantes.ValorEnteroInicial
+                        End If
+
+                        If undCajas > Constantes.ValorEnteroInicial Then
+                            If Undfactor > Constantes.ValorEnteroInicial Then
+                                PesoUnitaria = rowDetalle.Item("Peso").ToString.Trim / Undfactor
+                            End If
+
+                            If undCajas > Constantes.ValorEnteroInicial And PesoUnitaria > Constantes.ValorEnteroInicial Then
+                                PesoUnidades = PesoUnitaria * undCajas
+                            Else
+                                PesoUnidades = Constantes.ValorEnteroInicial
+                            End If
+                        Else
+                            PesoUnidades = Constantes.ValorEnteroInicial
+                        End If
+                    Else
+                        PesoCajasM = Constantes.ValorEnteroInicial
+                        PesoUnidades = Constantes.ValorEnteroInicial
+                    End If
+                    Peso = Peso + PesoCajasM + PesoUnidades
+                Next
+
+                If VolUniFinal > 0 Then
+                    Division = VolUniFinal / 0.02
+                Else
+                    Division = 0
+                End If
+
+                If Division > 0 And Division <= 1 Then
+                    bultosUni = 1
+                ElseIf Division > 1 Then
+                    bultosUni = Math.Ceiling(Division)
+                Else
+                    bultosUni = 0
+                End If
+
+                bultos = BultosCaja + bultosUni
+
+                ReturnRp.Add(bultos)
+                ReturnRp.Add(Peso)
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return ReturnRp
+    End Function
+
     Sub Cargar_Transportistas()
         Try
             Dim objGuia As New BeGuias
             Dim dt As New DataTable
-
             dt = objGuia.Obtener_Transportistas2()
-
             cbxTransportista.DataSource = dt
             cbxTransportista.ValueMember = "TR_CCODIGO"
             cbxTransportista.DisplayMember = "TR_CNOMBRE"
-
         Catch ex As Exception
             MessageBox.Show(ex.Message, "NORDIC", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -153,6 +284,7 @@ Public Class EditarRuta
                     _BeDetGuiaRutaDetalle.pr_idsitepicking = Dg_Detalle.Rows(i).Cells.Item("sitepick").Value
                     _BeDetGuiaRutaDetalle.pr_canal = Dg_Detalle.Rows(i).Cells.Item("CANAL").Value
                     _BeDetGuiaRutaDetalle.pr_nroorden = Dg_Detalle.Rows(i).Cells.Item("Orden").Value
+                    _BeDetGuiaRutaDetalle.pr_comentarioruta = Dg_Detalle.Rows(i).Cells.Item("Comentario").Value
                     _listadoDetalleGuia.Add(_BeDetGuiaRutaDetalle)
                 Next
 
@@ -210,15 +342,6 @@ Public Class EditarRuta
             Case "HEADMARK CORPORATION SAC"
                 logooperador = "SendaLogo"
                 color = "DarkOrange"
-                'Case "3"
-                '    logooperador = "BARDEX"
-                '    color = "DarkSeaGreen"
-                'Case "4"
-                '    logooperador = "ESCAME"
-                '    color = "CornflowerBlue"
-                'Case Else
-                '    logooperador = ""
-                '    color = "Silver"
         End Select
         Try
 
@@ -240,31 +363,21 @@ Public Class EditarRuta
                 rowRuta.Item("Restriccion") = DetalleCon.Cells("RestriccionUn").Value
                 rowRuta.Item("Direccion") = DetalleCon.Cells("Direccion").Value
                 rowRuta.Item("Condicion") = DetalleCon.Cells("Condicion").Value
-                rowRuta.Item("Importe") = DetalleCon.Cells("nombrecosto").Value
-                'rowRuta.Item("Importe") = CType(0, Decimal)
+                rowRuta.Item("Importe") = DetalleCon.Cells("Bultos").Value
                 rowRuta.Item("Representante") = DetalleCon.Cells("Representante").Value
                 rowRuta.Item("Volumen") = Math.Round(CType(DetalleCon.Cells("VoluemnUn").Value, Decimal), 3)
                 rowRuta.Item("TiempoEntrega") = DetalleCon.Cells("TiempoGuia").Value
-                rowRuta.Item("TipoRuta") = ""
+                rowRuta.Item("TipoRuta") = DetalleCon.Cells("TipoRuta").Value
+                rowRuta.Item("Comentario") = DetalleCon.Cells("Comentario").Value
+
                 dtruta.Rows.Add(rowRuta)
             Next
             Dim reporte As New Demo
             dtruta.TableName = "DetalleRuta"
-            'reporte.ImprimirRuta(Codigo, nombreempresa, RUC, Direccion, logooperador, color, "HojaDeRuta.rdlc", dtruta, repartidor, movilidad, volumen, Math.Round(tiempo, 2).ToString + " Horas", "S/. " + importe.ToString, totalpeso.ToString + " KG.", tipoEnvio)
-            reporte.ImprimirRuta(Codigo, nombreempresa, RUC, Direccion, logooperador, color, "HojaDeRuta.rdlc", dtruta, repartidor, movilidad, volumen, Math.Round(tiempo, 2).ToString + " Horas", "S/. " + 0.ToString, totalpeso.ToString + " KG.", tipoEnvio)
-            'Dim REPORT As New HojaRuta
-            'REPORT.CodigoRuta = Codigo
-            'REPORT.totalvolumen = volumen.ToString + " M3"
-            'REPORT.totalpeso = totalpeso.ToString + " KG."
-            'REPORT.totalimporte = "S/. " + importe.ToString
-            'REPORT.totaltiempo = Math.Round(tiempo, 2).ToString + " Horas"
-            'REPORT.tipoenvio = tipoEnvio
-            'REPORT.movilidad = movilidad
-            'REPORT.transportista = repartidor
-            'REPORT.Dtruta = dtruta
-            'REPORT.Show()
-        Catch ex As Exception
+            reporte.ImprimirRuta(Codigo, nombreempresa, RUC, Direccion, logooperador, color, "HojaDeRuta.rdlc", dtruta, repartidor, movilidad, volumen, Math.Round(tiempo, 2).ToString + " Horas", Math.Round(totalpeso, 3).ToString + " KG.", tipoEnvio, totalbultos)
 
+        Catch ex As Exception
+            Throw ex
         End Try
 
     End Sub
@@ -288,8 +401,6 @@ Public Class EditarRuta
 
     Public Sub ListarVehiculos()
         Try
-            ' Dim dtretorno As New DataTable
-
             dt_vehiculos = AlmacenObj.ListarVehiculoDespacho(idsite)
             If dt_vehiculos.Rows.Count > 0 Then
                 cmb_tipotransporte.DataSource = dt_vehiculos
@@ -297,14 +408,20 @@ Public Class EditarRuta
                 cmb_tipotransporte.ValueMember = "veh_idvehiculo"
             End If
         Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub Dg_Detalle_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles Dg_Detalle.CellContentClick
+        Try
+            ' MsgBox(Dg_Detalle.Rows(e.RowIndex).Cells("TipoRuta").Value.ToString, MsgBoxStyle.Information, "")
+        Catch ex As Exception
 
         End Try
     End Sub
 
     Public Sub ListarTipoEnvioRuta()
         Try
-            ' Dim dtretorno As New DataTable
-
             dt_tipoenvio = AlmacenObj.SP_CSE_LISTARTIPOENVIORUTA()
             If dt_tipoenvio.Rows.Count > 0 Then
                 cmb_tipoenvio.DataSource = dt_tipoenvio
@@ -312,14 +429,17 @@ Public Class EditarRuta
                 cmb_tipoenvio.ValueMember = "tip_idtipo"
             End If
         Catch ex As Exception
-
+            Throw ex
         End Try
     End Sub
 
     Private Sub Dg_Detalle_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles Dg_Detalle.CellEndEdit
+        Dim Columname As String = ""
         Try
             If e.RowIndex >= 0 Then
-                If e.ColumnIndex = 7 Then
+                Columname = Dg_Detalle.Columns(e.ColumnIndex).Name
+
+                If Columname = "Peso" Then
                     ErrorProvider1.SetError(Dg_Detalle, "")
                     If ValidarDecimal(Dg_Detalle.Rows(e.RowIndex).Cells("Peso").EditedFormattedValue.ToString) = False Then
                         ErrorProvider1.SetError(Dg_Detalle, "Peso debe valor numérico")
@@ -338,7 +458,28 @@ Public Class EditarRuta
                         End If
                     End If
                 End If
-                If e.ColumnIndex = 0 Then
+
+                If Columname = "Bultos" Then
+                    ErrorProvider1.SetError(Dg_Detalle, "")
+                    If ValidarNumerico(Dg_Detalle.Rows(e.RowIndex).Cells("Bultos").EditedFormattedValue.ToString) = False Then
+                        ErrorProvider1.SetError(Dg_Detalle, "Bultos debe valor numérico")
+                        Dg_Detalle.Rows(e.RowIndex).Cells("Bultos").Value = 0
+                    Else
+                        Dim Nueva As Decimal = CType(Dg_Detalle.Rows(e.RowIndex).Cells("Bultos").EditedFormattedValue, Decimal)
+                        If Nueva < 0 Then
+                            ErrorProvider1.SetError(Dg_Detalle, "Bultos debe ser mayor o igual 0")
+                            Dg_Detalle.Rows(e.RowIndex).Cells("Bultos").Value = 0
+                        Else
+                            totalbultos = 0
+                            For Each dgDet As DataGridViewRow In Dg_Detalle.Rows
+                                totalbultos = totalbultos + CType(dgDet.Cells("Bultos").Value, Decimal)
+                            Next
+                            lbl_totalbultos.Text = totalbultos.ToString
+                        End If
+                    End If
+                End If
+
+                If Columname = "Orden" Then
                     ErrorProvider1.SetError(Dg_Detalle, "")
                     If Dg_Detalle.Rows(e.RowIndex).Cells("Orden").EditedFormattedValue Is Nothing Then
                         ErrorProvider1.SetError(Dg_Detalle, "Debe Ingresar el Orden de Reparto")

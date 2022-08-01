@@ -339,6 +339,11 @@ Public Class GestionAbastecimiento
 
                     If (CType(RowRetorno.Item("TOTAL").ToString.Trim, Integer)) > 0 Then
 
+                        If RowRetorno.Item("CODIGO").ToString.Trim = "PRD0001535" Then
+                            Dim guia As String = ""
+                            guia = "hola"
+                        End If
+
                         Dg_Cabecera.Rows.Add()
                         Dg_Cabecera.Rows(contador).Cells("CODIGO").Value = RowRetorno.Item("CODIGO").ToString.Trim
 
@@ -725,6 +730,7 @@ Public Class GestionAbastecimiento
                         Else
                             Dg_Cabecera.Rows(contador).Cells("UUREALABASATE").Value = Dg_Cabecera.Rows(contador).Cells("UUABASTATE").Value
                         End If
+                        'VALIDAR STOCK EN BASE A UNIDADES ABASTECER'
                         Dg_Cabecera.Rows(contador).Cells("ABASTECJMATE").Value = Math.Ceiling(CType((Dg_Cabecera.Rows(contador).Cells("UUREALABASATE").Value / Dg_Cabecera.Rows(contador).Cells("MULTIPLICACIONFACTORES").Value), Decimal))
                         Dg_Cabecera.Rows(contador).Cells("ABASTEM3").Value = Dg_Cabecera.Rows(contador).Cells("VOLCJMU").Value * Dg_Cabecera.Rows(contador).Cells("ABASTECJMATE").Value
                         Dg_Cabecera.Rows(contador).Cells("COBERTACTUAL").Value = Math.Ceiling((Dg_Cabecera.Rows(contador).Cells("STOCKATE").Value / Dg_Cabecera.Rows(contador).Cells("VENTAMES").Value) * 30)
@@ -732,13 +738,13 @@ Public Class GestionAbastecimiento
                         Dg_Cabecera.Rows(contador).Cells("STOCKFINALATE").Value = Dg_Cabecera.Rows(contador).Cells("ABASTUNI").Value + Dg_Cabecera.Rows(contador).Cells("STOCKATE").Value
                         Dg_Cabecera.Rows(contador).Cells("COBERTFINAL").Value = Math.Ceiling((Dg_Cabecera.Rows(contador).Cells("STOCKFINALATE").Value / Dg_Cabecera.Rows(contador).Cells("VENTAMES").Value) * 30)
                         Dg_Cabecera.Rows(contador).Cells("SELECCIONAR").Value = False
-                        If CType(Dg_Cabecera.Rows(contador).Cells("COBERTFINAL").Value, Integer) <= 7 Then
+                        If CType(Dg_Cabecera.Rows(contador).Cells("COBERTACTUAL").Value, Integer) <= 7 Then
                             Dg_Cabecera.Rows(contador).Cells("ACCION").Value = "ABASTECER"
                         Else
-                            If CType(Dg_Cabecera.Rows(contador).Cells("COBERTFINAL").Value, Integer) > 7 And CType(Dg_Cabecera.Rows(contador).Cells("COBERTFINAL").Value, Integer) <= 50 Then
+                            If CType(Dg_Cabecera.Rows(contador).Cells("COBERTACTUAL").Value, Integer) > 7 And CType(Dg_Cabecera.Rows(contador).Cells("COBERTACTUAL").Value, Integer) <= 50 Then
                                 Dg_Cabecera.Rows(contador).Cells("ACCION").Value = "OK"
                             Else
-                                If CType(Dg_Cabecera.Rows(contador).Cells("COBERTFINAL").Value, Integer) > 50 Then
+                                If CType(Dg_Cabecera.Rows(contador).Cells("COBERTACTUAL").Value, Integer) > 50 Then
                                     Dg_Cabecera.Rows(contador).Cells("ACCION").Value = "DEVOLVER CJM"
                                 End If
                             End If
@@ -856,13 +862,15 @@ Public Class GestionAbastecimiento
                     Dg_Cabecera.Rows(e.RowIndex).Cells("COBERTACTUAL").Value = Math.Ceiling((Dg_Cabecera.Rows(e.RowIndex).Cells("STOCKATE").Value / Dg_Cabecera.Rows(e.RowIndex).Cells("VENTAMES").Value) * 30)
                     Dg_Cabecera.Rows(e.RowIndex).Cells("COBERTFINAL").Value = Math.Ceiling((Dg_Cabecera.Rows(e.RowIndex).Cells("STOCKFINALATE").Value / Dg_Cabecera.Rows(e.RowIndex).Cells("VENTAMES").Value) * 30)
 
-                    If CType(Dg_Cabecera.Rows(e.RowIndex).Cells("COBERTFINAL").Value, Integer) <= 7 Then
+
+
+                    If CType(Dg_Cabecera.Rows(e.RowIndex).Cells("COBERTACTUAL").Value, Integer) <= 7 Then
                         Dg_Cabecera.Rows(e.RowIndex).Cells("ACCION").Value = "ABASTECER"
                     Else
-                        If CType(Dg_Cabecera.Rows(e.RowIndex).Cells("COBERTFINAL").Value, Integer) > 7 And CType(Dg_Cabecera.Rows(e.RowIndex).Cells("COBERTFINAL").Value, Integer) <= 50 Then
+                        If CType(Dg_Cabecera.Rows(e.RowIndex).Cells("COBERTACTUAL").Value, Integer) > 7 And CType(Dg_Cabecera.Rows(e.RowIndex).Cells("COBERTACTUAL").Value, Integer) <= 50 Then
                             Dg_Cabecera.Rows(e.RowIndex).Cells("ACCION").Value = "OK"
                         Else
-                            If CType(Dg_Cabecera.Rows(e.RowIndex).Cells("COBERTFINAL").Value, Integer) > 50 Then
+                            If CType(Dg_Cabecera.Rows(e.RowIndex).Cells("COBERTACTUAL").Value, Integer) > 50 Then
                                 Dg_Cabecera.Rows(e.RowIndex).Cells("ACCION").Value = "DEVOLVER CJM"
                             End If
                         End If
@@ -910,25 +918,31 @@ Public Class GestionAbastecimiento
     Private Sub cmdGenerarExcel_Click(sender As Object, e As EventArgs) Handles cmdGenerarExcel.Click
         Try
             If Dg_Cabecera.Rows.Count > 0 Then
+                If DtReporte.Rows.Count > 0 Then
+                    DtReporte.Rows.Clear()
+                End If
                 For Each Dgrow As DataGridViewRow In Dg_Cabecera.Rows
-                    If CType(Dgrow.Cells("ABASTECJMATE").EditedFormattedValue.ToString, Integer) > 0 Then
-                        If Dgrow.Cells("SELECCIONAR").EditedFormattedValue = True Then
-                            Dim RowAdd As DataRow = DtReporte.NewRow
-                            RowAdd.Item("Cod Articulo") = Dgrow.Cells("CODIGO").EditedFormattedValue.ToString
-                            RowAdd.Item("Articulo") = Dgrow.Cells("ARTICULO").EditedFormattedValue.ToString
-                            RowAdd.Item("CJ Master Abastercer") = Dgrow.Cells("ABASTECJMATE").EditedFormattedValue.ToString
-                            RowAdd.Item("M3 Abastecer") = Dgrow.Cells("ABASTEM3").EditedFormattedValue.ToString
-                            RowAdd.Item("Cobertura Final Dias") = Dgrow.Cells("COBERTFINAL").EditedFormattedValue.ToString
-                            RowAdd.Item("Cobertura Actual Dias") = Dgrow.Cells("COBERTACTUAL").EditedFormattedValue.ToString
-                            RowAdd.Item("Accion") = Dgrow.Cells("ACCIONFINAL").EditedFormattedValue.ToString
-                            DtReporte.Rows.Add(RowAdd)
-                        End If
+                    'If CType(Dgrow.Cells("ABASTECJMATE").EditedFormattedValue.ToString, Integer) > 0 Then
+                    If Dgrow.Cells("SELECCIONAR").EditedFormattedValue = True Then
+                        Dim RowAdd As DataRow = DtReporte.NewRow
+                        RowAdd.Item("Cod Articulo") = Dgrow.Cells("CODIGO").EditedFormattedValue.ToString
+                        RowAdd.Item("Articulo") = Dgrow.Cells("ARTICULO").EditedFormattedValue.ToString
+                        RowAdd.Item("CJ Master Abastercer") = Dgrow.Cells("ABASTECJMATE").EditedFormattedValue.ToString
+                        RowAdd.Item("Unidades Abastercer") = CType(Dgrow.Cells("ABASTECJMATE").EditedFormattedValue.ToString, Integer) * CType(Dgrow.Cells("MULTIPLICACIONFACTORES").EditedFormattedValue.ToString, Integer)
+                        RowAdd.Item("M3 Abastecer") = Dgrow.Cells("ABASTEM3").EditedFormattedValue.ToString
+                        RowAdd.Item("Cobertura Final Dias") = Dgrow.Cells("COBERTFINAL").EditedFormattedValue.ToString
+                        RowAdd.Item("Cobertura Actual Dias") = Dgrow.Cells("COBERTACTUAL").EditedFormattedValue.ToString
+                        RowAdd.Item("Accion") = Dgrow.Cells("ACCIONFINAL").EditedFormattedValue.ToString
+                        DtReporte.Rows.Add(RowAdd)
                     End If
+                    'End If
                 Next
             End If
 
             If DtReporte.Rows.Count > 0 Then
                 ExportExcel(DtReporte)
+            Else
+                MsgBox("No existen o no se han seleccionado articulos para abastecer", MsgBoxStyle.Exclamation, "SISTEMAS SSENDA")
             End If
         Catch ex As Exception
 
@@ -997,7 +1011,7 @@ Public Class GestionAbastecimiento
             If txt_numero.Text <> "" Then
                 For i As Integer = 0 To Dg_Cabecera.RowCount - 1
                     Dim Cod As String = txt_numero.Text.Trim + "*"
-                    If Dg_Cabecera.Rows(i).Cells("CODIGO").EditedFormattedValue.ToString.Trim Like Cod Then
+                    If Dg_Cabecera.Rows(i).Cells("ARTICULO").EditedFormattedValue.ToString.Trim Like Cod Then
                         Dg_Cabecera.Rows(i).Visible = True
                     Else
                         Dg_Cabecera.Rows(i).Visible = False

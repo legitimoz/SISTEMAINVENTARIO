@@ -64,22 +64,33 @@ Public Class MedicionEsfuerzo
                     ProductividadU = Math.Round(TotalUnidades / PCIU, 2)
 
                     If ProductividadCM < 0.17 Then
-                        ProductividadCM = 0.17
+                        '  ProductividadCM = 0.17
 
                     End If
 
                     If ProductividadCI < 0.17 Then
-                        ProductividadCI = 0.17
+                        '  ProductividadCI = 0.17
                     End If
 
                     If ProductividadU < 0.17 Then
-                        ProductividadU = 0.17
+                        ' ProductividadU = 0.17
+                    End If
+                    If (ProductividadCM + ProductividadCI + ProductividadU) < 0.17 Then
+                        ' Dg_Cabecera.Rows(contador).Cells("HORASHOMBRE").Value =
+                    End If
+
+                    Dim productividadFinal As Decimal = 0
+
+                    productividadFinal = (ProductividadCM + ProductividadCI + ProductividadU)
+
+                    If productividadFinal <= 0.17 Then
+                        productividadFinal = 0.17
                     End If
 
                     Dg_Cabecera.Rows(contador).Cells("PROCM").Value = ProductividadCM
                     Dg_Cabecera.Rows(contador).Cells("PROCI").Value = ProductividadCI
                     Dg_Cabecera.Rows(contador).Cells("PROUN").Value = ProductividadU
-                    Dg_Cabecera.Rows(contador).Cells("HORASHOMBRE").Value = (ProductividadCM + ProductividadCI + ProductividadU)
+                    Dg_Cabecera.Rows(contador).Cells("HORASHOMBRE").Value = productividadFinal
 
                     TotalHorasTotalHoras = TotalHorasTotalHoras + CType(Dg_Cabecera.Rows(contador).Cells("HORASHOMBRE").Value, Decimal)
 

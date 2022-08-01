@@ -143,7 +143,7 @@ Public Class AgregarGuiaCabeceraRuta
     Public Function LlamarObtenerGuiaDespacho(calma As String, ctd As String, cnumdoc As String) As DataTable
         Dim dtreotno As New DataTable
         Try
-            dtreotno = ObjAlmacen.ObtenerGuiaProgramacion(calma, ctd, cnumdoc)
+            dtreotno = ObjAlmacen.ObtenerGuiaProgramacion(ctd, cnumdoc)
         Catch ex As Exception
             Throw ex
         End Try
@@ -255,7 +255,7 @@ Public Class AgregarGuiaCabeceraRuta
                     ErrorProvider1.SetError(txt_peso, "Peso debe ser un valor numerico")
                     rp = False
                 Else
-                    If CType(txt_peso.Text, Integer) <= 0 Then
+                    If CType(txt_peso.Text, Decimal) <= 0 Then
                         ErrorProvider1.SetError(txt_peso, "Peso debe ser mayor o igual a 0")
                         rp = False
                     End If
@@ -453,6 +453,7 @@ Public Class AgregarGuiaCabeceraRuta
             Throw ex
         End Try
     End Sub
+
 
     Public Sub ListarTiemposEspera()
         Try

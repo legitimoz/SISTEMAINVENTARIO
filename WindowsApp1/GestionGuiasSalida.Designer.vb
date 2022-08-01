@@ -193,7 +193,7 @@ Partial Class GestionGuiasSalida
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(157, 20)
         Me.Button3.TabIndex = 88
-        Me.Button3.Text = "PICADO"
+        Me.Button3.Text = "PICKING"
         Me.Button3.UseVisualStyleBackColor = False
         '
         'Button2

@@ -43,7 +43,6 @@ Public Class EditarPosicionesComplemento
                 For Each RowRetorno As DataRow In dtretorno.Rows
                     Dim rowPosicion As DataRow
                     rowPosicion = dtposiciones.NewRow
-
                     rowPosicion.Item("esp_idespacio") = RowRetorno.Item("esp_idespacio")
                     rowPosicion.Item("esp_codigoespacio") = RowRetorno.Item("esp_codigoespacio")
                     rowPosicion.Item("esp_alto") = RowRetorno.Item("esp_alto").ToString()

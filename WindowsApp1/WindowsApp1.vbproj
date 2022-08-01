@@ -108,6 +108,7 @@
     <Reference Include="System.IO.Packaging, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.Packaging.4.0.0\lib\net46\System.IO.Packaging.dll</HintPath>
     </Reference>
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
@@ -559,6 +560,12 @@
     <Compile Include="GestionAnulacionPicking.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GestionArticulosSoftcom.Designer.vb">
+      <DependentUpon>GestionArticulosSoftcom.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GestionArticulosSoftcom.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GestionControlLinea.Designer.vb">
       <DependentUpon>GestionControlLinea.vb</DependentUpon>
     </Compile>
@@ -668,6 +675,12 @@
       <DependentUpon>MenuPrincipal.vb</DependentUpon>
     </Compile>
     <Compile Include="MenuPrincipal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModificarRutaPreliminar.Designer.vb">
+      <DependentUpon>ModificarRutaPreliminar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarRutaPreliminar.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -1125,6 +1138,9 @@
     <EmbeddedResource Include="GestionAnulacionPicking.resx">
       <DependentUpon>GestionAnulacionPicking.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GestionArticulosSoftcom.resx">
+      <DependentUpon>GestionArticulosSoftcom.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GestionControlLinea.resx">
       <DependentUpon>GestionControlLinea.vb</DependentUpon>
     </EmbeddedResource>
@@ -1179,6 +1195,9 @@
     <EmbeddedResource Include="MenuPrincipal.resx">
       <DependentUpon>MenuPrincipal.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ModificarRutaPreliminar.resx">
+      <DependentUpon>ModificarRutaPreliminar.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -1227,6 +1246,8 @@
     <EmbeddedResource Include="Reporte\CuadroAvance.rdlc" />
     <EmbeddedResource Include="Reporte\EtiquetasProvincia.rdlc" />
     <EmbeddedResource Include="Reporte\HojaDeRuta.rdlc" />
+    <EmbeddedResource Include="Reporte\HojaPicking2.rdlc" />
+    <EmbeddedResource Include="Reporte\HojaPicking3.rdlc" />
     <EmbeddedResource Include="Reporte\HojaRuta.resx">
       <DependentUpon>HojaRuta.vb</DependentUpon>
     </EmbeddedResource>
@@ -1369,6 +1390,7 @@
     <None Include="Resources\System-control-panel-icon.png" />
     <None Include="Resources\Bus-icon.png" />
     <None Include="Resources\delivery-box-icon.png" />
+    <None Include="Resources\power-supply-icon.png" />
     <Content Include="SqlServerTypes\Loader.cs" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">

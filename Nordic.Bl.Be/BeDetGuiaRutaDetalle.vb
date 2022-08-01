@@ -135,6 +135,17 @@
         End Set
     End Property
 
+    Private comentarioruta As String
+
+    Public Property pr_comentarioruta() As String
+        Get
+            Return comentarioruta
+        End Get
+        Set(ByVal value As String)
+            comentarioruta = value
+        End Set
+    End Property
+
     Private Cliente As String
     Public Property pr_Cliente() As String
         Get

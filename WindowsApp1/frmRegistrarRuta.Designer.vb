@@ -44,6 +44,7 @@ Partial Class frmRegistrarRuta
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.tslCantTotal = New System.Windows.Forms.ToolStripStatusLabel()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -55,6 +56,7 @@ Partial Class frmRegistrarRuta
         Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.C5_CALMA = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.C5_CTD = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.C5_CNUMDOC = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -265,7 +267,7 @@ Partial Class frmRegistrarRuta
         Me.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnCancelar.Image = Global.WindowsApp1.My.Resources.Resources.icon_delete_on
         Me.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnCancelar.Location = New System.Drawing.Point(438, 550)
+        Me.btnCancelar.Location = New System.Drawing.Point(719, 553)
         Me.btnCancelar.Margin = New System.Windows.Forms.Padding(2)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(115, 32)
@@ -279,7 +281,7 @@ Partial Class frmRegistrarRuta
         Me.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnGuardar.Image = Global.WindowsApp1.My.Resources.Resources._003
         Me.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnGuardar.Location = New System.Drawing.Point(272, 550)
+        Me.btnGuardar.Location = New System.Drawing.Point(128, 553)
         Me.btnGuardar.Margin = New System.Windows.Forms.Padding(2)
         Me.btnGuardar.Name = "btnGuardar"
         Me.btnGuardar.Size = New System.Drawing.Size(115, 32)
@@ -301,7 +303,7 @@ Partial Class frmRegistrarRuta
         'ToolStripStatusLabel1
         '
         Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(68, 17)
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(67, 17)
         Me.ToolStripStatusLabel1.Text = "Total Guias:"
         '
         'tslCantTotal
@@ -316,13 +318,27 @@ Partial Class frmRegistrarRuta
         Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button1.Image = Global.WindowsApp1.My.Resources.Resources._003
         Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button1.Location = New System.Drawing.Point(9, 550)
+        Me.Button1.Location = New System.Drawing.Point(9, 553)
         Me.Button1.Margin = New System.Windows.Forms.Padding(2)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(115, 32)
         Me.Button1.TabIndex = 6
         Me.Button1.Text = "Agregar Guia"
         Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Button2
+        '
+        Me.Button2.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.Button2.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button2.Image = Global.WindowsApp1.My.Resources.Resources.icon_delete_on
+        Me.Button2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Button2.Location = New System.Drawing.Point(247, 553)
+        Me.Button2.Margin = New System.Windows.Forms.Padding(2)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(115, 32)
+        Me.Button2.TabIndex = 7
+        Me.Button2.Text = "Quitar Guia"
+        Me.Button2.UseVisualStyleBackColor = True
         '
         'DataGridViewTextBoxColumn1
         '
@@ -340,6 +356,7 @@ Partial Class frmRegistrarRuta
         '
         Me.DataGridViewTextBoxColumn3.HeaderText = "Nro Guia"
         Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        Me.DataGridViewTextBoxColumn3.Visible = False
         Me.DataGridViewTextBoxColumn3.Width = 80
         '
         'DataGridViewTextBoxColumn4
@@ -351,6 +368,7 @@ Partial Class frmRegistrarRuta
         '
         'DataGridViewTextBoxColumn5
         '
+        Me.DataGridViewTextBoxColumn5.FillWeight = 300.0!
         Me.DataGridViewTextBoxColumn5.HeaderText = "Departamento"
         Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
         Me.DataGridViewTextBoxColumn5.Width = 60
@@ -383,11 +401,17 @@ Partial Class frmRegistrarRuta
         '
         Me.DataGridViewTextBoxColumn10.HeaderText = "Peso"
         Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
+        Me.DataGridViewTextBoxColumn10.Width = 120
         '
         'DataGridViewTextBoxColumn11
         '
         Me.DataGridViewTextBoxColumn11.HeaderText = "Bulto"
         Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
+        '
+        'DataGridViewTextBoxColumn12
+        '
+        Me.DataGridViewTextBoxColumn12.HeaderText = "Bulto"
+        Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
         '
         'C5_CALMA
         '
@@ -460,6 +484,7 @@ Partial Class frmRegistrarRuta
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(848, 609)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.btnCancelar)
@@ -502,17 +527,6 @@ Partial Class frmRegistrarRuta
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
     Friend WithEvents tslCantTotal As ToolStripStatusLabel
-    Friend WithEvents C5_CALMA As DataGridViewTextBoxColumn
-    Friend WithEvents C5_CTD As DataGridViewTextBoxColumn
-    Friend WithEvents C5_CNUMDOC As DataGridViewTextBoxColumn
-    Friend WithEvents rl_cliente As DataGridViewTextBoxColumn
-    Friend WithEvents rl_departamento As DataGridViewTextBoxColumn
-    Friend WithEvents rl_provincia As DataGridViewTextBoxColumn
-    Friend WithEvents rl_distrito As DataGridViewTextBoxColumn
-    Friend WithEvents rl_direccion As DataGridViewTextBoxColumn
-    Friend WithEvents EST_CODIGO2 As DataGridViewTextBoxColumn
-    Friend WithEvents peso As DataGridViewTextBoxColumn
-    Friend WithEvents bulto As DataGridViewTextBoxColumn
     Friend WithEvents Button1 As Button
     Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
@@ -525,4 +539,17 @@ Partial Class frmRegistrarRuta
     Friend WithEvents DataGridViewTextBoxColumn9 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn10 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn11 As DataGridViewTextBoxColumn
+    Friend WithEvents Button2 As Button
+    Friend WithEvents C5_CALMA As DataGridViewTextBoxColumn
+    Friend WithEvents C5_CTD As DataGridViewTextBoxColumn
+    Friend WithEvents C5_CNUMDOC As DataGridViewTextBoxColumn
+    Friend WithEvents rl_cliente As DataGridViewTextBoxColumn
+    Friend WithEvents rl_departamento As DataGridViewTextBoxColumn
+    Friend WithEvents rl_provincia As DataGridViewTextBoxColumn
+    Friend WithEvents rl_distrito As DataGridViewTextBoxColumn
+    Friend WithEvents rl_direccion As DataGridViewTextBoxColumn
+    Friend WithEvents EST_CODIGO2 As DataGridViewTextBoxColumn
+    Friend WithEvents peso As DataGridViewTextBoxColumn
+    Friend WithEvents bulto As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn12 As DataGridViewTextBoxColumn
 End Class

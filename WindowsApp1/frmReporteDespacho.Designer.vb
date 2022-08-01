@@ -267,7 +267,7 @@ Partial Class frmReporteDespacho
         'ToolStripStatusLabel1
         '
         Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(87, 17)
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(86, 17)
         Me.ToolStripStatusLabel1.Text = "Cantidad Total:"
         '
         'tsbCantTotal

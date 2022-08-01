@@ -522,22 +522,8 @@
 
     End Sub
 
-    Private Sub GenerarAbastecimientoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GenerarAbastecimientoToolStripMenuItem.Click
-        Try
-            Dim frmArt As New GestionAbastecimiento
-            If ExisteChildrens(frmArt) = False Then
-                frmArt.MdiParent = Me
-                frmArt.usr_id = prIdUser
-                frmArt.usr_usuario = prUser
-                ' frmArt.WindowState = FormWindowState.Maximized
-                '   frmArt.Text = "Gestion Guias"
-                frmArt.Width = Me.Width
-                frmArt.Height = Me.Height
-                frmArt.Show()
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
+    Private Sub GenerarAbastecimientoToolStripMenuItem_Click(sender As Object, e As EventArgs)
+
     End Sub
 
 
@@ -799,6 +785,41 @@
                 ' frmArt.WindowState = FormWindowState.Maximized
                 'frmArt.Width = Me.Width
                 'frmArt.Height = Me.Height
+                frmArt.Show()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GenerarAbastecimientoToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles GenerarAbastecimientoToolStripMenuItem1.Click
+        Try
+            Dim frmArt As New GestionAbastecimiento
+            If ExisteChildrens(frmArt) = False Then
+                frmArt.MdiParent = Me
+                frmArt.usr_id = prIdUser
+                frmArt.usr_usuario = prUser
+                ' frmArt.WindowState = FormWindowState.Maximized
+                '   frmArt.Text = "Gestion Guias"
+                frmArt.Width = Me.Width
+                frmArt.Height = Me.Height
+                frmArt.Show()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub ArticulosSoftcomToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ArticulosSoftcomToolStripMenuItem.Click
+        Try
+            Dim frmArt As New GestionArticulosSoftcom
+            If ExisteChildrens(frmArt) = False Then
+                frmArt.MdiParent = Me
+                frmArt.usr_id = prIdUser
+                frmArt.WindowState = FormWindowState.Maximized
+                frmArt.Text = "Gestion Articulos Softcom"
+                frmArt.Width = Me.Width
+                frmArt.Height = Me.Height
                 frmArt.Show()
             End If
         Catch ex As Exception

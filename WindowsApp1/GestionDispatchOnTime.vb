@@ -12,7 +12,7 @@ Public Class GestionDispatchOnTime
         Try
             CargaInicial()
         Catch ex As Exception
-
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "SISTEMAS NORDIC")
         End Try
     End Sub
 
@@ -20,9 +20,8 @@ Public Class GestionDispatchOnTime
         Try
             cmb_filtro.SelectedIndex = 0
             FormatoTablaCabecera()
-            'ListarGuiasCabecera()
         Catch ex As Exception
-
+            Throw ex
         End Try
     End Sub
 
@@ -332,15 +331,28 @@ Public Class GestionDispatchOnTime
 
     Private Sub btnExportar_Click(sender As Object, e As EventArgs) Handles btnExportar.Click
         Try
-            'Me.Cursor = Cursors.WaitCursor
-            'GridAExcel(Dg_Cabecera)
-            'Me.Cursor = Cursors.Default
             If dtcabecera2.Rows.Count > 0 Then
                 ExportExcel(dtcabecera2)
             End If
-
         Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
+    Private Sub txt_guia_TextChanged(sender As Object, e As EventArgs) Handles txt_guia.TextChanged
+        Try
+            Filtrar()
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "SISTEMAS NORDIC")
+        End Try
+    End Sub
+    Private Sub Filtrar()
+        Try
+            Dim stringfiltro As String = ""
+            stringfiltro = String.Format("NRO_GUIA LIKE '%{0}%'", txt_guia.Text)
+            dtcabecera2.DefaultView.RowFilter = stringfiltro
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 

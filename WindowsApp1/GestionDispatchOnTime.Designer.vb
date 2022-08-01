@@ -54,6 +54,8 @@ Partial Class GestionDispatchOnTime
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Dg_Cabecera = New System.Windows.Forms.DataGridView()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.txt_guia = New System.Windows.Forms.TextBox()
         Me.Panel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.Dg_Cabecera, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -73,6 +75,8 @@ Partial Class GestionDispatchOnTime
         Me.GroupBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox1.Controls.Add(Me.txt_guia)
+        Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.cmb_filtro)
         Me.GroupBox1.Controls.Add(Me.Label11)
@@ -122,7 +126,7 @@ Partial Class GestionDispatchOnTime
         Me.cmb_filtro.Items.AddRange(New Object() {"TODOS", "LOGISTICO"})
         Me.cmb_filtro.Location = New System.Drawing.Point(80, 40)
         Me.cmb_filtro.Name = "cmb_filtro"
-        Me.cmb_filtro.Size = New System.Drawing.Size(121, 21)
+        Me.cmb_filtro.Size = New System.Drawing.Size(101, 21)
         Me.cmb_filtro.TabIndex = 131
         '
         'Label11
@@ -453,6 +457,22 @@ Partial Class GestionDispatchOnTime
         Me.Dg_Cabecera.Size = New System.Drawing.Size(1299, 349)
         Me.Dg_Cabecera.TabIndex = 53
         '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(221, 43)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(35, 13)
+        Me.Label6.TabIndex = 133
+        Me.Label6.Text = "Guia :"
+        '
+        'txt_guia
+        '
+        Me.txt_guia.Location = New System.Drawing.Point(262, 40)
+        Me.txt_guia.Name = "txt_guia"
+        Me.txt_guia.Size = New System.Drawing.Size(101, 20)
+        Me.txt_guia.TabIndex = 134
+        '
         'GestionDispatchOnTime
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -503,4 +523,6 @@ Partial Class GestionDispatchOnTime
     Friend WithEvents txt_cantpro As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents cmb_filtro As ComboBox
+    Friend WithEvents Label6 As Label
+    Friend WithEvents txt_guia As TextBox
 End Class
