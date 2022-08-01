@@ -126,6 +126,9 @@ Public Class GestionPedidoSalida
         Dg_Detalle.Columns("FACTORCAJA").ReadOnly = True
         Dg_Detalle.Columns("FACTORCAJA").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
 
+
+        Dg_Detalle.Columns("Peso").Visible = False
+
         Dg_Detalle.Columns("FACTORCAJAMASTER").HeaderText = "Factor C. Master"
         Dg_Detalle.Columns("FACTORCAJAMASTER").Width = 80
         Dg_Detalle.Columns("FACTORCAJAMASTER").ReadOnly = True
@@ -320,7 +323,7 @@ Public Class GestionPedidoSalida
                             If DtDetalleReporte.Rows.Count > 0 Then
                                 Dim reporte As New Demo
                                 DtDetalleReporte.TableName = "DetalleHojaPicking"
-                                reporte.ReportePicking("HojaPicking.rdlc", DtDetalleReporte, "", F5_CNUMPEDM, nombreempresa, RUC, Direccion, logooperador, color, FechaPedidoM, clienterazonM, rucclienteM, direccionClienteM, codalmacenM, DtDetalleReporte.Rows.Count, totalvolumen, "")
+                                reporte.ReportePicking("HojaPicking.rdlc", DtDetalleReporte, "", F5_CNUMPEDM, nombreempresa, RUC, Direccion, logooperador, color, FechaPedidoM, clienterazonM, rucclienteM, direccionClienteM, codalmacenM, DtDetalleReporte.Rows.Count, totalvolumen, "", 0, 0)
                             End If
 
                         End If

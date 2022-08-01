@@ -115,7 +115,7 @@ Public Class Demo
 
     Public Sub ReportePicking(ByVal nombrereporte As String, ByVal Data As DataTable, codigoguia As String, codpedido As String, nombreEmpresa As String,
                               RUC As String, Direccion As String, logooperador As String, Color As String, fechapedido As String,
-                              razoncliente As String, ruccliente As String, direccioncliente As String, codalmacen As String, cantidadItems As Integer, totalvolumen As Decimal, GlosaPicking As String)
+                              razoncliente As String, ruccliente As String, direccioncliente As String, codalmacen As String, cantidadItems As Integer, totalvolumen As Decimal, GlosaPicking As String, Bultos As Integer, Peso As Decimal)
 
 
         Try
@@ -138,6 +138,10 @@ Public Class Demo
             Dim cantidadbultosparam As New ReportParameter("cantbultos", cantidadItems)
             Dim totalvolumenparam As New ReportParameter("totalvolumen", totalvolumen.ToString + "M3")
             Dim codalmacenparam As New ReportParameter("almacenSoftcom", codalmacen)
+
+            Dim bultosparam As New ReportParameter("bultos", Bultos)
+            Dim Pesoparam As New ReportParameter("Peso", Peso)
+
             Dim glosaparam As New ReportParameter("Glosa", GlosaPicking)
 
             report.SetParameters(nombreempresaparam)
@@ -155,46 +159,37 @@ Public Class Demo
             report.SetParameters(totalvolumenparam)
             report.SetParameters(codalmacenparam)
             report.SetParameters(glosaparam)
+            report.SetParameters(bultosparam)
+            report.SetParameters(Pesoparam)
             Export(report)
-            Print("V")
+            Print("H")
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
     Public Sub ImprimirRuta(CodigoRuta As String, nombreEmpresa As String,
-                              RUC As String, Direccion As String, logooperador As String, Color As String, ByVal nombrereporte As String, ByVal Data As DataTable, transportista As String, Vehiculo As String, totalvolumen As Decimal, totaltiempo As String, totalimporte As String, totalpeso As String, tipoenvio As String)
-
+                              RUC As String, Direccion As String, logooperador As String, Color As String, ByVal nombrereporte As String, ByVal Data As DataTable, transportista As String, Vehiculo As String, totalvolumen As Decimal, totaltiempo As String, totalpeso As String, tipoenvio As String, totalbultos As Integer)
 
         Try
-            'totalvolumen = Math.Round(totalvolumen, 7)
             Dim report As New LocalReport()
             report.ReportPath = "..\..\Reporte\" + nombrereporte
-            'report.DataSources.Add(New ReportDataSource(Data.TableName.ToString, LoadSalesData()))
             report.DataSources.Add(New ReportDataSource(Data.TableName.ToString, Data))
-
             Dim CodRutaparam As New ReportParameter("CodRuta", CodigoRuta)
             Dim nombreempresaparam As New ReportParameter("nombreempresa", nombreEmpresa)
             Dim rucempresaparam As New ReportParameter("rucempresa", RUC)
             Dim direccionempresaparam As New ReportParameter("direccionempresa", Direccion)
             Dim nombreimagenparam As New ReportParameter("nombreimagen", logooperador)
             Dim colorheaderparam As New ReportParameter("colorheader", Color)
-            Dim totalvolumenparam As New ReportParameter("totalvolumen", Math.Round(totalvolumen, 2).ToString + " M3")
+            Dim totalvolumenparam As New ReportParameter("totalvolumen", Math.Round(totalvolumen, 3).ToString + " M3")
             Dim tipotransporteparam As New ReportParameter("tipotransporte", Vehiculo)
             Dim transportistaparam As New ReportParameter("transportista", transportista)
-
             Dim totaltiempoparam As New ReportParameter("totaltiempo", totaltiempo)
-            Dim totalimporteparam As New ReportParameter("totalimporte", totalimporte)
             Dim totalpesoparam As New ReportParameter("totalpeso", totalpeso)
             Dim tipoenvioparam As New ReportParameter("tipoenvio", tipoenvio)
-
+            Dim totalbultosparam As New ReportParameter("totalbultos", totalbultos)
 
             Dim ps As New System.Drawing.Printing.PageSettings()
-
-            'ps.Landscape = True
-            '
-            ''ps.PaperSize = New System.Drawing.Printing.PaperSize("A4", 827, 1170)
-            'ps.PaperSize.RawKind = (Integer)System.Drawing.Printing.PaperKind.A4
 
             report.SetParameters(nombreempresaparam)
             report.SetParameters(rucempresaparam)
@@ -206,9 +201,9 @@ Public Class Demo
             report.SetParameters(transportistaparam)
             report.SetParameters(CodRutaparam)
             report.SetParameters(totaltiempoparam)
-            report.SetParameters(totalimporteparam)
             report.SetParameters(totalpesoparam)
             report.SetParameters(tipoenvioparam)
+            report.SetParameters(totalbultosparam)
 
             ExportHorizontal(report)
             Print("H")

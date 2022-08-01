@@ -11,13 +11,11 @@ Public Class GestionProgramacionDespacho
     Private dtcabecera2, dtcabecera, dtTiempos, dtrutas, dtConsolidar, DtDetalleConsolidado As New DataTable
 
     Private Sub GestionProgramacionDespacho_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
         Try
             CargaInicial()
         Catch ex As Exception
             Throw ex
         End Try
-
     End Sub
 
     Private Sub CargaInicial()
@@ -188,6 +186,8 @@ Public Class GestionProgramacionDespacho
                     Dg_Cabecera.Rows(contador).Cells("sitepick").Value = RowRetorno.Item("sitepick").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("nombrepicking").Value = RowRetorno.Item("nombrepicking").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("nombreliquidacion").Value = RowRetorno.Item("nombreliquidacion").ToString.Trim
+                    Dg_Cabecera.Rows(contador).Cells("MotivoAnulacion").Value = RowRetorno.Item("MotivoAnulacion").ToString.Trim
+
 
                     If RowRetorno.Item("FECHA_VENCE_OC").ToString.Trim <> "" Then
                         Dg_Cabecera.Rows(contador).Cells("FECHAVENCEOC").Value = RowRetorno.Item("FECHA_VENCE_OC").ToString.Trim
@@ -412,21 +412,12 @@ Public Class GestionProgramacionDespacho
         Try
             ListarGuiasCabecera()
         Catch ex As Exception
-
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "SISTEMAS SSENDA")
         End Try
     End Sub
 
     Private Sub cmdGenerarExcel_Click(sender As Object, e As EventArgs) Handles cmdGenerarExcel.Click
-        'Try
-        '    ProcesoExportar()
-
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
         Try
-            'Me.Cursor = Cursors.WaitCursor
-            'GridAExcel(Dg_Cabecera)
-            'Me.Cursor = Cursors.Default
             If dtcabecera.Rows.Count > 0 Then
                 ExportExcel(dtcabecera)
             End If
@@ -469,7 +460,6 @@ Public Class GestionProgramacionDespacho
                     End If
                 Next
             Next
-
             exHoja.Rows.Item(1).Font.Bold = 1
             exHoja.Rows.Item(1).HorizontalAlignment = 3
             exHoja.Columns.AutoFit()
@@ -478,7 +468,6 @@ Public Class GestionProgramacionDespacho
             exHoja = Nothing
             exLibro = Nothing
             exApp = Nothing
-
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error al exportar a Excel")
             Return False
@@ -570,15 +559,10 @@ Public Class GestionProgramacionDespacho
         Try
             ProcesarRutas()
         Catch ex As Exception
-
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "SISTEMAS SSENDA")
         End Try
     End Sub
 
-
-
-    Private Sub Dg_Cabecera_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles Dg_Cabecera.CellValueChanged
-
-    End Sub
 
     Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
         Try
@@ -862,88 +846,92 @@ Public Class GestionProgramacionDespacho
     End Sub
     Private Sub ComboBox1_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmb_serie.SelectionChangeCommitted
         Try
-            If cmb_serie.Text.Trim = "TODAS" Then
-                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
-                    Dg_Cabecera.Rows(i).Visible = True
-                Next
-            Else
-                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
-                    Dim Cod As String = cmb_serie.Text.ToString.Trim + "*"
-                    If Dg_Cabecera.Rows(i).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim Like Cod Then
-                        Dg_Cabecera.Rows(i).Visible = True
-                    Else
-                        Dg_Cabecera.Rows(i).Visible = False
-                    End If
-                Next
-            End If
+            'If cmb_serie.Text.Trim = "TODAS" Then
+            '    For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+            '        Dg_Cabecera.Rows(i).Visible = True
+            '    Next
+            'Else
+            '    For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+            '        Dim Cod As String = cmb_serie.Text.ToString.Trim + "*"
+            '        If Dg_Cabecera.Rows(i).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim Like Cod Then
+            '            Dg_Cabecera.Rows(i).Visible = True
+            '        Else
+            '            Dg_Cabecera.Rows(i).Visible = False
+            '        End If
+            '    Next
+            'End If
+            Filtrar()
         Catch ex As Exception
-
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "SISTEMAS SSENDA")
         End Try
     End Sub
 
     Private Sub cmb_estado_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmb_recep.SelectionChangeCommitted
         Try
-            If cmb_recep.Text.Trim = "TODAS" Then
-                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
-                    Dg_Cabecera.Rows(i).Visible = True
-                Next
-            Else
-                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
-                    Dim Cod As String = "*" + cmb_recep.Text.ToString.Trim + "*"
+            'If cmb_recep.Text.Trim = "TODAS" Then
+            '    For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+            '        Dg_Cabecera.Rows(i).Visible = True
+            '    Next
+            'Else
+            '    For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+            '        Dim Cod As String = "*" + cmb_recep.Text.ToString.Trim + "*"
 
-                    If Dg_Cabecera.Rows(i).Cells("ESTADO").EditedFormattedValue.ToString.Trim Like Cod Then
-                        Dg_Cabecera.Rows(i).Visible = True
-                    Else
-                        Dg_Cabecera.Rows(i).Visible = False
-                    End If
-                Next
-            End If
+            '        If Dg_Cabecera.Rows(i).Cells("ESTADO").EditedFormattedValue.ToString.Trim Like Cod Then
+            '            Dg_Cabecera.Rows(i).Visible = True
+            '        Else
+            '            Dg_Cabecera.Rows(i).Visible = False
+            '        End If
+            '    Next
+            'End If
+            Filtrar()
         Catch ex As Exception
-
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "SISTEMAS SSENDA")
         End Try
     End Sub
 
     Private Sub cmb_limaprov_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmb_limaprov.SelectionChangeCommitted
         Try
-            If cmb_limaprov.Text.Trim = "TODAS" Then
-                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
-                    Dg_Cabecera.Rows(i).Visible = True
-                Next
-            Else
-                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
-                    Dim Cod As String = "*" + cmb_limaprov.Text.ToString.Trim + "*"
+            'If cmb_limaprov.Text.Trim = "TODAS" Then
+            '    For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+            '        Dg_Cabecera.Rows(i).Visible = True
+            '    Next
+            'Else
+            '    For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+            '        Dim Cod As String = "*" + cmb_limaprov.Text.ToString.Trim + "*"
 
-                    If Dg_Cabecera.Rows(i).Cells("LIMA_PROV").EditedFormattedValue.ToString.Trim Like Cod Then
-                        Dg_Cabecera.Rows(i).Visible = True
-                    Else
-                        Dg_Cabecera.Rows(i).Visible = False
-                    End If
-                Next
-            End If
+            '        If Dg_Cabecera.Rows(i).Cells("LIMA_PROV").EditedFormattedValue.ToString.Trim Like Cod Then
+            '            Dg_Cabecera.Rows(i).Visible = True
+            '        Else
+            '            Dg_Cabecera.Rows(i).Visible = False
+            '        End If
+            '    Next
+            'End If
+            Filtrar()
         Catch ex As Exception
-
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "SISTEMAS SSENDA")
         End Try
     End Sub
 
     Private Sub cmb_estado_SelectionChangeCommitted_1(sender As Object, e As EventArgs) Handles cmb_estado.SelectionChangeCommitted
         Try
-            If cmb_estado.Text.Trim = "TODAS" Then
-                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
-                    Dg_Cabecera.Rows(i).Visible = True
-                Next
-            Else
-                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
-                    Dim Cod As String = "*" + cmb_estado.Text.ToString.Trim + "*"
+            'If cmb_estado.Text.Trim = "TODAS" Then
+            '    For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+            '        Dg_Cabecera.Rows(i).Visible = True
+            '    Next
+            'Else
+            '    For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+            '        Dim Cod As String = "*" + cmb_estado.Text.ToString.Trim + "*"
 
-                    If Dg_Cabecera.Rows(i).Cells("SITUACION").EditedFormattedValue.ToString.Trim Like Cod Then
-                        Dg_Cabecera.Rows(i).Visible = True
-                    Else
-                        Dg_Cabecera.Rows(i).Visible = False
-                    End If
-                Next
-            End If
+            '        If Dg_Cabecera.Rows(i).Cells("SITUACION").EditedFormattedValue.ToString.Trim Like Cod Then
+            '            Dg_Cabecera.Rows(i).Visible = True
+            '        Else
+            '            Dg_Cabecera.Rows(i).Visible = False
+            '        End If
+            '    Next
+            'End If
+            Filtrar()
         Catch ex As Exception
-
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "SISTEMAS SSENDA")
         End Try
     End Sub
 
@@ -1250,7 +1238,6 @@ Public Class GestionProgramacionDespacho
                                 If ExisteEnNueva(RowPri.Cells("DESTINO").Value.ToString.Trim) = False Then
                                     Dim rowConsolidad As DataRow = dtConsolidar.NewRow
                                     For Each rowseg As DataGridViewRow In Dg_Cabecera.Rows
-
                                         If RowPri.Cells("DESTINO").Value.ToString.Trim = rowseg.Cells("DESTINO").Value.ToString.Trim And rowseg.Cells("SITUACION").Value.ToString.Trim <> "ANULADO" And rowseg.Cells("MARCAR").EditedFormattedValue = True Then
                                             If rowseg.Cells("ESTADO").Value.ToString.Trim = "RECEPCIONADO" Or rowseg.Cells("ESTADO").Value.ToString.Trim = "REPROGRAMADO" Then
                                                 If (rowseg.Cells("EstadoRuta").Value.ToString.Trim = "RE" And rowseg.Cells("FECHA_RETORNO").Value.ToString.Trim <> "") Or rowseg.Cells("EstadoRuta").Value.ToString.Trim = "" Then
@@ -1258,6 +1245,7 @@ Public Class GestionProgramacionDespacho
                                                     totalimporte = totalimporte + rowseg.Cells("IMPORTE").Value
                                                     totalguias = totalguias + 1
                                                     totalvolumen = totalvolumen + rowseg.Cells("M3FIN").Value
+
                                                     rowConsolidad.Item("DESTINO") = RowPri.Cells("DESTINO").Value.ToString.Trim
                                                     rowConsolidad.Item("NOM_CLIENTE") = RowPri.Cells("NOM_CLIENTE").Value.ToString.Trim
                                                     rowConsolidad.Item("DIRECCION_ENTREGA") = RowPri.Cells("DIRECCION_ENTREGA").Value.ToString.Trim
@@ -1297,7 +1285,6 @@ Public Class GestionProgramacionDespacho
                                                     rowDetalle.Item("sitepick") = rowseg.Cells("sitepick").Value
                                                     rowDetalle.Item("CANAL") = rowseg.Cells("CANAL").Value
                                                     rowDetalle.Item("LIMA_PROV") = rowseg.Cells("LIMA_PROV").Value
-
                                                     DtDetalleConsolidado.Rows.Add(rowDetalle)
                                                 End If
                                             End If
@@ -1340,25 +1327,294 @@ Public Class GestionProgramacionDespacho
 
     Private Sub txt_numero_TextChanged(sender As Object, e As EventArgs) Handles txt_numero.TextChanged
         Try
-            If txt_numero.Text <> "" Then
+            '    If txt_numero.Text <> "" Then
+            '        For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+            '            Dim Cod As String = "*" + txt_numero.Text.Trim + "*"
+            '            If Dg_Cabecera.Rows(i).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim Like Cod Then
+            '                Dg_Cabecera.Rows(i).Visible = True
+            '            Else
+            '                Dg_Cabecera.Rows(i).Visible = False
+            '            End If
+            '        Next
+            '    Else
+            '        For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+            '            Dg_Cabecera.Rows(i).Visible = True
+            '        Next
+            '    End If
+            Filtrar()
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "SISTEMAS SSENDA")
+        End Try
+    End Sub
+    Private Sub Filtrar()
+        Try
+            Dim Nro As String = "", Serie As String = "", recepcion As String = "", Lima_Prov As String = "", Estado As String = ""
+            Nro = txt_numero.Text.Trim
+            If cmb_serie.SelectedIndex > Constantes.ValorEnteroInicial Then
+                Serie = cmb_serie.Text.ToString.Trim
+            End If
+            If cmb_recep.SelectedIndex > Constantes.ValorEnteroInicial Then
+                recepcion = cmb_recep.Text.ToString.Trim
+            End If
+            If cmb_limaprov.SelectedIndex > Constantes.ValorEnteroInicial Then
+                Lima_Prov = cmb_limaprov.Text.ToString.Trim
+            End If
+            If cmb_estado.SelectedIndex > Constantes.ValorEnteroInicial Then
+                Estado = cmb_estado.Text.ToString.Trim
+            End If
+
+            If Nro = "" And Serie = "" And recepcion = "" And Lima_Prov = "" And Estado = "" Then
                 For i As Integer = 0 To Dg_Cabecera.RowCount - 1
-                    Dim Cod As String = "*" + txt_numero.Text.Trim + "*"
-                    If Dg_Cabecera.Rows(i).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim Like Cod Then
+                    Dg_Cabecera.Rows(i).Visible = True
+                Next
+            ElseIf Nro <> "" And Serie = "" And recepcion = "" And Lima_Prov = "" And Estado = "" Then
+                Nro = "*" + Nro + "*"
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    If Dg_Cabecera.Rows(i).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim Like Nro Then
                         Dg_Cabecera.Rows(i).Visible = True
                     Else
                         Dg_Cabecera.Rows(i).Visible = False
                     End If
                 Next
-            Else
+            ElseIf Nro <> "" And Serie <> "" And recepcion = "" And Lima_Prov = "" And Estado = "" Then 'Cubre escenario 2 de serie
+                Nro = "*" + Nro + "*"
+                Serie = "*" + Serie + "*"
                 For i As Integer = 0 To Dg_Cabecera.RowCount - 1
-                    Dg_Cabecera.Rows(i).Visible = True
+                    If Dg_Cabecera.Rows(i).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim Like Nro And Dg_Cabecera.Rows(i).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim Like Serie Then
+                        Dg_Cabecera.Rows(i).Visible = True
+                    Else
+                        Dg_Cabecera.Rows(i).Visible = False
+                    End If
+                Next
+            ElseIf Nro <> "" And Serie <> "" And recepcion <> "" And Lima_Prov = "" And Estado = "" Then 'Cubre escenario 3 de serie & Cubre escenario 3 de recepcion
+                Nro = "*" + Nro + "*"
+                Serie = "*" + Serie + "*"
+                recepcion = "*" + recepcion + "*"
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    If Dg_Cabecera.Rows(i).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim Like Nro And Dg_Cabecera.Rows(i).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim Like Serie And Dg_Cabecera.Rows(i).Cells("ESTADO").EditedFormattedValue.ToString.Trim Like recepcion Then
+                        Dg_Cabecera.Rows(i).Visible = True
+                    Else
+                        Dg_Cabecera.Rows(i).Visible = False
+                    End If
+                Next
+            ElseIf Nro <> "" And Serie <> "" And recepcion <> "" And Lima_Prov <> "" And Estado = "" Then 'Cubre escenario 4 de serie & Cubre escenario 4 de recepcion & Cubre escenario 4 de Lima/Pro
+                Nro = "*" + Nro + "*"
+                Serie = "*" + Serie + "*"
+                recepcion = "*" + recepcion + "*"
+                Lima_Prov = "*" + Lima_Prov + "*"
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    If Dg_Cabecera.Rows(i).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim Like Nro And Dg_Cabecera.Rows(i).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim Like Serie And Dg_Cabecera.Rows(i).Cells("ESTADO").EditedFormattedValue.ToString.Trim Like recepcion And Dg_Cabecera.Rows(i).Cells("LIMA_PROV").EditedFormattedValue.ToString.Trim Like Lima_Prov Then
+                        Dg_Cabecera.Rows(i).Visible = True
+                    Else
+                        Dg_Cabecera.Rows(i).Visible = False
+                    End If
+                Next
+            ElseIf Nro <> "" And Serie <> "" And recepcion <> "" And Lima_Prov <> "" And Estado <> "" Then 'Cubre escenario 5 de serie
+                Nro = "*" + Nro + "*"
+                Serie = "*" + Serie + "*"
+                recepcion = "*" + recepcion + "*"
+                Lima_Prov = "*" + Lima_Prov + "*"
+                Estado = "*" + Estado + "*"
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    If Dg_Cabecera.Rows(i).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim Like Nro And Dg_Cabecera.Rows(i).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim Like Serie And Dg_Cabecera.Rows(i).Cells("ESTADO").EditedFormattedValue.ToString.Trim Like recepcion And Dg_Cabecera.Rows(i).Cells("LIMA_PROV").EditedFormattedValue.ToString.Trim Like Lima_Prov And Dg_Cabecera.Rows(i).Cells("SITUACION").EditedFormattedValue.ToString.Trim Like Estado Then
+                        Dg_Cabecera.Rows(i).Visible = True
+                    Else
+                        Dg_Cabecera.Rows(i).Visible = False
+                    End If
+                Next
+            ElseIf Serie <> "" And Nro = "" And recepcion = "" And Lima_Prov = "" And Estado = "" Then
+                Serie = "*" + Serie + "*"
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    If Dg_Cabecera.Rows(i).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim Like Serie Then
+                        Dg_Cabecera.Rows(i).Visible = True
+                    Else
+                        Dg_Cabecera.Rows(i).Visible = False
+                    End If
+                Next
+            ElseIf recepcion <> "" And Serie = "" And Nro = "" And Lima_Prov = "" And Estado = "" Then 'Escenario Recepcion' 
+                recepcion = "*" + recepcion + "*"
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    If Dg_Cabecera.Rows(i).Cells("ESTADO").EditedFormattedValue.ToString.Trim Like recepcion Then
+                        Dg_Cabecera.Rows(i).Visible = True
+                    Else
+                        Dg_Cabecera.Rows(i).Visible = False
+                    End If
+                Next
+            ElseIf recepcion <> "" And Serie <> "" And Nro = "" And Lima_Prov = "" And Estado = "" Then 'Escenario 2 Recepcion' 
+                recepcion = "*" + recepcion + "*"
+                Serie = "*" + Serie + "*"
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    If Dg_Cabecera.Rows(i).Cells("ESTADO").EditedFormattedValue.ToString.Trim Like recepcion And Dg_Cabecera.Rows(i).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim Like Serie Then
+                        Dg_Cabecera.Rows(i).Visible = True
+                    Else
+                        Dg_Cabecera.Rows(i).Visible = False
+                    End If
+                Next
+            ElseIf Lima_Prov <> "" And Serie = "" And recepcion = "" And Nro = "" And Estado = "" Then 'Nuevo escenario Lima_Prov
+                Lima_Prov = "*" + Lima_Prov + "*"
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    If Dg_Cabecera.Rows(i).Cells("LIMA_PROV").EditedFormattedValue.ToString.Trim Like Lima_Prov Then
+                        Dg_Cabecera.Rows(i).Visible = True
+                    Else
+                        Dg_Cabecera.Rows(i).Visible = False
+                    End If
+                Next
+            ElseIf Lima_Prov <> "" And Serie <> "" And recepcion = "" And Nro = "" And Estado = "" Then
+                Lima_Prov = "*" + Lima_Prov + "*"
+                Serie = "*" + Serie + "*"
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    If Dg_Cabecera.Rows(i).Cells("LIMA_PROV").EditedFormattedValue.ToString.Trim Like Lima_Prov And Dg_Cabecera.Rows(i).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim Like Serie Then
+                        Dg_Cabecera.Rows(i).Visible = True
+                    Else
+                        Dg_Cabecera.Rows(i).Visible = False
+                    End If
+                Next
+            ElseIf Lima_Prov <> "" And Serie <> "" And recepcion <> "" And Nro = "" And Estado = "" Then
+                Lima_Prov = "*" + Lima_Prov + "*"
+                Serie = "*" + Serie + "*"
+                recepcion = "*" + recepcion + "*"
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    If Dg_Cabecera.Rows(i).Cells("LIMA_PROV").EditedFormattedValue.ToString.Trim Like Lima_Prov And Dg_Cabecera.Rows(i).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim Like Serie And Dg_Cabecera.Rows(i).Cells("ESTADO").EditedFormattedValue.ToString.Trim Like recepcion Then
+                        Dg_Cabecera.Rows(i).Visible = True
+                    Else
+                        Dg_Cabecera.Rows(i).Visible = False
+                    End If
+                Next
+            ElseIf Estado <> "" And Serie = "" And recepcion = "" And Lima_Prov = "" And Nro = "" Then
+                Estado = "*" + Estado + "*"
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    If Dg_Cabecera.Rows(i).Cells("SITUACION").EditedFormattedValue.ToString.Trim Like Estado Then
+                        Dg_Cabecera.Rows(i).Visible = True
+                    Else
+                        Dg_Cabecera.Rows(i).Visible = False
+                    End If
+                Next
+            ElseIf Estado <> "" And Serie <> "" And recepcion = "" And Lima_Prov = "" And Nro = "" Then
+                Estado = "*" + Estado + "*"
+                Serie = "*" + Serie + "*"
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    If Dg_Cabecera.Rows(i).Cells("SITUACION").EditedFormattedValue.ToString.Trim Like Estado And Dg_Cabecera.Rows(i).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim Like Serie Then
+                        Dg_Cabecera.Rows(i).Visible = True
+                    Else
+                        Dg_Cabecera.Rows(i).Visible = False
+                    End If
+                Next
+            ElseIf Estado <> "" And Serie <> "" And recepcion <> "" And Lima_Prov = "" And Nro = "" Then
+                Estado = "*" + Estado + "*"
+                Serie = "*" + Serie + "*"
+                recepcion = "*" + recepcion + "*"
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    If Dg_Cabecera.Rows(i).Cells("SITUACION").EditedFormattedValue.ToString.Trim Like Estado And Dg_Cabecera.Rows(i).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim Like Serie And Dg_Cabecera.Rows(i).Cells("ESTADO").EditedFormattedValue.ToString.Trim Like recepcion Then
+                        Dg_Cabecera.Rows(i).Visible = True
+                    Else
+                        Dg_Cabecera.Rows(i).Visible = False
+                    End If
+                Next
+            ElseIf Estado <> "" And Serie <> "" And recepcion <> "" And Lima_Prov <> "" And Nro = "" Then
+                Estado = "*" + Estado + "*"
+                Serie = "*" + Serie + "*"
+                recepcion = "*" + recepcion + "*"
+                Lima_Prov = "*" + Lima_Prov + "*"
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    If Dg_Cabecera.Rows(i).Cells("SITUACION").EditedFormattedValue.ToString.Trim Like Estado And Dg_Cabecera.Rows(i).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim Like Serie And Dg_Cabecera.Rows(i).Cells("ESTADO").EditedFormattedValue.ToString.Trim Like recepcion And Dg_Cabecera.Rows(i).Cells("LIMA_PROV").EditedFormattedValue.ToString.Trim Like Lima_Prov Then
+                        Dg_Cabecera.Rows(i).Visible = True
+                    Else
+                        Dg_Cabecera.Rows(i).Visible = False
+                    End If
+                Next
+            ElseIf Estado <> "" And Serie <> "" And Nro <> "" And recepcion = "" And Lima_Prov = "" Then
+                Estado = "*" + Estado + "*"
+                Serie = "*" + Serie + "*"
+                Nro = "*" + Nro + "*"
+
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    If Dg_Cabecera.Rows(i).Cells("SITUACION").EditedFormattedValue.ToString.Trim Like Estado And Dg_Cabecera.Rows(i).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim Like Serie And Dg_Cabecera.Rows(i).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim Like Nro Then
+                        Dg_Cabecera.Rows(i).Visible = True
+                    Else
+                        Dg_Cabecera.Rows(i).Visible = False
+                    End If
+                Next
+            ElseIf Estado = "" And Serie <> "" And Nro <> "" And recepcion = "" And Lima_Prov <> "" Then
+                Lima_Prov = "*" + Lima_Prov + "*"
+                Serie = "*" + Serie + "*"
+                Nro = "*" + Nro + "*"
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    If Dg_Cabecera.Rows(i).Cells("LIMA_PROV").EditedFormattedValue.ToString.Trim Like Lima_Prov And Dg_Cabecera.Rows(i).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim Like Serie And Dg_Cabecera.Rows(i).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim Like Nro Then
+                        Dg_Cabecera.Rows(i).Visible = True
+                    Else
+                        Dg_Cabecera.Rows(i).Visible = False
+                    End If
+                Next
+            ElseIf Estado <> "" And Serie = "" And Nro = "" And recepcion <> "" And Lima_Prov <> "" Then
+                Estado = "*" + Estado + "*"
+                recepcion = "*" + recepcion + "*"
+                Lima_Prov = "*" + Lima_Prov + "*"
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    If Dg_Cabecera.Rows(i).Cells("SITUACION").EditedFormattedValue.ToString.Trim Like Estado And Dg_Cabecera.Rows(i).Cells("ESTADO").EditedFormattedValue.ToString.Trim Like recepcion And Dg_Cabecera.Rows(i).Cells("LIMA_PROV").EditedFormattedValue.ToString.Trim Like Lima_Prov Then
+                        Dg_Cabecera.Rows(i).Visible = True
+                    Else
+                        Dg_Cabecera.Rows(i).Visible = False
+                    End If
+                Next
+            ElseIf Estado = "" And Serie = "" And Nro = "" And recepcion <> "" And Lima_Prov <> "" Then
+                recepcion = "*" + recepcion + "*"
+                Lima_Prov = "*" + Lima_Prov + "*"
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    If Dg_Cabecera.Rows(i).Cells("ESTADO").EditedFormattedValue.ToString.Trim Like recepcion And Dg_Cabecera.Rows(i).Cells("LIMA_PROV").EditedFormattedValue.ToString.Trim Like Lima_Prov Then
+                        Dg_Cabecera.Rows(i).Visible = True
+                    Else
+                        Dg_Cabecera.Rows(i).Visible = False
+                    End If
+                Next
+            ElseIf Estado <> "" And Serie = "" And Nro = "" And recepcion = "" And Lima_Prov <> "" Then
+                Estado = "*" + Estado + "*"
+                ' recepcion = "*" + recepcion + "*"
+                Lima_Prov = "*" + Lima_Prov + "*"
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    If Dg_Cabecera.Rows(i).Cells("SITUACION").EditedFormattedValue.ToString.Trim Like Estado And Dg_Cabecera.Rows(i).Cells("LIMA_PROV").EditedFormattedValue.ToString.Trim Like Lima_Prov Then
+                        Dg_Cabecera.Rows(i).Visible = True
+                    Else
+                        Dg_Cabecera.Rows(i).Visible = False
+                    End If
+                Next
+            ElseIf Estado = "" And Serie = "" And Nro <> "" And recepcion = "" And Lima_Prov <> "" Then
+                Nro = "*" + Nro + "*"
+                ' recepcion = "*" + recepcion + "*"
+                Lima_Prov = "*" + Lima_Prov + "*"
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    If Dg_Cabecera.Rows(i).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim Like Nro And Dg_Cabecera.Rows(i).Cells("LIMA_PROV").EditedFormattedValue.ToString.Trim Like Lima_Prov Then
+                        Dg_Cabecera.Rows(i).Visible = True
+                    Else
+                        Dg_Cabecera.Rows(i).Visible = False
+                    End If
+                Next
+            ElseIf Estado <> "" And Serie = "" And Nro <> "" And recepcion = "" And Lima_Prov = "" Then
+                Estado = "*" + Estado + "*"
+                ' recepcion = "*" + recepcion + "*"
+                Nro = "*" + Nro + "*"
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    If Dg_Cabecera.Rows(i).Cells("SITUACION").EditedFormattedValue.ToString.Trim Like Estado And Dg_Cabecera.Rows(i).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim Like Nro Then
+                        Dg_Cabecera.Rows(i).Visible = True
+                    Else
+                        Dg_Cabecera.Rows(i).Visible = False
+                    End If
+                Next
+            ElseIf Estado = "" And Serie = "" And Nro <> "" And recepcion <> "" And Lima_Prov = "" Then
+                recepcion = "*" + recepcion + "*"
+                Nro = "*" + Nro + "*"
+                For i As Integer = 0 To Dg_Cabecera.RowCount - 1
+                    If Dg_Cabecera.Rows(i).Cells("ESTADO").EditedFormattedValue.ToString.Trim Like recepcion And Dg_Cabecera.Rows(i).Cells("NRO_GUIA").EditedFormattedValue.ToString.Trim Like Nro Then
+                        Dg_Cabecera.Rows(i).Visible = True
+                    Else
+                        Dg_Cabecera.Rows(i).Visible = False
+                    End If
                 Next
             End If
-        Catch ex As Exception
 
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
-
     Public Sub FormatoTablaCabecera()
 
         dtcabecera2.Clear()

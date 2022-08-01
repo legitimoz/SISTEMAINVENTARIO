@@ -5,12 +5,13 @@ Public Class HojaRuta
     Public movilidad As String = ""
     Public transportista As String = ""
     Public totalvolumen As String = ""
-    Public totalimporte As String = ""
+
     Public totaltiempo As String = ""
     Public totalpeso As String = ""
     Public tipoenvio As String = ""
     Public Dtruta As New DataTable
     Public CodigoRuta As String = ""
+    Public totalbultos As Integer = 0
     Private Sub HojaRuta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             CargaInicial()
@@ -49,15 +50,6 @@ Public Class HojaRuta
                 Case "HEADMARK CORPORATION SAC"
                     logooperador = "SendaLogo"
                     color = "DarkOrange"
-                    'Case "3"
-                    '    logooperador = "BARDEX"
-                    '    color = "DarkSeaGreen"
-                    'Case "4"
-                    '    logooperador = "ESCAME"
-                    '    color = "CornflowerBlue"
-                    'Case Else
-                    '    logooperador = ""
-                    '    color = "Silver"
             End Select
 
             Dim nombreempresaparam As New ReportParameter("nombreempresa", nombreempresa)
@@ -70,10 +62,10 @@ Public Class HojaRuta
             Dim transportistaparam As New ReportParameter("transportista", transportista)
             Dim CodRutaparam As New ReportParameter("CodRuta", CodigoRuta)
             Dim totaltiempoparam As New ReportParameter("totaltiempo", totaltiempo)
-            Dim totalimporteparam As New ReportParameter("totalimporte", totalimporte)
+
             Dim totalpesoparam As New ReportParameter("totalpeso", totalpeso)
             Dim tipoenvioparam As New ReportParameter("tipoenvio", tipoenvio)
-
+            Dim totalbultosparam As New ReportParameter("totalbultos", totalbultos)
             Me.ReportViewer1.LocalReport.SetParameters(nombreempresaparam)
             Me.ReportViewer1.LocalReport.SetParameters(rucempresaparam)
             Me.ReportViewer1.LocalReport.SetParameters(direccionempresaparam)
@@ -84,9 +76,10 @@ Public Class HojaRuta
             Me.ReportViewer1.LocalReport.SetParameters(transportistaparam)
             Me.ReportViewer1.LocalReport.SetParameters(CodRutaparam)
             Me.ReportViewer1.LocalReport.SetParameters(totaltiempoparam)
-            Me.ReportViewer1.LocalReport.SetParameters(totalimporteparam)
+
             Me.ReportViewer1.LocalReport.SetParameters(totalpesoparam)
             Me.ReportViewer1.LocalReport.SetParameters(tipoenvioparam)
+            Me.ReportViewer1.LocalReport.SetParameters(totalbultosparam)
 
             Me.ReportViewer1.LocalReport.DisplayName = Text
             Me.ReportViewer1.SetDisplayMode(DisplayMode.PrintLayout)

@@ -30,6 +30,23 @@ Partial Class frmSalidaRetorno_Ruta
         Me.dtpFecIni = New System.Windows.Forms.DateTimePicker()
         Me.dtpFecFin = New System.Windows.Forms.DateTimePicker()
         Me.dgvListadoRutas = New System.Windows.Forms.DataGridView()
+        Me.r_ruta = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TRD_CCODIGO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.r_transportista = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.r_fecharuta = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.r_fechaCreacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.r_totalguias = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.r_gentregadas = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.r_porcguiasentreg = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.r_totalrezagados = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.r_porctotalrezag = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.r_pendiente = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.r_porcpendiente = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column_Editar = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.Column1 = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.Column_retorno = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.colImprimir = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.btnExportar = New System.Windows.Forms.Button()
         Me.btnNuevo = New System.Windows.Forms.Button()
         Me.btnBuscar = New System.Windows.Forms.Button()
@@ -48,23 +65,7 @@ Partial Class frmSalidaRetorno_Ruta
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.r_ruta = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TRD_CCODIGO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.r_transportista = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.r_fecharuta = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.r_fechaCreacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.r_totalguias = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.r_gentregadas = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.r_porcguiasentreg = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.r_totalrezagados = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.r_porctotalrezag = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.r_pendiente = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.r_porcpendiente = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column_Editar = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.Column1 = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.Column_retorno = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.colImprimir = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.dgvListadoRutas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -139,6 +140,117 @@ Partial Class frmSalidaRetorno_Ruta
         Me.dgvListadoRutas.Name = "dgvListadoRutas"
         Me.dgvListadoRutas.Size = New System.Drawing.Size(1321, 372)
         Me.dgvListadoRutas.TabIndex = 11
+        '
+        'r_ruta
+        '
+        Me.r_ruta.HeaderText = "Ruta"
+        Me.r_ruta.Name = "r_ruta"
+        Me.r_ruta.Width = 70
+        '
+        'TRD_CCODIGO
+        '
+        Me.TRD_CCODIGO.HeaderText = "TRD_CCODIGO"
+        Me.TRD_CCODIGO.Name = "TRD_CCODIGO"
+        Me.TRD_CCODIGO.Visible = False
+        '
+        'r_transportista
+        '
+        Me.r_transportista.HeaderText = "Transportista"
+        Me.r_transportista.Name = "r_transportista"
+        Me.r_transportista.Width = 200
+        '
+        'r_fecharuta
+        '
+        Me.r_fecharuta.HeaderText = "Fecha Ruta"
+        Me.r_fecharuta.Name = "r_fecharuta"
+        Me.r_fecharuta.Width = 80
+        '
+        'r_fechaCreacion
+        '
+        Me.r_fechaCreacion.HeaderText = "Fecha Creación"
+        Me.r_fechaCreacion.Name = "r_fechaCreacion"
+        '
+        'r_totalguias
+        '
+        Me.r_totalguias.HeaderText = "Total Guias"
+        Me.r_totalguias.Name = "r_totalguias"
+        Me.r_totalguias.Width = 70
+        '
+        'r_gentregadas
+        '
+        Me.r_gentregadas.HeaderText = "GU Entregadas"
+        Me.r_gentregadas.Name = "r_gentregadas"
+        Me.r_gentregadas.Width = 70
+        '
+        'r_porcguiasentreg
+        '
+        Me.r_porcguiasentreg.HeaderText = "%"
+        Me.r_porcguiasentreg.Name = "r_porcguiasentreg"
+        Me.r_porcguiasentreg.Width = 50
+        '
+        'r_totalrezagados
+        '
+        Me.r_totalrezagados.HeaderText = "Total Rechazadas"
+        Me.r_totalrezagados.Name = "r_totalrezagados"
+        Me.r_totalrezagados.Width = 70
+        '
+        'r_porctotalrezag
+        '
+        Me.r_porctotalrezag.HeaderText = "%"
+        Me.r_porctotalrezag.Name = "r_porctotalrezag"
+        Me.r_porctotalrezag.Width = 50
+        '
+        'r_pendiente
+        '
+        Me.r_pendiente.HeaderText = "Pendiente"
+        Me.r_pendiente.Name = "r_pendiente"
+        Me.r_pendiente.Width = 70
+        '
+        'r_porcpendiente
+        '
+        Me.r_porcpendiente.HeaderText = "%"
+        Me.r_porcpendiente.Name = "r_porcpendiente"
+        Me.r_porcpendiente.Width = 50
+        '
+        'Column_Editar
+        '
+        Me.Column_Editar.HeaderText = ""
+        Me.Column_Editar.Name = "Column_Editar"
+        Me.Column_Editar.Text = "Editar"
+        Me.Column_Editar.ToolTipText = "Editar"
+        Me.Column_Editar.UseColumnTextForButtonValue = True
+        '
+        'Column1
+        '
+        Me.Column1.HeaderText = ""
+        Me.Column1.Name = "Column1"
+        Me.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.Column1.Text = "Ver Seguimiento"
+        Me.Column1.UseColumnTextForButtonValue = True
+        '
+        'Column_retorno
+        '
+        Me.Column_retorno.HeaderText = ""
+        Me.Column_retorno.Name = "Column_retorno"
+        Me.Column_retorno.Text = "Retorno Ruta"
+        Me.Column_retorno.UseColumnTextForButtonValue = True
+        '
+        'colImprimir
+        '
+        Me.colImprimir.HeaderText = ""
+        Me.colImprimir.Name = "colImprimir"
+        Me.colImprimir.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.colImprimir.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.colImprimir.Text = "Imprimir"
+        Me.colImprimir.UseColumnTextForButtonValue = True
+        '
+        'Column2
+        '
+        Me.Column2.HeaderText = "Imprimir Anterior"
+        Me.Column2.Name = "Column2"
+        Me.Column2.Text = "Imprimir A."
+        Me.Column2.UseColumnTextForButtonValue = True
         '
         'btnExportar
         '
@@ -280,116 +392,17 @@ Partial Class frmSalidaRetorno_Ruta
         Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
         Me.DataGridViewTextBoxColumn12.Width = 50
         '
-        'r_ruta
+        'Button1
         '
-        Me.r_ruta.HeaderText = "Ruta"
-        Me.r_ruta.Name = "r_ruta"
-        Me.r_ruta.Width = 70
-        '
-        'TRD_CCODIGO
-        '
-        Me.TRD_CCODIGO.HeaderText = "TRD_CCODIGO"
-        Me.TRD_CCODIGO.Name = "TRD_CCODIGO"
-        Me.TRD_CCODIGO.Visible = False
-        '
-        'r_transportista
-        '
-        Me.r_transportista.HeaderText = "Transportista"
-        Me.r_transportista.Name = "r_transportista"
-        Me.r_transportista.Width = 200
-        '
-        'r_fecharuta
-        '
-        Me.r_fecharuta.HeaderText = "Fecha Ruta"
-        Me.r_fecharuta.Name = "r_fecharuta"
-        Me.r_fecharuta.Width = 80
-        '
-        'r_fechaCreacion
-        '
-        Me.r_fechaCreacion.HeaderText = "Fecha Creación"
-        Me.r_fechaCreacion.Name = "r_fechaCreacion"
-        '
-        'r_totalguias
-        '
-        Me.r_totalguias.HeaderText = "Total Guias"
-        Me.r_totalguias.Name = "r_totalguias"
-        Me.r_totalguias.Width = 70
-        '
-        'r_gentregadas
-        '
-        Me.r_gentregadas.HeaderText = "GU Entregadas"
-        Me.r_gentregadas.Name = "r_gentregadas"
-        Me.r_gentregadas.Width = 70
-        '
-        'r_porcguiasentreg
-        '
-        Me.r_porcguiasentreg.HeaderText = "%"
-        Me.r_porcguiasentreg.Name = "r_porcguiasentreg"
-        Me.r_porcguiasentreg.Width = 50
-        '
-        'r_totalrezagados
-        '
-        Me.r_totalrezagados.HeaderText = "Total Rechazadas"
-        Me.r_totalrezagados.Name = "r_totalrezagados"
-        Me.r_totalrezagados.Width = 70
-        '
-        'r_porctotalrezag
-        '
-        Me.r_porctotalrezag.HeaderText = "%"
-        Me.r_porctotalrezag.Name = "r_porctotalrezag"
-        Me.r_porctotalrezag.Width = 50
-        '
-        'r_pendiente
-        '
-        Me.r_pendiente.HeaderText = "Pendiente"
-        Me.r_pendiente.Name = "r_pendiente"
-        Me.r_pendiente.Width = 70
-        '
-        'r_porcpendiente
-        '
-        Me.r_porcpendiente.HeaderText = "%"
-        Me.r_porcpendiente.Name = "r_porcpendiente"
-        Me.r_porcpendiente.Width = 50
-        '
-        'Column_Editar
-        '
-        Me.Column_Editar.HeaderText = ""
-        Me.Column_Editar.Name = "Column_Editar"
-        Me.Column_Editar.Text = "Editar"
-        Me.Column_Editar.ToolTipText = "Editar"
-        Me.Column_Editar.UseColumnTextForButtonValue = True
-        '
-        'Column1
-        '
-        Me.Column1.HeaderText = ""
-        Me.Column1.Name = "Column1"
-        Me.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.Column1.Text = "Ver Seguimiento"
-        Me.Column1.UseColumnTextForButtonValue = True
-        '
-        'Column_retorno
-        '
-        Me.Column_retorno.HeaderText = ""
-        Me.Column_retorno.Name = "Column_retorno"
-        Me.Column_retorno.Text = "Retorno Ruta"
-        Me.Column_retorno.UseColumnTextForButtonValue = True
-        '
-        'colImprimir
-        '
-        Me.colImprimir.HeaderText = ""
-        Me.colImprimir.Name = "colImprimir"
-        Me.colImprimir.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.colImprimir.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.colImprimir.Text = "Imprimir"
-        Me.colImprimir.UseColumnTextForButtonValue = True
-        '
-        'Column2
-        '
-        Me.Column2.HeaderText = "Imprimir Anterior"
-        Me.Column2.Name = "Column2"
-        Me.Column2.Text = "Imprimir A."
-        Me.Column2.UseColumnTextForButtonValue = True
+        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button1.Image = Global.WindowsApp1.My.Resources.Resources._1042
+        Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Button1.Location = New System.Drawing.Point(552, 79)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(107, 36)
+        Me.Button1.TabIndex = 15
+        Me.Button1.Text = "Eliminar Ruta"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'frmSalidaRetorno_Ruta
         '
@@ -397,6 +410,7 @@ Partial Class frmSalidaRetorno_Ruta
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(1343, 526)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.btnRetornoProveedor)
         Me.Controls.Add(Me.cbxTransportista)
         Me.Controls.Add(Me.Transportista)
@@ -461,4 +475,5 @@ Partial Class frmSalidaRetorno_Ruta
     Friend WithEvents Column_retorno As DataGridViewButtonColumn
     Friend WithEvents colImprimir As DataGridViewButtonColumn
     Friend WithEvents Column2 As DataGridViewButtonColumn
+    Friend WithEvents Button1 As Button
 End Class

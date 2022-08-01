@@ -27,6 +27,22 @@
         Return TablaAlmacen
     End Function
 
+    Public Function RutaPreliminar() As DataTable
+        Dim TablaAlmacen As DataTable
+        TablaAlmacen = New DataTable()
+        Try
+            TablaAlmacen.Columns.Add("Marcar", GetType(Boolean))
+            TablaAlmacen.Columns.Add("idconsolidado", GetType(String))
+            TablaAlmacen.Columns.Add("RutaTentativa", GetType(String))
+            TablaAlmacen.Columns.Add("Destino", GetType(String))
+            TablaAlmacen.Columns.Add("Cliente", GetType(String))
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+        Return TablaAlmacen
+    End Function
+
     Public Function ReporteRutas() As DataTable
         Dim TablaAlmacen As DataTable
         TablaAlmacen = New DataTable()
@@ -64,6 +80,7 @@
             TablaAlmacen.Columns.Add("Direccion", GetType(String))
             TablaAlmacen.Columns.Add("Departamento", GetType(String))
             TablaAlmacen.Columns.Add("Provincia", GetType(String))
+            TablaAlmacen.Columns.Add("Distrito", GetType(String))
             TablaAlmacen.Columns.Add("Lima_Provincia", GetType(String))
             TablaAlmacen.Columns.Add("Recojo_Despacho", GetType(String))
             TablaAlmacen.Columns.Add("Canal", GetType(String))
@@ -76,7 +93,10 @@
             TablaAlmacen.Columns.Add("Fecha Retorno", GetType(String))
             TablaAlmacen.Columns.Add("Vehiculo", GetType(String))
             TablaAlmacen.Columns.Add("Capacidad_Kg", GetType(String))
-
+            TablaAlmacen.Columns.Add("Restriccion", GetType(String))
+            TablaAlmacen.Columns.Add("Site", GetType(String))
+            TablaAlmacen.Columns.Add("Comentario", GetType(String))
+            TablaAlmacen.Columns.Add("Importe", GetType(Decimal))
         Catch ex As Exception
             Throw ex
         End Try
@@ -126,6 +146,7 @@
             TablaAlmacen.Columns.Add("Cod Articulo", GetType(String))
             TablaAlmacen.Columns.Add("Articulo", GetType(String))
             TablaAlmacen.Columns.Add("CJ Master Abastercer", GetType(String))
+            TablaAlmacen.Columns.Add("Unidades Abastercer", GetType(String))
             TablaAlmacen.Columns.Add("M3 Abastecer", GetType(String))
             TablaAlmacen.Columns.Add("Cobertura Final Dias", GetType(String))
             TablaAlmacen.Columns.Add("Cobertura Actual Dias", GetType(String))
@@ -207,7 +228,7 @@
             TablaRuta.Columns.Add("Numero", GetType(String))
             TablaRuta.Columns.Add("Restriccion", GetType(String))
             TablaRuta.Columns.Add("TipoRuta", GetType(String))
-
+            TablaRuta.Columns.Add("Comentario", GetType(String))
         Catch ex As Exception
             Throw ex
         End Try
@@ -449,6 +470,7 @@
             Tabladetalle.Columns.Add("ANCHO", GetType(Decimal))
             Tabladetalle.Columns.Add("LARGO", GetType(Decimal))
             Tabladetalle.Columns.Add("ALTO", GetType(Decimal))
+            Tabladetalle.Columns.Add("Peso", GetType(Decimal))
             Tabladetalle.Columns.Add("CODALMACEN_DESTINO", GetType(String))
             Tabladetalle.Columns.Add("ALMACEN_DESTINO", GetType(String))
             Tabladetalle.Columns.Add("CANAL", GetType(String))

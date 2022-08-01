@@ -32,7 +32,7 @@ Public Class Login
 
                 'If objLogin.PrPer_id = 9 Then
                 '    If objLogin.prUser.Trim = "CAS" Then
-                ProcesoAlerta()
+                ' ProcesoAlerta()
                 '    End If
                 'End If
 
@@ -49,13 +49,27 @@ Public Class Login
         End Try
     End Sub
 
+    Private Sub ProcesoAlertaDavid()
+
+        Dim Body As String = ""
+        Try
+            Body = AlmacenLoBJ.Obtener_Html_Alerta()
+            If SendMailDavid(Body) Then
+                Exit Sub
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Sub
+
     Private Sub ProcesoAlerta()
         Dim ExisteAlerta As Integer = 0
         Dim FechaInicio As String = "", FechaFin As String = ""
         Try
             ExisteAlerta = AlmacenLoBJ.SP_CSE_ValidarAlerta.Rows.Count
-            If ExisteAlerta = 0 Then
-                Dim dia As String = "", Mes As String = ""
+            'If ExisteAlerta = 0 Then
+            Dim dia As String = "", Mes As String = ""
 
                 dia = Now.Day.ToString
                 Mes = Now.Month.ToString
@@ -96,11 +110,11 @@ Public Class Login
                             RowAdd.Item("Cod Articulo") = Dgrow.Cells("CODIGO").EditedFormattedValue.ToString
                             RowAdd.Item("Articulo") = Dgrow.Cells("ARTICULO").EditedFormattedValue.ToString
                             RowAdd.Item("CJ Master Abastercer") = Dgrow.Cells("ABASTECJMATE").EditedFormattedValue.ToString
+                            RowAdd.Item("Unidades Abastercer") = CType(Dgrow.Cells("ABASTECJMATE").EditedFormattedValue.ToString, Integer) * CType(Dgrow.Cells("MULTIPLICACIONFACTORES").EditedFormattedValue.ToString, Integer)
                             RowAdd.Item("M3 Abastecer") = Dgrow.Cells("ABASTEM3").EditedFormattedValue.ToString
                             RowAdd.Item("Cobertura Final Dias") = Dgrow.Cells("COBERTFINAL").EditedFormattedValue.ToString
                             RowAdd.Item("Cobertura Actual Dias") = Dgrow.Cells("COBERTACTUAL").EditedFormattedValue.ToString
                             RowAdd.Item("Accion") = Dgrow.Cells("ACCIONFINAL").EditedFormattedValue.ToString
-
                             DtReporte.Rows.Add(RowAdd)
                         End If
                     Next
@@ -109,7 +123,7 @@ Public Class Login
                     End If
                 End If
 
-            End If
+            'End If
         Catch ex As Exception
 
         End Try
@@ -175,10 +189,51 @@ Public Class Login
             archivoAdjunto = New System.Net.Mail.Attachment(patch)
         End If
         mm.Attachments.Add(archivoAdjunto)
-        mm.To.Add("nicolas.calderon@nordicperu.com")
+        ' mm.To.Add("nicolas.calderon@nordicperu.com")
         mm.To.Add("aseguramientodelacalidad@nordicperu.com")
-        mm.To.Add("mr@nordicperu.com")
+        ' mm.To.Add("mr@nordicperu.com")
         mm.To.Add("cesarsanchezelescano@salesland.net")
+        Try
+            smtpClient.Send(mm)
+        Catch ex As Exception
+        End Try
+
+        mm.Dispose()
+        smtpClient.Dispose()
+
+        Return True
+
+    End Function
+
+
+    Public Function SendMailDavid(Body As String) As Boolean
+        Dim archivoAdjunto As Attachment = Nothing
+        Dim smtpClient As New SmtpClient("smtp.office365.com", 587) 'I tried using different hosts and ports
+        smtpClient.UseDefaultCredentials = False
+        smtpClient.Credentials = New NetworkCredential("reportes@nordicperu.com", "N0rd1c15$21")
+        smtpClient.EnableSsl = True 'Also tried setting this to false
+
+        Dim mm As New MailMessage
+        mm.From = New MailAddress("reportes@nordicperu.com")
+        mm.Subject = "INDICADOR GESTION REPRESENTANTES"
+        mm.IsBodyHtml = True
+        mm.Body = Body
+
+
+        mm.To.Add("cesarsanchezelescano@salesland.net")
+
+        'mm.To.Add("macgyver.ovalles@nordicperu.com")
+        'mm.To.Add("elena.chirre@nordicperu.com")
+        'mm.To.Add("Claudia.Ruggel@nordicperu.com")
+        'mm.To.Add("rosendry.rodriguez@nordicperu.com")
+        'mm.To.Add("luis.gonzalez@nordicperu.com")
+        'mm.To.Add("gonzalo.torres@nordicperu.com")
+        'mm.To.Add("marketing1@nordicperu.com")
+
+        'mm.CC.Add("david.sandoval@nordicperu.com")
+        'mm.CC.Add("roxanapenagos@salesland.net")
+        'mm.CC.Add("cesarsanchezelescano@salesland.net")
+
         Try
             smtpClient.Send(mm)
         Catch ex As Exception
@@ -218,4 +273,11 @@ Public Class Login
         End If
 
     End Sub
+
+    Private Sub Login_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'ProcesoAlertaDavid()
+        'Application.Exit()
+    End Sub
+
+
 End Class

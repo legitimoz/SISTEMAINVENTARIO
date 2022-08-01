@@ -79,13 +79,31 @@ Public Class HojaPicking
         Return rp
     End Function
 
+    Public Function LlamarListarGuiasDET(codalmacen As String, tipdoc As String, nrodoc As String) As DataTable
+
+        Dim dtretono As DataTable
+        Try
+            dtretono = ObjAlmacen.ListarGuiasDET(codalmacen, tipdoc, nrodoc, 0, 0).Copy
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return dtretono
+    End Function
+
     Public Sub CargaInicial()
         Try
             Me.Size = New Size(Me.ReportViewer1.GetPageSettings.PaperSize.Width, Me.Size.Height)
             Dim nombreempresa, RUC, Direccion As String
             Dim DtDetalleReporte As New DataTable
             Dim cajas As Decimal = 0, cajasm As Decimal = 0, saldo As Decimal = 0, totalvolumen As Decimal = 0
+            Dim bultos As Integer = Constantes.ValorEnteroInicial
+            Dim Peso As Decimal = Constantes.ValorEnteroInicial
             DtDetalleReporte = Estructura.DetaleHojaPickingReport.Clone
+            'variables bultos & Pesos
+            Dim BultosCaja As Integer = Constantes.ValorEnteroInicial, bultosUni As Integer = Constantes.ValorEnteroInicial
+            Dim VolUniFinal As Decimal = Constantes.ValorEnteroInicial
+            Dim Division As Decimal = Constantes.ValorEnteroInicial
+
             If IsNothing(DtDetallePedido) Then
                 Me.Close()
                 Exit Sub
@@ -96,6 +114,11 @@ Public Class HojaPicking
             Direccion = ConfigurationManager.AppSettings("nombreSite").ToString.Trim
             Dim RowDetalleReporte As DataRow
             For Each rowDetalle As DataRow In DtDetallePedido.Rows
+                Dim VolumenUnitario As Decimal = Constantes.ValorEnteroInicial
+                Dim undCajas As Integer = Constantes.ValorEnteroInicial 'Unidades de CajasI + Saldo
+                Dim Undfactor As Integer = Constantes.ValorEnteroInicial 'Factor Cjm * Factor Cji' 
+
+                Dim VolumenMaster As Decimal = Constantes.ValorEnteroInicial, VolumenUn As Decimal = Constantes.ValorEnteroInicial
                 RowDetalleReporte = DtDetalleReporte.NewRow
                 RowDetalleReporte.Item("CodArticulo") = rowDetalle.Item("CODIGO")
                 RowDetalleReporte.Item("Articulo") = rowDetalle.Item("PRODUCTO")
@@ -104,25 +127,31 @@ Public Class HojaPicking
                 RowDetalleReporte.Item("Unidad") = rowDetalle.Item("UNIDAD")
                 RowDetalleReporte.Item("Vencimiento") = rowDetalle.Item("FECHA_VECIMIENTO")
                 If rowDetalle.Item("UNIDAD").ToString = "UND" Then
-                    If rowDetalle.Item("FACTORCAJA").ToString <> 0 And rowDetalle.Item("FACTORCAJAMASTER").ToString <> 0 Then
-                        cajas = (rowDetalle.Item("SALDO") / rowDetalle.Item("FACTORCAJA"))
-                        saldo = rowDetalle.Item("SALDO") Mod rowDetalle.Item("FACTORCAJA")
-                        cajasm = cajas / rowDetalle.Item("FACTORCAJAMASTER")
-                        cajasm = Math.Floor(cajasm)
-                        cajas = cajas Mod rowDetalle.Item("FACTORCAJAMASTER")
+                    If rowDetalle.Item("FACTORCAJAMASTER").ToString.Trim <> "" Then
+                        If rowDetalle.Item("FACTORCAJA").ToString <> 0 And rowDetalle.Item("FACTORCAJAMASTER").ToString <> 0 Then
+                            cajas = (rowDetalle.Item("SALDO") / rowDetalle.Item("FACTORCAJA"))
+                            saldo = rowDetalle.Item("SALDO") Mod rowDetalle.Item("FACTORCAJA")
+                            cajasm = cajas / rowDetalle.Item("FACTORCAJAMASTER")
+                            cajasm = Math.Floor(cajasm)
+                            cajas = cajas Mod rowDetalle.Item("FACTORCAJAMASTER")
+                        End If
                     End If
                 Else
                     If rowDetalle.Item("UNIDAD").ToString = "CJA" Then
-                        saldo = 0
-                        cajas = rowDetalle.Item("SALDO")
-                        cajasm = cajas / rowDetalle.Item("FACTORCAJAMASTER")
-                        cajasm = Math.Floor(cajasm)
-                        cajas = cajas Mod rowDetalle.Item("FACTORCAJAMASTER")
+                        If rowDetalle.Item("FACTORCAJAMASTER").ToString.Trim <> "" Then
+                            If rowDetalle.Item("FACTORCAJA").ToString <> 0 And rowDetalle.Item("FACTORCAJAMASTER").ToString <> 0 Then
+                                saldo = 0
+                                cajas = rowDetalle.Item("SALDO")
+                                cajasm = cajas / rowDetalle.Item("FACTORCAJAMASTER")
+                                cajasm = Math.Floor(cajasm)
+                                cajas = cajas Mod rowDetalle.Item("FACTORCAJAMASTER")
+                            End If
+                        End If
                     End If
                 End If
-                RowDetalleReporte.Item("CajasM") = cajasm
-                RowDetalleReporte.Item("CajasI") = cajas
-                RowDetalleReporte.Item("Saldo") = saldo
+                RowDetalleReporte.Item("CajasM") = CType(cajasm, Integer)
+                RowDetalleReporte.Item("CajasI") = CType(cajas, Integer)
+                RowDetalleReporte.Item("Saldo") = CType(saldo, Integer)
                 Dim posiciones As List(Of String)
                 posiciones = ObtenerPosiciones(rowDetalle.Item("CODIGO").ToString.Trim, rowDetalle.Item("SERIE").ToString.Trim, CType(rowDetalle.Item("SALDO"), Decimal))
                 If posiciones.Count > 0 Then
@@ -132,7 +161,77 @@ Public Class HojaPicking
                 End If
                 totalvolumen = totalvolumen + rowDetalle.Item("VOLUMEN")
                 DtDetalleReporte.Rows.Add(RowDetalleReporte)
+
+                'CALCULO BULTOS INICIO'
+                BultosCaja = BultosCaja + cajasm
+                ' BultosCaja = BultosCaja + BultosCaja
+                If cajas > Constantes.ValorEnteroInicial And rowDetalle.Item("FACTORCAJA").ToString > Constantes.ValorEnteroInicial Then
+                    undCajas = cajas * rowDetalle.Item("FACTORCAJA").ToString
+                Else
+                    undCajas = Constantes.ValorEnteroInicial
+                End If
+                undCajas = undCajas + saldo
+                If rowDetalle.Item("FACTORCAJAMASTER").ToString.Trim <> "" And rowDetalle.Item("ALTO").ToString.Trim <> "" Then
+                    If rowDetalle.Item("FACTORCAJA").ToString > 0 And rowDetalle.Item("FACTORCAJAMASTER").ToString.Trim > 0 And rowDetalle.Item("ALTO").ToString.Trim > 0 And rowDetalle.Item("LARGO").ToString > 0 And rowDetalle.Item("ANCHO").ToString > 0 Then
+
+                        Undfactor = rowDetalle.Item("FACTORCAJA").ToString * rowDetalle.Item("FACTORCAJAMASTER").ToString
+                        VolumenMaster = rowDetalle.Item("ALTO").ToString * rowDetalle.Item("LARGO").ToString * rowDetalle.Item("ANCHO").ToString
+                        VolumenUn = VolumenMaster / Undfactor
+                        If VolumenUn > 0 Then
+                            VolumenUnitario = undCajas * VolumenUn
+                        End If
+                    End If
+                End If
+                VolUniFinal = VolUniFinal + VolumenUnitario
+
+                'CALCULO BULTOS FIN'
+
+                'CALCULO PESO INICIO'
+                Dim PesoCajasM As Decimal = Constantes.ValorEnteroInicial, PesoUnidades As Decimal = Constantes.ValorEnteroInicial 'Peso Caja Master & Peso Saldos + UndCajaI
+                Dim PesoUnitaria As Decimal = Constantes.ValorEnteroInicial
+                If rowDetalle.Item("Peso").ToString.Trim > Constantes.ValorEnteroInicial Then
+                    If cajasm > Constantes.ValorEnteroInicial Then
+                        PesoCajasM = cajasm * rowDetalle.Item("Peso")
+                    Else
+                        PesoCajasM = Constantes.ValorEnteroInicial
+                    End If
+
+                    If undCajas > Constantes.ValorEnteroInicial Then
+                        If Undfactor > Constantes.ValorEnteroInicial Then
+                            PesoUnitaria = rowDetalle.Item("Peso").ToString.Trim / Undfactor
+                        End If
+
+                        If undCajas > Constantes.ValorEnteroInicial And PesoUnitaria > Constantes.ValorEnteroInicial Then
+                            PesoUnidades = PesoUnitaria * undCajas
+                        Else
+                            PesoUnidades = Constantes.ValorEnteroInicial
+                        End If
+                    Else
+                        PesoUnidades = Constantes.ValorEnteroInicial
+                    End If
+                Else
+                    PesoCajasM = Constantes.ValorEnteroInicial
+                    PesoUnidades = Constantes.ValorEnteroInicial
+                End If
+                Peso = Peso + PesoCajasM + PesoUnidades
+                'CALCULO PESO FIN'
             Next
+
+            If VolUniFinal > 0 Then
+                Division = VolUniFinal / 0.02
+            Else
+                Division = 0
+            End If
+
+            If Division > 0 And Division <= 1 Then
+                bultosUni = 1
+            ElseIf Division > 1 Then
+                bultosUni = Math.Ceiling(Division)
+            Else
+                bultosUni = 0
+            End If
+
+            bultos = BultosCaja + bultosUni
 
             Me.ReportViewer1.LocalReport.DataSources.Add(New Microsoft.Reporting.WinForms.ReportDataSource("DetalleHojaPicking", DtDetalleReporte))
 
@@ -163,6 +262,8 @@ Public Class HojaPicking
             Dim cantidadbultosparam As New ReportParameter("cantbultos", DtDetalleReporte.Rows.Count)
             Dim totalvolumenparam As New ReportParameter("totalvolumen", totalvolumen.ToString + " M3")
             Dim codalmacenparam As New ReportParameter("almacenSoftcom", codalmacen)
+            Dim bultosparam As New ReportParameter("bultos", bultos)
+            Dim Pesoparam As New ReportParameter("Peso", Peso)
             Dim Glosaparam As New ReportParameter("Glosa", Glosa)
 
             Me.ReportViewer1.LocalReport.SetParameters(codParteEntradaparam)
@@ -180,13 +281,15 @@ Public Class HojaPicking
             Me.ReportViewer1.LocalReport.SetParameters(codalmacenparam)
             Me.ReportViewer1.LocalReport.SetParameters(codGuiaparam)
             Me.ReportViewer1.LocalReport.SetParameters(Glosaparam)
+            Me.ReportViewer1.LocalReport.SetParameters(bultosparam)
+            Me.ReportViewer1.LocalReport.SetParameters(Pesoparam)
 
             Me.ReportViewer1.LocalReport.DisplayName = Text
             Me.ReportViewer1.SetDisplayMode(DisplayMode.PrintLayout)
             Me.ReportViewer1.RefreshReport()
 
         Catch ex As Exception
-
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "SISTEMAS NORDIC")
         End Try
     End Sub
 End Class

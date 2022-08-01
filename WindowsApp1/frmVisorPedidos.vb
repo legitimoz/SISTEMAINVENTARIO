@@ -136,7 +136,7 @@ Public Class frmVisorPedidos
 
 
             For i As Integer = 0 To dt.Rows.Count - 1
-                dgvListarPedidos.Rows.Add(dt.Rows(i).Item("F5_CCODAGE").ToString, dt.Rows(i).Item("F5_CNUMPED").ToString, dt.Rows(i).Item("FV_CDESCRI").ToString, dt.Rows(i).Item("ORDEN_COMPRA").ToString, dt.Rows(i).Item("GUIA").ToString, dt.Rows(i).Item("FACTURA").ToString, dt.Rows(i).Item("FECHA_HORA").ToString, dt.Rows(i).Item("DIFERENCIA").ToString, dt.Rows(i).Item("DIFERENCIA").ToString & "-" & dt.Rows(i).Item("TIEMPO").ToString, dt.Rows(i).Item("TIEMPO").ToString, dt.Rows(i).Item("F5_CCODCLI").ToString, dt.Rows(i).Item("F5_CNOMBRE").ToString, dt.Rows(i).Item("F5_NIMPORT").ToString, dt.Rows(i).Item("CD_NSALDMN").ToString, dt.Rows(i).Item("CL_CDEPT").ToString, dt.Rows(i).Item("ESTADO").ToString, dt.Rows(i).Item("F5_CUSUAP").ToString, dt.Rows(i).Item("F5_DFECAPR").ToString, dt.Rows(i).Item("TU_ALIAS").ToString, dt.Rows(i).Item("TU_NOMUSU").ToString, dt.Rows(i).Item("F5_CESTADO").ToString, dt.Rows(i).Item("FV_CCODIGO").ToString, dt.Rows(i).Item("OBS").ToString, dt.Rows(i).Item("OBSERV").ToString, dt.Rows(i).Item("GLOSA").ToString)
+                dgvListarPedidos.Rows.Add(dt.Rows(i).Item("BONI").ToString, dt.Rows(i).Item("F5_CCODAGE").ToString, dt.Rows(i).Item("F5_CNUMPED").ToString, dt.Rows(i).Item("FV_CDESCRI").ToString, dt.Rows(i).Item("ORDEN_COMPRA").ToString, dt.Rows(i).Item("GUIA").ToString, dt.Rows(i).Item("FACTURA").ToString, dt.Rows(i).Item("FECHA_HORA").ToString, dt.Rows(i).Item("DIFERENCIA").ToString, dt.Rows(i).Item("DIFERENCIA").ToString & "-" & dt.Rows(i).Item("TIEMPO").ToString, dt.Rows(i).Item("TIEMPO").ToString, dt.Rows(i).Item("F5_CCODCLI").ToString, dt.Rows(i).Item("F5_CNOMBRE").ToString, dt.Rows(i).Item("F5_NIMPORT").ToString, dt.Rows(i).Item("CD_NSALDMN").ToString, dt.Rows(i).Item("CL_CDEPT").ToString, dt.Rows(i).Item("ESTADO").ToString, dt.Rows(i).Item("F5_CUSUAP").ToString, dt.Rows(i).Item("F5_DFECAPR").ToString, dt.Rows(i).Item("TU_ALIAS").ToString, dt.Rows(i).Item("TU_NOMUSU").ToString, dt.Rows(i).Item("F5_CESTADO").ToString, dt.Rows(i).Item("FV_CCODIGO").ToString, dt.Rows(i).Item("OBS").ToString, dt.Rows(i).Item("OBSERV").ToString, dt.Rows(i).Item("GLOSA").ToString)
                 acum = acum + CInt(dt.Rows(i).Item("F5_NIMPORT").ToString)
 
                 If dt.Rows(i).Item("FV_CCODIGO").ToString = "C01" Or dt.Rows(i).Item("FV_CCODIGO").ToString = "C06" Or dt.Rows(i).Item("FV_CCODIGO").ToString = "C07" Then
@@ -196,7 +196,7 @@ Public Class frmVisorPedidos
 
             Else
                 For i As Integer = 0 To dt.Rows.Count - 1
-                    dgvListarPedidos.Rows.Add(dt.Rows(i).Item("F5_CCODAGE").ToString, dt.Rows(i).Item("F5_CNUMPED").ToString, dt.Rows(i).Item("FV_CDESCRI").ToString, dt.Rows(i).Item("ORDEN_COMPRA").ToString, dt.Rows(i).Item("GUIA").ToString, dt.Rows(i).Item("FACTURA").ToString, dt.Rows(i).Item("FECHA_HORA").ToString, dt.Rows(i).Item("DIFERENCIA").ToString, dt.Rows(i).Item("DIFERENCIA").ToString & "-" & dt.Rows(i).Item("TIEMPO").ToString, dt.Rows(i).Item("TIEMPO").ToString, dt.Rows(i).Item("F5_CCODCLI").ToString, dt.Rows(i).Item("F5_CNOMBRE").ToString, dt.Rows(i).Item("F5_NIMPORT").ToString, dt.Rows(i).Item("CD_NSALDMN").ToString, dt.Rows(i).Item("CL_CDEPT").ToString, dt.Rows(i).Item("ESTADO").ToString, dt.Rows(i).Item("F5_CUSUAP").ToString, dt.Rows(i).Item("F5_DFECAPR").ToString, dt.Rows(i).Item("TU_ALIAS").ToString, dt.Rows(i).Item("TU_NOMUSU").ToString, dt.Rows(i).Item("F5_CESTADO").ToString, dt.Rows(i).Item("FV_CCODIGO").ToString, dt.Rows(i).Item("OBS").ToString, dt.Rows(i).Item("OBSERV").ToString)
+                    dgvListarPedidos.Rows.Add(dt.Rows(i).Item("BONI").ToString, dt.Rows(i).Item("F5_CCODAGE").ToString, dt.Rows(i).Item("F5_CNUMPED").ToString, dt.Rows(i).Item("FV_CDESCRI").ToString, dt.Rows(i).Item("ORDEN_COMPRA").ToString, dt.Rows(i).Item("GUIA").ToString, dt.Rows(i).Item("FACTURA").ToString, dt.Rows(i).Item("FECHA_HORA").ToString, dt.Rows(i).Item("DIFERENCIA").ToString, dt.Rows(i).Item("DIFERENCIA").ToString & "-" & dt.Rows(i).Item("TIEMPO").ToString, dt.Rows(i).Item("TIEMPO").ToString, dt.Rows(i).Item("F5_CCODCLI").ToString, dt.Rows(i).Item("F5_CNOMBRE").ToString, dt.Rows(i).Item("F5_NIMPORT").ToString, dt.Rows(i).Item("CD_NSALDMN").ToString, dt.Rows(i).Item("CL_CDEPT").ToString, dt.Rows(i).Item("ESTADO").ToString, dt.Rows(i).Item("F5_CUSUAP").ToString, dt.Rows(i).Item("F5_DFECAPR").ToString, dt.Rows(i).Item("TU_ALIAS").ToString, dt.Rows(i).Item("TU_NOMUSU").ToString, dt.Rows(i).Item("F5_CESTADO").ToString, dt.Rows(i).Item("FV_CCODIGO").ToString, dt.Rows(i).Item("OBS").ToString, dt.Rows(i).Item("OBSERV").ToString)
                     acum = acum + CInt(dt.Rows(i).Item("F5_NIMPORT").ToString)
 
                     If dt.Rows(i).Item("FV_CCODIGO").ToString = "C01" Or dt.Rows(i).Item("FV_CCODIGO").ToString = "C06" Or dt.Rows(i).Item("FV_CCODIGO").ToString = "C07" Then
@@ -868,7 +868,6 @@ Public Class frmVisorPedidos
 
         End Try
     End Sub
-
     Private Sub txtGuia_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtGuia.KeyPress
         Try
             Dim c5_cnumdoc As String

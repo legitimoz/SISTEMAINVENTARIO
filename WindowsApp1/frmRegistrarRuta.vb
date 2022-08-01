@@ -328,7 +328,20 @@ Public Class frmRegistrarRuta
                 Cargar_Detalle_Ruta(crg_id)
             End If
         Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "SISTEMAS NORDIC")
+        End Try
+    End Sub
 
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Dim drg_id As Integer = Constantes.ValorEnteroInicial
+        Try
+            If dgvGuiaRuta.Rows.Count > Constantes.ValorEnteroInicial Then
+                If dgvGuiaRuta.CurrentRow IsNot Nothing Then
+
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "SISTEMAS NORDIC")
         End Try
     End Sub
 End Class

@@ -32,31 +32,6 @@ Partial Class frmVisorPedidos
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.dgvListarPedidos = New System.Windows.Forms.DataGridView()
-        Me.F5_CCODAGE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.F5_CNUMPED = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FV_CDESCRI = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ORDEN_COMPRA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.VAR_GUIA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.VAR_FACTURA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FECHA_HORA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DIFERENCIA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column2 = New WindowsApp1.ProgressColumn()
-        Me.TIEMPO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.F5_CCODCLI = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.F5_CNOMBRE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.F5_NIMPORT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SALDO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CL_CDEPT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ESTADO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.F5_CUSUAP = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.F5_DFECAPR = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TU_ALIAS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TU_NOMUSU = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.F5_CESTADO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FV_CCODIGO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.VAR_OBS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.OBSERV = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GLOSA = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.tslCantidad = New System.Windows.Forms.ToolStripStatusLabel()
@@ -122,6 +97,32 @@ Partial Class frmVisorPedidos
         Me.chkFiltroFecha = New System.Windows.Forms.CheckBox()
         Me.chkAprobarComercial = New System.Windows.Forms.CheckBox()
         Me.lblSincro = New System.Windows.Forms.Label()
+        Me.BONIFICACION = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.F5_CCODAGE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.F5_CNUMPED = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FV_CDESCRI = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ORDEN_COMPRA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.VAR_GUIA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.VAR_FACTURA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FECHA_HORA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DIFERENCIA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New WindowsApp1.ProgressColumn()
+        Me.TIEMPO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.F5_CCODCLI = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.F5_CNOMBRE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.F5_NIMPORT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SALDO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CL_CDEPT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ESTADO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.F5_CUSUAP = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.F5_DFECAPR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TU_ALIAS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TU_NOMUSU = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.F5_CESTADO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FV_CCODIGO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.VAR_OBS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OBSERV = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GLOSA = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.dgvListarPedidos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
@@ -160,7 +161,7 @@ Partial Class frmVisorPedidos
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgvListarPedidos.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvListarPedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvListarPedidos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.F5_CCODAGE, Me.F5_CNUMPED, Me.FV_CDESCRI, Me.ORDEN_COMPRA, Me.VAR_GUIA, Me.VAR_FACTURA, Me.FECHA_HORA, Me.DIFERENCIA, Me.Column2, Me.TIEMPO, Me.F5_CCODCLI, Me.F5_CNOMBRE, Me.F5_NIMPORT, Me.SALDO, Me.CL_CDEPT, Me.ESTADO, Me.F5_CUSUAP, Me.F5_DFECAPR, Me.TU_ALIAS, Me.TU_NOMUSU, Me.F5_CESTADO, Me.FV_CCODIGO, Me.VAR_OBS, Me.OBSERV, Me.GLOSA})
+        Me.dgvListarPedidos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.BONIFICACION, Me.F5_CCODAGE, Me.F5_CNUMPED, Me.FV_CDESCRI, Me.ORDEN_COMPRA, Me.VAR_GUIA, Me.VAR_FACTURA, Me.FECHA_HORA, Me.DIFERENCIA, Me.Column2, Me.TIEMPO, Me.F5_CCODCLI, Me.F5_CNOMBRE, Me.F5_NIMPORT, Me.SALDO, Me.CL_CDEPT, Me.ESTADO, Me.F5_CUSUAP, Me.F5_DFECAPR, Me.TU_ALIAS, Me.TU_NOMUSU, Me.F5_CESTADO, Me.FV_CCODIGO, Me.VAR_OBS, Me.OBSERV, Me.GLOSA})
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -175,154 +176,6 @@ Partial Class frmVisorPedidos
         Me.dgvListarPedidos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvListarPedidos.Size = New System.Drawing.Size(991, 282)
         Me.dgvListarPedidos.TabIndex = 38
-        '
-        'F5_CCODAGE
-        '
-        Me.F5_CCODAGE.HeaderText = "F5_CCODAGE"
-        Me.F5_CCODAGE.Name = "F5_CCODAGE"
-        Me.F5_CCODAGE.Visible = False
-        '
-        'F5_CNUMPED
-        '
-        Me.F5_CNUMPED.HeaderText = "NRO PEDIDO"
-        Me.F5_CNUMPED.Name = "F5_CNUMPED"
-        '
-        'FV_CDESCRI
-        '
-        Me.FV_CDESCRI.FillWeight = 250.0!
-        Me.FV_CDESCRI.HeaderText = "FORMA DE PAGO"
-        Me.FV_CDESCRI.Name = "FV_CDESCRI"
-        Me.FV_CDESCRI.Width = 180
-        '
-        'ORDEN_COMPRA
-        '
-        Me.ORDEN_COMPRA.HeaderText = "ORDEN COMPRA"
-        Me.ORDEN_COMPRA.Name = "ORDEN_COMPRA"
-        Me.ORDEN_COMPRA.Width = 80
-        '
-        'VAR_GUIA
-        '
-        Me.VAR_GUIA.HeaderText = "GUIA"
-        Me.VAR_GUIA.Name = "VAR_GUIA"
-        Me.VAR_GUIA.Width = 80
-        '
-        'VAR_FACTURA
-        '
-        Me.VAR_FACTURA.HeaderText = "FACTURA"
-        Me.VAR_FACTURA.Name = "VAR_FACTURA"
-        '
-        'FECHA_HORA
-        '
-        Me.FECHA_HORA.HeaderText = "FECHA HORA"
-        Me.FECHA_HORA.Name = "FECHA_HORA"
-        Me.FECHA_HORA.Width = 120
-        '
-        'DIFERENCIA
-        '
-        Me.DIFERENCIA.HeaderText = "TIEMPO TRANSCURRIDO"
-        Me.DIFERENCIA.Name = "DIFERENCIA"
-        Me.DIFERENCIA.Visible = False
-        Me.DIFERENCIA.Width = 75
-        '
-        'Column2
-        '
-        Me.Column2.HeaderText = "PROGRESO"
-        Me.Column2.Name = "Column2"
-        Me.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.Column2.Width = 200
-        '
-        'TIEMPO
-        '
-        Me.TIEMPO.HeaderText = "TIEMPO"
-        Me.TIEMPO.Name = "TIEMPO"
-        Me.TIEMPO.Visible = False
-        Me.TIEMPO.Width = 50
-        '
-        'F5_CCODCLI
-        '
-        Me.F5_CCODCLI.HeaderText = "RUC"
-        Me.F5_CCODCLI.Name = "F5_CCODCLI"
-        '
-        'F5_CNOMBRE
-        '
-        Me.F5_CNOMBRE.HeaderText = "CLIENTE"
-        Me.F5_CNOMBRE.Name = "F5_CNOMBRE"
-        Me.F5_CNOMBRE.Width = 200
-        '
-        'F5_NIMPORT
-        '
-        Me.F5_NIMPORT.HeaderText = "IMPORTE"
-        Me.F5_NIMPORT.Name = "F5_NIMPORT"
-        Me.F5_NIMPORT.Width = 70
-        '
-        'SALDO
-        '
-        Me.SALDO.HeaderText = "SALDO"
-        Me.SALDO.Name = "SALDO"
-        Me.SALDO.Width = 70
-        '
-        'CL_CDEPT
-        '
-        Me.CL_CDEPT.HeaderText = "DEPARTAMENTO"
-        Me.CL_CDEPT.Name = "CL_CDEPT"
-        '
-        'ESTADO
-        '
-        Me.ESTADO.HeaderText = "ESTADO"
-        Me.ESTADO.Name = "ESTADO"
-        Me.ESTADO.Width = 200
-        '
-        'F5_CUSUAP
-        '
-        Me.F5_CUSUAP.HeaderText = "USUARIO APROBACION"
-        Me.F5_CUSUAP.Name = "F5_CUSUAP"
-        Me.F5_CUSUAP.Width = 70
-        '
-        'F5_DFECAPR
-        '
-        Me.F5_DFECAPR.HeaderText = "FECHA APROBACION"
-        Me.F5_DFECAPR.Name = "F5_DFECAPR"
-        '
-        'TU_ALIAS
-        '
-        Me.TU_ALIAS.HeaderText = "USUARIO REPRE"
-        Me.TU_ALIAS.Name = "TU_ALIAS"
-        Me.TU_ALIAS.Width = 70
-        '
-        'TU_NOMUSU
-        '
-        Me.TU_NOMUSU.HeaderText = "REPRESENTANTE"
-        Me.TU_NOMUSU.Name = "TU_NOMUSU"
-        Me.TU_NOMUSU.Width = 150
-        '
-        'F5_CESTADO
-        '
-        Me.F5_CESTADO.HeaderText = "F5_CESTADO"
-        Me.F5_CESTADO.Name = "F5_CESTADO"
-        Me.F5_CESTADO.Width = 40
-        '
-        'FV_CCODIGO
-        '
-        Me.FV_CCODIGO.HeaderText = "FV_CCODIGO"
-        Me.FV_CCODIGO.Name = "FV_CCODIGO"
-        Me.FV_CCODIGO.Width = 40
-        '
-        'VAR_OBS
-        '
-        Me.VAR_OBS.HeaderText = "OBSER"
-        Me.VAR_OBS.Name = "VAR_OBS"
-        Me.VAR_OBS.Width = 40
-        '
-        'OBSERV
-        '
-        Me.OBSERV.HeaderText = "OBSERV"
-        Me.OBSERV.Name = "OBSERV"
-        '
-        'GLOSA
-        '
-        Me.GLOSA.HeaderText = "GLOSA"
-        Me.GLOSA.Name = "GLOSA"
         '
         'StatusStrip1
         '
@@ -483,7 +336,7 @@ Partial Class frmVisorPedidos
         Me.TabControl1.Location = New System.Drawing.Point(3, 3)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(979, 179)
+        Me.TabControl1.Size = New System.Drawing.Size(979, 180)
         Me.TabControl1.TabIndex = 1
         '
         'TabPage3
@@ -493,7 +346,7 @@ Partial Class frmVisorPedidos
         Me.TabPage3.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(2)
-        Me.TabPage3.Size = New System.Drawing.Size(971, 153)
+        Me.TabPage3.Size = New System.Drawing.Size(971, 154)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Trazabilidad"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -529,7 +382,7 @@ Partial Class frmVisorPedidos
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(971, 153)
+        Me.TabPage1.Size = New System.Drawing.Size(971, 154)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Detalle de Productos"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -565,7 +418,7 @@ Partial Class frmVisorPedidos
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(971, 153)
+        Me.TabPage2.Size = New System.Drawing.Size(971, 154)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Historial Observaciones"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -626,7 +479,7 @@ Partial Class frmVisorPedidos
         Me.TabPage4.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(2)
-        Me.TabPage4.Size = New System.Drawing.Size(971, 153)
+        Me.TabPage4.Size = New System.Drawing.Size(971, 154)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "Cuentas x Cobrar"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -662,7 +515,7 @@ Partial Class frmVisorPedidos
         Me.TabPage5.Location = New System.Drawing.Point(4, 22)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage5.Size = New System.Drawing.Size(971, 153)
+        Me.TabPage5.Size = New System.Drawing.Size(971, 154)
         Me.TabPage5.TabIndex = 4
         Me.TabPage5.Text = "Bonificaciones"
         Me.TabPage5.UseVisualStyleBackColor = True
@@ -1015,6 +868,159 @@ Partial Class frmVisorPedidos
         Me.lblSincro.TabIndex = 52
         Me.lblSincro.Text = "Label3"
         '
+        'BONIFICACION
+        '
+        Me.BONIFICACION.HeaderText = "BONIFICACION"
+        Me.BONIFICACION.Name = "BONIFICACION"
+        '
+        'F5_CCODAGE
+        '
+        Me.F5_CCODAGE.HeaderText = "F5_CCODAGE"
+        Me.F5_CCODAGE.Name = "F5_CCODAGE"
+        Me.F5_CCODAGE.Visible = False
+        '
+        'F5_CNUMPED
+        '
+        Me.F5_CNUMPED.HeaderText = "NRO PEDIDO"
+        Me.F5_CNUMPED.Name = "F5_CNUMPED"
+        '
+        'FV_CDESCRI
+        '
+        Me.FV_CDESCRI.FillWeight = 250.0!
+        Me.FV_CDESCRI.HeaderText = "FORMA DE PAGO"
+        Me.FV_CDESCRI.Name = "FV_CDESCRI"
+        Me.FV_CDESCRI.Width = 180
+        '
+        'ORDEN_COMPRA
+        '
+        Me.ORDEN_COMPRA.HeaderText = "ORDEN COMPRA"
+        Me.ORDEN_COMPRA.Name = "ORDEN_COMPRA"
+        Me.ORDEN_COMPRA.Width = 80
+        '
+        'VAR_GUIA
+        '
+        Me.VAR_GUIA.HeaderText = "GUIA"
+        Me.VAR_GUIA.Name = "VAR_GUIA"
+        Me.VAR_GUIA.Width = 80
+        '
+        'VAR_FACTURA
+        '
+        Me.VAR_FACTURA.HeaderText = "FACTURA"
+        Me.VAR_FACTURA.Name = "VAR_FACTURA"
+        '
+        'FECHA_HORA
+        '
+        Me.FECHA_HORA.HeaderText = "FECHA HORA"
+        Me.FECHA_HORA.Name = "FECHA_HORA"
+        Me.FECHA_HORA.Width = 120
+        '
+        'DIFERENCIA
+        '
+        Me.DIFERENCIA.HeaderText = "TIEMPO TRANSCURRIDO"
+        Me.DIFERENCIA.Name = "DIFERENCIA"
+        Me.DIFERENCIA.Visible = False
+        Me.DIFERENCIA.Width = 75
+        '
+        'Column2
+        '
+        Me.Column2.HeaderText = "PROGRESO"
+        Me.Column2.Name = "Column2"
+        Me.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.Column2.Width = 200
+        '
+        'TIEMPO
+        '
+        Me.TIEMPO.HeaderText = "TIEMPO"
+        Me.TIEMPO.Name = "TIEMPO"
+        Me.TIEMPO.Visible = False
+        Me.TIEMPO.Width = 50
+        '
+        'F5_CCODCLI
+        '
+        Me.F5_CCODCLI.HeaderText = "RUC"
+        Me.F5_CCODCLI.Name = "F5_CCODCLI"
+        '
+        'F5_CNOMBRE
+        '
+        Me.F5_CNOMBRE.HeaderText = "CLIENTE"
+        Me.F5_CNOMBRE.Name = "F5_CNOMBRE"
+        Me.F5_CNOMBRE.Width = 200
+        '
+        'F5_NIMPORT
+        '
+        Me.F5_NIMPORT.HeaderText = "IMPORTE"
+        Me.F5_NIMPORT.Name = "F5_NIMPORT"
+        Me.F5_NIMPORT.Width = 70
+        '
+        'SALDO
+        '
+        Me.SALDO.HeaderText = "SALDO"
+        Me.SALDO.Name = "SALDO"
+        Me.SALDO.Width = 70
+        '
+        'CL_CDEPT
+        '
+        Me.CL_CDEPT.HeaderText = "DEPARTAMENTO"
+        Me.CL_CDEPT.Name = "CL_CDEPT"
+        '
+        'ESTADO
+        '
+        Me.ESTADO.HeaderText = "ESTADO"
+        Me.ESTADO.Name = "ESTADO"
+        Me.ESTADO.Width = 200
+        '
+        'F5_CUSUAP
+        '
+        Me.F5_CUSUAP.HeaderText = "USUARIO APROBACION"
+        Me.F5_CUSUAP.Name = "F5_CUSUAP"
+        Me.F5_CUSUAP.Width = 70
+        '
+        'F5_DFECAPR
+        '
+        Me.F5_DFECAPR.HeaderText = "FECHA APROBACION"
+        Me.F5_DFECAPR.Name = "F5_DFECAPR"
+        '
+        'TU_ALIAS
+        '
+        Me.TU_ALIAS.HeaderText = "USUARIO REPRE"
+        Me.TU_ALIAS.Name = "TU_ALIAS"
+        Me.TU_ALIAS.Width = 70
+        '
+        'TU_NOMUSU
+        '
+        Me.TU_NOMUSU.HeaderText = "REPRESENTANTE"
+        Me.TU_NOMUSU.Name = "TU_NOMUSU"
+        Me.TU_NOMUSU.Width = 150
+        '
+        'F5_CESTADO
+        '
+        Me.F5_CESTADO.HeaderText = "F5_CESTADO"
+        Me.F5_CESTADO.Name = "F5_CESTADO"
+        Me.F5_CESTADO.Width = 40
+        '
+        'FV_CCODIGO
+        '
+        Me.FV_CCODIGO.HeaderText = "FV_CCODIGO"
+        Me.FV_CCODIGO.Name = "FV_CCODIGO"
+        Me.FV_CCODIGO.Width = 40
+        '
+        'VAR_OBS
+        '
+        Me.VAR_OBS.HeaderText = "OBSER"
+        Me.VAR_OBS.Name = "VAR_OBS"
+        Me.VAR_OBS.Width = 40
+        '
+        'OBSERV
+        '
+        Me.OBSERV.HeaderText = "OBSERV"
+        Me.OBSERV.Name = "OBSERV"
+        '
+        'GLOSA
+        '
+        Me.GLOSA.HeaderText = "GLOSA"
+        Me.GLOSA.Name = "GLOSA"
+        '
         'frmVisorPedidos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1125,6 +1131,11 @@ Partial Class frmVisorPedidos
     Friend WithEvents chkAprobarComercial As CheckBox
     Friend WithEvents lblSincro As Label
     Friend WithEvents TabPage5 As TabPage
+    Friend WithEvents Dg_Bonificacion As DataGridView
+    Friend WithEvents CODIGO As DataGridViewTextBoxColumn
+    Friend WithEvents ARTICULO As DataGridViewTextBoxColumn
+    Friend WithEvents CANTIDAD As DataGridViewTextBoxColumn
+    Friend WithEvents BONIFICACION As DataGridViewTextBoxColumn
     Friend WithEvents F5_CCODAGE As DataGridViewTextBoxColumn
     Friend WithEvents F5_CNUMPED As DataGridViewTextBoxColumn
     Friend WithEvents FV_CDESCRI As DataGridViewTextBoxColumn
@@ -1150,8 +1161,4 @@ Partial Class frmVisorPedidos
     Friend WithEvents VAR_OBS As DataGridViewTextBoxColumn
     Friend WithEvents OBSERV As DataGridViewTextBoxColumn
     Friend WithEvents GLOSA As DataGridViewTextBoxColumn
-    Friend WithEvents Dg_Bonificacion As DataGridView
-    Friend WithEvents CODIGO As DataGridViewTextBoxColumn
-    Friend WithEvents ARTICULO As DataGridViewTextBoxColumn
-    Friend WithEvents CANTIDAD As DataGridViewTextBoxColumn
 End Class

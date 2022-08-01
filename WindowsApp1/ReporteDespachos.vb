@@ -55,19 +55,15 @@ Public Class ReporteDespachos
 
     Public Sub ListarDespachos()
         Try
-
             If Dg_Cabecera.Rows.Count > 0 Then
                 Dg_Cabecera.Rows.Clear()
             End If
             Dim dtretorno As New DataTable
             dtretorno = LlamarObnterDespachos()
-
             If dtretorno.Rows.Count > 0 Then
-
                 Dim contador As Integer = 0
                 For Each RowRetorno As DataRow In dtretorno.Rows
                     Dg_Cabecera.Rows.Add()
-
                     Dg_Cabecera.Rows(contador).Cells("CodRuta").Value = RowRetorno.Item("Cod Ruta").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("FechaDespacho").Value = RowRetorno.Item("Fecha Despacho").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("Guia").Value = RowRetorno.Item("Guia").ToString.Trim
@@ -87,16 +83,33 @@ Public Class ReporteDespachos
                     Dg_Cabecera.Rows(contador).Cells("FechaRetorno").Value = RowRetorno.Item("Fecha Retorno").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("Vehiculo").Value = RowRetorno.Item("Vehiculo").ToString.Trim
                     Dg_Cabecera.Rows(contador).Cells("Capacidad").Value = RowRetorno.Item("Capacidad").ToString
-
+                    Dg_Cabecera.Rows(contador).Cells("Distrito").Value = RowRetorno.Item("Distrito").ToString
+                    Dg_Cabecera.Rows(contador).Cells("Restriccion").Value = RowRetorno.Item("Restriccion").ToString
+                    Dg_Cabecera.Rows(contador).Cells("Ruc").Value = RowRetorno.Item("Ruc").ToString
+                    Dg_Cabecera.Rows(contador).Cells("Importe").Value = RowRetorno.Item("Importe").ToString
+                    Dg_Cabecera.Rows(contador).Cells("Comentario").Value = RowRetorno.Item("Comentario").ToString
+                    Dg_Cabecera.Rows(contador).Cells("Site").Value = RowRetorno.Item("Site").ToString
+                    If RowRetorno.Item("Ruc").ToString.Trim = "20131257750" And RowRetorno.Item("Direccion").ToString.Trim = "PJE. EL SOL 400 CDRA 35 AV. ARGENTINA - CALLAO - CALLAO - CALLAO" Then
+                        Dg_Cabecera.Rows(contador).Cells("Canal").Value = "SALOG"
+                    Else
+                        If RowRetorno.Item("Ruc").ToString.Trim = "20556281140" Then
+                            Dg_Cabecera.Rows(contador).Cells("Canal").Value = "IBT"
+                        Else
+                            If RowRetorno.Item("Ruc").ToString.Trim = "20601054001" Then
+                                Dg_Cabecera.Rows(contador).Cells("Canal").Value = "ISCO"
+                            Else
+                                If RowRetorno.Item("Ruc").ToString.Trim = "20399497257" Then
+                                    Dg_Cabecera.Rows(contador).Cells("Canal").Value = "DISTRIBUIDOR"
+                                End If
+                            End If
+                        End If
+                    End If
                     If RowRetorno.Item("Provincia").ToString.Trim = "CAÑETE".Trim Or RowRetorno.Item("Provincia").ToString.Trim = "HUARAL".Trim Or RowRetorno.Item("Provincia").ToString.Trim = "HUAURA".Trim Then
                         Dg_Cabecera.Rows(contador).Cells("Lima_Provincia").Value = "PROVINCIA"
                     End If
-
-
                     contador = contador + 1
                 Next
                 txt_cant_Rutas.Text = Dg_Cabecera.Rows.Count.ToString
-
             End If
         Catch ex As Exception
             Throw ex
@@ -154,7 +167,11 @@ Public Class ReporteDespachos
                     rowAdd.Item("Fecha Retorno") = dgrow.Cells("FechaRetorno").Value
                     rowAdd.Item("Vehiculo") = dgrow.Cells("Vehiculo").Value
                     rowAdd.Item("Capacidad_Kg") = dgrow.Cells("Capacidad").Value
-
+                    rowAdd.Item("Distrito") = dgrow.Cells("Distrito").Value
+                    rowAdd.Item("Restriccion") = dgrow.Cells("Restriccion").Value
+                    rowAdd.Item("Comentario") = dgrow.Cells("Comentario").Value
+                    rowAdd.Item("Site") = dgrow.Cells("Site").Value
+                    rowAdd.Item("Importe") = dgrow.Cells("Importe").Value
                     dtExcel.Rows.Add(rowAdd)
                 Next
                 If dtExcel.Rows.Count > 0 Then

@@ -22,7 +22,6 @@ Public Class EditarRack
             If txt_numeracion.Text <> "" And txt_x.Text <> "" And txt_y.Text <> "" Then
                 rp = ObjAlmacen.RegistrarAlmacen(idalmacen, Convert.ToInt32(txt_numeracion.Text), Convert.ToInt32(txt_x.Text), Convert.ToInt32(txt_y.Text), codigoalmacen)
                 If rp <> 0 Then
-
                     Dim FormEditPos As New EditarPosicionesComplemento
                     FormEditPos.Text = "Complementar Posiciones"
                     FormEditPos.idrack = rp
@@ -35,9 +34,11 @@ Public Class EditarRack
                 End If
             End If
         Catch ex As Exception
-
+            Throw ex
         End Try
     End Sub
 
+    Private Sub EditarRack_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+    End Sub
 End Class

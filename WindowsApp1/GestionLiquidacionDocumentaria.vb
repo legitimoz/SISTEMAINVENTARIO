@@ -74,8 +74,8 @@ Public Class GestionLiquidacionDocumentaria
                         Dim Serie As String = ""
                         Serie = RowRetorno.Item("NRO_GUIA").ToString.Trim.Substring(0, 3)
                         If Serie = "011" Then
-                            Tolerancia = 8
-                        ElseIf Serie = "012" Then
+                            Tolerancia = 12
+                        ElseIf Serie = "012" Or "015" Then
                             Tolerancia = 16
                         End If
                     End If
@@ -207,6 +207,16 @@ Public Class GestionLiquidacionDocumentaria
         End Try
     End Sub
 
+    Private Sub Filtrar()
+        Try
+            Dim stringfiltro As String = ""
+            stringfiltro = String.Format("NRO_GUIA LIKE '%{0}%'", txt_guia.Text)
+            dtcabecera2.DefaultView.RowFilter = stringfiltro
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Public Sub FormatoTablaCabecera()
 
         dtcabecera2.Clear()
@@ -294,6 +304,14 @@ Public Class GestionLiquidacionDocumentaria
             End If
         Catch ex As Exception
             Throw ex
+        End Try
+    End Sub
+
+    Private Sub txt_guia_TextChanged(sender As Object, e As EventArgs) Handles txt_guia.TextChanged
+        Try
+            Filtrar()
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "SISTEMAS NORDIC")
         End Try
     End Sub
 

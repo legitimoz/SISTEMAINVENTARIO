@@ -26,6 +26,15 @@ Public Class GestionDeliveryOnTime
 
         End Try
     End Sub
+    Private Sub Filtrar()
+        Try
+            Dim stringfiltro As String = ""
+            stringfiltro = String.Format("NRO_GUIA LIKE '%{0}%'", txt_guia.Text)
+            dtcabecera2.DefaultView.RowFilter = stringfiltro
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
 
     Private Sub CargarTiemposJJ()
@@ -457,7 +466,13 @@ Public Class GestionDeliveryOnTime
         End Try
     End Sub
 
-
+    Private Sub txt_guia_TextChanged(sender As Object, e As EventArgs) Handles txt_guia.TextChanged
+        Try
+            Filtrar()
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "SISTEMAS NORDIC")
+        End Try
+    End Sub
 
     Function GridAExcel(ByVal ElGrid As DataGridView) As Boolean
 

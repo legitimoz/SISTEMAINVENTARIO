@@ -22,12 +22,63 @@ Partial Class GestionProgramacionDespacho
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GestionProgramacionDespacho))
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Dg_Cabecera = New System.Windows.Forms.DataGridView()
+        Me.MARCAR = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.SITUACION = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ESTADO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FECHAREPCECION = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.HORARECEPCION = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.USUARIO_RECEPCION = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FECHA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FECHA_GUIA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.HORA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.HORA_GUIA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.COD_PED = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NRO_GUIA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CONDICION = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RUC = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NOM_CLIENTE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DIRECCION_ENTREGA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.UBIGEO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PROVINCIA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DEPARTAMENTO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DISTRITO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LIMA_PROV = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CANAL = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TRANSPORTE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.M3UN = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IMPORTE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.M3FIN = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TIEMPOENTREGA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DESTINO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RUTA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DETALLE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RESTRICCION = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.REPRESENTANTE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.C5_CTD = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.C5_CALMA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SERIE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.COMENTARIO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SERIE2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FECHA_RUTA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TRANSPORTISTA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FECHA_RETORNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GLOSA = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FECHAVENCEOC = New WindowsApp1.DateTimeGridColumn()
+        Me.idcosto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NombreCosto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FISICO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.siteliq = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.sitepick = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.nombrepicking = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.nombreliquidacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EstadoRuta = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MotivoAnulacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.cmb_estado = New System.Windows.Forms.ComboBox()
@@ -111,56 +162,6 @@ Partial Class GestionProgramacionDespacho
         Me.DataGridViewTextBoxColumn43 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn44 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn45 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MARCAR = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.SITUACION = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ESTADO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FECHAREPCECION = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.HORARECEPCION = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.USUARIO_RECEPCION = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FECHA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FECHA_GUIA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.HORA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.HORA_GUIA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.COD_PED = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NRO_GUIA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CONDICION = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RUC = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NOM_CLIENTE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DIRECCION_ENTREGA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.UBIGEO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PROVINCIA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DEPARTAMENTO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DISTRITO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LIMA_PROV = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CANAL = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TRANSPORTE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.M3UN = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IMPORTE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.M3FIN = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TIEMPOENTREGA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DESTINO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RUTA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DETALLE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.RESTRICCION = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.REPRESENTANTE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.C5_CTD = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.C5_CALMA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SERIE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.COMENTARIO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SERIE2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FECHA_RUTA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TRANSPORTISTA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FECHA_RETORNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GLOSA = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FECHAVENCEOC = New WindowsApp1.DateTimeGridColumn()
-        Me.idcosto = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NombreCosto = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FISICO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.siteliq = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.sitepick = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.nombrepicking = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.nombreliquidacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.EstadoRuta = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel6.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.Dg_Cabecera, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -198,7 +199,7 @@ Partial Class GestionProgramacionDespacho
         Me.Dg_Cabecera.AllowUserToDeleteRows = False
         Me.Dg_Cabecera.BackgroundColor = System.Drawing.Color.White
         Me.Dg_Cabecera.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Dg_Cabecera.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.MARCAR, Me.SITUACION, Me.ESTADO, Me.FECHAREPCECION, Me.HORARECEPCION, Me.USUARIO_RECEPCION, Me.FECHA, Me.FECHA_GUIA, Me.HORA, Me.HORA_GUIA, Me.COD_PED, Me.NRO_GUIA, Me.CONDICION, Me.RUC, Me.NOM_CLIENTE, Me.DIRECCION_ENTREGA, Me.UBIGEO, Me.PROVINCIA, Me.DEPARTAMENTO, Me.DISTRITO, Me.LIMA_PROV, Me.CANAL, Me.TRANSPORTE, Me.M3UN, Me.IMPORTE, Me.M3FIN, Me.TIEMPOENTREGA, Me.DESTINO, Me.RUTA, Me.DETALLE, Me.RESTRICCION, Me.REPRESENTANTE, Me.C5_CTD, Me.C5_CALMA, Me.SERIE, Me.COMENTARIO, Me.SERIE2, Me.FECHA_RUTA, Me.TRANSPORTISTA, Me.FECHA_RETORNO, Me.GLOSA, Me.FECHAVENCEOC, Me.idcosto, Me.NombreCosto, Me.FISICO, Me.siteliq, Me.sitepick, Me.nombrepicking, Me.nombreliquidacion, Me.EstadoRuta})
+        Me.Dg_Cabecera.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.MARCAR, Me.SITUACION, Me.ESTADO, Me.FECHAREPCECION, Me.HORARECEPCION, Me.USUARIO_RECEPCION, Me.FECHA, Me.FECHA_GUIA, Me.HORA, Me.HORA_GUIA, Me.COD_PED, Me.NRO_GUIA, Me.CONDICION, Me.RUC, Me.NOM_CLIENTE, Me.DIRECCION_ENTREGA, Me.UBIGEO, Me.PROVINCIA, Me.DEPARTAMENTO, Me.DISTRITO, Me.LIMA_PROV, Me.CANAL, Me.TRANSPORTE, Me.M3UN, Me.IMPORTE, Me.M3FIN, Me.TIEMPOENTREGA, Me.DESTINO, Me.RUTA, Me.DETALLE, Me.RESTRICCION, Me.REPRESENTANTE, Me.C5_CTD, Me.C5_CALMA, Me.SERIE, Me.COMENTARIO, Me.SERIE2, Me.FECHA_RUTA, Me.TRANSPORTISTA, Me.FECHA_RETORNO, Me.GLOSA, Me.FECHAVENCEOC, Me.idcosto, Me.NombreCosto, Me.FISICO, Me.siteliq, Me.sitepick, Me.nombrepicking, Me.nombreliquidacion, Me.EstadoRuta, Me.MotivoAnulacion})
         Me.Dg_Cabecera.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Dg_Cabecera.Location = New System.Drawing.Point(0, 0)
         Me.Dg_Cabecera.Margin = New System.Windows.Forms.Padding(0)
@@ -210,644 +211,6 @@ Partial Class GestionProgramacionDespacho
         Me.Dg_Cabecera.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.Dg_Cabecera.Size = New System.Drawing.Size(1291, 301)
         Me.Dg_Cabecera.TabIndex = 9
-        '
-        'Panel1
-        '
-        Me.Panel1.Controls.Add(Me.Panel3)
-        Me.Panel1.Controls.Add(Me.ToolStrip1)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel1.Location = New System.Drawing.Point(0, 0)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1291, 139)
-        Me.Panel1.TabIndex = 47
-        '
-        'Panel3
-        '
-        Me.Panel3.Controls.Add(Me.cmb_estado)
-        Me.Panel3.Controls.Add(Me.Label4)
-        Me.Panel3.Controls.Add(Me.cmb_limaprov)
-        Me.Panel3.Controls.Add(Me.Label3)
-        Me.Panel3.Controls.Add(Me.cmb_recep)
-        Me.Panel3.Controls.Add(Me.Label2)
-        Me.Panel3.Controls.Add(Me.txt_anuladas)
-        Me.Panel3.Controls.Add(Me.Button5)
-        Me.Panel3.Controls.Add(Me.txt_pendientes)
-        Me.Panel3.Controls.Add(Me.txt_recepcionadas)
-        Me.Panel3.Controls.Add(Me.Button3)
-        Me.Panel3.Controls.Add(Me.Button1)
-        Me.Panel3.Controls.Add(Me.cmb_serie)
-        Me.Panel3.Controls.Add(Me.Label1)
-        Me.Panel3.Controls.Add(Me.CheckMarcar)
-        Me.Panel3.Controls.Add(Me.txt_numero)
-        Me.Panel3.Controls.Add(Me.dt_hasta)
-        Me.Panel3.Controls.Add(Me.Label6)
-        Me.Panel3.Controls.Add(Me.Label9)
-        Me.Panel3.Controls.Add(Me.dt_desde)
-        Me.Panel3.Controls.Add(Me.Label8)
-        Me.Panel3.Controls.Add(Me.btnBuscar)
-        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel3.Location = New System.Drawing.Point(0, 40)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(1291, 99)
-        Me.Panel3.TabIndex = 50
-        '
-        'cmb_estado
-        '
-        Me.cmb_estado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmb_estado.FormattingEnabled = True
-        Me.cmb_estado.Items.AddRange(New Object() {"TODAS", "VIGENTE", "ANULADO"})
-        Me.cmb_estado.Location = New System.Drawing.Point(843, 9)
-        Me.cmb_estado.Name = "cmb_estado"
-        Me.cmb_estado.Size = New System.Drawing.Size(161, 21)
-        Me.cmb_estado.TabIndex = 107
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(794, 12)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(43, 14)
-        Me.Label4.TabIndex = 106
-        Me.Label4.Text = "Estado:"
-        Me.Label4.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        '
-        'cmb_limaprov
-        '
-        Me.cmb_limaprov.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmb_limaprov.FormattingEnabled = True
-        Me.cmb_limaprov.Items.AddRange(New Object() {"TODAS", "LIMA", "PROVINCIA"})
-        Me.cmb_limaprov.Location = New System.Drawing.Point(604, 39)
-        Me.cmb_limaprov.Name = "cmb_limaprov"
-        Me.cmb_limaprov.Size = New System.Drawing.Size(161, 21)
-        Me.cmb_limaprov.TabIndex = 105
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(513, 46)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(85, 14)
-        Me.Label3.TabIndex = 104
-        Me.Label3.Text = "Lima / Provincia:"
-        Me.Label3.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        '
-        'cmb_recep
-        '
-        Me.cmb_recep.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmb_recep.DropDownWidth = 250
-        Me.cmb_recep.FormattingEnabled = True
-        Me.cmb_recep.Items.AddRange(New Object() {"TODAS", "PENDIENTE DE REPCEPCION", "RECEPCIONADO"})
-        Me.cmb_recep.Location = New System.Drawing.Point(604, 9)
-        Me.cmb_recep.Name = "cmb_recep"
-        Me.cmb_recep.Size = New System.Drawing.Size(161, 21)
-        Me.cmb_recep.TabIndex = 103
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(513, 13)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(61, 14)
-        Me.Label2.TabIndex = 102
-        Me.Label2.Text = "Recepcion:"
-        Me.Label2.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        '
-        'txt_anuladas
-        '
-        Me.txt_anuladas.AutoSize = True
-        Me.txt_anuladas.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.txt_anuladas.Location = New System.Drawing.Point(1252, 13)
-        Me.txt_anuladas.Name = "txt_anuladas"
-        Me.txt_anuladas.Size = New System.Drawing.Size(12, 13)
-        Me.txt_anuladas.TabIndex = 101
-        Me.txt_anuladas.Text = "-"
-        '
-        'Button5
-        '
-        Me.Button5.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.Button5.Font = New System.Drawing.Font("Tahoma", 7.0!, System.Drawing.FontStyle.Bold)
-        Me.Button5.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.Button5.Location = New System.Drawing.Point(1078, 6)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(167, 23)
-        Me.Button5.TabIndex = 100
-        Me.Button5.Text = "GUIAS ANULADAS"
-        Me.Button5.UseVisualStyleBackColor = False
-        '
-        'txt_pendientes
-        '
-        Me.txt_pendientes.AutoSize = True
-        Me.txt_pendientes.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.txt_pendientes.Location = New System.Drawing.Point(1252, 36)
-        Me.txt_pendientes.Name = "txt_pendientes"
-        Me.txt_pendientes.Size = New System.Drawing.Size(12, 13)
-        Me.txt_pendientes.TabIndex = 99
-        Me.txt_pendientes.Text = "-"
-        '
-        'txt_recepcionadas
-        '
-        Me.txt_recepcionadas.AutoSize = True
-        Me.txt_recepcionadas.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.txt_recepcionadas.Location = New System.Drawing.Point(1252, 60)
-        Me.txt_recepcionadas.Name = "txt_recepcionadas"
-        Me.txt_recepcionadas.Size = New System.Drawing.Size(12, 13)
-        Me.txt_recepcionadas.TabIndex = 98
-        Me.txt_recepcionadas.Text = "-"
-        '
-        'Button3
-        '
-        Me.Button3.BackColor = System.Drawing.Color.Crimson
-        Me.Button3.Font = New System.Drawing.Font("Tahoma", 7.0!, System.Drawing.FontStyle.Bold)
-        Me.Button3.ForeColor = System.Drawing.Color.White
-        Me.Button3.Location = New System.Drawing.Point(1078, 31)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(167, 23)
-        Me.Button3.TabIndex = 97
-        Me.Button3.Text = "PENDIENTES DE RECEPCION"
-        Me.Button3.UseVisualStyleBackColor = False
-        '
-        'Button1
-        '
-        Me.Button1.BackColor = System.Drawing.Color.OliveDrab
-        Me.Button1.Font = New System.Drawing.Font("Tahoma", 7.0!, System.Drawing.FontStyle.Bold)
-        Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(1078, 55)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(167, 23)
-        Me.Button1.TabIndex = 96
-        Me.Button1.Text = "RECEPCIONADAS"
-        Me.Button1.UseVisualStyleBackColor = False
-        '
-        'cmb_serie
-        '
-        Me.cmb_serie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmb_serie.FormattingEnabled = True
-        Me.cmb_serie.Items.AddRange(New Object() {"TODAS", "007", "011", "012", "0013", "007", "0009", "015"})
-        Me.cmb_serie.Location = New System.Drawing.Point(324, 39)
-        Me.cmb_serie.Name = "cmb_serie"
-        Me.cmb_serie.Size = New System.Drawing.Size(161, 21)
-        Me.cmb_serie.TabIndex = 92
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(281, 46)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(35, 14)
-        Me.Label1.TabIndex = 91
-        Me.Label1.Text = "Serie:"
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        '
-        'CheckMarcar
-        '
-        Me.CheckMarcar.AutoSize = True
-        Me.CheckMarcar.Location = New System.Drawing.Point(13, 76)
-        Me.CheckMarcar.Name = "CheckMarcar"
-        Me.CheckMarcar.Size = New System.Drawing.Size(87, 17)
-        Me.CheckMarcar.TabIndex = 90
-        Me.CheckMarcar.Text = "Marcar Todo"
-        Me.CheckMarcar.UseVisualStyleBackColor = True
-        '
-        'txt_numero
-        '
-        Me.txt_numero.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txt_numero.Location = New System.Drawing.Point(95, 40)
-        Me.txt_numero.Name = "txt_numero"
-        Me.txt_numero.Size = New System.Drawing.Size(161, 20)
-        Me.txt_numero.TabIndex = 89
-        '
-        'dt_hasta
-        '
-        Me.dt_hasta.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dt_hasta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dt_hasta.Location = New System.Drawing.Point(324, 9)
-        Me.dt_hasta.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.dt_hasta.Name = "dt_hasta"
-        Me.dt_hasta.Size = New System.Drawing.Size(161, 20)
-        Me.dt_hasta.TabIndex = 86
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(10, 43)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(79, 14)
-        Me.Label6.TabIndex = 88
-        Me.Label6.Text = "Nº Documento:"
-        Me.Label6.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(281, 13)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(38, 14)
-        Me.Label9.TabIndex = 84
-        Me.Label9.Text = "Hasta:"
-        Me.Label9.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        '
-        'dt_desde
-        '
-        Me.dt_desde.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dt_desde.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dt_desde.Location = New System.Drawing.Point(95, 9)
-        Me.dt_desde.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.dt_desde.Name = "dt_desde"
-        Me.dt_desde.Size = New System.Drawing.Size(161, 20)
-        Me.dt_desde.TabIndex = 87
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(11, 13)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(41, 14)
-        Me.Label8.TabIndex = 83
-        Me.Label8.Text = "Desde:"
-        Me.Label8.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        '
-        'btnBuscar
-        '
-        Me.btnBuscar.BackColor = System.Drawing.SystemColors.Control
-        Me.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnBuscar.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.btnBuscar.FlatAppearance.BorderSize = 0
-        Me.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnBuscar.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.btnBuscar.IconChar = FontAwesome.Sharp.IconChar.Search
-        Me.btnBuscar.IconColor = System.Drawing.SystemColors.ControlText
-        Me.btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Solid
-        Me.btnBuscar.IconSize = 16
-        Me.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnBuscar.Location = New System.Drawing.Point(1010, 10)
-        Me.btnBuscar.Name = "btnBuscar"
-        Me.btnBuscar.Padding = New System.Windows.Forms.Padding(0, 3, 0, 0)
-        Me.btnBuscar.Size = New System.Drawing.Size(25, 20)
-        Me.btnBuscar.TabIndex = 85
-        Me.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnBuscar.UseVisualStyleBackColor = False
-        '
-        'ToolStrip1
-        '
-        Me.ToolStrip1.BackColor = System.Drawing.SystemColors.Control
-        Me.ToolStrip1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdGenerarExcel, Me.separador5, Me.ToolStripButton1, Me.ToolStripSeparator1, Me.ToolStripButton2, Me.ToolStripSeparator2, Me.ToolStripButton3, Me.ToolStripSeparator3, Me.ToolStripButton4, Me.ToolStripSeparator4, Me.cmdCerrar})
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.ToolStrip1.Size = New System.Drawing.Size(1291, 40)
-        Me.ToolStrip1.TabIndex = 49
-        Me.ToolStrip1.Text = "ToolStrip1"
-        '
-        'cmdGenerarExcel
-        '
-        Me.cmdGenerarExcel.Image = CType(resources.GetObject("cmdGenerarExcel.Image"), System.Drawing.Image)
-        Me.cmdGenerarExcel.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.cmdGenerarExcel.Margin = New System.Windows.Forms.Padding(1)
-        Me.cmdGenerarExcel.Name = "cmdGenerarExcel"
-        Me.cmdGenerarExcel.Size = New System.Drawing.Size(81, 38)
-        Me.cmdGenerarExcel.Text = "&Exportar Excel"
-        Me.cmdGenerarExcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'separador5
-        '
-        Me.separador5.Name = "separador5"
-        Me.separador5.Size = New System.Drawing.Size(6, 40)
-        '
-        'ToolStripButton1
-        '
-        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
-        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton1.Margin = New System.Windows.Forms.Padding(1)
-        Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(86, 38)
-        Me.ToolStripButton1.Text = "&Procesar Rutas"
-        Me.ToolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'ToolStripSeparator1
-        '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 40)
-        '
-        'ToolStripButton2
-        '
-        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
-        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton2.Margin = New System.Windows.Forms.Padding(1)
-        Me.ToolStripButton2.Name = "ToolStripButton2"
-        Me.ToolStripButton2.Size = New System.Drawing.Size(112, 38)
-        Me.ToolStripButton2.Text = "&Confirmar Recepcion"
-        Me.ToolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'ToolStripSeparator2
-        '
-        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 40)
-        '
-        'ToolStripButton3
-        '
-        Me.ToolStripButton3.Image = CType(resources.GetObject("ToolStripButton3.Image"), System.Drawing.Image)
-        Me.ToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton3.Margin = New System.Windows.Forms.Padding(1)
-        Me.ToolStripButton3.Name = "ToolStripButton3"
-        Me.ToolStripButton3.Size = New System.Drawing.Size(76, 38)
-        Me.ToolStripButton3.Text = "&Agregar Guia"
-        Me.ToolStripButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'ToolStripSeparator3
-        '
-        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 40)
-        '
-        'ToolStripButton4
-        '
-        Me.ToolStripButton4.Image = CType(resources.GetObject("ToolStripButton4.Image"), System.Drawing.Image)
-        Me.ToolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton4.Margin = New System.Windows.Forms.Padding(1)
-        Me.ToolStripButton4.Name = "ToolStripButton4"
-        Me.ToolStripButton4.Size = New System.Drawing.Size(91, 38)
-        Me.ToolStripButton4.Text = "&Agregar Externo"
-        Me.ToolStripButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'ToolStripSeparator4
-        '
-        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
-        Me.ToolStripSeparator4.Size = New System.Drawing.Size(6, 40)
-        '
-        'cmdCerrar
-        '
-        Me.cmdCerrar.Image = CType(resources.GetObject("cmdCerrar.Image"), System.Drawing.Image)
-        Me.cmdCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.cmdCerrar.Margin = New System.Windows.Forms.Padding(1)
-        Me.cmdCerrar.Name = "cmdCerrar"
-        Me.cmdCerrar.Size = New System.Drawing.Size(32, 38)
-        Me.cmdCerrar.Text = "&Salir"
-        Me.cmdCerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'DataGridViewTextBoxColumn1
-        '
-        Me.DataGridViewTextBoxColumn1.HeaderText = "Fecha"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        Me.DataGridViewTextBoxColumn1.Visible = False
-        '
-        'DataGridViewTextBoxColumn2
-        '
-        Me.DataGridViewTextBoxColumn2.HeaderText = "Fecha Guia"
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        Me.DataGridViewTextBoxColumn2.Visible = False
-        '
-        'DataGridViewTextBoxColumn3
-        '
-        Me.DataGridViewTextBoxColumn3.HeaderText = "Hora"
-        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
-        Me.DataGridViewTextBoxColumn3.Visible = False
-        '
-        'DataGridViewTextBoxColumn4
-        '
-        Me.DataGridViewTextBoxColumn4.HeaderText = "Condicion Pago"
-        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
-        Me.DataGridViewTextBoxColumn4.Visible = False
-        '
-        'DataGridViewTextBoxColumn5
-        '
-        Me.DataGridViewTextBoxColumn5.HeaderText = "Hora Guia"
-        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
-        Me.DataGridViewTextBoxColumn5.Visible = False
-        '
-        'DataGridViewTextBoxColumn6
-        '
-        Me.DataGridViewTextBoxColumn6.HeaderText = "Cod Pedido"
-        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
-        Me.DataGridViewTextBoxColumn6.Visible = False
-        '
-        'DataGridViewTextBoxColumn7
-        '
-        Me.DataGridViewTextBoxColumn7.HeaderText = "N° Guia"
-        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
-        '
-        'DataGridViewTextBoxColumn8
-        '
-        Me.DataGridViewTextBoxColumn8.HeaderText = "Ruc Cliente"
-        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
-        Me.DataGridViewTextBoxColumn8.Visible = False
-        '
-        'DataGridViewTextBoxColumn9
-        '
-        Me.DataGridViewTextBoxColumn9.HeaderText = "Cliente"
-        Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
-        Me.DataGridViewTextBoxColumn9.Visible = False
-        '
-        'DataGridViewTextBoxColumn10
-        '
-        Me.DataGridViewTextBoxColumn10.HeaderText = "Direccion Entrega"
-        Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
-        '
-        'DataGridViewTextBoxColumn11
-        '
-        Me.DataGridViewTextBoxColumn11.HeaderText = "Ubigeo"
-        Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
-        '
-        'DataGridViewTextBoxColumn12
-        '
-        Me.DataGridViewTextBoxColumn12.HeaderText = "Provincia"
-        Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
-        '
-        'DataGridViewTextBoxColumn13
-        '
-        Me.DataGridViewTextBoxColumn13.HeaderText = "Departamento"
-        Me.DataGridViewTextBoxColumn13.Name = "DataGridViewTextBoxColumn13"
-        '
-        'DataGridViewTextBoxColumn14
-        '
-        Me.DataGridViewTextBoxColumn14.HeaderText = "Distrito"
-        Me.DataGridViewTextBoxColumn14.Name = "DataGridViewTextBoxColumn14"
-        '
-        'DataGridViewTextBoxColumn15
-        '
-        Me.DataGridViewTextBoxColumn15.HeaderText = "Lima / Provincia"
-        Me.DataGridViewTextBoxColumn15.Name = "DataGridViewTextBoxColumn15"
-        '
-        'DataGridViewTextBoxColumn16
-        '
-        Me.DataGridViewTextBoxColumn16.HeaderText = "Canal"
-        Me.DataGridViewTextBoxColumn16.Name = "DataGridViewTextBoxColumn16"
-        '
-        'DataGridViewTextBoxColumn17
-        '
-        Me.DataGridViewTextBoxColumn17.HeaderText = "Transporte"
-        Me.DataGridViewTextBoxColumn17.Name = "DataGridViewTextBoxColumn17"
-        '
-        'DataGridViewTextBoxColumn18
-        '
-        Me.DataGridViewTextBoxColumn18.HeaderText = "Metros Cubicos"
-        Me.DataGridViewTextBoxColumn18.Name = "DataGridViewTextBoxColumn18"
-        '
-        'DataGridViewTextBoxColumn19
-        '
-        Me.DataGridViewTextBoxColumn19.HeaderText = "Importe"
-        Me.DataGridViewTextBoxColumn19.Name = "DataGridViewTextBoxColumn19"
-        '
-        'DataGridViewTextBoxColumn20
-        '
-        Me.DataGridViewTextBoxColumn20.HeaderText = "M. Cubicos Final"
-        Me.DataGridViewTextBoxColumn20.Name = "DataGridViewTextBoxColumn20"
-        '
-        'DataGridViewTextBoxColumn21
-        '
-        Me.DataGridViewTextBoxColumn21.HeaderText = "Tiempo Entrega"
-        Me.DataGridViewTextBoxColumn21.Name = "DataGridViewTextBoxColumn21"
-        '
-        'DataGridViewTextBoxColumn22
-        '
-        Me.DataGridViewTextBoxColumn22.HeaderText = "Destino"
-        Me.DataGridViewTextBoxColumn22.Name = "DataGridViewTextBoxColumn22"
-        '
-        'DataGridViewTextBoxColumn23
-        '
-        Me.DataGridViewTextBoxColumn23.HeaderText = "Ruta"
-        Me.DataGridViewTextBoxColumn23.Name = "DataGridViewTextBoxColumn23"
-        '
-        'DataGridViewTextBoxColumn24
-        '
-        Me.DataGridViewTextBoxColumn24.HeaderText = "Detalle Ruta"
-        Me.DataGridViewTextBoxColumn24.Name = "DataGridViewTextBoxColumn24"
-        '
-        'DataGridViewTextBoxColumn25
-        '
-        Me.DataGridViewTextBoxColumn25.HeaderText = "Restriccion"
-        Me.DataGridViewTextBoxColumn25.Name = "DataGridViewTextBoxColumn25"
-        '
-        'DataGridViewTextBoxColumn26
-        '
-        Me.DataGridViewTextBoxColumn26.HeaderText = "Representante"
-        Me.DataGridViewTextBoxColumn26.Name = "DataGridViewTextBoxColumn26"
-        '
-        'DataGridViewTextBoxColumn27
-        '
-        Me.DataGridViewTextBoxColumn27.HeaderText = "Estado"
-        Me.DataGridViewTextBoxColumn27.Name = "DataGridViewTextBoxColumn27"
-        '
-        'DataGridViewTextBoxColumn28
-        '
-        Me.DataGridViewTextBoxColumn28.HeaderText = "C5_CTD"
-        Me.DataGridViewTextBoxColumn28.Name = "DataGridViewTextBoxColumn28"
-        Me.DataGridViewTextBoxColumn28.Visible = False
-        '
-        'DataGridViewTextBoxColumn29
-        '
-        Me.DataGridViewTextBoxColumn29.HeaderText = "C5_CALMA"
-        Me.DataGridViewTextBoxColumn29.Name = "DataGridViewTextBoxColumn29"
-        Me.DataGridViewTextBoxColumn29.Visible = False
-        '
-        'DataGridViewTextBoxColumn30
-        '
-        Me.DataGridViewTextBoxColumn30.HeaderText = "Column1"
-        Me.DataGridViewTextBoxColumn30.Name = "DataGridViewTextBoxColumn30"
-        Me.DataGridViewTextBoxColumn30.Visible = False
-        '
-        'DataGridViewTextBoxColumn31
-        '
-        Me.DataGridViewTextBoxColumn31.HeaderText = "Comentario"
-        Me.DataGridViewTextBoxColumn31.Name = "DataGridViewTextBoxColumn31"
-        Me.DataGridViewTextBoxColumn31.Visible = False
-        '
-        'DataGridViewTextBoxColumn32
-        '
-        Me.DataGridViewTextBoxColumn32.HeaderText = "Comentario"
-        Me.DataGridViewTextBoxColumn32.Name = "DataGridViewTextBoxColumn32"
-        Me.DataGridViewTextBoxColumn32.Visible = False
-        '
-        'DataGridViewTextBoxColumn33
-        '
-        Me.DataGridViewTextBoxColumn33.HeaderText = "Column1"
-        Me.DataGridViewTextBoxColumn33.Name = "DataGridViewTextBoxColumn33"
-        Me.DataGridViewTextBoxColumn33.Visible = False
-        '
-        'DataGridViewTextBoxColumn34
-        '
-        Me.DataGridViewTextBoxColumn34.HeaderText = "Comentario"
-        Me.DataGridViewTextBoxColumn34.Name = "DataGridViewTextBoxColumn34"
-        Me.DataGridViewTextBoxColumn34.Visible = False
-        '
-        'DataGridViewTextBoxColumn35
-        '
-        Me.DataGridViewTextBoxColumn35.HeaderText = "SERIE2"
-        Me.DataGridViewTextBoxColumn35.Name = "DataGridViewTextBoxColumn35"
-        Me.DataGridViewTextBoxColumn35.Visible = False
-        '
-        'DataGridViewTextBoxColumn36
-        '
-        Me.DataGridViewTextBoxColumn36.HeaderText = "SERIE2"
-        Me.DataGridViewTextBoxColumn36.Name = "DataGridViewTextBoxColumn36"
-        Me.DataGridViewTextBoxColumn36.Visible = False
-        '
-        'DataGridViewTextBoxColumn37
-        '
-        Me.DataGridViewTextBoxColumn37.HeaderText = "Fecha Ruta"
-        Me.DataGridViewTextBoxColumn37.Name = "DataGridViewTextBoxColumn37"
-        '
-        'DataGridViewTextBoxColumn38
-        '
-        Me.DataGridViewTextBoxColumn38.HeaderText = "Transportista"
-        Me.DataGridViewTextBoxColumn38.Name = "DataGridViewTextBoxColumn38"
-        '
-        'DataGridViewTextBoxColumn39
-        '
-        Me.DataGridViewTextBoxColumn39.HeaderText = "Fecha Retorno"
-        Me.DataGridViewTextBoxColumn39.Name = "DataGridViewTextBoxColumn39"
-        '
-        'DataGridViewTextBoxColumn40
-        '
-        Me.DataGridViewTextBoxColumn40.HeaderText = "Glosa"
-        Me.DataGridViewTextBoxColumn40.Name = "DataGridViewTextBoxColumn40"
-        '
-        'DateTimeGridColumn1
-        '
-        DataGridViewCellStyle2.Format = "d"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.DateTimeGridColumn1.DefaultCellStyle = DataGridViewCellStyle2
-        Me.DateTimeGridColumn1.HeaderText = "Fech. Vence OC"
-        Me.DateTimeGridColumn1.Name = "DateTimeGridColumn1"
-        Me.DateTimeGridColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DateTimeGridColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
-        'DataGridViewTextBoxColumn41
-        '
-        Me.DataGridViewTextBoxColumn41.HeaderText = "idcosto"
-        Me.DataGridViewTextBoxColumn41.Name = "DataGridViewTextBoxColumn41"
-        Me.DataGridViewTextBoxColumn41.Visible = False
-        '
-        'DataGridViewTextBoxColumn42
-        '
-        Me.DataGridViewTextBoxColumn42.HeaderText = "Centro Costos"
-        Me.DataGridViewTextBoxColumn42.Name = "DataGridViewTextBoxColumn42"
-        '
-        'DataGridViewTextBoxColumn43
-        '
-        Me.DataGridViewTextBoxColumn43.HeaderText = "Fisico"
-        Me.DataGridViewTextBoxColumn43.Name = "DataGridViewTextBoxColumn43"
-        '
-        'DataGridViewTextBoxColumn44
-        '
-        Me.DataGridViewTextBoxColumn44.HeaderText = "Site Liquidacion"
-        Me.DataGridViewTextBoxColumn44.Name = "DataGridViewTextBoxColumn44"
-        Me.DataGridViewTextBoxColumn44.Visible = False
-        '
-        'DataGridViewTextBoxColumn45
-        '
-        Me.DataGridViewTextBoxColumn45.HeaderText = "Site Picking"
-        Me.DataGridViewTextBoxColumn45.Name = "DataGridViewTextBoxColumn45"
-        Me.DataGridViewTextBoxColumn45.Visible = False
         '
         'MARCAR
         '
@@ -1114,6 +477,655 @@ Partial Class GestionProgramacionDespacho
         Me.EstadoRuta.Name = "EstadoRuta"
         Me.EstadoRuta.Visible = False
         '
+        'MotivoAnulacion
+        '
+        Me.MotivoAnulacion.HeaderText = "Motivo Anulacion"
+        Me.MotivoAnulacion.Name = "MotivoAnulacion"
+        '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.Panel3)
+        Me.Panel1.Controls.Add(Me.ToolStrip1)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(1291, 139)
+        Me.Panel1.TabIndex = 47
+        '
+        'Panel3
+        '
+        Me.Panel3.Controls.Add(Me.cmb_estado)
+        Me.Panel3.Controls.Add(Me.Label4)
+        Me.Panel3.Controls.Add(Me.cmb_limaprov)
+        Me.Panel3.Controls.Add(Me.Label3)
+        Me.Panel3.Controls.Add(Me.cmb_recep)
+        Me.Panel3.Controls.Add(Me.Label2)
+        Me.Panel3.Controls.Add(Me.txt_anuladas)
+        Me.Panel3.Controls.Add(Me.Button5)
+        Me.Panel3.Controls.Add(Me.txt_pendientes)
+        Me.Panel3.Controls.Add(Me.txt_recepcionadas)
+        Me.Panel3.Controls.Add(Me.Button3)
+        Me.Panel3.Controls.Add(Me.Button1)
+        Me.Panel3.Controls.Add(Me.cmb_serie)
+        Me.Panel3.Controls.Add(Me.Label1)
+        Me.Panel3.Controls.Add(Me.CheckMarcar)
+        Me.Panel3.Controls.Add(Me.txt_numero)
+        Me.Panel3.Controls.Add(Me.dt_hasta)
+        Me.Panel3.Controls.Add(Me.Label6)
+        Me.Panel3.Controls.Add(Me.Label9)
+        Me.Panel3.Controls.Add(Me.dt_desde)
+        Me.Panel3.Controls.Add(Me.Label8)
+        Me.Panel3.Controls.Add(Me.btnBuscar)
+        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel3.Location = New System.Drawing.Point(0, 42)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(1291, 99)
+        Me.Panel3.TabIndex = 50
+        '
+        'cmb_estado
+        '
+        Me.cmb_estado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb_estado.FormattingEnabled = True
+        Me.cmb_estado.Items.AddRange(New Object() {"TODAS", "VIGENTE", "ANULADO"})
+        Me.cmb_estado.Location = New System.Drawing.Point(843, 9)
+        Me.cmb_estado.Name = "cmb_estado"
+        Me.cmb_estado.Size = New System.Drawing.Size(161, 21)
+        Me.cmb_estado.TabIndex = 107
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(794, 12)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(43, 14)
+        Me.Label4.TabIndex = 106
+        Me.Label4.Text = "Estado:"
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'cmb_limaprov
+        '
+        Me.cmb_limaprov.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb_limaprov.FormattingEnabled = True
+        Me.cmb_limaprov.Items.AddRange(New Object() {"TODAS", "LIMA", "PROVINCIA"})
+        Me.cmb_limaprov.Location = New System.Drawing.Point(604, 39)
+        Me.cmb_limaprov.Name = "cmb_limaprov"
+        Me.cmb_limaprov.Size = New System.Drawing.Size(161, 21)
+        Me.cmb_limaprov.TabIndex = 105
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(513, 46)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(85, 14)
+        Me.Label3.TabIndex = 104
+        Me.Label3.Text = "Lima / Provincia:"
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'cmb_recep
+        '
+        Me.cmb_recep.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb_recep.DropDownWidth = 250
+        Me.cmb_recep.FormattingEnabled = True
+        Me.cmb_recep.Items.AddRange(New Object() {"TODAS", "PENDIENTE DE REPCEPCION", "RECEPCIONADO"})
+        Me.cmb_recep.Location = New System.Drawing.Point(604, 9)
+        Me.cmb_recep.Name = "cmb_recep"
+        Me.cmb_recep.Size = New System.Drawing.Size(161, 21)
+        Me.cmb_recep.TabIndex = 103
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(513, 13)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(61, 14)
+        Me.Label2.TabIndex = 102
+        Me.Label2.Text = "Recepcion:"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'txt_anuladas
+        '
+        Me.txt_anuladas.AutoSize = True
+        Me.txt_anuladas.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
+        Me.txt_anuladas.Location = New System.Drawing.Point(1252, 13)
+        Me.txt_anuladas.Name = "txt_anuladas"
+        Me.txt_anuladas.Size = New System.Drawing.Size(12, 13)
+        Me.txt_anuladas.TabIndex = 101
+        Me.txt_anuladas.Text = "-"
+        '
+        'Button5
+        '
+        Me.Button5.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.Button5.Font = New System.Drawing.Font("Tahoma", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.Button5.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.Button5.Location = New System.Drawing.Point(1078, 6)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(167, 23)
+        Me.Button5.TabIndex = 100
+        Me.Button5.Text = "GUIAS ANULADAS"
+        Me.Button5.UseVisualStyleBackColor = False
+        '
+        'txt_pendientes
+        '
+        Me.txt_pendientes.AutoSize = True
+        Me.txt_pendientes.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
+        Me.txt_pendientes.Location = New System.Drawing.Point(1252, 36)
+        Me.txt_pendientes.Name = "txt_pendientes"
+        Me.txt_pendientes.Size = New System.Drawing.Size(12, 13)
+        Me.txt_pendientes.TabIndex = 99
+        Me.txt_pendientes.Text = "-"
+        '
+        'txt_recepcionadas
+        '
+        Me.txt_recepcionadas.AutoSize = True
+        Me.txt_recepcionadas.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
+        Me.txt_recepcionadas.Location = New System.Drawing.Point(1252, 60)
+        Me.txt_recepcionadas.Name = "txt_recepcionadas"
+        Me.txt_recepcionadas.Size = New System.Drawing.Size(12, 13)
+        Me.txt_recepcionadas.TabIndex = 98
+        Me.txt_recepcionadas.Text = "-"
+        '
+        'Button3
+        '
+        Me.Button3.BackColor = System.Drawing.Color.Crimson
+        Me.Button3.Font = New System.Drawing.Font("Tahoma", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.Button3.ForeColor = System.Drawing.Color.White
+        Me.Button3.Location = New System.Drawing.Point(1078, 31)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(167, 23)
+        Me.Button3.TabIndex = 97
+        Me.Button3.Text = "PENDIENTES DE RECEPCION"
+        Me.Button3.UseVisualStyleBackColor = False
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.OliveDrab
+        Me.Button1.Font = New System.Drawing.Font("Tahoma", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.Button1.ForeColor = System.Drawing.Color.White
+        Me.Button1.Location = New System.Drawing.Point(1078, 55)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(167, 23)
+        Me.Button1.TabIndex = 96
+        Me.Button1.Text = "RECEPCIONADAS"
+        Me.Button1.UseVisualStyleBackColor = False
+        '
+        'cmb_serie
+        '
+        Me.cmb_serie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb_serie.FormattingEnabled = True
+        Me.cmb_serie.Items.AddRange(New Object() {"TODAS", "007", "011", "012", "0013", "007", "0009", "015", "010"})
+        Me.cmb_serie.Location = New System.Drawing.Point(324, 39)
+        Me.cmb_serie.Name = "cmb_serie"
+        Me.cmb_serie.Size = New System.Drawing.Size(161, 21)
+        Me.cmb_serie.TabIndex = 92
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(281, 46)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(35, 14)
+        Me.Label1.TabIndex = 91
+        Me.Label1.Text = "Serie:"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'CheckMarcar
+        '
+        Me.CheckMarcar.AutoSize = True
+        Me.CheckMarcar.Location = New System.Drawing.Point(13, 76)
+        Me.CheckMarcar.Name = "CheckMarcar"
+        Me.CheckMarcar.Size = New System.Drawing.Size(87, 17)
+        Me.CheckMarcar.TabIndex = 90
+        Me.CheckMarcar.Text = "Marcar Todo"
+        Me.CheckMarcar.UseVisualStyleBackColor = True
+        '
+        'txt_numero
+        '
+        Me.txt_numero.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txt_numero.Location = New System.Drawing.Point(95, 40)
+        Me.txt_numero.Name = "txt_numero"
+        Me.txt_numero.Size = New System.Drawing.Size(161, 20)
+        Me.txt_numero.TabIndex = 89
+        '
+        'dt_hasta
+        '
+        Me.dt_hasta.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dt_hasta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dt_hasta.Location = New System.Drawing.Point(324, 9)
+        Me.dt_hasta.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.dt_hasta.Name = "dt_hasta"
+        Me.dt_hasta.Size = New System.Drawing.Size(161, 20)
+        Me.dt_hasta.TabIndex = 86
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Location = New System.Drawing.Point(10, 43)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(79, 14)
+        Me.Label6.TabIndex = 88
+        Me.Label6.Text = "Nº Documento:"
+        Me.Label6.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Location = New System.Drawing.Point(281, 13)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(38, 14)
+        Me.Label9.TabIndex = 84
+        Me.Label9.Text = "Hasta:"
+        Me.Label9.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'dt_desde
+        '
+        Me.dt_desde.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dt_desde.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dt_desde.Location = New System.Drawing.Point(95, 9)
+        Me.dt_desde.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.dt_desde.Name = "dt_desde"
+        Me.dt_desde.Size = New System.Drawing.Size(161, 20)
+        Me.dt_desde.TabIndex = 87
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Location = New System.Drawing.Point(11, 13)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(41, 14)
+        Me.Label8.TabIndex = 83
+        Me.Label8.Text = "Desde:"
+        Me.Label8.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'btnBuscar
+        '
+        Me.btnBuscar.BackColor = System.Drawing.SystemColors.Control
+        Me.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnBuscar.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.btnBuscar.FlatAppearance.BorderSize = 0
+        Me.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnBuscar.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.btnBuscar.IconChar = FontAwesome.Sharp.IconChar.Search
+        Me.btnBuscar.IconColor = System.Drawing.SystemColors.ControlText
+        Me.btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Solid
+        Me.btnBuscar.IconSize = 16
+        Me.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnBuscar.Location = New System.Drawing.Point(1010, 10)
+        Me.btnBuscar.Name = "btnBuscar"
+        Me.btnBuscar.Padding = New System.Windows.Forms.Padding(0, 3, 0, 0)
+        Me.btnBuscar.Size = New System.Drawing.Size(25, 20)
+        Me.btnBuscar.TabIndex = 85
+        Me.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnBuscar.UseVisualStyleBackColor = False
+        '
+        'ToolStrip1
+        '
+        Me.ToolStrip1.BackColor = System.Drawing.SystemColors.Control
+        Me.ToolStrip1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdGenerarExcel, Me.separador5, Me.ToolStripButton1, Me.ToolStripSeparator1, Me.ToolStripButton2, Me.ToolStripSeparator2, Me.ToolStripButton3, Me.ToolStripSeparator3, Me.ToolStripButton4, Me.ToolStripSeparator4, Me.cmdCerrar})
+        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStrip1.Name = "ToolStrip1"
+        Me.ToolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
+        Me.ToolStrip1.Size = New System.Drawing.Size(1291, 42)
+        Me.ToolStrip1.TabIndex = 49
+        Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'cmdGenerarExcel
+        '
+        Me.cmdGenerarExcel.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdGenerarExcel.Image = CType(resources.GetObject("cmdGenerarExcel.Image"), System.Drawing.Image)
+        Me.cmdGenerarExcel.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.cmdGenerarExcel.Margin = New System.Windows.Forms.Padding(1)
+        Me.cmdGenerarExcel.Name = "cmdGenerarExcel"
+        Me.cmdGenerarExcel.Size = New System.Drawing.Size(88, 40)
+        Me.cmdGenerarExcel.Text = "&Exportar Excel"
+        Me.cmdGenerarExcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'separador5
+        '
+        Me.separador5.Name = "separador5"
+        Me.separador5.Size = New System.Drawing.Size(6, 42)
+        '
+        'ToolStripButton1
+        '
+        Me.ToolStripButton1.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton1.Margin = New System.Windows.Forms.Padding(1)
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(91, 40)
+        Me.ToolStripButton1.Text = "&Procesar Rutas"
+        Me.ToolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 42)
+        '
+        'ToolStripButton2
+        '
+        Me.ToolStripButton2.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
+        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton2.Margin = New System.Windows.Forms.Padding(1)
+        Me.ToolStripButton2.Name = "ToolStripButton2"
+        Me.ToolStripButton2.Size = New System.Drawing.Size(126, 40)
+        Me.ToolStripButton2.Text = "&Confirmar Recepcion"
+        Me.ToolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 42)
+        '
+        'ToolStripButton3
+        '
+        Me.ToolStripButton3.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ToolStripButton3.Image = CType(resources.GetObject("ToolStripButton3.Image"), System.Drawing.Image)
+        Me.ToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton3.Margin = New System.Windows.Forms.Padding(1)
+        Me.ToolStripButton3.Name = "ToolStripButton3"
+        Me.ToolStripButton3.Size = New System.Drawing.Size(84, 40)
+        Me.ToolStripButton3.Text = "&Agregar Guia"
+        Me.ToolStripButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'ToolStripSeparator3
+        '
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 42)
+        '
+        'ToolStripButton4
+        '
+        Me.ToolStripButton4.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ToolStripButton4.Image = CType(resources.GetObject("ToolStripButton4.Image"), System.Drawing.Image)
+        Me.ToolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton4.Margin = New System.Windows.Forms.Padding(1)
+        Me.ToolStripButton4.Name = "ToolStripButton4"
+        Me.ToolStripButton4.Size = New System.Drawing.Size(97, 40)
+        Me.ToolStripButton4.Text = "&Agregar Externo"
+        Me.ToolStripButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'ToolStripSeparator4
+        '
+        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(6, 42)
+        '
+        'cmdCerrar
+        '
+        Me.cmdCerrar.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdCerrar.Image = CType(resources.GetObject("cmdCerrar.Image"), System.Drawing.Image)
+        Me.cmdCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.cmdCerrar.Margin = New System.Windows.Forms.Padding(1)
+        Me.cmdCerrar.Name = "cmdCerrar"
+        Me.cmdCerrar.Size = New System.Drawing.Size(33, 40)
+        Me.cmdCerrar.Text = "&Salir"
+        Me.cmdCerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.HeaderText = "Fecha"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        Me.DataGridViewTextBoxColumn1.Visible = False
+        '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.HeaderText = "Fecha Guia"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        Me.DataGridViewTextBoxColumn2.Visible = False
+        '
+        'DataGridViewTextBoxColumn3
+        '
+        Me.DataGridViewTextBoxColumn3.HeaderText = "Hora"
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        Me.DataGridViewTextBoxColumn3.Visible = False
+        '
+        'DataGridViewTextBoxColumn4
+        '
+        Me.DataGridViewTextBoxColumn4.HeaderText = "Condicion Pago"
+        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
+        Me.DataGridViewTextBoxColumn4.Visible = False
+        '
+        'DataGridViewTextBoxColumn5
+        '
+        Me.DataGridViewTextBoxColumn5.HeaderText = "Hora Guia"
+        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
+        Me.DataGridViewTextBoxColumn5.Visible = False
+        '
+        'DataGridViewTextBoxColumn6
+        '
+        Me.DataGridViewTextBoxColumn6.HeaderText = "Cod Pedido"
+        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
+        Me.DataGridViewTextBoxColumn6.Visible = False
+        '
+        'DataGridViewTextBoxColumn7
+        '
+        Me.DataGridViewTextBoxColumn7.HeaderText = "N° Guia"
+        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
+        '
+        'DataGridViewTextBoxColumn8
+        '
+        Me.DataGridViewTextBoxColumn8.HeaderText = "Ruc Cliente"
+        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
+        Me.DataGridViewTextBoxColumn8.Visible = False
+        '
+        'DataGridViewTextBoxColumn9
+        '
+        Me.DataGridViewTextBoxColumn9.HeaderText = "Cliente"
+        Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
+        Me.DataGridViewTextBoxColumn9.Visible = False
+        '
+        'DataGridViewTextBoxColumn10
+        '
+        Me.DataGridViewTextBoxColumn10.HeaderText = "Direccion Entrega"
+        Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
+        '
+        'DataGridViewTextBoxColumn11
+        '
+        Me.DataGridViewTextBoxColumn11.HeaderText = "Ubigeo"
+        Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
+        '
+        'DataGridViewTextBoxColumn12
+        '
+        Me.DataGridViewTextBoxColumn12.HeaderText = "Provincia"
+        Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
+        '
+        'DataGridViewTextBoxColumn13
+        '
+        Me.DataGridViewTextBoxColumn13.HeaderText = "Departamento"
+        Me.DataGridViewTextBoxColumn13.Name = "DataGridViewTextBoxColumn13"
+        '
+        'DataGridViewTextBoxColumn14
+        '
+        Me.DataGridViewTextBoxColumn14.HeaderText = "Distrito"
+        Me.DataGridViewTextBoxColumn14.Name = "DataGridViewTextBoxColumn14"
+        '
+        'DataGridViewTextBoxColumn15
+        '
+        Me.DataGridViewTextBoxColumn15.HeaderText = "Lima / Provincia"
+        Me.DataGridViewTextBoxColumn15.Name = "DataGridViewTextBoxColumn15"
+        '
+        'DataGridViewTextBoxColumn16
+        '
+        Me.DataGridViewTextBoxColumn16.HeaderText = "Canal"
+        Me.DataGridViewTextBoxColumn16.Name = "DataGridViewTextBoxColumn16"
+        '
+        'DataGridViewTextBoxColumn17
+        '
+        Me.DataGridViewTextBoxColumn17.HeaderText = "Transporte"
+        Me.DataGridViewTextBoxColumn17.Name = "DataGridViewTextBoxColumn17"
+        '
+        'DataGridViewTextBoxColumn18
+        '
+        Me.DataGridViewTextBoxColumn18.HeaderText = "Metros Cubicos"
+        Me.DataGridViewTextBoxColumn18.Name = "DataGridViewTextBoxColumn18"
+        '
+        'DataGridViewTextBoxColumn19
+        '
+        Me.DataGridViewTextBoxColumn19.HeaderText = "Importe"
+        Me.DataGridViewTextBoxColumn19.Name = "DataGridViewTextBoxColumn19"
+        '
+        'DataGridViewTextBoxColumn20
+        '
+        Me.DataGridViewTextBoxColumn20.HeaderText = "M. Cubicos Final"
+        Me.DataGridViewTextBoxColumn20.Name = "DataGridViewTextBoxColumn20"
+        '
+        'DataGridViewTextBoxColumn21
+        '
+        Me.DataGridViewTextBoxColumn21.HeaderText = "Tiempo Entrega"
+        Me.DataGridViewTextBoxColumn21.Name = "DataGridViewTextBoxColumn21"
+        '
+        'DataGridViewTextBoxColumn22
+        '
+        Me.DataGridViewTextBoxColumn22.HeaderText = "Destino"
+        Me.DataGridViewTextBoxColumn22.Name = "DataGridViewTextBoxColumn22"
+        '
+        'DataGridViewTextBoxColumn23
+        '
+        Me.DataGridViewTextBoxColumn23.HeaderText = "Ruta"
+        Me.DataGridViewTextBoxColumn23.Name = "DataGridViewTextBoxColumn23"
+        '
+        'DataGridViewTextBoxColumn24
+        '
+        Me.DataGridViewTextBoxColumn24.HeaderText = "Detalle Ruta"
+        Me.DataGridViewTextBoxColumn24.Name = "DataGridViewTextBoxColumn24"
+        '
+        'DataGridViewTextBoxColumn25
+        '
+        Me.DataGridViewTextBoxColumn25.HeaderText = "Restriccion"
+        Me.DataGridViewTextBoxColumn25.Name = "DataGridViewTextBoxColumn25"
+        '
+        'DataGridViewTextBoxColumn26
+        '
+        Me.DataGridViewTextBoxColumn26.HeaderText = "Representante"
+        Me.DataGridViewTextBoxColumn26.Name = "DataGridViewTextBoxColumn26"
+        '
+        'DataGridViewTextBoxColumn27
+        '
+        Me.DataGridViewTextBoxColumn27.HeaderText = "Estado"
+        Me.DataGridViewTextBoxColumn27.Name = "DataGridViewTextBoxColumn27"
+        '
+        'DataGridViewTextBoxColumn28
+        '
+        Me.DataGridViewTextBoxColumn28.HeaderText = "C5_CTD"
+        Me.DataGridViewTextBoxColumn28.Name = "DataGridViewTextBoxColumn28"
+        Me.DataGridViewTextBoxColumn28.Visible = False
+        '
+        'DataGridViewTextBoxColumn29
+        '
+        Me.DataGridViewTextBoxColumn29.HeaderText = "C5_CALMA"
+        Me.DataGridViewTextBoxColumn29.Name = "DataGridViewTextBoxColumn29"
+        Me.DataGridViewTextBoxColumn29.Visible = False
+        '
+        'DataGridViewTextBoxColumn30
+        '
+        Me.DataGridViewTextBoxColumn30.HeaderText = "Column1"
+        Me.DataGridViewTextBoxColumn30.Name = "DataGridViewTextBoxColumn30"
+        Me.DataGridViewTextBoxColumn30.Visible = False
+        '
+        'DataGridViewTextBoxColumn31
+        '
+        Me.DataGridViewTextBoxColumn31.HeaderText = "Comentario"
+        Me.DataGridViewTextBoxColumn31.Name = "DataGridViewTextBoxColumn31"
+        Me.DataGridViewTextBoxColumn31.Visible = False
+        '
+        'DataGridViewTextBoxColumn32
+        '
+        Me.DataGridViewTextBoxColumn32.HeaderText = "Comentario"
+        Me.DataGridViewTextBoxColumn32.Name = "DataGridViewTextBoxColumn32"
+        Me.DataGridViewTextBoxColumn32.Visible = False
+        '
+        'DataGridViewTextBoxColumn33
+        '
+        Me.DataGridViewTextBoxColumn33.HeaderText = "Column1"
+        Me.DataGridViewTextBoxColumn33.Name = "DataGridViewTextBoxColumn33"
+        Me.DataGridViewTextBoxColumn33.Visible = False
+        '
+        'DataGridViewTextBoxColumn34
+        '
+        Me.DataGridViewTextBoxColumn34.HeaderText = "Comentario"
+        Me.DataGridViewTextBoxColumn34.Name = "DataGridViewTextBoxColumn34"
+        Me.DataGridViewTextBoxColumn34.Visible = False
+        '
+        'DataGridViewTextBoxColumn35
+        '
+        Me.DataGridViewTextBoxColumn35.HeaderText = "SERIE2"
+        Me.DataGridViewTextBoxColumn35.Name = "DataGridViewTextBoxColumn35"
+        Me.DataGridViewTextBoxColumn35.Visible = False
+        '
+        'DataGridViewTextBoxColumn36
+        '
+        Me.DataGridViewTextBoxColumn36.HeaderText = "SERIE2"
+        Me.DataGridViewTextBoxColumn36.Name = "DataGridViewTextBoxColumn36"
+        Me.DataGridViewTextBoxColumn36.Visible = False
+        '
+        'DataGridViewTextBoxColumn37
+        '
+        Me.DataGridViewTextBoxColumn37.HeaderText = "Fecha Ruta"
+        Me.DataGridViewTextBoxColumn37.Name = "DataGridViewTextBoxColumn37"
+        '
+        'DataGridViewTextBoxColumn38
+        '
+        Me.DataGridViewTextBoxColumn38.HeaderText = "Transportista"
+        Me.DataGridViewTextBoxColumn38.Name = "DataGridViewTextBoxColumn38"
+        '
+        'DataGridViewTextBoxColumn39
+        '
+        Me.DataGridViewTextBoxColumn39.HeaderText = "Fecha Retorno"
+        Me.DataGridViewTextBoxColumn39.Name = "DataGridViewTextBoxColumn39"
+        '
+        'DataGridViewTextBoxColumn40
+        '
+        Me.DataGridViewTextBoxColumn40.HeaderText = "Glosa"
+        Me.DataGridViewTextBoxColumn40.Name = "DataGridViewTextBoxColumn40"
+        '
+        'DateTimeGridColumn1
+        '
+        DataGridViewCellStyle2.Format = "d"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.DateTimeGridColumn1.DefaultCellStyle = DataGridViewCellStyle2
+        Me.DateTimeGridColumn1.HeaderText = "Fech. Vence OC"
+        Me.DateTimeGridColumn1.Name = "DateTimeGridColumn1"
+        Me.DateTimeGridColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DateTimeGridColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'DataGridViewTextBoxColumn41
+        '
+        Me.DataGridViewTextBoxColumn41.HeaderText = "idcosto"
+        Me.DataGridViewTextBoxColumn41.Name = "DataGridViewTextBoxColumn41"
+        Me.DataGridViewTextBoxColumn41.Visible = False
+        '
+        'DataGridViewTextBoxColumn42
+        '
+        Me.DataGridViewTextBoxColumn42.HeaderText = "Centro Costos"
+        Me.DataGridViewTextBoxColumn42.Name = "DataGridViewTextBoxColumn42"
+        '
+        'DataGridViewTextBoxColumn43
+        '
+        Me.DataGridViewTextBoxColumn43.HeaderText = "Fisico"
+        Me.DataGridViewTextBoxColumn43.Name = "DataGridViewTextBoxColumn43"
+        '
+        'DataGridViewTextBoxColumn44
+        '
+        Me.DataGridViewTextBoxColumn44.HeaderText = "Site Liquidacion"
+        Me.DataGridViewTextBoxColumn44.Name = "DataGridViewTextBoxColumn44"
+        Me.DataGridViewTextBoxColumn44.Visible = False
+        '
+        'DataGridViewTextBoxColumn45
+        '
+        Me.DataGridViewTextBoxColumn45.HeaderText = "Site Picking"
+        Me.DataGridViewTextBoxColumn45.Name = "DataGridViewTextBoxColumn45"
+        Me.DataGridViewTextBoxColumn45.Visible = False
+        '
         'GestionProgramacionDespacho
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1271,4 +1283,5 @@ Partial Class GestionProgramacionDespacho
     Friend WithEvents nombrepicking As DataGridViewTextBoxColumn
     Friend WithEvents nombreliquidacion As DataGridViewTextBoxColumn
     Friend WithEvents EstadoRuta As DataGridViewTextBoxColumn
+    Friend WithEvents MotivoAnulacion As DataGridViewTextBoxColumn
 End Class

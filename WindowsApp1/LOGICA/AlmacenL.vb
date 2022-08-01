@@ -48,9 +48,9 @@ Public Class AlmacenL
             Throw ex
         End Try
     End Function
-    Public Function SP_CSE_ACTUALIZAR_CUBICAJE_ART(codarticulo As String, alto As Decimal, ancho As Decimal, largo As Decimal, factorcji As Decimal, factorcjm As Decimal) As Integer
+    Public Function SP_CSE_ACTUALIZAR_CUBICAJE_ART(codarticulo As String, alto As Decimal, ancho As Decimal, largo As Decimal, factorcji As Decimal, factorcjm As Decimal, peso As Decimal) As Integer
         Try
-            Return objAlmacen.SP_CSE_ACTUALIZAR_CUBICAJE_ART(codarticulo, alto, ancho, largo, factorcji, factorcjm)
+            Return objAlmacen.SP_CSE_ACTUALIZAR_CUBICAJE_ART(codarticulo, alto, ancho, largo, factorcji, factorcjm, peso)
         Catch ex As Exception
             Throw ex
         End Try
@@ -187,7 +187,13 @@ Public Class AlmacenL
             Throw ex
         End Try
     End Function
-
+    Public Function ObtenerGuiaProgramacion(ctd As String, nrodoc As String) As DataTable
+        Try
+            Return objAlmacen.ObtenerGuiaProgramacion(ctd, nrodoc)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
     Public Function ListarMotivosDelivery() As DataTable
         Try
@@ -326,9 +332,17 @@ Public Class AlmacenL
         End Try
     End Function
 
-    Public Function RegistrarFacturaTransportista(CNUMDOC As String, factura As String) As Integer
+    Public Function RegistrarFacturaTransportista(CNUMDOC As String, factura As String, ctd As String, calma As String) As Integer
         Try
-            Return objAlmacen.RegistrarFacturaTransportista(CNUMDOC, factura)
+            Return objAlmacen.RegistrarFacturaTransportista(CNUMDOC, factura, ctd, calma)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function RegistrarFacturaInyectado(CNUMDOC As String, factura As String, ctd As String, calma As String) As Integer
+        Try
+            Return objAlmacen.RegistrarFacturaInyectado(CNUMDOC, factura, ctd, calma)
         Catch ex As Exception
             Throw ex
         End Try
@@ -446,6 +460,15 @@ Public Class AlmacenL
         Return rp
     End Function
 
+    Public Function SP_CSE_LISTAR_ARTICULOS() As DataTable
+        Dim rp As New DataTable
+        Try
+            rp = objAlmacen.SP_CSE_LISTAR_ARTICULOS()
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return rp
+    End Function
     Public Function obtenerStock_ATE_CJM_X_CODIGOARTI(Codarticulo As String) As DataTable
         Try
             Return objAlmacen.obtenerStock_ATE_CJM_X_CODIGOARTI(Codarticulo)
@@ -615,6 +638,14 @@ Public Class AlmacenL
     Public Function ObtenerComplementeArticulo(codarticulo As String, idsite As Integer, idalmacen As Integer) As DataTable
         Try
             Return objAlmacen.ObtenerComplementeArticulo(codarticulo, idsite, idalmacen)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function EliminarRuta(idruta As Integer) As List(Of String)
+        Try
+            Return objAlmacen.EliminarRuta(idruta)
         Catch ex As Exception
             Throw ex
         End Try
@@ -865,6 +896,14 @@ Public Class AlmacenL
     Public Function reemplazar(id As Integer) As Integer
         Try
             Return objAlmacen.reemplazar(id)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function Obtener_Html_Alerta() As String
+        Try
+            Return objAlmacen.Obtener_Html_Alerta
         Catch ex As Exception
             Throw ex
         End Try

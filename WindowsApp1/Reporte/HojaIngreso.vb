@@ -50,11 +50,9 @@ Public Class HojaIngreso
                 RowDetalleReporte.Item("Volumen") = rowDetalle.Item("Volumen").ToString
                 RowDetalleReporte.Item("Posicion1") = rowDetalle.Item("Posicion1").ToString
                 RowDetalleReporte.Item("Posicion2") = rowDetalle.Item("Posicion2").ToString
-                RowDetalleReporte.Item("Cajas") = rowDetalle.Item("Cajas").ToString
-                RowDetalleReporte.Item("CajasM") = rowDetalle.Item("CajasM").ToString
-                RowDetalleReporte.Item("Saldo") = rowDetalle.Item("Saldo").ToString
-
-                'RowDetalleReporte.Item("Posicion3") = rowDetalle.Item("Posicion3").ToString
+                RowDetalleReporte.Item("Cajas") = CType(rowDetalle.Item("Cajas").ToString, Integer)
+                RowDetalleReporte.Item("CajasM") = CType(rowDetalle.Item("CajasM").ToString, Integer)
+                RowDetalleReporte.Item("Saldo") = CType(rowDetalle.Item("Saldo").ToString, Integer)
 
                 Dim dTComplemento As New DataTable
                 Dim Capacidad As Integer = 0, primerpiso As Integer = 0, unidadesExisten As Integer = 0, masters As Integer = 0, disponible As Integer = 0

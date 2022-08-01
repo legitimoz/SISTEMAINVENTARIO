@@ -51,6 +51,14 @@ Public Class frmSalidaRetorno_Ruta
 
     Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
         Try
+            ListarGuias()
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "SISTEMAS NORDIC")
+        End Try
+    End Sub
+
+    Private Sub ListarGuias()
+        Try
 
             If cbxTransportista.SelectedIndex = 0 Then
                 Cargar_Seguimiento_Rutas(dtpFecIni.Value.ToShortDateString, dtpFecFin.Value.ToShortDateString)
@@ -61,10 +69,9 @@ Public Class frmSalidaRetorno_Ruta
             End If
 
         Catch ex As Exception
-
+            Throw ex
         End Try
     End Sub
-
 
     Sub Cargar_Seguimiento_Rutas(ByVal fecIni As String, ByVal fecFin As String)
         Try
@@ -204,7 +211,7 @@ Public Class frmSalidaRetorno_Ruta
             Dim CodRuta As Integer = 0
             Dim rowRuta As DataRow
             Dim nombreempresa, RUC, Direccion As String
-            Dim totalvolumen As Decimal = 0, totaltiempo As Decimal = 0, totalimporte As Decimal = 0, totalpeso As Decimal = 0
+            Dim totalvolumen As Decimal = 0, totaltiempo As Decimal = 0, totalimporte As Decimal = 0, totalpeso As Decimal = 0, totalbultos As Integer = Constantes.ValorEnteroInicial
 
             nombreempresa = ConfigurationManager.AppSettings("Empresa").ToString.Trim
             RUC = ConfigurationManager.AppSettings("nombreAlmacen").ToString.Trim
@@ -221,15 +228,6 @@ Public Class frmSalidaRetorno_Ruta
                 Case "HEADMARK CORPORATION SAC"
                     logooperador = "SendaLogo"
                     color = "DarkOrange"
-                    'Case "3"
-                    '    logooperador = "BARDEX"
-                    '    color = "DarkSeaGreen"
-                    'Case "4"
-                    '    logooperador = "ESCAME"
-                    '    color = "CornflowerBlue"
-                    'Case Else
-                    '    logooperador = ""
-                    '    color = "Silver"
             End Select
 
             Dim repartidor As String = ""
@@ -251,12 +249,12 @@ Public Class frmSalidaRetorno_Ruta
                     Codigo = idruta.ToString + " - " + fecha
                     totalvolumen = dtDetalleRuta.Rows(0).Item("volumentotal").ToString
                     totaltiempo = dtDetalleRuta.Rows(0).Item("tiempototal").ToString
-                    'totalimporte = dtDetalleRuta.Rows(0).Item("importetotal").ToString
                     totalimporte = 0
                     totalpeso = dtDetalleRuta.Rows(0).Item("pesototal").ToString
                     dtruta.Rows.Clear()
                     Dim contador As Integer = 1
                     For Each DetalleCon As DataRow In dtDetalleRuta.Rows
+                        totalbultos = totalbultos + DetalleCon.Item("drg_bulto").ToString.Trim
                         rowRuta = dtruta.NewRow
                         rowRuta.Item("Numero") = DetalleCon.Item("orden").ToString.Trim
                         rowRuta.Item("Guia") = DetalleCon.Item("NRO_GUIA").ToString.Trim
@@ -264,23 +262,23 @@ Public Class frmSalidaRetorno_Ruta
                         rowRuta.Item("Restriccion") = DetalleCon.Item("RESTRICCION").ToString.Trim
                         rowRuta.Item("Direccion") = DetalleCon.Item("DIRECCION_ENTREGA").ToString.Trim
                         rowRuta.Item("Condicion") = DetalleCon.Item("CONDICION").ToString.Trim
-                        rowRuta.Item("Importe") = DetalleCon.Item("IMPORTE")
-                        'rowRuta.Item("Importe") = CType(0, Decimal)
+                        rowRuta.Item("Importe") = DetalleCon.Item("drg_bulto").ToString.Trim
                         rowRuta.Item("Representante") = DetalleCon.Item("REPRESENTANTE").ToString.Trim
                         rowRuta.Item("Volumen") = Math.Round(CType(DetalleCon.Item("M3UN"), Decimal), 3)
                         rowRuta.Item("TiempoEntrega") = DetalleCon.Item("TIEMPO")
-                        rowRuta.Item("TipoRuta") = ""
+                        rowRuta.Item("TipoRuta") = DetalleCon.Item("TipoRuta")
+                        rowRuta.Item("Comentario") = DetalleCon.Item("comentarioruta")
                         dtruta.Rows.Add(rowRuta)
                         contador = contador + 1
                     Next
                     Dim reporte As New Demo
                     dtruta.TableName = "DetalleRuta"
-                    ' reporte.ImprimirRuta(Codigo, nombreempresa, RUC, Direccion, logooperador, color, "HojaDeRuta.rdlc", dtruta, repartidor, movilidad, totalvolumen, Math.Round(totaltiempo, 2).ToString + " Horas", "S/. " + totalimporte.ToString, totalpeso.ToString + " KG.", tipoEnvio)
                     Dim REPORT As New HojaRuta
                     REPORT.CodigoRuta = Codigo
+                    REPORT.totalbultos = totalbultos
                     REPORT.totalvolumen = totalvolumen.ToString + " M3"
                     REPORT.totalpeso = totalpeso.ToString + " KG."
-                    REPORT.totalimporte = "S/. " + totalimporte.ToString
+
                     REPORT.totaltiempo = Math.Round(totaltiempo, 2).ToString + " Horas"
                     REPORT.tipoenvio = tipoEnvio
                     REPORT.movilidad = movilidad
@@ -288,10 +286,9 @@ Public Class frmSalidaRetorno_Ruta
                     REPORT.Dtruta = dtruta
                     REPORT.Show()
                 End If
-
             End If
         Catch ex As Exception
-
+            Throw ex
         End Try
     End Sub
 
@@ -308,12 +305,10 @@ Public Class frmSalidaRetorno_Ruta
     Private Sub btnExportar_Click(sender As Object, e As EventArgs) Handles btnExportar.Click
         Try
             Me.Cursor = Cursors.WaitCursor
-
             GridAExcel(dgvListadoRutas)
-
             Me.Cursor = Cursors.Default
         Catch ex As Exception
-
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "SISTEMAS NORDIC")
         End Try
     End Sub
 
@@ -323,83 +318,34 @@ Public Class frmSalidaRetorno_Ruta
         Dim exApp As Object
         Dim exLibro As Object
         Dim exHoja As Object
-
         exApp = CreateObject("Excel.Application")
-
-        ' -- Referencia a la Hoja activa ( la que añade por defecto Excel )   
         exHoja = exApp.ActiveSheet
-
         Try
-
-            'Añadimos el Libro al programa, y la hoja al libro
             exLibro = exApp.Workbooks.Add()
             exHoja = exLibro.Worksheets(1)
-
-
-
-            'exLibro = exApp.Workbooks
-            'exHoja = exLibro.Worksheets.Add()
-
-            ' ¿Cuantas columnas y cuantas filas?
             Dim NCol As Integer = ElGrid.ColumnCount - 4
             Dim NRow As Integer = ElGrid.RowCount
-
-            'Aqui recorremos todas las filas, y por cada fila todas las columnas y vamos escribiendo.
             For i As Integer = 1 To NCol
-                'If i <> 9 And i <> 23 And i <> 25 Then
                 exHoja.Cells.Item(1, i) = ElGrid.Columns(i - 1).HeaderText.ToString()
-                'End If
-                'exHoja.Cells.Item(1, i).HorizontalAlignment = 3
             Next
 
             Dim fecha As String = String.Empty
-
             For Fila As Integer = 0 To NRow - 1
                 For Col As Integer = 0 To NCol - 1
-
-                    'If Col = 13 Or Col = 14 Or Col = 15 Or Col = 16 Or Col = 17 Then
-                    '    fecha = "'" & CStr(ElGrid.Rows(Fila).Cells(Col).Value)
-                    '    exHoja.Cells.Item(Fila + 2, Col + 1) = "'" & CStr(ElGrid.Rows(Fila).Cells(Col).Value)
-                    'Else
-                    '    exHoja.Cells.Item(Fila + 2, Col + 1) = CStr(ElGrid.Rows(Fila).Cells(Col).Value)
-
-                    'End If
-                    ' If Col <> 8 And Col <> 22 And Col <> 24 Then
-                    'If Col = 3 Or Col = 0 Or Col = 2 Or Col = 13 Or Col = 14 Or Col = 15 Or Col = 16 Or Col = 17 Then
-                    '    fecha = "'" & CStr(ElGrid.Rows(Fila).Cells(Col).Value)
-                    '    exHoja.Cells.Item(Fila + 2, Col + 1) = "'" & CStr(ElGrid.Rows(Fila).Cells(Col).Value)
-                    'Else
-                    '    exHoja.Cells.Item(Fila + 2, Col + 1) = CStr(ElGrid.Rows(Fila).Cells(Col).Value)
-
-                    'End If
-
                     If Col = 3 Then
                         fecha = "'" & CStr(ElGrid.Rows(Fila).Cells(Col).Value)
                         exHoja.Cells.Item(Fila + 2, Col + 1) = "'" & CStr(ElGrid.Rows(Fila).Cells(Col).Value)
                     Else
                         exHoja.Cells.Item(Fila + 2, Col + 1) = CStr(ElGrid.Rows(Fila).Cells(Col).Value)
-
                     End If
-                    ' End If
                 Next
             Next
 
-            'Titulo en negrita, Alineado al centro y que el tamaño de la columna se
-            'ajuste al texto
-
-
             exHoja.Rows.Item(1).Font.Bold = 1
             exHoja.Rows.Item(1).HorizontalAlignment = 3
-
             exHoja.Columns.AutoFit()
-
             exHoja.Rows.AutoFit()
-
-            'exHoja.RowHeight = 12
-
-            'Aplicación visible
             exApp.Application.Visible = True
-
             exHoja = Nothing
             exLibro = Nothing
             exApp = Nothing
@@ -419,15 +365,51 @@ Public Class frmSalidaRetorno_Ruta
 
     Private Sub btnRetornoProveedor_Click(sender As Object, e As EventArgs) Handles btnRetornoProveedor.Click
         Try
-
             Dim obj As New frmRetornoRuta
             obj.nroRuta = "SINRUTA"
             obj.usr_id = usr_id
             obj.ShowDialog()
-
-
         Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "SISTEMAS NORDIC")
+        End Try
+    End Sub
 
+    Public Function LlamarObtenerComplementoArticulo(idruta As Integer) As List(Of String)
+
+        Dim dtretono As New List(Of String)
+        Try
+            dtretono = AlmancenObj.EliminarRuta(idruta)
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return dtretono
+    End Function
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim idRuta As Integer = Constantes.ValorEnteroInicial
+        Dim rP As New List(Of String)
+        Try
+
+            If dgvListadoRutas.Rows.Count > Constantes.ValorEnteroInicial Then
+                If dgvListadoRutas.CurrentRow IsNot Nothing Then
+                    idRuta = dgvListadoRutas.CurrentRow.Cells("r_ruta").Value
+                    If idRuta > Constantes.ValorEnteroInicial Then
+                        If MessageBox.Show("Está a punto de eliminar la ruta " + idRuta.ToString + " ¿Desea Continuar?", "SISTEMAS NORDIC", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = Windows.Forms.DialogResult.Yes Then
+                            rP = LlamarObtenerComplementoArticulo(idRuta)
+                            If rP IsNot Nothing Then
+                                If rP.ElementAt(0) > Constantes.ValorEnteroInicial Then
+                                    MsgBox(rP.ElementAt(1), MsgBoxStyle.Information, "SISTEMAS NORDIC")
+                                    ListarGuias()
+                                Else
+                                    MsgBox(rP.ElementAt(1), MsgBoxStyle.Exclamation, "SISTEMAS NORDIC")
+                                End If
+                            End If
+                        End If
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "SISTEMAS NORDIC")
         End Try
     End Sub
 End Class

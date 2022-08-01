@@ -112,6 +112,7 @@ Public Class GestionGuiasSalida
                     rowDetalle.Item("UNIDAD") = RowRetorno.Item("UNIDAD").ToString.Trim
                     rowDetalle.Item("FACTORCAJA") = RowRetorno.Item("FACTORCAJA").ToString.Trim
                     rowDetalle.Item("C6_CITEM") = RowRetorno.Item("C6_CITEM").ToString.Trim
+                    rowDetalle.Item("Peso") = RowRetorno.Item("Peso").ToString.Trim
 
                     If RowRetorno.Item("FACTORCAJAMASTER").ToString.Trim <> "" Then
                         rowDetalle.Item("FACTORCAJAMASTER") = CType(RowRetorno.Item("FACTORCAJAMASTER").ToString.Trim, Decimal)
@@ -161,7 +162,8 @@ Public Class GestionGuiasSalida
                         Dim volumencajamaster, Multiplicacion As Decimal
                         volumencajamaster = CType(rowDetalle.Item("ALTO").ToString, Decimal) * CType(rowDetalle.Item("LARGO").ToString, Decimal) * CType(rowDetalle.Item("ANCHO").ToString, Decimal)
                         Multiplicacion = (CType(rowDetalle.Item("FACTORCAJA"), Decimal) * CType(rowDetalle.Item("FACTORCAJAMASTER"), Decimal))
-                        rowDetalle.Item("VOLUMEN") = Math.Round((volumencajamaster / Multiplicacion) * CType(rowDetalle.Item("SALDO"), Decimal), 2)
+                        ' Dim V As Decimal = (volumencajamaster / Multiplicacion) * CType(rowDetalle.Item("SALDO"), Decimal)
+                        rowDetalle.Item("VOLUMEN") = Math.Round((volumencajamaster / Multiplicacion) * CType(rowDetalle.Item("SALDO"), Decimal), 5)
                     Else
                         rowDetalle.Item("VOLUMEN") = 0
                     End If
@@ -182,9 +184,151 @@ Public Class GestionGuiasSalida
             End If
 
         Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "SISTEMAS NORDIC")
             Throw ex
         End Try
     End Sub
+
+    Public Function LlamarListarGuiasDET2(codalmacen As String, tipdoc As String, nrodoc As String) As DataTable
+
+        Dim dtretono As DataTable
+        Try
+            dtretono = ObjAlmacen.ListarGuiasDET(codalmacen, tipdoc, nrodoc, 0, 0).Copy
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return dtretono
+    End Function
+
+    Private Function CalcularBultos_Pesos(Calma As String, CtdaX As String, Cnumdoc As String) As List(Of Decimal)
+        Dim ReturnRp As New List(Of Decimal)
+        Dim bultos As Integer = Constantes.ValorEnteroInicial
+        Dim Peso As Decimal = Constantes.ValorEnteroInicial
+        Dim DtDetalle As New DataTable
+        Dim cajas As Decimal = 0, cajasm As Decimal = 0, saldo As Decimal = 0
+
+        'variables bultos & Pesos
+        Dim BultosCaja As Integer = Constantes.ValorEnteroInicial, bultosUni As Integer = Constantes.ValorEnteroInicial
+        Dim VolUniFinal As Decimal = Constantes.ValorEnteroInicial
+        Dim Division As Decimal = Constantes.ValorEnteroInicial
+
+        Try
+            DtDetalle = LlamarListarGuiasDET2(Calma, CtdaX, Cnumdoc)
+            If DtDetalle.Rows.Count > Constantes.ValorEnteroInicial Then
+                For Each rowDetalle As DataRow In DtDetalle.Rows
+                    '  Dim PesoDet As Decimal = Constantes.ValorEnteroInicial
+
+                    Dim VolumenUnitario As Decimal = Constantes.ValorEnteroInicial
+                    Dim undCajas As Integer = Constantes.ValorEnteroInicial 'Unidades de CajasI + Saldo
+
+                    Dim Undfactor As Integer = Constantes.ValorEnteroInicial 'Factor Cjm * Factor Cji' 
+                    Dim VolumenMaster As Decimal = Constantes.ValorEnteroInicial, VolumenUn As Decimal = Constantes.ValorEnteroInicial
+
+                    If rowDetalle.Item("UNIDAD").ToString = "UND" Then
+                        If rowDetalle.Item("FACTORCAJAMASTER").ToString.Trim <> "" Then
+                            If rowDetalle.Item("FACTORCAJA").ToString <> 0 And rowDetalle.Item("FACTORCAJAMASTER").ToString.Trim <> 0 Then
+                                cajas = (rowDetalle.Item("CANTIDAD") / rowDetalle.Item("FACTORCAJA"))
+                                saldo = rowDetalle.Item("CANTIDAD") Mod rowDetalle.Item("FACTORCAJA")
+                                cajasm = cajas / rowDetalle.Item("FACTORCAJAMASTER")
+                                cajasm = Math.Floor(cajasm)
+                                cajas = cajas Mod rowDetalle.Item("FACTORCAJAMASTER")
+                            End If
+                        End If
+                    Else
+                        If rowDetalle.Item("FACTORCAJAMASTER").ToString.Trim <> "" Then
+                            If rowDetalle.Item("UNIDAD").ToString = "CJA" Then
+                                If rowDetalle.Item("FACTORCAJA").ToString <> 0 And rowDetalle.Item("FACTORCAJAMASTER").ToString <> 0 Then
+                                    saldo = 0
+                                    cajas = rowDetalle.Item("CANTIDAD")
+                                    cajasm = cajas / rowDetalle.Item("FACTORCAJAMASTER")
+                                    cajasm = Math.Floor(cajasm)
+                                    cajas = cajas Mod rowDetalle.Item("FACTORCAJAMASTER")
+                                End If
+                            End If
+                        End If
+                    End If
+
+                    'CALCULO BULTOS INICIO'
+
+                    If cajas > Constantes.ValorEnteroInicial And rowDetalle.Item("FACTORCAJA").ToString > Constantes.ValorEnteroInicial Then
+                        undCajas = cajas * rowDetalle.Item("FACTORCAJA").ToString
+                    Else
+                        undCajas = Constantes.ValorEnteroInicial
+                    End If
+                    undCajas = undCajas + saldo
+                    If rowDetalle.Item("FACTORCAJAMASTER").ToString.Trim <> "" And rowDetalle.Item("ALTO").ToString.Trim <> "" Then
+                        If rowDetalle.Item("FACTORCAJA").ToString > 0 And rowDetalle.Item("FACTORCAJAMASTER").ToString.Trim > 0 And rowDetalle.Item("ALTO").ToString.Trim > 0 And rowDetalle.Item("LARGO").ToString > 0 And rowDetalle.Item("ANCHO").ToString > 0 Then
+                            Undfactor = rowDetalle.Item("FACTORCAJA").ToString * rowDetalle.Item("FACTORCAJAMASTER").ToString
+                            VolumenMaster = rowDetalle.Item("ALTO").ToString * rowDetalle.Item("LARGO").ToString * rowDetalle.Item("ANCHO").ToString
+                            VolumenUn = VolumenMaster / Undfactor
+                            If VolumenUn > 0 Then
+                                VolumenUnitario = undCajas * VolumenUn
+                            End If
+                        End If
+                    End If
+
+                    BultosCaja = BultosCaja + cajasm
+                    VolUniFinal = VolUniFinal + VolumenUnitario
+
+                    'CALCULO BULTOS FIN'
+
+                    'CALCULO PESO INICIO'
+                    Dim PesoCajasM As Decimal = Constantes.ValorEnteroInicial, PesoUnidades As Decimal = Constantes.ValorEnteroInicial 'Peso Caja Master & Peso Saldos + UndCajaI
+                    Dim PesoUnitaria As Decimal = Constantes.ValorEnteroInicial
+
+                    If rowDetalle.Item("Peso").ToString.Trim > Constantes.ValorEnteroInicial Then
+                        If cajasm > Constantes.ValorEnteroInicial Then
+                            PesoCajasM = cajasm * rowDetalle.Item("Peso")
+                        Else
+                            PesoCajasM = Constantes.ValorEnteroInicial
+                        End If
+
+                        If undCajas > Constantes.ValorEnteroInicial Then
+                            If Undfactor > Constantes.ValorEnteroInicial Then
+                                PesoUnitaria = rowDetalle.Item("Peso").ToString.Trim / Undfactor
+                            End If
+
+                            If undCajas > Constantes.ValorEnteroInicial And PesoUnitaria > Constantes.ValorEnteroInicial Then
+                                PesoUnidades = PesoUnitaria * undCajas
+                            Else
+                                PesoUnidades = Constantes.ValorEnteroInicial
+                            End If
+                        Else
+                            PesoUnidades = Constantes.ValorEnteroInicial
+                        End If
+                    Else
+                        PesoCajasM = Constantes.ValorEnteroInicial
+                        PesoUnidades = Constantes.ValorEnteroInicial
+                    End If
+                    Peso = Peso + PesoCajasM + PesoUnidades
+
+                    'CALCULO PESO FIN'
+                Next
+
+                If VolUniFinal > 0 Then
+                    Division = VolUniFinal / 0.02
+                Else
+                    Division = 0
+                End If
+
+                If Division > 0 And Division <= 1 Then
+                    bultosUni = 1
+                ElseIf Division > 1 Then
+                    bultosUni = Math.Ceiling(Division)
+                Else
+                    bultosUni = 0
+                End If
+
+                bultos = BultosCaja + bultosUni
+
+                ReturnRp.Add(bultos)
+                ReturnRp.Add(Peso)
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return ReturnRp
+    End Function
 
     Public Sub ListarGuiasDetalleMasivo(codalmacenM As String, tipdocM As String, nrodocM As String)
         Try
@@ -249,7 +393,7 @@ Public Class GestionGuiasSalida
                         Dim volumencajamaster, Multiplicacion As Decimal
                         volumencajamaster = CType(rowDetalle.Item("ALTO").ToString, Decimal) * CType(rowDetalle.Item("LARGO").ToString, Decimal) * CType(rowDetalle.Item("ANCHO").ToString, Decimal)
                         Multiplicacion = (CType(rowDetalle.Item("FACTORCAJA"), Decimal) * CType(rowDetalle.Item("FACTORCAJAMASTER"), Decimal))
-                        rowDetalle.Item("VOLUMEN") = Math.Round((volumencajamaster / Multiplicacion) * CType(rowDetalle.Item("SALDO"), Decimal), 2)
+                        rowDetalle.Item("VOLUMEN") = Math.Round((volumencajamaster / Multiplicacion) * CType(rowDetalle.Item("SALDO"), Decimal), 5)
                     Else
                         rowDetalle.Item("VOLUMEN") = 0
                     End If
@@ -390,7 +534,10 @@ Public Class GestionGuiasSalida
         Try
             If Dg_Cabecera.Rows.Count > 0 Then
                 For Each rowCab As DataGridViewRow In Dg_Cabecera.Rows
+
                     If rowCab.Cells("MARCAR").Value = True Then
+                        Dim ReturnRp As New List(Of Decimal)
+                        ReturnRp = CalcularBultos_Pesos(rowCab.Cells("CODALMACEN_ORIGEN").EditedFormattedValue.ToString.Trim, rowCab.Cells("TIP_DOC").EditedFormattedValue.ToString.Trim, rowCab.Cells("NDOCUMENTO").EditedFormattedValue.ToString.Trim)
                         codalmacenM = rowCab.Cells("CODALMACEN_ORIGEN").EditedFormattedValue.ToString.Trim
                         tipdocM = rowCab.Cells("TIP_DOC").EditedFormattedValue.ToString.Trim
                         nrodocM = rowCab.Cells("NDOCUMENTO").EditedFormattedValue.ToString.Trim
@@ -433,9 +580,9 @@ Public Class GestionGuiasSalida
                                         cajas = cajas Mod rowDetalle.Item("FACTORCAJAMASTER")
                                     End If
                                 End If
-                                RowDetalleReporte.Item("CajasM") = cajasm
-                                RowDetalleReporte.Item("CajasI") = cajas
-                                RowDetalleReporte.Item("Saldo") = saldo
+                                RowDetalleReporte.Item("CajasM") = CType(cajasm, Integer)
+                                RowDetalleReporte.Item("CajasI") = CType(cajas, Integer)
+                                RowDetalleReporte.Item("Saldo") = CType(saldo, Integer)
                                 Dim posiciones As List(Of String)
                                 posiciones = ObtenerPosiciones(rowDetalle.Item("CODIGO").ToString.Trim, rowDetalle.Item("SERIE").ToString.Trim, CType(rowDetalle.Item("SALDO"), Decimal))
                                 If posiciones.Count > 0 Then
@@ -446,8 +593,6 @@ Public Class GestionGuiasSalida
                                 totalvolumen = totalvolumen + rowDetalle.Item("VOLUMEN")
                                 DtDetalleReporte.Rows.Add(RowDetalleReporte)
                             Next
-
-
                             Select Case nombreempresa
                                 Case "NORDIC PHARMACEUTICAL COMPANY SAC"
                                     logooperador = "LogoNordic"
@@ -455,13 +600,12 @@ Public Class GestionGuiasSalida
                                 Case "HEADMARK CORPORATION SAC"
                                     logooperador = "SendaLogo"
                                     color = "DarkOrange"
-
                             End Select
 
                             If DtDetalleReporte.Rows.Count > 0 Then
                                 Dim reporte As New Demo
                                 DtDetalleReporte.TableName = "DetalleHojaPicking"
-                                reporte.ReportePicking("HojaPicking.rdlc", DtDetalleReporte, nrodocM, CodPedido, nombreempresa, RUC, Direccion, logooperador, color, fechaM, clienterazonM, rucclienteM, direccionClienteM, codalmacenM, DtDetalleReporte.Rows.Count, totalvolumen, GlosaM)
+                                reporte.ReportePicking("HojaPicking3.rdlc", DtDetalleReporte, nrodocM, CodPedido, nombreempresa, RUC, Direccion, logooperador, color, fechaM, clienterazonM, rucclienteM, direccionClienteM, codalmacenM, DtDetalleReporte.Rows.Count, totalvolumen, GlosaM, ReturnRp.ElementAt(0), ReturnRp.ElementAt(1))
                                 'codalmacenM = rowCab.Cells("CODALMACEN_ORIGEN").EditedFormattedValue.ToString.Trim
                                 'tipdocM = rowCab.Cells("TIP_DOC").EditedFormattedValue.ToString.Trim
                                 'nrodocM = rowCab.Cells("NDOCUMENTO").EditedFormattedValue.ToString.Trim
@@ -721,63 +865,69 @@ Public Class GestionGuiasSalida
             If Dg_Cabecera.Rows(e.RowIndex).Cells("ESTADO").Value.ToString.Trim = "PENDIENTE" Then
                 Dg_Cabecera.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.LightGreen
             Else
-                If Dg_Cabecera.Rows(e.RowIndex).Cells("ESTADO").Value.ToString.Trim = "PICADO" Then
+                If Dg_Cabecera.Rows(e.RowIndex).Cells("ESTADO").Value.ToString.Trim = "POCKING" Then
                     Dg_Cabecera.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.IndianRed
                 End If
             End If
         End If
     End Sub
 
+    Private Function ValidarSaldosPickingConfirm() As Boolean
+        Dim Rp As Boolean = False
+        Try
+            If Dg_Detalle.Rows.Count > Constantes.ValorEnteroInicial Then
+                For Each rowval As DataGridViewRow In Dg_Detalle.Rows
+                    If rowval.Cells("SALDO").Value <> Constantes.ValorEnteroInicial Then
+                        Rp = True
+                    End If
+                Next
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return Rp
+    End Function
+
     Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles btn_imprimir.Click
-        'Dim codalmacenM, tipdocM, nrodocM
+
         Try
             If Dg_Cabecera.Rows.Count > 0 Then
-                'For Each rowCab As DataGridViewRow In Dg_Cabecera.Rows
-                '    If rowCab.Cells("ESTADO").Value.ToString.Trim = "IMPRESO" Then
-                '        If rowCab.Cells("MARCAR").Value = True Then
-                '            codalmacenM = rowCab.Cells("CODALMACEN_ORIGEN").EditedFormattedValue.ToString.Trim
-                '            tipdocM = rowCab.Cells("TIP_DOC").EditedFormattedValue.ToString.Trim
-                '            nrodocM = rowCab.Cells("NDOCUMENTO").EditedFormattedValue.ToString.Trim
-                '            If codalmacenM <> "" And tipdocM <> "" And nrodocM <> "" Then
-                '                Dim formRegistrarPicador As New RegistrarPicking
-                '                formRegistrarPicador.nrodocM = nrodocM
-                '                formRegistrarPicador.ShowDialog()
-                '                If formRegistrarPicador.grabado = True Then
-                '                    If llamarRegistrarImpresion(codalmacenM, tipdocM, nrodocM, "PI", formRegistrarPicador.idpicador, formRegistrarPicador.idfiltro, 0, "") <> 0 Then
-                '                        MsgBox("PickConfirm realizado Correctamente", MsgBoxStyle.Information, "SISTEMAS NORDIC")
-                '                        ListarGuiasCabecera()
-                '                    End If
-                '                End If
-                '            End If
-                '        End If
-                '    End If
-                'Next
                 Dim ContadorDetalle As Integer = 0
                 ObtenerGuiaCab()
                 If codalmacen <> "" And nrodoc <> "" And tipdoc <> "" Then
-                    If estado.Trim = "IMPRESO".Trim Then
-                        If Dg_Detalle.Rows.Count > 0 Then
-                            If idsite = 2 And idalmacen = 4 Then
+                    If ValidarSaldosPickingConfirm() = False Then
+                        If estado.Trim = "IMPRESO".Trim Then
+                            If Dg_Detalle.Rows.Count > 0 Then
+                                If idsite = 2 And idalmacen = 4 Then
 
-                                If codalmacen.ToString.Trim = "00AT" Or codalmacen.ToString.Trim = "01AT" Or codalmacen.ToString.Trim = "02AT" Or codalmacen.ToString.Trim = "03AT" Or codalmacen.ToString.Trim = "05AT" Or codalmacen.ToString.Trim = "06AT" Or codalmacen.ToString.Trim = "07AT" Or codalmacen.ToString.Trim = "08AT" Or codalmacen.ToString.Trim = "09AT" Or codalmacen.ToString.Trim = "1008" Or codalmacen.ToString.Trim = "AT01" Or codalmacen.ToString.Trim = "CM01" Or codalmacen.ToString.Trim = "DI08" Or codalmacen.ToString.Trim = "DV01" Or codalmacen.ToString.Trim = "RE01" Or codalmacen.ToString.Trim = "RET1" Or codalmacen.ToString.Trim = "RE02" Or codalmacen.ToString.Trim = "05RT" Then
-                                    For Each DGval As DataGridViewRow In Dg_Detalle.Rows
-                                        If CType(DGval.Cells("SALDO").Value, Decimal) = 0 Then
-                                            ContadorDetalle = ContadorDetalle + 1
+                                    If codalmacen.ToString.Trim = "00AT" Or codalmacen.ToString.Trim = "01AT" Or codalmacen.ToString.Trim = "02AT" Or codalmacen.ToString.Trim = "03AT" Or codalmacen.ToString.Trim = "05AT" Or codalmacen.ToString.Trim = "06AT" Or codalmacen.ToString.Trim = "07AT" Or codalmacen.ToString.Trim = "08AT" Or codalmacen.ToString.Trim = "09AT" Or codalmacen.ToString.Trim = "1008" Or codalmacen.ToString.Trim = "AT01" Or codalmacen.ToString.Trim = "CM01" Or codalmacen.ToString.Trim = "DI08" Or codalmacen.ToString.Trim = "DV01" Or codalmacen.ToString.Trim = "RE01" Or codalmacen.ToString.Trim = "RET1" Or codalmacen.ToString.Trim = "RE02" Or codalmacen.ToString.Trim = "05RT" Then
+                                        For Each DGval As DataGridViewRow In Dg_Detalle.Rows
+                                            If CType(DGval.Cells("SALDO").Value, Decimal) = 0 Then
+                                                ContadorDetalle = ContadorDetalle + 1
+                                            End If
+                                        Next
+
+                                        Dim formRegistrarPicador As New RegistrarPicking
+                                        formRegistrarPicador.nrodocM = nrodoc
+                                        formRegistrarPicador.ShowDialog()
+                                        If formRegistrarPicador.grabado = True Then
+                                            If llamarRegistrarImpresion(codalmacen, tipdoc, nrodoc, "PI", formRegistrarPicador.idpicador, formRegistrarPicador.idfiltro, 0, "") <> 0 Then
+                                                MsgBox("PickConfirm realizado Correctamente", MsgBoxStyle.Information, "SISTEMAS NORDIC")
+                                                ListarGuiasCabecera()
+                                            End If
                                         End If
-                                    Next
-                                    'If ContadorDetalle = Dg_Detalle.Rows.Count Then
-                                    Dim formRegistrarPicador As New RegistrarPicking
-                                    formRegistrarPicador.nrodocM = nrodoc
-                                    formRegistrarPicador.ShowDialog()
-                                    If formRegistrarPicador.grabado = True Then
-                                        If llamarRegistrarImpresion(codalmacen, tipdoc, nrodoc, "PI", formRegistrarPicador.idpicador, formRegistrarPicador.idfiltro, 0, "") <> 0 Then
-                                            MsgBox("PickConfirm realizado Correctamente", MsgBoxStyle.Information, "SISTEMAS NORDIC")
-                                            ListarGuiasCabecera()
+                                    Else
+                                        Dim formRegistrarPicador As New RegistrarPicking
+                                        formRegistrarPicador.nrodocM = nrodoc
+                                        formRegistrarPicador.ShowDialog()
+                                        If formRegistrarPicador.grabado = True Then
+                                            If llamarRegistrarImpresion(codalmacen, tipdoc, nrodoc, "PI", formRegistrarPicador.idpicador, formRegistrarPicador.idfiltro, 0, "") <> 0 Then
+                                                MsgBox("PickConfirm realizado Correctamente", MsgBoxStyle.Information, "SISTEMAS NORDIC")
+                                                ListarGuiasCabecera()
+                                            End If
                                         End If
                                     End If
-                                    'Else
-                                    '    MsgBox("Para Realizar Pick Confirm Los Saldos de los Item deben estar en 0", MsgBoxStyle.Exclamation, "SISTEMAS NORDIC")
-                                    'End If
+
                                 Else
                                     Dim formRegistrarPicador As New RegistrarPicking
                                     formRegistrarPicador.nrodocM = nrodoc
@@ -789,19 +939,10 @@ Public Class GestionGuiasSalida
                                         End If
                                     End If
                                 End If
-
-                            Else
-                                Dim formRegistrarPicador As New RegistrarPicking
-                                formRegistrarPicador.nrodocM = nrodoc
-                                formRegistrarPicador.ShowDialog()
-                                If formRegistrarPicador.grabado = True Then
-                                    If llamarRegistrarImpresion(codalmacen, tipdoc, nrodoc, "PI", formRegistrarPicador.idpicador, formRegistrarPicador.idfiltro, 0, "") <> 0 Then
-                                        MsgBox("PickConfirm realizado Correctamente", MsgBoxStyle.Information, "SISTEMAS NORDIC")
-                                        ListarGuiasCabecera()
-                                    End If
-                                End If
                             End If
                         End If
+                    Else
+                        MsgBox("Para dar Pick Confirm los saldos deben estar en 0", MsgBoxStyle.Exclamation, "SISTEMAS NORDIC")
                     End If
                 End If
 
@@ -930,19 +1071,18 @@ Public Class GestionGuiasSalida
                     rowcabecera.Item("Comentario") = RowRetorno.Item("Comentario").ToString.Trim
                     rowcabecera.Item("ESTADO_SOFT") = RowRetorno.Item("ESTADO_SOFT").ToString.Trim
                     rowcabecera.Item("GlosaPicking") = RowRetorno.Item("GlosaPicking").ToString.Trim
-                    '
 
                     If RowRetorno.Item("ESTADO").ToString.Trim = "PE" Then
                         rowcabecera.Item("ESTADO") = "PENDIENTE"
-                        ' TotalPendientes = TotalPendientes + 1
-                    Else
-                        If RowRetorno.Item("ESTADO").ToString.Trim = "PI" Then
-                            rowcabecera.Item("ESTADO") = "PICADO"
-                            '  TotalPicados = TotalPicados + 1
-                        Else
-                            rowcabecera.Item("ESTADO") = "IMPRESO"
-                            'TotalImpresos = TotalImpresos + 1
-                        End If
+                        TotalPendientes = TotalPendientes + 1
+                    ElseIf RowRetorno.Item("ESTADO").ToString.Trim = "PI" Then
+                        rowcabecera.Item("ESTADO") = "PICKING"
+                        TotalPicados = TotalPicados + 1
+                    ElseIf RowRetorno.Item("ESTADO").ToString.Trim = "IM" Then
+                        rowcabecera.Item("ESTADO") = "IMPRESO"
+                        TotalImpresos = TotalImpresos + 1
+                    ElseIf RowRetorno.Item("ESTADO").ToString.Trim = "PA" Then
+                        rowcabecera.Item("ESTADO") = "PICKING ANULADO"
                     End If
 
                     If rowcabecera.Item("ESTADO_SOFT").ToString.Trim <> "ANULADO" Then
@@ -956,7 +1096,7 @@ Public Class GestionGuiasSalida
                                         TotalPendientes = TotalPendientes + 1
                                     Else
                                         If RowRetorno.Item("ESTADO").ToString.Trim = "PI" Then
-                                            rowcabecera.Item("ESTADO") = "PICADO"
+                                            rowcabecera.Item("ESTADO") = "POCKING"
                                             TotalPicados = TotalPicados + 1
                                         Else
                                             rowcabecera.Item("ESTADO") = "IMPRESO"
@@ -973,7 +1113,7 @@ Public Class GestionGuiasSalida
                                     TotalPendientes = TotalPendientes + 1
                                 Else
                                     If RowRetorno.Item("ESTADO").ToString.Trim = "PI" Then
-                                        rowcabecera.Item("ESTADO") = "PICADO"
+                                        rowcabecera.Item("ESTADO") = "POCKING"
                                         TotalPicados = TotalPicados + 1
                                     Else
                                         rowcabecera.Item("ESTADO") = "IMPRESO"
